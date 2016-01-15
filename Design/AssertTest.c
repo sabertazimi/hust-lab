@@ -14,7 +14,7 @@
 
 int main(void) {
     Time tm = getCurrentTime();
-    printf("OuterTime:%7.2f", tm);
+    printf("OuterTime:%7.2f\n", tm);
     // PatientQueue pq;
     // InitPriorityQue(pq);
     // HeapSort(pq);
