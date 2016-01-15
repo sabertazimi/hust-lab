@@ -18,15 +18,18 @@
    - boolIsTreating
 
 #### Algrithms
-1. empty() 如果队列为空返回真
-2. pop() 删除对顶元素
-3. push() 加入一个元素
-4. size() 返回优先队列中拥有的元素个数
-5. top() 返回优先队列对顶元素
+1. InitPriorityQue
+2. DestroyPriorityQue
+3. ClearPriorityQue
+4. PriorityQueSize
+5. PriorityQueInsert
+6. PriorityQueDeletMin
+7. PriorityQueEmpty
+8. PriorityQueFull
 
 #### Testing
 1. Log(Enum//define log information type e.g Prompt, Record, FILE*, argument,...)
-2. 测试时长
+2.测试时长
    - 1h
    - 3h
    - 9h

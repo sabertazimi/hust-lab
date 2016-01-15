@@ -1,8 +1,9 @@
-heap.exe : heap.o
-	gcc -std=c99 -o heap.exe heap.o
-heap.o : heap.c
-	gcc -std=c99 -o heap.o -c heap.c
-
+Simulation.exe:Heap.o AssertTest.o
+	gcc -Wall -std=c99 -static -g -o Simulation.exe Heap.o AssertTest.o
+AssertTest.o:AssertTest.c Heap.h
+	gcc -Wall -std=c99 -static -g -c AssertTest.c
+Heap.o:Heap.c Heap.h
+	gcc -Wall -std=c99 -static -g -c Heap.c
 
 clean:
-	rm -fr heap.o
+	rm -fr *.o
