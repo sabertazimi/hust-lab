@@ -157,10 +157,35 @@ Status HeapSort(PatientQueue pq) {
     time ( &rawtime );                            //get system time
     timeinfo = localtime ( &rawtime );//convert to local time 
     // tm_hour, tm_min
-    currentTime = (float)timeinfo->tm_hour + timeinfo->tm_min * 0.01;
-    printf("InnerTime:%7.2f\n", currentTime);
+    currentTime = (float) (timeinfo->tm_hour + timeinfo->tm_min * 0.01);
     return currentTime;
 }
+
+/**
+ * log current system time to target file and stand outputstream
+ * @param  fp [description]
+ * @return    [description]
+ */
+Status showCurrentTime(FILE * fp, Time tm) { 
+    int hour,min;
+    //undefined check
+    if (fp == NULL) return ERROR;
+    //show time
+    hour = (int) tm;
+    min = (int) ((tm - hour) * 100);
+    //printf on screnn
+    printf("[Current Time - ");
+    printf("%02d:", hour);
+    printf("%02d ]", min);
+    //fprintf into log file
+    fprintf(fp, "[Current Time - ");
+    fprintf(fp, "%02d:", hour);
+    fprintf(fp, "%02d ]", min);
+
+    //return
+    return OK;
+}
+
 /********** End of Function for simulation hospital**********/
 
 

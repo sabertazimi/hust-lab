@@ -13,8 +13,10 @@
 #undef NDEBUG
 
 int main(void) {
+    FILE * fp;
     Time tm = getCurrentTime();
-    printf("OuterTime:%7.2f\n", tm);
+    if ((fp = fopen("simulation.log", "at+")) == NULL) exit(INFEASIBLE);
+    showCurrentTime(fp , tm);
     // PatientQueue pq;
     // InitPriorityQue(pq);
     // HeapSort(pq);

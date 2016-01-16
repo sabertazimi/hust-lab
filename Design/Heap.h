@@ -27,12 +27,16 @@
 //variable types
 typedef int Status;
 typedef int Boolean;
-typedef int LogType;    //types of log information
-typedef int SickType;   //types of sicks identifier
-typedef float Time;     //store time
-typedef float Priority; //store patient priority
-//different sick types 
-enum SICKTYPE {NORMAL, ACUTE, CHRONIC, INFLAMMATION, RELAPSE};
+typedef float Time;       //store time
+typedef float Priority;  //store patient priority
+//different sick types types of sicks identifier
+typedef enum __SICKTYPE__ { 
+	NORMAL, ACUTE,
+	CHRONIC,
+	INFLAMMATION,
+	RELAPSE
+} SickType;
+
 //struct for patient's information
 typedef struct Patient {
     Time arrivedTime;     //store time when patient arrived at hospital
@@ -44,18 +48,30 @@ typedef struct Patient {
 } Patient;
 //patient priority queue
 typedef struct PatientQueue {
-    Patient * queue;      //patient queue(static array)
-    int queueSize;          //current number of patient waiting for treating
-    int queueMaxSize;  //current max queue capability
+    Patient * queue;  	   //patient queue(static array)
+    int queueSize;       	   //current number of patient waiting for treating
+    int queueMaxSize;	   //current max queue capability
+    int treatedNumber;       //store the number of patients who has been treated
+    int totalNumber;            //store the number of patients who has visited hospital(maybe not be treated)
+    Time treatingStartTime;//store start time of current patient who is being treating
+    Time treatingLength;     //store treating length of current patient who is being treating
+    Time treatingOverTime;//store over time of current patient who is being treating
+    Boolean isTreating;        //show doctor whether busy or not
 } PatientQueue;
 
 
-//different logger types
+//different logger types  
 //ARRIVED:log when patient arrive at hospital
 //TREATED:log when patient are being treated
 //LEAVED:log when patient leave hospital
 //RATE:log treatment rate
-enum LOGTYPE {ARRIVED, TREATED, LEAVED, RATE, PATIENTS};
+typedef enum __LOGTYPE__ {
+	ARRIVED,
+	TREATED,
+	LEAVED,
+	RATE,
+	PATIENTS
+} LogType;
 
 
 
@@ -157,6 +173,14 @@ Time getTreatingLength(SickType st);
  * @return  current system time(float)
  */
 Time getCurrentTime();
+
+/**
+ * log current system time to target file or stand outputstream
+ * @param  fp file pointer to target file
+ * @param  tm curren system time
+ * @return   function status:OK/ERROR 
+ */
+Status showCurrentTime(FILE * fp, Time tm);
 
 /********** End of Function for simulation hospital**********/
 
