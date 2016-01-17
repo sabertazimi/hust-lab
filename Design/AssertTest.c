@@ -1,5 +1,5 @@
 /*************************************************************************
-    > File Name: Heap.h
+    > File Name: AssertTest.c 
     > Author: CS1409 U201414800 Yilong Liu 
     > Mail: hustlyl@163.com 
     > Website: sabertazimi.github.io
@@ -7,16 +7,17 @@
  ************************************************************************/
 
 #include <assert.h>
-#include "Heap.h"
+#include "Priority.h"
 
 //open assertion
 #undef NDEBUG
 
 int main(void) {
     FILE * fp;
-    Time tm = getCurrentTime();
+    PatientQueue pq;
+    pq.queue = NULL;
     if ((fp = fopen("simulation.log", "at+")) == NULL) exit(INFEASIBLE);
-    showCurrentTime(fp , tm);
+    showCurrentTime(fp , getCurrentTime());
     // PatientQueue pq;
     // InitPriorityQue(pq);
     // HeapSort(pq);

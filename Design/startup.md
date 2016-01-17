@@ -18,14 +18,8 @@
    - boolIsTreating
 
 #### Algrithms
-1. InitPriorityQue
-2. DestroyPriorityQue
-3. ClearPriorityQue
-4. PriorityQueSize
-5. PriorityQueInsert
-6. PriorityQueDeletMin
-7. PriorityQueEmpty
-8. PriorityQueFull
+1. PriorityQueInsert
+2. PriorityQueDeletMin
 
 #### Testing
 1. Log(Enum//define log information type e.g Prompt, Record, FILE*, argument,...)

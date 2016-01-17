@@ -1,17 +1,16 @@
 /*************************************************************************
-	> File Name: Heap.h
+	> File Name: Priority.h
 	> Author: CS1409 U201414800 Yilong Liu 
 	> Mail: hustlyl@163.com 
               > Website: sabertazimi.github.io
 	> Created Time: 2016年01月15日 星期五 18时07分54秒
  ************************************************************************/
 
-#ifndef  _HEAP_H
-#define _HEAP_H
+#ifndef  _PRIORITY_H
+#define _PRIORITY_H
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdarg.h>    //define variable parameter function, e.g Log
 #include <time.h>
 
 //macro
@@ -22,8 +21,10 @@
 #define INFEASIBLE -1
 #define OVERFLOW -2
 
-//maxinum of PATIENTS 
-#define MAX_PATIENTS 100
+//initial number of patients
+#define INIT_PATIENTS 100
+//increase delta number of patients
+#define INCREASE_PATIENTS 50
 //variable types
 typedef int Status;
 typedef int Boolean;
@@ -80,6 +81,8 @@ typedef enum __LOGTYPE__ {
 /**
  * Initialize patient queue
  * @param  pq  patient queue
+ * @called by - DestoryPriorityQueue
+ *                     - ClearPriorityQueue
  * @return   function status:OK/ERROR 
  */
 Status InitPriorityQue(PatientQueue pq);
@@ -87,6 +90,7 @@ Status InitPriorityQue(PatientQueue pq);
 /**
  * Destory patient queue
  * @param  pq  patient queue
+ * @call        InitPriorityQueue
  * @return   function status:OK/ERROR 
  */
 Status DestroyPriorityQue(PatientQueue pq);
@@ -94,6 +98,7 @@ Status DestroyPriorityQue(PatientQueue pq);
 /**
  * Clear up patient queue
  * @param  pq  patient queue
+ * @call        InitPriorityQueue
  * @return   function status:OK/ERROR 
  */
 Status ClearPriorityQue(PatientQueue pq);
@@ -108,13 +113,22 @@ int PriorityQueSize(PatientQueue pq);
 /**
  * insert new patient to patient queue
  * @param  pq  patient queue
+ * @param  patient   the patient to be inserted
+ * @call       - PriorityQueueFull
+                    - Log
+                    - Print
+                    - HeapSort
  * @return   function status:OK/ERROR 
  */
-Status PriorityQueInsert(PatientQueue pq);
+Status PriorityQueInsert(PatientQueue pq, Patient patient);
 
 /**
  * delete patient  who has highest priority
  * @param  pq  patient queue
+ * @call       - PriorityQueueEmpty
+                    - Log
+                    - Print
+                    - HeapSort
  * @return  deleted patient 
  */
 Patient PriorityQueDeletMax(PatientQueue pq);
@@ -122,6 +136,7 @@ Patient PriorityQueDeletMax(PatientQueue pq);
 /**
  * check patient queue whether empty or not
  * @param  pq  patient queue
+ * @called by     PriorityQueDeletMax
  * @return   function status:TRUE/FALSE
  */
 Status PriorityQueEmpty(PatientQueue pq);
@@ -129,6 +144,7 @@ Status PriorityQueEmpty(PatientQueue pq);
 /**
  * check patient queue whether full or not
  * @param  pq  patient queue
+ * @called by     PriorityQueueInsert
  * @return   function status:TRUE/FALSE
  */
 Status PriorityQueFull(PatientQueue pq);
@@ -151,6 +167,8 @@ Status HeapAdjust(PatientQueue pq, int top, int queueSize);
 /**
 * sort patient queue to sorted by priority 
 * @param  pq  patient queue
+* @called by  - PriorityQueueInsert
+*                      - PriorityQueueDeletMax
 * @return   function status:OK/ERROR 
 */
 Status HeapSort(PatientQueue pq); 
@@ -194,6 +212,8 @@ Status showCurrentTime(FILE * fp, Time tm);
  * @param  fp   		 file pointer : log into this file 
  * @param  systemTime show current time 
  * @param  pq                  patient queue:get enough information        
+ * @called by                     - PriorityQueueInsert
+ *                                         - PriorityQueueDeletMax
  * @return   function status:OK/ERROR 
  */
 Status Log(LogType lt, FILE * fp, Time systemTime, PatientQueue pq);
@@ -203,6 +223,8 @@ Status Log(LogType lt, FILE * fp, Time systemTime, PatientQueue pq);
  * @param  lt    		 log type : according to it,print correct information
  * @param  systemTime show current time 
  * @param  pq                  patient queue:get enough information        
+ * @called by                    - PriorityQueueInsert
+ *                                        - PriorityQueueDeletMax
  * @return   function status:OK/ERROR 
  */
 Status Print(LogType lt, Time systemTime, PatientQueue pq);

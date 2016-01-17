@@ -1,57 +1,57 @@
 /*************************************************************************
-    > File Name: Heap.h
+    > File Name: Priority.c
     > Author: CS1409 U201414800 Yilong Liu 
     > Mail: hustlyl@163.com 
     > Website: sabertazimi.github.io
     > Created Time: 2016年01月15日 星期五 19时17分34秒
  ************************************************************************/
 
-#include "Heap.h"
+#include "Priority.h"
 
 /********** Function for manage priority **********/
 
-/**
- * Initialize patient queue
- * @param  pq  patient queue
- * @return   function status:OK/ERROR 
- */
  Status InitPriorityQue(PatientQueue pq) {
+    //start initialization
+    pq.queue = (Patient * ) malloc (sizeof(Patient) * INIT_PATIENTS);
+    pq.queueSize = 0;
+    pq.queueMaxSize = INIT_PATIENTS;
+    pq.treatedNumber = 0;
+    pq.totalNumber = 0;
+    pq.treatingStartTime = 0.0;
+    pq.treatingLength = 0.0;
+    pq.treatingOverTime = 0.0;
+    pq.isTreating = FALSE;
     return OK;
  }
 
-/**
- * Destory patient queue
- * @param  pq  patient queue
- * @return   function status:OK/ERROR 
- */
  Status DestroyPriorityQue(PatientQueue pq) {
+    InitPriorityQue(pq);
+    pq.queue = NULL;
+    pq.queueMaxSize = 0;
+    free(&pq);
     return OK;
  }
 
-/**
- * Clear up patient queue
- * @param  pq  patient queue
- * @return   function status:OK/ERROR 
- */
  Status ClearPriorityQue(PatientQueue pq) {
+    InitPriorityQueue(pq);
     return OK;
  }
 
-/**
- * get patient queue length
- * @param  pq  patient queue
- * @return   patient queue length 
- */
  int PriorityQueSize(PatientQueue pq) {
-    return 0;
+    return pq.queueSize;
  }
 
-/**
- * insert new patient to patient queue
- * @param  pq  patient queue
- * @return   function status:OK/ERROR 
- */
- Status PriorityQueInsert(PatientQueue pq) {
+ Status PriorityQueInsert(PatientQueue pq, Patient patient) {
+    //full check
+    if (PriorityQueFull(pq) == TRUE) {
+        pq.queue = (Patient * )realloc(sizeof(Patient) * (pq.queueMaxSize + INCREASE_PATIENTS));
+        pq.queueMaxSize += INCREASE_PATIENTS;
+    }
+    //insert patient
+    pq.queue[pq.queueSize] = patient;
+    pq.totalNumber++;
+    //Sort queue
+    HeapSort(pq);
     return OK;
  }
 
@@ -61,7 +61,8 @@
  * @return  deleted patient 
  */
  Patient PriorityQueDeletMax(PatientQueue pq) {
-    return ;
+    Patient patient;
+    return  patient;
  }
 
 /**
@@ -70,7 +71,7 @@
  * @return   function status:TRUE/FALSE
  */
  Status PriorityQueEmpty(PatientQueue pq) {
-    return TRUE;
+    return pq.queueSize == 0 ? TRUE : FALSE;
  }
 
 /**
@@ -79,7 +80,7 @@
  * @return   function status:TRUE/FALSE
  */
  Status PriorityQueFull(PatientQueue pq) {
-    return TRUE;
+    return pq.queueSize == pq.queueMaxSize ? TRUE : FALSE;
  }
 
 /********** End of  Function for manage priority **********/
@@ -174,13 +175,13 @@ Status showCurrentTime(FILE * fp, Time tm) {
     hour = (int) tm;
     min = (int) ((tm - hour) * 100);
     //printf on screnn
-    printf("[Current Time - ");
-    printf("%02d:", hour);
-    printf("%02d ]", min);
+    fprintf(stdout, "[Current Time - ");
+    fprintf(stdout, "%02d:", hour);
+    fprintf(stdout, "%02d]", min);
     //fprintf into log file
     fprintf(fp, "[Current Time - ");
     fprintf(fp, "%02d:", hour);
-    fprintf(fp, "%02d ]", min);
+    fprintf(fp, "%02d]", min);
 
     //return
     return OK;
