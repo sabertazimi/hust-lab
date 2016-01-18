@@ -45,10 +45,14 @@
     //full check
     if (PriorityQueFull(pq) == TRUE) {
         pq.queue = (Patient * )realloc(sizeof(Patient) * (pq.queueMaxSize + INCREASE_PATIENTS));
+        //malloc failure check
+        if (pq.queue == NULL) return ERROR
         pq.queueMaxSize += INCREASE_PATIENTS;
     }
     //insert patient
     pq.queue[pq.queueSize] = patient;
+    //update other information
+    pq.queueSize++;
     pq.totalNumber++;
     //Sort queue
     HeapSort(pq);
@@ -62,6 +66,25 @@
  */
  Patient PriorityQueDeletMax(PatientQueue pq) {
     Patient patient;
+    //empty check
+    if (PriorityQueEmpty(pq) == TRUE) return patient;
+    //delete the first empty
+    patient = pq.queue[0];
+    //represent that this patient is to be treated
+    for (int i = 1; i < pq.queueSize;i++) {
+    	pq.queue[i - 1] = pq.queue[i];
+    }
+    //update other information
+    pq.queueSize--;
+    pq.treatedNumber++;
+    //syncronize time settings and information
+    pq.treatingStartTime = getCurrentTime();
+    pq.treatingLength = patient.treatingLength;
+    pq.treatingOverTime = pq.treatingStartTime + pq.treatingLength;
+    //update busy state
+    pq.isTreating = TRUE;
+    //Sort queue
+    HeapSort(pq);
     return  patient;
  }
 

@@ -129,6 +129,7 @@ Status PriorityQueInsert(PatientQueue pq, Patient patient);
                     - Log
                     - Print
                     - HeapSort
+                    - getCurrentTime
  * @return  deleted patient 
  */
 Patient PriorityQueDeletMax(PatientQueue pq);
@@ -188,6 +189,7 @@ Time getTreatingLength(SickType st);
 
 /**
  * get current system time
+ * @called by   - PriorityQueDeletMax
  * @return  current system time(float)
  */
 Time getCurrentTime();
