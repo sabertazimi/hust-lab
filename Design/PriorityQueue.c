@@ -1,12 +1,12 @@
 /*************************************************************************
-    > File Name: Priority.c
+    > File Name: PriorityQueue.c
     > Author: CS1409 U201414800 Yilong Liu 
     > Mail: hustlyl@163.com 
     > Website: sabertazimi.github.io
     > Created Time: 2016年01月15日 星期五 19时17分34秒
  ************************************************************************/
 
-#include "Priority.h"
+#include "PriorityQueue.h"
 
 /********** Function for manage priority **********/
 
@@ -64,12 +64,14 @@
  * @param  pq  patient queue
  * @return  deleted patient 
  */
- Patient PriorityQueDeletMax(PatientQueue pq) {
-    Patient patient;
+Status PriorityQueDeletMax(PatientQueue pq, Patient * patient) {
     //empty check
-    if (PriorityQueEmpty(pq) == TRUE) return patient;
-    //delete the first empty
-    patient = pq.queue[0];
+    if (PriorityQueEmpty(pq) == TRUE) return ERROR;
+    //busy state check : if doctor (pq.isTreating == TRUE) is busy, 
+    //you can't delete current patient (delete patient means that he/she is to be treated)
+    if (pq.isTreating == TRUE) return ERROR;
+    //else, delete the first empty
+    *patient = pq.queue[0];
     //represent that this patient is to be treated
     for (int i = 1; i < pq.queueSize;i++) {
     	pq.queue[i - 1] = pq.queue[i];
@@ -79,13 +81,13 @@
     pq.treatedNumber++;
     //syncronize time settings and information
     pq.treatingStartTime = getCurrentTime();
-    pq.treatingLength = patient.treatingLength;
+    pq.treatingLength = patient->treatingLength;
     pq.treatingOverTime = pq.treatingStartTime + pq.treatingLength;
     //update busy state
     pq.isTreating = TRUE;
     //Sort queue
     HeapSort(pq);
-    return  patient;
+    return  OK;
  }
 
 /**
@@ -170,7 +172,7 @@ Status HeapSort(PatientQueue pq) {
  * @param  st  sick types
  * @return        treating length
  */
- Time getTreatingLength(SickType st) {
+ Time SimulateTreatingLength(SickType st) {
     return 0.0;
  }
 

@@ -1,13 +1,13 @@
 /*************************************************************************
-	> File Name: Priority.h
+	> File Name: PriorityQueue.h
 	> Author: CS1409 U201414800 Yilong Liu 
 	> Mail: hustlyl@163.com 
               > Website: sabertazimi.github.io
 	> Created Time: 2016年01月15日 星期五 18时07分54秒
  ************************************************************************/
 
-#ifndef  _PRIORITY_H
-#define _PRIORITY_H
+#ifndef  _PRIORITY_QUEUE_H
+#define _PRIORITY_QUEUE_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -124,15 +124,16 @@ Status PriorityQueInsert(PatientQueue pq, Patient patient);
 
 /**
  * delete patient  who has highest priority
- * @param  pq  patient queue
+ * @param  pq          patient queue
+ * @param patient   patient deleted(is to be treated) 
  * @call       - PriorityQueueEmpty
                     - Log
                     - Print
                     - HeapSort
                     - getCurrentTime
- * @return  deleted patient 
+ * @return  function status : OK/ERROR 
  */
-Patient PriorityQueDeletMax(PatientQueue pq);
+Status PriorityQueDeletMax(PatientQueue pq, Patient * patient);
 
 /**
  * check patient queue whether empty or not
@@ -170,6 +171,7 @@ Status HeapAdjust(PatientQueue pq, int top, int queueSize);
 * @param  pq  patient queue
 * @called by  - PriorityQueueInsert
 *                      - PriorityQueueDeletMax
+*                      - RefreshQueue
 * @return   function status:OK/ERROR 
 */
 Status HeapSort(PatientQueue pq); 
@@ -180,27 +182,89 @@ Status HeapSort(PatientQueue pq);
 
 /********** Function for simulation hospital**********/
 
+
+/**
+ * according current system time, calculate patient's priority
+ * @param  patient 
+ * @called by   - RefreshPriority
+                           - NewPatient
+ * @return        patient's priority 
+ */
+Priority CalculatePriority(Patient patient);
+
+
+
+/**
+ * randomly construct a patient
+ * @call - getCurrentTime
+               - CalculatePriority
+ * @return new patient 
+ */
+Patient NewPatient();
+
  /**
  * according to sicktype,simulate and evaluate treatingLength
  * @param  st  sick types
  * @return        treating length
  */
-Time getTreatingLength(SickType st);
+Time SimulateTreatingLength(SickType st);
 
 /**
  * get current system time
- * @called by   - PriorityQueDeletMax
+ * @called by   - NewPatient   
+ *                       - PriorityQueDeletMax
+ *                       - RefreshPriority
+ *                       - RemoveLeavedPatients
  * @return  current system time(float)
  */
 Time getCurrentTime();
 
 /**
- * log current system time to target file or stand outputstream
+ * log time to target file or stand outputstream
  * @param  fp file pointer to target file
- * @param  tm curren system time
+ * @param  tm time(may be not current system time)
+ * @called by - Log
+ *                     - Print
  * @return   function status:OK/ERROR 
  */
-Status showCurrentTime(FILE * fp, Time tm);
+Status showTime(FILE * fp, Time tm);
+
+/**
+ * check is there any patient is being treated (pq.isTreating)
+ * @param  pq  patient queue
+ * @called by - RefreshQueue
+ * @return   function status : OK/ERROR 
+ */
+Status ChangeBusyState(PatientQueue pq);
+
+/**
+ * delete patients (have not been treated) who have left hospital
+ * @param  pq patient queue
+ * @call           - getCurrentTime
+ * @called by - RefreshQueue
+ * @return   function status : OK/ERROR 
+ */
+Status RemoveLeavedPatients(PatientQueue pq);
+
+/**
+ * according to current time, update patients' priority
+ * @param  pq  patient queue
+ * @call           - getCurrentTime
+ * @return    function status : OK/ERROR
+ */
+Status RefreshPriority(PatientQueue pq);
+
+/**
+ * update patient queue information every interval times
+ * @param pq   patient queue
+ * @call  - ChangeBusyState
+ *            - RemoveLeavedPatient
+ *            - RefreshPriority
+ *            - HeapSort
+ * @return   function status : OK/ERROR
+ */
+Status RefreshQueue(PatientQueue pq);
+
 
 /********** End of Function for simulation hospital**********/
 
@@ -210,26 +274,28 @@ Status showCurrentTime(FILE * fp, Time tm);
 
  /**   
  * log runtime information of this simulation program
- * @param  lt    		 log type : according to it,log correct information
- * @param  fp   		 file pointer : log into this file 
- * @param  systemTime show current time 
- * @param  pq                  patient queue:get enough information        
+ * @param  lt    log type : according to it,log correct information
+ * @param  fp  file pointer : log into this file 
+ * @param  tm show current time 
+ * @param  pq patient queue:get enough information        
+ * @call                               - showTime
  * @called by                     - PriorityQueueInsert
  *                                         - PriorityQueueDeletMax
  * @return   function status:OK/ERROR 
  */
-Status Log(LogType lt, FILE * fp, Time systemTime, PatientQueue pq);
+Status Log(LogType lt, FILE * fp, Time tm, PatientQueue pq);
 
  /**   
  * print runtime information of this simulation program on screen 
- * @param  lt    		 log type : according to it,print correct information
- * @param  systemTime show current time 
- * @param  pq                  patient queue:get enough information        
+ * @param  lt    log type : according to it,print correct information
+ * @param  tm current time 
+ * @param  pq patient queue:get enough information        
+ * @call                              - showTime
  * @called by                    - PriorityQueueInsert
  *                                        - PriorityQueueDeletMax
  * @return   function status:OK/ERROR 
  */
-Status Print(LogType lt, Time systemTime, PatientQueue pq);
+Status Print(LogType lt, Time tm, PatientQueue pq);
 
 /********** End of Function for log(Test) and print(UI)**********/
 
