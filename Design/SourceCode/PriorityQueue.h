@@ -24,8 +24,8 @@
 
 //set global interval clock to 30 seconds 
 #define GLOBAL_INTERVAL_TIME  0.002999
-//set insert interval clock to 5 min
-#define INSERT_INTERVAL_TIME 0.04999
+//set insert interval clock to 3 min
+#define INSERT_INTERVAL_TIME 0.02999
 //simulation length 
 #define SIMULATION_LENGTH 1
 
