@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <assert.h>
 
 //macro
 #define TRUE 1
@@ -21,12 +22,12 @@
 #define INFEASIBLE -1
 #define OVERFLOW -2
 
-//set global interval clock to 1 min
-#define GLOBAL_INTERVAL_TIME  0.0004999
-//set insert interval clock to 2 min
-#define INSERT_INTERVAL_TIME 0.0000999
-//simulation length to 5min
-#define SIMULATION_LENGTH 0.05
+//set global interval clock to 30 seconds 
+#define GLOBAL_INTERVAL_TIME  0.002999
+//set insert interval clock to 5 min
+#define INSERT_INTERVAL_TIME 0.0499
+//simulation length 
+#define SIMULATION_LENGTH 1
 
 //initial number of patients
 #define INIT_PATIENTS 100
@@ -37,7 +38,7 @@
 #define OVER_MAX_SIZE 1000
 //calculate factor rate : arrive time factor - 60%
 #define ARRIVE_TIME_RATE 60
-    
+
 //variable types
 typedef int Status;
 typedef int Boolean;
@@ -46,34 +47,37 @@ typedef float Priority;  //store patient priority
 
 //different sick types types of sicks identifier
 //HEALTHY~RELAPSE: 0,2,4,6,8,10 min to be treated
-typedef enum __SICKTYPE__ { 
-              HEALTHY,
-	NORMAL, 
-              ACUTE,
-	CHRONIC,
-	INFLAMMATION,
-	RELAPSE
+typedef enum __SICKTYPE__ {
+    HEALTHY,
+    NORMAL,
+    ACUTE,
+    CHRONIC,
+    INFLAMMATION,
+    RELAPSE
 } SickType;
 
 //struct for patient's information
 typedef struct Patient {
     Time arrivedTime;     //store time when patient arrived at hospital
-    Time treatingLength;//store how long time it will take to visit this patient
+    Time treatingLength;
+    //store how long time it will take to visit this patient
     Time leavingTime;     //store time when patient to be leave hospital
     SickType sickType;     //store what type of sick this patient suffered from
-                                         //according to types, evaluate and simulate value of 'treatingLength'
+    //according to types, evaluate and simulate value of 'treatingLength'
     Priority priority;        //store patient priority
 } Patient;
 //patient priority queue
 typedef struct PatientQueue {
-    Patient * queue;  	   //patient queue(static array)
-    int queueSize;       	   //current number of patient waiting for treating
-    int queueMaxSize;	   //current max queue capability
+    Patient *queue;       //patient queue(static array)
+    int queueSize;           //current number of patient waiting for treating
+    int queueMaxSize;       //current max queue capability
     int treatedNumber;       //store the number of patients who has been treated
     int totalNumber;            //store the number of patients who has visited hospital(maybe not be treated)
-    Time treatingStartTime;//store start time of current patient who is being treating
+    Time treatingStartTime;
+    //store start time of current patient who is being treating
     Time treatingLength;     //store treating length of current patient who is being treating
-    Time treatingOverTime;//store over time of current patient who is being treating
+    Time treatingOverTime;
+    //store over time of current patient who is being treating
     Boolean isTreating;        //show doctor whether busy or not
 } PatientQueue;
 
@@ -84,10 +88,10 @@ typedef struct PatientQueue {
 //LEAVED:log when patient leave hospital
 //QUEUE:log patients' queue information (include treatment rate)
 typedef enum __LOGTYPE__ {
-	ARRIVED,
-	TREATED,
-	LEAVED,
-	QUEUE
+    ARRIVED,
+    TREATED,
+    LEAVED,
+    QUEUE
 } LogType;
 
 
@@ -101,7 +105,7 @@ typedef enum __LOGTYPE__ {
  *                     - ClearPriorityQue
  * @return   function status:OK/ERROR 
  */
-Status InitPriorityQue(PatientQueue * pq);
+Status InitPriorityQue(PatientQueue *pq);
 
 /**
  * Destory patient queue
@@ -109,7 +113,7 @@ Status InitPriorityQue(PatientQueue * pq);
  * @call        InitPriorityQue
  * @return   function status:OK/ERROR 
  */
-Status DestroyPriorityQue(PatientQueue * pq);
+Status DestroyPriorityQue(PatientQueue *pq);
 
 /**
  * Clear up patient queue
@@ -117,7 +121,7 @@ Status DestroyPriorityQue(PatientQueue * pq);
  * @call        InitPriorityQue
  * @return   function status:OK/ERROR 
  */
-Status ClearPriorityQue(PatientQueue * pq);
+Status ClearPriorityQue(PatientQueue *pq);
 
 /**
  * get patient queue length
@@ -134,7 +138,7 @@ int PriorityQueSize(PatientQueue pq);
                     - HeapSort
  * @return   function status:OK/ERROR 
  */
-Status PriorityQueInsert(PatientQueue * pq, Patient patient);
+Status PriorityQueInsert(PatientQueue *pq, Patient patient);
 
 /**
  * delete patient  who has highest priority
@@ -145,7 +149,7 @@ Status PriorityQueInsert(PatientQueue * pq, Patient patient);
                     - GetCurrentTime
  * @return  function status : OK/ERROR 
  */
-Status PriorityQueDeletMax(PatientQueue * pq, Patient * patient);
+Status PriorityQueDeletMax(PatientQueue *pq, Patient *patient);
 
 /**
  * check patient queue whether empty or not
@@ -176,7 +180,7 @@ Status PriorityQueFull(PatientQueue pq);
 * @param  queueSize  queue length(number of patient)
 * @return   function status:OK/ERROR 
 */
-Status HeapAdjust(PatientQueue * pq, int top, int queueSize);
+Status HeapAdjust(PatientQueue *pq, int top, int queueSize);
 
 /**
 * sort patient queue to sorted by priority 
@@ -186,7 +190,7 @@ Status HeapAdjust(PatientQueue * pq, int top, int queueSize);
 *                      - RefreshQueue
 * @return   function status:OK/ERROR 
 */
-Status HeapSort(PatientQueue * pq); 
+Status HeapSort(PatientQueue *pq);
 
 /********** End of Function for heap sort **********/
 
@@ -204,12 +208,12 @@ Status HeapSort(PatientQueue * pq);
  */
 Priority CalculatePriority(Patient patient);
 
- /**
- * according to sicktype,simulate and evaluate treatingLength
- * @param  st  sick types
- * @called by - NewPatient
- * @return        treating length
- */
+/**
+* according to sicktype,simulate and evaluate treatingLength
+* @param  st  sick types
+* @called by - NewPatient
+* @return        treating length
+*/
 Time SimulateTreatingLength(SickType st);
 
 /**
@@ -242,7 +246,7 @@ Time GetCurrentTime();
  *                    - PrintQueueInfo
  * @return   function status:OK/ERROR 
  */
-Status ShowTime(FILE * fp, Time tm);
+Status ShowTime(FILE *fp, Time tm);
 
 /**
  * check is there any patient is being treated (pq.isTreating)
@@ -250,7 +254,7 @@ Status ShowTime(FILE * fp, Time tm);
  * @call           - GetCurrentTime
  * @return   function status : OK/ERROR 
  */
-Status ChangeBusyState(PatientQueue * pq);
+Status ChangeBusyState(PatientQueue *pq);
 
 /**
  * delete patients (have not been treated) who have left hospital
@@ -260,7 +264,7 @@ Status ChangeBusyState(PatientQueue * pq);
  *                     - Log
  * @return   function status : OK/ERROR 
  */
-Status RemoveLeavedPatients(PatientQueue * pq, FILE * fp);
+Status RemoveLeavedPatients(PatientQueue *pq, FILE *fp);
 
 /**
  * according to current time, update patients' priority
@@ -268,7 +272,7 @@ Status RemoveLeavedPatients(PatientQueue * pq, FILE * fp);
  * @call           - GetCurrentTime
  * @return    function status : OK/ERROR
  */
-Status RefreshPriority(PatientQueue * pq);
+Status RefreshPriority(PatientQueue *pq);
 
 /********** End of Function for simulation hospital**********/
 
@@ -281,33 +285,35 @@ Status RefreshPriority(PatientQueue * pq);
  * @param  fp  file pointer : log into this file 
  * @param  patient 
  * @call             - ShowTime
- * @called by    - Log
+ * @called by    - PrintQueueInfo      
+ *                       - Log
  * @return        function status : OK/ERROR 
  */
-Status PrintPatientInfo(FILE * fp, Patient patient);
+Status PrintPatientInfo(FILE *fp, Patient patient);
 
 /**
  * print patients' queue information
  * @param  pq  patient queue
  * @param  fp  file pointer : log into this file 
  * @call             - ShowTime
+ *                       - PrintPatientInfo
  * @called by    - Log
  * @return   function status : OK/ERROR 
  */
-Status PrintQueueInfo(FILE * fp, PatientQueue pq);
+Status PrintQueueInfo(FILE *fp, PatientQueue pq);
 
- /**   
- * log runtime information of this simulation program
- * @param  lt    log type : according to it,log correct information
- * @param  fp  file pointer : log into this file
- * @param  pq patient queue:get enough information        
- * @call                               - ShowTime
- *                                         - PrintPatientInfo
- *                                         - PrintQueueInfo
- * @called by                      - RemoveLeavedPatients
- * @return   function status:OK/ERROR 
- */
-Status Log(LogType lt, FILE * fp, PatientQueue pq, Patient patient);
+/**
+* log runtime information of this simulation program
+* @param  lt    log type : according to it,log correct information
+* @param  fp  file pointer : log into this file
+* @param  pq patient queue:get enough information
+* @call                               - ShowTime
+*                                         - PrintPatientInfo
+*                                         - PrintQueueInfo
+* @called by                      - RemoveLeavedPatients
+* @return   function status:OK/ERROR
+*/
+Status Log(LogType lt, FILE *fp, PatientQueue pq, Patient patient);
 
 /********** End of Function for log(Test) and print(UI)**********/
 

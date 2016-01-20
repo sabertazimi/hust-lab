@@ -10,63 +10,55 @@
 
 /********** Function for manage priority **********/
 
-    Status InitPriorityQue(PatientQueue * pq) {
+Status InitPriorityQue(PatientQueue *pq) {
     //start initialization
-        pq->queue = (Patient * ) malloc (sizeof(Patient) * INIT_PATIENTS);
-        pq->queueSize = 0;
-        pq->queueMaxSize = INIT_PATIENTS;
-        pq->treatedNumber = 0;
-        pq->totalNumber = 0;
-        pq->treatingStartTime = 0.0;
-        pq->treatingLength = 0.0;
-        pq->treatingOverTime = 0.0;
-        pq->isTreating = FALSE;
-        return OK;
-    }
+    pq->queue = (Patient *) malloc(sizeof(Patient) * INIT_PATIENTS);
+    pq->queueSize = 0;
+    pq->queueMaxSize = INIT_PATIENTS;
+    pq->treatedNumber = 0;
+    pq->totalNumber = 0;
+    pq->treatingStartTime = 0.0;
+    pq->treatingLength = 0.0;
+    pq->treatingOverTime = 0.0;
+    pq->isTreating = FALSE;
+    return OK;
+}
 
-    Status DestroyPriorityQue(PatientQueue * pq) {
-        InitPriorityQue(pq);
-        pq->queue = NULL;
-        pq->queueMaxSize = 0;
-        return OK;
-    }
+Status DestroyPriorityQue(PatientQueue *pq) {
+    InitPriorityQue(pq);
+    pq->queue = NULL;
+    pq->queueMaxSize = 0;
+    return OK;
+}
 
-    Status ClearPriorityQue(PatientQueue * pq) {
-        InitPriorityQue(pq);
-        return OK;
-    }
+Status ClearPriorityQue(PatientQueue *pq) {
+    InitPriorityQue(pq);
+    return OK;
+}
 
-    int PriorityQueSize(PatientQueue pq) {
-        return pq.queueSize;
-    }
+int PriorityQueSize(PatientQueue pq) {
+    return pq.queueSize;
+}
 
-    Status PriorityQueInsert(PatientQueue * pq, Patient patient) {
+Status PriorityQueInsert(PatientQueue *pq, Patient patient) {
     //full check
-        if (PriorityQueFull(*pq) == TRUE) {
-            pq->queue = (Patient * )realloc(pq->queue, sizeof(Patient) * (pq->queueMaxSize + INCREASE_PATIENTS));
+    if (PriorityQueFull(*pq) == TRUE) {
+        pq->queue = (Patient *) realloc(pq->queue, sizeof(Patient) * (pq->queueMaxSize + INCREASE_PATIENTS));
         //malloc failure check
-            if (pq->queue == NULL) return ERROR;
-            pq->queueMaxSize += INCREASE_PATIENTS;
-        }
-    //insert patient
-        pq->queue[pq->queueSize] = patient;
-    //update other information
-        pq->queueSize++;
-        pq->totalNumber++;
-    //Sort queue
-                    for(int i = 0;i < pq->queueSize;i++) {
-                printf("Arrived  Time :%f  ", pq->queue[i].arrivedTime);
-            }
-            printf("queueSize: %d\n",pq->queueSize);
-        HeapSort(pq);
-                    for(int i = 0;i < pq->queueSize;i++) {
-                printf("Arrived  Time :%f  ", pq->queue[i].arrivedTime);
-            }
-            printf("queueSize: %d\n",pq->queueSize);
-        return OK;
+        if (pq->queue == NULL) return ERROR;
+        pq->queueMaxSize += INCREASE_PATIENTS;
     }
+    //insert patient
+    pq->queue[pq->queueSize] = patient;
+    //update other information
+    pq->queueSize++;
+    pq->totalNumber++;
+    //Sort queue
+    HeapSort(pq);
+    return OK;
+}
 
- Status PriorityQueDeletMax(PatientQueue * pq, Patient * patient) {
+Status PriorityQueDeletMax(PatientQueue *pq, Patient *patient) {
     //empty check
     if (PriorityQueEmpty(*pq) == TRUE) return ERROR;
     //busy state check : if doctor (pq.isTreating == TRUE) is busy, 
@@ -75,8 +67,8 @@
     //else, delete the first empty
     *patient = pq->queue[0];
     //represent that this patient is to be treated
-    for (int i = 1; i < pq->queueSize;i++) {
-    	pq->queue[i - 1] = pq->queue[i];
+    for (int i = 1; i < pq->queueSize; i++) {
+        pq->queue[i - 1] = pq->queue[i];
     }
     //update other information
     pq->queueSize--;
@@ -89,14 +81,14 @@
     pq->isTreating = TRUE;
     //Sort queue
     HeapSort(pq);
-    return  OK;
+    return OK;
 }
 
- Status PriorityQueEmpty(PatientQueue pq) {
+Status PriorityQueEmpty(PatientQueue pq) {
     return pq.queueSize == 0 ? TRUE : FALSE;
 }
 
- Status PriorityQueFull(PatientQueue pq) {
+Status PriorityQueFull(PatientQueue pq) {
     return pq.queueSize == pq.queueMaxSize ? TRUE : FALSE;
 }
 
@@ -106,43 +98,42 @@
 
 /********** Function for heap sort **********/
 
-Status HeapAdjust(PatientQueue * pq, int top, int queueSize) {
+Status HeapAdjust(PatientQueue *pq, int top, int queueSize) {
     int i;
-    Patient tmpTop;
-    tmpTop = pq->queue[top];
+    Patient tmpTop = pq->queue[top];
 
     //undefine check
-    if(pq->queue == NULL ) return ERROR;
+    if (pq->queue == NULL) return ERROR;
 
-    for(i = 2 * top + 1; i < queueSize; top = i, i = 2 * i + 1) {   //select max of child
-        if(i < queueSize && pq->queue[i].priority > pq->queue[i+1].priority) { 
+    for (i = 2 * top + 1; i < queueSize; top = i, i = 2 * i + 1) {   //select max of child
+        if (i + 1 < queueSize && pq->queue[i].priority > pq->queue[i + 1].priority) {
             i++;
         }
         //adjustment finished
-        if(tmpTop.priority <= pq->queue[i].priority) {
+        if (tmpTop.priority <= pq->queue[i].priority) {
             break;
         }
         //parent sink
         pq->queue[top] = pq->queue[i];
     }
     //sink to correct position
-    pq->queue[i] = tmpTop;
+    pq->queue[top] = tmpTop;
     return OK;
 }
 
-Status HeapSort(PatientQueue * pq) {
+Status HeapSort(PatientQueue *pq) {
     int i;
     Patient tmp;
     //undefine check and empty check
-    if(pq->queue == NULL || PriorityQueEmpty(*pq) == TRUE) return ERROR; 
+    if (pq->queue == NULL || PriorityQueEmpty(*pq) == TRUE) return ERROR;
 
     //establish small top heap
-    for(i = (pq->queueSize - 2) / 2; i >= 0; i--) {
+    for (i = (int) ((pq->queueSize - 1) / 2); i >= 0; i--) {
         HeapAdjust(pq, i, pq->queueSize);
     }
 
     //exchange top node and least leaf node,make a diminishing sort
-    for(i = pq->queueSize - 1; i > 0; i--) {
+    for (i = pq->queueSize - 1; i > 0; i--) {
         tmp = pq->queue[0];
         pq->queue[0] = pq->queue[i];
         pq->queue[i] = tmp;
@@ -162,53 +153,53 @@ Priority CalculatePriority(Patient patient) {
     Time tm = GetCurrentTime();
     //calculate priority : most important factor is arrive time
     //the eariler patient arrive, the higher priority patient can occupy
-    Priority priority = (24 - patient.arrivedTime) * ARRIVE_TIME_RATE 
-    + patient.treatingLength * (100 - ARRIVE_TIME_RATE) / 2
-    + (patient.leavingTime - tm) * (100 - ARRIVE_TIME_RATE) / 2;
+    Priority priority = (24 - patient.arrivedTime) * ARRIVE_TIME_RATE
+                        + 100 * patient.treatingLength * (100 - ARRIVE_TIME_RATE) / 2
+                        - (patient.leavingTime - tm) * (100 - ARRIVE_TIME_RATE) / 2;
     return priority;
 }
 
-Time SimulateTreatingLength(SickType st)   {
+Time SimulateTreatingLength(SickType st) {
     Time treatingLength;
     //initialize random number emmiter
-    srand((unsigned int)time(NULL));
+    srand((unsigned int) time(NULL));
     //emmit a random number locate on [-2, 2]
     int randNum = -2 + rand() % 5;
     //according to sick type, calculate treating length
-    switch(st) {
+    switch (st) {
         case HEALTHY:
-        treatingLength = 1;
-        break;
+            treatingLength = 1;
+            break;
         case NORMAL:
-        treatingLength = NORMAL * 2 + randNum + 1;
-        break;
+            treatingLength = NORMAL * 2 + randNum + 1;
+            break;
         case ACUTE:
-        treatingLength = ACUTE * 2 + randNum;
-        break;
+            treatingLength = ACUTE * 2 + randNum;
+            break;
         case CHRONIC:
-        treatingLength = CHRONIC * 2 + randNum;
-        break;
+            treatingLength = CHRONIC * 2 + randNum;
+            break;
         case INFLAMMATION:
-        treatingLength = INFLAMMATION * 2+ randNum;
-        break;
+            treatingLength = INFLAMMATION * 2 + randNum;
+            break;
         case RELAPSE:
-        treatingLength = RELAPSE * 2 + randNum;
-        break;
+            treatingLength = RELAPSE * 2 + randNum;
+            break;
     }
-    return  0.001 * treatingLength;
+    return 0.01 * treatingLength;
 }
 
 Patient NewPatient() {
     Patient patient;
     //initialize random number emmiter
-    srand((unsigned int)time(NULL));
+    srand((unsigned int) time(NULL));
     //emmit a random number locate on [0, 5]
     //set it as new patient's sick type
     SickType sickType = (SickType) (rand() % 6);
     //emmit a random number locate on [0, 30] min
-    //set it as new patient's possible waiting time
-    Time waitingTime = (Time)  (rand() % 31);
-    waitingTime *= 0.001;
+    //set it as new patient's possible waiting time : 0 ~0.5 hour
+    Time waitingTime = (Time) (rand() % 31);
+    waitingTime *= 0.01;
     //initialize patient
     patient.arrivedTime = GetCurrentTime();
     patient.treatingLength = SimulateTreatingLength(sickType);
@@ -221,17 +212,17 @@ Patient NewPatient() {
 
 Time GetCurrentTime() {
     time_t rawtime;
-    struct tm * timeinfo;
+    struct tm *timeinfo;
     Time currentTime;
-    time ( &rawtime );                            //get system time
-    timeinfo = localtime ( &rawtime );//convert to local time 
+    time(&rawtime);                            //get system time
+    timeinfo = localtime(&rawtime);//convert to local time
     // tm_hour, tm_min, tm_sec
     currentTime = (float) (timeinfo->tm_hour + timeinfo->tm_min * 0.01 + timeinfo->tm_sec * 0.0001);
     return currentTime;
 }
 
-Status ShowTime(FILE * fp, Time tm) { 
-    int hour,min, sec;
+Status ShowTime(FILE *fp, Time tm) {
+    int hour, min, sec;
     //undefined check
     if (fp == NULL) return ERROR;
     //show time
@@ -249,59 +240,59 @@ Status ShowTime(FILE * fp, Time tm) {
         min = min - 60;
     }
     //printf on screnn
-        fprintf(stdout, "%02d:", hour);
-        fprintf(stdout, "%02d:", min);
-        fprintf(stdout, "%02d", sec);
+    fprintf(stdout, "%02d:", hour);
+    fprintf(stdout, "%02d:", min);
+    fprintf(stdout, "%02d", sec);
     //fprintf into log file
-            fprintf(fp, "%02d:", hour);
-            fprintf(fp, "%02d:", min);
-            fprintf(fp, "%02d", sec);
+    fprintf(fp, "%02d:", hour);
+    fprintf(fp, "%02d:", min);
+    fprintf(fp, "%02d", sec);
 
     //return
-            return OK;
-        }
+    return OK;
+}
 
- Status ChangeBusyState(PatientQueue * pq) {
+Status ChangeBusyState(PatientQueue *pq) {
     //undefine check
-    if(pq->queue == NULL) return ERROR;
+    if (pq->queue == NULL) return ERROR;
     //last patient's treatment is over
-    if(pq->treatingOverTime < GetCurrentTime()) {
-    //change busy state
+    if (pq->treatingOverTime < GetCurrentTime()) {
+        //change busy state
         pq->isTreating = FALSE;
     }
     return OK;
 }
 
- Status RemoveLeavedPatients(PatientQueue * pq, FILE * fp) {
-     //undefine check
-     if(pq->queue == NULL) return ERROR; 
-     //remove patients have left
-     for (int i = 0;i < pq->queueSize;i++) {
+Status RemoveLeavedPatients(PatientQueue *pq, FILE *fp) {
+    //undefine check
+    if (pq->queue == NULL) return ERROR;
+    //remove patients have left
+    for (int i = 0; i < pq->queueSize; i++) {
         if (pq->queue[i].leavingTime < GetCurrentTime()) {
-           //RemoveLeavedPatients 
-           //log
+            //RemoveLeavedPatients
+            //log
             Log(LEAVED, fp, *pq, pq->queue[i]);
             //shift
-            for (int j = i + 1; j < pq->queueSize;j++) {
-               pq->queue[j - 1] = pq->queue[j];
-          } //end of for j
+            for (int j = i + 1; j < pq->queueSize; j++) {
+                pq->queue[j - 1] = pq->queue[j];
+            } //end of for j
 
             pq->queueSize--;
-       }  //end of if
+        }  //end of if
     }  //end of for i
     return OK;
 }
 
- Status RefreshPriority(PatientQueue * pq) {
-       //undefine check
-     if(pq->queue == NULL) return ERROR; 
-     //refresh patients' priority
-     for (int i = 0;i < pq->queueSize;i++) {
-            pq->queue[i].priority = CalculatePriority(pq->queue[i]);
-      }
-      //done
-      return OK;
- }
+Status RefreshPriority(PatientQueue *pq) {
+    //undefine check
+    if (pq->queue == NULL) return ERROR;
+    //refresh patients' priority
+    for (int i = 0; i < pq->queueSize; i++) {
+        pq->queue[i].priority = CalculatePriority(pq->queue[i]);
+    }
+    //done
+    return OK;
+}
 
 /********** End of Function for simulation hospital**********/
 
@@ -309,7 +300,7 @@ Status ShowTime(FILE * fp, Time tm) {
 
 /********** Function for log(Test) and print(UI)**********/
 
-Status PrintPatientInfo(FILE * fp, Patient patient) {
+Status PrintPatientInfo(FILE *fp, Patient patient) {
     fprintf(stdout, "[Patient:Arrive - ");
     fprintf(fp, "[Patient:Arrive - ");
     ShowTime(fp, patient.arrivedTime);
@@ -326,24 +317,31 @@ Status PrintPatientInfo(FILE * fp, Patient patient) {
     return OK;
 }
 
-Status PrintQueueInfo(FILE * fp, PatientQueue pq) {
+Status PrintQueueInfo(FILE *fp, PatientQueue pq) {
     //undefined check
-    if (pq.queue == NULL ) return ERROR;
+    if (pq.queue == NULL) return ERROR;
     //print on screen
-    fprintf(stdout, "[Patient Queue:Waiting Number - %d  Treated Number - %d  Total Number - %d  Treatment Rate %.2f%%]", 
-                    pq.queueSize, pq.treatedNumber, pq.totalNumber,
-                    1.0 * pq.treatedNumber / pq.totalNumber * 100);
+    fprintf(stdout,
+            "[Patient Queue:Waiting Number - %d  Treated Number - %d  Total Number - %d  Treatment Rate %.2f%%]",
+            pq.queueSize, pq.treatedNumber, pq.totalNumber,
+            1.0 * pq.treatedNumber / pq.totalNumber * 100);
     fprintf(stdout, "\n");
     //log into file
-    fprintf(fp, "[Patient Queue:Waiting Number - %d  Treated Number - %d  Total Number - %d  Treatment Rate %.2f%%]", 
-                    pq.queueSize, pq.treatedNumber, pq.totalNumber,
-                    1.0 * pq.treatedNumber / pq.totalNumber * 100);
+    fprintf(fp, "[Patient Queue:Waiting Number - %d  Treated Number - %d  Total Number - %d  Treatment Rate %.2f%%]",
+            pq.queueSize, pq.treatedNumber, pq.totalNumber,
+            1.0 * pq.treatedNumber / pq.totalNumber * 100);
     fprintf(fp, "\n");
+    //print patients' information
+    for(int i = 0;i < pq.queueSize;i++) {
+    	fprintf(stdout, "\t\t\t\t");
+    	fprintf(fp, "\t\t\t\t");
+    	PrintPatientInfo(fp, pq.queue[i]);
+    }
     return OK;
 }
 
-Status Log(LogType lt, FILE * fp, PatientQueue pq, Patient patient) {
-    switch(lt) {
+Status Log(LogType lt, FILE *fp, PatientQueue pq, Patient patient) {
+    switch (lt) {
         case ARRIVED:
             //show current system time
             fprintf(stdout, "[Time:");
