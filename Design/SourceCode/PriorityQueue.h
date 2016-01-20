@@ -22,8 +22,8 @@
 #define INFEASIBLE -1
 #define OVERFLOW -2
 
-//set global interval clock to 30 seconds 
-#define GLOBAL_INTERVAL_TIME  0.002999
+//set global interval clock to 10 seconds 
+#define GLOBAL_INTERVAL_TIME  0.000999
 //set insert interval clock to 3 min
 #define INSERT_INTERVAL_TIME  0.02999
 //simulation length 
