@@ -27,7 +27,7 @@
 //set insert interval clock to 3 min
 #define INSERT_INTERVAL_TIME  0.02999
 //simulation length 
-#define SIMULATION_LENGTH 1
+#define SIMULATION_LENGTH 2
 
 //initial number of patients
 #define INIT_PATIENTS 100
