@@ -2,7 +2,7 @@
     > File Name: Simulation.c 
     > Author: CS1409 U201414800 Yilong Liu 
     > Mail: hustlyl@163.com 
-    > Website: sabertazimi.github.io
+    > Website: https://github.com/sabertazimi/DataStructureLab/tree/master/Design
     > Created Time: 2016年01月15日 星期五 20时09分20秒
  ************************************************************************/
 
