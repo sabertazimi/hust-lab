@@ -1,6 +1,7 @@
 # DataStructureLab
 
 [![Build Status](https://travis-ci.org/sabertazimi/DataStructureLab.svg?branch=master)](https://travis-ci.org/sabertazimi/DataStructureLab)
+[![License](https://img.shields.io/badge/license-MIT-blue.svgE)](https://raw.githubusercontent.com/sabertazimi/DataStructureLab/master/LICENS)
 
 ##University Learning
 
