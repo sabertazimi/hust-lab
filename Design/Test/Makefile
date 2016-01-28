@@ -4,3 +4,5 @@ Test.o : Test.c
 clean :
 	rm -fr *.o
 	
+test :
+	./Test.o
