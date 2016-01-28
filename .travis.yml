@@ -1,0 +1,6 @@
+language: c
+compiler: gcc
+before_install:
+    - sudo apt-get update -qq
+    - sudo apt-get install -qq libpng-dev libjpeg-dev libatlas-base-dev libblas-dev libgsl0-dev
+script: cd Design/SourceCode/ && make && make clean && cd ../Test && make && make clean
