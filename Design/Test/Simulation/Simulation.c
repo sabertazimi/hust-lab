@@ -1,12 +1,12 @@
 /*************************************************************************
-    > File Name: Simulation.c 
-    > Author: CS1409 U201414800 Yilong Liu 
-    > Mail: hustlyl@163.com 
+    > File Name: Simulation.c
+    > Author: CS1409 U201414800 Yilong Liu
+    > Mail: hustlyl@163.com
     > Website: https://github.com/sabertazimi/DataStructureLab/tree/master/Design
     > Created Time: 2016年01月15日 星期五 20时09分20秒
  ************************************************************************/
 
-#include "PriorityQueue.h"
+#include "../../Lib/PriorityQueue.h"
 
 //open assertion
 #undef NDEBUG
@@ -60,5 +60,6 @@ int main(void) {
         currentInsertTimeNode = GetCurrentTime();
     }
     DestroyPriorityQue(&pq);
+    fclose(fp);
     return 0;
-} 
+}
