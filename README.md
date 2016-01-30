@@ -1,6 +1,7 @@
 # Hust Data Structure
 
-[![Build Status](https://travis-ci.org/sabertazimi/DataStructureLab.svg?branch=master)](https://travis-ci.org/sabertazimi/DataStructureLab)
+[![Author](https://img.shields.io/badge/author-sabertazimi-lightgrey.svg)](https://github.com/sabertazimi)
+[![Build Status](https://travis-ci.org/sabertazimi/HustDataStructure.svg?branch=master)](https://travis-ci.org/sabertazimi/HustDataStructure)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/sabertazimi/DataStructureLab/master/LICENSE)
 
 ## University Learning
