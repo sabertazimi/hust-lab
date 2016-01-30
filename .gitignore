@@ -30,3 +30,7 @@
 
 # Debug files
 *.dSYM/
+
+# Microsoft Office Documents
+*.doc
+*.docx

@@ -6,7 +6,7 @@
     > Created Time: 2016年01月15日 星期五 18时07分54秒
  ************************************************************************/
 
-#ifndef  _PRIORITY_QUEUE_H
+#ifndef _PRIORITY_QUEUE_H
 #define _PRIORITY_QUEUE_H
 
 #include <stdio.h>
