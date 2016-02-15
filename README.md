@@ -15,7 +15,7 @@
 1.  Design : For curriculum design
 2.  Lab : For daily lab on machine
 
-### LICENSE
+## LICENSE
 
 Homework Public License(HPL)
 
