@@ -2,7 +2,7 @@
     > File Name: PriorityQueue.c
     > Author: CS1409 U201414800 Yilong Liu
     > Mail: hustlyl@163.com
-    > Website: https://github.com/sabertazimi/DataStructureLab/tree/master/Design
+    > License: HPL(Homework Public License)
     > Created Time: 2016年01月15日 星期五 19时17分34秒
  ************************************************************************/
 

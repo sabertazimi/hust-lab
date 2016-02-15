@@ -2,7 +2,7 @@
     > File Name: Test.c
     > Author: Yilong Liu
     > Mail: sabertazimi@gmail.com
-    > Website: github.com/sabertazimi/DataStructureLab/Design
+    > License: HPL(Homework Public License)
     > Created Time: 2016年01月29日 星期五 09时59分09秒
     > This test is for PriorityQueue Basic Operate
  ************************************************************************/
