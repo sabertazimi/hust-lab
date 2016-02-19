@@ -5,6 +5,7 @@
 [![Author](https://img.shields.io/badge/author-sabertazimi-lightgrey.svg)](https://github.com/sabertazimi)
 [![Build Status](https://travis-ci.org/sabertazimi/HustDataStructure.svg?branch=master)](https://travis-ci.org/sabertazimi/HustDataStructure)
 [![License](https://img.shields.io/badge/license-HPL-blue.svg)](https://raw.githubusercontent.com/sabertazimi/HustDataStructure/master/LICENSE)
+[![CLA assistant](https://cla-assistant.io/readme/badge/sabertazimi/HustDataStructure)](https://cla-assistant.io/sabertazimi/HustDataStructure)
 
 **University Learning**
 
