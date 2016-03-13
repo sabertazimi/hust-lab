@@ -1,4 +1,4 @@
-NAME = c1
+NAME = hello
 
 EXE = $(NAME).exe
 OBJS = $(NAME).obj
@@ -9,13 +9,12 @@ ML_FLAG = /c/coff
 MASM_FLAG = /Zi/Zd
 
 $(EXE): $(OBJS)
-    link $(LINK_FLAG) $(OBJS)
-
+    LINK $(LINK_FLAG) $(OBJS)
 $(OBJS): $(SRCS)
-    masm $(MASM_FLAG) $(SRCS)
+    MASM $(SRCS)
 
 clean:
-    del *.obj && del *.tr
+	del *.obj
 
 test:
-	td $(EXE)
+	td $(EXE) && del *.tr
