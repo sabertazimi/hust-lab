@@ -17,5 +17,9 @@ $(OBJS): $(SRCS)
 clean:
 	del *.obj
 
-test:
-	td $(EXE) && del *.tr
+debug:
+	td $(EXE)
+	del *.tr
+
+run:
+	$(EXE)
