@@ -1,4 +1,4 @@
-NAME = hello
+NAME = 2-3
 
 EXE = $(NAME).exe
 OBJS = $(NAME).obj
