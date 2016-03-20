@@ -24,10 +24,10 @@ CODE    SEGMENT     USE16
 START:  MOV     AX, DATA
         MOV     DS, AX
 READ:   MOV     CX, NUM     ; 学生个数
-        LEA     DX, MSG
+        LEA     DX, OFFSET MSG
         MOV     AH, 9H
         INT     21H
-        LEA     DX, INPUT   ; 输入学生姓名, 以 '$' 符号结尾
+        LEA     DX, OFFSET INPUT   ; 输入学生姓名, 以 '$' 符号结尾
         MOV     AH, 0AH
         INT     21H
         ; LEA     DX, INPUT
@@ -36,10 +36,17 @@ READ:   MOV     CX, NUM     ; 学生个数
         MOV     AH, 4CH
         INT     21H
 
-CAL:    MOV     BX, NUM     ; 计算目标学生下标值, 存放至 DX
+CAL:    MOV     BX, NUM     ; 计算目标学生下标值, 存放至 BX
         SUB     BX, CX
         IMUL    BX, 14      ; 根据目标学生下标值, 找到分数缓冲区首地址
         ADD     BX, 10      ; BX = 0 + Index * 14 + 10
+        MOV     AX, [BX]    ; 计算平均成绩
+        ADD     AX, AX
+        ADD     AX, [BX + 1]
+        ADD     AX, [BX + 2]
+        ADD     AX, [BX + 2]
+        IDIV    3.5         ; 平均成绩存放至 AX
+
 
 CODE    ENDS
         END     START
