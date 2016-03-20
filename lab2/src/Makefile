@@ -1,11 +1,11 @@
-NAME = 2-3
+NAME = grade
 
 EXE = $(NAME).exe
 OBJS = $(NAME).obj
 SRCS = $(NAME).asm
 SIMPLE_MODE = ;
 
-LINK_FLAG = /subsystem:windows
+LINK_FLAG = /subsystem:dos
 ML_FLAG = /c/coff/zi
 MASM_FLAG = /Zi/Zd
 
