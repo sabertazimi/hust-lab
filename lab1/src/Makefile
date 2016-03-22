@@ -1,4 +1,4 @@
-NAME = 2-3
+NAME = 2-4
 
 EXE = $(NAME).exe
 OBJS = $(NAME).obj

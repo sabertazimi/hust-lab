@@ -14,6 +14,7 @@
 
 ### 2-3
 
+-   BUF1: 0 0 0
 -   BUF2: 0 1 2
 -   BUF3: 1 2 3
 -   BUF4: 4 5 6
@@ -37,3 +38,22 @@ LOPA:   MOV     AL, [SI + BUF1]
         MOV     AH, 4CH
         INT     21H
 ```   
+
+```asm
+66b8190b0000	mov     eax, 00000b19
+668ed8		mov	ds, ax
+66be00000000	mov	esi, 00000000
+66b90a000000	mov	ecx, 0000000A
+66b800000000	mov	eax, 00000000 
+678a8600000000	mov	al, [esi]
+6788860a000000	mov	[esi+0000000A], al
+fec0		inc	al
+67888614000000	mov	[esi+00000014], al
+0403		add 	al, 03
+6788861e000000	mov	[esi+0000001E],	al
+6646		inc	esi
+6649		dec	ecx
+75da		jne	001B
+b44c		mov	ah, 4C
+cd21		int	21
+```
