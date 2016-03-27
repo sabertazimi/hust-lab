@@ -31,10 +31,12 @@ DATA    SEGMENT     USE16
                 DB  80
                 DB  75
                 DB  ?
-        MSG     DB  'Please input target name (end with $): $'
+        MSG     DB  'Please input target name : $'
         CONTINU DB  'Enter any keys to continue(except q):$'
         FAIL    DB  'Not Exist!$'
-        INPUT   DB  10 DUP(10)
+        INPUT   DB  10
+                DB  ?
+                DB  10 DUP(0)
 DATA    ENDS
 
 
@@ -98,12 +100,13 @@ READ:   MOV     CX, NUM     ; 学生个数
         MOV     DL, 0AH     ; 输出换行符
         MOV     AH, 2H
         INT     21H
-        LEA     DX, OFFSET INPUT
-        MOV     AH, 9H
-        INT     21H
-
+        ; LEA     DX, OFFSET INPUT
+        ; MOV     AH, 9H
+        ; INT     21H
         LEA     BP, OFFSET INPUT; 将 INPUT 基址存放至 BP
-        ADD     BP,2        ; FIX ME:如果不+2修正,则取不到输入字符串,一定是我哪里写错了
+        ADD     BP,2
+        CMP     DS:BYTE PTR [BP - 1], 0H   ; 空字符串检查
+        JE      READY
         INC     CX
 COMPA:  DEC     CX
         JE      FAILED      ; 查找失败, 重新输入
