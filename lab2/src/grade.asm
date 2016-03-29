@@ -7,30 +7,9 @@ STACK   ENDS
 
 DATA    SEGMENT     USE16
         NUM     EQU 3
-        BUF     DB  'saber'
-        LEN1    EQU $-BUF
-        ZLEN1   EQU 10-LEN1
-                DB  ZLEN1 DUP(0)
-        ZH      DB  90
-        MA      DB  80
-        EN      DB  85
-        AVG     DB  ?
-        ARCH    DB  'archer'
-        LEN2    EQU $-ARCH
-        ZLEN2   EQU 10-LEN2
-                DB  ZLEN2 DUP(0)
-                DB  80
-                DB  75
-                DB  85
-                DB  ?
-        LANC    DB  'lancer'
-        LEN3    EQU $-LANC
-        ZLEN3   EQU 10-LEN3
-                DB  ZLEN3 DUP(0)
-                DB  70
-                DB  80
-                DB  75
-                DB  ?
+        BUF     DB  'saber', 5 DUP(0), 90, 80, 85, ?
+                DB  'archer', 4 DUP(0), 80, 75, 85, ?
+                DB  'lancer', 4 DUP(0), 70, 80, 75, ?
         MSG     DB  'Please input target name : $'
         CONTINU DB  'Enter any keys to continue(except q):$'
         FAIL    DB  'Not Exist!$'
