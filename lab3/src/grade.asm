@@ -117,13 +117,16 @@ COMPA:  DEC     CX
         MOV     SI, 0
 COMPB:  MOV     DL, [BX + SI]
         MOV     DH, BYTE PTR DS:[BP + SI]
-        CMP     DL, 0       ; 如果缓冲区姓名已结束,说明查找成功
-        JE      GRADE       ; 跳转至平均成绩计算处
+        CMP     DL, 0       ; 如果缓冲区姓名已结束,说明可能查找成功
+        JE      ZERO        ; 验证用户键入字符串是否也结束
         CMP     DH, DL      ; 比较 当前缓冲区姓名 与 输入姓名 字符
         JNE     COMPA       ; 当前字符相同,继续循环以比较下一字符
         INC     SI
         DEC     AX
         JNE     COMPB
+ZERO:   CMP     BYTE PTR DS:[BP + SI], 24H   ; 检查数据段姓名是否为用户输入字符串的子串
+        JE      GRADE       ; 不是子串，说明查找成功，跳转至平均成绩计算处
+        JMP     COMPA       ; 是子串，说明查找失败，继续比较下一个学生姓名
 
 GRADE:  MOV     BX, NUM     ; 计算目标学生下标值, 存放至 BX
         SUB     BX, CX
