@@ -71,13 +71,13 @@ GRADEE: MOV     DL, 45H
         INT     21H
         JMP     READY
 
-FAILED: LEA     DX, OFFSET FAIL     ; 输出提示信息 - 查找失败
+FAILED: LEA     DX, FAIL     ; 输出提示信息 - 查找失败
         MOV     AH, 9H
         INT     21H
 READY:  MOV     DL, 0AH     ; 输出换行符
         MOV     AH, 2H
         INT     21H
-        LEA     DX, OFFSET CONTINU  ; 输出提示信息 - 是否继续
+        LEA     DX, CONTINU  ; 输出提示信息 - 是否继续
         MOV     AH, 9H
         INT     21H
         MOV     DL, 0AH     ; 输出换行符
@@ -89,23 +89,23 @@ READY:  MOV     DL, 0AH     ; 输出换行符
         JE      OVER        ; 输入 'q', 退出程序
 
 READ:   MOV     CX, NUM     ; 学生个数
-        LEA     DX, OFFSET MSG     ; 输出提示信息 - 请输入姓名
+        LEA     DX, MSG     ; 输出提示信息 - 请输入姓名
         MOV     AH, 9H
         INT     21H
         MOV     DL, 0AH     ; 输出换行符
         MOV     AH, 2H
         INT     21H
-        LEA     DX, OFFSET INPUT   ; 读入学生姓名, 以 '$' 符号结尾
+        LEA     DX, INPUT   ; 读入学生姓名, 以 '$' 符号结尾
         MOV     AH, 0AH
         INT     21H
 
         MOV     DL, 0AH     ; 输出换行符
         MOV     AH, 2H
         INT     21H
-        ; LEA     DX, OFFSET INPUT
+        ; LEA     DX, INPUT
         ; MOV     AH, 9H
         ; INT     21H
-        LEA     BP, OFFSET INPUT   ; 将 INPUT 基址存放至 BP
+        LEA     BP, INPUT   ; 将 INPUT 基址存放至 BP
         ADD     BP,2               ; 取出用户输入姓名
         INC     CX
 COMPA:  DEC     CX
