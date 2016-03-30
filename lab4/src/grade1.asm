@@ -14,11 +14,11 @@ DATA    SEGMENT     USE16
                 DB  80
                 DB  90
                 DB  ?
-        MENU    DB  0Ah, 0Dh, "Please enter function selection:$"
-        MENU1   DB  0Ah, 0Dh, "1: Input student name and rade$"
-        MENU2   DB  0Ah, 0Dh, "2: Calcute Sum Grade and Average Grade"
-        MENU3   DB  0Ah, 0Dh, "3: Sort Grade$"
-        MENU4   DB  0Ah, 0Dh, "4: Show Grade Table$"
+        MENU1   DB  0Ah, 0Dh, "Please enter function selection:$"
+        MENU2   DB  0Ah, 0Dh, "1: Input student name and rade$"
+        MENU3   DB  0Ah, 0Dh, "2: Calcute Sum Grade and Average Grade"
+        MENU4   DB  0Ah, 0Dh, "3: Sort Grade$"
+        MENU5   DB  0Ah, 0Dh, "4: Show Grade Table$"
         MSG     DB  "Please input target name (end with dollar): $"
         CONTINU DB  "Enter any keys to continue(except q):$"
         FAIL    DB  "Not Exist!$"
@@ -35,9 +35,6 @@ START:  MOV     AX, DATA
         MOV     DS, AX
         MOV     CX, NUM
 SHOWMENU:       ; 输出菜单
-        LEA     DX, MENU
-        MOV     AH, 9H
-        INT     21H
         LEA     DX, MENU1
         MOV     AH, 9H
         INT     21H
@@ -48,6 +45,9 @@ SHOWMENU:       ; 输出菜单
         MOV     AH, 9H
         INT     21H
         LEA     DX, MENU4
+        MOV     AH, 9H
+        INT     21H
+        LEA     DX, MENU5
         MOV     AH, 9H
         INT     21H
 SELECT:
