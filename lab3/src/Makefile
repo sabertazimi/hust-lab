@@ -1,4 +1,4 @@
-NAME = grade
+NAME = optimize
 
 EXE = $(NAME).exe
 OBJS = $(NAME).obj
