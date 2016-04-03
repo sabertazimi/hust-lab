@@ -1,34 +1,15 @@
-; strcomp
-0028 mov ax, [008C]
-002b mov ex, ax
-002d xor ax, ax
-002f mov bx, ax
-0031 mov di, ax
-; es:[di] = ALLUSERSPROFILE=C:\DOCUMENT\ALLUSER
-;APPDATA=C:\DOCUMENT\ADMIN
-;CLIENTNAME=Console
-;COMMONPROGRAMFILES=C:\PROGRAM
-;PATH=
-; PATHEXT=
-; SYSTEMDRIVE=
-;TMP =
-; LOGONSERVER=\\HUSTLYL
-; until
-; di = 364
-; now es:[di]=F:\HUSTASSEMBLY\LAB3\SRC\EX3D.EXE
-0033 mov cx, 7fff   ;
-0036 cld
-0037 repnz scash
-0039 jcxz  009c
-003b inc bx
+# Objdump Analysis
 
-ds:[0a6h] - wangwu
+-   0158 call 02c2 ; main
+-   0322 call 12a7 ; printf addr
+-   033d call 0393 ; Average()
+-   0344 call 040f ; Search(name)
 
-0158 call 02c2 ; main
-0322 call 12a7 ; printf addr
-033d call 0393 ; Average()
-0344 call 040f ; Search(name)
+## Average()
 
+-   ds:[0a6h] - wangwu
+
+```asm
 0393:
 push bp
 mov bp,sp
@@ -84,7 +65,14 @@ jmp 040a
 mov sp,bp
 pop bp
 ret
+```
 
+## Search(name)
+
+-   ds:[ffc6] wangwu // user input
+-   ds:[038e] zhangsan00 100 85 80
+
+```asm
 040f:
 push bp
 mov bp,sp
@@ -131,6 +119,4 @@ pop si
 mov sp,bp
 pop bp
 ret
-
-ds:[ffc6] wangwu // user input
-ds:[038e] zhangsan00 100 85 80
+```

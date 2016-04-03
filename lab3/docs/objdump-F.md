@@ -1,8 +1,9 @@
-0158 call 02c2: main
-0322 call 125d: print addr
-033d call 0392: Average()
-0344 call 03e5: Search(name)
+-   0158 call 02c2: main
+-   0322 call 125d: print addr
+-   033d call 0392: Average()
+-   0344 call 03e5: Search(name)
 
+```asm
 0392:
 push bp
 mov bp,sp
@@ -21,7 +22,7 @@ mov al,[si+039a]  ; english
 mov ah,00
 mov bx,ax      ; bx = english
 mov ax,dx      ; ax = chinese
-mov cl,02 
+mov cl,02
 shl ax,cl      ; ax = chinese * 4
 mov dx,[bp-02] ; dx =math
 shl dx,1       ; dx = math *2
@@ -42,7 +43,9 @@ pop si
 mov sp,bp
 pop bp
 ret
+```
 
+```asm
 03e5:
 push bp
 mov bp,sp
@@ -88,6 +91,4 @@ pop si
 mov sp,bp
 pop bp
 ret
-
-
-
+```
