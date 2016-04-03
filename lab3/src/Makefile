@@ -1,4 +1,4 @@
-NAME = optimize
+NAME = opt-v2
 
 EXE = $(NAME).exe
 OBJS = $(NAME).obj

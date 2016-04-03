@@ -5,7 +5,6 @@ STACK   SEGMENT     USE16   STACK
 STACK   ENDS
 
 DATA    SEGMENT     USE16
-        ;494967295
         COUNT   EQU 10000000
         NUM     EQU 1000
         BUF     DB  NUM-1 DUP('lancer', 4 DUP(0), 80, 90, 70 , ?)
@@ -75,11 +74,37 @@ _TS	    DW    ?
 _TMSG	DB    12 DUP(0)
 TIMER   ENDP
 
+
 START:  MOV     AX, DATA
         MOV     DS, AX
-        MOV     EDI, COUNT   ; 程序执行次数
+        MOV     EDI, COUNT  ; 程序执行次数
         MOV     AX, 0
         CALL    TIMER
+        MOV     CX, NUM
+;       在查找开始前，先把所有成绩计算好
+CAL:    MOV     BX, NUM     ; 计算目标学生下标值, 存放至 BX
+        SUB     BX, CX
+        MOV     DX, BX
+        ADD     DX, DX
+        SAL     BX, 4
+        SUB     BX, DX      ; 根据目标学生下标值, 找到分数缓冲区首地址
+        ADD     BX, 10      ; BX = 0 + Index * 14 + 10
+        MOV     AX, 0       ; 初始化寄存器，使得代码上下文无关，减少bug
+        MOV     DX, 0       ; 初始化寄存器，使得代码上下文无关，减少bug
+        MOV     AL, [BX]    ; 计算平均成绩
+        ADD     AX, AX      ; AL = ZH * 2
+        MOV     DL, [BX + 1]
+        ADD     AX, DX      ; AL = ZH * 2 + MA
+        MOV     DL, [BX + 2]
+        SAR     DL, 1
+        ADD     AX, DX      ; AL = ZH * 2 + MA + EN / 2
+        SAL     AX, 1       ; AL = 2 * AL
+        MOV     DX, 7
+        IDIV    DL          ; AL = AL / 7
+        MOV     [BX + 3], AL; AVG = AL ( AL / 3.5)
+        DEC     CX
+        JE      L1          ; 计算完100个学生,开始模拟查找
+        JMP     CAL         ; 未计算完100个学生，继续计算
 
 L1:     MOV     CX, NUM     ; 学生个数
         LEA     BP, TARGET  ; 将 TARGET 基址存放至 BP
@@ -88,7 +113,10 @@ COMPA:  DEC     CX
         JE      NEXT        ; 查找失败, 重新输入
         MOV     BX, NUM     ; 计算目标学生下标值, 存放至 BX
         SUB     BX, CX
-        IMUL    BX, 14      ; 根据目标学生下标值, 找到姓名缓冲区首地址
+        MOV     AX, BX
+        ADD     AX, AX      ; 2 * index
+        SAL     BX, 4       ; 16 * index
+        SUB     BX, AX      ; 根据目标学生下标值, 找到分数   缓冲区首地址
         MOV     AX, 10      ; 临时计数器
         MOV     SI, 0
 COMPB:  MOV     DL, [BX + SI]
@@ -100,32 +128,10 @@ COMPB:  MOV     DL, [BX + SI]
         INC     SI
         DEC     AX
         JNE     COMPB
-ZERO:   CMP     BYTE PTR DS:[BP + SI], 24H   ; 检查数据段姓名是否为用户输入字符串的子串
-        JE      CAL         ; 不是子串，说明查找成功，跳转至平均成绩计算处
+ZERO:   CMP     DH, 24H     ; 检查数据段姓名是否为用户输入字符串的子串
+        JE      NEXT        ; 不是子串，说明查找成功
         JMP     COMPA       ; 是子串，说明查找失败，继续比较下一个学生姓名
 
-CAL:    MOV     BX, NUM     ; 计算目标学生下标值, 存放至 BX
-        SUB     BX, CX
-        IMUL    BX, 14      ; 根据目标学生下标值, 找到分数缓冲区首地址
-        ADD     BX, 10      ; BX = 0 + Index * 14 + 10
-        MOV     AX, 0
-        MOV     DX, 0
-        MOV     AL, [BX]    ; 计算平均成绩
-        IMUL    AX, AX, 2   ; AL = ZH * 2
-        MOV     DL, [BX + 1]
-        ADD     AX, DX      ; AL = ZH * 2 + MA
-        PUSH    AX
-        MOV     AH, 0H
-        MOV     AL, [BX + 2]
-        MOV     DX, 2H
-        IDIV    DL          ; EN / 2
-        MOV     AH, 0H
-        POP     DX
-        ADD     AX, DX      ; AL = ZH * 2 + MA + EN / 2
-        IMUL    AX, AX, 2   ; AL = 2 * AL
-        MOV     DX, 7
-        IDIV    DL          ; AL = AL / 7
-        MOV     [BX + 3], AL; AVG = AL ( AL / 3.5)
 NEXT:   DEC     EDI
         JNE     L1
 OVER:   MOV     AX, 1
