@@ -75,7 +75,8 @@ _TMSG	DB    12 DUP(0)
 TIMER   ENDP
 
 
-START:  MOV     AX, DATA
+START:
+        MOV     AX, DATA
         MOV     DS, AX
         MOV     EDI, COUNT  ; 程序执行次数
         MOV     AX, 0
@@ -85,24 +86,24 @@ L1:
 CAL:
         MOV     BX, NUM     ; 计算目标学生下标值, 存放至 BX
         SUB     BX, CX
-        MOV     DX, BX
-        ADD     DX, DX
-        SAL     BX, 4
-        SUB     BX, DX      ; 根据目标学生下标值, 找到分数缓冲区首地址
-        ADD     BX, 10      ; BX = 0 + Index * 14 + 10
-        MOV     AX, 0       ; 初始化寄存器，使得代码上下文无关，减少bug
-        MOV     DX, 0       ; 初始化寄存器，使得代码上下文无关，减少bug
-        MOV     AL, [BX]    ; 计算平均成绩
-        ADD     AX, AX      ; AL = ZH * 2
+        IMUL   BX, 14
+        ADD     BX, 10         ; BX = 0 + Index * 14 + 10
+        XOR     EAX, EAX         ; 初始化寄存器，使得代码上下文无关，减少bug
+        XOR     EDX, EDX         ; 初始化寄存器，使得代码上下文无关，减少bug
+        MOV     AL, [BX]        ; 计算平均成绩
         MOV     DL, [BX + 1]
-        ADD     AX, DX      ; AL = ZH * 2 + MA
-        MOV     DL, [BX + 2]
-        SAR     DL, 1
-        ADD     AX, DX      ; AL = ZH * 2 + MA + EN / 2
-        SAL     AX, 1       ; AL = 2 * AL
-        MOV     DX, 7
-        IDIV    DL          ; AL = AL / 7
-        MOV     [BX + 3], AL; AVG = AL ( AL / 3.5)
+        LEA       EAX, [EDX + EAX*2]
+        XOR     EDX, EDX
+        MOV     DL, [BX+2]
+        LEA       ESI, [EDX+EAX*2]
+        MOV     EAX, 92492493h       ;(1)  (1)~(7)是计算 (ESI) / 7 并将商保存到EDX
+        IMUL     ESI          ;(2)  IDIV指令的执行时间远比IMUL指令长
+        ADD      EDX, ESI  ;(3)  (1)~(7)用乘法指令实现整数除法
+        SAR       EDX, 2     ;(4)
+        MOV     EAX, EDX;(5)
+        SHR       EAX, 1Fh  ;(6)
+        ADD      EDX, EAX ;(7)
+        MOV     [EBX + 3], DL; AVG = AL ( AL / 3.5)
         DEC     CX
         JNE     CAL         ; 未计算完100个学生，继续计算
 
@@ -110,10 +111,10 @@ CAL:
         LEA     BP, TARGET  ; 将 TARGET 基址存放至 BP
         INC     CX
 COMPA:
-        DEC     CX
-        JE      NEXT        ; 查找失败, 重新输入
+        DEC       CX
+        JE           NEXT        ; 查找失败, 重新输入
         MOV     BX, NUM     ; 计算目标学生下标值, 存放至 BX
-        SUB     BX, CX
+        SUB      BX, CX
         IMUL    BX, 14      ; 根据目标学生下标值, 找到姓名缓冲区首地址
         MOV     AX, 10      ; 临时计数器
         MOV     SI, 0
