@@ -1,4 +1,4 @@
-NAME = opt-v2
+NAME = opt
 
 EXE = $(NAME).exe
 OBJS = $(NAME).obj

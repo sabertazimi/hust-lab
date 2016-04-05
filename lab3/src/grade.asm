@@ -6,7 +6,7 @@ STACK   ENDS
 
 DATA    SEGMENT     USE16
         ;494967295
-        COUNT   EQU 10000000
+        COUNT   EQU 100000
         NUM     EQU 1000
         BUF     DB  NUM-1 DUP('lancer', 4 DUP(0), 80, 90, 70 , ?)
         LAST    DB  'saber'
@@ -81,30 +81,10 @@ START:  MOV     AX, DATA
         MOV     AX, 0
         CALL    TIMER
 
-L1:     MOV     CX, NUM     ; 学生个数
-        LEA     BP, TARGET  ; 将 TARGET 基址存放至 BP
-        INC     CX
-COMPA:  DEC     CX
-        JE      NEXT        ; 查找失败, 重新输入
+L1:
+        MOV     CX,NUM
+CAL:
         MOV     BX, NUM     ; 计算目标学生下标值, 存放至 BX
-        SUB     BX, CX
-        IMUL    BX, 14      ; 根据目标学生下标值, 找到姓名缓冲区首地址
-        MOV     AX, 10      ; 临时计数器
-        MOV     SI, 0
-COMPB:  MOV     DL, [BX + SI]
-        MOV     DH, BYTE PTR DS:[BP + SI]
-        CMP     DL, 0       ; 如果缓冲区姓名已结束,说明可能查找成功
-        JE      ZERO        ; 验证用户键入字符串是否也结束
-        CMP     DH, DL      ; 比较 当前缓冲区姓名 与 输入姓名 字符
-        JNE     COMPA       ; 当前字符相同,继续循环以比较下一字符
-        INC     SI
-        DEC     AX
-        JNE     COMPB
-ZERO:   CMP     BYTE PTR DS:[BP + SI], 24H   ; 检查数据段姓名是否为用户输入字符串的子串
-        JE      CAL         ; 不是子串，说明查找成功，跳转至平均成绩计算处
-        JMP     COMPA       ; 是子串，说明查找失败，继续比较下一个学生姓名
-
-CAL:    MOV     BX, NUM     ; 计算目标学生下标值, 存放至 BX
         SUB     BX, CX
         IMUL    BX, 14      ; 根据目标学生下标值, 找到分数缓冲区首地址
         ADD     BX, 10      ; BX = 0 + Index * 14 + 10
@@ -126,9 +106,40 @@ CAL:    MOV     BX, NUM     ; 计算目标学生下标值, 存放至 BX
         MOV     DX, 7
         IDIV    DL          ; AL = AL / 7
         MOV     [BX + 3], AL; AVG = AL ( AL / 3.5)
-NEXT:   DEC     EDI
+        DEC     CX
+        JNE       CAL                ; 未计算完100个学生，继续计算
+
+        MOV     CX, NUM     ; 学生个数
+        LEA     BP, TARGET  ; 将 TARGET 基址存放至 BP
+        INC     CX
+COMPA:
+        DEC     CX
+        JE      NEXT        ; 查找失败, 重新输入
+        MOV     BX, NUM     ; 计算目标学生下标值, 存放至 BX
+        SUB     BX, CX
+        IMUL    BX, 14      ; 根据目标学生下标值, 找到姓名缓冲区首地址
+        MOV     AX, 10      ; 临时计数器
+        MOV     SI, 0
+COMPB:
+        MOV     DL, [BX + SI]
+        MOV     DH, BYTE PTR DS:[BP + SI]
+        CMP     DL, 0       ; 如果缓冲区姓名已结束,说明可能查找成功
+        JE      ZERO        ; 验证用户键入字符串是否也结束
+        CMP     DH, DL      ; 比较 当前缓冲区姓名 与 输入姓名 字符
+        JNE     COMPA       ; 当前字符相同,继续循环以比较下一字符
+        INC     SI
+        DEC     AX
+        JNE     COMPB
+ZERO:
+        CMP     BYTE PTR DS:[BP + SI], 24H   ; 检查数据段姓名是否为用户输入字符串的子串
+        JE      NEXT         ; 不是子串，说明查找成功
+        JMP     COMPA       ; 是子串，说明查找失败，继续比较下一个学生姓名
+
+NEXT:
+        DEC     EDI
         JNE     L1
-OVER:   MOV     AX, 1
+OVER:
+        MOV     AX, 1
         CALL    TIMER
         MOV     AH, 4CH
         INT     21H
