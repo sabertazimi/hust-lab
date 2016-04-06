@@ -8,7 +8,7 @@ stack   segment use16   para    stack   'stack'
         db  200 dup(0)
 stack   ends
 
-data    segment use16   para    public  'main'
+data  segment use16   para    public  'data'
         m_num       dd  0
         m_max_num   equ 1000
         m_table     db  m_max_num   dup(10  dup(0), 60, 60, 60, 60)
