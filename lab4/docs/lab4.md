@@ -12,6 +12,14 @@
 
 `cmp ecx, [ebx]` -> `cmp cl, [ebx]`
 
+### m_num
+
+添加学生后,忘记 m_num++,造成逻辑错误
+
+```
+inc m_num
+```
+
 ## Defects
 
 -   未做输入检查

@@ -1,19 +1,25 @@
+        name    main
+        extern  sort: far, print: far
+        public  m_num, m_table
+
 .386
 
-stack   segment use16   stack
+stack   segment use16   para    stack   'stack'
         db  200 dup(0)
 stack   ends
 
-data    segment use16
-        m_num       equ 100
+data    segment use16   para    public  'main'
+        m_num       dd  0
         m_max_num   equ 1000
-        m_table db  m_max_num   dup(10  dup(0), 100, 90, 80, 0)
-        m_menu  db  "Please enter function selection:", 0ah, 0dh
-                db  "1: Input student name and grade", 0ah, 0dh
-                db  "2: Calculate sum and average grade", 0ah, 0dh
-                db  "3: Sort", 0ah, 0dh
-                db  "4: Show grade table", 0ah, 0dh
-                db  "5: Quit$", 0ah, 0dh
+        m_table     db  m_max_num   dup(10  dup(0), 60, 60, 60, 60)
+        m_menu      db  "Please enter function selection:", 0ah, 0dh
+                    db  "1: Input student name and grade", 0ah, 0dh
+                    db  "2: Calculate sum and average grade", 0ah, 0dh
+                    db  "3: Sort", 0ah, 0dh
+                    db  "4: Show grade table", 0ah, 0dh
+                    db  "5: Quit$", 0ah, 0dh
+        m_input_prompt  db  "Please input student name: $", 0ah, 0dh
+        m_input_grade   db  "Please input grade: $", 0ah, 0dh
         m_input_name    db  11
                         db  ?
                         db  11  dup(0)
@@ -22,18 +28,18 @@ data    segment use16
                         db  4   dup(0)
 data ends
 
-code    segment use16
+code    segment use16   para    public  'code'
         assume  cs:code, ds:data, ss:stack
 
 m_crlf  macro
         push    eax
-        push    edx
+        push    edx                     ; 以上为保护现场
         mov     ah, 2h
         mov     dl, 0ah
         int     21h
         mov     dl, 0dh
         int     21h
-        pop     edx
+        pop     edx                     ; 以下为恢复现场
         pop     eax
         endm
 
@@ -42,7 +48,6 @@ m_crlf  macro
 ; 入口参数: 无, 直接从 m_ipnut_score 取数字串
 ; 出口参数: eax, 存放转化厚的标准数字
 m_trans proc    far
-        push    eax
         push    ebx
         push    ecx
         push    edx
@@ -61,7 +66,6 @@ m_trans_loop:
         pop     edx
         pop     ecx
         pop     ebx
-        pop     eax
         ret
 m_trans endp
 
@@ -70,14 +74,49 @@ m_trans endp
 ; 入口参数: 无, 学生信息直接由键盘录入，存至 m_input_name 与 m_input_score
 ; 出口参数: 无, 处理过的学生信息直接添加至 m_table 尾部
 m_input proc    far
+        push    esi
+        push    edi
         push    eax
-        push    edx
-        lea     dx, m_input_score
+        push    ecx
+        push    edx                         ; 以上为保护现场
+        mov     edx, m_num
+        imul    edx, 14
+        lea     edi, m_table[edx]           ; 将学生成绩表尾的偏移地址存至 edi
+        lea     dx, m_input_prompt          ; 输出提示语
+        mov     ah, 9h
+        int     21h
+        lea     dx, m_input_name            ; 输入学生姓名
         mov     ah, 0ah
         int     21h
+        m_crlf
+        lea     esi, m_input_name + 1       ; (esi) = & string.length
+        xor     ecx, ecx                    ; 计数器初始化为０
+m_input_name_loop:
+        mov     dl, [esi + ecx + 1]
+        mov     [edi + ecx], dl             ; 将输入的学生姓名拷贝至表尾
+        inc     ecx
+        cmp     cl, [esi]
+        jne     m_input_name_loop           ; i < string.length
+        xor     ecx, ecx                    ; 计数器初始化为0,开始录入学生成绩
+m_input_grade_loop:
+        lea     dx, m_input_grade           ; 输出提示语
+        mov     ah, 9h
+        int     21h
+        lea     dx, m_input_score           ; 输入学生成绩
+        mov     ah, 0ah
+        int     21h
+        m_crlf
         call    m_trans
-        pop     edx
+        mov     [edi + ecx + 10], al        ; 将转化后的成绩存入表中
+        inc     ecx
+        cmp     ecx, 3h
+        jne     m_input_grade_loop          ; 未录入３门成绩,继续录入
+        inc     m_num                       ; 学生总数 + 1
+        pop     edx                         ; 以下为恢复现场
+        pop     ecx
         pop     eax
+        pop     edi
+        pop     esi
         ret
 m_input endp
 
