@@ -1,32 +1,28 @@
 .386
 
-STACK   SEGMENT     USE16   STACK
-        DB 200  DUP(0)
-STACK   ENDS
+stack       segment       use16   stack
+                db      200     dup(0)
+stack       ends
 
 
-DATA    SEGMENT     USE16
-        NUM     EQU 100
-        BUF     DB  99 DUP('lancer', 4 DUP(0), 90, 90, 90 , ?)
-        LAST    DB  'saber'
-                DB  5 DUP(0)
-                DB  70
-                DB  80
-                DB  90
-                DB  ?
-        MENU1   DB  0Ah, 0Dh, "Please enter function selection:$"
-        MENU2   DB  0Ah, 0Dh, "1: Input student name and rade$"
-        MENU3   DB  0Ah, 0Dh, "2: Calcute Sum Grade and Average Grade"
-        MENU4   DB  0Ah, 0Dh, "3: Sort Grade$"
-        MENU5   DB  0Ah, 0Dh, "4: Show Grade Table$"
-        MSG     DB  "Please input target name (end with dollar): $"
-        CONTINU DB  "Enter any keys to continue(except q):$"
-        FAIL    DB  "Not Exist!$"
-        INPUT   DB  10
-                DB  ?
-                DB  10 DUP(0)
-DATA    ENDS
+data        segment           use 16
+                m_num       equ      100
+                m_table      db      num     dup(10 dup(0), 0, 0, 0, 0)
+                m_menu     db        "Please enter function selection:", 0ah, 0dh
+                                                        "1: Input student name and grade", 0ah, 0dh
+                                                        "2: Calculate sum and average grade", 0ah, 0dh
+                                                        "3: Sort", 0ah, 0dh
+                                                        "4: Show grade table$", 0ah, 0dh
+                m_input_name      db      10
+                                          db       ?
+                                          db    10 dup(0)
+                m_input_score       db   3
+                                                db ?
+                                                db 3 dup(0)
+data ends
 
+code segment use16
+        assume cs:code, ds:data, ss:stack
 
 CODE    SEGMENT     USE16
         ASSUME  CS:CODE, DS:DATA, SS:STACK

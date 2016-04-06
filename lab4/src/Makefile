@@ -1,4 +1,4 @@
-NAME = grade1
+NAME = main
 
 EXE = $(NAME).exe
 OBJS = $(NAME).obj
