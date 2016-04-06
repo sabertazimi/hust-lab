@@ -1,80 +1,175 @@
 .386
 
-stack       segment       use16   stack
-                db      200     dup(0)
-stack       ends
+stack   segment use16   stack
+        db  200 dup(0)
+stack   ends
 
-
-data        segment           use 16
-                m_num       equ      100
-                m_table      db      num     dup(10 dup(0), 0, 0, 0, 0)
-                m_menu     db        "Please enter function selection:", 0ah, 0dh
-                                                        "1: Input student name and grade", 0ah, 0dh
-                                                        "2: Calculate sum and average grade", 0ah, 0dh
-                                                        "3: Sort", 0ah, 0dh
-                                                        "4: Show grade table$", 0ah, 0dh
-                m_input_name      db      10
-                                          db       ?
-                                          db    10 dup(0)
-                m_input_score       db   3
-                                                db ?
-                                                db 3 dup(0)
+data    segment use16
+        m_num       equ 100
+        m_max_num   equ 1000
+        m_table db  m_max_num   dup(10  dup(0), 100, 90, 80, 0)
+        m_menu  db  "Please enter function selection:", 0ah, 0dh
+                db  "1: Input student name and grade", 0ah, 0dh
+                db  "2: Calculate sum and average grade", 0ah, 0dh
+                db  "3: Sort", 0ah, 0dh
+                db  "4: Show grade table", 0ah, 0dh
+                db  "5: Quit$", 0ah, 0dh
+        m_input_name    db  11
+                        db  ?
+                        db  11  dup(0)
+        m_input_score   db  4
+                        db  ?
+                        db  4   dup(0)
 data ends
 
-code segment use16
-        assume cs:code, ds:data, ss:stack
+code    segment use16
+        assume  cs:code, ds:data, ss:stack
 
-CODE    SEGMENT     USE16
-        ASSUME  CS:CODE, DS:DATA, SS:STACK
+m_crlf  macro
+        push    eax
+        push    edx
+        mov     ah, 2h
+        mov     dl, 0ah
+        int     21h
+        mov     dl, 0dh
+        int     21h
+        pop     edx
+        pop     eax
+        endm
 
-START:  MOV     AX, DATA
-        MOV     DS, AX
-        MOV     CX, NUM
-SHOWMENU:       ; 输出菜单
-        LEA     DX, MENU1
-        MOV     AH, 9H
-        INT     21H
-        LEA     DX, MENU2
-        MOV     AH, 9H
-        INT     21H
-        LEA     DX, MENU3
-        MOV     AH, 9H
-        INT     21H
-        LEA     DX, MENU4
-        MOV     AH, 9H
-        INT     21H
-        LEA     DX, MENU5
-        MOV     AH, 9H
-        INT     21H
-SELECT:
+; 函数名称: m_trans
+; 将数字串转化为标准数字
+; 入口参数: 无, 直接从 m_ipnut_score 取数字串
+; 出口参数: eax, 存放转化厚的标准数字
+m_trans proc    far
+        push    eax
+        push    ebx
+        push    ecx
+        push    edx
+        lea     ebx, m_input_score + 1      ; (ebx) = & string.length
+        xor     eax, eax                    ; 转化结果初始化为0
+        xor     ecx, ecx                    ; 计数器初始化为0
+m_trans_loop:
+        xor     edx, edx
+        mov     dl, [ebx + ecx + 1]         ; 从高位开始取出数字串的每一个数字字符
+        sub     edx, 30h                    ; 将取出字符转化为标准数字
+        imul    eax, 0ah                    ; 上一次和 * 基数
+        add     eax, edx                    ; 进位
+        inc     ecx
+        cmp     cl, [ebx]
+        jne     m_trans_loop                ; i < string.length
+        pop     edx
+        pop     ecx
+        pop     ebx
+        pop     eax
+        ret
+m_trans endp
 
+; 函数名称: m_input
+; 添加学生信息
+; 入口参数: 无, 学生信息直接由键盘录入，存至 m_input_name 与 m_input_score
+; 出口参数: 无, 处理过的学生信息直接添加至 m_table 尾部
+m_input proc    far
+        push    eax
+        push    edx
+        lea     dx, m_input_score
+        mov     ah, 0ah
+        int     21h
+        call    m_trans
+        pop     edx
+        pop     eax
+        ret
+m_input endp
 
-CAL:
-        MOV     CX, NUM
-CALOOP:
-        MOV     BX, NUM     ; 计算目标学生下标值, 存放至 BX
-        SUB     BX, CX
-        IMUL    BX, 14      ; 根据目标学生下标值, 找到分数缓冲区首地址
-        ADD     BX, 10      ; BX = 0 + Index * 14 + 10
-        MOV     AX, 0       ; 初始化寄存器，使得代码上下文无关，减少bug
-        MOV     DX, 0       ; 初始化寄存器，使得代码上下文无关，减少bug
-        MOV     AL, [BX]    ; 计算平均成绩
-        ADD     AX, AX      ; AL = ZH * 2
-        MOV     DL, [BX + 1]
-        ADD     AX, DX      ; AL = ZH * 2 + MA
-        MOV     DL, [BX + 2]
-        SAR     DL, 1
-        ADD     AX, DX      ; AL = ZH * 2 + MA + EN / 2
-        SAL     AX, 1       ; AL = 2 * AL
-        MOV     DX, 7
-        IDIV    DL          ; AL = AL / 7
-        MOV     [BX + 3], AL; AVG = AL ( AL / 3.5)
-        DEC     CX
-        JE      SHOWMENU    ; 计算完100个学生，跳转至用户输入
-        JMP     CAL         ; 未计算完100个学生，继续计算
+; 函数名称: m_cal
+; 计算学生平均成绩
+; 入口参数: 无, 直接从 m_table 读取信息
+; 出口参数: 无
+m_cal   proc    far
+        push    eax
+        push    ebx
+        push    ecx
+        push    edx
+        push    esi                     ; 以上为保护现场
+        xor     ecx, ecx                ; 计数器初始化置0
+        lea     ebx, m_table            ; 取成绩表首地址
+        add     ebx, 10                 ; 移动至语文成绩处
+m_cal_loop:
+        xor     eax, eax
+        xor     edx, edx
+        mov     al,  [ebx]              ; chinese
+        mov     dl,  [ebx + 1]          ; math
+        lea     eax, [edx + eax * 2]    ; (eax) = chinese * 2 + math
+        xor     edx, edx
+        mov     dl,  [ebx + 2]          ; english
+        lea     esi, [edx + eax *2]     ; (esi) = (chinese * 2 + math) * 2 + english
+        mov     eax, 92492493h          ; 计算 (esi) / 7 并将商保存到 edx
+        imul    esi
+        add     edx, esi
+        sar     edx, 2
+        mov     eax, edx
+        shr     eax, 1fh
+        add     edx, eax
+        mov     [ebx + 3], dl           ; avg = sum / 3.5
+        add     ebx, 14                 ; 移动至下一个学生语文成绩处
+        inc     ecx                     ; 计数器
+        cmp     ecx, m_num
+        jne     m_cal_loop              ; 未计算完100个学生，继续计算
+        pop     esi                     ; 以下为恢复现场
+        pop     edx
+        pop     ecx
+        pop     ebx
+        pop     eax
+        ret
+m_cal   endp
 
-OVER:   MOV     AH, 4CH
-        INT     21H
+; 函数名称: m_finish
+; 结束应用程序
+; 入口参数: 无
+; 出口参数: 无
+m_finish    proc    far
+            mov     ah, 4ch
+            int     21h
+m_finish    endp
 
-CODE    ENDS
-        END     START
+m_start:
+        mov     ax, data
+        mov     ds, ax
+m_showmenu:     ; 输出菜单
+        m_crlf
+        lea     dx, m_menu
+        mov     ah, 9h
+        int     21h
+        m_crlf
+m_select:
+        mov     ah, 1h                  ; 用户输入所需功能
+        int     21h
+        m_crlf
+        cmp     al, 31h
+        jne     m_sel_l1
+        call    m_input
+        jmp     m_showmenu
+m_sel_l1:
+        cmp     al, 32h
+        jne     m_sel_l2
+        call    m_cal
+        jmp     m_showmenu
+m_sel_l2:
+        cmp     al, 33h
+        jne     m_sel_l3
+        call    m_finish
+        jmp     m_showmenu
+m_sel_l3:
+        cmp     al, 34h
+        jne     m_sel_l4
+        call    m_finish
+        jmp     m_showmenu
+m_sel_l4:
+        cmp     al, 35h
+        jne     m_sel_l5
+        call    m_finish
+m_sel_l5:
+        jmp     m_showmenu
+
+code    ends
+        end     m_start
