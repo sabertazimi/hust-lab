@@ -1,0 +1,38 @@
+#####################################################################
+# CS:APP Buffer Lab
+#
+# Source files
+#
+# Copyright (c) 2004-2012, R. Bryant and D. O'Hallaron.
+#
+######################################################################
+
+***********
+1. Overview
+***********
+
+This directory contains the source files for the buffer bomb. Don't
+use the Makefile in this directory to build your bombs. Use the
+./makebomb program instead.
+
+********
+2. Files
+********
+
+config.h: Contains list of hosts where this lab may be run
+
+driverlib.{h,c}: 
+	Contains common driver support functions.
+
+bufbomb.c (bufbomb):  
+	A bomb program that is solved using a buffer overflow attack.
+
+hex2raw.c (hex2raw): 
+	Converts a text string into raw bytes and emits it on stdout.
+
+makecookie.c and gencookie.c (makecookie):
+	Generates and emits the cookie associated with a userid.
+
+support.{c,h}
+	Contains helper functions.
+
