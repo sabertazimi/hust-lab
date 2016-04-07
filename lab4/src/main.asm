@@ -9,9 +9,12 @@ stack   segment use16   para    stack   'stack'
 stack   ends
 
 data  segment use16   para    public  'data'
-        m_num       dd  0
+        m_num       dd  3
         m_max_num   equ 1000
-        m_table     db  m_max_num   dup(10  dup(0), 60, 60, 60, 60)
+        m_table     db  'saber',  5 dup(0), 99, 99, 99, ?
+                    db  'lancer', 4 dup(0), 88, 88, 88, ?
+                    db  'archer', 4 dup(0), 77, 77, 77, ?
+                    db  m_max_num-3 dup(10  dup(0), 60, 60, 60, ?)
         m_menu      db  "Please enter function selection:", 0ah, 0dh
                     db  "1: Input student name and grade", 0ah, 0dh
                     db  "2: Calculate sum and average grade", 0ah, 0dh
@@ -134,6 +137,8 @@ m_cal   proc    far
         lea     ebx, m_table            ; 取成绩表首地址
         add     ebx, 10                 ; 移动至语文成绩处
 m_cal_loop:
+        cmp     ecx, m_num
+        jge     m_cal_finish            ; 已计算完所有学生的平均成绩，结束循环
         xor     eax, eax
         xor     edx, edx
         mov     al,  [ebx]              ; chinese
@@ -151,9 +156,9 @@ m_cal_loop:
         add     edx, eax
         mov     [ebx + 3], dl           ; avg = sum / 3.5
         add     ebx, 14                 ; 移动至下一个学生语文成绩处
-        inc     ecx                     ; 计数器
-        cmp     ecx, m_num
-        jne     m_cal_loop              ; 未计算完100个学生，继续计算
+        inc     ecx                     ; 计数器自增
+        jmp     m_cal_loop
+m_cal_finish:
         pop     esi                     ; 以下为恢复现场
         pop     edx
         pop     ecx
