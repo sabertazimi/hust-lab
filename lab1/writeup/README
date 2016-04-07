@@ -1,0 +1,10 @@
+CS:APP Data Lab
+Data Lab Writeup
+
+This is a sample writeup for the CS:APP Data Lab. 
+
+Files:
+
+datalab.tex	- Latex2e lab writeup
+Makefile	- formats Latex2e lab writeup into postscript and pdf
+
