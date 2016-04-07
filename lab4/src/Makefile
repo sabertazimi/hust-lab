@@ -1,18 +1,15 @@
-NAME = main
+MNAME = main
+CNAME = child
 
-EXE = $(NAME).exe
-OBJS = $(NAME).obj
-SRCS = $(NAME).asm
+EXE = $(MNAME).exe
 SIMPLE_MODE = ;
 
-LINK_FLAG = /subsystem:dos
-ML_FLAG = /c/coff/zi
-MASM_FLAG = /Zi/Zd
-
-$(EXE): $(OBJS)
-    link $(LINK_FLAG) $(OBJS) $(SIMPLE_MODE)
-$(OBJS): $(SRCS)
-    masm $(MASM_FLAG) $(SRCS) $(SIMPLE_MODE)
+$(EXE): $(MNAME).obj $(CNAME).obj
+    link $(MNAME).obj $(CNAME).obj $(SIMPLE_MODE)
+$(MNAME).obj: $(MNAME).asm
+    masm $(MNAME).asm $(SIMPLE_MODE)
+$(CNAME).obj: $(CNAME).asm
+	masm $(CNAME).asm $(SIMPLE_MODE)
 
 clean:
 	del *.obj

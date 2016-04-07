@@ -1,5 +1,5 @@
         name    main
-        extern  sort: far, print: far
+        extern  c_sort: far, c_print: far
         public  m_num, m_table
 
 .386
@@ -196,12 +196,12 @@ m_sel_l1:
 m_sel_l2:
         cmp     al, 33h
         jne     m_sel_l3
-        call    m_finish
+        call    c_sort
         jmp     m_showmenu
 m_sel_l3:
         cmp     al, 34h
         jne     m_sel_l4
-        call    m_finish
+        call    c_print
         jmp     m_showmenu
 m_sel_l4:
         cmp     al, 35h
