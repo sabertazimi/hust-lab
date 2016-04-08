@@ -34,6 +34,7 @@ data ends
 code    segment use16   para    public  'code'
         assume  cs:code, ds:data, ss:stack
 
+;　换行操作
 m_crlf  macro
         push    eax
         push    edx                     ; 以上为保护现场
@@ -50,6 +51,10 @@ m_crlf  macro
 ; 将数字串转化为标准数字
 ; 入口参数: 无, 直接从 m_ipnut_score 取数字串
 ; 出口参数: eax, 存放转化厚的标准数字
+; eax - 存放转化结果
+; ebx - 存放数字串偏移地址
+; ecx - 循环计数器
+; edx - 保存每一位数字
 m_trans proc    far
         push    ebx
         push    ecx
