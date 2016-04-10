@@ -46,6 +46,26 @@ m_crlf  macro
         pop     edx                     ; 以下为恢复现场
         pop     eax
         endm
+; 9号dos功能调用
+m_dos9  macro   str
+        push    eax
+        push    edx                     ;以上为保护现场
+        lea     dx, str
+        mov     ah, 9
+        int     21h
+        pop     edx                     ;以下为恢复现场
+        pop     eax
+        endm
+; 10号功能调用
+m_dos10 macro   adr
+        push    eax
+        push    edx
+        lea     dx, adr
+        mov     ah, 10
+        int     21h
+        pop     edx
+        pop     eax
+        endm
 
 ; 函数名称: m_trans
 ; 将数字串转化为标准数字
@@ -81,6 +101,11 @@ m_trans endp
 ; 添加学生信息
 ; 入口参数: 无, 学生信息直接由键盘录入，存至 m_input_name 与 m_input_score
 ; 出口参数: 无, 处理过的学生信息直接添加至 m_table 尾部
+; esi: 姓名输入处地址
+; edi: 暂存学生成绩信息尾地址
+; ecx: 计数器
+; eax: 系统调用
+; edx: 系统调用
 m_input proc    far
         push    esi
         push    edi
@@ -90,12 +115,8 @@ m_input proc    far
         mov     edx, m_num
         imul    edx, 14
         lea     edi, m_table[edx]           ; 将学生成绩表尾的偏移地址存至 edi
-        lea     dx, m_input_prompt          ; 输出提示语
-        mov     ah, 9h
-        int     21h
-        lea     dx, m_input_name            ; 输入学生姓名
-        mov     ah, 0ah
-        int     21h
+        m_dos9 m_input_prompt        ; 输出提示语
+        m_dos10 m_input_name         ; 输入学生姓名
         m_crlf
         lea     esi, m_input_name + 1       ; (esi) = & string.length
         xor     ecx, ecx                    ; 计数器初始化为０
@@ -107,12 +128,8 @@ m_input_name_loop:
         jne     m_input_name_loop           ; i < string.length
         xor     ecx, ecx                    ; 计数器初始化为0,开始录入学生成绩
 m_input_grade_loop:
-        lea     dx, m_input_grade           ; 输出提示语
-        mov     ah, 9h
-        int     21h
-        lea     dx, m_input_score           ; 输入学生成绩
-        mov     ah, 0ah
-        int     21h
+        m_dos9   m_input_grade           ; 输出提示语
+        m_dos10 m_input_score         ; 输入学生成绩
         m_crlf
         call    m_trans
         mov     [edi + ecx + 10], al        ; 将转化后的成绩存入表中
@@ -186,9 +203,7 @@ m_start:
         mov     ds, ax
 m_showmenu:     ; 输出菜单
         m_crlf
-        lea     dx, m_menu
-        mov     ah, 9h
-        int     21h
+        m_dos9 m_menu
         m_crlf
 m_select:
         mov     ah, 1h                  ; 用户输入所需功能
