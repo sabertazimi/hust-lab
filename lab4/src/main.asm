@@ -1,5 +1,8 @@
+; team: 刘一龙,  曾圳
+; author: 刘一龙
+
         name    main
-        extern  c_sort: far, c_print: far
+        extern  c_sort: far, c_print: far, c_radix: near
         public  m_num, m_table
 
 .386
@@ -105,17 +108,26 @@ m_trans endp
 ; edi: 暂存学生成绩信息尾地址
 ; ecx: 计数器
 ; eax: 系统调用
+; ebx: 调用c_radix函数的参数
 ; edx: 系统调用
 m_input proc    far
         push    esi
         push    edi
         push    eax
+        push    ebx
         push    ecx
         push    edx                         ; 以上为保护现场
         mov     edx, m_num
         imul    edx, 14
         lea     edi, m_table[edx]           ; 将学生成绩表尾的偏移地址存至 edi
         m_dos9 m_input_prompt        ; 输出提示语
+        mov     eax, m_num
+        inc        eax                                  ; 显示当前输入学生序号
+        lea       si, m_input_name+2
+        mov     ebx, 0ah
+        call    c_radix                             ; 将学生个数转化为字符串
+        m_dos9 m_input_name+2
+        m_crlf
         m_dos10 m_input_name         ; 输入学生姓名
         m_crlf
         lea     esi, m_input_name + 1       ; (esi) = & string.length
@@ -131,7 +143,7 @@ m_input_grade_loop:
         m_dos9   m_input_grade           ; 输出提示语
         m_dos10 m_input_score         ; 输入学生成绩
         m_crlf
-        call    m_trans
+        call    far ptr m_trans
         mov     [edi + ecx + 10], al        ; 将转化后的成绩存入表中
         inc     ecx
         cmp     ecx, 3h
@@ -139,6 +151,7 @@ m_input_grade_loop:
         inc     m_num                       ; 学生总数 + 1
         pop     edx                         ; 以下为恢复现场
         pop     ecx
+        pop     ebx
         pop     eax
         pop     edi
         pop     esi
@@ -149,6 +162,11 @@ m_input endp
 ; 计算学生平均成绩
 ; 入口参数: 无, 直接从 m_table 读取信息
 ; 出口参数: 无
+; eax: 计算平均成绩，取出相应成绩
+; ebx: 存放成绩表首地址
+; ecx: 计数器
+; edx: 计算平均成绩，取出相应成绩
+; esi: 存放总成绩
 m_cal   proc    far
         push    eax
         push    ebx
@@ -198,6 +216,7 @@ m_finish    proc    far
             int     21h
 m_finish    endp
 
+; dx, ah: 系统调用
 m_start:
         mov     ax, data
         mov     ds, ax
@@ -211,27 +230,27 @@ m_select:
         m_crlf
         cmp     al, 31h
         jne     m_sel_l1
-        call    m_input
+        call    far ptr m_input
         jmp     m_showmenu
 m_sel_l1:
         cmp     al, 32h
         jne     m_sel_l2
-        call    m_cal
+        call    far ptr m_cal
         jmp     m_showmenu
 m_sel_l2:
         cmp     al, 33h
         jne     m_sel_l3
-        call    c_sort
+        call    far ptr c_sort
         jmp     m_showmenu
 m_sel_l3:
         cmp     al, 34h
         jne     m_sel_l4
-        call    c_print
+        call    far ptr c_print
         jmp     m_showmenu
 m_sel_l4:
         cmp     al, 35h
         jne     m_sel_l5
-        call    m_finish
+        call    far ptr m_finish
 m_sel_l5:
         jmp     m_showmenu
 

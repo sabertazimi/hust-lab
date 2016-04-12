@@ -1,6 +1,9 @@
+; team: 刘一龙,  曾圳
+; author: 曾圳
+
         name    child
-        extern  m_num: dword, m_table: word
-        public  c_sort, c_print
+        extern  m_num: dword, m_table: byte
+        public  c_sort, c_print,c_radix
 
 .386
 
@@ -82,14 +85,14 @@ c_exchange  proc    far
 c_exchange_loop1:
                 mov     al, [esi][ecx]
                 xchg    al, [edi][ecx]
-                mov     [esi][ecx], al                ;交换 
+                mov     [esi][ecx], al                ;交换
                 inc     ecx
                 cmp     ecx, 14
                 jne     c_exchange_loop1
                 pop     ecx                         ;以下为恢复现场
                 pop     ebx
                 pop     eax
-                ret            
+                ret
 c_exchange  endp
 
 ; 函数名称: c_sort
@@ -97,19 +100,19 @@ c_exchange  endp
 ; 入口参数: 无
 ; 出口参数: 无
 c_sort      proc    far
-        
+
                                             ; 以上为保护现场
             mov     ecx, m_num         ; 外循环计数器
-            mov     edx, offset m_table
+            ;mov     edx, offset m_table
 c_sort_loop1:
             mov     ebx, 1                  ; 内循环计数器
 c_sort_loop2:
             imul    eax, ebx, 14
-            mov     dl, byte ptr m_table[eax - 1]
-            cmp     dl, byte ptr m_table[eax + 13]
+            mov     dl, m_table[eax - 1]
+            cmp     dl, m_table[eax + 13]
             jge    c_sort_loop3
-            lea     esi, byte ptr m_table[eax - 14]
-            lea     edi, byte ptr m_table[eax]
+            lea     esi, m_table[eax - 14]
+            lea     edi, m_table[eax]
             call    far ptr c_exchange              ;交换学生位置
 c_sort_loop3:
             inc     ebx
