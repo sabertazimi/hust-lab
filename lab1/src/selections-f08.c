@@ -1,0 +1,17 @@
+#include "bitOr.c"
+#include "isEqual.c"
+#include "anyEvenBit.c"
+#include "allEvenBits.c"
+#include "rotateLeft.c"
+#include "greatestBitPos.c"
+
+#include "isTmax.c"
+#include "leastBitPos.c"
+#include "subOK.c"
+#include "isLessOrEqual.c"
+#include "satMul3.c"
+#include "divPwr2.c"
+
+#include "float_abs.c"
+#include "float_half.c"
+#include "float_i2f.c"

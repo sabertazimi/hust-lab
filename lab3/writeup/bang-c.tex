@@ -1,0 +1,13 @@
+\begin{alltt}
+int global_value = 0;
+
+void bang(int val)
+\verb:{:
+    if (global_value == cookie) \verb:{:
+        printf("Bang!: You set global_value to 0x%x\verb:\n:", global_value);
+        validate(2);
+    \verb:}: else
+        printf("Misfire: global_value = 0x%x\verb:\n:", global_value);
+    exit(0);
+\verb:}:
+\end{alltt}

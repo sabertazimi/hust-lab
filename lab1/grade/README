@@ -1,0 +1,99 @@
+#####################################################################
+# CS:APP Data Lab
+# Autograding Scripts
+#
+# Copyright (c) 2002-2011, R. Bryant and D. O'Hallaron, 
+######################################################################
+
+This directory contains autograding scripts for the CS:APP Data Lab.
+
+NOTE: Before running the autograding scripts, make sure that the datalab/src
+directory has already been built: 
+
+    unix> cd datalab/src
+    unix> make
+
+********
+1. Files
+********
+
+grade-datalab.pl
+	The Data Lab's autograder. Grades a single bits.c handin 
+	file and emits a report on standard output.
+
+grade-handins.pl
+	A driver that invokes the autograder on every handin
+	file in the handin directory.
+
+config.pm
+	Config file for grade-handins.pl and grade-datalab.pl
+
+handin/
+	The handin directory containing the student's programs
+
+printdir.pl
+	A handy script that calls enscript on each file in a directory.
+
+Each script takes a -h argument that describes its command line
+arguments.
+
+######################################
+2. Configuring the autograding scripts
+######################################
+
+The config.pm file contains all of the configuration info for the
+grading scripts. It defines defaults that can be overridden on the
+command lines, as well as the distribution of correctness,
+performance, and style points.
+
+*********************************************
+3. How to use the grade-datalab.pl autograder
+*********************************************
+
+Collect all of the student bits.c handin files in the ./handin
+directory.  To grade a single handin file (say
+./handin/droh-bits.c) type:
+
+    unix> ./grade-datalab.pl -f handin/droh-bits.c
+
+Use the -e flag if you don't want the student's handin file included
+in the output grade sheet.
+
+If you have a small class, you can run grade-datalab.pl manually on
+each handin file. If you have a bigger class, you'll want to use the
+grade-handins.pl program, which will invoke grade-datalab.pl on each
+handin file automatically.
+
+NOTE: The autograder assumes that the datalab/src has been built. If
+the autograder fails, a likely reason is that you cleaned the src
+directory without rebuilding it. Here's the fix:
+
+    unix> cd datalab/src
+    unix> make
+
+*****************************************
+4. How to use the grade-handins.pl driver
+*****************************************
+
+To grade all of the handin files in the ./handin directory, type:
+
+    unix> ./grade-handins.pl
+
+This calls the grade-datalab.pl autograder for each handin file in
+directory handin, and redirects the resulting grade sheets to files
+in the handin.grades directory. 
+
+Use the -e flag if you don't want the student's handin file included
+in the output grade sheet.
+
+You can expect that some handins will have problems, either because
+their code won't compile, or their program dumps core. In these cases,
+the driver flags the problem, and goes on to the next handin file.
+
+You can print compact hardcopies of the grade reports using enscript:
+
+    unix> enscript -P<your printer> -2r ./handin.grades/*.out
+
+If you have two-sided printers and want to start each student's
+submission on a new page, you can use the printdir.pl script.
+

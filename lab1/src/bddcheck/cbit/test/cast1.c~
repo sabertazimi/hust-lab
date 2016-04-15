@@ -1,0 +1,3 @@
+int fun(unsigned x) {
+  return x;
+}

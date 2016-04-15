@@ -1,0 +1,219 @@
+******************************************************
+Note for CS:APP Instructors: This file can be ignored.
+******************************************************
+
+C-to-C Translator v0.7
+-------------------------
+
+This is an alpha release of the C-to-C translator.  C-to-C does the
+following, in successive phases:
+
+  * parses standard ANSI C into an abstract syntax tree (AST);
+  * type-checks the AST;
+  * performs data-flow analysis on the AST (presently, only live-variable
+    analysis, but C-to-C is easily extended to compute any monotonic
+    dataflow framework);
+  * emits C code corresponding to the AST.
+
+Although C-to-C may have a number of applications, it is intended as a
+framework for preprocessing C extension languages into C.
+
+In addition to ANSI C, C-to-C also supports a number of GNU
+extensions, including inline, long long, statement expressions, empty
+structure declarations, zero-length arrays, casts to union types, and
+__attribute__.  These extensions can be turned off at runtime by a
+command-line switch.
+
+
+
+Tools Needed to Build c2c
+--------------------------
+
+C-to-C requires the GNU utilities gcc, flex, and bison.  You can try
+to substitute your local ANSI C compiler, lex, and yacc tools at your
+own risk.  Note the following:
+
+* C-to-C is written in ANSI C.  It uses some gcc extensions (like
+inline), but these are automatically disabled when compiled by a
+non-GNU compiler.
+
+* The lexical analyzer depends on the internal behavior of flex:
+yytext must be a pointer into a buffer containing the entire source
+line, so that the column offset can be computed.
+
+* The lexical analyzer may be too big for your lex's default table
+allocations, requiring additional declarations in c4.l.
+
+* Substituting yacc for bison may cause minor changes to C-to-C's
+error messages, so some of the regression tests will appear to fail.
+The difference is merely a matter of wording, however: yacc may say
+"syntax error" where bison says "parse error".
+
+* By default, C-to-C uses gcc at runtime to do macro preprocessing.
+You can substitute your own ANSI C compiler or preprocessor (like cpp)
+by changing main.c.  Be aware that some "standard" preprocessors emit
+non-standard directives in their preprocessor output that may cause
+C-to-C to barf.  (An example is the "#ident" directive emitted by
+Sun's acc compiler.)
+
+
+
+Makefiles
+----------------
+
+This package contains two makefiles: Makefile, which builds the C-to-C
+executable, and tests/Makefile, which runs the regression test suite.
+If you need to change the default settings described below, you will
+want to make the changes in both files.
+
+We have been developing C-to-C on workstations running SunOS 4, which
+unfortunately does not include a standard ANSI C library.  As a
+result, we had to include some workarounds to prevent warnings about
+unprototyped library functions and to manage functions with variable
+arguments.  These workarounds are controlled by several compile-time
+symbols defined in _CFLAGS:
+
+
+Symbol		Means... 			C-to-C will...
+--------------	----------------------------- 	-----------------------
+NO_PROTOTYPES	System header files do not 	Provide prototypes for the
+		prototype library functions.	library functions it uses.
+		functions.			
+
+NO_STRTOUL	strtoul() not available.  	Supply its own strtoul().
+
+NO_POPEN	popen() not available.		Use temporary files instead
+						of pipes.
+
+NO_STDARG	 stdarg.h not available.	Use varargs.h.
+
+
+
+If you are developing on a different platform, or if you have Sun's
+ANSI C compiler acc, then you will want to remove some or all of these
+flags.  NOTE: you should change tests/Makefile in the same way, since
+the regression test needs to have the correct flags in order to parse
+C-to-C itself.
+
+
+
+Changes from c-parser 
+------------------------
+
+C-to-C is based on a package developed at MIT LCS called c-parser.
+Substantial changes were made in the structure of the code by
+introducing macros to abstract over the syntax tree, so C-to-C is no
+longer closely compatible with c-parser.  In addition, some of the
+files from c-parser have been renamed in C-to-C, including
+sem-check2.c (becoming initializer.c) and make-ast.c (becoming ast.c).
+The filename changes were made purely for aesthetic reasons (such as
+automatic filename completion with fewer letters :-).
+
+
+Test Suite
+------------------
+
+A test suite is included in the subdirectory "tests", with a
+makefile that runs all the tests.  To run the tests, cd tests and
+run "make".
+
+There are two types of tests: error-message tests, which compare C-to-C's
+error messages with the correct messages, and translation tests, which
+translate a source file, compile both the original and translated
+versions, and compare the resulting object code byte-by-byte.  A major
+part of the test suite consists of a translation test using C-to-C's own
+source code.
+
+When you are running translation tests, you should expect to see
+warning messages.  Some of these tests involve tricky and unusual C
+code which a good compiler ought to complain about.
+
+
+Known Bugs
+--------------
+
+These bugs exist because the current structure of C-to-C makes fixing
+them difficult.  Test cases for these bugs are included in the test
+suite, but they are not run by default.  To exercise them, enter the
+tests directory and run "make -k known-bugs".
+
+
+  1. Type equivalence test fails on array types whose dimensions are not
+     literal constants. e.g., fails to detect type disagreement in:  
+
+             extern int a[1+1];
+             int a[0+1];
+             
+     Test case: enum.c
+
+
+  2. Cannot detect pointer arithmetic which non-constant at load time.
+     For example, C-to-C allows the following initialization, which is
+     technically illegal in ANSI C (and rejected by gcc):
+
+             int i;
+             int j;
+             int diff = &j - &i;
+
+     Test case: ptrarith.c
+
+
+  3. Cannot detect multiple definitions of an external identifier.  For
+     example, C-to-C accepts the following top-level definitions without
+     complaint:
+
+             int x = 5;
+             int x = 6;
+     
+     See K&R section A10.2 for the precise distinction between external
+     declarations and definitions.
+
+     Test case: extern.c
+
+
+
+Legal Stuff
+---------------
+
+Copyright (c) 1994 MIT Laboratory for Computer Science
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE MIT LABORATORY FOR COMPUTER SCIENCE BE LIABLE
+FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
+CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Except as contained in this notice, the name of the MIT Laboratory for
+Computer Science shall not be used in advertising or otherwise to
+promote the sale, use or other dealings in this Software without prior
+written authorization from the MIT Laboratory for Computer Science.
+
+
+
+Feedback
+--------------------
+
+Send bugs and comments to:
+
+Rob Miller
+rcm@mit.edu
+NE43-226, x8-7090
+MIT Lab for Computer Science
+
+
+
+
+

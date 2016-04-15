@@ -1,0 +1,102 @@
+dlc - The CS:APP Data Lab Checker
+
+dlc is the CS:APP rule checking compiler that checks students' Data
+Lab solutions for compliance with the programming rules. It is based
+on the c2c ANSI C compiler from the MIT Cilk project. We gratefully
+acknowledge their contribution.
+
+Quick and Dirty: The lab is distributed with a Linux binary
+already built for you. If you haven't added any new
+puzzles to the standard set of puzzles in ../btest/puzzles,
+then you can use it as is.
+
+If you want to rebuild it on another platform and haven't added any
+new puzzles to the standard set of puzzles in ../btest/puzzles, type:
+
+	unix> make superclean
+	unix> make
+
+and you're done. 
+
+***************
+1. Updating dlc
+***************
+
+Each problem that you add to the standard set of problems in
+../btest/puzzles requires a one-line entry in array "legallist" in the
+file ./legallist.c.  For example, the entry for function isZero is as
+follows:
+
+  {{"isZero"}, 0, 3, {'~', '&', '!', '^', '|', '+', LS, RS, 0}},
+
+This indicates that the function name is "isZero", that it may *not*
+make calls to other functions, that the maximum number of operations is
+3, and that it may only use the operators shown in the list, where 'LS' is
+the name of the token for << and RS for >>. The list of operators
+is terminated with a 0.
+
+After modifing ./legallist.c, remake dlc by typing:
+
+	unix> make
+
+Validated with clean compiles using gcc -Wall on:
+	Linux 2.2, gcc 2.95.3 
+	Solaris 5.5, gcc 2.95.3
+
+
+*********************
+2. Checking your work
+*********************
+
+Run the following command to see if you've built dlc correctly:
+
+unix> ./dlc bits.c
+dlc:bits.c:43:bitOr: Illegal operator (!)
+dlc:bits.c:91:reverseBytes: Illegal operator (-)
+dlc:bits.c:92:reverseBytes: Illegal operator (*)
+dlc:bits.c:109:TMin: Illegal function definition
+dlc:bits.c:129:TMax: Illegal function definition
+dlc:bits.c:153:negate: Warning: 7 operators exceeds max of 6
+dlc:bits.c:165:logicalShift: Warning: 27 operators exceeds max of 24
+unix> 
+
+****************************
+3. Other dlc usage examples:
+****************************
+
+unix> ./dlc -help		    : Prints most useful options
+unix> ./dlc bits.c		    : Tests bits.c for correctness
+unix> ./dlc -e bits.c		    : Prints operator count for each function
+unix> ./dlc -z -o bits-zap.c bits.c : Zaps the bodies of illegal functions
+                                    : so they return a wrong value to btest.
+                                    : Puts output in bits-zap.c.
+unix> ./dlc -Z -o bits-zap.c bits.c : Like -z, but also zaps functions
+				    : that use too many operators.
+                                    : Puts output in bits-zap.c.
+
+The -z and -Z options are useful for automatic grading. You first
+preprocess the student's solution with "./dlc -Z", which zaps any
+illegal function bodies. When a zapped solution is checked by btest at
+runtime, it (almost always) returns the wrong answer. Thus students
+receive zero credit for illegal functions.
+
+*******
+4. Bugs
+*******
+
+1. On some systems, such as Linux, dlc can't deal with the <stdio.h>
+header file. Tell students not to include <stdio.h> in their bits.c
+files. They can still use printf for debugging without it.
+
+2. dlc doesn't catch implicit casting. Thus, students can
+get away with implementing logical shift as:
+
+    int right_logical_shift(int x, int dist)
+    {
+        unsigned y = x >> dist;
+	return y;	
+    }
+
+
+
+

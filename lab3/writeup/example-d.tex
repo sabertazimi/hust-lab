@@ -1,0 +1,7 @@
+\begin{alltt}
+   0:	68 ef cd ab 00       	push   $0xabcdef
+   5:	83 c0 11             	add    $0x11,%eax
+   8:	98                   	cwtl   
+   9:	ba                   	.byte 0xba
+   a:	dc fe                	fdivr  %st,%st(6)
+\end{alltt}

