@@ -1,0 +1,10 @@
+language: c
+compiler: gcc
+before_install:
+    - sudo apt-get update -qq
+    - sudo apt-get install -qq libpng-dev libjpeg-dev libatlas-base-dev libblas-dev libgsl0-dev
+script:
+    - cd Design/Test/
+    # Simulatin Testing on remote centos qloud server
+    # - cd Simulation/ && make && make clean && make test
+    - cd UnitTest/ && make && make clean && make test
