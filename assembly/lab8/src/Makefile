@@ -2,10 +2,9 @@ NAME = main
 OBJS = $(NAME).obj
 RES = $(NAME).res
 EXE = $(NAME).exe
-SIMPLE_MODE = ;
 
 $(NAME).exe: $(OBJS) $(RES)
-	Link /DEBUG /SUBSYSTEM:WINDOWS $(OBJS) $(RES) $(SIMPLE_MODE)
+	Link /DEBUG /SUBSYSTEM:WINDOWS /LIBPATH:C:\masm32\lib $(OBJS) $(RES)
 $(RES): $(NAME).rc
 	Rc $(NAME).rc
 .asm.obj:
@@ -13,6 +12,8 @@ $(RES): $(NAME).rc
 
 clean:
 	del *.obj
+	del *.res
+	del *.ilk
 
 debug:
 	td $(EXE)
