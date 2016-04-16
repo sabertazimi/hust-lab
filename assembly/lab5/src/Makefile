@@ -1,14 +1,11 @@
 NAME = main
 OBJS = $(NAME).obj
-RES = $(NAME).res
 EXE = $(NAME).exe
 SIMPLE_MODE = ;
 
-$(NAME).exe: $(OBJS) $(RES)
-	Link /DEBUG /SUBSYSTEM:WINDOWS $(OBJS) $(RES) $(SIMPLE_MODE)
-$(RES): $(NAME).rc
-	Rc $(NAME).rc
-.asm.obj:
+$(EXE): $(OBJS)
+	Link /DEBUG $(OBJS) $(SIMPLE_MODE)
+$(OBJS): $(NAME).asm
 	Ml /c /coff $(NAME).asm
 
 clean:

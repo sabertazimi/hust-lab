@@ -3,11 +3,11 @@ OBJS = $(NAME).obj
 RES = $(NAME).res
 EXE = $(NAME).exe
 
-$(NAME).exe: $(OBJS) $(RES)
+$(EXE): $(OBJS) $(RES)
 	Link /DEBUG /SUBSYSTEM:WINDOWS /LIBPATH:C:\masm32\lib $(OBJS) $(RES)
 $(RES): $(NAME).rc
 	Rc $(NAME).rc
-.asm.obj:
+$(OBJS): $(NAME).asm
 	Ml /c /coff $(NAME).asm
 
 clean:
