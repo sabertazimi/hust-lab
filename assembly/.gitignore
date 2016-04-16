@@ -32,5 +32,5 @@
 *.dSYM/
 
 # Microsoft Office Documents
-*.doc
-*.docx
+# *.doc
+# *.docx

@@ -57,9 +57,3 @@ inc m_num
 -   `c_print`
 
 故将所有 do_while 改正至 while_do.
-
-## Defects
-
--   未做输入检查
-    -   输入学生成绩 < 100
-    -   输入学生姓名为有效字符
