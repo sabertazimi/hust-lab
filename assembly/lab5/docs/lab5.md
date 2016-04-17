@@ -51,4 +51,12 @@ __asm {
 add ebx, 28
 ```
 
+### 传参
 
+```c
+cal/sort(table, num); -> cal/sort(&table[0], num);
+```
+
+```asm
+table[esi/edi + EA] -> mov edi, table ss:[edi + esi + EA]
+```
