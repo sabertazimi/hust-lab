@@ -6,6 +6,7 @@
 #define THREE 51
 #define FOUR 52
 #define FIVE 53
+#define SIX	54
 #define MAX_NUM 1000
 
 typedef struct stu {
@@ -18,19 +19,22 @@ typedef struct stu {
 
 extern void  cal(stu *, int);
 extern void  sort(stu *, int);
+extern void  search(stu *, int, char *);
 
 int main(void) {
 	stu table[MAX_NUM];
 	int num = 0;	// total number of students
+	char str[12];   // search aid string
 	char input[2];	// input selection
 	int i;			// loop variable
 	do {
-		printf("Please input selection: \n");
+		printf("\nPlease input selection: \n");
 		printf("1: Input\n");
 		printf("2: Calculate\n");
 		printf("3: Sort\n");
-		printf("4: Print\n");
-		printf("5: Exit\n");
+		printf("4: Search\n");
+		printf("5: Print\n");
+		printf("6: Exit\n");
 		scanf("%1s", input);
 		switch (input[0]) {
 		case ONE:	// input new student info
@@ -48,10 +52,24 @@ int main(void) {
 			cal(&table[0], num);
 			break;
 		case THREE:	// sort students' info, by average grade
-		
 			sort(&table[0], num);
 			break;
-		case FOUR:	// print students' info	
+		case FOUR:  // search target student
+			printf("Please input name: ");
+			scanf("%9s", str);
+			search(&table[0], num, &str[0]);
+
+			__asm {
+				mov i, eax
+			}
+
+			if (i > -1 && i < num) {
+				printf("Found: %s: %d %d %d %d\n", table[i].name, table[i].ch, table[i].ma, table[i].en, table[i].avg);
+			} else {
+				printf("Not Found!\n");
+			}
+			break;
+		case FIVE:	// print students' info	
 			for (i = 0;i < num;i++) {
 				printf("%s: %d %d %d %d\n", table[i].name, table[i].ch, table[i].ma, table[i].en, table[i].avg);
 			}
@@ -59,7 +77,7 @@ int main(void) {
 		default:	// error handle
 			break;
 		}
-	} while(input[0] != FIVE);
+	} while(input[0] != SIX);
 
 	return 0;
 }

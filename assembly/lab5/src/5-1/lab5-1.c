@@ -6,6 +6,7 @@
 #define THREE 51
 #define FOUR 52
 #define FIVE 53
+#define SIX	54
 #define MAX_NUM 1000
 
 typedef struct stu {
@@ -19,15 +20,17 @@ typedef struct stu {
 int main(void) {
 	stu table[MAX_NUM];
 	int num = 0;	// total number of students
+	char str[12];	// search aid string
 	char input[2];	// input selection
 	int i;			// loop variable
 	do {
-		printf("Please input selection: \n");
+		printf("\nPlease input selection: \n");
 		printf("1: Input\n");
 		printf("2: Calculate\n");
 		printf("3: Sort\n");
-		printf("4: Print\n");
-		printf("5: Exit\n");
+		printf("4: Search\n");
+		printf("5: Print\n");
+		printf("6: Exit\n");
 		scanf("%1s", input);
 		switch (input[0]) {
 		case ONE:	// input new student info
@@ -140,7 +143,58 @@ int main(void) {
 				pop     eax
 			}
 			break;
-		case FOUR:	// print students' info	
+		case FOUR:
+			printf("Please input name: ");
+			scanf("%9s", str);
+			search(&table[0], num, &str[0]);
+
+			__asm {
+					push	eax
+					push	ebx
+					push	ecx
+					push	edx
+					push    esi
+					push    edi
+					lea     esi, str
+					lea     edi, table
+					xor	ebx, ebx
+					xor	ecx, ecx
+				search_loop:
+					cmp	ecx, num
+					jge	search_finish		; 所有学生名字都和输入不同,ecx > num
+					xor	eax, eax
+				search_inner:
+					cmp	eax, 10
+					jge	search_finish		; 所有字符都相同
+					mov	dl, ss:[esi + eax]
+					cmp	ss:[edi + ebx], dl
+					jnz	search_next
+					cmp	dl, 0			; 已比较至空字符
+					jz	search_finish		; 所有字符都相同
+					inc	eax
+					inc	ebx
+					jmp	search_inner
+			search_next:
+					inc	ecx
+					imul	ebx, ecx, 28
+					jmp	search_loop
+			search_finish:
+					mov	i, ecx		; 返回下标
+					pop	edi
+					pop	esi
+					pop	edx
+					pop	ecx
+					pop	ebx
+					pop	eax
+			}
+
+			if (i > -1 && i < num) {
+				printf("Found: %s: %d %d %d %d\n", table[i].name, table[i].ch, table[i].ma, table[i].en, table[i].avg);
+			} else {
+				printf("Not Found!\n");
+			}
+			break;
+		case FIVE:	// print students' info	
 			for (i = 0;i < num;i++) {
 				printf("%s: %d %d %d %d\n", table[i].name, table[i].ch, table[i].ma, table[i].en, table[i].avg);
 			}
@@ -148,7 +202,7 @@ int main(void) {
 		default:	// error handle
 			break;
 		}
-	} while(input[0] != FIVE);
+	} while(input[0] != SIX);
 
 	return 0;
 }
