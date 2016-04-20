@@ -11,15 +11,15 @@ LIBS = -lm
 SELECTIONS = selections.c
 CONTEST_DIR = ../contest
 
-all: btest bits-handout.c fshow ishow Driverhdrs-module
+all: btest bits-handout.c fshow ishow
 
 # Build the headerfile that the driver needs to submit autoresults for
 # the "Beat the Prof" contest (students submit autoresults by calling
 # the driver with the -u option). If you're not running the contest,
 # the driver still needs this file, but none of the values are ever
 # referenced.
-Driverhdrs-module:
-	./genhdrs.pl -l datalab -p $(CONTEST_DIR)/Contest.pm -t 'perl' > Driverhdrs.pm
+# Driverhdrs-module:
+# ./genhdrs.pl -l datalab -p $(CONTEST_DIR)/Contest.pm -t 'perl' > Driverhdrs.pm
 
 #
 # Build the customized source and include files (from $(SELECTIONS))
@@ -97,8 +97,14 @@ dlc-code:
 clean:
 	rm -f *.o *~ Driverhdrs.pm btest fshow ishow bits-handout.c bits-middle.c bits.c bits.p.c decl.c tests.c bits.h *.exe 
 
+#
+# Add shortcut for testing and checking
+#
+
 test:
 	./btest
+check:
+	./dlc bits.c
 
 #
 # Clean the dlc directory as well
