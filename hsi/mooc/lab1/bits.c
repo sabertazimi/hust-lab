@@ -145,7 +145,9 @@ int bitXor(int x, int y) {
  *   Rating: 1
  */
 int thirdBits(void) {
-  return 2;
+    // 根据题意得出:
+    // 00100100 10010010 01001001 00100100
+    return 0x49249249;
 }
 // Rating: 2
 /*
