@@ -35,6 +35,6 @@ clean:
 test: btest ptest
 	./dlc bits.c
 	./btest
-	# ./ptest
+# ./ptest
 
 .PHONY: clean test all
