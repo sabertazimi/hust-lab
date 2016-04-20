@@ -135,7 +135,9 @@ int bitAnd(int x, int y) {
 int bitXor(int x, int y) {
     // 根据数字逻辑和离散数学所学知识:
     // x^y = x & ~y | ~x & y;
-    return (x & ~y) | (~x & y);
+    // x | y = ~(~(x | y) = ~(~x & ~y);
+    // 结合以上两式可得出结果
+    return ~(~(x & ~y) & ~(~x & y));
 }
 /*
  * thirdBits - return word with every third bit (starting from the LSB) set to 1
@@ -146,8 +148,13 @@ int bitXor(int x, int y) {
  */
 int thirdBits(void) {
     // 根据题意得出:
-    // 00100100 10010010 01001001 00100100
-    return 0x49249249;
+    // 01001001 00100100 10010010 01001001
+    // 即 0x49249249
+    int highest = 0x49 << 24;
+    int higher = 0x24 << 16;
+    int lower = 0x92 << 8;
+    int lowest = 0x49;
+    return highest + higher + lower + lowest;
 }
 // Rating: 2
 /*
@@ -160,7 +167,7 @@ int thirdBits(void) {
  *   Rating: 2
  */
 int fitsBits(int x, int n) {
-  return 2;
+    return !(x >> (n + (~0)) ^ x >> 31);
 }
 /*
  * sign - return 1 if positive, 0 if zero, and -1 if negative
