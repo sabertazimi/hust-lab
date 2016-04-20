@@ -1,30 +1,15 @@
-{{DISPLAYTITLE:LAB1 - Êý¾Ý±íÊ¾ÊµÑé}}
+# DISPLAYTITLE:LAB1 - Êý¾Ý±íÊ¾ÊµÑé
 
-{{lab|ÊµÑéÌá½»(ÇëÈÏÕæÔÄ¶ÁÒÔÏÂÄÚÈÝ, ÈôÓÐÎ¥·´, ºó¹û×Ô¸º)|
-
-<u>'''½ØÖ¹Ê±¼ä: ¼û[http://114.212.10.9/cms ¼ÆËã»úÏµÊµÑé½ÌÑ§ÖÐÐÄ¿Î³Ì¹ÜÀíÏµÍ³]ÉÏµÄÏàÓ¦×÷Òµ·¢²¼ÐÅÏ¢¡£ÈçÎÞÌØÊâÔ­Òò, ³Ù½»ÊµÑé±¨¸æ½«ËðÊ§50%µÄ³É¼¨(¼´Ê¹³ÙÁË1Ãë), Çë´ó¼ÒºÏÀí·ÖÅäÊ±¼ä''' </u>
-
-<u>'''Ñ§Êõ³ÏÐÅ'''</u>: Èç¹ûÄãÈ·ÊµÎÞ·¨Íê³ÉÊµÑé, Äã¿ÉÒÔÑ¡Ôñ²»Ìá½».
-
-<u>'''Ìá½»·½Ê½'''</u>: ´ý¶¨
-
-<u>'''Ìá½»µØÖ·'''</u>: ´ý¶¨
-
-<u>'''Ìá½»¸ñÊ½'''</u>: ´ý¶¨
-
-<u>'''ÇëÄãÔÚÊµÑé½ØÖ¹Ç°Îñ±ØÈ·ÈÏÄãÌá½»µÄÄÚÈÝ·ûºÏÒªÇó(¸ñÊ½, Ïà¹ØÄÚÈÝµÈ), Äã¿ÉÒÔÏÂÔØÄãÌá½»µÄÄÚÈÝ½øÐÐÈ·ÈÏ. Èç¹ûÓÉÓÚÄãµÄÔ­Òò¸øÎÒÃÇÔì³ÉÁË²»±ØÒªµÄÂé·³, ÊÓÇé¿ö¶ø¶¨, ÔÚ±¾´ÎÊµÑéÖÐÄã½«»á±»¿Û³ýÒ»¶¨µÄ·ÖÊý, ×î¸ß¿É´ï50%.'''</u>
-}}
-
-
-== ¼ò½é ==
+## ¼ò½é
 
 ±¾ÊµÑéµÄÄ¿µÄÊÇ¸üºÃµØÊìÏ¤ºÍÕÆÎÕ¼ÆËã»úÖÐÕûÊýºÍ¸¡µãÊýµÄ¶þ½øÖÆ±àÂë±íÊ¾¡£ÊµÑéÖÐ£¬ÄãÐèÒª½â¿ªÒ»ÏµÁÐ±à³Ì¡°ÄÑÌâ¡±¡ª¡ªÊ¹ÓÃÓÐÏÞÀàÐÍºÍÊýÁ¿µÄÔËËã²Ù×÷ÊµÏÖÒ»×é¸ø¶¨¹¦ÄÜµÄº¯Êý£¬ÔÚ´Ë¹ý³ÌÖÐÄã½«¼ÓÉî¶ÔÊý¾Ý¶þ½øÖÆ±àÂë±íÊ¾µÄÁË½â¡£
 
 ÊµÑéÓïÑÔ£ºc£» ÊµÑé»·¾³£º linux
 
-== ÊµÑéÊý¾ÝÓë½á¹ûÌá½» ==
+## ÊµÑéÊý¾ÝÓë½á¹ûÌá½»
 
 ÊµÑéËùÐèÒªµÄ´úÂëºÍÏà¹ØÎÄ¼þÒÑ´ò°ü³ÉÒ»¸öZIPÎÄ¼þ£¨[[File:ICS-lab1.zip]]£©¹©ÏÂÔØ£¬ÆäÖÐ°üº¬ÏÂÁÐÎÄ¼þ£º
+
 * README ¡ª¡ª ÓÐ¹ØÊµÑéÏ¸½ÚµÄËµÃ÷ÎÄ¼þ£¬ÇëÔÚ¿ªÊ¼ÊµÑéÇ°×ÐÏ¸ÔÄ¶Á
 * bits.c ¡ª¡ª °üº¬Ò»×éÓÃÓÚÍê³ÉÖ¸¶¨¹¦ÄÜµÄº¯ÊýµÄ´úÂë¿ò¼Ü£¬ÐèÒªÄã°´ÒªÇó²¹³äÍê³ÉÆäº¯ÊýÌå´úÂë²¢¡°×÷ÎªÊµÑé½á¹ûÌá½»¡±¡£º¯ÊýµÄ¹¦ÄÜÓëÊµÏÖÒªÇóÏêÏ¸ËµÃ÷ÔÚÏàÓ¦º¯ÊýºÍÎÄ¼þÊ×²¿µÄ×¢ÊÍÖÐ£¨Îñ±ØÈÏÕæÔÄ¶ÁºÍ×ñÕÕËµÃ÷Íê³ÉÊµÑé£©¡£
 ** bits.h ¡ª¡ª Í·ÎÄ¼þ
@@ -37,14 +22,15 @@
 
 Çë½«Íê³Éº¯ÊýÌå´úÂëºóµÄbits.c×÷ÎªÊµÑé½á¹ûÌá½»¡£
 
-== ÊµÑéÒªÇó ==
+## ÊµÑéÒªÇó
 
 ÊµÑéÇ°ÇëÈÏÕæÔÄ¶Á±¾ÎÄµµºÍbits.cÖÐµÄ´úÂë¼°×¢ÊÍ£¬È»ºó¸ù¾ÝÒªÇóÏàÓ¦Íê³Ébits.cÖÐµÄ¸÷º¯Êý´úÂë¡£
 
 ÊµÑéÖÐÊµÏÖµÄº¯Êý´úÂë±ØÐëÂú×ãÏÂÊö»ù±¾Ìõ¼þ£¨¸ü¶à¾ßÌåÒªÇó¼ûº¯ÊýµÄ×¢ÊÍ£©£º
+
 * ³ý¹ØÓÚ¸¡µãÊýµÄº¯ÊýÊµÏÖÍâ£¬Ö»ÄÜÊ¹ÓÃË³Ðò³ÌÐò½á¹¹£¨²»µÃÊ¹ÓÃÑ­»·»òÌõ¼þ·ÖÖ§¿ØÖÆ³ÌÐò½á¹¹£¬ÀýÈçif, do, while, for, switchµÈ£©¡£
 * ½öÄÜÊ¹ÓÃÓÐÏÞÀàÐÍºÍÊýÁ¿µÄCÓïÑÔËãÊõºÍÂß¼­²Ù×÷£¬ÀýÈçÈçÏÂµÄ²Ù×÷·û£¬µ«×¢ÒâÃ¿¸öÌâÄ¿¿ÉÄÜÓÐ²»Í¬µÄ¿ÉÓÃ²Ù×÷·ûÁÐ±í£¬Ïê¼û¾ßÌåº¯ÊýËµÃ÷¡£
-<nowiki> £¡ ~  &  ^  |  +  <<  >> </nowiki>
+`£¡ ~  &  ^  |  +  <<  >>`
 * ²»µÃÊ¹ÓÃ³¬¹ý8Î»±íÊ¾µÄ³£Á¿£¨¼´ÆäÖµ±ØÐëÎ»ÓÚ[0,255]ÖÐ£©¡£
 * ²»µÃÊ¹ÓÃÈÎºÎÐÎÊ½µÄÇ¿ÖÆÀàÐÍ×ª»»¡£
 * ²»µÃÊ¹ÓÃ³ýÕûÐÍÍâµÄÈÎºÎÆäËüÊý¾ÝÀàÐÍ£¬ÈçÊý×é¡¢½á¹¹¡¢ÁªºÏµÈ¡£
@@ -57,7 +43,7 @@
 
 ÉÏÊöÊµÑéÒªÇóµÄÖ÷ÒªÄ¿µÄÊÇÊ¹µÃÄã±ØÐë´Ó¶þ½øÖÆÎ»µÄ½Ç¶È¿¼ÂÇÊý¾Ý£¬½ø¶ø¸üÇå³þµØÀí½âÊý¾ÝµÄ¶þ½øÖÆ±íÊ¾¡£
 
-== ÎÊÌâÃèÊö ==
+## ÎÊÌâÃèÊö
 
 ÄãÐèÒªÍê³Ébits.cÖÐÏÂÁÐº¯Êý¹¦ÄÜ£¬¾ßÌå·ÖÎªÈý´óÀà£ºÎ»²Ù×÷¡¢²¹ÂëÔËËãºÍ¸¡µãÊý²Ù×÷¡£
 
@@ -195,11 +181,11 @@
 |30
 |}
 
-== ¼ì²éÄãµÄ´úÂë ==
+## ¼ì²éÄãµÄ´úÂë
 
 ÈçÇ°ËùÊö£¬ÊµÑéÊý¾Ý°üÖÐ°üº¬Á½¸ö¹¤¾ß³ÌÐò¿É°ïÖú¼ì²éÄãµÄ´úÂëµÄÕýÈ·ÐÔ¡£
 
-=== Ê¹ÓÃdlc¼ì²éº¯ÊýÊµÏÖ´úÂëÊÇ·ñ·ûºÏÊµÑéÒªÇóÖÐµÄ±àÂë¹æÔò ===
+### Ê¹ÓÃdlc¼ì²éº¯ÊýÊµÏÖ´úÂëÊÇ·ñ·ûºÏÊµÑéÒªÇóÖÐµÄ±àÂë¹æÔò
 
 Íê³Ébits.cºó£¬µ÷ÓÃÈçÏÂÃüÁî½øÐÐ¼ì²é£º
  $ ./dlc bits.c
@@ -211,7 +197,7 @@ dlc½«·µ»Ø´íÎóÐÅÏ¢Èç¹ûËü·¢ÏÖÁË´íÎó£¬ÀýÈç²»ÔÊÐíÊ¹ÓÃµÄ²Ù×÷·û¡¢¹ý¶àÊýÁ¿µÄ²Ù×÷·û»òÕß·
 
 ÊäÈë¡° ./dlc -help¡±¿É´òÓ¡³ödlcµÄ¿ÉÓÃÃüÁîÐÐÑ¡ÏîÁÐ±í¡£
 
-=== Ê¹ÓÃbtest¼ì²éº¯ÊýÊµÏÖ´úÂëµÄ¹¦ÄÜÕýÈ·ÐÔ ===
+### Ê¹ÓÃbtest¼ì²éº¯ÊýÊµÏÖ´úÂëµÄ¹¦ÄÜÕýÈ·ÐÔ
 
 Ê×ÏÈÊ¹ÓÃÈçÏÂÃüÁî±àÒëÉú³Ébtest¿ÉÖ´ÐÐ³ÌÐò£º
  $ make
@@ -229,21 +215,24 @@ dlc½«·µ»Ø´íÎóÐÅÏ¢Èç¹ûËü·¢ÏÖÁË´íÎó£¬ÀýÈç²»ÔÊÐíÊ¹ÓÃµÄ²Ù×÷·û¡¢¹ý¶àÊýÁ¿µÄ²Ù×÷·û»òÕß·
 
 £¨READMEÎÄ¼þÖÐÓÐ¹ØÓÚbtest³ÌÐòµÄÊ¹ÓÃËµÃ÷£©
 
-== ½¨ÒéÓëÌáÊ¾ ==
+## ½¨ÒéÓëÌáÊ¾
 
-# Èç¹ûÄãµÄ´úÂë²»ÄÜÍêÈ«Âú×ãÏàÓ¦º¯ÊýµÄ²Ù×÷·ûÊ¹ÓÃÏÞÖÆ£¬Äã¿ÉÒÔ»ñµÃ²¿·ÖµÃ·Ö£¬µ«ÊÇÍùÍùÕâÑùµÄ´ÎÓÅ½â×ÜÄÜÕÒµ½¸Ä½øËüµÄ·½·¨£¬´Ó¶ø»ñµÃÕýÈ·½â´ð¡£
-# ÔÚbits.cÎÄ¼þÖÐ²»Òª°üº¬<stdio.h>Í·ÎÄ¼þ£¬ÒòÎªÕâÑù½«¸ødlc³ÌÐòÔì³ÉÀ§ÄÑ²¢²úÉúÒ»Ð©ÄÑÒÔÀí½âµÄ´íÎóÐÅÏ¢¡£×¢Òâ¾¡¹ÜÎ´°üº¬<stdio.h>Í·ÎÄ¼þ£¬ÄãÈÔÈ»¿ÉÒÔÔÚbits.cÖÐµ÷ÓÃprintfº¯Êý½øÐÐµ÷ÊÔ£¬gcc½«´òÓ¡¾¯¸æÐÅÏ¢µ«Äã¿ÉÒÔºöÂÔËüÃÇ¡£
-# ×¢Òâdlc³ÌÐòÊ¹ÓÃ±ÈgccºÍC++¸üÑÏ¸ñµÄC±äÁ¿ÉùÃ÷ÐÎÊ½¡£ÔÚÓÉ¡°{}¡±°üÎ§µÄÒ»¸ö´úÂë¿éÖÐ£¬ËùÓÐ±äÁ¿ÉùÃ÷±ØÐë³öÏÖÔÚÈÎºÎ·ÇÉùÃ÷Óï¾äÖ®Ç°¡£ÀýÈç£¬Õë¶ÔÏÂÊö´úÂë£¬dlc½«±¨´í£º
-<syntaxhighlight lang=c>
+- Èç¹ûÄãµÄ´úÂë²»ÄÜÍêÈ«Âú×ãÏàÓ¦º¯ÊýµÄ²Ù×÷·ûÊ¹ÓÃÏÞÖÆ£¬Äã¿ÉÒÔ»ñµÃ²¿·ÖµÃ·Ö£¬µ«ÊÇÍùÍùÕâÑùµÄ´ÎÓÅ½â×ÜÄÜÕÒµ½¸Ä½øËüµÄ·½·¨£¬´Ó¶ø»ñµÃÕýÈ·½â´ð¡£
+- ÔÚbits.cÎÄ¼þÖÐ²»Òª°üº¬<stdio.h>Í·ÎÄ¼þ£¬ÒòÎªÕâÑù½«¸ødlc³ÌÐòÔì³ÉÀ§ÄÑ²¢²úÉúÒ»Ð©ÄÑÒÔÀí½âµÄ´íÎóÐÅÏ¢¡£×¢Òâ¾¡¹ÜÎ´°üº¬<stdio.h>Í·ÎÄ¼þ£¬ÄãÈÔÈ»¿ÉÒÔÔÚbits.cÖÐµ÷ÓÃprintfº¯Êý½øÐÐµ÷ÊÔ£¬gcc½«´òÓ¡¾¯¸æÐÅÏ¢µ«Äã¿ÉÒÔºöÂÔËüÃÇ¡£
+- ×¢Òâdlc³ÌÐòÊ¹ÓÃ±ÈgccºÍC++¸üÑÏ¸ñµÄC±äÁ¿ÉùÃ÷ÐÎÊ½¡£ÔÚÓÉ¡°{}¡±°üÎ§µÄÒ»¸ö´úÂë¿éÖÐ£¬ËùÓÐ±äÁ¿ÉùÃ÷±ØÐë³öÏÖÔÚÈÎºÎ·ÇÉùÃ÷Óï¾äÖ®Ç°¡£ÀýÈç£¬Õë¶ÔÏÂÊö´úÂë£¬dlc½«±¨´í£º
+
+```c
 int foo(int x)
 {
     int a = x;
     a *= 3;     /* Statement that is not a declaration */
     int b = a;  /* ERROR: Declaration not allowed here */
 }
-</syntaxhighlight>
+```
+
 Äã±ØÐëÀàËÆÈçÏÂ´úÂë½«±äÁ¿ÉùÃ÷·ÅÔÚ×îÇ°£º
-<syntaxhighlight lang=c>
+
+```c
 int foo(int x)
 {
     int a = x;
@@ -251,4 +240,4 @@ int foo(int x)
     a *= 3;
     b = a;
 }
-</syntaxhighlight>
+```
