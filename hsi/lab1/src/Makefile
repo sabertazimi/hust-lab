@@ -97,6 +97,9 @@ dlc-code:
 clean:
 	rm -f *.o *~ Driverhdrs.pm btest fshow ishow bits-handout.c bits-middle.c bits.c bits.p.c decl.c tests.c bits.h *.exe 
 
+test:
+	./btest
+
 #
 # Clean the dlc directory as well
 #
