@@ -102,9 +102,8 @@ clean:
 #
 
 test:
-	./btest
-check:
 	./dlc bits.c
+	./btest
 
 #
 # Clean the dlc directory as well

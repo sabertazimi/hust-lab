@@ -32,10 +32,8 @@ check-pointer.c: ptest
 clean:
 	rm -f *.o btest fshow ishow ptest
 
-check:
-	./dlc bits.c
-
 test: btest ptest
+	./dlc bits.c
 	./btest
 	# ./ptest
 

@@ -167,7 +167,13 @@ int thirdBits(void) {
  *   Rating: 2
  */
 int fitsBits(int x, int n) {
-    return !(x >> (n + (~0)) ^ x >> 31);
+    // 对于 n 位补码,可表示数范围为 -(2^(n-1)) ~ (2^(n-1) - 1)
+    // 故:
+    // 对于正数: 右移n位后,若结果为0(最高符号位应为0,且高位全为0),则说明位于范围内
+    // 即 result = x >> (n + ~0)
+    // 对于负数: 还需额外剔除最高符号位(1)的干扰
+    // result = result ^ x >> 31
+   return !(x >> (n + ~0) ^ x >> 31);
 }
 /*
  * sign - return 1 if positive, 0 if zero, and -1 if negative
