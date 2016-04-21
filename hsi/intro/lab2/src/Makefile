@@ -93,6 +93,10 @@ check-bomb:
 	./bomb-solve > solution.txt
 	./bomb < solution.txt	
 
+# Check the bomb for correctness
+test:
+	./bomb answer.txt
+
 # Build the bomb
 bomb: bomb.o phases.o support.o driverlib.o 
 	$(CC) $(CFLAGS) -o bomb bomb.o phases.o support.o driverlib.o
