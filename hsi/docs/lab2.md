@@ -236,3 +236,92 @@ return ;
 x x+1 x+3 x+6 x+10 x+15
 ```
 
+## Phase 3
+
+```asm
+; 键入 x/s 0x804a283
+; 显示 "%d %d"
+; 说明输入两个整型数字, 存放地址分别为
+; (%esp) + 0x1c = 0xffffd53c, (%esp) + 0x18 = 0xffffd538
+0x08048be4 <+3>:  lea    0x18(%esp),%eax
+0x08048be8 <+7>:  mov    %eax,0xc(%esp)
+0x08048bec <+11>: lea    0x1c(%esp),%eax
+0x08048bf0 <+15>: mov    %eax,0x8(%esp)
+0x08048bf4 <+19>: movl   $0x804a283,0x4(%esp)
+0x08048bfc <+27>: mov    0x30(%esp),%eax
+0x08048c00 <+31>: mov    %eax,(%esp)
+0x08048c03 <+34>: call   0x8048890 <__isoc99_sscanf@plt>
+```
+
+```asm
+; 第一个参数必须 <= 7
+; 否则,炸弹爆炸
+0x08048c12 <+49>:  cmpl   $0x7,0x1c(%esp)
+0x08048c17 <+54>:  ja     0x8048c55 <phase_3+116>
+0x08048c55 <+116>: call   0x80490f7 <explode_bomb>
+```
+
+```asm
+; 此句为 switch 条件控制部分
+0x08048c1d <+60>:  jmp    *0x804a0f0(,%eax,4)
+```
+
+```asm
+; switch 语句中分支部分
+; 根据第一个数字,选择不同的分支,给 eax 赋新值
+; 总共有 8 个分支
+0x08048c24 <+67>:  mov    $0x32f,%eax
+0x08048c29 <+72>:  jmp    0x8048c66 <phase_3+133>
+0x08048c2b <+74>:  mov    $0x184,%eax
+0x08048c30 <+79>:  jmp    0x8048c66 <phase_3+133>
+0x08048c32 <+81>:  mov    $0x28e,%eax
+0x08048c37 <+86>:  jmp    0x8048c66 <phase_3+133>
+0x08048c39 <+88>:  mov    $0x11c,%eax
+0x08048c3e <+93>:  jmp    0x8048c66 <phase_3+133>
+0x08048c40 <+95>:  mov    $0x201,%eax
+0x08048c45 <+100>: jmp    0x8048c66 <phase_3+133>
+0x08048c47 <+102>: mov    $0x1a9,%eax
+0x08048c4c <+107>: jmp    0x8048c66 <phase_3+133>
+0x08048c4e <+109>: mov    $0x374,%eax
+0x08048c53 <+114>: jmp    0x8048c66 <phase_3+133>
+0x08048c61 <+128>: mov    $0x130,%eax
+0x08048c66 <+133>: cmp    0x18(%esp),%eax
+```
+
+-   转化为C代码
+
+```c
+case 0:
+	x = 815;
+	break;
+case 1:
+	x = 304;
+	break;
+case 2:
+	x = 388;
+	break;
+case 3:
+	x = 654;
+	break;
+case 4:
+	x = 284;
+	break;
+case 5:
+	x = 513;
+	break;
+case 6:
+	x = 425;
+	break;
+case 7:
+	x = 884;
+	break;
+```
+
+```asm
+; 必须使得 switch 语句执行完后, 改变后的 x 与 y 相等
+; 即 x == y
+; 否则, 炸弹爆炸
+0x08048c66 <+133>: cmp    0x18(%esp),%eax
+0x08048c6a <+137>: je     0x8048c71 <phase_3+144>
+0x08048c6c <+139>: call   0x80490f7 <explode_bomb>
+```
