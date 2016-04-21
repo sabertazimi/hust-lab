@@ -41,6 +41,10 @@
 (gdb) x     0xffffd528
 ```
 
+```shell
+$ objdump -d bomb >> bomb.asm
+```
+
 ## Phase 1
 
 ### 基本指令
@@ -162,7 +166,7 @@
 0x0804926f <+69>: jg     0x8049276 <read_six_numbers+76>
 0x08049271 <+71>: call   0x80490f7 <explode_bomb>
 0x08049276 <+76>: add    $0x2c,%esp
-0x08049279 <+79>: ret    
+0x08049279 <+79>: ret
 ```
 
 ### `phase_2`
@@ -270,21 +274,21 @@ x x+1 x+3 x+6 x+10 x+15
 ; switch 语句中分支部分
 ; 根据第一个数字,选择不同的分支,给 eax 赋新值
 ; 总共有 8 个分支
-0x08048c24 <+67>:  mov    $0x32f,%eax
+0x08048c24 <+67>:  mov    $0x32f,%eax			; 815
 0x08048c29 <+72>:  jmp    0x8048c66 <phase_3+133>
-0x08048c2b <+74>:  mov    $0x184,%eax
+0x08048c2b <+74>:  mov    $0x184,%eax			; 388
 0x08048c30 <+79>:  jmp    0x8048c66 <phase_3+133>
-0x08048c32 <+81>:  mov    $0x28e,%eax
+0x08048c32 <+81>:  mov    $0x28e,%eax			; 654
 0x08048c37 <+86>:  jmp    0x8048c66 <phase_3+133>
-0x08048c39 <+88>:  mov    $0x11c,%eax
+0x08048c39 <+88>:  mov    $0x11c,%eax			; 284
 0x08048c3e <+93>:  jmp    0x8048c66 <phase_3+133>
-0x08048c40 <+95>:  mov    $0x201,%eax
+0x08048c40 <+95>:  mov    $0x201,%eax			; 513
 0x08048c45 <+100>: jmp    0x8048c66 <phase_3+133>
-0x08048c47 <+102>: mov    $0x1a9,%eax
+0x08048c47 <+102>: mov    $0x1a9,%eax			; 425
 0x08048c4c <+107>: jmp    0x8048c66 <phase_3+133>
-0x08048c4e <+109>: mov    $0x374,%eax
+0x08048c4e <+109>: mov    $0x374,%eax			; 884
 0x08048c53 <+114>: jmp    0x8048c66 <phase_3+133>
-0x08048c61 <+128>: mov    $0x130,%eax
+0x08048c61 <+128>: mov    $0x130,%eax			; 304
 0x08048c66 <+133>: cmp    0x18(%esp),%eax
 ```
 
@@ -292,28 +296,28 @@ x x+1 x+3 x+6 x+10 x+15
 
 ```c
 case 0:
-	x = 815;
+	x = 815;  // 0x32f
 	break;
 case 1:
-	x = 304;
+	x = 304;  // 0x130
 	break;
 case 2:
-	x = 388;
+	x = 388;  // 0x184
 	break;
 case 3:
-	x = 654;
+	x = 654;  // 0x28e
 	break;
 case 4:
-	x = 284;
+	x = 284;  // 0x11c
 	break;
 case 5:
-	x = 513;
+	x = 513;  // 0x201
 	break;
 case 6:
-	x = 425;
+	x = 425;  // 0x1a9
 	break;
 case 7:
-	x = 884;
+	x = 884;  //0x374
 	break;
 ```
 
@@ -324,4 +328,110 @@ case 7:
 0x08048c66 <+133>: cmp    0x18(%esp),%eax
 0x08048c6a <+137>: je     0x8048c71 <phase_3+144>
 0x08048c6c <+139>: call   0x80490f7 <explode_bomb>
+```
+
+## Phase 4
+
+```asm
+; 与前三个阶段相同
+; 键入 x/s 0x804a283
+; 显示 "%d %d"
+; 说明输入两个整型数字, 存放地址分别为
+; (%esp) + 0x1c = 0xffffd53c, (%esp) + 0x18 = 0xffffd538
+; 输入整数个数不为2,炸弹爆炸
+0x08048ce5 <+3>:  lea    0x18(%esp),%eax
+0x08048ce9 <+7>:  mov    %eax,0xc(%esp)
+0x08048ced <+11>: lea    0x1c(%esp),%eax
+0x08048cf1 <+15>: mov    %eax,0x8(%esp)
+0x08048cf5 <+19>: movl   $0x804a283,0x4(%esp)
+0x08048cfd <+27>: mov    0x30(%esp),%eax
+0x08048d01 <+31>: mov    %eax,(%esp)
+0x08048d04 <+34>: call   0x8048890 <__isoc99_sscanf@plt>
+
+0x08048d09 <+39>:    cmp    $0x2,%eax
+0x08048d0c <+42>: jne    0x8048d1b <phase_4+57>
+```
+
+```asm
+; 第一个整数必须 >= 0
+; 否则,炸弹爆炸
+0x08048d0e <+44>: mov    0x1c(%esp),%eax
+0x08048d12 <+48>: test   %eax,%eax
+0x08048d14 <+50>: js     0x8048d1b <phase_4+57>
+```
+
+```asm
+; 第一个整数必须 <= 14
+; 否则,炸弹爆炸
+0x08048d16 <+52>: cmp    $0xe,%eax
+0x08048d19 <+55>: jle    0x8048d20 <phase_4+62>
+0x08048d1b <+57>: call   0x80490f7 <explode_bomb>
+```
+
+```asm
+; 通过以下6条代码,可推测出 func4 的函数原型
+; int func4(int , int ,int );
+; 且此次调用传参为:
+; func4(first_input_number, 0, 14);
+0x08048d20 <+62>: movl   $0xe,0x8(%esp)
+0x08048d28 <+70>: movl   $0x0,0x4(%esp)
+0x08048d30 <+78>: mov    0x1c(%esp),%eax
+0x08048d34 <+82>: mov    %eax,(%esp)
+0x08048d37 <+85>: call   0x8048c75 <func4>
+0x08048d3c <+90>: cmp    $0x7,%eax
+```
+
+```asm
+; 调用递归函数 func4 的返回值必须为 7
+; 否则, 炸弹爆炸
+0x08048d37 <+85>: call   0x8048c75 <func4>
+0x08048d3c <+90>: cmp    $0x7,%eax
+0x08048d3f <+93>: jne    0x8048d48 <phase_4+102>
+
+0x08048d48 <+102>:call   0x80490f7 <explode_bomb>
+```
+
+### func4
+
+int func4(int target, int lo, int hi);
+
+```asm
+; (%edx) = target/first_input_number, (%eax) = 0, (%ebx) = 14
+0x08048c80 <+11>: mov    0x20(%esp),%edx
+0x08048c84 <+15>: mov    0x24(%esp),%eax
+0x08048c88 <+19>: mov    0x28(%esp),%ebx
+```
+
+```asm
+0x08048c8c <+23>: mov    %ebx,%ecx
+0x08048c8e <+25>: sub    %eax,%ecx              ; (%ecx) = hi - lo
+
+...
+
+0x08048c97 <+34>: sar    %ecx                   ; (%ecx) /= 2
+0x08048c99 <+36>: add    %eax,%ecx              ; middle: (%ecx) = (hi - lo)/2 + lo = (lo + hi) / 2
+
+0x08048c9b <+38>: cmp    %edx,%ecx              ; 比较 middle 与 target 的大小关系
+0x08048c9d <+40>: jle    0x8048cb6 <func4+65>   ; middle <=  target
+
+0x08048c9f <+42>: sub    $0x1,%ecx              ; middle > target, 代码可运行至此处
+0x08048ca2 <+45>: mov    %ecx,0x8(%esp)
+0x08048ca6 <+49>: mov    %eax,0x4(%esp)
+0x08048caa <+53>: mov    %edx,(%esp)    
+0x08048cad <+56>: call   0x8048c75 <func4>      ; func4(target, lo, middle-1)
+
+0x08048cb2 <+61>: add    %eax,%eax              ; lo++
+0x08048cb4 <+63>: jmp    0x8048cd6 <func4+97>
+
+0x08048cb6 <+65>: mov    $0x0,%eax
+0x08048cbb <+70>: cmp    %edx,%ecx
+0x08048cbd <+72>: jge    0x8048cd6 <func4+97>   ; middle >= target
+
+0x08048cbf <+74>: mov    %ebx,0x8(%esp)         ; middle < target, 代码可运行至此处
+0x08048cc3 <+78>: add    $0x1,%ecx
+0x08048cc6 <+81>: mov    %ecx,0x4(%esp)
+0x08048cca <+85>: mov    %edx,(%esp)
+0x08048ccd <+88>: call   0x8048c75 <func4>      ; func4(target, middle+1, hi)
+
+0x08048cd2 <+93>: lea    0x1(%eax,%eax,1),%eax  ; (%eax) = 2*lo + 1
 ```
