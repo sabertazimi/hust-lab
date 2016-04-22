@@ -1,15 +1,12 @@
-MNAME = main
-CNAME = child
+NAME = dos
 
-EXE = $(MNAME).exe
+EXE = $(NAME).exe
 SIMPLE_MODE = ;
 
-$(EXE): $(MNAME).obj $(CNAME).obj
-    link $(MNAME).obj $(CNAME).obj $(SIMPLE_MODE)
-$(MNAME).obj: $(MNAME).asm
-    masm $(MNAME).asm $(SIMPLE_MODE)
-$(CNAME).obj: $(CNAME).asm
-	masm $(CNAME).asm $(SIMPLE_MODE)
+$(EXE): $(NAME).obj
+    link $(NAME).obj $(SIMPLE_MODE)
+$(NAME).obj: $(NAME).asm
+    masm $(NAME).asm $(SIMPLE_MODE)
 
 clean:
 	del *.obj
