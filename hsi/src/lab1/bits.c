@@ -1,173 +1,266 @@
-int bitAnd(int x, int y) {
-    // 根据数字逻辑和离散数学所学知识:
-    // x & y = ~(~(x&y) = ~( ~x | ~y);
-    return ~(~x | ~y);
+#if 0
 
+#endif
+
+/*
+ *   lsbZero - set 0 to the least significant bit of x
+ *   Example: lsbZero(0x87654321) = 0x87654320
+ *   Legal ops: ! ~ & ^ | + << >>
+ *   Max ops: 5
+ *   Rating: 1
+ */
+int lsbZero(int x) {
+    // mask = 0xfffffffe
+    int mask = ~0 << 1;
+
+    return x & mask;
 }
 
-int bitXor(int x, int y) {
-    // 根据数字逻辑和离散数学所学知识:
-    // x^y = x & ~y | ~x & y;
-    // x | y = ~(~(x | y) = ~(~x & ~y);
-    // 结合以上两式可得出结果
-    return ~(~(x & ~y) & ~(~x & y));
+/*
+ * byteNot - bit-inversion to byte n from word x
+ *   Bytes numbered from 0 (LSB) to 3 (MSB)
+ *   Examples: getByteNot(0x12345678,1) = 0x1234A978
+ *   Legal ops: ! ~ & ^ | + << >>
+ *   Max ops: 6
+ *   Rating: 2
+ */
+int byteNot(int x, int n) {
+    // mask = 0xff << (n * 8)
+    // 用于取得目标字节
+    int mask = 0xff << (n << 3);
+
+    return x ^ mask;
 }
 
-int thirdBits(void) {
-    // 根据题意得出:
-    // 01001001 00100100 10010010 01001001
-    // 即 0x49249249
-    int highest = 0x49 << 24;
-    int higher = 0x24 << 16;
-    int lower = 0x92 << 8;
-    int lowest = 0x49;
-    return highest + higher + lower + lowest;
+/*
+ *   byteXor - compare the nth byte of x and y, if it is same, return 0, if not, return 1
+
+ *   example: byteXor(0x12345678, 0x87654321, 1) = 1
+
+ *			  byteXor(0x12345678, 0x87344321, 2) = 0
+ *   Legal ops: ! ~ & ^ | + << >>
+ *   Max ops: 20
+ *   Rating: 2
+ */
+int byteXor(int x, int y, int n) {
+    // mask 用于取得目标字节
+    int mask = 0xff << (n << 3);
+
+    // 对两个操作数相应的字节进行异或操作
+    // !! 取得逻辑值
+    return !!((x & mask) ^ (y & mask));
 }
 
-int fitsBits(int x, int n) {
-    // 对于 n 位补码,可表示数范围为 -(2^(n-1)) ~ (2^(n-1) - 1)
-    // 故:
-    // 对于正数: 右移n-1位后,若结果为0(最高符号位应为0,且高位全为0),则说明位于范围内
-    // 即 result = x >> (n + ~0)
-    // 对于负数: 还需额外剔除最高符号位(1)的干扰
-    // return result ^ x >> 31
-    return !(x >> (n + ~0) ^ (x >> 31));
+/*
+ *   logicalAnd - x && y
+ *   Legal ops: ! ~ & ^ | + << >>
+ *   Max ops: 20
+ *   Rating: 3
+ */
+int logicalAnd(int x, int y) {
+    // !! 用于取得操作数的逻辑值
+    return !!x & !!y;
 }
 
-int sign(int x) {
-    // 根据 x的符号位 与 x的逻辑真值即可得到 x的正确符号
-    return x >> 31 | !!x;
+/*
+ *   logicalOr - x || y
+ *   Legal ops: ! ~ & ^ | + << >>
+ *   Max ops: 20
+ *   Rating: 3
+ */
+int logicalOr(int x, int y) {
+    // !! 用于取得操作数的逻辑值
+    return !!x | !!y;
 }
 
-int getByte(int x, int n) {
-    // 将高24位置0: mask = 0xff;
-    // result = x >> (n * 8) & mask;
-    return x >> (n << 3) & 0xff;
+/*
+ * rotateLeft - Rotate x to the left by n
+ *   Can assume that 0 <= n <= 31
+ *   Examples: rotateLeft(0x87654321,4) = 0x76543218
+ *   Legal ops: ~ & ^ | + << >> !
+ *   Max ops: 25
+ *   Rating: 3
+ */
+int rotateLeft(int x, int n) {
+    // 此掩码用来分割操作数的两个部分: 高位移出部分与低位移入部分
+    // e.g 若 n = 4, 则 mask = 0xfffffff0
+    int mask = ~0 << n;
+
+    // 32_minus_n = 32 - n
+    int _32_minus_n = 32 + (~n + 1);
+
+    // 第一部分: 将 x 正常左移,将低 n 位置0
+    // 第二部分: 将 x 的高 n 位右移 32-n 位,达到循环移位的效果
+    return (x << n & mask) | (x >> _32_minus_n & ~mask);
 }
 
-int logicalShift(int x, int n) {
-    // 使用 mask 将高 n 位置0
-    // 0x1 << 31 = 0x8000000
-    // 0x80000000 >> (n-1) = 高n位为1的数
-    // 最后取反,得到高n位位0的数
-    int mask = ~((0x1 << 31) >> n << 1);
-    return x >> n & mask;
-    // 在帮他人调试代码时,发现这样一个 bug
-    // x << (32 + ~n + 1)
-    // 当 n = 0 时, x 并没有如预期那样左移32位
-    // 编写测试代码, 使用 gdb 调试后发现, x << 32 = x
-    // 说明 C 语言中, 移位运算具有补模性, 移位个数最好不要超过自身 bit 位数
-    // 否则,移位个数自动取余,造成意料之外的结果
+/*
+ * parityCheck - returns 1 if x contains an odd number of 1's
+ *   Examples: parityCheck(5) = 0, parityCheck(7) = 1
+ *   Legal ops: ! ~ & ^ | + << >>
+ *   Max ops: 20
+ *   Rating: 4
+ */
+int parityCheck(int x) {
+    return 2;
 }
 
-int addOK(int x, int y) {
-    int a = x >> 31 & 0x1;      // x 的符号
-    int b = y >> 31 & 0x1;      // y 的符号
-    int c = (x+y) >> 31 & 0x1;  // sum 的符号
-    // 有符号数加法溢出有以下两种情况:
-    // 正 + 正 = 负;
-    // 负 + 负 = 正;
-    // 将溢出设为0,不溢出设为1, 根据数字逻辑的知识,根据a,b,c的最小项表达式:
-    // a b c result
-    // 0 0 0    1
-    // 0 0 1    0
-    // 0 1 0    1
-    // 0 1 1    1
-    // 1 0 0    1
-    // 1 0 1    1
-    // 1 1 0    0
-    // 1 1 1    1
-    // 画卡诺图可得:
-    // result = (a & !b) | (!a & !c) | (b & c)
-    return (a & !b) | (!a & !c) | (b & c);
+/*
+ * mul2OK - Determine if can compute 2*x without overflow
+ *   Examples: mul2OK(0x30000000) = 1
+ *             mul2OK(0x40000000) = 0
+ *
+ *   Legal ops: ~ & ^ | + << >>
+ *   Max ops: 20
+ *   Rating: 2
+ */
+int mul2OK(int x) {
+    // 可将 * 2 视为 << 1
+    // 对于有符号整数: 若移出位不等于新符号位,则左移溢出
+    int bit31 = x >> 31 & 0x1;
+    int bit30 = x >> 30 & 0x1;
+
+    // 即第 31 位 与 第 30 位必须同符号
+    return ~(bit31 ^ bit30) & 0x1;
 }
 
-int bang(int x) {
-    // 除0 与 0x80000000, 正数与负数的符号位相同外
-    // 其余整数的正数与负数的符号位不同
+/*
+ * mult3div2 - multiplies by 3/2 rounding toward 0,
+ *   Should exactly duplicate effect of C expression (x*3/2),
+ *   including overflow behavior.
+ *   Examples: mult3div2(11) = 16
+ *             mult3div2(-9) = -13
+ *             mult3div2(1073741824) = -536870912(overflow)
+ *   Legal ops: ! ~ & ^ | + << >>
+ *   Max ops: 12
+ *   Rating: 2
+ */
+int mult3div2(int x) {
+    // int sign = x & 0x1 << 31;
+    // int origin_one = x, origin_two = x;
+    // origin_one = x >> 1;
+    // origin_two = (origin_one << 1) + origin_one;
+    // return origin_two | sign;
+    int sign = x & (0x1 << 31);
+    x = x >> 1;
+    x = (x << 1) + x;
+    // x = (x << 1) + x;
+    return x | sign;
+}
+
+/*
+ * subOK - Determine if can compute x-y without overflow
+ *   Example: subOK(0x80000000,0x80000000) = 1,
+ *            subOK(0x80000000,0x70000000) = 0,
+ *   Legal ops: ! ~ & ^ | + << >>
+ *   Max ops: 20
+ *   Rating: 3
+ */
+int subOK(int x, int y) {
+    // 先取得 被减数/减数/差 的符号位
+    int a = x >> 31 & 0x1;
+    int b = y >> 31 & 0x1;
+    int c = (x + ~y + 1) >> 31 & 0x1;
+
+    // 溢出有两种情况: 负-正=正, 正-负=负
+    // 被减数 减数 差 的正负值情况总共有8种情况
+
+    // 设 result = m( xsign, ysign, subsign), 正为1,负为0
+    // 根据其最小项表达式, 作出卡诺图, 可得 result 的最简逻辑表达式
+    // 其中m(0, 1, 1) = 0, m(1, 0, 0) = 0, 其余情况下 m = 1
+
+    // result = ~a & ~b + a & c + b & ~c
+    return (!a & !b) | (a & c) | (b & !c);
+}
+
+/*
+ * absVal - absolute value of x
+ *   Example: absVal(-1) = 1.
+ *   You may assume -TMax <= x <= TMax
+ *   Legal ops: ! ~ & ^ | + << >>
+ *   Max ops: 10
+ *   Rating: 4
+ */
+int absVal(int x) {
+    // sign 取得 x 的符号位
     int sign = x >> 31 & 0x1;
-    int neg_sign = (~x + 1) >> 31 & 0x1;
-    // result = !(sign ^ neg_sign)
-    // 由于不能使用!, 只能使用 ~ 与 & 代替: !bitOne = ~bitOne & 0x1
-    // 其中 ` | x >> 31 `,是为了区分 0 与 0x80000000
-    return ~((sign ^ neg_sign) | x >> 31) & 0x1;
+
+    // 利用 mask 实现条件表达式
+    // 若sign = 1, mask = 0xffffffff, ~mask = 0x00000000
+    // 若sign = 0, mask = 0x00000000, ~mask = 0xffffffff
+    int mask = ~sign + 1;
+
+    // 若sign = 1, 说明 x 为负数, 它的绝对值为其相反数
+    // 若sign = 0, 说明 x 为正数, 它的绝对值为其本身
+    // return sign ? (~x + 1) : x;
+    return ((~x + 1) & mask) | (x & ~mask);
 }
 
-int conditional(int x, int y, int z) {
-    // 当!!x = 1时,要求输出y
-    // 此时需要将z置为0
-    // 即 y & 0xffffffff, z & 0x00000000
-    // 当!!x = 0时,要求输出z
-    // 此时需要将y置为0
-    // 即 y & 0x00000000, z & 0xffffffff
-    int flag = !!x;
-    int ymask = ~flag + 1;  // -1 = 0xffffffff, -0 = 0x00000000
-    int zmask = ~ymask;
-    return (y & ymask) | (z & zmask);
-}
-
-int isPower2(int x) {
-    // 2的幂次方的二进制数必须有且仅有1个bit位上为1,其余所有bit位必须为0
-    // x & (x-1) == 0
-    // 0 与 负数 不可能是 2的幂次方
-    return !(x & (x + ~0)) & !(x >> 31 & 0x1) & !!x;
-}
-
-unsigned float_neg(unsigned uf) {
-    unsigned result;
-    unsigned tmp;
-    tmp=uf&(0x7fffffff);
-    result=uf^0x80000000;
-
-    if(tmp>0x7f800000)
-        result=uf;
-    return result;
-}
-
-unsigned float_i2f(int x) {
-    unsigned shiftLeft = 0;
-    unsigned afterShift, tmp, flag;
-    unsigned absX = x;
-    unsigned sign = 0;
-
-    if (x == 0) return 0;
-
-    if (x < 0) {
-        sign = 1;
-        absX = x;
+/*
+ * float_abs - Return bit-level equivalent of absolute value of f for
+ *   floating point argument f.
+ *   Both the argument and result are passed as unsigned int's, but
+ *   they are to be interpreted as the bit-level representations of
+ *   single-precision floating point values.
+ *   When argument is NaN, return argument..
+ *   Legal ops: Any integer/unsigned operations incl. ||, &&. also if, while
+ *   Max ops: 10
+ *   Rating: 2
+ */
+unsigned float_abs(unsigned uf) {
+    // & 0x80000000: 将符号位置0
+    int zf = uf & 0x7fffffff;
+    // 若参数为NaN, 则返回其本身
+    if(zf > 0x7f800000) {
+        return uf;
+    } else {
+        return zf;
     }
-
-    afterShift = absX;
-
-    // 对二进制数进行左规
-    while (1) {
-        tmp = afterShift;
-        afterShift <<= 1;
-        shiftLeft++;
-        // 当最高位为1时，规格化结束
-        if (tmp & 0x80000000) break;
-    }
-
-    if ((afterShift & 0x01ff) > 0x0100) flag = 1;
-    else if ((afterShift & 0x03ff) == 0x0300) flag = 1;
-    else flag = 0;
-
-    return (sign << 31) + ((159 - shiftLeft) << 23) + flag + (afterShift >> 9);
 }
 
-unsigned float_twice(unsigned uf) {
-    unsigned f = uf;
+/*
+ * float_f2i - Return bit-level equivalent of expression (int) f
+ *   for floating point argument f.
+ *   Argument is passed as unsigned int, but
+ *   it is to be interpreted as the bit-level representation of a
+ *   single-precision floating point value.
+ *   Anything out of range (including NaN and infinity) should return
+ *   0x80000000u.
+ *   Legal ops: Any integer/unsigned operations incl. ||, &&. also if, while
+ *   Max ops: 30
+ *   Rating: 4
+ */
+int float_f2i(unsigned uf) {
+    // 符号位
+    int sign = uf >> 31 & 0x1;
+    // 指数部分
+    int exp = uf >> 23 & 0xff;
+    // 尾数部分
+    int frac = uf & 0x7fffff;
 
-    // f & 0x7f80000 为 f 的阶码
-    // 阶码为0表示为非规格化浮点数
-    // 阶码不为0表示为规格化浮点数
-    // 阶码为255表示为无穷大数/非数
-    if ((f & 0x7f800000) == 0) {
-        f = ((f & 0x007fffff) << 1) | (0x80000000 & f);
-    } else if ((f & 0x7f800000) != 0x7f800000) {
-        f += 0x00800000;
+    // uf 为零, 转化后的整数值为0
+    if (exp == 0 && frac == 0) {
+        return 0;
     }
-
-    return f;
+    // uf 为非数/无穷大数, 转化后的整数值为其本身
+    else if (exp == 0xff) {
+        return 0;
+    }
+    // uf 为非规格化整数,指数部分恒为-126
+    else if (exp == 0 && frac != 0) {
+        return (sign << 31) | (frac << 26);
+    }
+    // uf 为规格化整数
+    else {
+        // 计算规格化位数
+        exp -= 127;
+        // 补齐规格化省略的1
+        frac = frac | 0x800000;
+        if (exp >= 0) {
+            return (sign << 31) | frac << exp;
+        } else {
+            exp = -exp;
+            return (sign << 31) | frac >> exp;
+        }
+    }
 }
-
