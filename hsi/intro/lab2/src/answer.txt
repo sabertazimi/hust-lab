@@ -1,3 +1,4 @@
 The future will be better tomorrow.
 0 1 3 6 10 15
-1 304
+0 815
+14 7
