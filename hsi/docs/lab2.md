@@ -369,6 +369,15 @@ case 7:
 ```
 
 ```asm
+; 第二个整数必须为7
+; 否则,炸弹爆炸
+0x08048d41 <+95>:  cmpl   $0x7,0x18(%esp)
+0x08048d46 <+100>: je     0x8048d4d <phase_4+107>
+0x08048d48 <+102>: call   0x80490f7 <explode_bomb>
+0x08048d4d <+107>: add    $0x2c,%esp
+```
+
+```asm
 ; 通过以下6条代码,可推测出 func4 的函数原型
 ; int func4(int , int ,int );
 ; 且此次调用传参为:
@@ -393,7 +402,10 @@ case 7:
 
 ### func4
 
-int func4(int target, int lo, int hi);
+现有以下已知条件:
+
+-   函数原型: int func4(int target, int lo, int hi);
+-   0 <= target <= 14
 
 ```asm
 ; (%edx) = target/first_input_number, (%eax) = 0, (%ebx) = 14
@@ -409,29 +421,62 @@ int func4(int target, int lo, int hi);
 ...
 
 0x08048c97 <+34>: sar    %ecx                   ; (%ecx) /= 2
-0x08048c99 <+36>: add    %eax,%ecx              ; middle: (%ecx) = (hi - lo)/2 + lo = (lo + hi) / 2
+0x08048c99 <+36>: add    %eax,%ecx              ; mid: (%ecx) = (hi - lo)/2 + lo = (lo + hi) / 2
 
-0x08048c9b <+38>: cmp    %edx,%ecx              ; 比较 middle 与 target 的大小关系
-0x08048c9d <+40>: jle    0x8048cb6 <func4+65>   ; middle <=  target
+0x08048c9b <+38>: cmp    %edx,%ecx              ; 比较 mid 与 target 的大小关系
+0x08048c9d <+40>: jle    0x8048cb6 <func4+65>   ; mid <=  target
 
-0x08048c9f <+42>: sub    $0x1,%ecx              ; middle > target, 代码可运行至此处
+0x08048c9f <+42>: sub    $0x1,%ecx              ; mid > target, 代码可运行至此处
 0x08048ca2 <+45>: mov    %ecx,0x8(%esp)
 0x08048ca6 <+49>: mov    %eax,0x4(%esp)
 0x08048caa <+53>: mov    %edx,(%esp)    
-0x08048cad <+56>: call   0x8048c75 <func4>      ; func4(target, lo, middle-1)
+0x08048cad <+56>: call   0x8048c75 <func4>      ; func4(target, lo, mid-1)
 
-0x08048cb2 <+61>: add    %eax,%eax              ; lo++
+0x08048cb2 <+61>: add    %eax,%eax              ; 返回值为 func4(target, li, mid-1) * 2
 0x08048cb4 <+63>: jmp    0x8048cd6 <func4+97>
 
 0x08048cb6 <+65>: mov    $0x0,%eax
 0x08048cbb <+70>: cmp    %edx,%ecx
-0x08048cbd <+72>: jge    0x8048cd6 <func4+97>   ; middle >= target
+0x08048cbd <+72>: jge    0x8048cd6 <func4+97>   ; mid >= target
 
-0x08048cbf <+74>: mov    %ebx,0x8(%esp)         ; middle < target, 代码可运行至此处
+0x08048cbf <+74>: mov    %ebx,0x8(%esp)         ; mid < target, 代码可运行至此处
 0x08048cc3 <+78>: add    $0x1,%ecx
 0x08048cc6 <+81>: mov    %ecx,0x4(%esp)
 0x08048cca <+85>: mov    %edx,(%esp)
-0x08048ccd <+88>: call   0x8048c75 <func4>      ; func4(target, middle+1, hi)
+0x08048ccd <+88>: call   0x8048c75 <func4>      ; func4(target, mid+1, hi)
 
-0x08048cd2 <+93>: lea    0x1(%eax,%eax,1),%eax  ; (%eax) = 2*lo + 1
+0x08048cd2 <+93>: lea    0x1(%eax,%eax,1),%eax  ; 返回值为 func4(target, mid+1, hi) * 2 + 1
 ```
+
+画出二叉搜索树, 往左走返回值 * 2, 往右走返回值 * 2 + 1
+
+-   7 : 0
+-   3 : 0
+-   11: 1
+-   1 : 0
+-   5 : 1
+-   9 : 2
+-   13: 3
+-   0 : 0
+-   2 : 1
+-   4 : 2
+-   6 : 3
+-   8 : 4
+-   10: 5
+-   12: 6
+-   14: 7
+
+```shell
+                        7
+            3                           11
+    1               5           9               13
+0       2       4       6   8       10      12      14   
+```
+
+故第一个数字为 14
+
+### 解决方法
+
+-   first = 14
+-   second = 7
+
