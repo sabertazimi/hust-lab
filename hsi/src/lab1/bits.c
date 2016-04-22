@@ -253,7 +253,7 @@ int float_f2i(unsigned uf) {
     // uf 为规格化整数
     else {
         // 计算规格化位数
-        exp -= 127;
+        exp += 127;
         // 补齐规格化省略的1
         frac = frac | 0x800000;
         if (exp >= 0) {
