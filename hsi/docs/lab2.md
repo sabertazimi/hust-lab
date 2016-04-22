@@ -473,10 +473,51 @@ case 7:
 0       2       4       6   8       10      12      14   
 ```
 
-故第一个数字为 14
+为保证函数返回值为７, 故第一个数字为 14
 
 ### 解决方法
 
 -   first = 14
 -   second = 7
 
+## Phase 5
+
+```asm
+; 输入字符串长度必须为6
+; 否则, 炸弹爆炸
+0x08048d61 <+16>:  cmp    $0x6,%eax
+0x08048d64 <+19>:  je     0x8048db2 <phase_5+97>
+0x08048d66 <+21>:  call   0x80490f7 <explode_bomb>
+
+...
+
+0x08048db2 <+97>:  mov    $0x0,%eax
+0x08048db7 <+102>: jmp    0x8048d72 <phase_5+33>
+0x08048db9 <+104>: add    $0x28,%esp
+0x08048dbc <+107>: pop    %ebx
+0x08048dbd <+108>: ret    
+```
+
+```
+0x08048d72 <+33>: movzbl (%ebx,%eax,1),%edx
+0x08048d76 <+37>: and    $0xf,%edx
+0x08048d79 <+40>: movzbl 0x804a110(%edx),%edx
+0x08048d80 <+47>: mov    %dl,0x19(%esp,%eax,1)
+0x08048d84 <+51>: add    $0x1,%eax
+0x08048d87 <+54>: cmp    $0x6,%eax
+0x08048d8a <+57>: jne    0x8048d72 <phase_5+33>
+```
+
+仔细观察发现,阶段５与阶段１反汇编代码极其类似
+
+```asm
+0x08048d91 <+64>: movl   $0x804a0e6,0x4(%esp)
+0x08048d99 <+72>: lea    0x19(%esp),%eax
+0x08048d9d <+76>: mov    %eax,(%esp)
+0x08048da0 <+79>: call   0x8048fea <strings_not_equal>
+0x08048da5 <+84>: test   %eax,%eax
+0x08048da7 <+86>: je     0x8048db9 <phase_5+104>
+0x08048da9 <+88>: call   0x80490f7 <explode_bomb>
+```
+
+键入 `x/s  0x804a0e6`, 得到 “bruins", 此字符串为目标字符串
