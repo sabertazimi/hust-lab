@@ -4,8 +4,16 @@
 
 tab to ds, Ctrl+G -> 0:40h
 
-020a 08a9
+-   020a
+-   08a9
 
 ### Method 2 - dos 系统调用
 
-bx - 08a9
+-   es: 020a
+-   bx: 08a9
+
+### Method 3 - Memory
+
+-   ax: 020a
+-   dx: 08a9
+

@@ -1,4 +1,4 @@
-NAME = dos
+NAME = mem
 
 EXE = $(NAME).exe
 SIMPLE_MODE = ;
