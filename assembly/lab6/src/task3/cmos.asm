@@ -64,12 +64,12 @@ start:
         xor     edx, edx
         mov     dl, al      ; 将端口号送入dx
         xor     eax, eax
-        in      eax, dx      ; 读取端口信息至al
+        in      ax, dx     ; 读取端口信息至al
         nop
         mov     ebx, 10h
         lea     si, buf
         call    radix       ; 将端口信息化为16进制数字串
-        mov     dl, ' '
+        mov     dl, ' '     ; 输出16进制数字串
         mov     ah, 2h
         int     21h
         mov     dl, '0'
