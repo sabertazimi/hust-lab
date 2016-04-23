@@ -1,4 +1,4 @@
-NAME = mem
+NAME = int
 
 EXE = $(NAME).exe
 SIMPLE_MODE = ;

@@ -1,4 +1,4 @@
-NAME = dos
+NAME = cmos
 
 EXE = $(NAME).exe
 SIMPLE_MODE = ;

@@ -1,10 +1,7 @@
 .386
 
-stack   segment use16   para    stack   'stack'
-    db 200 dup(0)
-stack   ends
-
 code    segment use16   para    public  'code'
+        assume  cs: code
 start:  
         push    cs
         push    ds
