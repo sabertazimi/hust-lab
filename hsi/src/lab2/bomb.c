@@ -1,6 +1,6 @@
 /***************************************************************************
- * Dr. Evil's Insidious Bomb, Version 1.0
- * Copyright 2002, Dr. Evil Incorporated. All rights reserved.
+ * Dr. Evil's Insidious Bomb, Version 1.1
+ * Copyright 2011, Dr. Evil Incorporated. All rights reserved.
  *
  * LICENSE:
  *
@@ -100,11 +100,10 @@ int main(int argc, char *argv[])
     input = read_line();
     phase_5(input);
     phase_defused();
-    printf("Congratulations! You've (mostly) defused the bomb!\n");
-    printf("Hit Control-C to escape phase 6 (for free!), but if you want to\n");
-    printf("try phase 6 for extra credit, you can continue.  Just beware!\n");
+    printf("Good work!  On to the next...\n");
 
-    /* Oh, so you want more danger? Let's make this one extra hard. */
+    /* This phase will never be used, since no one will get past the
+     * earlier ones.  But just in case, make this one extra hard. */
     input = read_line();
     phase_6(input);
     phase_defused();
