@@ -47,18 +47,23 @@ start:
         mov     old_int, bx         ; 保存旧程序偏移址
         mov     old_int+2, es       ; 保存旧程序段首址
         ; 修改中断矢量表
-        xor     ax, ax
-        mov     ds, ax
-        cli
-        mov     word ptr ds:[58h], offset new_16h
-        mov     ds:[5ah], cs
-        sti
+        mov     dx, offset new_16h
+        mov     ax, 2516h
+        int     21h
+        ; 修改中断矢量表
+        ; xor     ax, ax
+        ; mov     ds, ax
+        ; cli
+        ; mov     word ptr ds:[58h], offset new_16h
+        ; mov     ds:[5ah], cs
+        ; sti
         ; mov     dx, offset new_16h
         ; mov     ax, 2516h
         ; int     21h
         ; 驻留内存
         mov     dx, offset start + 15
-        shr     dx, 4               ; 每节代表16个字节
+        mov     cl, 4
+        shr     dx, cl              ; 每节代表16个字节
         add     dx, 10h             ; 加上段前缀内容
         ; 调用21号软中断, 退出时dx节的主存单元驻留
         mov     al, 0
@@ -66,7 +71,7 @@ start:
         int     21h
 code    ends
 
-stack   segment use16 stack
+stack   segment stack use16 
         db 200 dup(0)
 stack   ends
 
