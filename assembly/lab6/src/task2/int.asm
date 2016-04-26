@@ -42,20 +42,10 @@ finish:
 start:  
         xor     ax, ax
         mov     ds, ax
-        mov     ax, ds:[16h*4]
+        mov     ax, ds:[16h*4]      ; 保存旧程序偏移址
         mov     old_int, ax
-        mov     ax, ds:[16h*4+2]
+        mov     ax, ds:[16h*4+2]    ; 保存旧程序段首址
         mov     old_int+2, ax
-        ; mov     ax, 3516h           ; 获取16h的中断矢量
-        ; int     21h                 ; 段址保存在 es, 偏移址保存在 bx
-        ; mov     old_int, bx         ; 保存旧程序偏移址
-        ; mov     old_int+2, es       ; 保存旧程序段首址
-        ; 修改中断矢量表
-        ; push  cs
-        ; pop   ds
-        ; mov     dx, offset new_16h
-        ; mov     ax, 2516h
-        ; int     21h
         ; 修改中断矢量表
         cli
         mov     word ptr ds:[58h], offset new_16h
