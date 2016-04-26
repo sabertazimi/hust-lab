@@ -9,6 +9,8 @@
 
 ## 基本指令
 
+通过对实验资料的学习，掌握了如下工具使用的技巧:
+
 ```shell
 ; 运行/退出
 ; 设置断点
@@ -45,28 +47,98 @@
 $ objdump -d bomb >> bomb.asm
 ```
 
+最后,可从[这个网站](https://github.com/cyrus-and/gdb-dashboard)获取 .gdbinit 文件
+
+```
+(gdb) source .gdbinit
+```
+
+可使得 gdb 一部分功能可视化.
+
 ## Phase 1
 
-### 基本指令
+### 分析 `strings_not_equal`
+
+键入 si ,进入 `strings_not_equal`
 
 ```asm
-; 将返回地址压栈
-0x08048b7b phase_1+11 mov    0x20(%esp),%eax
-0x08048b7f phase_1+15 mov    %eax,(%esp)
+0x0804909a <+0>:  push   %edi
+0x0804909b <+1>:  push   %esi
+0x0804909c <+2>:  push   %ebx
+0x0804909d <+3>:  sub    $0x4,%esp
+0x080490a0 <+6>:  mov    0x14(%esp),%ebx
+0x080490a4 <+10>: mov    0x18(%esp),%esi
+
+; (%esi) 为内置字符串地址, (%ebx)为输入字符串地址
+
+; 调用两次 `string_length` 函数
+; 若两字符串长度不等,跳转至 +99 处,返回1
+; 故,信息点一: 两字符串长度不等时,返回1
+0x080490a8 <+14>: mov    %ebx,(%esp)
+0x080490ab <+17>: call   0x804907b <string_length>
+0x080490b0 <+22>: mov    %eax,%edi
+0x080490b2 <+24>: mov    %esi,(%esp)
+0x080490b5 <+27>: call   0x804907b <string_length>
+0x080490ba <+32>: mov    $0x1,%edx
+0x080490bf <+37>: cmp    %eax,%edi
+0x080490c1 <+39>: jne    0x80490fd <strings_not_equal+99>
+
+; 输入字符串结束('\0'), 跳转至 +80 处,返回0
+0x080490c3 <+41>: movzbl (%ebx),%eax
+0x080490c6 <+44>: test   %al,%al
+0x080490c8 <+46>: je     0x80490ea <strings_not_equal+80>
+
+; 比较两字符串首字符，若不等，则返回1
+0x080490ca <+48>: cmp    (%esi),%al
+0x080490cc <+50>: je     0x80490d6 <strings_not_equal+60>
+0x080490ce <+52>: xchg   %ax,%ax
+0x080490d0 <+54>: jmp    0x80490f1 <strings_not_equal+87>
+
+; 比较字符串循环体
+; 逐字符比较两字符串
+; 若两字符串相等，则返回0
+; 否则，返回1
+0x080490d2 <+56>: cmp    (%esi),%al
+0x080490d4 <+58>: jne    0x80490f8 <strings_not_equal+94>
+; 循环控制部分, 两字符串指针后移，inner_str++, input_str++
+0x080490d6 <+60>: add    $0x1,%ebx
+0x080490d9 <+63>: add    $0x1,%esi
+; 检测输入字符串是否已结束,若未结束则继续循环
+0x080490dc <+66>: movzbl (%ebx),%eax
+0x080490df <+69>: test   %al,%al
+0x080490e1 <+71>: jne    0x80490d2 <strings_not_equal+56>
+
+; return 区段
+0x080490e3 <+73>: mov    $0x0,%edx
+0x080490e8 <+78>: jmp    0x80490fd <strings_not_equal+99>
+0x080490ea <+80>: mov    $0x0,%edx
+0x080490ef <+85>: jmp    0x80490fd <strings_not_equal+99>
+0x080490f1 <+87>: mov    $0x1,%edx
+0x080490f6 <+92>: jmp    0x80490fd <strings_not_equal+99>
+0x080490f8 <+94>: mov    $0x1,%edx
+0x080490fd <+99>: mov    %edx,%eax
+0x080490ff <+101>:add    $0x4,%esp
+0x08049102 <+104>:pop    %ebx
+0x08049103 <+105>:pop    %esi
+0x08049104 <+106>:pop    %edi
+0x08049105 <+107>:ret    
 ```
 
+### 主函数
+
+
 ```asm
-; 调用strings_not_equal前, 将输入字符串地址传入函数
-0x08048b73 phase_1+3  movl   $0x804a09c,0x4(%esp)
+; 传参: 内置比较字符串
+0x08048b93 <+3>:  movl   $0x804a1c4,0x4(%esp)
+0x08048b9b <+11>: mov    0x20(%esp),%eax
+; 传参:输入字符串地址
+0x08048b9f <+15>: mov    %eax,(%esp)
 ; 调用字符串比较函数
-0x08048b82 phase_1+18 call   0x8048fea <strings_not_equal>
+0x08048ba2 <+18>: call   0x804909a <strings_not_equal>
 ```
 
-```shell
-(gdb) x/s 0x804a09c
-```
-
-打印结果为 "The future will be better tomorrow."
+-   返回值为1,表示输入字符串与目标字符串不相同
+-   返回值为0,表示输入字符串与目标字符串相同
 
 ```asm
 0x08048b87 phase_1+23 test   %eax,%eax
@@ -75,59 +147,13 @@ $ objdump -d bomb >> bomb.asm
 0x08048b90 phase_1+32 add    $0x1c,%esp
 ```
 
-当 eax 为0时,炸弹不会爆炸,拆弹成功;结合对函数 `strings_not_equal`的分析,可知 phase1 的谜底即为**The future will be better tomorrow.**
-
-### `strings_not_equal`
-
--   键入si,进入 `strings_not_equal`
--   返回值为1,表示输入字符串与目标字符串不相同
--   返回值为0,表示输入字符串与目标字符串相同
-
-```asm
-; 调用两次 string_length 函数, 将输入字符串与目标字符串的长度分别存在 eax 与 edi
-0x08048ff8 <+14>:   mov    %ebx,(%esp)
-0x08048ffb <+17>:   call   0x8048fcb <string_length>
-0x08049000 <+22>:   mov    %eax,%edi
-0x08049002 <+24>:   mov    %esi,(%esp)
-0x08049005 <+27>:   call   0x8048fcb <string_length>
-; 比较输入字符串与目标字符串的长度
-; 若长度不同,返回值为1,存至 eax
-0x0804900f <+37>:   cmp    %eax,%edi
-0x08049011 <+39>:   jne    0x804904f <strings_not_equal+101>
+```shell
+(gdb) x/s 0x804a1c4
 ```
 
-```asm
-; 返回值存放在 eax 中
-0x0804904a <+96>:   mov    $0x1,%edx
-0x0804904f <+101>:  mov    %edx,%eax
-```
+输出结果: "I was trying to give Tina Fey more material."
 
-```asm
-; 当前字符为空字符'\0',两字符串比较完毕
-0x08049016 <+44>: test   %al,%al
-0x08049018 <+46>: je     0x804903c <strings_not_equal+82>
-```
-
--   比较字符串的循环体
-
-
-```asm
-; 将输入字符串与目标字符串的地址移至 eax 与 edx
-0x0804901e <+52>:   mov    %esi,%edx
-0x08049020 <+54>:   mov    %ebx,%eax
-0x08049022 <+56>:   jmp    0x8049028 <strings_not_equal+62>
-; 比较输入字符串与目标字符串对应字符
-0x08049024 <+58>:   cmp    (%edx),%cl
-0x08049026 <+60>:   jne    0x804904a <strings_not_equal+96>
-; 循环控制部分, 地址 + 1
-0x08049028 <+62>:   add    $0x1,%eax
-0x0804902b <+65>:   add    $0x1,%edx
-; 将输入字符串一个字符移至 cl
-0x0804902e <+68>:   movzbl (%eax),%ecx
-; 检查字符串是否已经结束
-0x08049031 <+71>:   test   %cl,%cl
-0x08049033 <+73>:   jne    0x8049024 <strings_not_equal+58>
-```
+当 eax 为0时,炸弹不会爆炸,拆弹成功;结合对函数 `strings_not_equal`的分析,可知 phase1 的谜底即为**I was trying to give Tina Fey more material.**
 
 ## Phase 2
 
