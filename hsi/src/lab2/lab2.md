@@ -207,8 +207,8 @@ $ objdump -d bomb >> bomb.asm
 键入 x/6wd $esp+0x18, 输出:
 
 ```asm
-0xffffd548: 1   2   3   4
-0xffffd558: 5   6
+0xffffd548: 0   1   3   6
+0xffffd558: 10  15
 ```
 
 ```asm
@@ -278,138 +278,124 @@ x x+1 x+3 x+6 x+10 x+15
 ## Phase 3
 
 ```asm
-; 键入 x/s 0x804a283
-; 显示 "%d %d"
-; 说明输入两个整型数字, 存放地址分别为
-; (%esp) + 0x1c = 0xffffd53c, (%esp) + 0x18 = 0xffffd538
-0x08048be4 <+3>:  lea    0x18(%esp),%eax
-0x08048be8 <+7>:  mov    %eax,0xc(%esp)
-0x08048bec <+11>: lea    0x1c(%esp),%eax
-0x08048bf0 <+15>: mov    %eax,0x8(%esp)
-0x08048bf4 <+19>: movl   $0x804a283,0x4(%esp)
-0x08048bfc <+27>: mov    0x30(%esp),%eax
-0x08048c00 <+31>: mov    %eax,(%esp)
-0x08048c03 <+34>: call   0x8048890 <__isoc99_sscanf@plt>
+; 键入 x/s 0x804a21a
+; 输出 "%d %c %d"，说明需输入 两个整型与一个字符
+0x08048c04 <+3>:  lea    0x2c(%esp),%eax
+0x08048c08 <+7>:  mov    %eax,0x10(%esp)
+0x08048c0c <+11>: lea    0x27(%esp),%eax
+0x08048c10 <+15>: mov    %eax,0xc(%esp)
+0x08048c14 <+19>: lea    0x28(%esp),%eax
+0x08048c18 <+23>: mov    %eax,0x8(%esp)
+0x08048c1c <+27>: movl   $0x804a21a,0x4(%esp)
+0x08048c24 <+35>: mov    0x40(%esp),%eax
+0x08048c28 <+39>: mov    %eax,(%esp)
+0x08048c2b <+42>: call   0x8048860 <__isoc99_sscanf@plt>
+
+; 运行完 scanf 后，键入 x/9bd $esp+0x27
+; 输出 97 1 0 0 0 3 0 0 0
+; 说明 $esp+0x27 存放输入字符
+; $esp+0x28 开始连续4个字节存放第一个整数
+; $esp+0x2c 开始连续4个字节存放第二个整数
 ```
 
 ```asm
 ; 第一个参数必须 <= 7
-; 否则,炸弹爆炸
-0x08048c12 <+49>:  cmpl   $0x7,0x1c(%esp)
-0x08048c17 <+54>:  ja     0x8048c55 <phase_3+116>
-0x08048c55 <+116>: call   0x80490f7 <explode_bomb>
+; 否则,炸弹爆炸(+320 处)
+0x08048c3a <+57>: cmpl   $0x7,0x28(%esp)
+0x08048c3f <+62>: ja     0x8048d41 <phase_3+320>
 ```
 
 ```asm
 ; 此句为 switch 条件控制部分
-0x08048c1d <+60>:  jmp    *0x804a0f0(,%eax,4)
+; * 代表间接跳转, 即
+; 以 0x804a240(, %eax, 4)为地址的内存单元的内容 为地址，进行跳转
+; 故，可推出当 (%eax) 为 0-7 时，跳转目标偏移地址分别为:
+; 0: 键入x/1wx 0x804a240，输出 0x08048c50
+; 1: 键入x/1wx 0x804a244，输出 0x08048c72
+; 2: 键入x/1wx 0x804a248，输出 0x08048c94
+; 3: 键入x/1wx 0x804a24c，输出 0x08048cb6
+; 4: 键入x/1wx 0x804a250，输出 0x08048cd5
+; 5: 键入x/1wx 0x804a254，输出 0x08048cf0
+; 6: 键入x/1wx 0x804a258，输出 0x08048d0b
+; 7: 键入x/1wx 0x804a25c，输出 0x08048d26
 ```
 
 ```asm
-; switch 语句中分支部分
-; 根据第一个数字,选择不同的分支,给 eax 赋新值
-; 总共有 8 个分支
-0x08048c24 <+67>:  mov    $0x32f,%eax			; 815
-0x08048c29 <+72>:  jmp    0x8048c66 <phase_3+133>
-0x08048c2b <+74>:  mov    $0x184,%eax			; 388
-0x08048c30 <+79>:  jmp    0x8048c66 <phase_3+133>
-0x08048c32 <+81>:  mov    $0x28e,%eax			; 654
-0x08048c37 <+86>:  jmp    0x8048c66 <phase_3+133>
-0x08048c39 <+88>:  mov    $0x11c,%eax			; 284
-0x08048c3e <+93>:  jmp    0x8048c66 <phase_3+133>
-0x08048c40 <+95>:  mov    $0x201,%eax			; 513
-0x08048c45 <+100>: jmp    0x8048c66 <phase_3+133>
-0x08048c47 <+102>: mov    $0x1a9,%eax			; 425
-0x08048c4c <+107>: jmp    0x8048c66 <phase_3+133>
-0x08048c4e <+109>: mov    $0x374,%eax			; 884
-0x08048c53 <+114>: jmp    0x8048c66 <phase_3+133>
-0x08048c61 <+128>: mov    $0x130,%eax			; 304
-0x08048c66 <+133>: cmp    0x18(%esp),%eax
+; switch 语句
+; 根据第一个数字,选择不同的分支,总共有 8 个分支
+; 根据前面的信息可得, $esp+0x2c 处存放第二个输入整数
+; 故，观察每个分支可得，每个分支都进行了两项同样操作:
+; 1. 将某个字符的ASCII码送入 eax, 并随后跳转至 +330 处
+; 根据前面所得信息，$esp+0x27处存放输入字符
+; 故，+330 处指令是将输入字符与 eax 低8个字节(高24个字节已为0)进行比较
+; 若不相等，炸弹爆炸
+0x08048d4b <+330>:cmp    0x27(%esp),%al
+0x08048d4f <+334>:je     0x8048d56 <phase_3+341>
+0x08048d51 <+336>:call   0x80491a5 <explode_bomb>
+; 2.将第二个整数与某个数进行比较，若不相等，炸弹爆炸
+0x08048c55 <+84>: cmpl   $0x2e2,0x2c(%esp)
+0x08048c5d <+92>: je     0x8048d4b <phase_3+330>
 ```
 
--   转化为C代码
-
+故, 可将各分支语句转化成如下 C 代码
 ```c
-case 0:
-	x = 815;  // 0x32f
+case 0: // 0x08048c50
+    if (input_char != 0x63) explode_bomb();    // 'c'
+    if (input_number != 0x2e2) explode_bomb(); // 738
 	break;
-case 1:
-	x = 304;  // 0x130
+case 1: // 0x08048c72
+    if (input_char != 0x6e) explode_bomb();    // 'n'
+    if (input_number != 0x3ce) explode_bomb(); // 974
 	break;
-case 2:
-	x = 388;  // 0x184
+case 2: // 0x08048c94
+    if (input_char != 0x71) explode_bomb();    // 'q'
+    if (input_number != 0x3d4) explode_bomb(); // 980
 	break;
-case 3:
-	x = 654;  // 0x28e
+case 3: // 0x08048cb6
+    if (input_char != 0x65) explode_bomb();    // 'e'
+    if (input_number != 0x356) explode_bomb(); // 854
 	break;
-case 4:
-	x = 284;  // 0x11c
+case 4: // 0x08048cd5
+    if (input_char != 0x68) explode_bomb();    // 'h'
+    if (input_number != 0x3c3) explode_bomb(); // 963
 	break;
-case 5:
-	x = 513;  // 0x201
+case 5: // 0x08048cf0
+    if (input_char != 0x75) explode_bomb();    // 'u'
+    if (input_number != 0x2e1) explode_bomb(); // 737
 	break;
-case 6:
-	x = 425;  // 0x1a9
+case 6: // 0x08048d0b
+    if (input_char != 0x76) explode_bomb();    // 'v'
+    if (input_number != 0xc7) explode_bomb();  // 199
 	break;
-case 7:
-	x = 884;  //0x374
+case 7: // 0x08048d26
+    if (input_char != 0x79) explode_bomb();    // 'y'
+    if (input_number != 0x86) explode_bomb();  // 134
 	break;
-```
-
-```asm
-; 必须使得 switch 语句执行完后, 改变后的 x 与 y 相等
-; 即 x == y
-; 否则, 炸弹爆炸
-0x08048c66 <+133>: cmp    0x18(%esp),%eax
-0x08048c6a <+137>: je     0x8048c71 <phase_3+144>
-0x08048c6c <+139>: call   0x80490f7 <explode_bomb>
 ```
 
 ## Phase 4
 
 ```asm
-; 与前三个阶段相同
-; 键入 x/s 0x804a283
-; 显示 "%d %d"
-; 说明输入两个整型数字, 存放地址分别为
-; (%esp) + 0x1c = 0xffffd53c, (%esp) + 0x18 = 0xffffd538
-; 输入整数个数不为2,炸弹爆炸
-0x08048ce5 <+3>:  lea    0x18(%esp),%eax
-0x08048ce9 <+7>:  mov    %eax,0xc(%esp)
-0x08048ced <+11>: lea    0x1c(%esp),%eax
-0x08048cf1 <+15>: mov    %eax,0x8(%esp)
-0x08048cf5 <+19>: movl   $0x804a283,0x4(%esp)
-0x08048cfd <+27>: mov    0x30(%esp),%eax
-0x08048d01 <+31>: mov    %eax,(%esp)
-0x08048d04 <+34>: call   0x8048890 <__isoc99_sscanf@plt>
-
-0x08048d09 <+39>:    cmp    $0x2,%eax
-0x08048d0c <+42>: jne    0x8048d1b <phase_4+57>
+; 键入 x/s 0x804a3af
+; 输出 "%d %d",说明输入两个整型数字, 存放地址分别为
+; $esp+0x1c , $esp+0x18
+0x08048da7 <+3>: lea    0x18(%esp),%eax
+0x08048dab <+7>: mov    %eax,0xc(%esp)
+0x08048daf <+11>:lea    0x1c(%esp),%eax
+0x08048db3 <+15>:mov    %eax,0x8(%esp)
+0x08048db7 <+19>:movl   $0x804a3af,0x4(%esp)
+0x08048dbf <+27>:mov    0x30(%esp),%eax
+0x08048dc3 <+31>:mov    %eax,(%esp)
+0x08048dc6 <+34>:call   0x8048860 <__isoc99_sscanf@plt>
 ```
 
 ```asm
-; 第一个整数必须 >= 0
-; 否则,炸弹爆炸
-0x08048d0e <+44>: mov    0x1c(%esp),%eax
-0x08048d12 <+48>: test   %eax,%eax
-0x08048d14 <+50>: js     0x8048d1b <phase_4+57>
-```
-
-```asm
-; 第一个整数必须 <= 14
-; 否则,炸弹爆炸
-0x08048d16 <+52>: cmp    $0xe,%eax
-0x08048d19 <+55>: jle    0x8048d20 <phase_4+62>
-0x08048d1b <+57>: call   0x80490f7 <explode_bomb>
-```
-
-```asm
-; 第二个整数必须为7
-; 否则,炸弹爆炸
-0x08048d41 <+95>:  cmpl   $0x7,0x18(%esp)
-0x08048d46 <+100>: je     0x8048d4d <phase_4+107>
-0x08048d48 <+102>: call   0x80490f7 <explode_bomb>
-0x08048d4d <+107>: add    $0x2c,%esp
+; 若第二个整数 > 4,炸弹爆炸
+0x08048dd4 <+48>: sub    $0x2,%eax
+0x08048dd7 <+51>: cmp    $0x2,%eax
+0x08048dda <+54>: jbe    0x8048de1 <phase_4+61>
+0x08048ddc <+56>: call   0x80491a5 <explode_bomb>
+0x08048de1 <+61>: mov    0x18(%esp),%eax
 ```
 
 ```asm
