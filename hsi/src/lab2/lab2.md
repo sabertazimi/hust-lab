@@ -1,4 +1,4 @@
-# 二进制炸弹实验(Bomb Lab)
+ 二进制炸弹实验(Bomb Lab)
 
 * 74  - 阶段1：字符串比较
 * 82  - 阶段2：循环
@@ -73,7 +73,6 @@ $ objdump -d bomb >> bomb.asm
 
 ; 调用两次 `string_length` 函数
 ; 若两字符串长度不等,跳转至 +99 处,返回1
-; 故,信息点一: 两字符串长度不等时,返回1
 0x080490a8 <+14>: mov    %ebx,(%esp)
 0x080490ab <+17>: call   0x804907b <string_length>
 0x080490b0 <+22>: mov    %eax,%edi
@@ -126,7 +125,6 @@ $ objdump -d bomb >> bomb.asm
 
 ### 主函数
 
-
 ```asm
 ; 传参: 内置比较字符串
 0x08048b93 <+3>:  movl   $0x804a1c4,0x4(%esp)
@@ -157,84 +155,95 @@ $ objdump -d bomb >> bomb.asm
 
 ## Phase 2
 
-### `read_six_numbers`
+### 分析 `read_six_numbers`
+
+可以看出，以下一段代码是传参及调用 scanf 函数
 
 ```asm
-; 读入6个数字
-; (%eax) = 0xffffd528
-0x08049231 <+7>:  lea    0x14(%eax),%edx
-0x08049234 <+10>: mov    %edx,0x1c(%esp)
-0x08049238 <+14>: lea    0x10(%eax),%edx
-0x0804923b <+17>: mov    %edx,0x18(%esp)
-0x0804923f <+21>: lea    0xc(%eax),%edx
-0x08049242 <+24>: mov    %edx,0x14(%esp)
-0x08049246 <+28>: lea    0x8(%eax),%edx
-0x08049249 <+31>: mov    %edx,0x10(%esp)
-0x0804924d <+35>: lea    0x4(%eax),%edx
-0x08049250 <+38>: mov    %edx,0xc(%esp)
-0x08049254 <+42>: mov    %eax,0x8(%esp)
+; 传入6个数字的地址
+0x080491d3 <+7>: lea    0x14(%eax),%edx
+0x080491d6 <+10>:mov    %edx,0x1c(%esp)
+0x080491da <+14>:lea    0x10(%eax),%edx
+0x080491dd <+17>:mov    %edx,0x18(%esp)
+0x080491e1 <+21>:lea    0xc(%eax),%edx
+0x080491e4 <+24>:mov    %edx,0x14(%esp)
+0x080491e8 <+28>:lea    0x8(%eax),%edx
+0x080491eb <+31>:mov    %edx,0x10(%esp)
+0x080491ef <+35>:lea    0x4(%eax),%edx
+0x080491f2 <+38>:mov    %edx,0xc(%esp)
+; (%eax) = 0xffffd624
+0x080491f6 <+42>:mov    %eax,0x8(%esp)
+
+; 键入 x/s 0x804a3a3
+; 输出 0x804a3a3: "%d %d %d %d %d %d"
+; 此处存放的是 scanf 的格式字符串参数
+; 可以看出，需要输入6个整型数字
+0x080491fa <+46>:movl   $0x804a3a3,0x4(%esp)
+0x08049202 <+54>:mov    0x30(%esp),%eax
+0x08049206 <+58>:mov    %eax,(%esp)
+0x08049209 <+61>:call   0x8048860 <__isoc99_sscanf@plt>
 ```
 
 ```asm
-; 键入 x/s 0x804a277
-; 显示  0x804a277: "%d %d %d %d %d %d"
-; 说明 0x08049258 处存放 scanf 格式字符串, 6个整型数字
-0x08049258 read_six_numbers+46 movl   $0x804a277,0x4(%esp)
-...
-
-0x08049267 <+61>:    call   0x8048890 <__isoc99_sscanf@plt>
-```
-
-```asm
-; 查询手册可得, eax 存放 scanf 的返回值,表示成功读入数据的个数
+; 输入数字个数作为 scanf 的返回值存入 eax
 ; 当输入数字个数少于 6 时,炸弹爆炸
-0x0804926c <+66>: cmp    $0x5,%eax
-0x0804926f <+69>: jg     0x8049276 <read_six_numbers+76>
-0x08049271 <+71>: call   0x80490f7 <explode_bomb>
-0x08049276 <+76>: add    $0x2c,%esp
-0x08049279 <+79>: ret
+0x0804920e <+66>: cmp    $0x5,%eax
+0x08049211 <+69>: jg     0x8049218 <read_six_numbers+76>
+0x08049213 <+71>: call   0x80491a5 <explode_bomb>
 ```
 
-### `phase_2`
+### 主函数
+
+运行至 +16 处时，键入 x/s $eax,输出'1 2 3 4 5 6'
 
 ```asm
-; ($esp) = 0xfffd510
-; ($esp) + 0x18 = 0xfffd528, 结合上一步对 read_six_numbers 的分析可得
-; 此处存放输入的第一个数字
-; 键入 x/6d 0xffffd528
-; 显示 0xffffd528: 1   2   3   4
-;      0xffffd538: 5   6
-; 故以下两条语句是判断第一个是否为正数
-; 若为正数,则跳转至 <phase_2+65>处
+0x08048bb8 <+4>: lea    0x18(%esp),%eax
+0x08048bbc <+8>: mov    %eax,0x4(%esp)
+0x08048bc0 <+12>:mov    0x40(%esp),%eax
+0x08048bc4 <+16>:mov    %eax,(%esp)
+0x08048bc7 <+19>:call   0x80491cc <read_six_numbers>
+```
+
+键入 x/6wd $esp+0x18, 输出:
+
+```asm
+0xffffd548: 1   2   3   4
+0xffffd558: 5   6
+```
+
+```asm
+; 以下两条语句是判断第一个是否为正数
+; 若为正数,则跳转至 +65 处,进行循环体初始化
 ; 若为负数,炸弹爆炸
-0x08048bac <+24>: cmpl   $0x0,0x18(%esp)
-0x08048bb1 <+29>: jns    0x8048bd5 <phase_2+65>
-0x08048bb3 <+31>: call   0x80490f7 <explode_bomb>
+0x08048bcc <+24>: cmpl   $0x0,0x18(%esp)
+0x08048bd1 <+29>: jns    0x8048bf5 <phase_2+65>
+0x08048bd3 <+31>: call   0x80491a5 <explode_bomb>
 ```
 
--    循环体
+以下为循环体，从 +65 处指令可以看出，(%ebx) 初始化为1
 
 ```asm
-0x08048bba <+38>: mov    %ebx,%eax
-0x08048bbc <+40>: add    0x14(%esp,%ebx,4),%eax
-0x08048bc0 <+44>: cmp    %eax,0x18(%esp,%ebx,4)
-0x08048bc4 <+48>: je     0x8048bcb <phase_2+55>
-0x08048bc6 <+50>: call   0x80490f7 <explode_bomb>
-0x08048bcb <+55>: add    $0x1,%ebx
-0x08048bce <+58>: cmp    $0x6,%ebx
-0x08048bd1 <+61>: jne    0x8048bba <phase_2+38>
-0x08048bd3 <+63>: jmp    0x8048bdc <phase_2+72>
-0x08048bd5 <+65>: mov    $0x1,%ebx
+0x08048bda <+38>: mov    %ebx,%eax
+; (%eax) = number[i-1] + i 
+0x08048bdc <+40>: add    0x14(%esp,%ebx,4),%eax
+; number[i] == (%eax) == number[i-1] + i
+0x08048be0 <+44>: cmp    %eax,0x18(%esp,%ebx,4)
+0x08048be4 <+48>: je     0x8048beb <phase_2+55>
+; 若上述表达式不成立，炸弹爆炸
+0x08048be6 <+50>: call   0x80491a5 <explode_bomb>
+0x08048beb <+55>: add    $0x1,%ebx
+0x08048bee <+58>: cmp    $0x6,%ebx
+0x08048bf1 <+61>: jne    0x8048bda <phase_2+38>
 ```
 
 -   以上汇编代码可转化为如下C代码
--   假设x为第 i 个数字,y为第 i+1 个数字
+-   假设 x 为第 i 个数字, y 为第 i+1 个数字
 -   则必须满足 y = x + i;
 
 ```c
 for (i = 1;i < 6;i++) {
-    x = i + arr[i - 1];
-    if (x != arr[i]) {
+    x = i + number[i - 1];
+    if (x != number[i]) {
         exlpode_bomb();
         return ;
     }
@@ -243,13 +252,13 @@ for (i = 1;i < 6;i++) {
 return ;
 ```
 
-### 解决
+### 解决方法
 
-综合上述两个函数的分析, 现得到如下线索:
+综合上述两个函数的分析, 现得到如下信息:
 
 -   输入6个数字
 -   第一个数字必须为正数
--   满足 y = x + i;
+-   满足 number[i] = number[i - 1] + i;
 
 即:
 
