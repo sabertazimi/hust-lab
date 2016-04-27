@@ -487,27 +487,46 @@ func4(9, y) = y + 54y + 33y = 88y
 ```asm
 ; 输入字符串长度必须为6
 ; 否则, 炸弹爆炸
-0x08048d61 <+16>:  cmp    $0x6,%eax
-0x08048d64 <+19>:  je     0x8048db2 <phase_5+97>
-0x08048d66 <+21>:  call   0x80490f7 <explode_bomb>
-
-...
-
-0x08048db2 <+97>:  mov    $0x0,%eax
-0x08048db7 <+102>: jmp    0x8048d72 <phase_5+33>
-0x08048db9 <+104>: add    $0x28,%esp
-0x08048dbc <+107>: pop    %ebx
-0x08048dbd <+108>: ret    
+0x08048e08 <+4>:  mov    0x20(%esp),%ebx
+0x08048e0c <+8>:  mov    %ebx,(%esp)
+0x08048e0f <+11>: call   0x804907b <string_length>
+0x08048e14 <+16>: cmp    $0x6,%eax
+0x08048e17 <+19>: je     0x8048e1e <phase_5+26>
+0x08048e19 <+21>: call   0x80491a5 <explode_bomb>
 ```
 
+-   循环语句
+
+```asm
+;   初始化部分
+0x08048e1e <+26>: mov    $0x0,%edx
+0x08048e23 <+31>: mov    $0x0,%eax
+
+; 循环体
+; 将字符串第 i 个字符移至 ecx
+0x08048e28 <+36>: movzbl (%ebx,%eax,1),%ecx
+; 将字符 ASCII 码的高 4 位置0
+0x08048e2c <+40>: and    $0xf,%ecx
+; 键入 x/16d 0x804a260, 输出如下:
+; - 0x804a260 <array.3142>:     2   10  6   1
+; - 0x804a270 <array.3142+16>:  12  16  9   3
+; - 0x804a280 <array.3142+32>:  4   7   14  5
+; - 0x804a290 <array.3142+48>:  11  8   15  13
+; 证明 0x804a260 处存放着一个长度为16的整型数组
+0x08048e2f <+43>: add    0x804a260(,%ecx,4),%edx
+0x08048e36 <+50>: add    $0x1,%eax
+0x08048e39 <+53>: cmp    $0x6,%eax
+0x08048e3c <+56>: jne    0x8048e28 <phase_5+36>
 ```
-0x08048d72 <+33>: movzbl (%ebx,%eax,1),%edx
-0x08048d76 <+37>: and    $0xf,%edx
-0x08048d79 <+40>: movzbl 0x804a110(%edx),%edx
-0x08048d80 <+47>: mov    %dl,0x19(%esp,%eax,1)
-0x08048d84 <+51>: add    $0x1,%eax
-0x08048d87 <+54>: cmp    $0x6,%eax
-0x08048d8a <+57>: jne    0x8048d72 <phase_5+33>
+
+-   拆弹条件
+
+```asm
+; 循环语句的求和结果必须为 0x42(66d)
+; 否则，炸弹爆炸
+0x08048e3e <+58>: cmp    $0x42,%edx
+0x08048e41 <+61>: je     0x8048e48 <phase_5+68>
+0x08048e43 <+63>: call   0x80491a5 <explode_bomb>
 ```
 
 仔细观察发现,阶段５与阶段１反汇编代码极其类似
