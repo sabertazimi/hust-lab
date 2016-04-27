@@ -739,3 +739,139 @@ func4(9, y) = y + 54y + 33y = 88y
 故 输入应为 4,5,6,2,3,1
 
 ## Phase 7
+
+键入 objdump -d bomb >> bomb.asm, 将 bomb 反汇编代码存入 bomb.asm．
+在 bomb.asm 中搜索 secret 发现，只有 963 行开始的 `phase_defused` 函数 调用了 `secret_phase` 函数.
+在 `phase_defused` 函数中发现了熟悉的字符串比较循环:
+
+```asm
+0x08049362 <+76>: movl   $0x804a412,0x4(%esp)
+0x0804936a <+84>: lea    0x2c(%esp),%eax
+0x0804936e <+88>: mov    %eax,(%esp)
+0x08049371 <+91>: call   0x804909a <strings_not_equal>
+0x08049376 <+96>: test   %eax,%eax
+0x08049378 <+98>: jne    0x8049397 <phase_defused+129>
+0x0804937a <+100>:movl   $0x804a2d8,(%esp)
+0x08049381 <+107>:call   0x80487f0 <puts@plt>
+0x08049386 <+112>:movl   $0x804a300,(%esp)
+0x0804938d <+119>:call   0x80487f0 <puts@plt>
+0x08049392 <+124>:call   0x8048f8b <secret_phase>
+```
+
+键入 x/s 0x804a412, 输出 0x804a412:  "DrEvil", 得到开启隐藏阶段的密码字符串为 DrEvil.
+
+### 分析 `secret_phase`
+
+在阶段４的解后，输入 DrEvil,成功开启隐藏阶段.
+运行至 `phase_6` 后的 `phase_defused`处，键入 si 进入其中进行动态分析.
+
+查询相关手册可得 strtol 函数的函数原型为:
+long int strtol(const char *nptr,char **endptr,int base);
+其功能为 将字符串转化为长整型十进制整数 - strtol(input_string, '\0', 10);
+
+```asm
+0x08048f94 <+9>:  movl   $0xa,0x8(%esp)
+0x08048f9c <+17>: movl   $0x0,0x4(%esp)
+0x08048fa4 <+25>: mov    %eax,(%esp)
+0x08048fa7 <+28>: call   0x80488d0 <strtol@plt>
+```
+
+```asm
+; 输入整数字符串必须 < 1001,否则炸弹爆炸
+0x08048fac <+33>: mov    %eax,%ebx
+0x08048fae <+35>: lea    -0x1(%eax),%eax
+; 0x3e8 = 1000d
+0x08048fb1 <+38>: cmp    $0x3e8,%eax
+0x08048fb6 <+43>: jbe    0x8048fbd <secret_phase+50>
+0x08048fb8 <+45>: call   0x80491a5 <explode_bomb>
+```
+
+根据 fun7 调用时传参,初步推断 fun7 的函数原型: int fun7(int x, & y);
+
+```asm
+0x08048fbd <+50>: mov    %ebx,0x4(%esp)
+0x08048fc1 <+54>: movl   $0x804c088,(%esp)
+0x08048fc8 <+61>: call   0x8048f3a <fun7>
+```
+
+```asm
+; fun7返回值必须为6,否则炸弹爆炸
+0x08048fcd <+66>: cmp    $0x6,%eax
+0x08048fd0 <+69>: je     0x8048fd7 <secret_phase+76>
+0x08048fd2 <+71>: call   0x80491a5 <explode_bomb>
+```
+
+### 分析 `fun7`
+
+键入 x/48wx 0x804c088
+
+```asm
+0x804c088 <n1>:     0x00000024  0x0804c094  0x0804c0a0  0x00000008
+0x804c098 <n21+4>:  0x0804c0c4  0x0804c0ac  0x00000032  0x0804c0b8
+0x804c0a8 <n22+8>:  0x0804c0d0  0x00000016  0x0804c118  0x0804c100
+0x804c0b8 <n33>:    0x0000002d  0x0804c0dc  0x0804c124  0x00000006
+0x804c0c8 <n31+4>:  0x0804c0e8  0x0804c10c  0x0000006b  0x0804c0f4
+0x804c0d8 <n34+8>:  0x0804c130  0x00000028  0x00000000  0x00000000
+0x804c0e8 <n41>:    0x00000001  0x00000000  0x00000000  0x00000063
+0x804c0f8 <n47+4>:  0x00000000  0x00000000  0x00000023  0x00000000
+0x804c108 <n44+8>:  0x00000000  0x00000007  0x00000000  0x00000000
+0x804c118 <n43>:    0x00000014  0x00000000  0x00000000  0x0000002f
+0x804c128 <n46+4>:  0x00000000  0x00000000  0x000003e9  0x00000000
+0x804c138 <n48+8>:  0x00000000  0x0000031e  0x00000001  0x0804c16c
+```
+
+容易看出每连续12个字节具有相同的数据类型,发现其中1个元素为数值，另外2个元素为地址.
+推测这里存放的数据类型为二叉树,共有15个结点，是一个完全二叉树.
+故，将 fun7 的函数原型修正为: `int fun7(int node_value, node * node);`
+结合 fun7 是个递归函数,因此推断 fun7 应具有递归遍历二叉树的相关操作.
+
+
+```asm
+; ecx = input_number, edx = root
+0x08048f3e <+4>: mov    0x20(%esp),%edx
+0x08048f42 <+8>: mov    0x24(%esp),%ecx
+```
+
+```asm
+; 若遍历至空结点，返回-1
+0x08048f46 <+12>: test   %edx,%edx
+0x08048f48 <+14>: je     0x8048f81 <fun7+71>
+
+; 取当前结点的值与输入整数比较
+; 若 输入整数 < 当前结点的值, 将左孩子结点的地址值作为第二个参数调用 fun7
+; 即遍历左子树
+0x08048f4a <+16>: mov    (%edx),%ebx
+0x08048f4c <+18>: cmp    %ecx,%ebx
+0x08048f4e <+20>: jle    0x8048f63 <fun7+41>
+
+; 遍历左子树
+0x08048f50 <+22>: mov    %ecx,0x4(%esp)
+0x08048f54 <+26>: mov    0x4(%edx),%eax
+0x08048f57 <+29>: mov    %eax,(%esp)
+0x08048f5a <+32>: call   0x8048f3a <fun7>
+; 返回值: 2 * fun7(input_number, root->lchild);
+0x08048f5f <+37>: add    %eax,%eax
+0x08048f61 <+39>: jmp    0x8048f86 <fun7+76>
+
+; 当前结点的值==输入整数值,返回1
+0x08048f63 <+41>: mov    $0x0,%eax
+0x08048f68 <+46>: cmp    %ecx,%ebx
+0x08048f6a <+48>: je     0x8048f86 <fun7+76>
+
+; 若 输入整数 > 当前结点的值, 将右孩子结点的地址值作为第二个参数调用 fun7
+; 即遍历右子树
+0x08048f6c <+50>: mov    %ecx,0x4(%esp)
+0x08048f70 <+54>: mov    0x8(%edx),%eax
+0x08048f73 <+57>: mov    %eax,(%esp)
+0x08048f76 <+60>: call   0x8048f3a <fun7>
+; 返回值: 2 * fun7(input_number, root-rchild) + 1
+0x08048f7b <+65>: lea    0x1(%eax,%eax,1),%eax
+0x08048f7f <+69>: jmp    0x8048f86 <fun7+76>
+
+; 若遍历至空结点，返回-1
+0x08048f81 <+71>: mov    $0xffffffff,%eax
+
+0x08048f86 <+76>: add    $0x18,%esp
+0x08048f89 <+79>: pop    %ebx
+0x08048f8a <+80>: ret    
+```
