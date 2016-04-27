@@ -57,6 +57,8 @@ $ objdump -d bomb >> bomb.asm
 
 ## Phase 1
 
+> 比较字符串
+
 ### 分析 `strings_not_equal`
 
 键入 si ,进入 `strings_not_equal`
@@ -154,6 +156,8 @@ $ objdump -d bomb >> bomb.asm
 当 eax 为0时,炸弹不会爆炸,拆弹成功;结合对函数 `strings_not_equal`的分析,可知 phase1 的谜底即为**I was trying to give Tina Fey more material.**
 
 ## Phase 2
+
+> +1 +2 +3 +4 +5 数列
 
 ### 分析 `read_six_numbers`
 
@@ -277,6 +281,8 @@ x x+1 x+3 x+6 x+10 x+15
 
 ## Phase 3
 
+> Switch 语句(拆弹条件－输入对应分支的字符与数字)
+
 ```asm
 ; 键入 x/s 0x804a21a
 ; 输出 "%d %c %d"，说明需输入 两个整型与一个字符
@@ -339,7 +345,8 @@ x x+1 x+3 x+6 x+10 x+15
 0x08048c5d <+92>: je     0x8048d4b <phase_3+330>
 ```
 
-故, 可将各分支语句转化成如下 C 代码
+故, 可将各分支语句转化成如下 C 代码:
+
 ```c
 case 0: // 0x08048c50
     if (input_char != 0x63) explode_bomb();    // 'c'
@@ -376,6 +383,8 @@ case 7: // 0x08048d26
 ```
 
 ## Phase 4
+
+> 递归序列: x(0) = 0, x(1) = base, x(n+2) = base + x(n+1) + x(n)
 
 ```asm
 ; 键入 x/s 0x804a3af
@@ -484,6 +493,8 @@ func4(9, y) = y + 54y + 33y = 88y
 
 ## Phase 5
 
+> 输入字符,以字符低4位ASCII码为下标选取内置数组6个元素，使元素之和为66
+
 ```asm
 ; 输入字符串长度必须为6
 ; 否则, 炸弹爆炸
@@ -540,6 +551,8 @@ func4(9, y) = y + 54y + 33y = 88y
 查表可得, adegjl ADEGJL qtuwz| QTUWZ\ 符合标准
 
 ## Phase 6
+
+> 利用内置链表，根据输入的６个整数值,建立一个新的降序链表
 
 ```asm
 ; 输入6个整型, 存放在 $esp+0x10 = 0xffffd530 开始的连续24个字节处
@@ -724,3 +737,5 @@ func4(9, y) = y + 54y + 33y = 88y
 综合以上分析，要求新建链表为降序链表，观察原链表６个结点的值，
 可得到降序链表应为 3->2->1->5->4->6.故 number 数组个元素应为3,2,1,5,4,6,
 故 输入应为 4,5,6,2,3,1
+
+## Phase 7
