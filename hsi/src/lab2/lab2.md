@@ -291,6 +291,8 @@ x x+1 x+3 x+6 x+10 x+15
 0x08048c28 <+39>: mov    %eax,(%esp)
 0x08048c2b <+42>: call   0x8048860 <__isoc99_sscanf@plt>
 
+
+; 重新运行程序,输入 1 a 3
 ; 运行完 scanf 后，键入 x/9bd $esp+0x27
 ; 输出 97 1 0 0 0 3 0 0 0
 ; 说明 $esp+0x27 存放输入字符
@@ -399,107 +401,86 @@ case 7: // 0x08048d26
 ```
 
 ```asm
-; 通过以下6条代码,可推测出 func4 的函数原型
-; int func4(int , int ,int );
-; 且此次调用传参为:
-; func4(first_input_number, 0, 14);
-0x08048d20 <+62>: movl   $0xe,0x8(%esp)
-0x08048d28 <+70>: movl   $0x0,0x4(%esp)
-0x08048d30 <+78>: mov    0x1c(%esp),%eax
-0x08048d34 <+82>: mov    %eax,(%esp)
-0x08048d37 <+85>: call   0x8048c75 <func4>
-0x08048d3c <+90>: cmp    $0x7,%eax
-```
-
-```asm
-; 调用递归函数 func4 的返回值必须为 7
+; func4 返回值 == 第一个输入整数
 ; 否则, 炸弹爆炸
-0x08048d37 <+85>: call   0x8048c75 <func4>
-0x08048d3c <+90>: cmp    $0x7,%eax
-0x08048d3f <+93>: jne    0x8048d48 <phase_4+102>
-
-0x08048d48 <+102>:call   0x80490f7 <explode_bomb>
+0x08048df5 <+81>: cmp    0x1c(%esp),%eax
+0x08048df9 <+85>: je     0x8048e00 <phase_4+92>
+0x08048dfb <+87>: call   0x80491a5 <explode_bomb>
 ```
 
-### func4
-
-现有以下已知条件:
-
--   函数原型: int func4(int target, int lo, int hi);
--   0 <= target <= 14
+### 分析 func4
 
 ```asm
-; (%edx) = target/first_input_number, (%eax) = 0, (%ebx) = 14
-0x08048c80 <+11>: mov    0x20(%esp),%edx
-0x08048c84 <+15>: mov    0x24(%esp),%eax
-0x08048c88 <+19>: mov    0x28(%esp),%ebx
+; 通过以下4条代码,可推测出 func4 的函数原型为:
+; int func4(int x, int y);
+; 且此次调用传参为:
+; func4(9, second_input_number);
+0x08048de1 <+61>: mov    0x18(%esp),%eax
+0x08048de5 <+65>: mov    %eax,0x4(%esp)
+0x08048de9 <+69>: movl   $0x9,(%esp)
+0x08048df0 <+76>: call   0x8048d5a <func4>
 ```
 
 ```asm
-0x08048c8c <+23>: mov    %ebx,%ecx
-0x08048c8e <+25>: sub    %eax,%ecx              ; (%ecx) = hi - lo
+; 当 (%ebx) 即 x 为 0 时，返回0
+; 当 (%ebx) 即 x 为 1 时， 返回y
+0x08048d68 <+14>: test   %ebx,%ebx
+0x08048d6a <+16>: jle    0x8048d98 <func4+62>
+0x08048d6c <+18>: mov    %esi,%eax
+0x08048d6e <+20>: cmp    $0x1,%ebx
+0x08048d71 <+23>: je     0x8048d9d <func4+67>
 
 ...
 
-0x08048c97 <+34>: sar    %ecx                   ; (%ecx) /= 2
-0x08048c99 <+36>: add    %eax,%ecx              ; mid: (%ecx) = (hi - lo)/2 + lo = (lo + hi) / 2
-
-0x08048c9b <+38>: cmp    %edx,%ecx              ; 比较 mid 与 target 的大小关系
-0x08048c9d <+40>: jle    0x8048cb6 <func4+65>   ; mid <=  target
-
-0x08048c9f <+42>: sub    $0x1,%ecx              ; mid > target, 代码可运行至此处
-0x08048ca2 <+45>: mov    %ecx,0x8(%esp)
-0x08048ca6 <+49>: mov    %eax,0x4(%esp)
-0x08048caa <+53>: mov    %edx,(%esp)    
-0x08048cad <+56>: call   0x8048c75 <func4>      ; func4(target, lo, mid-1)
-
-0x08048cb2 <+61>: add    %eax,%eax              ; 返回值为 func4(target, li, mid-1) * 2
-0x08048cb4 <+63>: jmp    0x8048cd6 <func4+97>
-
-0x08048cb6 <+65>: mov    $0x0,%eax
-0x08048cbb <+70>: cmp    %edx,%ecx
-0x08048cbd <+72>: jge    0x8048cd6 <func4+97>   ; mid >= target
-
-0x08048cbf <+74>: mov    %ebx,0x8(%esp)         ; mid < target, 代码可运行至此处
-0x08048cc3 <+78>: add    $0x1,%ecx
-0x08048cc6 <+81>: mov    %ecx,0x4(%esp)
-0x08048cca <+85>: mov    %edx,(%esp)
-0x08048ccd <+88>: call   0x8048c75 <func4>      ; func4(target, mid+1, hi)
-
-0x08048cd2 <+93>: lea    0x1(%eax,%eax,1),%eax  ; 返回值为 func4(target, mid+1, hi) * 2 + 1
+0x08048d98 <+62>: mov    $0x0,%eax
+0x08048d9d <+67>: add    $0x10,%esp
 ```
 
-画出二叉搜索树, 往左走返回值 * 2, 往右走返回值 * 2 + 1
+```asm
+; 调用 func4(x - 1, y)
+0x08048d73 <+25>: mov    %esi,0x4(%esp)
+0x08048d77 <+29>: lea    -0x1(%ebx),%eax
+0x08048d7a <+32>: mov    %eax,(%esp)
+0x08048d7d <+35>: call   0x8048d5a <func4>
+0x08048d82 <+40>: lea    (%eax,%esi,1),%edi
+; return_val = y + func4(x - 1,y)
 
--   7 : 0
--   3 : 0
--   11: 1
--   1 : 0
--   5 : 1
--   9 : 2
--   13: 3
--   0 : 0
--   2 : 1
--   4 : 2
--   6 : 3
--   8 : 4
--   10: 5
--   12: 6
--   14: 7
-
-```shell
-                        7
-            3                           11
-    1               5           9               13
-0       2       4       6   8       10      12      14   
+; 调用 func4(x - 2, y)
+0x08048d82 <+40>: lea    (%eax,%esi,1),%edi
+0x08048d85 <+43>: mov    %esi,0x4(%esp)
+0x08048d89 <+47>: sub    $0x2,%ebx
+0x08048d8c <+50>: mov    %ebx,(%esp)
+0x08048d8f <+53>: call   0x8048d5a <func4>
+0x08048d94 <+58>: add    %edi,%eax
+; return_val = return_val + fun4(x - 2, y)
+; 即 return_val = y + func4(x - 1, y) + func4(x - 2, y)
 ```
 
-为保证函数返回值为７, 故第一个数字为 14
+```c
+int func4(int x, int y) {
+    if ( 0 == x ) {
+        return 0;
+    } else if ( 1 == x ) {
+        return y;
+    } else {
+        return y + func4(x - 1, y) + func4(x - 2,y);
+    }
+}
+```
 
 ### 解决方法
 
--   first = 14
--   second = 7
+-   第一个整数: first == func4(9, y) = 88y = 88 * second
+
+func4(0, y) = 0, func4(1, y) = y, func4(2, y) = y + 0 + y = 2y,
+func4(3, y) = y + 2y + y = 4y, func4(4, y) = y + 4y + 2y = 7y,
+func4(5, y) = y + 7y + 4y = 12y, func4(6, y) = y + 12y + 7y = 20y,
+func4(7, y) = y + 20y + 12 y = 33y, func4(8, y) = y + 33y + 20y = 54y,
+func4(9, y) = y + 54y + 33y = 88y
+
+-   第二个整数: second <= 4;
+
+故当 second = 4 时，first = 352.
 
 ## Phase 5
 
