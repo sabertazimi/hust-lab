@@ -740,6 +740,8 @@ func4(9, y) = y + 54y + 33y = 88y
 
 ## Phase 7
 
+> 二分查找树
+
 键入 objdump -d bomb >> bomb.asm, 将 bomb 反汇编代码存入 bomb.asm．
 在 bomb.asm 中搜索 secret 发现，只有 963 行开始的 `phase_defused` 函数 调用了 `secret_phase` 函数.
 在 `phase_defused` 函数中发现了熟悉的字符串比较循环:
@@ -853,7 +855,7 @@ long int strtol(const char *nptr,char **endptr,int base);
 0x08048f5f <+37>: add    %eax,%eax
 0x08048f61 <+39>: jmp    0x8048f86 <fun7+76>
 
-; 当前结点的值==输入整数值,返回1
+; 当前结点的值 == 输入整数值, 返回0
 0x08048f63 <+41>: mov    $0x0,%eax
 0x08048f68 <+46>: cmp    %ecx,%ebx
 0x08048f6a <+48>: je     0x8048f86 <fun7+76>
@@ -878,4 +880,5 @@ long int strtol(const char *nptr,char **endptr,int base);
 
 ### 解决方法
 
-0x23 - 35d
+二叉搜索树如图所示,可以依次将各结点的值作为第一个参数传入fun7,得到调用返回值，标记在结点旁.
+可得正确的解为 0x23, 即35d
