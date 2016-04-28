@@ -864,7 +864,7 @@ long int strtol(const char *nptr,char **endptr,int base);
 0x08048f70 <+54>: mov    0x8(%edx),%eax
 0x08048f73 <+57>: mov    %eax,(%esp)
 0x08048f76 <+60>: call   0x8048f3a <fun7>
-; 返回值: 2 * fun7(input_number, root-rchild) + 1
+; 返回值: 2 * fun7(input_number, root->rchild) + 1
 0x08048f7b <+65>: lea    0x1(%eax,%eax,1),%eax
 0x08048f7f <+69>: jmp    0x8048f86 <fun7+76>
 
@@ -875,3 +875,7 @@ long int strtol(const char *nptr,char **endptr,int base);
 0x08048f89 <+79>: pop    %ebx
 0x08048f8a <+80>: ret    
 ```
+
+### 解决方法
+
+0x23 - 35d
