@@ -1,11 +1,10 @@
-# HustAssembly
+# Hust Assembly Language
 
 University Learning for Assembly Language
 
 ## Contact
 
 -   E-mail: sabertazimi@gmail.com
--   QQ/WeChat: 2426543832
 
 ## License
 

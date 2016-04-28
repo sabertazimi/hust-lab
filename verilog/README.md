@@ -1,4 +1,4 @@
-# Hust Lab
+# Hust Verilog Language
 
 *Don't Reserve a Copy for Your Own Homework - That's Cheating Behavior*
 
@@ -7,12 +7,11 @@
 
 **University Learning**
 
-## Directory
+> 防止代码丢失，招致教师怨怼，你必须建立一个作业用repo -- 亚里士多德
 
-1. assembly: For assembly language lab
-2. dataStructure: For data structure lab
-3. hsi: For hardware/software interface lab
-4. verilog: For verilog language lab
+## Contact
+
+-   e-mail: sabertazimi@gmail.com
 
 ## LICENSE
 
@@ -28,3 +27,4 @@ Being a dick includes - but is not limited to - the following instances:
 2.   Reserve a copy of this project and tell your teacher that it is your own homework - Plagiarism is shame.
 
 If you become rich through modifications, related worksrvices, or supporting the original work, share the love. Only a dick would make loads off this work and not buy the original works creator(s) a pint.Code is provided with no warranty. Using somebody else's code and bitching when it goes wrong makes you a DONKEY dick. Fix the problem yourself. A non-dick would submit the fix back.
+
