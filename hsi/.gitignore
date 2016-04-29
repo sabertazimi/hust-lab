@@ -35,5 +35,9 @@
 # *.doc
 # *.docx
 
+# Microsoft Office PPT
+*.ppt
+*.pptx
+
 intro/
 *.swp
