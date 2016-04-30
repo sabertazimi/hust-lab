@@ -6,5 +6,6 @@
 -   Simulate Design
 -   Synthesize Design
 -   Implement Design
--   Timing Simulation
+-   Timing Simulation Design
+-   Generate Bitstream
 -   Testing and Verification
