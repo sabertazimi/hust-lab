@@ -19,11 +19,19 @@ asm:
 	gcc -m32 -c attack.s
 	objdump -d attack.o >> attack.asm
 
+# 利用 hex2raw 生成攻击字符串
+raw:
+	cat smoke_U201414800.txt | ./hex2raw > smoke_U201414800_raw.txt
+	cat fizz_U201414800.txt | ./hex2raw > fizz_U201414800_raw.txt
+	cat bang_U201414800.txt | ./hex2raw > bang_U201414800_raw.txt
+	cat boom_U201414800.txt | ./hex2raw > boom_U201414800_raw.txt
+	cat nitro_U201414800.txt | ./hex2raw > nitro_U201414800_raw.txt
+
 # 进行攻击测试
 test:
-	cat smoke_U201414800.txt | ./hex2raw | ./bufbomb -u U201414800
-# cat fizz_U201414800.txt | ./hex2raw | ./bufbomb -u U201414800
-# cat bang_U201414800.txt | ./hex2raw | ./bufbomb -u U201414800
-# cat boom_U201414800.txt | ./hex2raw | ./bufbomb -u U201414800
-# cat nitro_U201414800.txt | ./hex2raw | ./bufbomb -u U201414800
+	./bufbomb -u U201414800 < fizz_U201414800_raw.txt
+# ./bufbomb -u U201414800 < smoke_U201414800_raw.txt
+# ./bufbomb -u U201414800 < bang_U201414800_raw.txt
+# ./bufbomb -u U201414800 < boom_U201414800_raw.txt
+# ./bufbomb -u U201414800 < nitro_U201414800_raw.txt
 	
