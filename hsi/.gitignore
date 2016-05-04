@@ -39,5 +39,8 @@
 *.ppt
 *.pptx
 
+# Adobe PDF files
+*.pdf
+
 intro/
 *.swp
