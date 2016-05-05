@@ -1,6 +1,6 @@
 # 分析反汇编代码
 dump:
-	objdump -d bufbomb > bufbomb.asm && vim bufbomb.asm
+	objdump -D bufbomb > bufbomb.asm && vim bufbomb.asm
 
 # 分析 bufbomb C源码
 src:
@@ -29,9 +29,9 @@ raw:
 
 # 进行攻击测试
 test:
-	./bufbomb -u U201414800 < fizz_U201414800_raw.txt
+	./bufbomb -u U201414800 < bang_U201414800_raw.txt
+# ./bufbomb -u U201414800 < fizz_U201414800_raw.txt
 # ./bufbomb -u U201414800 < smoke_U201414800_raw.txt
-# ./bufbomb -u U201414800 < bang_U201414800_raw.txt
 # ./bufbomb -u U201414800 < boom_U201414800_raw.txt
 # ./bufbomb -u U201414800 < nitro_U201414800_raw.txt
 	

