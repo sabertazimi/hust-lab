@@ -29,9 +29,9 @@ raw:
 
 # 进行攻击测试
 test:
-	./bufbomb -u U201414800 < boom_U201414800_raw.txt
+	./bufbomb -n -u U201414800 < nitro_U201414800_raw.txt
 # ./bufbomb -u U201414800 < smoke_U201414800_raw.txt
 # ./bufbomb -u U201414800 < fizz_U201414800_raw.txt
 # ./bufbomb -u U201414800 < bang_U201414800_raw.txt
-# ./bufbomb -u U201414800 < nitro_U201414800_raw.txt
+# ./bufbomb -u U201414800 < boom_U201414800_raw.txt
 	
