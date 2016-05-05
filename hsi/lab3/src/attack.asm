@@ -21,3 +21,14 @@ Disassembly of section .text:
    a:	5d                   	pop    %ebp
    b:	68 81 8e 04 08       	push   $0x8048e81
   10:	c3                   	ret    
+
+attack.o：     文件格式 elf32-i386
+
+
+Disassembly of section .text:
+
+00000000 <.text>:
+   0:	8d 6c 24 28          	lea    0x28(%esp),%ebp
+   4:	b8 90 ac 98 68       	mov    $0x6898ac90,%eax
+   9:	68 15 8e 04 08       	push   $0x8048e15
+   e:	c3                   	ret    

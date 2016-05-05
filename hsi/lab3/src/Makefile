@@ -25,7 +25,7 @@ raw:
 	cat fizz_U201414800.txt | ./hex2raw > fizz_U201414800_raw.txt
 	cat bang_U201414800.txt | ./hex2raw > bang_U201414800_raw.txt
 	cat boom_U201414800.txt | ./hex2raw > boom_U201414800_raw.txt
-	cat nitro_U201414800.txt | ./hex2raw > nitro_U201414800_raw.txt
+	cat nitro_U201414800.txt | ./hex2raw -n > nitro_U201414800_raw.txt
 
 # 进行攻击测试
 test:
