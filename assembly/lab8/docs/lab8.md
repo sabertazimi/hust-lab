@@ -57,3 +57,7 @@ inc m_num
 -   `c_print`
 
 故将所有 do_while 改正至 while_do.
+
+## Intro
+
+Windows.inc中定义了 `VK_F1` equ 70h
