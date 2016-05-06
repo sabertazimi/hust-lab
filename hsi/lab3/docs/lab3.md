@@ -28,7 +28,6 @@ $ ./bufbomb -u U201414800 < smoke_ U201414800_raw.txt
 
 #### Attack
 
-
 ```bash
 $ gcc -m32 -c attack.s
 $ objdump -d attack.o >> attack.asm
@@ -71,12 +70,16 @@ raw:
 	cat nitro_U201414800.txt | ./hex2raw -n > nitro_U201414800_raw.txt
 
 # 进行攻击测试
-test:
+smoke:
 	./bufbomb -u U201414800 < smoke_U201414800_raw.txt
-# ./bufbomb -u U201414800 < fizz_U201414800_raw.txt
-# ./bufbomb -u U201414800 < bang_U201414800_raw.txt
-# ./bufbomb -u U201414800 < boom_U201414800_raw.txt
-# ./bufbomb -u U201414800 < nitro_U201414800_raw.txt
+fizz:
+	./bufbomb -u U201414800 < fizz_U201414800_raw.txt
+bang:
+	./bufbomb -u U201414800 < bang_U201414800_raw.txt
+boom:
+	./bufbomb -u U201414800 < boom_U201414800_raw.txt
+nitro:
+	./bufbomb -n -u U201414800 < nitro_U201414800_raw.txt
 ```
 
 -   make cookie 得到 cookie

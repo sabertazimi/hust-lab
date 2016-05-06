@@ -28,10 +28,20 @@ raw:
 	cat nitro_U201414800.txt | ./hex2raw -n > nitro_U201414800_raw.txt
 
 # 进行攻击测试
-test:
+smoke:
+	./bufbomb -u U201414800 < smoke_U201414800_raw.txt
+fizz:
+	./bufbomb -u U201414800 < fizz_U201414800_raw.txt
+bang:
+	./bufbomb -u U201414800 < bang_U201414800_raw.txt
+boom:
+	./bufbomb -u U201414800 < boom_U201414800_raw.txt
+nitro:
 	./bufbomb -n -u U201414800 < nitro_U201414800_raw.txt
-# ./bufbomb -u U201414800 < smoke_U201414800_raw.txt
-# ./bufbomb -u U201414800 < fizz_U201414800_raw.txt
-# ./bufbomb -u U201414800 < bang_U201414800_raw.txt
-# ./bufbomb -u U201414800 < boom_U201414800_raw.txt
-	
+test:
+	./bufbomb -u U201414800 < smoke_U201414800_raw.txt
+	./bufbomb -u U201414800 < fizz_U201414800_raw.txt
+	./bufbomb -u U201414800 < bang_U201414800_raw.txt
+	./bufbomb -u U201414800 < boom_U201414800_raw.txt
+	./bufbomb -n -u U201414800 < nitro_U201414800_raw.txt
+
