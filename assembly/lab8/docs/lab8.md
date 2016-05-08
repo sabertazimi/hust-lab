@@ -56,3 +56,8 @@ run:
 -   若不保护 ebx, 则不能正常输出成绩信息，程序直接退出: ebx 用于取出成绩，将其转化为数字字符串
 -   若不保护 ecx, 则只能成功输出 1 个学生信息: ecx 为计数器
 -   若不保护 edx, 则只能成功输出每个学生的姓名: edx 用于计算打印位置
+
+### `WM_PAINT`
+
+-   `WM_MOVE/SETFOCUS/SIZING` -> 重绘
+-   TODO: Maximize/Minimize

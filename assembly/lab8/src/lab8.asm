@@ -53,6 +53,7 @@ math	     db       '00'
 english	     db       '00'
 average	     db       '00'
 stugrade     db	      'S'
+hasText      db       0
 
 .code
 Start:	     invoke GetModuleHandle,NULL
@@ -114,14 +115,18 @@ WndProc      proc   hWnd:DWORD,uMsg:DWORD,wParam:DWORD,lParam:DWORD
 		    invoke SendMessage,hWnd,WM_CLOSE,0,0
 	    .ELSEIF wParam == IDM_ACT_AVG
 		    invoke Average, 4
+		    mov hasText, 0
 	    .ELSEIF wParam == IDM_ACT_LIST
 		    invoke Display,hWnd,4
+		    mov hasText, 1
 	    .ELSEIF wParam == IDM_HELP_ABOUT
 		    invoke MessageBox,hWnd,addr AboutMsg,addr AppName,0
 	    .ENDIF
-     .ELSEIF uMsg == WM_PAINT
+     .ELSEIF uMsg == WM_MOVE || uMsg == WM_SETFOCUS || uMsg ==WM_SIZING || uMsg == WM_LBUTTONDOWN
 	     ;; redraw window again
-	     invoke Display, hWnd, 4
+	     .IF hasText != 0
+	         invoke Display, hWnd, 4
+	     .ENDIF
      .ELSE
              invoke DefWindowProc,hWnd,uMsg,wParam,lParam
              ret
