@@ -1,13 +1,18 @@
 #define IDM_FILE_EXIT  10001
-#define IDM_FILE_LIST  10002
+#define IDM_ACT_AVG    10002
+#define IDM_ACT_LIST   10003
 #define IDM_HELP_ABOUT 10101
 
 MyMenu  MENU
 BEGIN
 	POPUP "&File"
   	BEGIN
-    		MENUITEM "L&ist",IDM_FILE_LIST
     		MENUITEM "E&xit",IDM_FILE_EXIT
+	END
+	POPUP "&Action"
+	BEGIN
+    		MENUITEM "A&verage",IDM_ACT_AVG
+    		MENUITEM "L&ist",IDM_ACT_LIST
 	END
 	POPUP "&Help"
 	BEGIN

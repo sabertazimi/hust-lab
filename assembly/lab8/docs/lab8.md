@@ -1,63 +1,58 @@
-## Bugs
-
-### xor
-
-使用寄存器前未清零导致，逻辑错误
-
-```asm
-xor eax, eax
-xor ebx, ebx
-xor ecx, ecx
-```
-
-明白了编写上下文无关的代码的重要性
-
-### 取值
-
-从内存单元取值,误多取多个字节
-
-```asm
-mov edx, [esi + m_table]
-```
-
-->
-
-```asm
-mov dl, [esi + m_table]
-```
-
-### cmp
-
-误与内存单元多个字节比较，导致比较到了无效数据，造成逻辑错误
-
-```asm
-cmp ecx, [ebx]
-```
-
-->
-
-```asm
-cmp cl, [ebx]
-```
-
-### m_num
-
-添加学生后,忘记 m_num++,造成逻辑错误
-
-```asm
-inc m_num
-```
-
-### do_while while_do
-
-应使用 while_do 的地方误用 do_while,造成逻辑错误.若学生成绩表无信息时,用户调用以下功能会造成程序进入死循环
-
--   `c_cal`
--   `c_sort`
--   `c_print`
-
-故将所有 do_while 改正至 while_do.
+# Lab 8 Notes
 
 ## Intro
 
-Windows.inc中定义了 `VK_F1` equ 70h
+-   Windows.inc中定义了 `VK_F1` equ 70h
+-   `WM_PAINT`
+
+## Workflow
+
+### env.bat
+
+建立 win32 编译/链接环境
+
+```bat
+set Masm32Dir=c:\Masm32
+set include=%Masm32Dir%\Include;%include%
+set lib=%Masm32Dir%\lib;%lib%
+```
+
+### Makefile
+
+通过 nmake 工具简化工作流
+
+```makefile
+NAME = lab8
+OBJS = $(NAME).obj
+RES = $(NAME).res
+EXE = $(NAME).exe
+
+$(EXE): $(OBJS) $(RES)
+	link /debug /debugtype:cv /subsystem:windows $(OBJS) $(RES)
+$(RES): $(NAME).rc
+	rc $(NAME).rc
+$(OBJS): $(NAME).asm
+	ml /c /coff /Zi $(NAME).asm
+
+clean:
+	del *.obj
+	del *.res
+	del *.ilk
+
+debug:
+	td $(EXE)
+	del *.tr
+
+run:
+	$(EXE)
+```
+
+## Bug
+
+### Caller Reservation
+
+调用函数 TextOut 时，需将 eax/ebx/ecx/edx 值保护起来
+
+-   若不保护 ebx, 则不能正常输出成绩信息，程序直接退出: ebx 用于取出成绩，将其转化为数字字符串
+-   若不保护 ecx, 则只能成功输出 1 个学生信息: ecx 为计数器
+-   若不保护 edx, 则只能成功输出每个学生的姓名: edx 用于计算打印位置

@@ -1,19 +1,20 @@
-NAME = main
+NAME = lab8
 OBJS = $(NAME).obj
 RES = $(NAME).res
 EXE = $(NAME).exe
 
 $(EXE): $(OBJS) $(RES)
-	Link /DEBUG /SUBSYSTEM:WINDOWS /LIBPATH:C:\masm32\lib $(OBJS) $(RES)
+	link /debug /debugtype:cv /subsystem:windows $(OBJS) $(RES)
 $(RES): $(NAME).rc
-	Rc $(NAME).rc
+	rc $(NAME).rc
 $(OBJS): $(NAME).asm
-	Ml /c /coff $(NAME).asm
+	ml /c /coff /Zi $(NAME).asm
 
 clean:
 	del *.obj
 	del *.res
 	del *.ilk
+	del *.pdb
 
 debug:
 	td $(EXE)

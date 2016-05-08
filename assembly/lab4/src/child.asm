@@ -154,8 +154,6 @@ c_radix_l1:
             mov     [si], al        ; 送入缓冲区
             inc     si
             loop    c_radix_loop2   ; (cx)--
-            mov     byte ptr [si], '$'       ;写入结束符
-            inc     si
             pop     edx
             pop     cx
             ret
