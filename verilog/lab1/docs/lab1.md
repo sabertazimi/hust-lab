@@ -4,6 +4,10 @@
 
 ### Create Proj - .v(sources) / .xdc(constraints)
 
+### RTL Analysis
+
+Schematic
+
 ### Simulate Design - *_tb.v(simulation sources)
 
 - simulation options: 500ns
