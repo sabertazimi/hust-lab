@@ -8,10 +8,15 @@
 
 - simulation options: 500ns
 - Scopes -> dut -> swt/led
+- Schematic
 
 ### Synthesize Design
 
+Schematic
+
 ### Implement Design
+
+Schematic
 
 ### Post-Implementation Timing Simulate Design
 
