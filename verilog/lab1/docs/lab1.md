@@ -2,10 +2,19 @@
 
 ## General Flow
 
--   Create Proj - .v(sources) / .xdc(constraints)
--   Simulate Design - *_tb.v(simulation sources)
--   Synthesize Design
--   Implement Design
--   Post-Implementation Timing Simulate Design
--   Generate Bitstream
--   Testing and Verification
+### Create Proj - .v(sources) / .xdc(constraints)
+
+### Simulate Design - *_tb.v(simulation sources)
+
+- simulation options: 500ns
+- Scopes -> dut -> swt/led
+
+### Synthesize Design
+
+### Implement Design
+
+### Post-Implementation Timing Simulate Design
+
+### Generate Bitstream
+
+### Testing and Verification
