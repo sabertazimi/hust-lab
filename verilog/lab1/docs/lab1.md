@@ -2,8 +2,8 @@
 
 ## General Flow
 
--   Create Proj
--   Simulate Design
+-   Create Proj - .v / .xdc
+-   Simulate Design - tb.v
 -   Synthesize Design
 -   Implement Design
 -   Post-Implementation Timing Simulate Design
