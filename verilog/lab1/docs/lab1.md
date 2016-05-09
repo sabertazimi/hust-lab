@@ -2,7 +2,7 @@
 
 ## General Flow
 
--   Create Proj - .v / .xdc
+-   Create Proj - .v(source) / .xdc(constraints)
 -   Simulate Design - tb.v
 -   Synthesize Design
 -   Implement Design
