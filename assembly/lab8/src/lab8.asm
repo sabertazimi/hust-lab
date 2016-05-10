@@ -183,7 +183,7 @@ display_loop:
              pop     ecx
 	     xor    eax, eax
 	     mov    al, buf[ebx].chinese
-	     lea    si, chinese
+	     lea    esi, chinese
 	     invoke   Radix, 10
              push    ecx
              push    edx
@@ -194,7 +194,7 @@ display_loop:
              pop     ecx
 	     xor    eax, eax
 	     mov    al, buf[ebx].math
-	     lea    si, math
+	     lea    esi, math
 	     invoke   Radix, 10
              push    ecx
              push    edx
@@ -205,7 +205,7 @@ display_loop:
              pop     ecx
 	     xor    eax, eax
 	     mov    al, buf[ebx].english
-	     lea    si, english
+	     lea    esi, english
 	     invoke   Radix, 10
              push    ecx
              push    edx
@@ -216,7 +216,7 @@ display_loop:
              pop     ecx
 	     xor    eax, eax
 	     mov    al, buf[ebx].average
-	     lea    si, average
+	     lea    esi, average
 	     invoke   Radix, 10
              push    ecx
              push    edx
