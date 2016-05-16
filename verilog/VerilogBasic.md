@@ -32,6 +32,7 @@ module moduleName( In1, In2, Out1, Out2, InOut1);
     wire InOut1;
     reg Out2;
     // Instantiation of lower level modules
+    Design u_2(.(端口(信号1), .(端口2(信号2), .(端口3(信号3));
 
     // Functionality
 
@@ -122,6 +123,7 @@ Num = 4'bz01;               // 前两位为z, 后两位为01
 -   局部变量, 没有记忆性
 -   默认值: z
 -   wire 间不可直接相连, wand/wor 间课直接相连
+-   可用 wire 定义局部变量
 
 ### Register - reg/integer/time/real/realtime
 
