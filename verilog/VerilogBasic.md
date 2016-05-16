@@ -283,6 +283,8 @@ else
 #### case/casex/casez
 
 -   expr: 常量/变量/连接运算符{ }/x/z
+-   casex: 当输入某一位为 x/z 时，忽略此位匹配(恒将此位匹配为真)
+-   casez: 当输入某一位为 z 时，忽略此位匹配(恒将此位匹配为真)
 
 ```verilog
 case (expr)
