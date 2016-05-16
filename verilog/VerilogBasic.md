@@ -89,6 +89,35 @@ module arithmetic_unit (result_1, result_2, operand_1, operand_2,);
 endmodule
 ```
 
+### task
+
+将测试流程分为多个任务:
+
+-   初始化任务
+-   模拟生成任务
+-   自我检查任务
+
+```verilog
+module adder_task (c_out, sum, clk, reset, c_in, data_a, data_b);
+  output reg	[3: 0] 	sum;
+  output reg		c_out;
+  input 	[3: 0] 	data_a, data_b;
+  input 		clk, reset, c_in;
+ 
+  always @(posedge clk or posedge reset) begin
+    if (reset) {c_out, sum} <= 0;
+    else add_values (sum, c_out, data_a, data_b, c_in); // invoke task
+  end
+  task add_values;	// task declaration
+    output reg	[3: 0] 	SUM;
+    output reg		C_OUT;
+    input 	[3: 0] 	DATA_A, DATA_B;
+    input 		C_IN;
+	      		{C_OUT, SUM} = DATA_A + (DATA_B + C_IN);
+   endtask
+endmodule
+```
+
 ## Variable/Data Structure
 
 ### 常量
