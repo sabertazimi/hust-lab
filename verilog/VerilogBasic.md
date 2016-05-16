@@ -376,6 +376,22 @@ output = input_logic;
 output <= input_logic;
 ```
 
+#### disable
+
+```verilog
+begin : break
+    for (i = 0; i < n; i = i+1) begin : continue
+        @(posedge clk)
+        if (a == 0) // "continue" loop
+            disable continue;
+        if (a == b) // "break" from loop
+            disable break;
+        statement1
+        statement2
+    end
+end
+```
+
 ## Demos
 
 -   [gitbooks.io](https://hom-wang.gitbooks.io/verilog-hdl/content/Chapter_07.html)
