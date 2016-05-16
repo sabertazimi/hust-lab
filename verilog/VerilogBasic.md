@@ -52,6 +52,25 @@ module moduleName( In1, In2, Out1, Out2, InOut1);
 endmodule
 ```
 
+## function
+
+-   不含时间/事件控制
+-   至少1个输入
+-   至多1个输出
+-   只含行为模块
+-   只含阻塞赋值语句
+
+```verilog
+function 	[7: 0] 	aligned_word;	   // function declaration
+    input 	[7: 0] 	word;
+    begin
+      aligned_word = word;
+      if (aligned_word != 0)
+        while (aligned_word[7] == 0) aligned_word = aligned_word << 1;
+    end
+  endfunction
+```
+
 ## Variable/Data Structure
 
 ### 常量
