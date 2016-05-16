@@ -226,6 +226,8 @@ always @(事件1, 事件2, ...)
 
 #### if-else
 
+-   必须添加 else
+
 ```verilog
 if (condition1)
     begin
