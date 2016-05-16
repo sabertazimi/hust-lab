@@ -273,6 +273,28 @@ for (循环初值; 循环条件; 控制部分)
     end
 ```
 
+#### repeat loop
+
+```verilog
+initial begin
+    inc_DAC = 1’b1;
+
+    repeat(4095) @(posedge clk); // bring DAC right up to point of rollover
+    inc_DAC = 1’b0;
+    inc_smpl = 1’b1;
+
+    repeat(7)@(posedge clk); // bring sample count up to 7
+    inc_smpl = 1’b0;
+end
+```
+
+#### forever loop
+
+```verilog
+// $stop, $finish 可以终止 forevr loop
+forever #10 clk = ~ clk;
+```
+
 #### Blocking/Non-Blocking
 
 -   Blocking(=): 顺序执行
