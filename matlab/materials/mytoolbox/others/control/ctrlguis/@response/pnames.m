@@ -1,0 +1,93 @@
+function [Props,AsgnVals] = pnames(RespObj,flag)
+%PNAMES  All public properties and their assignable values
+%
+%   [PROPS,ASGNVALS] = PNAMES(RESPOBJ,'true')  returns the list PROPS 
+%   (in a cell vector) of public properties of the object RESPOBJ , as well
+%   as the assignable values ASGNVALS for these properties (a cell vector
+%   of strings).  PROPS contains the true case-sensitive property names.
+%   These include the public properties of RESPOBJ's parent(s).
+%
+%   [PROPS,ASGNVALS] = PNAMES(RESPOBJ,'lower')  returns lowercase property
+%   names.  This helps speed up name matching in GET and SET.
+%
+%   See also  GET, SET.
+% $Revision: 1.3 $
+
+%   Author(s): P. Gahinet, 7-8-97
+%	 Karen D. Gondoly, 1-2-98 (Modified for Response Objects) 
+%   Copyright (c) 1986-98 by The MathWorks, Inc.
+
+%---Make sure there are two input arguments.
+error(nargchk(2,2,nargin));
+
+flag=lower(flag);
+
+% Response Objec properties
+Props = {'ArraySelector';
+   'AxesGrouping';
+   'BackgroundAxes';
+   'ChannelSelector';
+   'ColorOrder';
+   'Grid';
+   'InputLabel';
+   'LinestyleOrder';
+   'MarkerOrder';
+   'NextPlot'; 
+   'OutputLabel';
+   'Parent'; 
+   'PlotAxes';
+   'ResponseType';
+   'SelectedChannels';
+   'SelectedModels';
+   'SystemNames';
+   'SystemVisibility';
+   'Title';
+   'Xlabel';
+   'XlimMode';
+   'Xlims';
+   'Ylabel';
+   'YlimMode';
+   'Ylims';
+   'Zoom';
+   'ResponseHandles';
+   'UIContextMenu';
+	'InitializeResponse'};
+
+if strcmp(flag,'lower');
+   Props = lower(Props);
+end
+
+% Also return values if needed
+if nargout>1,
+   AsgnVals = {'string (''on'',{''off''})'; ...
+         		'string ({''none''},''all'',''inputs'',''outputs'')'; ...
+		      	'single axes handle (get only)'; ...
+               'string (''on'',{''off''})'; ...
+               'character array'; ...
+               'string (''on'',{''off''})'; ...
+               'cell array of input label strings'; ...
+               'character array'; ...
+               'character array'; ...
+               'string (''add'',{''replace''},''replacechildren'')'; ...
+               'cell array of output label strings'; ...
+               'figure handle'; ...
+         		'matrix of axes handles (get only)';...
+               'string (''step'',''impulse'',''bode'',''nyquist'',''nichols'',''sigma'',''initial'',''lsim'',''margin'')'; ...
+               'logical matrix'; ...
+               'cell array of N-D logical matrices'; ...
+               'cell array of strings'; ...
+               'cell array of strings ({''on''},''off'')'; ...
+               'Handle of BackgroundAxes Title'; ...
+               'Handle of BackgroundAxes Xlabel'; ...
+               'string ({''auto''},''manual'')'; ...
+               'cell array of 1x2 vectors'; ...
+               'Handle of BackgroundAxes Ylabel'; ...
+               'string ({''auto''},''manual'')'; ...
+               'cell array of 1x2 vectors'; ...
+            	'string (''on'',{''off''},''xon'',''yon'',''reset'')'; ...
+               'cell array of handles'; ...
+               'structure array of UIcontextMenu handles'; ...
+            	'structure array of data for initializing response plots'};
+end
+
+% end response/pnames.m
