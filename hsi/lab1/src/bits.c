@@ -279,14 +279,6 @@ int float_f2i(unsigned uf) {
     else if (exp > 157) {
         return 0x80000000;
     }
-    // uf 为非数/无穷大数, 转化后的整数值为其本身
-    else if (exp == 0xff) {
-        return 0x80000000;
-    }
-    // 处理转化后为 0x80000000(INT_MIN)
-    else if (sign == 1 && exp == 158 && frac == 0) {
-        return 0x80000000;
-    }
     // uf 为规格化浮点数
     else {
         // 计算规格化位数
