@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 module mux_2_to_1_gate(input x, input y, input s, output m);
 	wire neg_s, x_s, y_s;
 

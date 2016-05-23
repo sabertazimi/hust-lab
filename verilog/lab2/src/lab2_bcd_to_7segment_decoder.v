@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 module bcd_to_7segment_decoder(input [3:0] x, output [3:0] an, output [6:0] seg);
 	assign an = 4'b0001;
 	assign  seg[0] = ~x[0] & ~x[1] & x[2]; // a

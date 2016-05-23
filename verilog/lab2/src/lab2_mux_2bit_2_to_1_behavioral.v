@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 module mux_2bit_2_to_1_behavioral(input [1:0] x, input [1:0] y, input s, output [1:0] m);
 	reg [1:0] m;
 
