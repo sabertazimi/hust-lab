@@ -1,0 +1,41 @@
+#-----------------------------------------------------------
+# Vivado v2016.1 (64-bit)
+# SW Build 1538259 on Fri Apr  8 15:45:23 MDT 2016
+# IP Build 1537824 on Fri Apr  8 04:28:57 MDT 2016
+# Start of session at: Mon May 23 22:35:44 2016
+# Process ID: 13953
+# Current directory: /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2
+# Command line: vivado
+# Log file: /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2/vivado.log
+# Journal file: /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2/vivado.jou
+#-----------------------------------------------------------
+start_gui
+create_project lab2_2 . -part xc7a100tcsg324-1
+set_property simulator_language Verilog [current_project]
+file mkdir /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2/lab2_2.srcs/sources_1/new
+add_files -norecurse /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_1/lab2_1.srcs/sources_1/new/bcd_to_7segment_decoder.v
+close [ open /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2/lab2_2.srcs/sources_1/new/_4bit_to_7segment.v w ]
+add_files /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2/lab2_2.srcs/sources_1/new/_4bit_to_7segment.v
+update_compile_order -fileset sources_1
+update_compile_order -fileset sim_1
+update_compile_order -fileset sources_1
+file mkdir /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2/lab2_2.srcs/sim_1/new
+set_property SOURCE_SET sources_1 [get_filesets sim_1]
+close [ open /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2/lab2_2.srcs/sim_1/new/_4bit_to_7segment.v w ]
+add_files -fileset sim_1 /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2/lab2_2.srcs/sim_1/new/_4bit_to_7segment.v
+update_compile_order -fileset sim_1
+remove_files -fileset sim_1 /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2/lab2_2.srcs/sim_1/new/_4bit_to_7segment.v
+update_compile_order -fileset sim_1
+set_property SOURCE_SET sources_1 [get_filesets sim_1]
+close [ open /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2/lab2_2.srcs/sim_1/new/_4bit_to_7segment_tb.v w ]
+add_files -fileset sim_1 /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2/lab2_2.srcs/sim_1/new/_4bit_to_7segment_tb.v
+update_compile_order -fileset sim_1
+update_compile_order -fileset sources_1
+launch_simulation
+source _4bit_to_7segment.tcl
+update_compile_order -fileset sim_1
+update_compile_order -fileset sim_1
+launch_simulation
+source _4bit_to_7segment_tb.tcl
+close_sim
+close_sim
