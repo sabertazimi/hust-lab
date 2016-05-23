@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 2016/05/23 20:29:04
+// Create Date: 2016/05/23 21:10:30
 // Design Name: 
-// Module Name: mux_2bit_2_to_1_dataflow
+// Module Name: mux_3_to_1
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,11 +20,9 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module mux_2bit_2_to_1_dataflow(input [1:0] x, input [1:0] y, input s, output [1:0] m);
-	wire [1:0] two_s;
+module mux_3_to_1(input u, input v, input w, input s0, input s1, output m);
+	wire u_v;
 
-	assign #3 two_s[0] = s;
-	assign #3 two_s[1] = s;
-	assign #3 m = (x & ~two_s) | (y & two_s);
+	mux_2_to_1_gate Mux1 (.x(u), .y(v), .s(s0), .m(u_v));
+	mux_2_to_1_gate Mux2 (.x(u_v), .y(w), .s(s1), .m(m));
 endmodule
-

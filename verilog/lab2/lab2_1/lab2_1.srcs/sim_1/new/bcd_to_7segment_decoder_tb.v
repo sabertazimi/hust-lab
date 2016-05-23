@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 2016/05/23 20:29:04
+// Create Date: 2016/05/23 21:33:38
 // Design Name: 
-// Module Name: mux_2bit_2_to_1_dataflow
+// Module Name: bcd_to_7segment_decoder_tb
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,11 +20,21 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module mux_2bit_2_to_1_dataflow(input [1:0] x, input [1:0] y, input s, output [1:0] m);
-	wire [1:0] two_s;
+module bcd_to_7segment_decoder_tb(
 
-	assign #3 two_s[0] = s;
-	assign #3 two_s[1] = s;
-	assign #3 m = (x & ~two_s) | (y & two_s);
+    );
+    reg [3:0] x;
+    wire [3:0] an;
+    wire [6:0] seg;
+    integer i;
+
+    
+    bcd_to_7segment_decoder DUT (.x(x), .an(an), .seg(seg));
+    
+    initial begin
+        x = 0;
+        for (i = 0; i < 15; i = i + 1)
+            #10 x = i;
+        #20;
+    end
 endmodule
-

@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 2016/05/23 20:29:04
+// Create Date: 2016/05/23 20:46:54
 // Design Name: 
-// Module Name: mux_2bit_2_to_1_dataflow
+// Module Name: mux_2bit_2_to_1_behavioral
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,11 +20,15 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module mux_2bit_2_to_1_dataflow(input [1:0] x, input [1:0] y, input s, output [1:0] m);
-	wire [1:0] two_s;
+module mux_2bit_2_to_1_behavioral(input [1:0] x, input [1:0] y, input s, output [1:0] m);
+	reg [1:0] m;
 
-	assign #3 two_s[0] = s;
-	assign #3 two_s[1] = s;
-	assign #3 m = (x & ~two_s) | (y & two_s);
+	always @(x or y or s) begin
+		if (s == 0) begin
+			m = x;
+		end
+		else begin
+			m = y;
+		end
+	end
 endmodule
-
