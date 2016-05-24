@@ -30,21 +30,11 @@ set rt::rc [catch {
 
     set rt::useElabCache false
     if {$rt::useElabCache == false} {
-      rt::read_verilog {
-      /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_1/lab2_2_2_1.srcs/sources_1/new/lab2_circuitA_dataflow.v
-      /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_1/lab2_2_2_1.srcs/sources_1/new/comparator_dataflow.v
-      /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_1/lab2_1.srcs/sources_1/new/mux_2_to_1_gate.v
-      /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_1/lab2_2_2_1.srcs/sources_1/new/lab2_2_2_1_partA.v
-      /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_1/lab2_1.srcs/sources_1/new/bcd_to_7segment_decoder.v
-      /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_3_1/lab2_2_3_1.srcs/sources_1/new/fulladder_dataflow.v
-      /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_1/lab2_2_2_1.srcs/sources_1/new/lab2_2_2_1.v
-      /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_3_1/lab2_2_3_1.srcs/sources_1/new/rca_dataflow.v
-      /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_3_2/lab2_2_3_2.srcs/sources_1/new/rca_to_7segment_dataflow.v
-    }
+      rt::read_verilog /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_1/lab2_4/lab2_4.srcs/sources_1/new/calc_ones_function.v
       rt::filesetChecksum
     }
     rt::set_parameter usePostFindUniquification false
-    set rt::top rca_to_7segment_dataflow
+    set rt::top calc_ones_function
     set rt::reportTiming false
     rt::set_parameter elaborateOnly true
     rt::set_parameter elaborateRtl true

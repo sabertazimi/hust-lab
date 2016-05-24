@@ -2,11 +2,11 @@
 # Webtalk v2016.1 (64-bit)
 # SW Build 1538259 on Fri Apr  8 15:45:23 MDT 2016
 # IP Build 1537824 on Fri Apr  8 04:28:57 MDT 2016
-# Start of session at: Tue May 24 15:14:17 2016
-# Process ID: 601
+# Start of session at: Tue May 24 15:51:33 2016
+# Process ID: 13345
 # Current directory: /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_1
-# Command line: wbtcv -mode batch -source /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_3_3/lab2_3_3.hw/webtalk/labtool_webtalk.tcl -notrace
+# Command line: wbtcv -mode batch -source /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_1/lab2_4/lab2_4.hw/webtalk/labtool_webtalk.tcl -notrace
 # Log file: /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_1/webtalk.log
 # Journal file: /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_1/webtalk.jou
 #-----------------------------------------------------------
-source /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_3_3/lab2_3_3.hw/webtalk/labtool_webtalk.tcl -notrace
+source /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_1/lab2_4/lab2_4.hw/webtalk/labtool_webtalk.tcl -notrace
