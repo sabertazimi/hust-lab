@@ -1,0 +1,1 @@
+-wto "5b025310848e4cb9bc66fcd556e644bd" --debug "typical" --relax --mt "8" -L "xil_defaultlib" -L "unisims_ver" -L "unimacro_ver" -L "secureip" --snapshot "Register_with_synch_reset_load_behavior_tb_behav" "xil_defaultlib.Register_with_synch_reset_load_behavior_tb" "xil_defaultlib.glbl" -log "elaborate.log" 

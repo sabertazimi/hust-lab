@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<document>
+<!--The data in this file is primarily intended for consumption by Xilinx tools.
+The structure and the elements are likely to change over the next few releases.
+This means code written to parse this file will need to be revisited each subsequent release.-->
+<application name="pa" timeStamp="Tue May 24 22:18:54 2016">
+<section name="Project Information" visible="false">
+<property name="ProjectID" value="299dd1226e7848b19f3b6ff3d73a9941" type="ProjectID"/>
+<property name="ProjectIteration" value="1" type="ProjectIteration"/>
+</section>
+<section name="PlanAhead Usage" visible="true">
+<item name="Project Data">
+<property name="SrcSetCount" value="1" type="SrcSetCount"/>
+<property name="ConstraintSetCount" value="1" type="ConstraintSetCount"/>
+<property name="DesignMode" value="RTL" type="DesignMode"/>
+<property name="SynthesisStrategy" value="Vivado Synthesis Defaults" type="SynthesisStrategy"/>
+<property name="ImplStrategy" value="Vivado Implementation Defaults" type="ImplStrategy"/>
+</item>
+<item name="Java Command Handlers">
+<property name="AddSources" value="1" type="JavaHandler"/>
+<property name="NewProject" value="2" type="JavaHandler"/>
+<property name="SimulationClose" value="1" type="JavaHandler"/>
+<property name="SimulationRun" value="2" type="JavaHandler"/>
+</item>
+<item name="Gui Resources Info">
+<property name="BACK,  Back" value="1" type="GuiResourceData"/>
+<property name="FINISH, Finish" value="2" type="GuiResourceData"/>
+<property name="NEXT, Next " value="16" type="GuiResourceData"/>
+<property name="PAResourceAtoD.AddSrcWizard_SPECIFY_SIMULATION_SPECIFIC_HDL_FILES, Add or create simulation sources" value="1" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, (String" value="2" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, Register_with_synch_reset_load_behavior" value="2" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, Register_with_synch_reset_load_behavior_tb" value="1" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, Register_with_synch_reset_set_load_behavior" value="1" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_NEW_PROJECT, New Project..." value="1" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_SIMULATION_RUN_BEHAVIORAL, Run Behavioral Simulation" value="2" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Register_with_synch_reset_load_behavior (Register_with_synch_reset_load_behavior.v" value="2" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, Register_with_synch_reset_load_behavior_tb (Register_with_synch_reset_load_behavior_tb.v" value="2" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1], 4" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources], 3" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Project Manager, Add Sources], 2, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Simulation, Run Simulation], 11, false" value="2" type="GuiResourceData"/>
+<property name="PAResourceEtoH.GettingStartedView_CREATE_NEW_PROJECT, Create New Project" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_FILE, File" value="2" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_OPEN_RECENT_PROJECT, Open Recent Project" value="2" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PAViews_CODE, Code" value="2" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PAViews_PROJECT_SUMMARY, Project Summary" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PartChooser_FAMILY_CHOOSER, Artix-7, 1" value="2" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PartChooser_PARTS, xc7a100tcsg324-1 ; 324 ; 135 ; 240 ; 126800 ; 0 ; 0 ; 210 ; 63400 ; 6 ; 1 ; 85 ; 0 ; 85 ; C ; 1.05 ; 0.95 ; 0.95, 4, xc7a100tcsg324-1, 0" value="2" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PartChooser_PART_PACKAGE_CHOOSER, csg324, 2" value="2" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PartChooser_PART_SPEED_CHOOSER, -1, 1" value="2" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PartChooser_PART_SPEED_CHOOSER, All Remaining, 0" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PartChooser_PRODUCT_CHOOSER, General Purpose, 2" value="2" type="GuiResourceData"/>
+<property name="PAResourceOtoP.ProjectNameChooser_PROJECT_NAME, lab3_2_1_" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.ProjectNameChooser_PROJECT_NAME, lab3_2_1_1" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.ProjectNameChooser_PROJECT_NAME, lab3_2_1_2" value="1" type="GuiResourceData"/>
+<property name="PAResourceQtoS.SrcChooserPanel_CREATE_FILE, Create File" value="3" type="GuiResourceData"/>
+<property name="RDIResource.BaseDialog_OK, OK" value="6" type="GuiResourceData"/>
+<property name="RDIResource.GraphicalView_ZOOM_FIT, Waveform Viewer_zoom_fit" value="2" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 285, -40, false, false, false, true, false" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 501, 70, false, false, false, true, false" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 1*" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 2*" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior.v, 71, 232" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior.v, 78, 241" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 100, 265" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 101, 166" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 101, 268" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 102, 111" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 102, 231" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 103, 201" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 104, 223" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 105, 149" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 105, 217" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 105, 229" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 105, 230" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 106, 173" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 106, 181" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 106, 223" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 109, 215" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 109, 250" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 110, 164" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 111, 164" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 112, 260" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 114, 229" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 114, 61" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 117, 269" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 119, 158" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 119, 228" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 120, 180" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 122, 159" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 128, 163" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 144, 212" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 153, 262" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 164, 272" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 165, 214" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 32, 212" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 43, 130" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 45, 182" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 46, 160" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 47, 178" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 48, 212" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 48, 250" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 49, 149" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 49, 233" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 50, 161" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 52, 112" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 53, 193" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 54, 251" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 55, 263" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 56, 243" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 57, 180" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 58, 137" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 58, 208" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 58, 211" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 58, 245" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 59, 120" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 59, 163" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 60, 140" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 60, 156" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 60, 193" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 60, 198" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 60, 225" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 61, 179" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 61, 229" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 61, 262" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 65, 109" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 67, 126" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 67, 230" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 85, 199" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 87, 246" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 89, 158" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 90, 143" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 91, 139" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 91, 160" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 91, 228" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 92, 105" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 92, 124" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 93, 278" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 94, 111" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 94, 157" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 94, 175" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 94, 179" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 94, 266" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 95, 160" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 95, 181" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 95, 184" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 95, 190" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 96, 120" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 96, 193" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 96, 199" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 96, 206" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 96, 231" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 97, 145" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 97, 161" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 97, 205" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 97, 240" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 98, 250" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 99, 122" value="1" type="GuiResourceData"/>
+<property name="Register_with_synch_reset_load_behavior_tb.v, 99, 269" value="1" type="GuiResourceData"/>
+</item>
+<item name="Other">
+<property name="GuiMode" value="14" type="GuiMode"/>
+<property name="BatchMode" value="0" type="BatchMode"/>
+<property name="TclMode" value="12" type="TclMode"/>
+</item>
+</section>
+</application>
+</document>
