@@ -3,29 +3,29 @@
 <!--                                                         -->
 <!-- Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="12" Path="/home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_2/lab2_2_2_2.xpr">
+<Project Version="7" Minor="12" Path="/home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_3_1/lab2_2_3_1.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
-    <Option Name="Id" Val="73658c5fd8d144c5b98db83c7a739784"/>
+    <Option Name="Id" Val="39710986678046468617b9e24f636ac5"/>
     <Option Name="Part" Val="xc7a100tcsg324-1"/>
     <Option Name="CompiledLibDir" Val="$PCACHEDIR/compile_simlib"/>
     <Option Name="CompiledLibDirXSim" Val=""/>
-    <Option Name="CompiledLibDirModelSim" Val="/home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_2/lab2_2_2_2.cache/compile_simlib/modelsim"/>
-    <Option Name="CompiledLibDirQuesta" Val="/home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_2/lab2_2_2_2.cache/compile_simlib/questa"/>
-    <Option Name="CompiledLibDirIES" Val="/home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_2/lab2_2_2_2.cache/compile_simlib/ies"/>
-    <Option Name="CompiledLibDirVCS" Val="/home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_2/lab2_2_2_2.cache/compile_simlib/vcs"/>
-    <Option Name="CompiledLibDirRiviera" Val="/home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_2/lab2_2_2_2.cache/compile_simlib/riviera"/>
-    <Option Name="CompiledLibDirActivehdl" Val="/home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_2/lab2_2_2_2.cache/compile_simlib/activehdl"/>
+    <Option Name="CompiledLibDirModelSim" Val="/home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_3_1/lab2_2_3_1.cache/compile_simlib/modelsim"/>
+    <Option Name="CompiledLibDirQuesta" Val="/home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_3_1/lab2_2_3_1.cache/compile_simlib/questa"/>
+    <Option Name="CompiledLibDirIES" Val="/home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_3_1/lab2_2_3_1.cache/compile_simlib/ies"/>
+    <Option Name="CompiledLibDirVCS" Val="/home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_3_1/lab2_2_3_1.cache/compile_simlib/vcs"/>
+    <Option Name="CompiledLibDirRiviera" Val="/home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_3_1/lab2_2_3_1.cache/compile_simlib/riviera"/>
+    <Option Name="CompiledLibDirActivehdl" Val="/home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_3_1/lab2_2_3_1.cache/compile_simlib/activehdl"/>
     <Option Name="SimulatorLanguage" Val="Verilog"/>
     <Option Name="BoardPart" Val=""/>
     <Option Name="ActiveSimSet" Val="sim_1"/>
     <Option Name="DefaultLib" Val="xil_defaultlib"/>
     <Option Name="EnableCoreContainer" Val="FALSE"/>
     <Option Name="CreateRefXciForCoreContainers" Val="FALSE"/>
-    <Option Name="IPUserFilesDir" Val="$PPRDIR/lab2_2_2_2.ip_user_files"/>
-    <Option Name="IPStaticSourceDir" Val="$PPRDIR/lab2_2_2_2.ip_user_files/ipstatic"/>
+    <Option Name="IPUserFilesDir" Val="$PPRDIR/lab2_2_3_1.ip_user_files"/>
+    <Option Name="IPStaticSourceDir" Val="$PPRDIR/lab2_2_3_1.ip_user_files/ipstatic"/>
     <Option Name="EnableBDX" Val="FALSE"/>
-    <Option Name="WTXSimLaunchSim" Val="3"/>
+    <Option Name="WTXSimLaunchSim" Val="8"/>
     <Option Name="WTModelSimLaunchSim" Val="0"/>
     <Option Name="WTQuestaLaunchSim" Val="0"/>
     <Option Name="WTIesLaunchSim" Val="0"/>
@@ -44,7 +44,14 @@
   <FileSets Version="1" Minor="31">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
       <Filter Type="Srcs"/>
-      <File Path="$PSRCDIR/sources_1/new/lab2_2_2_2.v">
+      <File Path="$PSRCDIR/sources_1/new/fulladder_dataflow.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/rca_dataflow.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -53,7 +60,7 @@
       </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
-        <Option Name="TopModule" Val="lab2_2_2_2"/>
+        <Option Name="TopModule" Val="rca_dataflow"/>
         <Option Name="TopAutoSet" Val="TRUE"/>
       </Config>
     </FileSet>
@@ -64,8 +71,16 @@
       </Config>
     </FileSet>
     <FileSet Name="sim_1" Type="SimulationSrcs" RelSrcDir="$PSRCDIR/sim_1">
-      <File Path="$PSRCDIR/sim_1/new/lab2_2_2_2_tb.v">
+      <File Path="$PSRCDIR/sim_1/new/rca_dataflow_tb.v">
         <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sim_1/new/fulladder_dataflow_tb.v">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -73,12 +88,12 @@
       </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
-        <Option Name="TopModule" Val="lab2_2_2_2_tb"/>
+        <Option Name="TopModule" Val="rca_dataflow_tb"/>
         <Option Name="TopLib" Val="xil_defaultlib"/>
-        <Option Name="TopAutoSet" Val="TRUE"/>
         <Option Name="TransportPathDelay" Val="0"/>
         <Option Name="TransportIntDelay" Val="0"/>
         <Option Name="SrcSet" Val="sources_1"/>
+        <Option Name="xsim.simulate.runtime" Val="5500ns"/>
       </Config>
     </FileSet>
   </FileSets>

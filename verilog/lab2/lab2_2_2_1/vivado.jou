@@ -66,3 +66,85 @@ close_sim
 close_project
 create_project lab2_2_2_2 /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_2 -part xc7a100tcsg324-1
 set_property simulator_language Verilog [current_project]
+file mkdir /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_2/lab2_2_2_2.srcs/sources_1/new
+close [ open /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_2/lab2_2_2_2.srcs/sources_1/new/lab2_2_2_2.v w ]
+add_files /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_2/lab2_2_2_2.srcs/sources_1/new/lab2_2_2_2.v
+update_compile_order -fileset sources_1
+update_compile_order -fileset sim_1
+file mkdir /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_2/lab2_2_2_2.srcs/sim_1/new
+set_property SOURCE_SET sources_1 [get_filesets sim_1]
+close [ open /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_2/lab2_2_2_2.srcs/sim_1/new/lab2_2_2_2_tb.v w ]
+add_files -fileset sim_1 /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_2/lab2_2_2_2.srcs/sim_1/new/lab2_2_2_2_tb.v
+update_compile_order -fileset sim_1
+update_compile_order -fileset sim_1
+update_compile_order -fileset sim_1
+launch_simulation
+launch_runs synth_1
+wait_on_run synth_1
+reset_run synth_1 -noclean_dir 
+launch_simulation
+launch_simulation
+source lab2_2_2_2_tb.tcl
+add_bp {/home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_2/lab2_2_2_2.srcs/sources_1/new/lab2_2_2_2.v} 27
+remove_bps -file {/home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_2/lab2_2_2_2.srcs/sources_1/new/lab2_2_2_2.v} -line 27
+close_sim
+close_project
+create_project lab2_2_3_1 /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_3_1 -part xc7a100tcsg324-1
+set_property simulator_language Verilog [current_project]
+file mkdir /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_3_1/lab2_2_3_1.srcs/sources_1/new
+close [ open /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_3_1/lab2_2_3_1.srcs/sources_1/new/fulladder_dataflow.v w ]
+add_files /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_3_1/lab2_2_3_1.srcs/sources_1/new/fulladder_dataflow.v
+update_compile_order -fileset sources_1
+update_compile_order -fileset sim_1
+file mkdir /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_3_1/lab2_2_3_1.srcs/sim_1/new
+set_property SOURCE_SET sources_1 [get_filesets sim_1]
+close [ open /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_3_1/lab2_2_3_1.srcs/sim_1/new/fulladder_dataflow_tb.v w ]
+add_files -fileset sim_1 /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_3_1/lab2_2_3_1.srcs/sim_1/new/fulladder_dataflow_tb.v
+update_compile_order -fileset sim_1
+update_compile_order -fileset sim_1
+update_compile_order -fileset sim_1
+set_property -name {xsim.simulate.runtime} -value {100ns} -objects [get_filesets sim_1]
+close [ open /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_3_1/lab2_2_3_1.srcs/sources_1/new/rca_dataflow.v w ]
+add_files /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_3_1/lab2_2_3_1.srcs/sources_1/new/rca_dataflow.v
+update_compile_order -fileset sources_1
+set_property SOURCE_SET sources_1 [get_filesets sim_1]
+close [ open /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_3_1/lab2_2_3_1.srcs/sim_1/new/rca_dataflow_tb.v w ]
+add_files -fileset sim_1 /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_3_1/lab2_2_3_1.srcs/sim_1/new/rca_dataflow_tb.v
+update_compile_order -fileset sim_1
+launch_simulation
+source fulladder_dataflow_tb.tcl
+close_sim
+launch_simulation
+source fulladder_dataflow_tb.tcl
+close_sim
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+launch_simulation
+source fulladder_dataflow_tb.tcl
+close_sim
+# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
+set_property source_mgmt_mode None [current_project]
+set_property top rca_dataflow_tb [get_filesets sim_1]
+set_property top_lib xil_defaultlib [get_filesets sim_1]
+# Re-enabling previously disabled source management mode.
+set_property source_mgmt_mode All [current_project]
+update_compile_order -fileset sim_1
+launch_simulation
+source rca_dataflow_tb.tcl
+set_property -name {xsim.simulate.runtime} -value {1000ns} -objects [get_filesets sim_1]
+close_sim
+launch_simulation
+source rca_dataflow_tb.tcl
+set_property -name {xsim.simulate.runtime} -value {2000ns} -objects [get_filesets sim_1]
+close_sim
+launch_simulation
+source rca_dataflow_tb.tcl
+set_property -name {xsim.simulate.runtime} -value {5000ns} -objects [get_filesets sim_1]
+close_sim
+launch_simulation
+source rca_dataflow_tb.tcl
+set_property -name {xsim.simulate.runtime} -value {5500ns} -objects [get_filesets sim_1]
+close_sim
+launch_simulation
+source rca_dataflow_tb.tcl
+close_sim
