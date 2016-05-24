@@ -320,3 +320,39 @@ add_files -fileset sim_1 /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_3_
 update_compile_order -fileset sim_1
 update_compile_order -fileset sources_1
 update_compile_order -fileset sim_1
+remove_files /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_3_3/lab2_3_3.srcs/sources_1/new/8_to_3_priority_encoder.v
+update_compile_order -fileset sources_1
+update_compile_order -fileset sim_1
+remove_files -fileset sim_1 /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_3_3/lab2_3_3.srcs/sim_1/new/8_to_3_priority_encoder_tb.v
+update_compile_order -fileset sim_1
+file mkdir /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_3_3/lab2_3_3.srcs/sources_1/new
+close [ open /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_3_3/lab2_3_3.srcs/sources_1/new/_8_to_3_priority_encoder.v w ]
+add_files /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_3_3/lab2_3_3.srcs/sources_1/new/_8_to_3_priority_encoder.v
+update_compile_order -fileset sources_1
+update_compile_order -fileset sim_1
+file mkdir /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_3_3/lab2_3_3.srcs/sim_1/new
+set_property SOURCE_SET sources_1 [get_filesets sim_1]
+close [ open /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_3_3/lab2_3_3.srcs/sim_1/new/_8_to_3_priority_encoder_tb.v w ]
+add_files -fileset sim_1 /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_3_3/lab2_3_3.srcs/sim_1/new/_8_to_3_priority_encoder_tb.v
+update_compile_order -fileset sim_1
+update_compile_order -fileset sources_1
+update_compile_order -fileset sim_1
+update_compile_order -fileset sources_1
+launch_simulation
+source _8_to_3_priority_encoder_tb.tcl
+close_sim
+update_compile_order -fileset sim_1
+update_compile_order -fileset sim_1
+update_compile_order -fileset sim_1
+set_property -name {xsim.simulate.runtime} -value {150ns} -objects [get_filesets sim_1]
+launch_simulation
+launch_simulation
+source _8_to_3_priority_encoder_tb.tcl
+close_sim
+launch_simulation
+source _8_to_3_priority_encoder_tb.tcl
+close_sim
+launch_simulation
+source _8_to_3_priority_encoder_tb.tcl
+close_sim
+close_project
