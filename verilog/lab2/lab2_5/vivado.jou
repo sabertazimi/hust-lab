@@ -1,0 +1,21 @@
+#-----------------------------------------------------------
+# Vivado v2016.1 (64-bit)
+# SW Build 1538259 on Fri Apr  8 15:45:23 MDT 2016
+# IP Build 1537824 on Fri Apr  8 04:28:57 MDT 2016
+# Start of session at: Tue May 24 17:00:23 2016
+# Process ID: 14322
+# Current directory: /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_5
+# Command line: vivado
+# Log file: /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_5/vivado.log
+# Journal file: /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_5/vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_5/lab2_5.xpr
+update_compile_order -fileset sources_1
+launch_simulation
+source _32bit_adder_tb.tcl
+close_sim
+launch_simulation
+source _32bit_adder_tb.tcl
+close_sim
+close_project
