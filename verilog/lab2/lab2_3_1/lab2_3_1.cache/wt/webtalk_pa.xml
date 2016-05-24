@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<document>
+<!--The data in this file is primarily intended for consumption by Xilinx tools.
+The structure and the elements are likely to change over the next few releases.
+This means code written to parse this file will need to be revisited each subsequent release.-->
+<application name="pa" timeStamp="Tue May 24 14:24:32 2016">
+<section name="Project Information" visible="false">
+<property name="ProjectID" value="d8b5e1c80a31419b93691bc87d9db742" type="ProjectID"/>
+<property name="ProjectIteration" value="1" type="ProjectIteration"/>
+</section>
+<section name="PlanAhead Usage" visible="true">
+<item name="Project Data">
+<property name="SrcSetCount" value="1" type="SrcSetCount"/>
+<property name="ConstraintSetCount" value="1" type="ConstraintSetCount"/>
+<property name="DesignMode" value="RTL" type="DesignMode"/>
+<property name="SynthesisStrategy" value="Vivado Synthesis Defaults" type="SynthesisStrategy"/>
+<property name="ImplStrategy" value="Vivado Implementation Defaults" type="ImplStrategy"/>
+</item>
+<item name="Java Command Handlers">
+<property name="AddSources" value="2" type="JavaHandler"/>
+<property name="CloseProject" value="1" type="JavaHandler"/>
+<property name="NewProject" value="1" type="JavaHandler"/>
+<property name="ProjectSettingsCmdHandler" value="2" type="JavaHandler"/>
+<property name="SimulationClose" value="3" type="JavaHandler"/>
+<property name="SimulationRun" value="4" type="JavaHandler"/>
+</item>
+<item name="Gui Resources Info">
+<property name="APPLY, Apply" value="2" type="GuiResourceData"/>
+<property name="FINISH, Finish" value="3" type="GuiResourceData"/>
+<property name="NEXT, Next " value="9" type="GuiResourceData"/>
+<property name="OK, OK" value="2" type="GuiResourceData"/>
+<property name="PAResourceAtoD.AddSrcWizard_SPECIFY_HDL_AND_NETLIST_FILES_OR_DIRECTORIES, Add or create design sources" value="1" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, (String" value="2" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, decoder_3to8_dataflow" value="1" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, decoder_3to8_dataflow_tb" value="1" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_SIMULATION_RUN_BEHAVIORAL, Run Behavioral Simulation" value="4" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, decoder_3to8_dataflow (decoder_3to8_dataflow.v" value="6" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources], 0, true" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, decoder_3to8_dataflow_tb (decoder_3to8_dataflow_tb.v" value="4" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Project Manager, Add Sources], 2, false" value="2" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Simulation, Run Simulation], 11, false" value="4" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Simulation, Simulation Settings], 10, false" value="2" type="GuiResourceData"/>
+<property name="PAResourceEtoH.GettingStartedView_CREATE_NEW_PROJECT, Create New Project" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PAViews_CODE, Code" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PartChooser_FAMILY_CHOOSER, Artix-7, 1" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PartChooser_PARTS, xc7a100tcsg324-1 ; 324 ; 135 ; 240 ; 126800 ; 0 ; 0 ; 210 ; 63400 ; 6 ; 1 ; 85 ; 0 ; 85 ; C ; 1.05 ; 0.95 ; 0.95, 4, xc7a100tcsg324-1, 0" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PartChooser_PART_PACKAGE_CHOOSER, cpg236, 1" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PartChooser_PART_PACKAGE_CHOOSER, csg324, 2" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PartChooser_PART_SPEED_CHOOSER, -1, 1" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PartChooser_PART_SPEED_CHOOSER, All Remaining, 0" value="2" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PartChooser_PRODUCT_CHOOSER, Automotive, 1" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PartChooser_PRODUCT_CHOOSER, General Purpose, 2" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PartChooser_TEMP_CHOOSER, C, 1" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.ProjectNameChooser_CHOOSE_PROJECT_LOCATION, (String" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.ProjectNameChooser_PROJECT_NAME, lab2_3_1" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.ProjectSettingsSimulationPanel_TABBED_PANE, PAResourceOtoP.ProjectSettingsSimulationPanel_SIMULATION, Simulation, 2" value="2" type="GuiResourceData"/>
+<property name="PAResourceQtoS.SrcChooserPanel_CREATE_FILE, Create File" value="2" type="GuiResourceData"/>
+<property name="PAResourceTtoZ.TaskBanner_CLOSE, (String" value="2" type="GuiResourceData"/>
+<property name="RDIResource.BaseDialog_OK, OK" value="9" type="GuiResourceData"/>
+<property name="RDIResource.GraphicalView_ZOOM_FIT, Waveform Viewer_zoom_fit" value="5" type="GuiResourceData"/>
+<property name="RDIResource.GraphicalView_ZOOM_IN, Waveform Viewer_zoom_in" value="3" type="GuiResourceData"/>
+<property name="RDIResource.GraphicalView_ZOOM_OUT, Waveform Viewer_zoom_out" value="1" type="GuiResourceData"/>
+<property name="RDIResource.HFolderChooserHelpers_UP_ONE_LEVEL, (String" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 128, 62, false, false, false, true, false" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 201, 68, false, false, false, true, false" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 277, 31, false, false, false, true, false" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 22" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 23" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 25*" value="1" type="GuiResourceData"/>
+<property name="decoder_3to8_dataflow.v, 103, 252" value="1" type="GuiResourceData"/>
+<property name="decoder_3to8_dataflow.v, 166, 244" value="1" type="GuiResourceData"/>
+<property name="decoder_3to8_dataflow.v, 3, 243" value="1" type="GuiResourceData"/>
+<property name="decoder_3to8_dataflow.v, 53, 227" value="1" type="GuiResourceData"/>
+<property name="decoder_3to8_dataflow.v, 54, 146" value="1" type="GuiResourceData"/>
+<property name="decoder_3to8_dataflow.v, 80, 164" value="1" type="GuiResourceData"/>
+<property name="decoder_3to8_dataflow.v, 85, 229" value="1" type="GuiResourceData"/>
+<property name="decoder_3to8_dataflow.v, 95, 244" value="1" type="GuiResourceData"/>
+<property name="decoder_3to8_dataflow_tb.v, 78, 267" value="1" type="GuiResourceData"/>
+<property name="decoder_3to8_dataflow_tb.v, 92, 115" value="1" type="GuiResourceData"/>
+<property name="decoder_3to8_dataflow_tb.v, 96, 145" value="1" type="GuiResourceData"/>
+</item>
+<item name="Other">
+<property name="GuiMode" value="11" type="GuiMode"/>
+<property name="BatchMode" value="0" type="BatchMode"/>
+<property name="TclMode" value="10" type="TclMode"/>
+</item>
+</section>
+</application>
+</document>

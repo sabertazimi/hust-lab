@@ -1,0 +1,1 @@
+-wto "e61e35ef713f4ebbad4b37786ec595b5" --debug "typical" --relax --mt "8" -L "xil_defaultlib" -L "unisims_ver" -L "unimacro_ver" -L "secureip" --snapshot "decoder_3to8_dataflow_tb_behav" "xil_defaultlib.decoder_3to8_dataflow_tb" "xil_defaultlib.glbl" -log "elaborate.log" 

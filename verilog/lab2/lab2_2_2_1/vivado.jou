@@ -257,3 +257,66 @@ launch_simulation
 source carry_look_ahead_adder_tb.tcl
 close_sim
 close_project
+create_project lab2_3_1 /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_3_1 -part xc7a100tcsg324-1
+set_property simulator_language Verilog [current_project]
+file mkdir /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_3_1/lab2_3_1.srcs/sim_1/new
+set_property SOURCE_SET sources_1 [get_filesets sim_1]
+close [ open /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_3_1/lab2_3_1.srcs/sim_1/new/decoder_3to8_dataflow_tb.v w ]
+add_files -fileset sim_1 /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_3_1/lab2_3_1.srcs/sim_1/new/decoder_3to8_dataflow_tb.v
+update_compile_order -fileset sim_1
+file mkdir /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_3_1/lab2_3_1.srcs/sources_1/new
+close [ open /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_3_1/lab2_3_1.srcs/sources_1/new/decoder_3to8_dataflow.v w ]
+add_files /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_3_1/lab2_3_1.srcs/sources_1/new/decoder_3to8_dataflow.v
+update_compile_order -fileset sources_1
+launch_simulation
+source decoder_3to8_dataflow_tb.tcl
+set_property -name {xsim.simulate.runtime} -value {100ns} -objects [get_filesets sim_1]
+close_sim
+launch_simulation
+source decoder_3to8_dataflow_tb.tcl
+set_property -name {xsim.simulate.runtime} -value {50ns} -objects [get_filesets sim_1]
+close_sim
+launch_simulation
+source decoder_3to8_dataflow_tb.tcl
+close_sim
+launch_simulation
+source decoder_3to8_dataflow_tb.tcl
+close_sim
+close_project
+create_project lab2_3_2 /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_3_2 -part xc7a100tcsg324-1
+set_property simulator_language Verilog [current_project]
+file mkdir /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_3_2/lab2_3_2.srcs/sources_1/new
+close [ open /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_3_2/lab2_3_2.srcs/sources_1/new/decoder_74138_dataflow.v w ]
+add_files /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_3_2/lab2_3_2.srcs/sources_1/new/decoder_74138_dataflow.v
+update_compile_order -fileset sources_1
+update_compile_order -fileset sim_1
+file mkdir /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_3_2/lab2_3_2.srcs/sim_1/new
+set_property SOURCE_SET sources_1 [get_filesets sim_1]
+close [ open /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_3_2/lab2_3_2.srcs/sim_1/new/decoder_74138_dataflow_tb.v w ]
+add_files -fileset sim_1 /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_3_2/lab2_3_2.srcs/sim_1/new/decoder_74138_dataflow_tb.v
+update_compile_order -fileset sim_1
+update_compile_order -fileset sim_1
+update_compile_order -fileset sim_1
+set_property -name {xsim.simulate.runtime} -value {200ns} -objects [get_filesets sim_1]
+add_files -norecurse /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_3_1/lab2_3_1.srcs/sources_1/new/decoder_3to8_dataflow.v
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+launch_simulation
+source decoder_74138_dataflow_tb.tcl
+add_bp {/home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_3_2/lab2_3_2.srcs/sources_1/new/decoder_74138_dataflow.v} 40
+remove_bps -file {/home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_3_2/lab2_3_2.srcs/sources_1/new/decoder_74138_dataflow.v} -line 40
+close_sim
+close_project
+create_project lab2_3_3 /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_3_3 -part xc7a100tcsg324-1
+set_property simulator_language Verilog [current_project]
+file mkdir /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_3_3/lab2_3_3.srcs/sources_1/new
+close [ open /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_3_3/lab2_3_3.srcs/sources_1/new/8_to_3_priority_encoder.v w ]
+add_files /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_3_3/lab2_3_3.srcs/sources_1/new/8_to_3_priority_encoder.v
+update_compile_order -fileset sources_1
+file mkdir /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_3_3/lab2_3_3.srcs/sim_1/new
+set_property SOURCE_SET sources_1 [get_filesets sim_1]
+close [ open /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_3_3/lab2_3_3.srcs/sim_1/new/8_to_3_priority_encoder_tb.v w ]
+add_files -fileset sim_1 /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_3_3/lab2_3_3.srcs/sim_1/new/8_to_3_priority_encoder_tb.v
+update_compile_order -fileset sim_1
+update_compile_order -fileset sources_1
+update_compile_order -fileset sim_1
