@@ -1,0 +1,1 @@
+-wto "f6e0a3062f9d4ee98264cd66f90573f5" --debug "typical" --relax --mt "8" -L "xil_defaultlib" -L "unisims_ver" -L "unimacro_ver" -L "secureip" --snapshot "rca_to_7segment_dataflow_tb_behav" "xil_defaultlib.rca_to_7segment_dataflow_tb" "xil_defaultlib.glbl" -log "elaborate.log" 
