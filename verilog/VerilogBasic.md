@@ -345,6 +345,8 @@ for (循环初值; 循环条件; 控制部分)
 
 #### repeat loop
 
+-   initial for test bench
+
 ```verilog
 initial begin
     inc_DAC = 1’b1;
@@ -355,6 +357,10 @@ initial begin
 
     repeat(7)@(posedge clk); // bring sample count up to 7
     inc_smpl = 1’b0;
+end
+
+initial begin
+    #100 $finish; // run simulation for 100 units
 end
 ```
 
