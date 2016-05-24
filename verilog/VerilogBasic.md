@@ -345,7 +345,8 @@ for (循环初值; 循环条件; 控制部分)
 
 #### repeat loop
 
--   initial for test bench
+-   initial for **test bench**
+-   当需 if/else 进行断言时,注意 **延时** 造成的错误逻辑
 
 ```verilog
 initial begin
