@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 2016/05/24 19:57:30
+// Create Date: 2016/05/24 20:45:28
 // Design Name: 
-// Module Name: D_ff_behavior
+// Module Name: D_ff_with_synch_reset_behavior
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -19,12 +19,20 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module D_ff_behavior (input D, input Clk, output reg Q);
 
-    always @ (posedge Clk) begin
-        if(Clk)
-            begin
-                Q <= D;
-            end
+module D_ff_with_synch_reset_behavior(
+    input D,
+    input Clk,
+    input reset,
+    output reg Q
+    );
+    
+    always @(posedge Clk) begin
+        if (reset) begin
+            Q <= 1'b0;
+        end
+        else begin
+            Q <= D;
+        end
     end
 endmodule
