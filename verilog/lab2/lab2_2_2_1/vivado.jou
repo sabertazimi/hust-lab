@@ -2,67 +2,67 @@
 # Vivado v2016.1 (64-bit)
 # SW Build 1538259 on Fri Apr  8 15:45:23 MDT 2016
 # IP Build 1537824 on Fri Apr  8 04:28:57 MDT 2016
-# Start of session at: Mon May 23 23:13:05 2016
-# Process ID: 21875
-# Current directory: /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2
+# Start of session at: Tue May 24 10:16:16 2016
+# Process ID: 6421
+# Current directory: /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_1
 # Command line: vivado
-# Log file: /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2/vivado.log
-# Journal file: /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2/vivado.jou
+# Log file: /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_1/vivado.log
+# Journal file: /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_1/vivado.jou
 #-----------------------------------------------------------
 start_gui
-create_project lab2_2_2_1 . -part xc7a100tcsg324-1
+open_project /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_1/lab2_2_2_1.xpr
+update_compile_order -fileset sources_1
+add_files -norecurse /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_1/lab2_1.srcs/sources_1/new/bcd_to_7segment_decoder.v
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+set_property SOURCE_SET sources_1 [get_filesets sim_1]
+close [ open /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_1/lab2_2_2_1.srcs/sim_1/new/lab2_2_2_1_partA_tb.v w ]
+add_files -fileset sim_1 /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_1/lab2_2_2_1.srcs/sim_1/new/lab2_2_2_1_partA_tb.v
+update_compile_order -fileset sim_1
+launch_simulation
+source comparator_dataflow_tb.tcl
+close_sim
+# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
+set_property source_mgmt_mode None [current_project]
+set_property top lab2_2_2_1_partA_tb [get_filesets sim_1]
+set_property top_lib xil_defaultlib [get_filesets sim_1]
+# Re-enabling previously disabled source management mode.
+set_property source_mgmt_mode All [current_project]
+update_compile_order -fileset sim_1
+launch_simulation
+launch_runs synth_1
+wait_on_run synth_1
+launch_simulation
+launch_simulation
+source lab2_2_2_1_partA_tb.tcl
+close_sim
+close [ open /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_1/lab2_2_2_1.srcs/sources_1/new/lab2_2_2_1.v w ]
+add_files /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_1/lab2_2_2_1.srcs/sources_1/new/lab2_2_2_1.v
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+set_property SOURCE_SET sources_1 [get_filesets sim_1]
+close [ open /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_1/lab2_2_2_1.srcs/sim_1/new/lab2_2_2_1_tb.v w ]
+add_files -fileset sim_1 /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_1/lab2_2_2_1.srcs/sim_1/new/lab2_2_2_1_tb.v
+update_compile_order -fileset sim_1
+launch_simulation
+source lab2_2_2_1_partA_tb.tcl
+close_sim
+# Disabling source management mode.  This is to allow the top design properties to be set without GUI intervention.
+set_property source_mgmt_mode None [current_project]
+set_property top lab2_2_2_1_tb [get_filesets sim_1]
+set_property top_lib xil_defaultlib [get_filesets sim_1]
+# Re-enabling previously disabled source management mode.
+set_property source_mgmt_mode All [current_project]
+update_compile_order -fileset sim_1
+launch_simulation
+source lab2_2_2_1_tb.tcl
+close_sim
+launch_simulation
+source lab2_2_2_1_tb.tcl
+close_sim
+close_project
+create_project lab2_2_2_2 /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_2 -part xc7a100tcsg324-1
 set_property simulator_language Verilog [current_project]
-file mkdir /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_1/lab2_2_2_1.srcs/sources_1/new
-close [ open /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_1/lab2_2_2_1.srcs/sources_1/new/comparator_dataflow.v w ]
-add_files /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_1/lab2_2_2_1.srcs/sources_1/new/comparator_dataflow.v
-update_compile_order -fileset sources_1
-update_compile_order -fileset sim_1
-update_compile_order -fileset sources_1
-update_compile_order -fileset sim_1
-update_compile_order -fileset sources_1
-update_compile_order -fileset sim_1
-close [ open /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_1/lab2_2_2_1.srcs/sources_1/new/lab2_circuitA_dataflow.v w ]
-add_files /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_1/lab2_2_2_1.srcs/sources_1/new/lab2_circuitA_dataflow.v
-update_compile_order -fileset sources_1
-file mkdir /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_1/lab2_2_2_1.srcs/sim_1/new
-set_property SOURCE_SET sources_1 [get_filesets sim_1]
-close [ open /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_1/lab2_2_2_1.srcs/sim_1/new/comparator_dataflow_tb.v w ]
-add_files -fileset sim_1 /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_1/lab2_2_2_1.srcs/sim_1/new/comparator_dataflow_tb.v
-update_compile_order -fileset sim_1
-remove_files /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_1/lab2_2_2_1.srcs/sources_1/new/comparator_dataflow.v
-update_compile_order -fileset sources_1
-update_compile_order -fileset sim_1
-remove_files -fileset sim_1 /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_1/lab2_2_2_1.srcs/sim_1/new/comparator_dataflow_tb.v
-update_compile_order -fileset sim_1
-remove_files /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_1/lab2_2_2_1.srcs/sources_1/new/lab2_circuitA_dataflow.v
-update_compile_order -fileset sources_1
-update_compile_order -fileset sim_1
-add_files -norecurse {/home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_1/lab2_2_2_1.srcs/sources_1/new/comparator_dataflow.v /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_1/lab2_2_2_1.srcs/sources_1/new/lab2_circuitA_dataflow.v}
-update_compile_order -fileset sources_1
-update_compile_order -fileset sim_1
-update_compile_order -fileset sources_1
-set_property SOURCE_SET sources_1 [get_filesets sim_1]
-add_files -fileset sim_1 -norecurse /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_1/lab2_2_2_1.srcs/sim_1/new/comparator_dataflow_tb.v
-update_compile_order -fileset sim_1
-update_compile_order -fileset sim_1
-update_compile_order -fileset sim_1
-launch_simulation
-source comparator_dataflow_tb.tcl
-close_sim
-launch_simulation
-source comparator_dataflow_tb.tcl
-close_sim
-launch_simulation
-source comparator_dataflow_tb.tcl
-close_sim
-launch_simulation
-source comparator_dataflow_tb.tcl
-close_sim
-launch_simulation
-source comparator_dataflow_tb.tcl
-close_sim
-add_files -norecurse /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_1/lab2_1.srcs/sources_1/new/mux_2_to_1_gate.v
-update_compile_order -fileset sources_1
-close [ open /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_1/lab2_2_2_1.srcs/sources_1/new/lab2_2_2_1_partA.v w ]
-add_files /home/sabertazimi/gitrepo/hust-lab/verilog/lab2/lab2_2_2_1/lab2_2_2_1.srcs/sources_1/new/lab2_2_2_1_partA.v
-update_compile_order -fileset sources_1

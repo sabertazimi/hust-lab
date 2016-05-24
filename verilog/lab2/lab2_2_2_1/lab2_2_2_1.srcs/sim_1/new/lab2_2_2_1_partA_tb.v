@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 2016/05/23 23:19:33
+// Create Date: 2016/05/24 10:30:58
 // Design Name: 
-// Module Name: comparator_dataflow
+// Module Name: lab2_2_2_1_partA_tb
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -19,15 +19,21 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module comparator_dataflow(
-    input [3:0] in,
-    output flag
+
+module lab2_2_2_1_partA_tb(
+
     );
+    reg [3:0] v;
+    wire z;
+    wire [3:0] bcd;
+    integer i;
     
-    wire [4:0] in_with_carry;
-    wire [4:0] sub_result;
+    lab2_2_2_1_partA DUT (.v(v), .z(z), .bcd(bcd));
     
-    assign in_with_carry = {1'b1, in};
-    assign sub_result = in_with_carry - 5'b01010;
-    assign flag = sub_result[4];
+    initial begin
+        v = 0;
+        for (i = 0; i < 16; i = i + 1)
+            #10 v = i;
+        #20;
+    end
 endmodule
