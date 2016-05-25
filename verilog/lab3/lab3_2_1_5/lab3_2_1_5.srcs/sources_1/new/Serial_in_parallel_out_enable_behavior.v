@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 2016/05/24 22:59:44
+// Create Date: 2016/05/25 08:26:01
 // Design Name: 
-// Module Name: delay_line1_behavior
+// Module Name: Serial_in_parallel_out_enable_behavior
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,17 +20,17 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module delay_line1_behavior(
+module Serial_in_parallel_out_enable_behavior(
     input Clk,
     input ShiftIn,
-    output ShiftOut
+    input ShiftEn,
+    output ShiftOut,
+    output [3:0] ParallelOut
     );
     
-    reg shift_reg;
+    reg [3:0] shift_reg;
     
     always @(posedge Clk) begin
-         shift_reg <= ShiftIn;
+        if (ShiftEn) shift_reg <= 
     end
-    
-    assign ShiftOut = shift_reg;
 endmodule
