@@ -3,7 +3,7 @@
 <!--The data in this file is primarily intended for consumption by Xilinx tools.
 The structure and the elements are likely to change over the next few releases.
 This means code written to parse this file will need to be revisited each subsequent release.-->
-<application name="pa" timeStamp="Wed May 25 08:25:57 2016">
+<application name="pa" timeStamp="Wed May 25 09:05:22 2016">
 <section name="Project Information" visible="false">
 <property name="ProjectID" value="853cf2dd36964d9d8e02ba30cb794e35" type="ProjectID"/>
 <property name="ProjectIteration" value="1" type="ProjectIteration"/>
@@ -19,51 +19,20 @@ This means code written to parse this file will need to be revisited each subseq
 <item name="Java Command Handlers">
 <property name="AddSources" value="1" type="JavaHandler"/>
 <property name="NewProject" value="2" type="JavaHandler"/>
+<property name="OpenProject" value="1" type="JavaHandler"/>
+<property name="RunSchematic" value="1" type="JavaHandler"/>
 <property name="RunSynthesis" value="1" type="JavaHandler"/>
 <property name="SimulationClose" value="2" type="JavaHandler"/>
 <property name="SimulationRun" value="5" type="JavaHandler"/>
 </item>
 <item name="Gui Resources Info">
-<property name="NEXT, Next " value="7" type="GuiResourceData"/>
-<property name="PAResourceAtoD.CmdMsgDialog_OK, OK" value="1" type="GuiResourceData"/>
-<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, (String" value="1" type="GuiResourceData"/>
-<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, Serial_in_parallel_out_enable_behavior" value="1" type="GuiResourceData"/>
-<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, serial_in_parallel_out_load_enable_behavior" value="1" type="GuiResourceData"/>
-<property name="PAResourceCommand.PACommandNames_NEW_PROJECT, New Project..." value="1" type="GuiResourceData"/>
-<property name="PAResourceCommand.PACommandNames_SIMULATION_RUN_BEHAVIORAL, Run Behavioral Simulation" value="4" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Simulation, Run Simulation], 11, false" value="5" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_OPEN_PROJECT, Open Project..." value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Synthesis, Open Synthesized Design, Schematic], 29, false" value="1" type="GuiResourceData"/>
 <property name="PAResourceItoN.MainMenuMgr_FILE, File" value="2" type="GuiResourceData"/>
 <property name="PAResourceItoN.MainMenuMgr_OPEN_RECENT_PROJECT, Open Recent Project" value="1" type="GuiResourceData"/>
-<property name="PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, [, Simulation, sim_1, [VRFC 10-426] cannot find port Cllk on this module [/home/sabertazimi/gitrepo/hust-lab/verilog/lab3/lab3_2_1_4/lab3_2_1_4.srcs/sim_1/new/Parallel_in_serial_out_load_enable_behavior_tb.v:31]. ], 37, false" value="2" type="GuiResourceData"/>
-<property name="PAResourceOtoP.PartChooser_FAMILY_CHOOSER, Artix-7, 1" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.PartChooser_PARTS, xc7a100tcsg324-1 ; 324 ; 135 ; 240 ; 126800 ; 0 ; 0 ; 210 ; 63400 ; 6 ; 1 ; 85 ; 0 ; 85 ; C ; 1.05 ; 0.95 ; 0.95, 4, 324, 1" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.PartChooser_PARTS, xc7a75tcsg324-1 ; 324 ; 105 ; 180 ; 94400 ; 0 ; 0 ; 210 ; 47200 ; 6 ; 1 ; 85 ; 0 ; 85 ; C ; 1.05 ; 0.95 ; 0.95, 3, 324, 1" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.PartChooser_PART_PACKAGE_CHOOSER, csg324, 2" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.PartChooser_PART_SPEED_CHOOSER, -1, 1" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.PartChooser_PRODUCT_CHOOSER, General Purpose, 2" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.PartChooser_TEMP_CHOOSER, C, 1" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.ProjectNameChooser_PROJECT_NAME, lab3_2_1_5" value="1" type="GuiResourceData"/>
-<property name="PAResourceQtoS.SrcChooserPanel_CREATE_FILE, Create File" value="1" type="GuiResourceData"/>
-<property name="Parallel_in_serial_out_load_enable_behavior_tb.v, 101, 168" value="1" type="GuiResourceData"/>
-<property name="Parallel_in_serial_out_load_enable_behavior_tb.v, 153, 134" value="1" type="GuiResourceData"/>
-<property name="Parallel_in_serial_out_load_enable_behavior_tb.v, 156, 130" value="1" type="GuiResourceData"/>
-<property name="Parallel_in_serial_out_load_enable_behavior_tb.v, 188, 165" value="1" type="GuiResourceData"/>
-<property name="Parallel_in_serial_out_load_enable_behavior_tb.v, 203, 147" value="1" type="GuiResourceData"/>
-<property name="Parallel_in_serial_out_load_enable_behavior_tb.v, 239, 147" value="1" type="GuiResourceData"/>
-<property name="Parallel_in_serial_out_load_enable_behavior_tb.v, 244, 150" value="1" type="GuiResourceData"/>
-<property name="Parallel_in_serial_out_load_enable_behavior_tb.v, 289, 177" value="1" type="GuiResourceData"/>
-<property name="Parallel_in_serial_out_load_enable_behavior_tb.v, 290, 177" value="1" type="GuiResourceData"/>
-<property name="Parallel_in_serial_out_load_enable_behavior_tb.v, 316, 146" value="1" type="GuiResourceData"/>
-<property name="Parallel_in_serial_out_load_enable_behavior_tb.v, 324, 147" value="1" type="GuiResourceData"/>
-<property name="Parallel_in_serial_out_load_enable_behavior_tb.v, 93, 162" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PAViews_DEVICE, Device" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PAViews_SCHEMATIC, Schematic" value="1" type="GuiResourceData"/>
 <property name="RDIResource.BaseDialog_CANCEL, Cancel" value="1" type="GuiResourceData"/>
-<property name="RDIResource.BaseDialog_OK, OK" value="3" type="GuiResourceData"/>
-<property name="RDIResource.GraphicalView_ZOOM_FIT, Waveform Viewer_zoom_fit" value="3" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 382, 136, false, false, false, true, false" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 449, 14, false, false, false, true, false" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 1*" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 2" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 3" value="1" type="GuiResourceData"/>
 </item>
 <item name="Other">
 <property name="GuiMode" value="15" type="GuiMode"/>
