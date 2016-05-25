@@ -399,6 +399,19 @@ begin : break
 end
 ```
 
+## Data Path
+
+### Multiplexer
+
+### Adder
+
+### Register
+
+### Memory
+
+-   其中数据文件中地址必须在系统任务中定义的范围内，系统任务中定义的地址必须在存储器定义的地址范围内
+-   优先考虑数据文件中的地址>系统任务中定义的起始地址和结束地址>存储器定义的起始地址和结束地址
+
 ## Demos
 
 -   [gitbooks.io](https://hom-wang.gitbooks.io/verilog-hdl/content/Chapter_07.html)
