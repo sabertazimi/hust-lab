@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<document>
+<!--The data in this file is primarily intended for consumption by Xilinx tools.
+The structure and the elements are likely to change over the next few releases.
+This means code written to parse this file will need to be revisited each subsequent release.-->
+<application name="pa" timeStamp="Wed May 25 12:28:40 2016">
+<section name="Project Information" visible="false">
+<property name="ProjectID" value="0041593a09ca40ff8da0b34e04c74659" type="ProjectID"/>
+<property name="ProjectIteration" value="1" type="ProjectIteration"/>
+</section>
+<section name="PlanAhead Usage" visible="true">
+<item name="Project Data">
+<property name="SrcSetCount" value="1" type="SrcSetCount"/>
+<property name="ConstraintSetCount" value="1" type="ConstraintSetCount"/>
+<property name="DesignMode" value="RTL" type="DesignMode"/>
+<property name="SynthesisStrategy" value="Vivado Synthesis Defaults" type="SynthesisStrategy"/>
+<property name="ImplStrategy" value="Vivado Implementation Defaults" type="ImplStrategy"/>
+</item>
+<item name="Java Command Handlers">
+<property name="AddSources" value="1" type="JavaHandler"/>
+<property name="OpenFile" value="2" type="JavaHandler"/>
+<property name="SimulationClose" value="1" type="JavaHandler"/>
+<property name="SimulationRun" value="2" type="JavaHandler"/>
+<property name="UpdateRegId" value="2" type="JavaHandler"/>
+</item>
+<item name="Gui Resources Info">
+<property name="FINISH, Finish" value="2" type="GuiResourceData"/>
+<property name="NEXT, Next " value="1" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, ROM_multiplier_tb" value="1" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_LICENSE_MANAGE, Manage License..." value="2" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_OPEN_FILE, Open File..." value="2" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_SIMULATION_RUN_BEHAVIORAL, Run Behavioral Simulation" value="2" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, ROM_multiplier (ROM_multiplier.v" value="2" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, ROM_multiplier_tb (ROM_multiplier_tb.v" value="2" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1], 4" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources], 3" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Project Manager, Add Sources], 2, false" value="2" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Simulation, Run Simulation], 11, false" value="2" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_DESIGN_HUBS, Design Hubs" value="2" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_FILE, File" value="4" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_HELP, Help" value="4" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_OPEN_RECENT_FILE, Open Recent File" value="2" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_OPEN_RECENT_PROJECT, Open Recent Project" value="3" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PAViews_CODE, Code" value="3" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PAViews_PROJECT_SUMMARY, Project Summary" value="1" type="GuiResourceData"/>
+<property name="PAResourceQtoS.SrcChooserPanel_CREATE_FILE, Create File" value="1" type="GuiResourceData"/>
+<property name="RDIResource.BaseDialog_OK, OK" value="4" type="GuiResourceData"/>
+<property name="RDIResource.GraphicalView_ZOOM_FIT, Waveform Viewer_zoom_fit" value="2" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 26" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 27" value="1" type="GuiResourceData"/>
+<property name="ROM_comparator.v, 110, 232" value="1" type="GuiResourceData"/>
+<property name="ROM_comparator_tb.v, 83, 269" value="1" type="GuiResourceData"/>
+<property name="ROM_multiplier.v, 110, 262" value="1" type="GuiResourceData"/>
+<property name="ROM_multiplier.v, 112, 228" value="1" type="GuiResourceData"/>
+<property name="ROM_multiplier.v, 127, 251" value="1" type="GuiResourceData"/>
+<property name="ROM_multiplier.v, 144, 245" value="1" type="GuiResourceData"/>
+<property name="ROM_multiplier.v, 341, 233" value="1" type="GuiResourceData"/>
+<property name="ROM_multiplier.v, 659, 234" value="1" type="GuiResourceData"/>
+<property name="ROM_multiplier.v, 96, 235" value="1" type="GuiResourceData"/>
+<property name="ROM_multiplier_tb.v, 116, 165" value="1" type="GuiResourceData"/>
+<property name="ROM_multiplier_tb.v, 126, 193" value="1" type="GuiResourceData"/>
+<property name="ROM_multiplier_tb.v, 127, 152" value="1" type="GuiResourceData"/>
+<property name="ROM_multiplier_tb.v, 43, 124" value="1" type="GuiResourceData"/>
+<property name="ROM_multiplier_tb.v, 45, 128" value="1" type="GuiResourceData"/>
+<property name="ROM_multiplier_tb.v, 68, 275" value="1" type="GuiResourceData"/>
+<property name="ROM_multiplier_tb.v, 87, 158" value="1" type="GuiResourceData"/>
+</item>
+<item name="Other">
+<property name="GuiMode" value="15" type="GuiMode"/>
+<property name="BatchMode" value="0" type="BatchMode"/>
+<property name="TclMode" value="13" type="TclMode"/>
+</item>
+</section>
+</application>
+</document>
