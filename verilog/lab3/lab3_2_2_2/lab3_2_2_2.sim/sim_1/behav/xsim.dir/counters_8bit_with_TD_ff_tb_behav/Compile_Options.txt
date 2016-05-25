@@ -1,0 +1,1 @@
+-wto "f24555a2c23d429b849355adbcc041cc" --debug "typical" --relax --mt "8" -L "xil_defaultlib" -L "unisims_ver" -L "unimacro_ver" -L "secureip" --snapshot "counters_8bit_with_TD_ff_tb_behav" "xil_defaultlib.counters_8bit_with_TD_ff_tb" "xil_defaultlib.glbl" -log "elaborate.log" 
