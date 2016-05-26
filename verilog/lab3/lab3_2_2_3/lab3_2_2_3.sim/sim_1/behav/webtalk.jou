@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Webtalk v2016.1 (64-bit)
+# SW Build 1538259 on Fri Apr  8 15:45:23 MDT 2016
+# IP Build 1537824 on Fri Apr  8 04:28:57 MDT 2016
+# Start of session at: Wed May 25 10:30:12 2016
+# Process ID: 12781
+# Current directory: /home/sabertazimi/gitrepo/hust-lab/verilog/lab3/lab3_2_2_3/lab3_2_2_3.sim/sim_1/behav
+# Command line: wbtcv -mode batch -source /home/sabertazimi/gitrepo/hust-lab/verilog/lab3/lab3_2_2_3/lab3_2_2_3.sim/sim_1/behav/xsim.dir/_4bit_down_counter_with_synch_load_enable_clear_tb_behav/webtalk/xsim_webtalk.tcl -notrace
+# Log file: /home/sabertazimi/gitrepo/hust-lab/verilog/lab3/lab3_2_2_3/lab3_2_2_3.sim/sim_1/behav/webtalk.log
+# Journal file: /home/sabertazimi/gitrepo/hust-lab/verilog/lab3/lab3_2_2_3/lab3_2_2_3.sim/sim_1/behav/webtalk.jou
+#-----------------------------------------------------------
+source /home/sabertazimi/gitrepo/hust-lab/verilog/lab3/lab3_2_2_3/lab3_2_2_3.sim/sim_1/behav/xsim.dir/_4bit_down_counter_with_synch_load_enable_clear_tb_behav/webtalk/xsim_webtalk.tcl -notrace

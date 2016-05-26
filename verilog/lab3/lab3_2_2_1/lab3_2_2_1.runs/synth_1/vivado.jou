@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2016.1 (64-bit)
+# SW Build 1538259 on Fri Apr  8 15:45:23 MDT 2016
+# IP Build 1537824 on Fri Apr  8 04:28:57 MDT 2016
+# Start of session at: Wed May 25 09:33:05 2016
+# Process ID: 31443
+# Current directory: /home/sabertazimi/gitrepo/hust-lab/verilog/lab3/lab3_2_2_1/lab3_2_2_1.runs/synth_1
+# Command line: vivado -log counters_8bit_with_T_ff.vds -mode batch -messageDb vivado.pb -notrace -source counters_8bit_with_T_ff.tcl
+# Log file: /home/sabertazimi/gitrepo/hust-lab/verilog/lab3/lab3_2_2_1/lab3_2_2_1.runs/synth_1/counters_8bit_with_T_ff.vds
+# Journal file: /home/sabertazimi/gitrepo/hust-lab/verilog/lab3/lab3_2_2_1/lab3_2_2_1.runs/synth_1/vivado.jou
+#-----------------------------------------------------------
+source counters_8bit_with_T_ff.tcl -notrace
