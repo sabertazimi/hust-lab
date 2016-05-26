@@ -25,19 +25,15 @@ module decoder_74138_dataflow(
     input g1, 
     input g2a_n,
     input g2b_n,
-    output reg [7:0] y
+    output [7:0] y
     );
     
-    wire [7:0] tmp;
-    
-    decoder_3to8_dataflow DECODE (.x(x), .y(tmp));
-    
-    always @(g1 or g2a_n or g2b_n or x) begin
-        if ({g1, g2a_n, g2b_n} == 3'b100) begin
-            y = ~tmp;
-        end
-        else begin
-            y = 8'b1111_1111;
-        end
-    end
+    assign y[0] = g2a_n|g2b_n|(~g1)|x[0]|x[1]|x[2];
+    assign y[1] = g2a_n|g2b_n|(~g1)|x[0]|x[1]|(~x[2]);
+    assign y[2] = g2a_n|g2b_n|(~g1)|x[0]|(~x[1])|x[2];
+    assign y[3] = g2a_n|g2b_n|(~g1)|x[0]|(~x[1])|(~x[2]);
+    assign y[4] = g2a_n|g2b_n|(~g1)|(~x[0])|x[1]|x[2];
+    assign y[5] = g2a_n|g2b_n|(~g1)|(~x[0])|x[1]|(~x[2]);
+    assign y[6] = g2a_n|g2b_n|(~g1)|(~x[0])|(~x[1])|x[2];
+    assign y[7] = g2a_n|g2b_n|(~g1)|(~x[0])|(~x[1])|(~x[2]);
 endmodule
