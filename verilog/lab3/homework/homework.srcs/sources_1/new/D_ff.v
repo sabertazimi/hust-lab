@@ -24,15 +24,17 @@ module D_ff(
     input D,
 input Clk,
 input reset,
-input ce,
-output reg Q
+output reg Q,
+output Qbar
 );
+
+assign Qbar = ~Q;
 
 always @(posedge Clk) begin
     if (reset) begin
         Q <= 1'b0;
     end
-    else if (ce) begin
+    else begin
         Q <= D;
     end
 end
