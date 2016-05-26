@@ -3,7 +3,7 @@
 <!--The data in this file is primarily intended for consumption by Xilinx tools.
 The structure and the elements are likely to change over the next few releases.
 This means code written to parse this file will need to be revisited each subsequent release.-->
-<application name="pa" timeStamp="Thu May 26 17:23:20 2016">
+<application name="pa" timeStamp="Thu May 26 23:12:35 2016">
 <section name="Project Information" visible="false">
 <property name="ProjectID" value="28edb511926e475886e0e7c90db30d7e" type="ProjectID"/>
 <property name="ProjectIteration" value="1" type="ProjectIteration"/>
@@ -22,205 +22,49 @@ This means code written to parse this file will need to be revisited each subseq
 <property name="NewProject" value="1" type="JavaHandler"/>
 <property name="OpenProject" value="1" type="JavaHandler"/>
 <property name="SetTopNode" value="4" type="JavaHandler"/>
-<property name="SimulationClose" value="21" type="JavaHandler"/>
-<property name="SimulationRun" value="32" type="JavaHandler"/>
+<property name="SimulationClose" value="22" type="JavaHandler"/>
+<property name="SimulationRun" value="34" type="JavaHandler"/>
 </item>
 <item name="Gui Resources Info">
-<property name="D_ff.v, 35, 231" value="1" type="GuiResourceData"/>
-<property name="D_ff.v, 56, 115" value="1" type="GuiResourceData"/>
-<property name="D_ff.v, 86, 140" value="1" type="GuiResourceData"/>
-<property name="FINISH, Finish" value="2" type="GuiResourceData"/>
-<property name="NEXT, Next " value="2" type="GuiResourceData"/>
-<property name="PAResourceAtoD.AddSrcWizard_SPECIFY_SIMULATION_SPECIFIC_HDL_FILES, Add or create simulation sources" value="1" type="GuiResourceData"/>
-<property name="PAResourceAtoD.CmdMsgDialog_OK, OK" value="2" type="GuiResourceData"/>
-<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, dc_lab2_2" value="1" type="GuiResourceData"/>
-<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, dc_lab2_3" value="1" type="GuiResourceData"/>
-<property name="PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, Hierarchy Update" value="2" type="GuiResourceData"/>
-<property name="PAResourceCommand.PACommandNames_SET_AS_TOP, Set as Top" value="2" type="GuiResourceData"/>
-<property name="PAResourceCommand.PACommandNames_SIMULATION_RUN_BEHAVIORAL, Run Behavioral Simulation" value="14" type="GuiResourceData"/>
-<property name="PAResourceCommand.PACommandNames_SIMULATION_RUN_POST_SYNTHESIS_FUNCTIONAL, Run Post-Synthesis Functional Simulation" value="2" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, D_ff (D_ff.v" value="4" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, Syntax Error Files, dc_lab2_2.v], 7, false" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, Syntax Error Files, dc_lab2_2.v], 7, false, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, Syntax Error Files], 6" value="1" type="GuiResourceData"/>
+<property name="CANCEL, Cancel" value="1" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_SIMULATION_RUN_BEHAVIORAL, Run Behavioral Simulation" value="2" type="GuiResourceData"/>
 <property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, dc_lab2_1 (dc_lab2_1.v" value="2" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, dc_lab2_2 (dc_lab2_2.v" value="3" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, dc_lab2_3 (dc_lab2_3.v" value="5" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, dc_lab2_2 (dc_lab2_2.v" value="2" type="GuiResourceData"/>
 <property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1], 5" value="1" type="GuiResourceData"/>
 <property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources], 4" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Project Manager, Add Sources], 2, false" value="2" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Simulation, Run Simulation], 11, false" value="14" type="GuiResourceData"/>
-<property name="PAResourceEtoH.GettingStartedView_OPEN_PROJECT, Open Project" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.GettingStartedView_RECENT_PROJECTS, /home/sabertazimi/gitrepo/hust-lab/verilog/lab3/homework/homework.xpr, 0" value="1" type="GuiResourceData"/>
-<property name="PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, [, Analysis Results, sim_1, [HDL 9-2216] Analyzing Verilog file /home/sabertazimi/gitrepo/hust-lab/verilog/lab3/homework/homework.srcs/sim_1/new/dc_lab2_2.v into library work [/home/sabertazimi/gitrepo/hust-lab/verilog/lab3/homework/homework.srcs/sim_1/new/dc_lab2_2.v:1]. ], 28, false" value="2" type="GuiResourceData"/>
-<property name="PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, [, Analysis Results, sources_1, [HDL 9-2216] Analyzing Verilog file /home/sabertazimi/gitrepo/hust-lab/verilog/lab3/homework/homework.srcs/sources_1/new/D_ff.v into library work [/home/sabertazimi/gitrepo/hust-lab/verilog/lab3/homework/homework.srcs/sources_1/new/D_ff.v:1]. ], 26, false" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.PAViews_CODE, Code" value="3" type="GuiResourceData"/>
-<property name="PAResourceOtoP.PAViews_PROJECT_SUMMARY, Project Summary" value="1" type="GuiResourceData"/>
-<property name="PAResourceQtoS.SrcChooserPanel_CREATE_FILE, Create File" value="2" type="GuiResourceData"/>
-<property name="PAResourceQtoS.SrcMenu_IP_HIERARCHY, IP Hierarchy" value="2" type="GuiResourceData"/>
-<property name="PAResourceTtoZ.TaskBanner_CLOSE, (String" value="2" type="GuiResourceData"/>
-<property name="RDIResource.BaseDialog_OK, OK" value="14" type="GuiResourceData"/>
-<property name="RDIResource.GraphicalView_ZOOM_FIT, Waveform Viewer_zoom_fit" value="11" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 103, 59" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 110, -69" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 136, -65" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 150, 329" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 177, 178" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 178, 57" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 198, -66" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 201, 56" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 225, 176" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 229, 179" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 255, 188, false, false, false, true, false" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 283, 198" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 295, 187" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 307, 179" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 324, 181" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 406, 223, false, false, false, true, false" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 412, 159" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 436, 100" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 436, 100, false, false, false, true, false" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 475, 238" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 523, 79, false, false, false, true, false" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 55, 52" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 70, 49" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 780, 48" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 79, 59" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 850, 530, false, false, false, true, false" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 1*" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 10" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 11*" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 12*" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 2" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 3" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 4*" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 5*" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 6" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 7" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 8" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 9" value="1" type="GuiResourceData"/>
-<property name="RDIResource.WaveformNameTree_WAVEFORM_NAME_TREE, [true, Clk], 1, false" value="6" type="GuiResourceData"/>
-<property name="RDIResource.WaveformNameTree_WAVEFORM_NAME_TREE, [true, Q[1:0]], 5" value="10" type="GuiResourceData"/>
-<property name="RDIResource.WaveformNameTree_WAVEFORM_NAME_TREE, [true, Q[2:0]], 4" value="1" type="GuiResourceData"/>
-<property name="RDIResource.WaveformNameTree_WAVEFORM_NAME_TREE, [true, Z], 9, false" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_1.v, 0, 77" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_1.v, 0, 97" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_1.v, 102, 231" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_1.v, 150, 271" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_1.v, 179, 269" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_1.v, 60, 202, false, false, false, true, false" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_1.v, 64, 220, false, false, false, true, false" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_1.v, 70, 284" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_1.v, 78, 329" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_1.v, 87, 230" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_1.v, 88, 311" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 101, 229" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 103, 125" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 104, 78" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 105, 60" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 106, 134" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 106, 93" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 109, 148" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 132, 183" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 139, 145" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 152, 128" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 158, 157" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 159, 87" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 174, 122" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 179, 199" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 20, 180" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 222, 129" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 238, 128" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 241, 131" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 242, 134" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 255, 126" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 261, 141" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 264, 147" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 287, 129" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 290, 127" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 367, 131" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 372, 137" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 377, 134" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 39, 96" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 41, 124" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 45, 176" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 50, 128" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 51, 222" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 51, 95" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 54, 127" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 58, 144" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 59, 97" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 68, 320" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 8, 147" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 82, 171" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 87, 74" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 89, 145" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 91, 130" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 91, 133" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 91, 178" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 93, 108" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 94, 96" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 95, 169" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 96, 111" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_2.v, 97, 110" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 1, 268" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 100, 231" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 100, 247" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 101, 247" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 103, 205" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 105, 199" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 105, 282" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 109, 283" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 113, 231" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 114, 202" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 114, 277" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 131, 192" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 141, 259" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 153, 180" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 206, 111" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 23, 94" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 24, 94" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 3, 226" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 32, 245" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 36, 234" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 38, 147" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 39, 143" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 40, 194" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 43, 245" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 45, 182" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 46, 231" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 47, 264" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 48, 229" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 49, 144" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 51, 230" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 62, 43" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 68, 114" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 71, 227" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 73, 264" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 76, 177" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 78, 146" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 80, 144" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 82, 199" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 83, 231" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 85, 163" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 87, 176" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 91, 289" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 92, 208" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 94, 138" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 95, 200" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 95, 285" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 95, 289" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 96, 281" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 97, 228" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 98, 247" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 98, 280" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 98, 283" value="1" type="GuiResourceData"/>
-<property name="dc_lab2_3.v, 99, 282" value="2" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Simulation, Run Simulation], 11, false" value="4" type="GuiResourceData"/>
+<property name="PAResourceEtoH.GettingStartedView_OPEN_EXAMPLE_PROJECT, Open Example Project" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.GettingStartedView_RECENT_PROJECTS, /home/sabertazimi/gitrepo/hust-lab/verilog/lab3/homework/homework.xpr, 2" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PAViews_CODE, Code" value="2" type="GuiResourceData"/>
+<property name="RDIResource.BaseDialog_OK, OK" value="1" type="GuiResourceData"/>
+<property name="RDIResource.GraphicalView_ZOOM_FIT, Waveform Viewer_zoom_fit" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 1" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 2*" value="1" type="GuiResourceData"/>
+<property name="RDIResource.WaveformNameTree_WAVEFORM_NAME_TREE, [true, Clk], 1, false" value="1" type="GuiResourceData"/>
+<property name="RDIResource.WaveformNameTree_WAVEFORM_NAME_TREE, [true, Q[2:0]], 5" value="1" type="GuiResourceData"/>
+<property name="dc_lab2_1.v, 162, 217" value="1" type="GuiResourceData"/>
+<property name="dc_lab2_1.v, 2, 77" value="1" type="GuiResourceData"/>
+<property name="dc_lab2_1.v, 88, 263" value="1" type="GuiResourceData"/>
+<property name="dc_lab2_2.v, 190, 194" value="1" type="GuiResourceData"/>
+<property name="dc_lab2_2.v, 21, 56" value="1" type="GuiResourceData"/>
+<property name="dc_lab2_2.v, 230, 197" value="1" type="GuiResourceData"/>
+<property name="dc_lab2_2.v, 440, 39" value="1" type="GuiResourceData"/>
+<property name="dc_lab2_2.v, 452, 47" value="1" type="GuiResourceData"/>
+<property name="dc_lab2_2.v, 53, 76" value="1" type="GuiResourceData"/>
+<property name="dc_lab2_2.v, 62, 168" value="1" type="GuiResourceData"/>
+<property name="dc_lab2_2.v, 64, 197" value="1" type="GuiResourceData"/>
+<property name="dc_lab2_2.v, 72, 270" value="1" type="GuiResourceData"/>
+<property name="dc_lab2_2.v, 78, 91" value="1" type="GuiResourceData"/>
+<property name="dc_lab2_2.v, 79, 128" value="1" type="GuiResourceData"/>
+<property name="dc_lab2_2.v, 80, 161" value="1" type="GuiResourceData"/>
+<property name="dc_lab2_2.v, 82, 145" value="1" type="GuiResourceData"/>
+<property name="dc_lab2_2.v, 95, 180" value="1" type="GuiResourceData"/>
+<property name="dc_lab2_2.v, 96, 108" value="1" type="GuiResourceData"/>
 </item>
 <item name="Other">
-<property name="GuiMode" value="17" type="GuiMode"/>
+<property name="GuiMode" value="19" type="GuiMode"/>
 <property name="BatchMode" value="0" type="BatchMode"/>
-<property name="TclMode" value="15" type="TclMode"/>
+<property name="TclMode" value="16" type="TclMode"/>
 </item>
 </section>
 </application>
