@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1464090396">
-  <File Type="VDS-TIMING-PB" Name="gated_SR_latch_dataflow_timing_summary_synth.pb"/>
+  <File Type="RDS-DCP" Name="gated_SR_latch_dataflow.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="gated_SR_latch_dataflow_utilization_synth.pb"/>
   <File Type="VDS-TIMINGSUMMARY" Name="gated_SR_latch_dataflow_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="gated_SR_latch_dataflow_timing_summary_synth.pb"/>
   <File Type="RDS-RDS" Name="gated_SR_latch_dataflow.vds"/>
   <File Type="PA-TCL" Name="gated_SR_latch_dataflow.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="gated_SR_latch_dataflow_drc_synth.rpt"/>
   <File Type="RDS-UTIL" Name="gated_SR_latch_dataflow_utilization_synth.rpt"/>
-  <File Type="RDS-UTIL-PB" Name="gated_SR_latch_dataflow_utilization_synth.pb"/>
-  <File Type="RDS-DCP" Name="gated_SR_latch_dataflow.dcp"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/gated_SR_latch_dataflow.v">

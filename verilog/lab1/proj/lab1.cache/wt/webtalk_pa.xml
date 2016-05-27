@@ -3,7 +3,7 @@
 <!--The data in this file is primarily intended for consumption by Xilinx tools.
 The structure and the elements are likely to change over the next few releases.
 This means code written to parse this file will need to be revisited each subsequent release.-->
-<application name="pa" timeStamp="Sat Apr 30 22:02:12 2016">
+<application name="pa" timeStamp="Fri May 27 19:42:53 2016">
 <section name="Project Information" visible="false">
 <property name="ProjectID" value="eb29de2867064822a02740d7cb4d80f4" type="ProjectID"/>
 <property name="ProjectIteration" value="3" type="ProjectIteration"/>
@@ -21,6 +21,7 @@ This means code written to parse this file will need to be revisited each subseq
 <property name="FedToggleRoutingResourcesCmdHandler" value="7" type="JavaHandler"/>
 <property name="FileExit" value="1" type="JavaHandler"/>
 <property name="NewProject" value="1" type="JavaHandler"/>
+<property name="OpenProject" value="1" type="JavaHandler"/>
 <property name="ProjectSettingsCmdHandler" value="2" type="JavaHandler"/>
 <property name="RunBitgen" value="1" type="JavaHandler"/>
 <property name="RunImplementation" value="1" type="JavaHandler"/>
@@ -41,36 +42,18 @@ This means code written to parse this file will need to be revisited each subseq
 <property name="ZoomIn" value="2" type="JavaHandler"/>
 </item>
 <item name="Gui Resources Info">
-<property name="OK, OK" value="1" type="GuiResourceData"/>
-<property name="PAResourceCommand.PACommandNames_EXIT, Exit" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Program and Debug, Generate Bitstream], 48, false, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Simulation, Run Simulation], 11, false" value="3" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Simulation, Simulation Settings], 10, false" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Synthesis], 18" value="1" type="GuiResourceData"/>
-<property name="PAResourceItoN.LogMonitor_MONITOR, 1, 59" value="1" type="GuiResourceData"/>
-<property name="PAResourceItoN.LogMonitor_MONITOR, 1, 60" value="1" type="GuiResourceData"/>
-<property name="PAResourceItoN.LogMonitor_MONITOR, 138, 61" value="1" type="GuiResourceData"/>
-<property name="PAResourceItoN.LogMonitor_MONITOR, 139, 66" value="1" type="GuiResourceData"/>
-<property name="PAResourceItoN.LogMonitor_MONITOR, 141, 56" value="1" type="GuiResourceData"/>
-<property name="PAResourceItoN.LogMonitor_MONITOR, 149, 96" value="1" type="GuiResourceData"/>
-<property name="PAResourceItoN.LogMonitor_MONITOR, 229, 59" value="1" type="GuiResourceData"/>
-<property name="PAResourceItoN.LogMonitor_MONITOR, 243, 59" value="1" type="GuiResourceData"/>
-<property name="PAResourceItoN.LogMonitor_MONITOR, 267, 102" value="1" type="GuiResourceData"/>
-<property name="PAResourceItoN.LogMonitor_MONITOR, 282, 64" value="1" type="GuiResourceData"/>
-<property name="PAResourceItoN.LogMonitor_MONITOR, 294, 62" value="1" type="GuiResourceData"/>
-<property name="PAResourceItoN.LogMonitor_MONITOR, 304, 58" value="1" type="GuiResourceData"/>
-<property name="PAResourceItoN.LogMonitor_MONITOR, 308, 65" value="1" type="GuiResourceData"/>
-<property name="PAResourceItoN.LogMonitor_MONITOR, 357, 61" value="1" type="GuiResourceData"/>
-<property name="PAResourceItoN.MainMenuMgr_EXPORT, Export" value="1" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_OPEN_PROJECT, Open Project..." value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, lab1 (lab1.v" value="4" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, lab1_tb (lab1_tb.v" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources], 3" value="1" type="GuiResourceData"/>
 <property name="PAResourceItoN.MainMenuMgr_FILE, File" value="2" type="GuiResourceData"/>
-<property name="PAResourceItoN.MainMenuMgr_OPEN_RECENT_FILE, Open Recent File" value="1" type="GuiResourceData"/>
-<property name="RDIResource.BaseDialog_OK, OK" value="1" type="GuiResourceData"/>
-<property name="RDIResource.CommandsInput_TYPE_TCL_COMMAND_HERE, (String" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PAViews_PROJECT_SUMMARY, Project Summary" value="1" type="GuiResourceData"/>
+<property name="lab1.v, 100, 201" value="1" type="GuiResourceData"/>
 </item>
 <item name="Other">
-<property name="GuiMode" value="2" type="GuiMode"/>
+<property name="GuiMode" value="20" type="GuiMode"/>
 <property name="BatchMode" value="0" type="BatchMode"/>
-<property name="TclMode" value="1" type="TclMode"/>
+<property name="TclMode" value="17" type="TclMode"/>
 </item>
 </section>
 </application>

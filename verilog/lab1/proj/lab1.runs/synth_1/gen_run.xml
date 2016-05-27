@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1462020862">
-  <File Type="VDS-TIMING-PB" Name="lab1_timing_summary_synth.pb"/>
+  <File Type="RDS-DCP" Name="lab1.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="lab1_utilization_synth.pb"/>
   <File Type="VDS-TIMINGSUMMARY" Name="lab1_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="lab1_timing_summary_synth.pb"/>
   <File Type="RDS-RDS" Name="lab1.vds"/>
   <File Type="PA-TCL" Name="lab1.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="lab1_drc_synth.rpt"/>
   <File Type="RDS-UTIL" Name="lab1_utilization_synth.rpt"/>
-  <File Type="RDS-UTIL-PB" Name="lab1_utilization_synth.pb"/>
-  <File Type="RDS-DCP" Name="lab1.dcp"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PPRDIR/lab1.v">
@@ -36,9 +36,7 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016">
-      <Desc>Vivado Synthesis Defaults</Desc>
-    </StratHandle>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016"/>
     <Step Id="synth_design"/>
   </Strategy>
 </GenRun>
