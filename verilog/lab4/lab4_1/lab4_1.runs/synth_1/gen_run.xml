@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1464355849">
-  <File Type="VDS-TIMING-PB" Name="Data_path_with_mux_adder_register_timing_summary_synth.pb"/>
+  <File Type="PA-TCL" Name="Data_path_with_mux_adder_register.tcl"/>
+  <File Type="RDS-RDS" Name="Data_path_with_mux_adder_register.vds"/>
   <File Type="VDS-TIMINGSUMMARY" Name="Data_path_with_mux_adder_register_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="Data_path_with_mux_adder_register_timing_summary_synth.pb"/>
   <File Type="RDS-DCP" Name="Data_path_with_mux_adder_register.dcp"/>
   <File Type="RDS-UTIL-PB" Name="Data_path_with_mux_adder_register_utilization_synth.pb"/>
   <File Type="RDS-UTIL" Name="Data_path_with_mux_adder_register_utilization_synth.rpt"/>
   <File Type="RDS-PROPCONSTRS" Name="Data_path_with_mux_adder_register_drc_synth.rpt"/>
-  <File Type="RDS-RDS" Name="Data_path_with_mux_adder_register.vds"/>
-  <File Type="PA-TCL" Name="Data_path_with_mux_adder_register.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/Register_behavior.v">
