@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<document>
+<!--The data in this file is primarily intended for consumption by Xilinx tools.
+The structure and the elements are likely to change over the next few releases.
+This means code written to parse this file will need to be revisited each subsequent release.-->
+<application name="pa" timeStamp="Sun May 29 21:53:40 2016">
+<section name="Project Information" visible="false">
+<property name="ProjectID" value="439b412de98349f295931eb66e442963" type="ProjectID"/>
+<property name="ProjectIteration" value="1" type="ProjectIteration"/>
+</section>
+<section name="PlanAhead Usage" visible="true">
+<item name="Project Data">
+<property name="SrcSetCount" value="1" type="SrcSetCount"/>
+<property name="ConstraintSetCount" value="1" type="ConstraintSetCount"/>
+<property name="DesignMode" value="RTL" type="DesignMode"/>
+<property name="SynthesisStrategy" value="Vivado Synthesis Defaults" type="SynthesisStrategy"/>
+<property name="ImplStrategy" value="Vivado Implementation Defaults" type="ImplStrategy"/>
+</item>
+<item name="Java Command Handlers">
+<property name="AddSources" value="3" type="JavaHandler"/>
+<property name="NewProject" value="3" type="JavaHandler"/>
+<property name="SaveFileProxyHandler" value="2" type="JavaHandler"/>
+<property name="SimulationRun" value="3" type="JavaHandler"/>
+</item>
+<item name="Gui Resources Info">
+<property name="CANCEL, Cancel" value="1" type="GuiResourceData"/>
+<property name="FINISH, Finish" value="5" type="GuiResourceData"/>
+<property name="NEXT, Next " value="18" type="GuiResourceData"/>
+<property name="PAResourceAtoD.AddSrcWizard_SPECIFY_SIMULATION_SPECIFIC_HDL_FILES, Add or create simulation sources" value="1" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CmdMsgDialog_OK, OK" value="2" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, _1bit_binary_comparator" value="1" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, _2bit_binary_comparator" value="3" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, _2bit_binary_comparator_tb" value="1" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_NEW_PROJECT, New Project..." value="3" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_SIMULATION_RUN_BEHAVIORAL, Run Behavioral Simulation" value="3" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, _1bit_binary_comparator (_1bit_binary_comparator.v" value="4" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, _2bit_binary_comparator (_2bit_binary_comparator.v" value="2" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, _2bit_binary_comparator_tb (_2bit_binary_comparator_tb.v" value="5" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1], 5" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources], 4" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Project Manager, Add Sources], 2, false" value="3" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Simulation, Run Simulation], 11, false" value="3" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_FILE, File" value="8" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_FLOW, Flow" value="2" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_OPEN_RECENT_PROJECT, Open Recent Project" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, [, Analysis Results, sources_1, [HDL 9-2216] Analyzing Verilog file /home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task2/task2.srcs/sources_1/new/_2bit_binary_comparator.v into library work [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task2/task2.srcs/sources_1/new/_2bit_binary_comparator.v:1]. ], 19, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, [, Simulation, sim_1, [VRFC 10-529] concurrent assignment to a non-net F1 is not permitted [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task2/task2.srcs/sources_1/new/_2bit_binary_comparator.v:31]. ], 25, true" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, [, Simulation, sim_1], 24" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PAViews_PROJECT_SUMMARY, Project Summary" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PartChooser_FAMILY_CHOOSER, Artix-7, 1" value="2" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PartChooser_PARTS, xc7a100tcsg324-1 ; 324 ; 135 ; 240 ; 126800 ; 0 ; 0 ; 210 ; 63400 ; 6 ; 1 ; 85 ; 0 ; 85 ; C ; 1.05 ; 0.95 ; 0.95, 4, xc7a100tcsg324-1, 0" value="2" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PartChooser_PART_PACKAGE_CHOOSER, csg324, 2" value="2" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PartChooser_PART_SPEED_CHOOSER, -1, 1" value="2" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PartChooser_PRODUCT_CHOOSER, General Purpose, 2" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.ProjectNameChooser_PROJECT_NAME, task2" value="2" type="GuiResourceData"/>
+<property name="PAResourceOtoP.ProjectNameChooser_PROJECT_NAME, task3" value="3" type="GuiResourceData"/>
+<property name="PAResourceQtoS.SrcChooserPanel_CREATE_FILE, Create File" value="5" type="GuiResourceData"/>
+<property name="RDIResource.BaseDialog_CANCEL, Cancel" value="2" type="GuiResourceData"/>
+<property name="RDIResource.BaseDialog_OK, OK" value="8" type="GuiResourceData"/>
+<property name="RDIResource.GraphicalView_ZOOM_FIT, Waveform Viewer_zoom_fit" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 1" value="1" type="GuiResourceData"/>
+<property name="_1bit_binary_comparator.v, 103, 248" value="1" type="GuiResourceData"/>
+<property name="_1bit_binary_comparator.v, 111, 245" value="1" type="GuiResourceData"/>
+<property name="_1bit_binary_comparator.v, 117, 214" value="1" type="GuiResourceData"/>
+<property name="_1bit_binary_comparator.v, 181, 253" value="1" type="GuiResourceData"/>
+<property name="_1bit_binary_comparator.v, 258, 246" value="1" type="GuiResourceData"/>
+<property name="_1bit_binary_comparator.v, 28, 235" value="1" type="GuiResourceData"/>
+<property name="_1bit_binary_comparator.v, 45, 229" value="1" type="GuiResourceData"/>
+<property name="_1bit_binary_comparator.v, 53, 226" value="1" type="GuiResourceData"/>
+<property name="_1bit_binary_comparator.v, 79, 242" value="1" type="GuiResourceData"/>
+<property name="_1bit_binary_comparator.v, 81, 249" value="1" type="GuiResourceData"/>
+<property name="_2bit_binary_comparator.v, 0, 244" value="1" type="GuiResourceData"/>
+<property name="_2bit_binary_comparator.v, 102, 219" value="1" type="GuiResourceData"/>
+<property name="_2bit_binary_comparator.v, 102, 220" value="1" type="GuiResourceData"/>
+<property name="_2bit_binary_comparator.v, 11, 243" value="1" type="GuiResourceData"/>
+<property name="_2bit_binary_comparator.v, 113, 270" value="1" type="GuiResourceData"/>
+<property name="_2bit_binary_comparator.v, 122, 193" value="1" type="GuiResourceData"/>
+<property name="_2bit_binary_comparator.v, 122, 232" value="1" type="GuiResourceData"/>
+<property name="_2bit_binary_comparator.v, 124, 240" value="1" type="GuiResourceData"/>
+<property name="_2bit_binary_comparator.v, 126, 190" value="1" type="GuiResourceData"/>
+<property name="_2bit_binary_comparator.v, 126, 244" value="1" type="GuiResourceData"/>
+<property name="_2bit_binary_comparator.v, 129, 236" value="1" type="GuiResourceData"/>
+<property name="_2bit_binary_comparator.v, 138, 243" value="1" type="GuiResourceData"/>
+<property name="_2bit_binary_comparator.v, 179, 241" value="1" type="GuiResourceData"/>
+<property name="_2bit_binary_comparator.v, 182, 237" value="1" type="GuiResourceData"/>
+<property name="_2bit_binary_comparator.v, 24, 147" value="1" type="GuiResourceData"/>
+<property name="_2bit_binary_comparator.v, 277, 247" value="1" type="GuiResourceData"/>
+<property name="_2bit_binary_comparator.v, 29, 148" value="1" type="GuiResourceData"/>
+<property name="_2bit_binary_comparator.v, 313, 158" value="1" type="GuiResourceData"/>
+<property name="_2bit_binary_comparator.v, 345, 246" value="1" type="GuiResourceData"/>
+<property name="_2bit_binary_comparator.v, 35, 231" value="1" type="GuiResourceData"/>
+<property name="_2bit_binary_comparator.v, 350, 244" value="1" type="GuiResourceData"/>
+<property name="_2bit_binary_comparator.v, 353, 252" value="1" type="GuiResourceData"/>
+<property name="_2bit_binary_comparator.v, 59, 251" value="1" type="GuiResourceData"/>
+<property name="_2bit_binary_comparator.v, 84, 233" value="1" type="GuiResourceData"/>
+<property name="_2bit_binary_comparator.v, 9, 245" value="1" type="GuiResourceData"/>
+<property name="_2bit_binary_comparator.v, 99, 281" value="1" type="GuiResourceData"/>
+<property name="_2bit_binary_comparator_tb.v, 117, 232" value="1" type="GuiResourceData"/>
+<property name="_2bit_binary_comparator_tb.v, 184, 207" value="1" type="GuiResourceData"/>
+<property name="_2bit_binary_comparator_tb.v, 46, 253" value="1" type="GuiResourceData"/>
+<property name="_2bit_binary_comparator_tb.v, 82, 232" value="1" type="GuiResourceData"/>
+<property name="_2bit_binary_comparator_tb.v, 84, 249" value="1" type="GuiResourceData"/>
+<property name="_2bit_binary_comparator_tb.v, 87, 234" value="1" type="GuiResourceData"/>
+<property name="_2bit_binary_comparator_tb.v, 87, 250" value="1" type="GuiResourceData"/>
+</item>
+<item name="Other">
+<property name="GuiMode" value="23" type="GuiMode"/>
+<property name="BatchMode" value="0" type="BatchMode"/>
+<property name="TclMode" value="20" type="TclMode"/>
+</item>
+</section>
+</application>
+</document>
