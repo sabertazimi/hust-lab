@@ -463,6 +463,8 @@ end
 
 ### Parameter
 
+#### Overload Method
+
 ```verilog
 module data_path
 #(parameter DATA_WIDTH = 8)
@@ -486,4 +488,10 @@ module data_path_tb
     ......
 
 endmodule
+```
+
+#### Constant Variable
+
+```verilog
+reset_value = {{(DATA_WIDTH/2){1'b0}}, {(DATA_WIDTH/2){1'b1}}};
 ```
