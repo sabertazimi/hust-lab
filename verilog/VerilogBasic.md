@@ -229,6 +229,22 @@ or or1(w2, w1, In2);      // w2 = w1 or In2
 xor xor(Out, w1, w2);    // Out = w1 xor w2
 ```
 
+#### Self-Defined Gate(用户自定义原语)
+
+```verilog
+primitive XOR2 (DOUT, X1, X2);
+    input X1, X2;
+    output DOUT;
+
+    table // X1 X2 : DOUT
+        0 0 : 0;
+        0 1 : 1;
+        1 0 : 1;
+        1 1 : 0;
+    endtable
+endprimitive
+```
+
 ### Dataflow Level
 
 -    assign net = net/reg: **左式只能是net**
