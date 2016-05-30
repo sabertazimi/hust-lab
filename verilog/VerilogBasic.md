@@ -432,3 +432,31 @@ end
 
 -   [gitbooks.io](https://hom-wang.gitbooks.io/verilog-hdl/content/Chapter_07.html)
 
+## Tips
+
+### 混合编程
+
+-   内部变量用 assign 赋值
+-   输出变量通过监听 内部变量 改变输出值
+
+```verilog
+    assign DT0 = ...;
+    assign DT1 = ...;
+
+    always @(DT0) begin
+        Aout <= DT0;
+    end
+    always @(DT1) begin
+        Bout <= DT1;
+    end
+```
+
+### 上升沿/下降沿
+
+```verilog
+    always @(posedge A or negedge B) begin
+        if (A) ...
+        else if (!B) ...
+        else ...
+    end
+```
