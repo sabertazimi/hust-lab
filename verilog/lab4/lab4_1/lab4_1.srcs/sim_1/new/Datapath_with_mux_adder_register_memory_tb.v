@@ -32,11 +32,11 @@ module Datapath_with_mux_adder_register_memory_tb(
     wire next_zero;
     integer i, j;
     
-    Datapath_with_mux_adder_register_memory DUT (.Clk(Clk), .reset(reset), .reset_value(reset_value), .a_sel(a_sel), .next_sel(next_sel), .sum_sel(sum_sel), 
+    Datapath_with_mux_adder_register_memory #(DATA_WIDTH) DUT (.Clk(Clk), .reset(reset), .reset_value(reset_value), .a_sel(a_sel), .next_sel(next_sel), .sum_sel(sum_sel), 
         .a_o(a_o), .next_o(next_o), .sum_o(sum_o), .ld_next_o(ld_next_o), .ld_sum_o(ld_sum_o), .add1_o(add1_o), .add2_o(add2_o), .mem_o(mem_o), .next_zero(next_zero));
     
     initial begin
-        #10000 $finish;
+        #1000 $finish;
     end
     
     initial begin
@@ -47,11 +47,13 @@ module Datapath_with_mux_adder_register_memory_tb(
     end
     
     initial begin
-        reset = 1; reset_value = 8'b00001111;
-        #20 reset = 0;
+        reset_value = {{(DATA_WIDTH/2){1'b0}}, {(DATA_WIDTH/2){1'b1}}};
+        reset = 1;
+        {a_sel, next_sel, sum_sel} = 7;
+        #40 reset = 0;
         for (j = 7; j >= 0; j = j - 1) begin
             #10 {a_sel, next_sel, sum_sel} = j;
-            #1000;
+            #100;
         end
     end
 endmodule

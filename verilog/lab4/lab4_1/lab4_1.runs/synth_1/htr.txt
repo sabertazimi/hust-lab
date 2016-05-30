@@ -6,4 +6,4 @@
 # Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 #
 
-vivado -log Data_path_with_mux_adder_register.vds -m64 -mode batch -messageDb vivado.pb -notrace -source Data_path_with_mux_adder_register.tcl
+vivado -log Datapath_with_mux_adder_register_memory.vds -m64 -mode batch -messageDb vivado.pb -notrace -source Datapath_with_mux_adder_register_memory.tcl

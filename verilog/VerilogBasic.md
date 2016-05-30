@@ -495,3 +495,8 @@ endmodule
 ```verilog
 reset_value = {{(DATA_WIDTH/2){1'b0}}, {(DATA_WIDTH/2){1'b1}}};
 ```
+
+## 有限状态机(FSM)
+
+-   reset: initial state
+-   default: illegal/unreachable state

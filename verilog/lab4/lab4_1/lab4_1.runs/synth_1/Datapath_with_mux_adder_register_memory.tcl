@@ -4,8 +4,6 @@
 
 set_msg_config -id {HDL 9-1061} -limit 100000
 set_msg_config -id {HDL 9-1654} -limit 100000
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
 create_project -in_memory -part xc7a100tcsg324-1
 
 set_param project.singleFileAddWarning.threshold 0
@@ -20,14 +18,16 @@ read_verilog -library xil_defaultlib {
   /home/sabertazimi/gitrepo/hust-lab/verilog/lab4/lab4_1/lab4_1.srcs/sources_1/new/mux_8bit_2to1_behavior.v
   /home/sabertazimi/gitrepo/hust-lab/verilog/lab4/lab4_1/lab4_1.srcs/sources_1/new/Adder_dataflow.v
   /home/sabertazimi/gitrepo/hust-lab/verilog/lab4/lab4_1/lab4_1.srcs/sources_1/new/Data_path_with_mux_adder_register.v
+  /home/sabertazimi/gitrepo/hust-lab/verilog/lab4/lab4_1/lab4_1.srcs/sources_1/new/Datapath_with_mux_adder_register_memory.v
+  /home/sabertazimi/gitrepo/hust-lab/verilog/lab4/lab4_1/lab4_1.srcs/sources_1/new/memory.v
 }
 foreach dcp [get_files -quiet -all *.dcp] {
   set_property used_in_implementation false $dcp
 }
 
-synth_design -top Data_path_with_mux_adder_register -part xc7a100tcsg324-1
+synth_design -top Datapath_with_mux_adder_register_memory -part xc7a100tcsg324-1
 
 
-write_checkpoint -force -noxdef Data_path_with_mux_adder_register.dcp
+write_checkpoint -force -noxdef Datapath_with_mux_adder_register_memory.dcp
 
-catch { report_utilization -file Data_path_with_mux_adder_register_utilization_synth.rpt -pb Data_path_with_mux_adder_register_utilization_synth.pb }
+catch { report_utilization -file Datapath_with_mux_adder_register_memory_utilization_synth.rpt -pb Datapath_with_mux_adder_register_memory_utilization_synth.pb }

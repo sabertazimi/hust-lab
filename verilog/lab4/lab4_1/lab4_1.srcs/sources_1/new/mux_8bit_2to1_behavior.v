@@ -22,7 +22,7 @@
 
 module mux_8bit_2to1_behavior
 #(parameter DATA_WIDTH = 8)
- (
+(
     input [(DATA_WIDTH - 1):0] x,
     input [(DATA_WIDTH - 1):0] y,
     input s,

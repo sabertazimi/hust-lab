@@ -22,7 +22,7 @@
 
 module Register_behavior
 #(parameter DATA_WIDTH = 8)
-    (
+(
     input Clk,
     input [(DATA_WIDTH - 1):0] D,
     input reset,

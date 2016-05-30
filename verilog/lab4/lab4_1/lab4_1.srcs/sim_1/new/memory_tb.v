@@ -29,7 +29,7 @@ module memory_tb(
     wire [(DATA_WIDTH - 1):0] data;
     integer i;
     
-    memory DUT (.address(address), .data(data));
+    memory #(.DATA_WIDTH(DATA_WIDTH)) DUT (.address(address), .data(data));
     
     initial begin
         #2600 $finish;

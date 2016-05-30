@@ -41,15 +41,15 @@ module Datapath_with_mux_adder_register_memory
     
     assign next_zero = (next_o == 0);
     
-    mux_8bit_2to1_behavior A (.x(ld_next_o), .y(add2_o), .s(a_sel), .m(a_o));
-    mux_8bit_2to1_behavior NEXT (.x(0), .y(mem_o), .s(next_sel), .m(next_o));
-    mux_8bit_2to1_behavior SUM (.x(0), .y(add1_o), .s(sum_sel), .m(sum_o));
+    mux_8bit_2to1_behavior #(DATA_WIDTH) A (.x(ld_next_o), .y(add2_o), .s(a_sel), .m(a_o));
+    mux_8bit_2to1_behavior #(DATA_WIDTH) NEXT (.x(0), .y(mem_o), .s(next_sel), .m(next_o));
+    mux_8bit_2to1_behavior #(DATA_WIDTH) SUM (.x(0), .y(add1_o), .s(sum_sel), .m(sum_o));
     
-    Register_behavior LD_NEXT (.Clk(Clk), .D(next_o), .reset(reset), .reset_value(reset_value), .Q(ld_next_o));
-    Register_behavior LD_SUM (.Clk(Clk), .D(sum_o), .reset(reset), .reset_value(reset_value), .Q(ld_sum_o));
+    Register_behavior #(DATA_WIDTH) LD_NEXT (.Clk(Clk), .D(next_o), .reset(reset), .reset_value(reset_value), .Q(ld_next_o));
+    Register_behavior #(DATA_WIDTH) LD_SUM (.Clk(Clk), .D(sum_o), .reset(reset), .reset_value(reset_value), .Q(ld_sum_o));
     
-    Adder_dataflow ADD1 (.a(ld_sum_o), .b(mem_o), .s(add1_o));
-    Adder_dataflow ADD2 (.a(ld_next_o), .b(1), .s(add2_o));
+    Adder_dataflow #(DATA_WIDTH) ADD1 (.a(ld_sum_o), .b(mem_o), .s(add1_o));
+    Adder_dataflow #(DATA_WIDTH) ADD2 (.a(ld_next_o), .b(1), .s(add2_o));
     
-    memory MEM (.address(a_o), .data(mem_o));
+    memory #(DATA_WIDTH) MEM (.address(a_o), .data(mem_o));
 endmodule

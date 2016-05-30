@@ -22,7 +22,7 @@
 
 module memory
 #(parameter DATA_WIDTH = 8)
-    (
+(
     input [(DATA_WIDTH - 1):0] address,
     output [(DATA_WIDTH - 1):0] data
     );

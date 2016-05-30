@@ -1,0 +1,26 @@
+#-----------------------------------------------------------
+# Vivado v2016.1 (64-bit)
+# SW Build 1538259 on Fri Apr  8 15:45:23 MDT 2016
+# IP Build 1537824 on Fri Apr  8 04:28:57 MDT 2016
+# Start of session at: Mon May 30 21:05:50 2016
+# Process ID: 29008
+# Current directory: /home/sabertazimi/gitrepo/hust-lab/verilog/lab4/lab4_1/lab4_1.runs/synth_1
+# Command line: vivado -log Datapath_with_mux_adder_register_memory.vds -mode batch -messageDb vivado.pb -notrace -source Datapath_with_mux_adder_register_memory.tcl
+# Log file: /home/sabertazimi/gitrepo/hust-lab/verilog/lab4/lab4_1/lab4_1.runs/synth_1/Datapath_with_mux_adder_register_memory.vds
+# Journal file: /home/sabertazimi/gitrepo/hust-lab/verilog/lab4/lab4_1/lab4_1.runs/synth_1/vivado.jou
+#-----------------------------------------------------------
+source Datapath_with_mux_adder_register_memory.tcl -notrace
+Command: synth_design -top Datapath_with_mux_adder_register_memory -part xc7a100tcsg324-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 29254 
+ERROR: [Synth 8-2510] parameter initial value cannot be omitted in this mode of verilog [/home/sabertazimi/gitrepo/hust-lab/verilog/lab4/lab4_1/lab4_1.srcs/sources_1/new/Data_path_with_mux_adder_register.v:23]
+INFO: [Synth 8-2350] module Data_path_with_mux_adder_register ignored due to previous errors [/home/sabertazimi/gitrepo/hust-lab/verilog/lab4/lab4_1/lab4_1.srcs/sources_1/new/Data_path_with_mux_adder_register.v:22]
+Failed to read verilog '/home/sabertazimi/gitrepo/hust-lab/verilog/lab4/lab4_1/lab4_1.srcs/sources_1/new/Data_path_with_mux_adder_register.v'
+INFO: [Common 17-83] Releasing license: Synthesis
+3 Infos, 0 Warnings, 0 Critical Warnings and 2 Errors encountered.
+synth_design failed
+ERROR: [Common 17-69] Command failed: Vivado Synthesis failed
+INFO: [Common 17-206] Exiting Vivado at Mon May 30 21:06:03 2016...
