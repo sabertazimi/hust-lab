@@ -460,3 +460,30 @@ end
         else ...
     end
 ```
+
+### Parameter
+
+```verilog
+module data_path
+#(parameter DATA_WIDTH = 8)
+(
+    input A,
+    input [(DATA_WIDTH - 1): 0] B,
+    output [(DATA_WIDTH - 1): 0] C
+);
+
+    ......
+
+endmodule
+```
+
+```verilog
+module data_path_tb
+(
+);
+    data_path #(.DATA_WIDTH(16)) DUT (.A(A), .B(B), .C(C));
+
+    ......
+
+endmodule
+```
