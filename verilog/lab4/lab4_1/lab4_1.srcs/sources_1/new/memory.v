@@ -20,12 +20,14 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module memory(
-    input [7:0] address,
-    output [7:0] data
+module memory
+#(parameter DATA_WIDTH = 8)
+    (
+    input [(DATA_WIDTH - 1):0] address,
+    output [(DATA_WIDTH - 1):0] data
     );
     
-    reg [7:0] MEM [0:255];
+    reg [(DATA_WIDTH - 1):0] MEM [0:(2**(DATA_WIDTH) - 1)];
     
     assign data = MEM[address];
     

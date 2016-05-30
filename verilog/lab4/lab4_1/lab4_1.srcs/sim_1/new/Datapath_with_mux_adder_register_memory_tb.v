@@ -23,9 +23,12 @@
 module Datapath_with_mux_adder_register_memory_tb(
 
     );
+    
+    parameter DATA_WIDTH = 8;
+    
     reg Clk, reset, a_sel, next_sel, sum_sel;
-    reg [7:0] reset_value;
-    wire [7:0] a_o, next_o, sum_o, ld_next_o, ld_sum_o, add1_o, add2_o, mem_o;
+    reg [(DATA_WIDTH - 1):0] reset_value;
+    wire [(DATA_WIDTH - 1):0] a_o, next_o, sum_o, ld_next_o, ld_sum_o, add1_o, add2_o, mem_o;
     wire next_zero;
     integer i, j;
     

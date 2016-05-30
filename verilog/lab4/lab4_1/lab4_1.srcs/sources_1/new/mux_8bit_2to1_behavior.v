@@ -20,12 +20,14 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module mux_8bit_2to1_behavior(
-    input [7:0] x,
-    input [7:0] y,
+module mux_8bit_2to1_behavior
+#(parameter DATA_WIDTH = 8)
+ (
+    input [(DATA_WIDTH - 1):0] x,
+    input [(DATA_WIDTH - 1):0] y,
     input s,
-    output reg [7:0] m
-    );
+    output reg [(DATA_WIDTH - 1):0] m
+ );
 
     always @(x or y or s) begin
         if (s == 0) m = x;

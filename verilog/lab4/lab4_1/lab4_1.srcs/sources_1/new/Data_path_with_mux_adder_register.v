@@ -19,22 +19,24 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module Data_path_with_mux_adder_register(
+module Data_path_with_mux_adder_register
+#(parameter DATA_WIDTH = 8)
+(
     input Clk,
     input reset,
-    input [7:0] reset_value,
+    input [(DATA_WIDTH - 1):0] reset_value,
     input s0,
     input s1,
     input s2,
     input s3,
-    output [7:0] s0_o,
-    output [7:0] s1_o,
-    output [7:0] s2_o,
-    output [7:0] s3_o,
-    output [7:0] r0_o,
-    output [7:0] r1_o,
-    output [7:0] acc_o,
-    output [7:0] s
+    output [(DATA_WIDTH - 1):0] s0_o,
+    output [(DATA_WIDTH - 1):0] s1_o,
+    output [(DATA_WIDTH - 1):0] s2_o,
+    output [(DATA_WIDTH - 1):0] s3_o,
+    output [(DATA_WIDTH - 1):0] r0_o,
+    output [(DATA_WIDTH - 1):0] r1_o,
+    output [(DATA_WIDTH - 1):0] acc_o,
+    output [(DATA_WIDTH - 1):0] s
     );
 
     mux_8bit_2to1_behavior S0 (.x(s3_o), .y(r0_o), .s(s0), .m(s0_o));

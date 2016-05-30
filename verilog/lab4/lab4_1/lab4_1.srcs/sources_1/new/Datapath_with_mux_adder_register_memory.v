@@ -19,25 +19,27 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module Datapath_with_mux_adder_register_memory(
+module Datapath_with_mux_adder_register_memory
+#(parameter DATA_WIDTH = 8)
+(
     input Clk,
     input reset,
-    input [7:0] reset_value,
+    input [(DATA_WIDTH - 1):0] reset_value,
     input a_sel,
     input next_sel,
     input sum_sel,
-    output [7:0] a_o,
-    output [7:0] next_o,
-    output [7:0] sum_o,
-    output [7:0] ld_next_o,
-    output [7:0] ld_sum_o,
-    output [7:0] add1_o,
-    output [7:0] add2_o,
-    output [7:0] mem_o,
+    output [(DATA_WIDTH - 1):0] a_o,
+    output [(DATA_WIDTH - 1):0] next_o,
+    output [(DATA_WIDTH - 1):0] sum_o,
+    output [(DATA_WIDTH - 1):0] ld_next_o,
+    output [(DATA_WIDTH - 1):0] ld_sum_o,
+    output [(DATA_WIDTH - 1):0] add1_o,
+    output [(DATA_WIDTH - 1):0] add2_o,
+    output [(DATA_WIDTH - 1):0] mem_o,
     output next_zero
     );
     
-    assign next_zero = (next_o == 8'b0000_0000);
+    assign next_zero = (next_o == 0);
     
     mux_8bit_2to1_behavior A (.x(ld_next_o), .y(add2_o), .s(a_sel), .m(a_o));
     mux_8bit_2to1_behavior NEXT (.x(0), .y(mem_o), .s(next_sel), .m(next_o));

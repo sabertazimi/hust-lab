@@ -23,9 +23,10 @@
 module memory_tb(
 
     );
+    parameter DATA_WIDTH = 8;
     
-    reg [7:0] address;
-    wire [7:0] data;
+    reg [(DATA_WIDTH - 1):0] address;
+    wire [(DATA_WIDTH - 1):0] data;
     integer i;
     
     memory DUT (.address(address), .data(data));
@@ -35,7 +36,7 @@ module memory_tb(
     end
     
     initial begin
-        for (i = 0; i < 256; i = i + 1) begin
+        for (i = 0; i < 2**DATA_WIDTH; i = i + 1) begin
             #10 address = i;
         end        
     end

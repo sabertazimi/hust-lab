@@ -20,10 +20,12 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module Adder_dataflow(
-    input [7:0] a,
-    input [7:0] b,
-    output [7:0] s
+module Adder_dataflow
+#(parameter DATA_WIDTH = 8)
+    (
+    input [(DATA_WIDTH - 1):0] a,
+    input [(DATA_WIDTH - 1):0] b,
+    output [(DATA_WIDTH - 1):0] s
     );
     
     assign s = a + b;

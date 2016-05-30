@@ -20,12 +20,14 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module Register_behavior(
+module Register_behavior
+#(parameter DATA_WIDTH = 8)
+    (
     input Clk,
-    input [7:0] D,
+    input [(DATA_WIDTH - 1):0] D,
     input reset,
-    input [7:0] reset_value,
-    output reg [7:0] Q
+    input [(DATA_WIDTH - 1):0] reset_value,
+    output reg [(DATA_WIDTH - 1):0] Q
     );
     
     always @(posedge Clk) begin
