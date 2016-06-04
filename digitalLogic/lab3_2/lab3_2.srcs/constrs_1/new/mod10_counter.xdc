@@ -4,7 +4,7 @@
 ############################
 # reset,X
 set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets X_IBUF]
-set_property PACKAGE_PIN U9 [get_ports X]
+set_property PACKAGE_PIN F15 [get_ports X]
 set_property IOSTANDARD LVCMOS33 [get_ports X]
 set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets reset_IBUF]
 set_property PACKAGE_PIN U8 [get_ports reset]

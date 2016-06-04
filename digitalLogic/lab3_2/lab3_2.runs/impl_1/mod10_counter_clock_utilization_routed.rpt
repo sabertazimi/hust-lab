@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------------
 | Tool Version      : Vivado v.2016.1 (lin64) Build 1538259 Fri Apr  8 15:45:23 MDT 2016
-| Date              : Fri Jun  3 12:37:45 2016
+| Date              : Fri Jun  3 14:54:01 2016
 | Host              : avalon running 64-bit Ubuntu 16.04 LTS
 | Command           : report_clock_utilization -file mod10_counter_clock_utilization_routed.rpt
 | Design            : mod10_counter
@@ -42,22 +42,22 @@ Table of Contents
 2. Global Clock Resources
 -------------------------
 
-+-------+-------+-----------------+------------+---------------+--------------+------+-------------------+---------------+-------------+-----------------+--------------+-------+--------------------+-------------+
-| GlbID | SrcId | Driver Type/Pin | Constraint | Site          | Clock Region | Root | Clock Delay Group | Clock Regions | Clock Loads | Non-Clock Loads | Clock Period | Clock | Driver Pin         | Net         |
-+-------+-------+-----------------+------------+---------------+--------------+------+-------------------+---------------+-------------+-----------------+--------------+-------+--------------------+-------------+
-| g0    | src0  | BUFG/O          | None       | BUFGCTRL_X0Y0 | n/a          | n/a  | n/a               |             1 |           0 |               1 |          n/a | n/a   | X_IBUF_BUFG_inst/O | X_IBUF_BUFG |
-+-------+-------+-----------------+------------+---------------+--------------+------+-------------------+---------------+-------------+-----------------+--------------+-------+--------------------+-------------+
++-------+-------+-----------------+------------+----------------+--------------+------+-------------------+---------------+-------------+-----------------+--------------+-------+--------------------+-------------+
+| GlbID | SrcId | Driver Type/Pin | Constraint | Site           | Clock Region | Root | Clock Delay Group | Clock Regions | Clock Loads | Non-Clock Loads | Clock Period | Clock | Driver Pin         | Net         |
++-------+-------+-----------------+------------+----------------+--------------+------+-------------------+---------------+-------------+-----------------+--------------+-------+--------------------+-------------+
+| g0    | src0  | BUFG/O          | None       | BUFGCTRL_X0Y16 | n/a          | n/a  | n/a               |             1 |           0 |               1 |          n/a | n/a   | X_IBUF_BUFG_inst/O | X_IBUF_BUFG |
++-------+-------+-----------------+------------+----------------+--------------+------+-------------------+---------------+-------------+-----------------+--------------+-------+--------------------+-------------+
 * Note: Multiple constraint types applied to the driver. Please check for potential conflicts.
 
 
 3. Global Clock Source Details
 ------------------------------
 
-+-------+--------+-----------------+------------+-----------+--------------+-------------+-----------------+---------------------+--------------+---------------+--------+
-| SrcID | GlbIDs | Driver Type/Pin | Constraint | Site      | Clock Region | Clock Loads | Non-Clock Loads | Source Clock Period | Source Clock | Driver Pin    | Net    |
-+-------+--------+-----------------+------------+-----------+--------------+-------------+-----------------+---------------------+--------------+---------------+--------+
-| src0  | g0     | IBUF/O          | IOB_X1Y58  | IOB_X1Y58 | X1Y1         |           1 |               0 |                     |              | X_IBUF_inst/O | X_IBUF |
-+-------+--------+-----------------+------------+-----------+--------------+-------------+-----------------+---------------------+--------------+---------------+--------+
++-------+--------+-----------------+------------+------------+--------------+-------------+-----------------+---------------------+--------------+---------------+--------+
+| SrcID | GlbIDs | Driver Type/Pin | Constraint | Site       | Clock Region | Clock Loads | Non-Clock Loads | Source Clock Period | Source Clock | Driver Pin    | Net    |
++-------+--------+-----------------+------------+------------+--------------+-------------+-----------------+---------------------+--------------+---------------+--------+
+| src0  | g0     | IBUF/O          | IOB_X0Y122 | IOB_X0Y122 | X0Y2         |           1 |               0 |                     |              | X_IBUF_inst/O | X_IBUF |
++-------+--------+-----------------+------------+------------+--------------+-------------+-----------------+---------------------+--------------+---------------+--------+
 
 
 4. Local Clock Details
@@ -66,8 +66,8 @@ Table of Contents
 +-------+-----------------+------------+------------------+--------------+-------------+-----------------+--------------+-------+--------------+--------------+
 | LocId | Driver Type/Pin | Constraint | Site/BEL         | Clock Region | Clock Loads | Non-Clock Loads | Clock Period | Clock | Driver Pin   | Net          |
 +-------+-----------------+------------+------------------+--------------+-------------+-----------------+--------------+-------+--------------+--------------+
-| 0     | FDRE/Q          | None       | SLICE_X89Y53/AFF | X1Y1         |           0 |               0 |              |       | DUT1/Q_reg/Q | DUT1/Q1_OBUF |
-| 1     | FDRE/Q          | None       | SLICE_X88Y53/AFF | X1Y1         |           0 |               0 |              |       | DUT2/Q_reg/Q | DUT2/Q2_OBUF |
+| 0     | FDRE/Q          | None       | SLICE_X89Y57/AFF | X1Y1         |           0 |               0 |              |       | DUT1/Q_reg/Q | DUT1/Q1_OBUF |
+| 1     | FDRE/Q          | None       | SLICE_X89Y56/AFF | X1Y1         |           0 |               0 |              |       | DUT2/Q_reg/Q | DUT2/Q2_OBUF |
 +-------+-----------------+------------+------------------+--------------+-------------+-----------------+--------------+-------+--------------+--------------+
 
 
@@ -138,14 +138,14 @@ Table of Contents
 
 
 # Location of BUFG Primitives 
-set_property LOC BUFGCTRL_X0Y0 [get_cells X_IBUF_BUFG_inst]
+set_property LOC BUFGCTRL_X0Y16 [get_cells X_IBUF_BUFG_inst]
 
 # Location of IO Primitives which is load of clock spine
 
 # Location of clock ports
-set_property LOC IOB_X1Y58 [get_ports X]
+set_property LOC IOB_X0Y122 [get_ports X]
 
-# Clock net "X_IBUF_BUFG" driven by instance "X_IBUF_BUFG_inst" located at site "BUFGCTRL_X0Y0"
+# Clock net "X_IBUF_BUFG" driven by instance "X_IBUF_BUFG_inst" located at site "BUFGCTRL_X0Y16"
 #startgroup
 create_pblock {CLKAG_X_IBUF_BUFG}
 add_cells_to_pblock [get_pblocks  {CLKAG_X_IBUF_BUFG}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL } -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="X_IBUF_BUFG"}]]]

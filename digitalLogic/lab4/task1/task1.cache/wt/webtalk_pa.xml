@@ -3,7 +3,7 @@
 <!--The data in this file is primarily intended for consumption by Xilinx tools.
 The structure and the elements are likely to change over the next few releases.
 This means code written to parse this file will need to be revisited each subsequent release.-->
-<application name="pa" timeStamp="Sun May 29 20:41:20 2016">
+<application name="pa" timeStamp="Fri Jun  3 15:08:56 2016">
 <section name="Project Information" visible="false">
 <property name="ProjectID" value="42bcb164dde24d5b871fd4630adeb02f" type="ProjectID"/>
 <property name="ProjectIteration" value="1" type="ProjectIteration"/>
@@ -17,199 +17,39 @@ This means code written to parse this file will need to be revisited each subseq
 <property name="ImplStrategy" value="Vivado Implementation Defaults" type="ImplStrategy"/>
 </item>
 <item name="Java Command Handlers">
-<property name="AddSources" value="2" type="JavaHandler"/>
+<property name="AddSources" value="3" type="JavaHandler"/>
 <property name="EditDelete" value="1" type="JavaHandler"/>
 <property name="NewProject" value="2" type="JavaHandler"/>
+<property name="OpenProject" value="1" type="JavaHandler"/>
 <property name="RunSynthesis" value="1" type="JavaHandler"/>
 <property name="SimulationClose" value="13" type="JavaHandler"/>
 <property name="SimulationRun" value="16" type="JavaHandler"/>
 </item>
 <item name="Gui Resources Info">
-<property name="NEXT, Next " value="7" type="GuiResourceData"/>
-<property name="PAResourceAtoD.CmdMsgDialog_OK, OK" value="1" type="GuiResourceData"/>
-<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, _4bit_mod4_counter" value="1" type="GuiResourceData"/>
-<property name="PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, Hierarchy Update" value="2" type="GuiResourceData"/>
-<property name="PAResourceCommand.PACommandNames_NEW_PROJECT, New Project..." value="1" type="GuiResourceData"/>
-<property name="PAResourceCommand.PACommandNames_SIMULATION_RUN_BEHAVIORAL, Run Behavioral Simulation" value="16" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Non-module Files], 3, true, false, false, false, true, false" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Syntax Error Files, _4bit_mod8_counter.v], 2, false" value="2" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Syntax Error Files, _4bit_mod8_counter.v], 2, false, false, false, false, true, false" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Syntax Error Files], 1" value="1" type="GuiResourceData"/>
+<property name="FINISH, Finish" value="1" type="GuiResourceData"/>
+<property name="NEXT, Next " value="1" type="GuiResourceData"/>
+<property name="PAResourceAtoD.AddSrcWizard_SPECIFY_OR_CREATE_CONSTRAINT_FILES, Add or create constraints" value="1" type="GuiResourceData"/>
+<property name="PAResourceAtoD.AddSrcWizard_SPECIFY_SIMULATION_SPECIFIC_HDL_FILES, Add or create simulation sources" value="2" type="GuiResourceData"/>
+<property name="PAResourceAtoD.AddSrcWizard_SPECIFY_SYSTEM_GENERATOR_FOR_DSP_SOURCES, Add or create DSP sources" value="1" type="GuiResourceData"/>
+<property name="PAResourceAtoD.ConstraintsChooserPanel_CREATE_FILE, Create File" value="1" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CreateConstraintsFilePanel_FILE_NAME, _4bit_binary_counter" value="1" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_OPEN_PROJECT, Open Project..." value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Constraints, constrs_1, _4bit_binary_counter.xdc], 4, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Constraints, constrs_1, _4bit_binary_counter.xdc], 4, false, false, false, false, false, true" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Constraints, constrs_1], 3" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Constraints], 2" value="1" type="GuiResourceData"/>
 <property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, _4bit_binary_counter (_4bit_binary_counter.v" value="2" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, _4bit_mod8_counter (_4bit_mod8_counter.v" value="4" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Simulation, Run Simulation], 11, false" value="16" type="GuiResourceData"/>
-<property name="PAResourceItoN.MainMenuMgr_FILE, File" value="2" type="GuiResourceData"/>
-<property name="PAResourceItoN.MainMenuMgr_OPEN_RECENT_PROJECT, Open Recent Project" value="1" type="GuiResourceData"/>
-<property name="PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, [, Synthesis, [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds. ], 31, false" value="1" type="GuiResourceData"/>
-<property name="PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, [, Synthesis, [Project 1-111] Unisim Transformation Summary:.   A total of 4 instances were transformed..   LDC = LDCE: 4 instances. . ], 34, false" value="1" type="GuiResourceData"/>
-<property name="PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, [, Synthesis, [Synth 8-256] done synthesizing module '_4bit_binary_counter' (1#1" value="2" type="GuiResourceData"/>
-<property name="PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, [, Synthesis, [Synth 8-3332] Sequential element (Qcc_n_reg" value="1" type="GuiResourceData"/>
-<property name="PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, [, Synthesis, [Synth 8-5818] HDL ADVISOR - The operator resource adder is shared. To prevent sharing consider applying a KEEP on the output of the operator [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task1/task1.srcs/sources_1/new/_4bit_binary_counter.v:37]. ], 26, false" value="2" type="GuiResourceData"/>
-<property name="PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, [, Synthesis, [Synth 8-638] synthesizing module '_4bit_binary_counter' [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task1/task1.srcs/sources_1/new/_4bit_binary_counter.v:23]. ], 23, false" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.PAViews_CODE, Code" value="4" type="GuiResourceData"/>
-<property name="PAResourceOtoP.PartChooser_FAMILY_CHOOSER, Artix-7, 1" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.PartChooser_PARTS, xc7a100tcsg324-1 ; 324 ; 135 ; 240 ; 126800 ; 0 ; 0 ; 210 ; 63400 ; 6 ; 1 ; 85 ; 0 ; 85 ; C ; 1.05 ; 0.95 ; 0.95, 4, xc7a100tcsg324-1, 0" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.PartChooser_PART_PACKAGE_CHOOSER, csg324, 2" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.PartChooser_PART_SPEED_CHOOSER, -1, 1" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.PartChooser_PRODUCT_CHOOSER, General Purpose, 2" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.ProjectNameChooser_PROJECT_NAME, task1_2" value="1" type="GuiResourceData"/>
-<property name="PAResourceQtoS.SrcChooserPanel_CREATE_FILE, Create File" value="1" type="GuiResourceData"/>
-<property name="PAResourceQtoS.SrcMenu_IP_HIERARCHY, IP Hierarchy" value="1" type="GuiResourceData"/>
-<property name="RDIResource.BaseDialog_CANCEL, Cancel" value="1" type="GuiResourceData"/>
-<property name="RDIResource.BaseDialog_OK, OK" value="15" type="GuiResourceData"/>
-<property name="RDIResource.CommandsInput_TYPE_TCL_COMMAND_HERE, (String" value="2" type="GuiResourceData"/>
-<property name="RDIResource.GraphicalView_ZOOM_FIT, Waveform Viewer_zoom_fit" value="14" type="GuiResourceData"/>
-<property name="RDIResource.GraphicalView_ZOOM_OUT, Waveform Viewer_zoom_out" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 122, 76" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 1372, 107" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 1415, 72" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 166, 83" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 221, 77" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 258, 77" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 287, 82" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 323, 100" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 341, -23" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 354, 73" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 368, 107" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 396, 77" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 476, 79" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 477, 67" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 489, 79" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 508, 73" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 511, 76" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 572, 79" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 58, 80" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 611, 101" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 624, 17" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 645, 27" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 71, 80" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 713, -16" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 735, 76" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 851, 106" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 861, 101" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 876, 109" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 882, 95" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 889, 101" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 898, 110" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 899, 112" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 905, 107" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 914, 106" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 916, 104" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 919, 106" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 922, 109" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 932, 112" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 942, 112" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 1" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 10" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 11" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 12" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 13" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 14" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 2" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 3" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 4" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 5" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 6" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 7" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 8" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 9" value="1" type="GuiResourceData"/>
-<property name="RDIResource.WaveformNameTree_WAVEFORM_NAME_TREE, [true, Q[3:0]], 5" value="2" type="GuiResourceData"/>
-<property name="RDIResourceCommand.RDICommands_DELETE, Remove File from Project..." value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter.v, 102, 109" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter.v, 105, 147" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter.v, 111, 199" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter.v, 135, 186" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter.v, 161, 79" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter.v, 231, 153" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter.v, 239, 158" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter.v, 243, 148" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter.v, 265, 78" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter.v, 302, 73" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter.v, 62, 121" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter.v, 63, 81" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter.v, 66, 182" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter.v, 70, 180" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter.v, 83, 91" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter.v, 86, 139" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter.v, 87, 96" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter.v, 89, 84" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter.v, 95, 162" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter.v, 98, 120" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter.v, 99, 129" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 100, 131" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 100, 208" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 103, 286" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 105, 304" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 111, 144" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 120, 227" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 121, 178" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 127, 165" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 128, 168" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 131, 211" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 134, 213" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 140, 143" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 141, 196" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 141, 218" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 141, 225" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 148, 144" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 149, 223" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 150, 114" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 152, 112" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 156, 213" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 163, 242" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 167, 200" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 177, 147" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 181, 117" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 201, 147" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 210, 109" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 218, 205" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 224, 189" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 226, 155" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 229, 238" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 248, 112" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 254, 158" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 293, 112" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 342, 213" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 355, 115" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 37, 116" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 37, 209" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 39, 128" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 39, 131" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 40, 129" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 41, 215" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 41, 245" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 41, 260" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 43, 264" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 45, 131" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 45, 216" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 49, 228" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 52, 209" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 52, 211" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 537, 116" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 539, 112" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 57, 158" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 61, 211" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 65, 178" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 65, 245" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 79, 180" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 81, 168" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 89, 233" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 94, 164" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 96, 139" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 97, 217" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 98, 198" value="1" type="GuiResourceData"/>
-<property name="_4bit_binary_counter_tb.v, 99, 219" value="1" type="GuiResourceData"/>
-<property name="_4bit_mod8_counter.v, 104, 279" value="1" type="GuiResourceData"/>
-<property name="_4bit_mod8_counter.v, 59, 301" value="1" type="GuiResourceData"/>
-<property name="_4bit_mod8_counter.v, 64, 294" value="1" type="GuiResourceData"/>
-<property name="_4bit_mod8_counter.v, 71, 333" value="1" type="GuiResourceData"/>
-<property name="_4bit_mod8_counter.v, 83, 272" value="1" type="GuiResourceData"/>
-<property name="_4bit_mod8_counter.v, 89, 299" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Project Manager, Add Sources], 2, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_FILE, File" value="4" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_VIEW, View" value="2" type="GuiResourceData"/>
+<property name="RDIResource.BaseDialog_OK, OK" value="1" type="GuiResourceData"/>
+<property name="RDIResource.MainWinMenuMgr_LAYOUT, Layout" value="2" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.xdc, 153, 143" value="1" type="GuiResourceData"/>
 </item>
 <item name="Other">
-<property name="GuiMode" value="22" type="GuiMode"/>
+<property name="GuiMode" value="29" type="GuiMode"/>
 <property name="BatchMode" value="0" type="BatchMode"/>
-<property name="TclMode" value="19" type="TclMode"/>
+<property name="TclMode" value="25" type="TclMode"/>
 </item>
 </section>
 </application>

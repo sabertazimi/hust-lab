@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2016.1 (lin64) Build 1538259 Fri Apr  8 15:45:23 MDT 2016
-| Date             : Fri Jun  3 12:37:44 2016
+| Date             : Fri Jun  3 14:54:01 2016
 | Host             : avalon running 64-bit Ubuntu 16.04 LTS
 | Command          : report_power -file mod10_counter_power_routed.rpt -pb mod10_counter_power_summary_routed.pb -rpx mod10_counter_power_routed.rpx
 | Design           : mod10_counter
@@ -30,12 +30,12 @@ Table of Contents
 ----------
 
 +--------------------------+--------+
-| Total On-Chip Power (W)  | 10.216 |
-| Dynamic (W)              | 10.022 |
+| Total On-Chip Power (W)  | 10.229 |
+| Dynamic (W)              | 10.034 |
 | Device Static (W)        | 0.195  |
 | Effective TJA (C/W)      | 4.6    |
-| Max Ambient (C)          | 38.4   |
-| Junction Temperature (C) | 71.6   |
+| Max Ambient (C)          | 38.3   |
+| Junction Temperature (C) | 71.7   |
 | Confidence Level         | Low    |
 | Setting File             | ---    |
 | Simulation Activity File | ---    |
@@ -49,15 +49,15 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Slice Logic    |     0.040 |       20 |       --- |             --- |
-|   LUT as Logic |     0.030 |        4 |     63400 |           <0.01 |
+| Slice Logic    |     0.043 |       20 |       --- |             --- |
+|   LUT as Logic |     0.034 |        4 |     63400 |           <0.01 |
 |   BUFG         |     0.006 |        1 |        32 |            3.13 |
 |   Register     |     0.004 |        5 |    126800 |           <0.01 |
 |   Others       |     0.000 |        8 |       --- |             --- |
-| Signals        |     0.076 |        9 |       --- |             --- |
+| Signals        |     0.085 |        9 |       --- |             --- |
 | I/O            |     9.906 |        7 |       210 |            3.33 |
 | Static Power   |     0.195 |          |           |                 |
-| Total          |    10.216 |          |           |                 |
+| Total          |    10.229 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -67,7 +67,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.217 |       0.124 |      0.093 |
+| Vccint    |       1.000 |     0.230 |       0.136 |      0.093 |
 | Vccaux    |       1.800 |     0.391 |       0.363 |      0.028 |
 | Vcco33    |       3.300 |     2.805 |       2.801 |      0.004 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
@@ -134,11 +134,11 @@ Table of Contents
 +---------------+-----------+
 | Name          | Power (W) |
 +---------------+-----------+
-| mod10_counter |    10.022 |
-|   DUT1        |     0.027 |
-|   DUT2        |     0.031 |
-|   DUT3        |     0.027 |
-|   DUT4        |     0.008 |
+| mod10_counter |    10.034 |
+|   DUT1        |     0.031 |
+|   DUT2        |     0.034 |
+|   DUT3        |     0.022 |
+|   DUT4        |     0.010 |
 +---------------+-----------+
 
 

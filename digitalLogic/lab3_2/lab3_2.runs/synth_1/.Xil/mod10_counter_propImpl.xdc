@@ -2,7 +2,7 @@ set_property SRC_FILE_INFO {cfile:/home/sabertazimi/gitrepo/hust-lab/digitalLogi
 set_property src_info {type:XDC file:1 line:6 export:INPUT save:INPUT read:READ} [current_design]
 set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets X_IBUF]
 set_property src_info {type:XDC file:1 line:7 export:INPUT save:INPUT read:READ} [current_design]
-set_property PACKAGE_PIN U9 [get_ports X]
+set_property PACKAGE_PIN F15 [get_ports X]
 set_property src_info {type:XDC file:1 line:9 export:INPUT save:INPUT read:READ} [current_design]
 set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets reset_IBUF]
 set_property src_info {type:XDC file:1 line:10 export:INPUT save:INPUT read:READ} [current_design]

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1464928580">
-  <File Type="PA-TCL" Name="mod10_counter.tcl"/>
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1464936756">
+  <File Type="RDS-PROPCONSTRS" Name="mod10_counter_drc_synth.rpt"/>
+  <File Type="RDS-UTIL" Name="mod10_counter_utilization_synth.rpt"/>
   <File Type="RDS-RDS" Name="mod10_counter.vds"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="mod10_counter_timing_summary_synth.rpt"/>
   <File Type="VDS-TIMING-PB" Name="mod10_counter_timing_summary_synth.pb"/>
+  <File Type="PA-TCL" Name="mod10_counter.tcl"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="mod10_counter_timing_summary_synth.rpt"/>
   <File Type="RDS-DCP" Name="mod10_counter.dcp"/>
   <File Type="RDS-UTIL-PB" Name="mod10_counter_utilization_synth.pb"/>
-  <File Type="RDS-UTIL" Name="mod10_counter_utilization_synth.rpt"/>
-  <File Type="RDS-PROPCONSTRS" Name="mod10_counter_drc_synth.rpt"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/JK_ff.v">
