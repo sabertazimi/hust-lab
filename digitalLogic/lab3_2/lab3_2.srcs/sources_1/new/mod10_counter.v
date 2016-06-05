@@ -24,7 +24,7 @@ module mod10_counter(reset,X,Z,Q1,Q2,Q3,Q4);
     input X,reset;
     output Z,Q1,Q2,Q3,Q4;
     wire s=1;
-    wire t1,s1,t2,t3,t4, s5,s2,s3,s4;
+    wire t1,t2,t3,t4, s5;
     assign Q = {Q4,Q3,Q2,Q1};
     JK_ff DUT1 (.J(s), .K(s), .cp(X), .Q(Q1), .Qbar(t1), .reset(reset));
     JK_ff DUT2 (.J(t4), .K(s), .cp(Q1), .Q(Q2), .Qbar(t2), .reset(reset));
