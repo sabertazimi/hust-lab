@@ -3,7 +3,7 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 2016/05/29 21:32:40
+// Create Date: 2016/06/05 19:29:40
 // Design Name: 
 // Module Name: _2bit_binary_comparator_tb
 // Project Name: 

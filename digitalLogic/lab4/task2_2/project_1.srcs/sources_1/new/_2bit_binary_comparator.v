@@ -3,7 +3,7 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 2016/05/29 21:31:36
+// Create Date: 2016/06/05 19:28:10
 // Design Name: 
 // Module Name: _2bit_binary_comparator
 // Project Name: 
@@ -36,3 +36,4 @@ module _2bit_binary_comparator(
         else F <= F1;
     end
 endmodule
+
