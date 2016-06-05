@@ -22,11 +22,20 @@
 
 module _4bit_mod8_counter(
     input CP,
-    input [3:0] D,
-    input LD_n,
+    input reset,
+    input M,
     output [3:0] Q,
     output Qcc_n
     );
     
-    _4bit_binary_counter COUNT (.CP(CP), .M(1), .D(D), .LD_n(LD_n), .CLR_n(~Q[3]), .Q(Q), .Qcc_n(Qcc_n));
+    reg LD_n;
+
+    always @(reset or M or CP) begin
+        if(M) LD_n = ~(Q[3]&Q[1])&~reset;
+        else LD_n = (~Q[3]|Q[2]|~Q[1]|Q[0])&~reset;
+    end
+    
+    _4bit_binary_counter COUNT (.CP(CP), .M(M), .D(4'b0010), .LD_n(LD_n), .CLR_n(1), .Q(Q), .Qcc_n(Qcc_n));
+
+    
 endmodule

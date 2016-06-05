@@ -34,7 +34,7 @@ module _2bit_binary_comparator_tb(
     
     initial begin
         {A, B} = 4'b0000;
-        for (i = 0; i < 16; i = i + 1) begin
+        for (i = 1; i < 16; i = i + 1) begin
             #10 {A, B} = i;
         end
     end

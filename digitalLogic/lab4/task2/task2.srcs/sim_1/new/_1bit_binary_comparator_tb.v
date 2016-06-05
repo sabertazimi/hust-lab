@@ -37,7 +37,7 @@ module _1bit_binary_comparator_tb(
     
     initial begin
         {A, B} = 2'b00;
-        for (i = 0; i < COUNT; i = i + 1) begin
+        for (i = 1; i < COUNT; i = i + 1) begin
             #DELAY {A, B} = i;
         end
     end

@@ -3,7 +3,7 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 2016/05/29 20:41:43
+// Create Date: 2016/05/29 19:35:50
 // Design Name: 
 // Module Name: _4bit_binary_counter
 // Project Name: 
@@ -19,6 +19,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
+
 module _4bit_binary_counter(
     input CP,
     input M,
@@ -29,10 +30,14 @@ module _4bit_binary_counter(
     output reg  Qcc_n
     );
     
-    always @(negedge CLR_n or negedge LD_n  or posedge CP) begin
-        if (!CLR_n) {Qcc_n, Q} <= 5'b10000;
-        else if (!LD_n) {Qcc_n, Q} <= {1'b1, D};
-        else if (CP) begin
+    always @(CLR_n or LD_n or CP or D) begin
+        if (!CLR_n) begin
+            {Qcc_n, Q} <= 5'b10000;
+        end
+        else if (!LD_n) begin
+            {Qcc_n, Q} <= {1'b1, D};
+        end
+        else if(CP) begin
             if (M) begin
                 {Qcc_n, Q} <= {Qcc_n,Q} + 1;
                 #10 Qcc_n <= 1;

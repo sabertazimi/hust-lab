@@ -23,7 +23,8 @@
 module _4bit_binary_counter_tb(
 
     );
-    
+    parameter COUNT = 85;
+    parameter DELAY = 10;
     reg CP, M, LD_n, CLR_n;
     reg [3:0] D;
     wire [3:0] Q;
@@ -33,23 +34,28 @@ module _4bit_binary_counter_tb(
     _4bit_binary_counter DUT (.CP(CP), .M(M), .D(D), .LD_n(LD_n), .CLR_n(CLR_n), .Q(Q), .Qcc_n(Qcc_n));
     
     initial begin
-        #850 $finish;
+        #(COUNT * DELAY) $finish;
     end
     
     initial begin
         CP = 0;
-        for (i = 0; i < 85; i = i + 1) begin
-            #10 CP = ~CP;
+        for (i = 0; i < COUNT; i = i + 1) begin
+            #DELAY CP = ~CP;
         end
     end
     
     initial begin
-        M = 1; LD_n = 1; CLR_n = 0; D = 4'b0111;
-        #10 CLR_n = 1;
-        #350 CLR_n = 0;
-        #10 CLR_n = 1;
-        #10 LD_n = 0;
-        #10 LD_n = 1;
-        #10 M = 0;
+        M = 1;
+        #(COUNT*DELAY/2) M = 0;
+    end
+        
+    initial begin
+        D = 4'b1111; LD_n = 1; CLR_n = 0;
+        #DELAY CLR_n = 1;
+        #(5*DELAY) CLR_n = 0;
+        #(3*DELAY) CLR_n = 1;
+        #(5*DELAY) LD_n = 0;
+        #(2*DELAY) D = 4'b0111;
+        #(4*DELAY) LD_n = 1;
     end
 endmodule

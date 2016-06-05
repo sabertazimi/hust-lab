@@ -1,0 +1,306 @@
+#-----------------------------------------------------------
+# Vivado v2016.1 (64-bit)
+# SW Build 1538259 on Fri Apr  8 15:45:23 MDT 2016
+# IP Build 1537824 on Fri Apr  8 04:28:57 MDT 2016
+# Start of session at: Sun Jun  5 22:08:03 2016
+# Process ID: 28774
+# Current directory: /home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task1_2/task1_2.runs/synth_1
+# Command line: vivado -log _4bit_mod8_counter.vds -mode batch -messageDb vivado.pb -notrace -source _4bit_mod8_counter.tcl
+# Log file: /home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task1_2/task1_2.runs/synth_1/_4bit_mod8_counter.vds
+# Journal file: /home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task1_2/task1_2.runs/synth_1/vivado.jou
+#-----------------------------------------------------------
+source _4bit_mod8_counter.tcl -notrace
+Command: synth_design -top _4bit_mod8_counter -part xc7a100tcsg324-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 28967 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1045.016 ; gain = 154.078 ; free physical = 3153 ; free virtual = 12819
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module '_4bit_mod8_counter' [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task1_2/task1_2.srcs/sources_1/new/_4bit_mod8_counter.v:23]
+WARNING: [Synth 8-567] referenced signal 'Q' should be on the sensitivity list [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task1_2/task1_2.srcs/sources_1/new/_4bit_mod8_counter.v:33]
+INFO: [Synth 8-638] synthesizing module '_4bit_binary_counter' [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task1_2/task1_2.srcs/sources_1/new/_4bit_binary_counter.v:23]
+WARNING: [Synth 8-567] referenced signal 'M' should be on the sensitivity list [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task1_2/task1_2.srcs/sources_1/new/_4bit_binary_counter.v:33]
+WARNING: [Synth 8-567] referenced signal 'Qcc_n' should be on the sensitivity list [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task1_2/task1_2.srcs/sources_1/new/_4bit_binary_counter.v:33]
+WARNING: [Synth 8-567] referenced signal 'Q' should be on the sensitivity list [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task1_2/task1_2.srcs/sources_1/new/_4bit_binary_counter.v:33]
+INFO: [Synth 8-256] done synthesizing module '_4bit_binary_counter' (1#1) [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task1_2/task1_2.srcs/sources_1/new/_4bit_binary_counter.v:23]
+INFO: [Synth 8-256] done synthesizing module '_4bit_mod8_counter' (2#1) [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task1_2/task1_2.srcs/sources_1/new/_4bit_mod8_counter.v:23]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1085.453 ; gain = 194.516 ; free physical = 3106 ; free virtual = 12774
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1085.453 ; gain = 194.516 ; free physical = 3106 ; free virtual = 12774
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task1_2/task1_2.srcs/constrs_1/new/_4bit_mod8_counter.xdc]
+WARNING: [Vivado 12-507] No nets matched 'CP_IBUF'. [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task1_2/task1_2.srcs/constrs_1/new/_4bit_mod8_counter.xdc:6]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task1_2/task1_2.srcs/constrs_1/new/_4bit_mod8_counter.xdc:6]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-507] No nets matched 'reset_IBUF'. [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task1_2/task1_2.srcs/constrs_1/new/_4bit_mod8_counter.xdc:9]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task1_2/task1_2.srcs/constrs_1/new/_4bit_mod8_counter.xdc:9]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-507] No nets matched 'M_IBUF'. [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task1_2/task1_2.srcs/constrs_1/new/_4bit_mod8_counter.xdc:12]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task1_2/task1_2.srcs/constrs_1/new/_4bit_mod8_counter.xdc:12]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+Finished Parsing XDC File [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task1_2/task1_2.srcs/constrs_1/new/_4bit_mod8_counter.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task1_2/task1_2.srcs/constrs_1/new/_4bit_mod8_counter.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/_4bit_mod8_counter_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/_4bit_mod8_counter_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1387.930 ; gain = 0.000 ; free physical = 2869 ; free virtual = 12533
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1387.930 ; gain = 496.992 ; free physical = 2927 ; free virtual = 12591
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a100tcsg324-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1387.930 ; gain = 496.992 ; free physical = 2927 ; free virtual = 12591
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1387.930 ; gain = 496.992 ; free physical = 2926 ; free virtual = 12591
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task1_2/task1_2.srcs/sources_1/new/_4bit_binary_counter.v:41]
+WARNING: [Synth 8-327] inferring latch for variable 'Q_reg' [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task1_2/task1_2.srcs/sources_1/new/_4bit_binary_counter.v:35]
+WARNING: [Synth 8-327] inferring latch for variable 'Qcc_n_reg' [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task1_2/task1_2.srcs/sources_1/new/_4bit_binary_counter.v:35]
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1387.930 ; gain = 496.992 ; free physical = 2924 ; free virtual = 12588
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      4 Bit       Adders := 1     
++---Muxes : 
+	   2 Input      4 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 5     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module _4bit_mod8_counter 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 1     
+Module _4bit_binary_counter 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      4 Bit       Adders := 1     
++---Muxes : 
+	   2 Input      4 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 4     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+Start Parallel Synthesis Optimization  : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1387.930 ; gain = 496.992 ; free physical = 2923 ; free virtual = 12588
+---------------------------------------------------------------------------------
+Start Cross Boundary Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Cross Boundary Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1387.930 ; gain = 496.992 ; free physical = 2923 ; free virtual = 12588
+---------------------------------------------------------------------------------
+Finished Parallel Reinference  : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1387.930 ; gain = 496.992 ; free physical = 2923 ; free virtual = 12588
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Area Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Area Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1387.930 ; gain = 496.992 ; free physical = 2963 ; free virtual = 12627
+---------------------------------------------------------------------------------
+Finished Parallel Area Optimization  : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1387.930 ; gain = 496.992 ; free physical = 2963 ; free virtual = 12627
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 1387.930 ; gain = 496.992 ; free physical = 3022 ; free virtual = 12682
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 1387.930 ; gain = 496.992 ; free physical = 3022 ; free virtual = 12682
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 1397.945 ; gain = 507.008 ; free physical = 3014 ; free virtual = 12674
+---------------------------------------------------------------------------------
+Finished Parallel Technology Mapping Optimization  : Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 1397.945 ; gain = 507.008 ; free physical = 3014 ; free virtual = 12674
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+Finished Parallel Synthesis Optimization  : Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 1397.945 ; gain = 507.008 ; free physical = 3014 ; free virtual = 12674
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 1397.945 ; gain = 507.008 ; free physical = 2997 ; free virtual = 12657
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 1397.945 ; gain = 507.008 ; free physical = 2996 ; free virtual = 12656
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 1397.945 ; gain = 507.008 ; free physical = 2996 ; free virtual = 12656
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 1397.945 ; gain = 507.008 ; free physical = 2996 ; free virtual = 12656
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 1397.945 ; gain = 507.008 ; free physical = 2989 ; free virtual = 12649
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 1397.945 ; gain = 507.008 ; free physical = 2988 ; free virtual = 12648
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-----+------+
+|      |Cell |Count |
++------+-----+------+
+|1     |LUT2 |     2|
+|2     |LUT6 |     6|
+|3     |LDC  |     4|
+|4     |LDP  |     1|
+|5     |IBUF |     3|
+|6     |OBUF |     5|
++------+-----+------+
+
+Report Instance Areas: 
++------+---------+---------------------+------+
+|      |Instance |Module               |Cells |
++------+---------+---------------------+------+
+|1     |top      |                     |    21|
+|2     |  COUNT  |_4bit_binary_counter |    13|
++------+---------+---------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 1397.945 ; gain = 507.008 ; free physical = 2988 ; free virtual = 12648
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 2 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:19 ; elapsed = 00:00:19 . Memory (MB): peak = 1397.945 ; gain = 117.449 ; free physical = 2981 ; free virtual = 12641
+Synthesis Optimization Complete : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 1397.953 ; gain = 507.016 ; free physical = 2981 ; free virtual = 12641
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Netlist 29-17] Analyzing 8 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 5 instances were transformed.
+  LDC => LDCE: 4 instances
+  LDP => LDPE: 1 instances
+
+INFO: [Common 17-83] Releasing license: Synthesis
+17 Infos, 9 Warnings, 3 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 1402.945 ; gain = 437.512 ; free physical = 2944 ; free virtual = 12608
+report_utilization: Time (s): cpu = 00:00:00.07 ; elapsed = 00:00:00.10 . Memory (MB): peak = 1434.961 ; gain = 0.000 ; free physical = 2938 ; free virtual = 12602
+INFO: [Common 17-206] Exiting Vivado at Sun Jun  5 22:08:37 2016...

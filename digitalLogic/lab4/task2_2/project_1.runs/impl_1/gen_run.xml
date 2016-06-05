@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1465136949">
+  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
+  <File Type="RDI-RDI" Name="_2bit_binary_comparator.vdi"/>
+  <File Type="BG-DRC" Name="_2bit_binary_comparator.drc"/>
+  <File Type="BG-BGN" Name="_2bit_binary_comparator.bgn"/>
+  <File Type="BITSTR-SYSDEF" Name="_2bit_binary_comparator.sysdef"/>
+  <File Type="BITSTR-MMI" Name="_2bit_binary_comparator.mmi"/>
+  <File Type="BITSTR-BMM" Name="_2bit_binary_comparator_bd.bmm"/>
+  <File Type="BITSTR-NKY" Name="_2bit_binary_comparator.nky"/>
+  <File Type="BITSTR-RBT" Name="_2bit_binary_comparator.rbt"/>
+  <File Type="BITSTR-MSK" Name="_2bit_binary_comparator.msk"/>
+  <File Type="BG-BIN" Name="_2bit_binary_comparator.bin"/>
+  <File Type="BG-BIT" Name="_2bit_binary_comparator.bit"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="_2bit_binary_comparator_timing_summary_postroute_physopted.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="_2bit_binary_comparator_timing_summary_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="_2bit_binary_comparator_timing_summary_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="_2bit_binary_comparator_postroute_physopt_bb.dcp"/>
+  <File Type="ROUTE-CLK" Name="_2bit_binary_comparator_clock_utilization_routed.rpt"/>
+  <File Type="ROUTE-SIMILARITY" Name="_2bit_binary_comparator_incremental_reuse_routed.rpt"/>
+  <File Type="ROUTE-TIMING-RPX" Name="_2bit_binary_comparator_timing_summary_routed.rpx"/>
+  <File Type="ROUTE-TIMING-PB" Name="_2bit_binary_comparator_timing_summary_routed.pb"/>
+  <File Type="PLACE-UTIL-PB" Name="_2bit_binary_comparator_utilization_placed.pb"/>
+  <File Type="PLACE-UTIL" Name="_2bit_binary_comparator_utilization_placed.rpt"/>
+  <File Type="PLACE-DCP" Name="_2bit_binary_comparator_placed.dcp"/>
+  <File Type="PLACE-CLK" Name="_2bit_binary_comparator_clock_utilization_placed.rpt"/>
+  <File Type="PHYSOPT-TIMING" Name="_2bit_binary_comparator_timing_summary_physopted.rpt"/>
+  <File Type="PWROPT-TIMING" Name="_2bit_binary_comparator_timing_summary_pwropted.rpt"/>
+  <File Type="OPT-DRC" Name="_2bit_binary_comparator_drc_opted.rpt"/>
+  <File Type="PWROPT-DRC" Name="_2bit_binary_comparator_drc_pwropted.rpt"/>
+  <File Type="PWROPT-DCP" Name="_2bit_binary_comparator_pwropt.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="_2bit_binary_comparator_postroute_physopt.dcp"/>
+  <File Type="PA-TCL" Name="_2bit_binary_comparator.tcl"/>
+  <File Type="PLACE-IO" Name="_2bit_binary_comparator_io_placed.rpt"/>
+  <File Type="POSTPLACE-PWROPT-TIMING" Name="_2bit_binary_comparator_timing_summary_postplace_pwropted.rpt"/>
+  <File Type="OPT-TIMING" Name="_2bit_binary_comparator_timing_summary_opted.rpt"/>
+  <File Type="PLACE-CTRL" Name="_2bit_binary_comparator_control_sets_placed.rpt"/>
+  <File Type="OPT-METHODOLOGY-DRC" Name="_2bit_binary_comparator_methodology_drc_opted.rpt"/>
+  <File Type="OPT-DCP" Name="_2bit_binary_comparator_opt.dcp"/>
+  <File Type="INIT-TIMING" Name="_2bit_binary_comparator_timing_summary_init.rpt"/>
+  <File Type="OPT-HWDEF" Name="_2bit_binary_comparator.hwdef"/>
+  <File Type="PLACE-TIMING" Name="_2bit_binary_comparator_timing_summary_placed.rpt"/>
+  <File Type="PLACE-SIMILARITY" Name="_2bit_binary_comparator_incremental_reuse_placed.rpt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="_2bit_binary_comparator_methodology_drc_routed.rpt"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="_2bit_binary_comparator_incremental_reuse_pre_placed.rpt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="_2bit_binary_comparator_methodology_drc_routed.pb"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="_2bit_binary_comparator_postplace_pwropt.dcp"/>
+  <File Type="PHYSOPT-DCP" Name="_2bit_binary_comparator_physopt.dcp"/>
+  <File Type="PHYSOPT-DRC" Name="_2bit_binary_comparator_drc_physopted.rpt"/>
+  <File Type="ROUTE-DCP" Name="_2bit_binary_comparator_routed.dcp"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="_2bit_binary_comparator_routed_bb.dcp"/>
+  <File Type="ROUTE-DRC" Name="_2bit_binary_comparator_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-PB" Name="_2bit_binary_comparator_drc_routed.pb"/>
+  <File Type="ROUTE-PWR" Name="_2bit_binary_comparator_power_routed.rpt"/>
+  <File Type="ROUTE-PWR-SUM" Name="_2bit_binary_comparator_power_summary_routed.pb"/>
+  <File Type="ROUTE-PWR-RPX" Name="_2bit_binary_comparator_power_routed.rpx"/>
+  <File Type="ROUTE-STATUS" Name="_2bit_binary_comparator_route_status.rpt"/>
+  <File Type="ROUTE-STATUS-PB" Name="_2bit_binary_comparator_route_status.pb"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="_2bit_binary_comparator_timing_summary_routed.rpt"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/new/_1bit_binary_comparator.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/_2bit_binary_comparator.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="_2bit_binary_comparator"/>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <File Path="$PSRCDIR/constrs_1/new/_2bit_binary_comparator.xdc">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2016"/>
+    <Step Id="init_design"/>
+    <Step Id="opt_design"/>
+    <Step Id="power_opt_design"/>
+    <Step Id="place_design"/>
+    <Step Id="post_place_power_opt_design"/>
+    <Step Id="phys_opt_design"/>
+    <Step Id="route_design"/>
+    <Step Id="post_route_phys_opt_design"/>
+    <Step Id="write_bitstream"/>
+  </Strategy>
+</GenRun>

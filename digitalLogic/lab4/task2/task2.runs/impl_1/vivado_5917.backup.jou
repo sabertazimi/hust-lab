@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2016.1 (64-bit)
+# SW Build 1538259 on Fri Apr  8 15:45:23 MDT 2016
+# IP Build 1537824 on Fri Apr  8 04:28:57 MDT 2016
+# Start of session at: Sun Jun  5 22:20:59 2016
+# Process ID: 5917
+# Current directory: /home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task2/task2.runs/impl_1
+# Command line: vivado -log _1bit_binary_comparator.vdi -applog -messageDb vivado.pb -mode batch -source _1bit_binary_comparator.tcl -notrace
+# Log file: /home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task2/task2.runs/impl_1/_1bit_binary_comparator.vdi
+# Journal file: /home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task2/task2.runs/impl_1/vivado.jou
+#-----------------------------------------------------------
+source _1bit_binary_comparator.tcl -notrace

@@ -1,0 +1,55 @@
+Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+-------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2016.1 (lin64) Build 1538259 Fri Apr  8 15:45:23 MDT 2016
+| Date         : Sun Jun  5 21:53:02 2016
+| Host         : avalon running 64-bit Ubuntu 16.04 LTS
+| Command      : report_control_sets -verbose -file _4bit_binary_counter_control_sets_placed.rpt
+| Design       : _4bit_binary_counter
+| Device       : xc7a100t
+-------------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Flip-Flop Distribution
+3. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Number of unique control sets                            |     2 |
+| Unused register locations in slices containing registers |    11 |
++----------------------------------------------------------+-------+
+
+
+2. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |               0 |            0 |
+| No           | No                    | Yes                    |               0 |            0 |
+| No           | Yes                   | No                     |               5 |            2 |
+| Yes          | No                    | No                     |               0 |            0 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |               0 |            0 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+3. Detailed Control Set Information
+-----------------------------------
+
++-------------------+---------------+-------------------+------------------+----------------+
+|    Clock Signal   | Enable Signal |  Set/Reset Signal | Slice Load Count | Bel Load Count |
++-------------------+---------------+-------------------+------------------+----------------+
+|  Q_reg[3]_i_2_n_0 |               | Qcc_n_reg_i_2_n_0 |                1 |              1 |
+|  Q_reg[3]_i_2_n_0 |               | Q_reg[3]_i_3_n_0  |                1 |              4 |
++-------------------+---------------+-------------------+------------------+----------------+
+
+
