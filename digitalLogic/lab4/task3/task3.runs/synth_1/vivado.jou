@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2016.1 (64-bit)
+# SW Build 1538259 on Fri Apr  8 15:45:23 MDT 2016
+# IP Build 1537824 on Fri Apr  8 04:28:57 MDT 2016
+# Start of session at: Sun Jun  5 23:34:19 2016
+# Process ID: 27915
+# Current directory: /home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task3/task3.runs/synth_1
+# Command line: vivado -log flow_led.vds -mode batch -messageDb vivado.pb -notrace -source flow_led.tcl
+# Log file: /home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task3/task3.runs/synth_1/flow_led.vds
+# Journal file: /home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task3/task3.runs/synth_1/vivado.jou
+#-----------------------------------------------------------
+source flow_led.tcl -notrace

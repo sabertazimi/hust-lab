@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1465140897">
+  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
+  <File Type="RDI-RDI" Name="flow_led.vdi"/>
+  <File Type="BG-DRC" Name="flow_led.drc"/>
+  <File Type="BG-BGN" Name="flow_led.bgn"/>
+  <File Type="BITSTR-SYSDEF" Name="flow_led.sysdef"/>
+  <File Type="BITSTR-MMI" Name="flow_led.mmi"/>
+  <File Type="BITSTR-BMM" Name="flow_led_bd.bmm"/>
+  <File Type="BITSTR-NKY" Name="flow_led.nky"/>
+  <File Type="BITSTR-RBT" Name="flow_led.rbt"/>
+  <File Type="BITSTR-MSK" Name="flow_led.msk"/>
+  <File Type="BG-BIN" Name="flow_led.bin"/>
+  <File Type="BG-BIT" Name="flow_led.bit"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="flow_led_timing_summary_postroute_physopted.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="flow_led_timing_summary_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="flow_led_timing_summary_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="flow_led_postroute_physopt_bb.dcp"/>
+  <File Type="ROUTE-CLK" Name="flow_led_clock_utilization_routed.rpt"/>
+  <File Type="ROUTE-SIMILARITY" Name="flow_led_incremental_reuse_routed.rpt"/>
+  <File Type="ROUTE-TIMING-RPX" Name="flow_led_timing_summary_routed.rpx"/>
+  <File Type="ROUTE-TIMING-PB" Name="flow_led_timing_summary_routed.pb"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="flow_led_timing_summary_routed.rpt"/>
+  <File Type="ROUTE-STATUS-PB" Name="flow_led_route_status.pb"/>
+  <File Type="ROUTE-STATUS" Name="flow_led_route_status.rpt"/>
+  <File Type="ROUTE-PWR-RPX" Name="flow_led_power_routed.rpx"/>
+  <File Type="ROUTE-PWR-SUM" Name="flow_led_power_summary_routed.pb"/>
+  <File Type="ROUTE-PWR" Name="flow_led_power_routed.rpt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="flow_led_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="flow_led_methodology_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-PB" Name="flow_led_drc_routed.pb"/>
+  <File Type="ROUTE-DRC" Name="flow_led_drc_routed.rpt"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="flow_led_routed_bb.dcp"/>
+  <File Type="ROUTE-DCP" Name="flow_led_routed.dcp"/>
+  <File Type="PHYSOPT-TIMING" Name="flow_led_timing_summary_physopted.rpt"/>
+  <File Type="PHYSOPT-DRC" Name="flow_led_drc_physopted.rpt"/>
+  <File Type="PHYSOPT-DCP" Name="flow_led_physopt.dcp"/>
+  <File Type="POSTPLACE-PWROPT-TIMING" Name="flow_led_timing_summary_postplace_pwropted.rpt"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="flow_led_postplace_pwropt.dcp"/>
+  <File Type="PLACE-TIMING" Name="flow_led_timing_summary_placed.rpt"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="flow_led_incremental_reuse_pre_placed.rpt"/>
+  <File Type="PLACE-SIMILARITY" Name="flow_led_incremental_reuse_placed.rpt"/>
+  <File Type="PLACE-CTRL" Name="flow_led_control_sets_placed.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="flow_led_utilization_placed.pb"/>
+  <File Type="PLACE-UTIL" Name="flow_led_utilization_placed.rpt"/>
+  <File Type="PLACE-CLK" Name="flow_led_clock_utilization_placed.rpt"/>
+  <File Type="PLACE-IO" Name="flow_led_io_placed.rpt"/>
+  <File Type="PLACE-DCP" Name="flow_led_placed.dcp"/>
+  <File Type="PWROPT-TIMING" Name="flow_led_timing_summary_pwropted.rpt"/>
+  <File Type="PWROPT-DRC" Name="flow_led_drc_pwropted.rpt"/>
+  <File Type="PWROPT-DCP" Name="flow_led_pwropt.dcp"/>
+  <File Type="OPT-TIMING" Name="flow_led_timing_summary_opted.rpt"/>
+  <File Type="OPT-HWDEF" Name="flow_led.hwdef"/>
+  <File Type="OPT-METHODOLOGY-DRC" Name="flow_led_methodology_drc_opted.rpt"/>
+  <File Type="OPT-DRC" Name="flow_led_drc_opted.rpt"/>
+  <File Type="OPT-DCP" Name="flow_led_opt.dcp"/>
+  <File Type="INIT-TIMING" Name="flow_led_timing_summary_init.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="flow_led_postroute_physopt.dcp"/>
+  <File Type="PA-TCL" Name="flow_led.tcl"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/new/flow_led.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="flow_led"/>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <File Path="$PSRCDIR/constrs_1/new/flow_led.xdc">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2016">
+      <Desc>Default settings for Implementation.</Desc>
+    </StratHandle>
+    <Step Id="init_design"/>
+    <Step Id="opt_design"/>
+    <Step Id="power_opt_design"/>
+    <Step Id="place_design"/>
+    <Step Id="post_place_power_opt_design"/>
+    <Step Id="phys_opt_design"/>
+    <Step Id="route_design"/>
+    <Step Id="post_route_phys_opt_design"/>
+    <Step Id="write_bitstream"/>
+  </Strategy>
+</GenRun>
