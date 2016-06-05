@@ -30,7 +30,8 @@ module full_adder_tb(
     wire F,Si,Ci;
     integer i, j;
     
-    full_adder DUT (.Ai(Ai), .Bi(Bi), .Ci_1(Ci_1), .F(F), .Ci(Ci), .Si(Si));
+//    full_adder DUT (.Ai(Ai), .Bi(Bi), .Ci_1(Ci_1), .F(F), .Ci(Ci), .Si(Si));
+    full_adder_fix DUT (.Ai(Ai), .Bi(Bi), .Ci_1(Ci_1), .F(F), .Ci(Ci), .Si(Si));
     
     initial begin
         #TIME $finish;

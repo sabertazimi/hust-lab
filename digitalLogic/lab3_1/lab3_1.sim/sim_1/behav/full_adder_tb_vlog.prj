@@ -1,5 +1,5 @@
 # compile verilog/system verilog design source files
-verilog xil_defaultlib  "../../../lab3_1.srcs/sources_1/new/full_adder.v"
+verilog xil_defaultlib  "../../../lab3_1.srcs/sources_1/new/full_adder_fix.v"
 verilog xil_defaultlib  "../../../lab3_1.srcs/sim_1/new/full_adder_tb.v"
 
 # compile glbl module
