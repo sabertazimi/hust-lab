@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<document>
+<!--The data in this file is primarily intended for consumption by Xilinx tools.
+The structure and the elements are likely to change over the next few releases.
+This means code written to parse this file will need to be revisited each subsequent release.-->
+<application name="pa" timeStamp="Mon Jun  6 21:08:55 2016">
+<section name="Project Information" visible="false">
+<property name="ProjectID" value="9c74b659710c4b6eba170f8ae06ff41e" type="ProjectID"/>
+<property name="ProjectIteration" value="1" type="ProjectIteration"/>
+</section>
+<section name="PlanAhead Usage" visible="true">
+<item name="Project Data">
+<property name="SrcSetCount" value="1" type="SrcSetCount"/>
+<property name="ConstraintSetCount" value="1" type="ConstraintSetCount"/>
+<property name="DesignMode" value="RTL" type="DesignMode"/>
+<property name="SynthesisStrategy" value="Vivado Synthesis Defaults" type="SynthesisStrategy"/>
+<property name="ImplStrategy" value="Vivado Implementation Defaults" type="ImplStrategy"/>
+</item>
+<item name="Java Command Handlers">
+<property name="AddSources" value="3" type="JavaHandler"/>
+<property name="EditDelete" value="1" type="JavaHandler"/>
+<property name="NewProject" value="2" type="JavaHandler"/>
+<property name="OpenFile" value="1" type="JavaHandler"/>
+<property name="OpenProject" value="1" type="JavaHandler"/>
+<property name="RunSynthesis" value="1" type="JavaHandler"/>
+<property name="SimulationClose" value="10" type="JavaHandler"/>
+<property name="SimulationRun" value="11" type="JavaHandler"/>
+<property name="WaveformSaveConfiguration" value="1" type="JavaHandler"/>
+</item>
+<item name="Gui Resources Info">
+<property name="CANCEL, Cancel" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 103, 253" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 108, 279" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 121, 70" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 122, 57" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 137, 351" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 163, 266" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 180, 284" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 184, 291" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 187, 299" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 199, 297" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 210, 267" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 215, 295" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 224, 274" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 231, 297" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 242, 295" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 250, 293" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 251, 281" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 253, 288" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 29, 238" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 293, 68" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 31, 221" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 310, 295" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 314, 295" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 355, 276" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 357, 281" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 365, 281" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 367, 281" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 385, 73" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 387, 72" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 397, 296" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 41, 235" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 43, 198" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 45, 113" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 51, 183" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 55, 145" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 58, 291" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 61, 81" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 64, 265" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 65, 279" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 73, 307" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 77, 97" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 78, 84" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 81, 99" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 82, 307" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 82, 85" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 83, 297" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 87, 180" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 90, 172" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM.v, 91, 120" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_ROM_tb.v, 231, 254" value="1" type="GuiResourceData"/>
+<property name="NEXT, Next " value="7" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_NEW_PROJECT, New Project..." value="2" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_SIMULATION_RUN_BEHAVIORAL, Run Behavioral Simulation" value="10" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Simulation, Run Simulation], 11, false" value="10" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_FILE, File" value="6" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_OPEN_RECENT_PROJECT, Open Recent Project" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PAViews_CODE, Code" value="2" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PartChooser_FAMILY_CHOOSER, Artix-7, 1" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PartChooser_PARTS, xc7a100tcsg324-1 ; 324 ; 135 ; 240 ; 126800 ; 0 ; 0 ; 210 ; 63400 ; 6 ; 1 ; 85 ; 0 ; 85 ; C ; 1.05 ; 0.95 ; 0.95, 4, 135, 2" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PartChooser_PART_PACKAGE_CHOOSER, csg324, 2" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PartChooser_PART_SPEED_CHOOSER, -1, 1" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PartChooser_PART_SPEED_CHOOSER, -1L, 2" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.ProjectNameChooser_PROJECT_NAME, ASM_3Bit_binary_multiplier" value="1" type="GuiResourceData"/>
+<property name="RDIResource.BaseDialog_OK, OK" value="20" type="GuiResourceData"/>
+<property name="RDIResource.GraphicalView_ZOOM_FIT, Waveform Viewer_zoom_fit" value="20" type="GuiResourceData"/>
+<property name="RDIResource.GraphicalView_ZOOM_IN, Waveform Viewer_zoom_in" value="12" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 174, 126" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 176, 147" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 296, 127" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 299, 126" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 308, 128" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 315, 127" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 323, 132" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 329, 129" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 364, 126" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 40, 124" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 481, 35" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 59, 130" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 73, 126" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 747, 23" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 22" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 23" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 25" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 26" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 27" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 28" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 29" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 30" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 31" value="1" type="GuiResourceData"/>
+<property name="RDIResourceCommand.RDICommands_WAVEFORM_SAVE_CONFIGURATION, Waveform Viewer_waveform_save_configuration" value="2" type="GuiResourceData"/>
+</item>
+<item name="Other">
+<property name="GuiMode" value="41" type="GuiMode"/>
+<property name="BatchMode" value="0" type="BatchMode"/>
+<property name="TclMode" value="34" type="TclMode"/>
+</item>
+</section>
+</application>
+</document>

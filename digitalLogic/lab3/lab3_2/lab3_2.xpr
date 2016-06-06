@@ -3,19 +3,19 @@
 <!--                                                         -->
 <!-- Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="12" Path="/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab3_2/lab3_2.xpr">
+<Project Version="7" Minor="12" Path="/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab3/lab3_2/lab3_2.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="fe1f3e19399b43f686d07476b705f9b4"/>
     <Option Name="Part" Val="xc7a100tcsg324-1"/>
     <Option Name="CompiledLibDir" Val="$PCACHEDIR/compile_simlib"/>
     <Option Name="CompiledLibDirXSim" Val=""/>
-    <Option Name="CompiledLibDirModelSim" Val="$PCACHEDIR/compile_simlib/modelsim"/>
-    <Option Name="CompiledLibDirQuesta" Val="$PCACHEDIR/compile_simlib/questa"/>
-    <Option Name="CompiledLibDirIES" Val="$PCACHEDIR/compile_simlib/ies"/>
-    <Option Name="CompiledLibDirVCS" Val="$PCACHEDIR/compile_simlib/vcs"/>
-    <Option Name="CompiledLibDirRiviera" Val="$PCACHEDIR/compile_simlib/riviera"/>
-    <Option Name="CompiledLibDirActivehdl" Val="$PCACHEDIR/compile_simlib/activehdl"/>
+    <Option Name="CompiledLibDirModelSim" Val="/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab3/lab3_2/lab3_2.cache/compile_simlib/modelsim"/>
+    <Option Name="CompiledLibDirQuesta" Val="/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab3/lab3_2/lab3_2.cache/compile_simlib/questa"/>
+    <Option Name="CompiledLibDirIES" Val="/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab3/lab3_2/lab3_2.cache/compile_simlib/ies"/>
+    <Option Name="CompiledLibDirVCS" Val="/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab3/lab3_2/lab3_2.cache/compile_simlib/vcs"/>
+    <Option Name="CompiledLibDirRiviera" Val="/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab3/lab3_2/lab3_2.cache/compile_simlib/riviera"/>
+    <Option Name="CompiledLibDirActivehdl" Val="/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab3/lab3_2/lab3_2.cache/compile_simlib/activehdl"/>
     <Option Name="SimulatorLanguage" Val="Verilog"/>
     <Option Name="BoardPart" Val=""/>
     <Option Name="ActiveSimSet" Val="sim_1"/>

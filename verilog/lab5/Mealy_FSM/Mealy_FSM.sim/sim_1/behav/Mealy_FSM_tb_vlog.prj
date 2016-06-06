@@ -1,0 +1,9 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  "../../../Mealy_FSM.srcs/sources_1/new/Mealy_FSM.v"
+verilog xil_defaultlib  "../../../Mealy_FSM.srcs/sim_1/new/Mealy_FSM_tb.v"
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

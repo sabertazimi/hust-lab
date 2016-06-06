@@ -3,7 +3,7 @@
 <!--The data in this file is primarily intended for consumption by Xilinx tools.
 The structure and the elements are likely to change over the next few releases.
 This means code written to parse this file will need to be revisited each subsequent release.-->
-<application name="pa" timeStamp="Mon May 30 20:40:09 2016">
+<application name="pa" timeStamp="Mon Jun  6 19:19:55 2016">
 <section name="Project Information" visible="false">
 <property name="ProjectID" value="b9a23eef8ce64d799bf37a8602460810" type="ProjectID"/>
 <property name="ProjectIteration" value="1" type="ProjectIteration"/>
@@ -17,36 +17,256 @@ This means code written to parse this file will need to be revisited each subseq
 <property name="ImplStrategy" value="Vivado Implementation Defaults" type="ImplStrategy"/>
 </item>
 <item name="Java Command Handlers">
-<property name="AddSources" value="1" type="JavaHandler"/>
-<property name="NewProject" value="1" type="JavaHandler"/>
+<property name="AddSources" value="2" type="JavaHandler"/>
+<property name="NewProject" value="2" type="JavaHandler"/>
 <property name="OpenProject" value="1" type="JavaHandler"/>
+<property name="ProjectSettingsCmdHandler" value="1" type="JavaHandler"/>
+<property name="SimulationClose" value="12" type="JavaHandler"/>
+<property name="SimulationRun" value="13" type="JavaHandler"/>
 </item>
 <item name="Gui Resources Info">
-<property name="FINISH, Finish" value="2" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 90, 254" value="1" type="GuiResourceData"/>
+<property name="CANCEL, Cancel" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 0, 256" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 102, 145" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 106, 236" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 110, 114" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 112, 263" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 113, 250" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 114, 175" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 114, 279" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 115, 217" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 115, 221" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 118, 199" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 119, 278" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 131, 229" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 146, 72" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 148, 159" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 150, 155" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 155, 127" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 156, 202" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 158, 100" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 166, 236" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 168, 159" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 178, 101" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 188, 195" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 196, 155" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 2, 254" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 208, 194" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 208, 269" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 211, 212" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 213, 190" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 219, 159" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 219, 189" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 221, 192" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 223, 190" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 231, 179" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 231, 189" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 233, 209" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 235, 267" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 237, 174" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 238, 208" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 243, 204" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 246, 210" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 249, 187" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 249, 193" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 253, 126" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 256, 204" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 256, 84" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 258, 189" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 261, 185" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 262, 257, false, false, false, false, true" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 263, 177" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 264, 264" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 264, 88" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 265, 191" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 265, 258" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 267, 227" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 268, 264" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 271, 207" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 273, 250" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 276, 277" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 280, 143" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 280, 217" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 86, 220" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 86, 262" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 87, 196" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 87, 235" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 88, 187" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 90, 236" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 96, 93" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 100, 255" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 105, 204" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 117, 142" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 122, 241" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 123, 235" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 124, 254" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 125, 114, false, false, false, false, true" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 125, 115" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 138, 246" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 139, 255" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 140, 255" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 141, 239" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 141, 251" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 141, 281" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 142, 230" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 145, 77, false, false, false, true, false" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 146, 149" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 146, 165" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 146, 208" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 146, 216" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 146, 227" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 146, 252" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 146, 273" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 147, 264" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 148, 276" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 149, 210" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 150, 230" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 152, 249" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 153, 279" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 153, 289" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 154, 215" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 156, 86" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 159, 280" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 161, 272" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 165, 295" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 166, 168" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 167, 76" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 168, 288" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 168, 63" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 170, 46" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 173, 157" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 175, 146" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 178, 204" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 186, 51" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 187, 202" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 200, 173, false, false, false, true, false" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 203, 126, false, false, false, true, false" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 207, 129" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 221, 76" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 234, 267" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 249, 144" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 249, 144, false, false, false, true, false" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 253, 152" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 274, 107" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 286, 164, false, false, false, true, false" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 289, 164" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 315, 222" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 319, 38" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 321, 238" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 321, 240" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 340, 178, false, false, false, true, false" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 352, 215" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 359, 260" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 406, 120" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 42, 80" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 44, 106" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 483, 191" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 59, 190" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 62, 234" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 67, 95" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 69, 158" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 75, 158" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 76, 199" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 77, 191" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 80, 170" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 85, 261" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 88, 252" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 88, 262" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 89, 184" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 92, 80" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 97, 222" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM_tb.v, 98, 196" value="1" type="GuiResourceData"/>
 <property name="NEXT, Next " value="8" type="GuiResourceData"/>
 <property name="PAResourceAtoD.AddSrcWizard_SPECIFY_SIMULATION_SPECIFIC_HDL_FILES, Add or create simulation sources" value="1" type="GuiResourceData"/>
-<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, Mealy_FSM" value="1" type="GuiResourceData"/>
 <property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, Mealy_FSM_tb" value="1" type="GuiResourceData"/>
-<property name="PAResourceCommand.PACommandNames_OPEN_PROJECT, Open Project..." value="1" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_NEW_PROJECT, New Project..." value="1" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_SIMULATION_RUN_BEHAVIORAL, Run Behavioral Simulation" value="14" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_SIMULATION_RUN_POST_SYNTHESIS_FUNCTIONAL, Run Post-Synthesis Functional Simulation" value="1" type="GuiResourceData"/>
 <property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Mealy_FSM (Mealy_FSM.v" value="2" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, Mealy_FSM (Mealy_FSM.v" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, Mealy_FSM_tb (Mealy_FSM_tb.v" value="2" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1], 4" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources], 3" value="1" type="GuiResourceData"/>
 <property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Project Manager, Add Sources], 2, false" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.GettingStartedView_CREATE_NEW_PROJECT, Create New Project" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Simulation, Run Simulation], 11, false" value="14" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Simulation, Simulation Settings], 10, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Synthesis, Open Synthesized Design], 18" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.GettingStartedView_RECENT_PROJECTS, /home/sabertazimi/gitrepo/hust-lab/verilog/lab5/Mealy_FSM/Mealy_FSM.xpr, 2" value="1" type="GuiResourceData"/>
 <property name="PAResourceItoN.MainMenuMgr_FILE, File" value="2" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PAViews_CODE, Code" value="2" type="GuiResourceData"/>
 <property name="PAResourceOtoP.PAViews_PROJECT_SUMMARY, Project Summary" value="1" type="GuiResourceData"/>
 <property name="PAResourceOtoP.PartChooser_FAMILY_CHOOSER, Artix-7, 1" value="1" type="GuiResourceData"/>
 <property name="PAResourceOtoP.PartChooser_PARTS, xc7a100tcsg324-1 ; 324 ; 135 ; 240 ; 126800 ; 0 ; 0 ; 210 ; 63400 ; 6 ; 1 ; 85 ; 0 ; 85 ; C ; 1.05 ; 0.95 ; 0.95, 4, xc7a100tcsg324-1, 0" value="1" type="GuiResourceData"/>
 <property name="PAResourceOtoP.PartChooser_PART_PACKAGE_CHOOSER, csg324, 2" value="1" type="GuiResourceData"/>
 <property name="PAResourceOtoP.PartChooser_PART_SPEED_CHOOSER, -1, 1" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.PartChooser_PRODUCT_CHOOSER, General Purpose, 2" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.ProjectNameChooser_PROJECT_NAME, Mealy_FSM" value="1" type="GuiResourceData"/>
-<property name="PAResourceQtoS.SrcChooserPanel_CREATE_FILE, Create File" value="2" type="GuiResourceData"/>
-<property name="RDIResource.BaseDialog_OK, OK" value="4" type="GuiResourceData"/>
+<property name="PAResourceOtoP.ProjectNameChooser_CHOOSE_PROJECT_LOCATION, (String" value="2" type="GuiResourceData"/>
+<property name="PAResourceOtoP.ProjectNameChooser_CREATE_PROJECT_SUBDIRECTORY, Create project subdirectory, true" value="2" type="GuiResourceData"/>
+<property name="PAResourceOtoP.ProjectNameChooser_PROJECT_NAME, Moore_FSM" value="1" type="GuiResourceData"/>
+<property name="PAResourceQtoS.SrcChooserPanel_CREATE_FILE, Create File" value="1" type="GuiResourceData"/>
+<property name="RDIResource.BaseDialog_CANCEL, Cancel" value="1" type="GuiResourceData"/>
+<property name="RDIResource.BaseDialog_OK, OK" value="24" type="GuiResourceData"/>
+<property name="RDIResource.GraphicalView_ZOOM_FIT, Waveform Viewer_zoom_fit" value="23" type="GuiResourceData"/>
+<property name="RDIResource.GraphicalView_ZOOM_IN, Waveform Viewer_zoom_in" value="7" type="GuiResourceData"/>
+<property name="RDIResource.GraphicalView_ZOOM_OUT, Waveform Viewer_zoom_out" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 101, 71" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 107, 145" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 112, 140" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 136, 133" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 142, 75" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 161, 136" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 19, 122" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 194, 77" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 274, 65" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 291, 73" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 309, 74" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 371, 134" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 381, 76" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 404, 128" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 405, 134" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 435, 75" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 45, 106" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 548, 139" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 556, 132" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 559, 116" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 561, 140" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 563, 142" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 569, 122" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 571, 119" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 581, 139" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 591, 133" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 598, 139" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 601, 131" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 69, 138" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 69, 144" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 81, 143" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 82, 141" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 897, 38" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 95, 142" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 1*" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 10*" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 11" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 12*" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 13*" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 2*" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 3*" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 4*" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 5*" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 6*" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 7*" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 8*" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 9*" value="1" type="GuiResourceData"/>
+<property name="RDIResource.WaveformNameTree_WAVEFORM_NAME_TREE, [true, Clk], 0, false" value="1" type="GuiResourceData"/>
+<property name="RDIResource.WaveformNameTree_WAVEFORM_NAME_TREE, [true, count[3:0]], 3, true" value="2" type="GuiResourceData"/>
+<property name="RDIResource.WaveformNameTree_WAVEFORM_NAME_TREE, [true, count[3:0]], 4, true" value="12" type="GuiResourceData"/>
+<property name="RDIResource.WaveformNameTree_WAVEFORM_NAME_TREE, [true, reset], 1, false" value="1" type="GuiResourceData"/>
+<property name="RDIResource.WaveformNameTree_WAVEFORM_NAME_TREE, [true, yout], 1, false" value="2" type="GuiResourceData"/>
+<property name="RDIResource.WaveformNameTree_WAVEFORM_NAME_TREE, [true, yout], 3, false" value="3" type="GuiResourceData"/>
+<property name="RDIResource.WaveformNameTree_WAVEFORM_NAME_TREE, [true, yout], 4, false" value="13" type="GuiResourceData"/>
 </item>
 <item name="Other">
-<property name="GuiMode" value="25" type="GuiMode"/>
+<property name="GuiMode" value="41" type="GuiMode"/>
 <property name="BatchMode" value="0" type="BatchMode"/>
-<property name="TclMode" value="22" type="TclMode"/>
+<property name="TclMode" value="34" type="TclMode"/>
 </item>
 </section>
 </application>

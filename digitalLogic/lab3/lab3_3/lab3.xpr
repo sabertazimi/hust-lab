@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="12" Path="/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab3_3/lab3.xpr">
+<Project Version="7" Minor="12" Path="/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab3/lab3_3/lab3.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="47af7d420de44e39bc65824e5519d6d6"/>

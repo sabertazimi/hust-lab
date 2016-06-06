@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1464924660">
-  <File Type="RDS-UTIL" Name="lab3_d_utilization_synth.rpt"/>
-  <File Type="RDS-PROPCONSTRS" Name="lab3_d_drc_synth.rpt"/>
-  <File Type="RDS-UTIL-PB" Name="lab3_d_utilization_synth.pb"/>
-  <File Type="RDS-DCP" Name="lab3_d.dcp"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="lab3_d_timing_summary_synth.rpt"/>
   <File Type="VDS-TIMING-PB" Name="lab3_d_timing_summary_synth.pb"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="lab3_d_timing_summary_synth.rpt"/>
   <File Type="RDS-RDS" Name="lab3_d.vds"/>
   <File Type="PA-TCL" Name="lab3_d.tcl"/>
+  <File Type="RDS-PROPCONSTRS" Name="lab3_d_drc_synth.rpt"/>
+  <File Type="RDS-UTIL" Name="lab3_d_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="lab3_d_utilization_synth.pb"/>
+  <File Type="RDS-DCP" Name="lab3_d.dcp"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/lab3.v">
