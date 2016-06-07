@@ -432,6 +432,31 @@ end
 
 -   [gitbooks.io](https://hom-wang.gitbooks.io/verilog-hdl/content/Chapter_07.html)
 
+### Binary Multiplier
+
+```verilog
+   1100 (the multiplicand)
+x  1011 (the multiplier)
+   ---- 
+   0000 (initial partial product, start with 0000)
+   1100 (1st multiplier bit is 1, so add the multiplicand)
+   ---- 
+   1100 (sum)
+   ---- 
+   01100 (shift sum one position to the right)
+   1100 (2nd multiplier bit is 1, so add multiplicand again)
+   ---- 
+  100100 (sum, with a carry generated on the left)
+   ---- 
+   100100 (shift sum once to the right, including carry)
+   0100100 (3rd multiplier bit is 0, so skip add, shift once)
+   ---- 
+   1100 (4th multiplier bit is 1, so add multiplicand again)
+   ---- 
+  10000100 (sum, with a carry generated on the left)
+   10000100 (shift sum once to the right, including carry) 
+```
+
 ## Tips
 
 ### 混合编程
