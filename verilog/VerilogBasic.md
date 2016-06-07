@@ -500,3 +500,9 @@ reset_value = {{(DATA_WIDTH/2){1'b0}}, {(DATA_WIDTH/2){1'b1}}};
 
 -   reset: initial state
 -   default: illegal/unreachable state
+
+## 算术状态机(ASM)
+
+-   state box: moore fsm
+-   conditional box: mealy fsm
+-   decision box: `x_input` = 0/1

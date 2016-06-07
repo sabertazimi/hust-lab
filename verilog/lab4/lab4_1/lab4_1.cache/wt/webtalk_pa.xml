@@ -3,7 +3,7 @@
 <!--The data in this file is primarily intended for consumption by Xilinx tools.
 The structure and the elements are likely to change over the next few releases.
 This means code written to parse this file will need to be revisited each subsequent release.-->
-<application name="pa" timeStamp="Mon Jun  6 20:51:38 2016">
+<application name="pa" timeStamp="Mon Jun  6 21:41:36 2016">
 <section name="Project Information" visible="false">
 <property name="ProjectID" value="800a7ffcdfd344979f431f0d8d91eb0f" type="ProjectID"/>
 <property name="ProjectIteration" value="2" type="ProjectIteration"/>
@@ -18,15 +18,15 @@ This means code written to parse this file will need to be revisited each subseq
 </item>
 <item name="Java Command Handlers">
 <property name="AddSources" value="9" type="JavaHandler"/>
-<property name="CloseProject" value="2" type="JavaHandler"/>
+<property name="CloseProject" value="3" type="JavaHandler"/>
 <property name="CreateBlockDesign" value="1" type="JavaHandler"/>
 <property name="EditUndo" value="21" type="JavaHandler"/>
 <property name="NewProject" value="2" type="JavaHandler"/>
-<property name="OpenProject" value="7" type="JavaHandler"/>
+<property name="OpenProject" value="8" type="JavaHandler"/>
 <property name="ProjectSettingsCmdHandler" value="2" type="JavaHandler"/>
 <property name="RunImplementation" value="2" type="JavaHandler"/>
-<property name="RunSchematic" value="3" type="JavaHandler"/>
-<property name="RunSynthesis" value="16" type="JavaHandler"/>
+<property name="RunSchematic" value="5" type="JavaHandler"/>
+<property name="RunSynthesis" value="17" type="JavaHandler"/>
 <property name="SaveFileProxyHandler" value="5" type="JavaHandler"/>
 <property name="SetTopNode" value="9" type="JavaHandler"/>
 <property name="ShowView" value="2" type="JavaHandler"/>
@@ -34,45 +34,19 @@ This means code written to parse this file will need to be revisited each subseq
 <property name="SimulationRun" value="75" type="JavaHandler"/>
 <property name="ToolsOptions" value="1" type="JavaHandler"/>
 <property name="ViewTaskProjectManager" value="1" type="JavaHandler"/>
+<property name="ZoomIn" value="5" type="JavaHandler"/>
 </item>
 <item name="Gui Resources Info">
-<property name="Mealy_FSM_ROM.v, 167, 145" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_ROM.v, 230, 224" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_ROM.v, 231, 224" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_ROM.v, 232, 207" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_ROM_tb.v, 137, 227" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_ROM_tb.v, 161, 159" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_ROM_tb.v, 163, 146" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_ROM_tb.v, 200, 145" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_ROM_tb.v, 227, 166" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_ROM_tb.v, 65, 114" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 299, 147" value="1" type="GuiResourceData"/>
-<property name="PAResourceAtoD.CmdMsgDialog_OK, OK" value="4" type="GuiResourceData"/>
-<property name="PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, Hierarchy Update" value="2" type="GuiResourceData"/>
-<property name="PAResourceCommand.PACommandNames_OPEN_PROJECT, Open Project..." value="1" type="GuiResourceData"/>
-<property name="PAResourceCommand.PACommandNames_SET_AS_TOP, Set as Top" value="2" type="GuiResourceData"/>
-<property name="PAResourceCommand.PACommandNames_SIMULATION_RUN_BEHAVIORAL, Run Behavioral Simulation" value="3" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Data_path_with_mux_adder_register (Data_path_with_mux_adder_register.v" value="2" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, Data_path_with_mux_adder_register_tb (Data_path_with_mux_adder_register_tb.v" value="2" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1], 5" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources], 4" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, RTL Analysis, Elaborated Design, Schematic], 18, false" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, RTL Analysis, Open Elaborated Design, Schematic], 17, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_ZOOM_IN, Schematic_zoom_in" value="7" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, RTL Analysis, Open Elaborated Design, Schematic], 18, false" value="1" type="GuiResourceData"/>
 <property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, RTL Analysis, Open Elaborated Design], 14" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Simulation, Run Simulation], 11, false" value="3" type="GuiResourceData"/>
-<property name="PAResourceItoN.MainMenuMgr_FILE, File" value="2" type="GuiResourceData"/>
-<property name="PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, [, Synthesis, [Synth 8-256] done synthesizing module 'Mealy_FSM_ROM' (1#1" value="1" type="GuiResourceData"/>
-<property name="PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, [, Vivado Commands, launch_simulation. , [USF-XSim 62] 'compile' step failed with error(s" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.PAViews_CODE, Code" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.PAViews_PROJECT_SUMMARY, Project Summary" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Synthesis, Open Synthesized Design, Schematic], 29, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Synthesis, Open Synthesized Design], 18" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PAViews_DEVICE, Device" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PAViews_PROJECT_SUMMARY, Project Summary" value="2" type="GuiResourceData"/>
 <property name="PAResourceOtoP.PAViews_SCHEMATIC, Schematic" value="3" type="GuiResourceData"/>
-<property name="PAResourceOtoP.ProjectTab_RELOAD, Reload" value="2" type="GuiResourceData"/>
-<property name="PAResourceQtoS.SrcMenu_IP_HIERARCHY, IP Hierarchy" value="2" type="GuiResourceData"/>
 <property name="RDIResource.BaseDialog_CANCEL, Cancel" value="2" type="GuiResourceData"/>
 <property name="RDIResource.BaseDialog_OK, OK" value="4" type="GuiResourceData"/>
-<property name="RDIResource.GraphicalView_ZOOM_FIT, Waveform Viewer_zoom_fit" value="2" type="GuiResourceData"/>
-<property name="RDIResource.GraphicalView_ZOOM_IN, Waveform Viewer_zoom_in" value="2" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 21" value="1" type="GuiResourceData"/>
 </item>
 <item name="Other">
 <property name="GuiMode" value="41" type="GuiMode"/>

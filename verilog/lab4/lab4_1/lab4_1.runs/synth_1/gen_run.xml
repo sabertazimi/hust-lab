@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1464613549">
-  <File Type="PA-TCL" Name="Datapath_with_mux_adder_register_memory.tcl"/>
-  <File Type="RDS-RDS" Name="Datapath_with_mux_adder_register_memory.vds"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="Datapath_with_mux_adder_register_memory_timing_summary_synth.rpt"/>
-  <File Type="VDS-TIMING-PB" Name="Datapath_with_mux_adder_register_memory_timing_summary_synth.pb"/>
-  <File Type="RDS-DCP" Name="Datapath_with_mux_adder_register_memory.dcp"/>
-  <File Type="RDS-UTIL-PB" Name="Datapath_with_mux_adder_register_memory_utilization_synth.pb"/>
-  <File Type="RDS-UTIL" Name="Datapath_with_mux_adder_register_memory_utilization_synth.rpt"/>
-  <File Type="RDS-PROPCONSTRS" Name="Datapath_with_mux_adder_register_memory_drc_synth.rpt"/>
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1465220378">
+  <File Type="VDS-TIMING-PB" Name="Data_path_with_mux_adder_register_timing_summary_synth.pb"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="Data_path_with_mux_adder_register_timing_summary_synth.rpt"/>
+  <File Type="RDS-DCP" Name="Data_path_with_mux_adder_register.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="Data_path_with_mux_adder_register_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="Data_path_with_mux_adder_register_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="Data_path_with_mux_adder_register_drc_synth.rpt"/>
+  <File Type="RDS-RDS" Name="Data_path_with_mux_adder_register.vds"/>
+  <File Type="PA-TCL" Name="Data_path_with_mux_adder_register.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/Register_behavior.v">
@@ -54,7 +54,7 @@
     </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="Datapath_with_mux_adder_register_memory"/>
+      <Option Name="TopModule" Val="Data_path_with_mux_adder_register"/>
     </Config>
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
