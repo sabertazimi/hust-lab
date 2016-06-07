@@ -1,0 +1,343 @@
+#-----------------------------------------------------------
+# Vivado v2016.1 (64-bit)
+# SW Build 1538259 on Fri Apr  8 15:45:23 MDT 2016
+# IP Build 1537824 on Fri Apr  8 04:28:57 MDT 2016
+# Start of session at: Tue Jun  7 16:51:23 2016
+# Process ID: 3201
+# Current directory: /home/sabertazimi/gitrepo/hust-lab/verilog/lab5/ASM_3Bit_binary_multiplier/ASM_3Bit_binary_multiplier.runs/synth_1
+# Command line: vivado -log _3bit_binary_multiplier.vds -mode batch -messageDb vivado.pb -notrace -source _3bit_binary_multiplier.tcl
+# Log file: /home/sabertazimi/gitrepo/hust-lab/verilog/lab5/ASM_3Bit_binary_multiplier/ASM_3Bit_binary_multiplier.runs/synth_1/_3bit_binary_multiplier.vds
+# Journal file: /home/sabertazimi/gitrepo/hust-lab/verilog/lab5/ASM_3Bit_binary_multiplier/ASM_3Bit_binary_multiplier.runs/synth_1/vivado.jou
+#-----------------------------------------------------------
+source _3bit_binary_multiplier.tcl -notrace
+Command: synth_design -top _3bit_binary_multiplier -part xc7a100tcsg324-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 3369 
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1045.012 ; gain = 154.078 ; free physical = 1602 ; free virtual = 12208
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module '_3bit_binary_multiplier' [/home/sabertazimi/gitrepo/hust-lab/verilog/lab5/ASM_3Bit_binary_multiplier/ASM_3Bit_binary_multiplier.srcs/sources_1/new/_3bit_binary_multiplier.v:23]
+	Parameter WIDTH bound to: 3 - type: integer 
+INFO: [Synth 8-638] synthesizing module '_3bit_binary_multiplier_control_unit' [/home/sabertazimi/gitrepo/hust-lab/verilog/lab5/ASM_3Bit_binary_multiplier/ASM_3Bit_binary_multiplier.srcs/sources_1/new/_3bit_binary_multiplier_control_unit.v:23]
+	Parameter off bound to: 0 - type: integer 
+	Parameter on bound to: 1 - type: integer 
+	Parameter process bound to: 2 - type: integer 
+	Parameter finish bound to: 3 - type: integer 
+INFO: [Synth 8-256] done synthesizing module '_3bit_binary_multiplier_control_unit' (1#1) [/home/sabertazimi/gitrepo/hust-lab/verilog/lab5/ASM_3Bit_binary_multiplier/ASM_3Bit_binary_multiplier.srcs/sources_1/new/_3bit_binary_multiplier_control_unit.v:23]
+INFO: [Synth 8-638] synthesizing module 'shift_out_register' [/home/sabertazimi/gitrepo/hust-lab/verilog/lab5/ASM_3Bit_binary_multiplier/ASM_3Bit_binary_multiplier.srcs/sources_1/new/shift_out_register.v:23]
+	Parameter WIDTH bound to: 1 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'shift_out_register' (2#1) [/home/sabertazimi/gitrepo/hust-lab/verilog/lab5/ASM_3Bit_binary_multiplier/ASM_3Bit_binary_multiplier.srcs/sources_1/new/shift_out_register.v:23]
+INFO: [Synth 8-638] synthesizing module 'shift_out_register__parameterized0' [/home/sabertazimi/gitrepo/hust-lab/verilog/lab5/ASM_3Bit_binary_multiplier/ASM_3Bit_binary_multiplier.srcs/sources_1/new/shift_out_register.v:23]
+	Parameter WIDTH bound to: 3 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'shift_out_register__parameterized0' (2#1) [/home/sabertazimi/gitrepo/hust-lab/verilog/lab5/ASM_3Bit_binary_multiplier/ASM_3Bit_binary_multiplier.srcs/sources_1/new/shift_out_register.v:23]
+INFO: [Synth 8-638] synthesizing module 'shift_out_register__parameterized1' [/home/sabertazimi/gitrepo/hust-lab/verilog/lab5/ASM_3Bit_binary_multiplier/ASM_3Bit_binary_multiplier.srcs/sources_1/new/shift_out_register.v:23]
+	Parameter WIDTH bound to: 3 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'shift_out_register__parameterized1' (2#1) [/home/sabertazimi/gitrepo/hust-lab/verilog/lab5/ASM_3Bit_binary_multiplier/ASM_3Bit_binary_multiplier.srcs/sources_1/new/shift_out_register.v:23]
+INFO: [Synth 8-638] synthesizing module 'parallel_out_register' [/home/sabertazimi/gitrepo/hust-lab/verilog/lab5/ASM_3Bit_binary_multiplier/ASM_3Bit_binary_multiplier.srcs/sources_1/new/parallel_out_register.v:23]
+	Parameter WIDTH bound to: 3 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'parallel_out_register' (3#1) [/home/sabertazimi/gitrepo/hust-lab/verilog/lab5/ASM_3Bit_binary_multiplier/ASM_3Bit_binary_multiplier.srcs/sources_1/new/parallel_out_register.v:23]
+INFO: [Synth 8-638] synthesizing module 'full_adder' [/home/sabertazimi/gitrepo/hust-lab/verilog/lab5/ASM_3Bit_binary_multiplier/ASM_3Bit_binary_multiplier.srcs/sources_1/new/full_adder.v:23]
+	Parameter WIDTH bound to: 3 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'full_adder' (4#1) [/home/sabertazimi/gitrepo/hust-lab/verilog/lab5/ASM_3Bit_binary_multiplier/ASM_3Bit_binary_multiplier.srcs/sources_1/new/full_adder.v:23]
+INFO: [Synth 8-638] synthesizing module 'down_counter' [/home/sabertazimi/gitrepo/hust-lab/verilog/lab5/ASM_3Bit_binary_multiplier/ASM_3Bit_binary_multiplier.srcs/sources_1/new/down_counter.v:23]
+	Parameter COUNT bound to: 3 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'down_counter' (5#1) [/home/sabertazimi/gitrepo/hust-lab/verilog/lab5/ASM_3Bit_binary_multiplier/ASM_3Bit_binary_multiplier.srcs/sources_1/new/down_counter.v:23]
+INFO: [Synth 8-256] done synthesizing module '_3bit_binary_multiplier' (6#1) [/home/sabertazimi/gitrepo/hust-lab/verilog/lab5/ASM_3Bit_binary_multiplier/ASM_3Bit_binary_multiplier.srcs/sources_1/new/_3bit_binary_multiplier.v:23]
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1085.449 ; gain = 194.516 ; free physical = 1560 ; free virtual = 12167
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1085.449 ; gain = 194.516 ; free physical = 1560 ; free virtual = 12167
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a100tcsg324-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1093.453 ; gain = 202.520 ; free physical = 1560 ; free virtual = 12167
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module '_3bit_binary_multiplier_control_unit'
+INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+INFO: [Synth 8-5544] ROM "done" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "shift" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "nextState" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                     off |                               00 |                              000
+                      on |                               01 |                              001
+                 process |                               10 |                              010
+                  finish |                               11 |                              011
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module '_3bit_binary_multiplier_control_unit'
+WARNING: [Synth 8-327] inferring latch for variable 's_reg' [/home/sabertazimi/gitrepo/hust-lab/verilog/lab5/ASM_3Bit_binary_multiplier/ASM_3Bit_binary_multiplier.srcs/sources_1/new/full_adder.v:36]
+WARNING: [Synth 8-327] inferring latch for variable 'cout_reg' [/home/sabertazimi/gitrepo/hust-lab/verilog/lab5/ASM_3Bit_binary_multiplier/ASM_3Bit_binary_multiplier.srcs/sources_1/new/full_adder.v:36]
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1101.461 ; gain = 210.527 ; free physical = 1551 ; free virtual = 12157
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      4 Bit       Adders := 1     
+	   2 Input      3 Bit       Adders := 1     
++---Registers : 
+	                3 Bit    Registers := 4     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      3 Bit        Muxes := 2     
+	   7 Input      2 Bit        Muxes := 1     
+	   4 Input      1 Bit        Muxes := 1     
+	   3 Input      1 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 4     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module _3bit_binary_multiplier_control_unit 
+Detailed RTL Component Info : 
++---Muxes : 
+	   7 Input      2 Bit        Muxes := 1     
+	   4 Input      1 Bit        Muxes := 1     
+	   3 Input      1 Bit        Muxes := 2     
+Module shift_out_register 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 2     
+Module shift_out_register__parameterized0 
+Detailed RTL Component Info : 
++---Registers : 
+	                3 Bit    Registers := 1     
++---Muxes : 
+	   2 Input      3 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 1     
+Module shift_out_register__parameterized1 
+Detailed RTL Component Info : 
++---Registers : 
+	                3 Bit    Registers := 1     
++---Muxes : 
+	   2 Input      3 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 1     
+Module parallel_out_register 
+Detailed RTL Component Info : 
++---Registers : 
+	                3 Bit    Registers := 1     
+Module full_adder 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      4 Bit       Adders := 1     
+Module down_counter 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      3 Bit       Adders := 1     
++---Registers : 
+	                3 Bit    Registers := 1     
+	                1 Bit    Registers := 1     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+Start Parallel Synthesis Optimization  : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1183.469 ; gain = 292.535 ; free physical = 1470 ; free virtual = 12076
+---------------------------------------------------------------------------------
+Start Cross Boundary Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Cross Boundary Optimization : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1191.477 ; gain = 300.543 ; free physical = 1462 ; free virtual = 12068
+---------------------------------------------------------------------------------
+Finished Parallel Reinference  : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1191.477 ; gain = 300.543 ; free physical = 1462 ; free virtual = 12068
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-3332] Sequential element (MUL/Q_reg[2]) is unused and will be removed from module _3bit_binary_multiplier.
+---------------------------------------------------------------------------------
+Finished Area Optimization : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1199.484 ; gain = 308.551 ; free physical = 1453 ; free virtual = 12060
+---------------------------------------------------------------------------------
+Finished Parallel Area Optimization  : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1199.484 ; gain = 308.551 ; free physical = 1453 ; free virtual = 12060
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1199.484 ; gain = 308.551 ; free physical = 1453 ; free virtual = 12060
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1209.500 ; gain = 318.566 ; free physical = 1445 ; free virtual = 12051
+---------------------------------------------------------------------------------
+Finished Parallel Technology Mapping Optimization  : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1209.500 ; gain = 318.566 ; free physical = 1445 ; free virtual = 12051
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+Finished Parallel Synthesis Optimization  : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1209.500 ; gain = 318.566 ; free physical = 1445 ; free virtual = 12051
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1209.500 ; gain = 318.566 ; free physical = 1445 ; free virtual = 12051
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1209.500 ; gain = 318.566 ; free physical = 1445 ; free virtual = 12051
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1209.500 ; gain = 318.566 ; free physical = 1445 ; free virtual = 12051
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1209.500 ; gain = 318.566 ; free physical = 1445 ; free virtual = 12051
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1209.500 ; gain = 318.566 ; free physical = 1445 ; free virtual = 12051
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1209.500 ; gain = 318.566 ; free physical = 1445 ; free virtual = 12051
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-----+------+
+|      |Cell |Count |
++------+-----+------+
+|1     |BUFG |     1|
+|2     |LUT1 |     2|
+|3     |LUT2 |     3|
+|4     |LUT3 |     7|
+|5     |LUT4 |     3|
+|6     |LUT5 |     1|
+|7     |LUT6 |     5|
+|8     |FDCE |     2|
+|9     |FDPE |     2|
+|10    |FDRE |    11|
+|11    |LDC  |     4|
+|12    |IBUF |     7|
+|13    |OBUF |     7|
++------+-----+------+
+
+Report Instance Areas: 
++------+----------+-------------------------------------+------+
+|      |Instance  |Module                               |Cells |
++------+----------+-------------------------------------+------+
+|1     |top       |                                     |    55|
+|2     |  ADDER   |full_adder                           |     8|
+|3     |  COUNTER |down_counter                         |     9|
+|4     |  DUT     |_3bit_binary_multiplier_control_unit |     8|
+|5     |  MUL     |parallel_out_register                |     2|
+|6     |  P_H     |shift_out_register__parameterized0   |     6|
+|7     |  P_IN    |shift_out_register                   |     1|
+|8     |  P_L     |shift_out_register__parameterized1   |     6|
++------+----------+-------------------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1209.500 ; gain = 318.566 ; free physical = 1445 ; free virtual = 12051
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 3 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1209.500 ; gain = 231.484 ; free physical = 1445 ; free virtual = 12051
+Synthesis Optimization Complete : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1209.508 ; gain = 318.574 ; free physical = 1445 ; free virtual = 12051
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Netlist 29-17] Analyzing 11 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 4 instances were transformed.
+  LDC => LDCE: 4 instances
+
+INFO: [Common 17-83] Releasing license: Synthesis
+30 Infos, 3 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1333.316 ; gain = 367.887 ; free physical = 1380 ; free virtual = 11986
+report_utilization: Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.07 . Memory (MB): peak = 1365.332 ; gain = 0.000 ; free physical = 1380 ; free virtual = 11986
+INFO: [Common 17-206] Exiting Vivado at Tue Jun  7 16:51:42 2016...
