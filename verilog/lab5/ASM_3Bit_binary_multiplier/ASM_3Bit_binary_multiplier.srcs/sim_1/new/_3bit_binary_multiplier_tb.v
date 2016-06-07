@@ -24,7 +24,7 @@ module _3bit_binary_multiplier_tb(
 
     );
 
-        parameter COUNT = 30;
+        parameter COUNT = 150;
         parameter DELAY = 10;
         parameter TIME = (COUNT * DELAY);
         parameter WIDTH = 3;
@@ -33,9 +33,9 @@ module _3bit_binary_multiplier_tb(
         reg [(WIDTH-1):0] multiplier, multiplicand;
         wire [((WIDTH*2)-1):0] p;
         wire done;
-        integer i;
+        integer i, j, k;
         
-        _3bit_binary_multiplier DUT (start, clk, multiplier, multiplicand, p, done);
+        _3bit_binary_multiplier #(WIDTH) DUT (start, clk, multiplier, multiplicand, p, done);
  
         initial begin
             #TIME $finish;
@@ -49,8 +49,19 @@ module _3bit_binary_multiplier_tb(
         end
         
         initial begin
-            start = 0; multiplier = 2; multiplicand = 3;
-            #(DELAY) start = 1;
-            #(4*DELAY) start = 0;
+            start = 0; 
+            #(DELAY/2);
+            #(DELAY);
+            for (j = 0; j < COUNT;j = j + 1) begin
+                #(15*DELAY) start = 1;
+                #DELAY start = 0;
+            end
+        end
+        
+        initial begin
+            multiplier = 0; multiplicand = 1;
+            for (k = 0; k < 7; k = k + 1) begin
+                #(16*DELAY) multiplier = k; multiplicand = k + 1;
+            end
         end
     endmodule

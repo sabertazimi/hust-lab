@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1465298201">
-  <File Type="PA-TCL" Name="_3bit_binary_multiplier.tcl"/>
-  <File Type="RDS-RDS" Name="_3bit_binary_multiplier.vds"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="_3bit_binary_multiplier_timing_summary_synth.rpt"/>
-  <File Type="VDS-TIMING-PB" Name="_3bit_binary_multiplier_timing_summary_synth.pb"/>
-  <File Type="RDS-DCP" Name="_3bit_binary_multiplier.dcp"/>
-  <File Type="RDS-UTIL-PB" Name="_3bit_binary_multiplier_utilization_synth.pb"/>
-  <File Type="RDS-UTIL" Name="_3bit_binary_multiplier_utilization_synth.rpt"/>
-  <File Type="RDS-PROPCONSTRS" Name="_3bit_binary_multiplier_drc_synth.rpt"/>
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1465303010">
+  <File Type="VDS-TIMING-PB" Name="_4bit_binary_multiplier_timing_summary_synth.pb"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="_4bit_binary_multiplier_timing_summary_synth.rpt"/>
+  <File Type="RDS-DCP" Name="_4bit_binary_multiplier.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="_4bit_binary_multiplier_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="_4bit_binary_multiplier_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="_4bit_binary_multiplier_drc_synth.rpt"/>
+  <File Type="RDS-RDS" Name="_4bit_binary_multiplier.vds"/>
+  <File Type="PA-TCL" Name="_4bit_binary_multiplier.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/new/binary_multiplier_control_unit.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/new/shift_out_register.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -38,14 +45,7 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/_3bit_binary_multiplier_control_unit.v">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/_3bit_binary_multiplier.v">
+    <File Path="$PSRCDIR/sources_1/new/_4bit_binary_multiplier.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -54,7 +54,7 @@
     </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="_3bit_binary_multiplier"/>
+      <Option Name="TopModule" Val="_4bit_binary_multiplier"/>
       <Option Name="TopAutoSet" Val="TRUE"/>
     </Config>
   </FileSet>
@@ -65,7 +65,9 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016"/>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016">
+      <Desc>Vivado Synthesis Defaults</Desc>
+    </StratHandle>
     <Step Id="synth_design"/>
   </Strategy>
 </GenRun>

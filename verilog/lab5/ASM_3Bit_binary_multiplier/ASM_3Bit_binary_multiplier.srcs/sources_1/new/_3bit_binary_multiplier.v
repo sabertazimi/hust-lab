@@ -36,25 +36,27 @@ module _3bit_binary_multiplier
     wire clk_process;
     
     // adder variable
-    wire [(WIDTH-1):0] s;
+    wire [(WIDTH-1):0] b, s;
     wire cout;
     
     // register variable
     wire P_IN_out, P_H_shift_out, P_L_shift_out;
     wire [(WIDTH-1):0] P_H_parallel_out, P_L_parallel_out, MUL_parallel_out;
     
-    assign clk_process = clk;
+    
+    assign b = MUL_parallel_out & {(WIDTH){P_L_parallel_out[0]}};
     assign p = {P_H_parallel_out, P_L_parallel_out};
+    assign #7 clk_process = clk;
     
-    _3bit_binary_multiplier_control_unit DUT (start, clk, cnt_done, P_L_parallel_out[0], start_process, add, shift, count_up, done);
+    _3bit_binary_multiplier_control_unit UNIT (start, clk, cnt_done, P_L_parallel_out[0], start_process, add, shift, count_up, done);
     
-    shift_out_register #(1) P_IN (.clk(clk_process), .load(~shift), .shift(shift), .D(cout), .shift_in(0), .Q(), .shift_out(P_IN_out));
-    shift_out_register #(WIDTH) P_H (.clk(clk_process), .load(~shift), .shift(shift), .D(s), .shift_in(P_IN_out), .Q(P_H_parallel_out), .shift_out(P_H_shift_out));
-    shift_out_register #(WIDTH) P_L (.clk(clk_process), .load(1'b0 | start_process), .shift(shift), .D(multiplier), .shift_in(P_H_shift_out), .Q(P_L_parallel_out), .shift_out(P_L_shift_out));
+    shift_out_register #(1) P_IN (.start({1'b0, start_process}), .clk(clk_process), .load(~shift), .shift(shift), .D(cout), .shift_in(0), .Q(), .shift_out(P_IN_out));
+    shift_out_register #(WIDTH) P_H (.start({{(WIDTH){1'b0}},start_process}), .clk(clk_process), .load(add), .shift(shift), .D(s), .shift_in(P_IN_out), .Q(P_H_parallel_out), .shift_out(P_H_shift_out));
+    shift_out_register #(WIDTH) P_L (.start({multiplier, start_process}), .clk(clk_process), .load(1'b0), .shift(shift), .D(multiplier), .shift_in(P_H_shift_out), .Q(P_L_parallel_out), .shift_out(P_L_shift_out));
     
-    parallel_out_register #(WIDTH) MUL (.clk(clk_process), .load(1'b0 | start_process), .D(multiplicand), .Q(MUL_parallel_out));
+    parallel_out_register #(WIDTH) MUL (.start({multiplicand, start_process}), .clk(clk_process), .load(1'b0), .D(multiplicand), .Q(MUL_parallel_out));
     
-    full_adder #(WIDTH) ADDER (.start(start_process), .add(add), .a(P_H_parallel_out), .b(MUL_parallel_out & {(WIDTH-1){P_L_parallel_out[0]}}), .s(s), .cout(cout));
+    full_adder #(WIDTH) ADDER (.start(start_process), .add(add), .a(P_H_parallel_out), .b(b), .s(s), .cout(cout));
     
     down_counter #(WIDTH) COUNTER (.start(start), .clk(count_up), .cnt_done(cnt_done));
 endmodule

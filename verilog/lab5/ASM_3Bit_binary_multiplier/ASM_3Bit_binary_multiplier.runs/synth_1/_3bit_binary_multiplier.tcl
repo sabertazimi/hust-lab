@@ -5,8 +5,6 @@
 set_msg_config -id {Common 17-41} -limit 10000000
 set_msg_config -id {HDL 9-1061} -limit 100000
 set_msg_config -id {HDL 9-1654} -limit 100000
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
 create_project -in_memory -part xc7a100tcsg324-1
 
 set_param project.singleFileAddWarning.threshold 0
@@ -17,11 +15,11 @@ set_property parent.project_path /home/sabertazimi/gitrepo/hust-lab/verilog/lab5
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 read_verilog -library xil_defaultlib {
-  /home/sabertazimi/gitrepo/hust-lab/verilog/lab5/ASM_3Bit_binary_multiplier/ASM_3Bit_binary_multiplier.srcs/sources_1/new/_3bit_binary_multiplier_control_unit.v
-  /home/sabertazimi/gitrepo/hust-lab/verilog/lab5/ASM_3Bit_binary_multiplier/ASM_3Bit_binary_multiplier.srcs/sources_1/new/down_counter.v
   /home/sabertazimi/gitrepo/hust-lab/verilog/lab5/ASM_3Bit_binary_multiplier/ASM_3Bit_binary_multiplier.srcs/sources_1/new/shift_out_register.v
   /home/sabertazimi/gitrepo/hust-lab/verilog/lab5/ASM_3Bit_binary_multiplier/ASM_3Bit_binary_multiplier.srcs/sources_1/new/parallel_out_register.v
   /home/sabertazimi/gitrepo/hust-lab/verilog/lab5/ASM_3Bit_binary_multiplier/ASM_3Bit_binary_multiplier.srcs/sources_1/new/full_adder.v
+  /home/sabertazimi/gitrepo/hust-lab/verilog/lab5/ASM_3Bit_binary_multiplier/ASM_3Bit_binary_multiplier.srcs/sources_1/new/down_counter.v
+  /home/sabertazimi/gitrepo/hust-lab/verilog/lab5/ASM_3Bit_binary_multiplier/ASM_3Bit_binary_multiplier.srcs/sources_1/new/_3bit_binary_multiplier_control_unit.v
   /home/sabertazimi/gitrepo/hust-lab/verilog/lab5/ASM_3Bit_binary_multiplier/ASM_3Bit_binary_multiplier.srcs/sources_1/new/_3bit_binary_multiplier.v
 }
 foreach dcp [get_files -quiet -all *.dcp] {
