@@ -457,6 +457,25 @@ x  1011 (the multiplier)
    10000100 (shift sum once to the right, including carry) 
 ```
 
+### Multi-Hz
+
+```verilog
+/*
+ * 利用计数器实现任意分频 
+ */
+always @(posedge f_clk) begin 
+
+    //设定频率控制字p  
+    if (i == p) begin
+        i=0; 
+        f_out=~f_out;
+    end
+    else begin
+        i=i+1;
+    end
+end
+```
+
 ## Tips
 
 ### 混合编程
