@@ -1,0 +1,1 @@
+-wto "6d88dd1379194554a2def725ee5dcd84" --debug "typical" --relax --mt "8" -L "xil_defaultlib" -L "unisims_ver" -L "unimacro_ver" -L "secureip" --snapshot "timing_signal_generator_tb_behav" "xil_defaultlib.timing_signal_generator_tb" "xil_defaultlib.glbl" -log "elaborate.log" 

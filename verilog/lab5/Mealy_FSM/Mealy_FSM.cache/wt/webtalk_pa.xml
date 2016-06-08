@@ -3,7 +3,7 @@
 <!--The data in this file is primarily intended for consumption by Xilinx tools.
 The structure and the elements are likely to change over the next few releases.
 This means code written to parse this file will need to be revisited each subsequent release.-->
-<application name="pa" timeStamp="Mon Jun  6 19:19:55 2016">
+<application name="pa" timeStamp="Wed Jun  8 21:29:59 2016">
 <section name="Project Information" visible="false">
 <property name="ProjectID" value="b9a23eef8ce64d799bf37a8602460810" type="ProjectID"/>
 <property name="ProjectIteration" value="1" type="ProjectIteration"/>
@@ -17,256 +17,273 @@ This means code written to parse this file will need to be revisited each subseq
 <property name="ImplStrategy" value="Vivado Implementation Defaults" type="ImplStrategy"/>
 </item>
 <item name="Java Command Handlers">
-<property name="AddSources" value="2" type="JavaHandler"/>
-<property name="NewProject" value="2" type="JavaHandler"/>
-<property name="OpenProject" value="1" type="JavaHandler"/>
-<property name="ProjectSettingsCmdHandler" value="1" type="JavaHandler"/>
-<property name="SimulationClose" value="12" type="JavaHandler"/>
-<property name="SimulationRun" value="13" type="JavaHandler"/>
+<property name="AddSources" value="11" type="JavaHandler"/>
+<property name="CloseProject" value="1" type="JavaHandler"/>
+<property name="EditDelete" value="1" type="JavaHandler"/>
+<property name="NewFile" value="1" type="JavaHandler"/>
+<property name="NewProject" value="3" type="JavaHandler"/>
+<property name="OpenProject" value="2" type="JavaHandler"/>
+<property name="ProjectSettingsCmdHandler" value="2" type="JavaHandler"/>
+<property name="SaveFileProxyHandler" value="3" type="JavaHandler"/>
+<property name="SetTopNode" value="2" type="JavaHandler"/>
+<property name="SimulationClose" value="13" type="JavaHandler"/>
+<property name="SimulationRun" value="19" type="JavaHandler"/>
 </item>
 <item name="Gui Resources Info">
+<property name="APPLY, Apply" value="1" type="GuiResourceData"/>
+<property name="BACK,  Back" value="1" type="GuiResourceData"/>
 <property name="CANCEL, Cancel" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 0, 256" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 102, 145" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 106, 236" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 110, 114" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 112, 263" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 113, 250" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 114, 175" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 114, 279" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 115, 217" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 115, 221" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 118, 199" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 119, 278" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 131, 229" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 146, 72" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 148, 159" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 150, 155" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 155, 127" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 156, 202" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 158, 100" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 166, 236" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 168, 159" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 178, 101" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 188, 195" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 196, 155" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 2, 254" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 208, 194" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 208, 269" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 211, 212" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 213, 190" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 219, 159" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 219, 189" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 221, 192" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 223, 190" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 231, 179" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 231, 189" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 233, 209" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 235, 267" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 237, 174" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 238, 208" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 243, 204" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 246, 210" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 249, 187" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 249, 193" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 253, 126" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 256, 204" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 256, 84" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 258, 189" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 261, 185" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 262, 257, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 263, 177" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 264, 264" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 264, 88" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 265, 191" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 265, 258" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 267, 227" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 268, 264" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 271, 207" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 273, 250" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 276, 277" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 280, 143" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 280, 217" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 86, 220" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 86, 262" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 87, 196" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 87, 235" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 88, 187" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 90, 236" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM.v, 96, 93" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 100, 255" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 105, 204" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 117, 142" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 122, 241" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 123, 235" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 124, 254" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 125, 114, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 125, 115" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 138, 246" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 139, 255" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 140, 255" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 141, 239" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 141, 251" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 141, 281" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 142, 230" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 145, 77, false, false, false, true, false" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 146, 149" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 146, 165" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 146, 208" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 146, 216" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 146, 227" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 146, 252" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 146, 273" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 147, 264" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 148, 276" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 149, 210" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 150, 230" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 152, 249" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 153, 279" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 153, 289" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 154, 215" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 156, 86" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 159, 280" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 161, 272" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 165, 295" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 166, 168" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 167, 76" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 168, 288" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 168, 63" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 170, 46" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 173, 157" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 175, 146" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 178, 204" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 186, 51" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 187, 202" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 200, 173, false, false, false, true, false" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 203, 126, false, false, false, true, false" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 207, 129" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 221, 76" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 234, 267" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 249, 144" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 249, 144, false, false, false, true, false" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 253, 152" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 274, 107" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 286, 164, false, false, false, true, false" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 289, 164" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 315, 222" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 319, 38" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 321, 238" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 321, 240" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 340, 178, false, false, false, true, false" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 352, 215" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 359, 260" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 406, 120" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 42, 80" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 44, 106" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 483, 191" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 59, 190" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 62, 234" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 67, 95" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 69, 158" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 75, 158" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 76, 199" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 77, 191" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 80, 170" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 85, 261" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 88, 252" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 88, 262" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 89, 184" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 92, 80" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 97, 222" value="1" type="GuiResourceData"/>
-<property name="Mealy_FSM_tb.v, 98, 196" value="1" type="GuiResourceData"/>
-<property name="NEXT, Next " value="8" type="GuiResourceData"/>
+<property name="D_ff.v, 115, 384" value="1" type="GuiResourceData"/>
+<property name="D_ff.v, 117, 405" value="1" type="GuiResourceData"/>
+<property name="D_ff.v, 118, 390" value="1" type="GuiResourceData"/>
+<property name="D_ff.v, 136, 109" value="1" type="GuiResourceData"/>
+<property name="D_ff.v, 144, 277" value="1" type="GuiResourceData"/>
+<property name="D_ff.v, 154, 278" value="1" type="GuiResourceData"/>
+<property name="D_ff.v, 157, 281" value="1" type="GuiResourceData"/>
+<property name="D_ff.v, 162, 265" value="1" type="GuiResourceData"/>
+<property name="D_ff.v, 193, 409" value="1" type="GuiResourceData"/>
+<property name="D_ff.v, 208, 396" value="1" type="GuiResourceData"/>
+<property name="D_ff.v, 235, 379" value="1" type="GuiResourceData"/>
+<property name="D_ff.v, 280, 385" value="1" type="GuiResourceData"/>
+<property name="D_ff.v, 81, 278" value="1" type="GuiResourceData"/>
+<property name="D_ff.v, 92, 229" value="1" type="GuiResourceData"/>
+<property name="D_ff.v, 92, 280" value="1" type="GuiResourceData"/>
+<property name="D_ff.v, 95, 273" value="1" type="GuiResourceData"/>
+<property name="FINISH, Finish" value="9" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 169, 247" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 181, 299" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 203, 115" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 209, 108" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 249, 128" value="1" type="GuiResourceData"/>
+<property name="Mealy_FSM.v, 78, 172" value="1" type="GuiResourceData"/>
+<property name="NEXT, Next " value="17" type="GuiResourceData"/>
+<property name="OK, OK" value="1" type="GuiResourceData"/>
 <property name="PAResourceAtoD.AddSrcWizard_SPECIFY_SIMULATION_SPECIFIC_HDL_FILES, Add or create simulation sources" value="1" type="GuiResourceData"/>
-<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, Mealy_FSM_tb" value="1" type="GuiResourceData"/>
-<property name="PAResourceCommand.PACommandNames_NEW_PROJECT, New Project..." value="1" type="GuiResourceData"/>
-<property name="PAResourceCommand.PACommandNames_SIMULATION_RUN_BEHAVIORAL, Run Behavioral Simulation" value="14" type="GuiResourceData"/>
-<property name="PAResourceCommand.PACommandNames_SIMULATION_RUN_POST_SYNTHESIS_FUNCTIONAL, Run Post-Synthesis Functional Simulation" value="1" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CmdMsgDialog_OK, OK" value="1" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, D_ff" value="1" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, binary_counter" value="1" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, clock_generator" value="2" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, clock_generator_tb" value="1" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, rotate_" value="1" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, rotate_shift_register" value="1" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, signal_source" value="1" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, timing_signal" value="1" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, timing_signal_generator" value="1" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, timing_signal_generator_tb" value="1" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, Hierarchy Update" value="3" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_NEW_FILE, New File..." value="1" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_OPEN_PROJECT, Open Project..." value="1" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_SET_AS_TOP, Set as Top" value="2" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_SIMULATION_RUN_BEHAVIORAL, Run Behavioral Simulation" value="6" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, D_ff (D_ff.v" value="4" type="GuiResourceData"/>
 <property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Mealy_FSM (Mealy_FSM.v" value="2" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, Mealy_FSM (Mealy_FSM.v" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, Mealy_FSM_tb (Mealy_FSM_tb.v" value="2" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1], 4" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Non-module Files, clock_generator.v], 2, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Non-module Files, clock_generator.v], 2, false, false, false, false, false, true" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Non-module Files, clock_generator.v], 2, false, false, false, false, true, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Non-module Files], 1" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, binary_counter (binary_counter.v" value="8" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, clock_generator (clock_generator.v" value="23" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, rotate_shift_register (rotate_shift_register.v" value="12" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, signal_source (signal_source.v" value="4" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, timing_signal (timing_signal.v" value="4" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, timing_signal_generator (timing_signal_generator.v" value="7" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, Syntax Error Files], 7" value="2" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, clock_generator_tb (clock_generator_tb.v" value="8" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, timing_signal_generator (timing_signal_generator.v" value="2" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, timing_signal_generator_tb (timing_signal_generator_tb.v" value="10" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1], 10" value="1" type="GuiResourceData"/>
 <property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources], 3" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Project Manager, Add Sources], 2, false" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Simulation, Run Simulation], 11, false" value="14" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources], 9" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Project Manager, Add Sources], 2, false" value="9" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Simulation, Run Simulation], 11, false" value="6" type="GuiResourceData"/>
 <property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Simulation, Simulation Settings], 10, false" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Synthesis, Open Synthesized Design], 18" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.GettingStartedView_RECENT_PROJECTS, /home/sabertazimi/gitrepo/hust-lab/verilog/lab5/Mealy_FSM/Mealy_FSM.xpr, 2" value="1" type="GuiResourceData"/>
-<property name="PAResourceItoN.MainMenuMgr_FILE, File" value="2" type="GuiResourceData"/>
-<property name="PAResourceOtoP.PAViews_CODE, Code" value="2" type="GuiResourceData"/>
+<property name="PAResourceEtoH.GettingStartedView_CREATE_NEW_PROJECT, Create New Project" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_EDIT, Edit" value="2" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_FILE, File" value="10" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_OPEN_RECENT_FILE, Open Recent File" value="2" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_OPEN_RECENT_PROJECT, Open Recent Project" value="2" type="GuiResourceData"/>
+<property name="PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, [, Simulation, sim_1, [VRFC 10-1047] module instantiation should have an instance name [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/timingSignalGenerator/timingSignalGenerator.srcs/sources_1/new/timing_signal.v:47]. ], 29, false" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, [, Simulation, sim_1], 28" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PAViews_CODE, Code" value="14" type="GuiResourceData"/>
 <property name="PAResourceOtoP.PAViews_PROJECT_SUMMARY, Project Summary" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PartChooser_FAMILY_CHOOSER, All, 0" value="1" type="GuiResourceData"/>
 <property name="PAResourceOtoP.PartChooser_FAMILY_CHOOSER, Artix-7, 1" value="1" type="GuiResourceData"/>
 <property name="PAResourceOtoP.PartChooser_PARTS, xc7a100tcsg324-1 ; 324 ; 135 ; 240 ; 126800 ; 0 ; 0 ; 210 ; 63400 ; 6 ; 1 ; 85 ; 0 ; 85 ; C ; 1.05 ; 0.95 ; 0.95, 4, xc7a100tcsg324-1, 0" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PartChooser_PART_PACKAGE_CHOOSER, cpg236, 1" value="1" type="GuiResourceData"/>
 <property name="PAResourceOtoP.PartChooser_PART_PACKAGE_CHOOSER, csg324, 2" value="1" type="GuiResourceData"/>
 <property name="PAResourceOtoP.PartChooser_PART_SPEED_CHOOSER, -1, 1" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.ProjectNameChooser_CHOOSE_PROJECT_LOCATION, (String" value="2" type="GuiResourceData"/>
-<property name="PAResourceOtoP.ProjectNameChooser_CREATE_PROJECT_SUBDIRECTORY, Create project subdirectory, true" value="2" type="GuiResourceData"/>
-<property name="PAResourceOtoP.ProjectNameChooser_PROJECT_NAME, Moore_FSM" value="1" type="GuiResourceData"/>
-<property name="PAResourceQtoS.SrcChooserPanel_CREATE_FILE, Create File" value="1" type="GuiResourceData"/>
-<property name="RDIResource.BaseDialog_CANCEL, Cancel" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.ProjectNameChooser_PROJECT_NAME, timingSignalGenerator" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.ProjectSettingsSimulationPanel_TABBED_PANE, PAResourceOtoP.ProjectSettingsSimulationPanel_SIMULATION, Simulation, 2" value="1" type="GuiResourceData"/>
+<property name="PAResourceQtoS.SrcChooserPanel_CREATE_FILE, Create File" value="10" type="GuiResourceData"/>
+<property name="PAResourceQtoS.SrcMenu_IP_HIERARCHY, IP Hierarchy" value="3" type="GuiResourceData"/>
+<property name="PAResourceTtoZ.TaskBanner_CLOSE, (String" value="1" type="GuiResourceData"/>
 <property name="RDIResource.BaseDialog_OK, OK" value="24" type="GuiResourceData"/>
-<property name="RDIResource.GraphicalView_ZOOM_FIT, Waveform Viewer_zoom_fit" value="23" type="GuiResourceData"/>
-<property name="RDIResource.GraphicalView_ZOOM_IN, Waveform Viewer_zoom_in" value="7" type="GuiResourceData"/>
-<property name="RDIResource.GraphicalView_ZOOM_OUT, Waveform Viewer_zoom_out" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 101, 71" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 107, 145" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 112, 140" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 136, 133" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 142, 75" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 161, 136" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 19, 122" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 194, 77" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 274, 65" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 291, 73" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 309, 74" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 371, 134" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 381, 76" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 404, 128" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 405, 134" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 435, 75" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 45, 106" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 548, 139" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 556, 132" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 559, 116" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 561, 140" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 563, 142" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 569, 122" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 571, 119" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 581, 139" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 591, 133" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 598, 139" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 601, 131" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 69, 138" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 69, 144" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 81, 143" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 82, 141" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 897, 38" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 95, 142" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 1*" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 10*" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 11" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 12*" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 13*" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 2*" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 3*" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 4*" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 5*" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 6*" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 7*" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 8*" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 9*" value="1" type="GuiResourceData"/>
-<property name="RDIResource.WaveformNameTree_WAVEFORM_NAME_TREE, [true, Clk], 0, false" value="1" type="GuiResourceData"/>
-<property name="RDIResource.WaveformNameTree_WAVEFORM_NAME_TREE, [true, count[3:0]], 3, true" value="2" type="GuiResourceData"/>
-<property name="RDIResource.WaveformNameTree_WAVEFORM_NAME_TREE, [true, count[3:0]], 4, true" value="12" type="GuiResourceData"/>
-<property name="RDIResource.WaveformNameTree_WAVEFORM_NAME_TREE, [true, reset], 1, false" value="1" type="GuiResourceData"/>
-<property name="RDIResource.WaveformNameTree_WAVEFORM_NAME_TREE, [true, yout], 1, false" value="2" type="GuiResourceData"/>
-<property name="RDIResource.WaveformNameTree_WAVEFORM_NAME_TREE, [true, yout], 3, false" value="3" type="GuiResourceData"/>
-<property name="RDIResource.WaveformNameTree_WAVEFORM_NAME_TREE, [true, yout], 4, false" value="13" type="GuiResourceData"/>
+<property name="RDIResource.GraphicalView_ZOOM_FIT, Waveform Viewer_zoom_fit" value="6" type="GuiResourceData"/>
+<property name="RDIResource.GraphicalView_ZOOM_IN, Waveform Viewer_zoom_in" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 105, 51" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 109, 20" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 111, 43" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 112, 19" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 115, 19" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 178, 52" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 179, -66" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 181, 54" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 185, 52" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 255, -16" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 284, -70" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 312, -83" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 313, -75" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 319, -88" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 331, -85" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 334, -86, false, false, false, true, false" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 337, -99, false, false, false, true, false" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 341, -79, false, false, false, true, false" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 347, -64" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 361, -64" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 364, -66" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 370, -66" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 376, -66" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 39, -67" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 390, 17" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 390, 19" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 404, -70" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 41, 45" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 41, 58" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 42, 49" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 428, -67" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 44, 54" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 61, 92" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 1" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 2" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 3" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 4" value="1" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 5" value="1" type="GuiResourceData"/>
+<property name="RDIResource.WaveformNameTree_WAVEFORM_NAME_TREE, [true, clk[3:0]], 0" value="2" type="GuiResourceData"/>
+<property name="RDIResourceCommand.RDICommands_DELETE, Remove File from Project..." value="1" type="GuiResourceData"/>
+<property name="binary_counter.v, 103, 260" value="1" type="GuiResourceData"/>
+<property name="binary_counter.v, 116, 189" value="1" type="GuiResourceData"/>
+<property name="binary_counter.v, 131, 248" value="1" type="GuiResourceData"/>
+<property name="binary_counter.v, 147, 249" value="1" type="GuiResourceData"/>
+<property name="binary_counter.v, 150, 216" value="1" type="GuiResourceData"/>
+<property name="binary_counter.v, 161, 262" value="1" type="GuiResourceData"/>
+<property name="binary_counter.v, 171, 188" value="1" type="GuiResourceData"/>
+<property name="binary_counter.v, 205, 227" value="1" type="GuiResourceData"/>
+<property name="binary_counter.v, 208, 238" value="1" type="GuiResourceData"/>
+<property name="binary_counter.v, 31, 262" value="1" type="GuiResourceData"/>
+<property name="binary_counter.v, 65, 251" value="1" type="GuiResourceData"/>
+<property name="binary_counter.v, 71, 244" value="1" type="GuiResourceData"/>
+<property name="binary_counter.v, 77, 189" value="1" type="GuiResourceData"/>
+<property name="binary_counter.v, 78, 258" value="1" type="GuiResourceData"/>
+<property name="binary_counter.v, 85, 236" value="1" type="GuiResourceData"/>
+<property name="clock_generator.v, 0, 100" value="1" type="GuiResourceData"/>
+<property name="clock_generator.v, 102, 248" value="1" type="GuiResourceData"/>
+<property name="clock_generator.v, 104, 251" value="1" type="GuiResourceData"/>
+<property name="clock_generator.v, 106, 171" value="1" type="GuiResourceData"/>
+<property name="clock_generator.v, 106, 206" value="1" type="GuiResourceData"/>
+<property name="clock_generator.v, 106, 263" value="1" type="GuiResourceData"/>
+<property name="clock_generator.v, 129, 204" value="1" type="GuiResourceData"/>
+<property name="clock_generator.v, 134, 219" value="1" type="GuiResourceData"/>
+<property name="clock_generator.v, 136, 100" value="1" type="GuiResourceData"/>
+<property name="clock_generator.v, 137, 250" value="1" type="GuiResourceData"/>
+<property name="clock_generator.v, 157, 235" value="1" type="GuiResourceData"/>
+<property name="clock_generator.v, 164, 252" value="1" type="GuiResourceData"/>
+<property name="clock_generator.v, 168, 263" value="1" type="GuiResourceData"/>
+<property name="clock_generator.v, 177, 270" value="1" type="GuiResourceData"/>
+<property name="clock_generator.v, 182, 270" value="1" type="GuiResourceData"/>
+<property name="clock_generator.v, 186, 140" value="1" type="GuiResourceData"/>
+<property name="clock_generator.v, 192, 250" value="1" type="GuiResourceData"/>
+<property name="clock_generator.v, 246, 215" value="1" type="GuiResourceData"/>
+<property name="clock_generator.v, 269, 198" value="1" type="GuiResourceData"/>
+<property name="clock_generator.v, 270, 205" value="1" type="GuiResourceData"/>
+<property name="clock_generator.v, 399, 219" value="1" type="GuiResourceData"/>
+<property name="clock_generator.v, 412, 209" value="1" type="GuiResourceData"/>
+<property name="clock_generator.v, 62, 256" value="1" type="GuiResourceData"/>
+<property name="clock_generator.v, 63, 249" value="1" type="GuiResourceData"/>
+<property name="clock_generator.v, 74, 265" value="1" type="GuiResourceData"/>
+<property name="clock_generator.v, 79, 188" value="1" type="GuiResourceData"/>
+<property name="clock_generator.v, 80, 124" value="1" type="GuiResourceData"/>
+<property name="clock_generator.v, 84, 185" value="1" type="GuiResourceData"/>
+<property name="clock_generator_tb.v, 133, 256" value="1" type="GuiResourceData"/>
+<property name="clock_generator_tb.v, 154, 263" value="1" type="GuiResourceData"/>
+<property name="clock_generator_tb.v, 163, 290" value="1" type="GuiResourceData"/>
+<property name="clock_generator_tb.v, 178, 268" value="1" type="GuiResourceData"/>
+<property name="clock_generator_tb.v, 195, 263" value="1" type="GuiResourceData"/>
+<property name="clock_generator_tb.v, 345, 313" value="1" type="GuiResourceData"/>
+<property name="clock_generator_tb.v, 370, 265" value="1" type="GuiResourceData"/>
+<property name="clock_generator_tb.v, 424, 261" value="1" type="GuiResourceData"/>
+<property name="clock_generator_tb.v, 72, 486" value="1" type="GuiResourceData"/>
+<property name="rotate_shift_register.v, 103, 180" value="1" type="GuiResourceData"/>
+<property name="rotate_shift_register.v, 110, 246" value="1" type="GuiResourceData"/>
+<property name="rotate_shift_register.v, 119, 170" value="1" type="GuiResourceData"/>
+<property name="rotate_shift_register.v, 120, 162" value="1" type="GuiResourceData"/>
+<property name="rotate_shift_register.v, 132, 159" value="1" type="GuiResourceData"/>
+<property name="rotate_shift_register.v, 145, 257" value="1" type="GuiResourceData"/>
+<property name="rotate_shift_register.v, 162, 175" value="1" type="GuiResourceData"/>
+<property name="rotate_shift_register.v, 165, 230" value="1" type="GuiResourceData"/>
+<property name="rotate_shift_register.v, 204, 158" value="1" type="GuiResourceData"/>
+<property name="rotate_shift_register.v, 208, 138" value="1" type="GuiResourceData"/>
+<property name="rotate_shift_register.v, 215, 173" value="1" type="GuiResourceData"/>
+<property name="rotate_shift_register.v, 30, 256" value="1" type="GuiResourceData"/>
+<property name="rotate_shift_register.v, 317, 270" value="1" type="GuiResourceData"/>
+<property name="rotate_shift_register.v, 58, 154" value="1" type="GuiResourceData"/>
+<property name="rotate_shift_register.v, 67, 176" value="1" type="GuiResourceData"/>
+<property name="rotate_shift_register.v, 68, 274" value="1" type="GuiResourceData"/>
+<property name="signal_source.v, 153, 234" value="1" type="GuiResourceData"/>
+<property name="signal_source.v, 73, 286" value="1" type="GuiResourceData"/>
+<property name="timing_signal.v, 115, 472" value="1" type="GuiResourceData"/>
+<property name="timing_signal.v, 119, 263" value="1" type="GuiResourceData"/>
+<property name="timing_signal.v, 121, 458" value="1" type="GuiResourceData"/>
+<property name="timing_signal.v, 126, 266" value="1" type="GuiResourceData"/>
+<property name="timing_signal.v, 134, 491" value="1" type="GuiResourceData"/>
+<property name="timing_signal.v, 140, 312" value="1" type="GuiResourceData"/>
+<property name="timing_signal.v, 145, 336" value="1" type="GuiResourceData"/>
+<property name="timing_signal.v, 168, 411" value="1" type="GuiResourceData"/>
+<property name="timing_signal.v, 181, 261" value="1" type="GuiResourceData"/>
+<property name="timing_signal.v, 182, 115" value="1" type="GuiResourceData"/>
+<property name="timing_signal.v, 185, 456" value="1" type="GuiResourceData"/>
+<property name="timing_signal.v, 201, 113" value="1" type="GuiResourceData"/>
+<property name="timing_signal.v, 231, 235" value="1" type="GuiResourceData"/>
+<property name="timing_signal.v, 231, 263" value="1" type="GuiResourceData"/>
+<property name="timing_signal.v, 233, 489" value="1" type="GuiResourceData"/>
+<property name="timing_signal.v, 234, 491" value="1" type="GuiResourceData"/>
+<property name="timing_signal.v, 239, 476" value="1" type="GuiResourceData"/>
+<property name="timing_signal.v, 263, 308" value="1" type="GuiResourceData"/>
+<property name="timing_signal.v, 278, 489" value="1" type="GuiResourceData"/>
+<property name="timing_signal.v, 301, 487" value="1" type="GuiResourceData"/>
+<property name="timing_signal.v, 320, 306" value="1" type="GuiResourceData"/>
+<property name="timing_signal.v, 338, 489" value="1" type="GuiResourceData"/>
+<property name="timing_signal.v, 384, 491" value="1" type="GuiResourceData"/>
+<property name="timing_signal.v, 453, 489" value="1" type="GuiResourceData"/>
+<property name="timing_signal.v, 512, 486" value="1" type="GuiResourceData"/>
+<property name="timing_signal.v, 645, 493" value="1" type="GuiResourceData"/>
+<property name="timing_signal.v, 71, 502" value="1" type="GuiResourceData"/>
+<property name="timing_signal.v, 86, 493" value="1" type="GuiResourceData"/>
+<property name="timing_signal_generator.v, 209, 327" value="1" type="GuiResourceData"/>
+<property name="timing_signal_generator.v, 211, 338" value="1" type="GuiResourceData"/>
+<property name="timing_signal_generator.v, 240, 428" value="1" type="GuiResourceData"/>
+<property name="timing_signal_generator.v, 402, 458" value="1" type="GuiResourceData"/>
+<property name="timing_signal_generator.v, 490, 456" value="1" type="GuiResourceData"/>
+<property name="timing_signal_generator.v, 84, 399" value="1" type="GuiResourceData"/>
+<property name="timing_signal_generator_tb.v, 105, 397" value="1" type="GuiResourceData"/>
+<property name="timing_signal_generator_tb.v, 107, 398" value="1" type="GuiResourceData"/>
+<property name="timing_signal_generator_tb.v, 144, 352" value="1" type="GuiResourceData"/>
+<property name="timing_signal_generator_tb.v, 154, 333" value="1" type="GuiResourceData"/>
+<property name="timing_signal_generator_tb.v, 165, 394" value="1" type="GuiResourceData"/>
+<property name="timing_signal_generator_tb.v, 193, 335" value="1" type="GuiResourceData"/>
+<property name="timing_signal_generator_tb.v, 27, 445" value="1" type="GuiResourceData"/>
+<property name="timing_signal_generator_tb.v, 427, 444" value="1" type="GuiResourceData"/>
+<property name="timing_signal_generator_tb.v, 453, 443" value="1" type="GuiResourceData"/>
+<property name="timing_signal_generator_tb.v, 482, 445" value="1" type="GuiResourceData"/>
+<property name="timing_signal_generator_tb.v, 489, 444" value="1" type="GuiResourceData"/>
+<property name="timing_signal_generator_tb.v, 60, 360" value="1" type="GuiResourceData"/>
+<property name="timing_signal_generator_tb.v, 60, 367" value="1" type="GuiResourceData"/>
+<property name="timing_signal_generator_tb.v, 65, 373" value="1" type="GuiResourceData"/>
+<property name="timing_signal_generator_tb.v, 97, 290" value="1" type="GuiResourceData"/>
 </item>
 <item name="Other">
-<property name="GuiMode" value="41" type="GuiMode"/>
+<property name="GuiMode" value="44" type="GuiMode"/>
 <property name="BatchMode" value="0" type="BatchMode"/>
-<property name="TclMode" value="34" type="TclMode"/>
+<property name="TclMode" value="37" type="TclMode"/>
 </item>
 </section>
 </application>
