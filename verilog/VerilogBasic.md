@@ -431,6 +431,7 @@ end
 ## Demos
 
 -   [gitbooks.io](https://hom-wang.gitbooks.io/verilog-hdl/content/Chapter_07.html)
+-   [Xilinx Lab](http://www.xilinx.com/support/university/ise/ise-teaching-material/hdl-design.html)
 
 ### Binary Multiplier
 
