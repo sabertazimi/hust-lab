@@ -540,6 +540,37 @@ endmodule
 reset_value = {{(DATA_WIDTH/2){1'b0}}, {(DATA_WIDTH/2){1'b1}}};
 ```
 
+#### Test Bench
+
+```verilog
+always begin
+    clk = 0;
+    forever #DELAY clk = ~clk;
+end
+```
+
+```verilog
+reg clock;
+integer no_of_clocks;
+
+parameter CLOCK_PERIOD = 5;
+parameter TIME = 50000;
+
+initial no_of_clocks = 0;
+initial clock = 1'b0;
+
+always #(CLOCK_PERIOD/2.0) clock = ~clock;
+
+always @(posedge clock)
+    no_of_clocks = no_of_clocks +1 ;
+
+initial begin
+    #TIME;
+    $display("End of simulation time is %d , total number of clocks seen is %d expected is %d",$time,no_of_clocks,($time/5));
+    $finish;
+end
+```
+
 ## 有限状态机(FSM)
 
 -   reset: initial state
