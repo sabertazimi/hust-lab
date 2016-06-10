@@ -26,6 +26,7 @@ module _4bit_mod8_counter_tb(
 
     parameter COUNT = 200;
     parameter DELAY = 10;
+    parameter TIME = COUNT*DELAY;
     
     reg CP,reset,M;
     wire [3:0] Q;
@@ -35,7 +36,7 @@ module _4bit_mod8_counter_tb(
     _4bit_mod8_counter DUT (.CP(CP), .reset(reset), .M(M), .Q(Q), .Qcc_n(Qcc_n));
     
     initial begin
-        #(COUNT*DELAY) $finish;
+        #TIME $finish;
     end
 
     initial begin
@@ -51,6 +52,7 @@ module _4bit_mod8_counter_tb(
         #(COUNT*DELAY/5) reset = 1;
         #(COUNT*DELAY/5) reset = 0;
         #(COUNT*DELAY/4) reset = 1;
+        #(2*DELAY) reset = 0;
     end
     
     initial begin

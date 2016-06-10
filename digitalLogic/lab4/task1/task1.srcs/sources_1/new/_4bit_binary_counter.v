@@ -31,6 +31,9 @@ module _4bit_binary_counter(
     );
     
     always @(CLR_n or LD_n or CP or D) begin
+        if (Qcc_n <= 0) begin
+            Qcc_n <= 1;
+        end
         if (!CLR_n) begin
             {Qcc_n, Q} <= 5'b10000;
         end
@@ -40,11 +43,9 @@ module _4bit_binary_counter(
         else if(CP) begin
             if (M) begin
                 {Qcc_n, Q} <= {Qcc_n,Q} + 1;
-                #10 Qcc_n <= 1;
             end
             else begin
                 {Qcc_n, Q} <= {Qcc_n,Q} - 1;
-                #10 Qcc_n <= 1;
             end
         end
     end

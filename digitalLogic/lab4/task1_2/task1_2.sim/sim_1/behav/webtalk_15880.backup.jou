@@ -2,8 +2,8 @@
 # Webtalk v2016.1 (64-bit)
 # SW Build 1538259 on Fri Apr  8 15:45:23 MDT 2016
 # IP Build 1537824 on Fri Apr  8 04:28:57 MDT 2016
-# Start of session at: Sun Jun  5 22:06:34 2016
-# Process ID: 28104
+# Start of session at: Fri Jun 10 15:43:38 2016
+# Process ID: 15880
 # Current directory: /home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task1_2/task1_2.sim/sim_1/behav
 # Command line: wbtcv -mode batch -source /home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task1_2/task1_2.sim/sim_1/behav/xsim.dir/_4bit_mod8_counter_tb_behav/webtalk/xsim_webtalk.tcl -notrace
 # Log file: /home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task1_2/task1_2.sim/sim_1/behav/webtalk.log
