@@ -21,16 +21,26 @@
 
 
 module flow_led(
-    input Clk,
+    input clk_src,
     input reset,
+    input [4:0] clk_sel,                        // select switch for clock signal
     input M,
     output reg [3:0] state
     );
     
-    reg [3:0] nextState;
-    parameter l0 = 1, l1 = 2, l2 = 4, l3 = 8;
+    parameter LEN = 32;                         // length of binary counter(different types of clock signal)
     
-    always @(posedge Clk or posedge reset) begin
+    parameter l0 = 1, l1 = 2, l2 = 4, l3 = 8;   // state enums
+    reg [3:0] nextState;
+    
+    wire clk;                                   // truly clock signal
+    wire [(LEN-1):0] clk_group;                 // divided clock signal from clk, by binary counter
+
+    assign clk = clk_group[clk_sel];
+
+    binary_counter DIVIDER (.clk_src(clk_src), .reset(reset), .clk_group(clk_group));
+    
+    always @(posedge clk or posedge reset) begin
         if (reset) state <= l0;
         else state <= nextState;
     end

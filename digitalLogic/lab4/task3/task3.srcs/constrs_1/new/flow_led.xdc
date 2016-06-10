@@ -1,29 +1,32 @@
 # Nexys4 Pin Assignments
-############################
-# On-board Slide Switches  #
-############################
-# Clk, reset, M
-set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets Clk_IBUF]
-set_property PACKAGE_PIN F15 [get_ports Clk]
-set_property IOSTANDARD LVCMOS33 [get_ports Clk]
+##########################################
+# On-board Slide Switches/Button/Signal  #
+##########################################
+# Clk, reset, clk_sel[4:0], M
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets clk_src_IBUF]
+set_property PACKAGE_PIN E3 [get_ports clk_src]
+set_property IOSTANDARD LVCMOS33 [get_ports clk_src]
 set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets reset_IBUF]
-set_property PACKAGE_PIN E16 [get_ports reset]
+set_property PACKAGE_PIN F15 [get_ports reset]
 set_property IOSTANDARD LVCMOS33 [get_ports reset]
 set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets M_IBUF]
 set_property PACKAGE_PIN U9 [get_ports M]
 set_property IOSTANDARD LVCMOS33 [get_ports M]
-#set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets CLR_n_IBUF]
-#set_property PACKAGE_PIN R7 [get_ports CLR_n]
-#set_property IOSTANDARD LVCMOS33 [get_ports CLR_n]
-#set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets D[0]_IBUF]
-#set_property PACKAGE_PIN R6 [get_ports D[0]]
-#set_property IOSTANDARD LVCMOS33 [get_ports D[0]]
-#set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets D[1]_IBUF]
-#set_property PACKAGE_PIN R5 [get_ports D[1]]
-#set_property IOSTANDARD LVCMOS33 [get_ports D[1]]
-#set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets D[2]_IBUF]
-#set_property PACKAGE_PIN V7 [get_ports D[2]]
-#set_property IOSTANDARD LVCMOS33 [get_ports D[2]]
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets clk_sel[0]_IBUF]
+set_property PACKAGE_PIN U8 [get_ports clk_sel[0]]
+set_property IOSTANDARD LVCMOS33 [get_ports clk_sel[0]]
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets clk_sel[1]_IBUF]
+set_property PACKAGE_PIN R7 [get_ports clk_sel[1]]
+set_property IOSTANDARD LVCMOS33 [get_ports clk_sel[1]]
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets clk_sel[2]_IBUF]
+set_property PACKAGE_PIN R6 [get_ports clk_sel[2]]
+set_property IOSTANDARD LVCMOS33 [get_ports clk_sel[2]]
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets clk_sel[3]_IBUF]
+set_property PACKAGE_PIN R5 [get_ports clk_sel[3]]
+set_property IOSTANDARD LVCMOS33 [get_ports clk_sel[3]]
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets clk_sel[4]_IBUF]
+set_property PACKAGE_PIN V7 [get_ports clk_sel[4]]
+set_property IOSTANDARD LVCMOS33 [get_ports clk_sel[4]]
 #set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets D[3]_IBUF]
 #set_property PACKAGE_PIN V6 [get_ports D[3]]
 #set_property IOSTANDARD LVCMOS33 [get_ports D[3]]

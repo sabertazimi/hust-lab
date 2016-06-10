@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.1 (lin64) Build 1538259 Fri Apr  8 15:45:23 MDT 2016
-| Date         : Sun Jun  5 23:35:43 2016
+| Date         : Fri Jun 10 20:08:23 2016
 | Host         : avalon running 64-bit Ubuntu 16.04 LTS
 | Command      : report_drc -file flow_led_drc_routed.rpt -pb flow_led_drc_routed.pb
 | Design       : flow_led
@@ -23,7 +23,7 @@ Table of Contents
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 2
+             Violations found: 5
 
 2. REPORT DETAILS
 -----------------
@@ -42,7 +42,27 @@ Related violations: <none>
 
 PDRC-153#1 Warning
 Gated clock check  
+Net DIVIDER/CLK is a gated clock net sourced by a combinational pin DIVIDER/state[3]_i_1/O, cell DIVIDER/state[3]_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#2 Warning
+Gated clock check  
+Net DIVIDER/CLK is a gated clock net sourced by a combinational pin DIVIDER/state[3]_i_1/O, cell DIVIDER/state[3]_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#3 Warning
+Gated clock check  
 Net nextState_reg[3]_i_2_n_0 is a gated clock net sourced by a combinational pin nextState_reg[3]_i_2/O, cell nextState_reg[3]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PLHOLDVIO-2#1 Warning
+Non-Optimal connections which could lead to hold violations  
+A LUT DIVIDER/state[3]_i_1 is driving clock pin of 4 cells. This could lead to large hold time violations. First few involved cells are:
+    state_reg[3] {FDCE}
+    state_reg[2] {FDCE}
+    state_reg[1] {FDCE}
+    state_reg[0] {FDPE}
+
 Related violations: <none>
 
 

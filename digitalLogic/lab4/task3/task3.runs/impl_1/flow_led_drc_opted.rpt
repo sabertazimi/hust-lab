@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.1 (lin64) Build 1538259 Fri Apr  8 15:45:23 MDT 2016
-| Date         : Sun Jun  5 23:35:20 2016
+| Date         : Fri Jun 10 20:07:59 2016
 | Host         : avalon running 64-bit Ubuntu 16.04 LTS
 | Command      : report_drc -file flow_led_drc_opted.rpt
 | Design       : flow_led
@@ -23,7 +23,7 @@ Table of Contents
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 1
+             Violations found: 2
 
 2. REPORT DETAILS
 -----------------
@@ -38,6 +38,16 @@ Neither the CFGBVS nor CONFIG_VOLTAGE voltage property is set in the current_des
  #where value2 is the voltage provided to configuration bank 0
 
 Refer to the device configuration user guide for more information.
+Related violations: <none>
+
+PLHOLDVIO-2#1 Warning
+Non-Optimal connections which could lead to hold violations  
+A LUT DIVIDER/state[3]_i_1 is driving clock pin of 4 cells. This could lead to large hold time violations. First few involved cells are:
+    state_reg[3] {FDCE}
+    state_reg[2] {FDCE}
+    state_reg[1] {FDCE}
+    state_reg[0] {FDPE}
+
 Related violations: <none>
 
 

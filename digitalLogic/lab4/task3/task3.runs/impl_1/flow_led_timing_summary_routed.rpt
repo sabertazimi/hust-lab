@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.1 (lin64) Build 1538259 Fri Apr  8 15:45:23 MDT 2016
-| Date         : Sun Jun  5 23:35:43 2016
+| Date         : Fri Jun 10 20:08:24 2016
 | Host         : avalon running 64-bit Ubuntu 16.04 LTS
 | Command      : report_timing_summary -warn_on_violation -max_paths 10 -file flow_led_timing_summary_routed.rpt -rpx flow_led_timing_summary_routed.rpx
 | Design       : flow_led
@@ -52,7 +52,81 @@ Table of Contents
 
 1. checking no_clock
 --------------------
- There are 4 register/latch pins with no clock driven by root clock pin: Clk (HIGH)
+ There are 4 register/latch pins with no clock driven by root clock pin: clk_sel[0] (HIGH)
+
+ There are 4 register/latch pins with no clock driven by root clock pin: clk_sel[1] (HIGH)
+
+ There are 4 register/latch pins with no clock driven by root clock pin: clk_sel[2] (HIGH)
+
+ There are 4 register/latch pins with no clock driven by root clock pin: clk_sel[3] (HIGH)
+
+ There are 4 register/latch pins with no clock driven by root clock pin: clk_sel[4] (HIGH)
+
+ There are 32 register/latch pins with no clock driven by root clock pin: clk_src (HIGH)
+
+ There are 4 register/latch pins with no clock driven by root clock pin: DIVIDER/clk_group_reg[0]/C (HIGH)
+
+ There are 4 register/latch pins with no clock driven by root clock pin: DIVIDER/clk_group_reg[10]/C (HIGH)
+
+ There are 4 register/latch pins with no clock driven by root clock pin: DIVIDER/clk_group_reg[11]/C (HIGH)
+
+ There are 4 register/latch pins with no clock driven by root clock pin: DIVIDER/clk_group_reg[12]/C (HIGH)
+
+ There are 4 register/latch pins with no clock driven by root clock pin: DIVIDER/clk_group_reg[13]/C (HIGH)
+
+ There are 4 register/latch pins with no clock driven by root clock pin: DIVIDER/clk_group_reg[14]/C (HIGH)
+
+ There are 4 register/latch pins with no clock driven by root clock pin: DIVIDER/clk_group_reg[15]/C (HIGH)
+
+ There are 4 register/latch pins with no clock driven by root clock pin: DIVIDER/clk_group_reg[16]/C (HIGH)
+
+ There are 4 register/latch pins with no clock driven by root clock pin: DIVIDER/clk_group_reg[17]/C (HIGH)
+
+ There are 4 register/latch pins with no clock driven by root clock pin: DIVIDER/clk_group_reg[18]/C (HIGH)
+
+ There are 4 register/latch pins with no clock driven by root clock pin: DIVIDER/clk_group_reg[19]/C (HIGH)
+
+ There are 4 register/latch pins with no clock driven by root clock pin: DIVIDER/clk_group_reg[1]/C (HIGH)
+
+ There are 4 register/latch pins with no clock driven by root clock pin: DIVIDER/clk_group_reg[20]/C (HIGH)
+
+ There are 4 register/latch pins with no clock driven by root clock pin: DIVIDER/clk_group_reg[21]/C (HIGH)
+
+ There are 4 register/latch pins with no clock driven by root clock pin: DIVIDER/clk_group_reg[22]/C (HIGH)
+
+ There are 4 register/latch pins with no clock driven by root clock pin: DIVIDER/clk_group_reg[23]/C (HIGH)
+
+ There are 4 register/latch pins with no clock driven by root clock pin: DIVIDER/clk_group_reg[24]/C (HIGH)
+
+ There are 4 register/latch pins with no clock driven by root clock pin: DIVIDER/clk_group_reg[25]/C (HIGH)
+
+ There are 4 register/latch pins with no clock driven by root clock pin: DIVIDER/clk_group_reg[26]/C (HIGH)
+
+ There are 4 register/latch pins with no clock driven by root clock pin: DIVIDER/clk_group_reg[27]/C (HIGH)
+
+ There are 4 register/latch pins with no clock driven by root clock pin: DIVIDER/clk_group_reg[28]/C (HIGH)
+
+ There are 4 register/latch pins with no clock driven by root clock pin: DIVIDER/clk_group_reg[29]/C (HIGH)
+
+ There are 4 register/latch pins with no clock driven by root clock pin: DIVIDER/clk_group_reg[2]/C (HIGH)
+
+ There are 4 register/latch pins with no clock driven by root clock pin: DIVIDER/clk_group_reg[30]/C (HIGH)
+
+ There are 4 register/latch pins with no clock driven by root clock pin: DIVIDER/clk_group_reg[31]/C (HIGH)
+
+ There are 4 register/latch pins with no clock driven by root clock pin: DIVIDER/clk_group_reg[3]/C (HIGH)
+
+ There are 4 register/latch pins with no clock driven by root clock pin: DIVIDER/clk_group_reg[4]/C (HIGH)
+
+ There are 4 register/latch pins with no clock driven by root clock pin: DIVIDER/clk_group_reg[5]/C (HIGH)
+
+ There are 4 register/latch pins with no clock driven by root clock pin: DIVIDER/clk_group_reg[6]/C (HIGH)
+
+ There are 4 register/latch pins with no clock driven by root clock pin: DIVIDER/clk_group_reg[7]/C (HIGH)
+
+ There are 4 register/latch pins with no clock driven by root clock pin: DIVIDER/clk_group_reg[8]/C (HIGH)
+
+ There are 4 register/latch pins with no clock driven by root clock pin: DIVIDER/clk_group_reg[9]/C (HIGH)
 
  There are 4 register/latch pins with no clock driven by root clock pin: state_reg[0]/C (HIGH)
 
@@ -75,7 +149,7 @@ Table of Contents
 
 4. checking unconstrained_internal_endpoints
 --------------------------------------------
- There are 12 pins that are not constrained for maximum delay. (HIGH)
+ There are 76 pins that are not constrained for maximum delay. (HIGH)
 
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 

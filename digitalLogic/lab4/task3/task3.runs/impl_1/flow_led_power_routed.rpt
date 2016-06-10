@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2016.1 (lin64) Build 1538259 Fri Apr  8 15:45:23 MDT 2016
-| Date             : Sun Jun  5 23:35:44 2016
+| Date             : Fri Jun 10 20:08:24 2016
 | Host             : avalon running 64-bit Ubuntu 16.04 LTS
 | Command          : report_power -file flow_led_power_routed.rpt -pb flow_led_power_summary_routed.pb -rpx flow_led_power_routed.rpx
 | Design           : flow_led
@@ -30,12 +30,12 @@ Table of Contents
 ----------
 
 +--------------------------+-------+
-| Total On-Chip Power (W)  | 0.612 |
-| Dynamic (W)              | 0.513 |
-| Device Static (W)        | 0.099 |
+| Total On-Chip Power (W)  | 1.496 |
+| Dynamic (W)              | 1.394 |
+| Device Static (W)        | 0.102 |
 | Effective TJA (C/W)      | 4.6   |
-| Max Ambient (C)          | 82.2  |
-| Junction Temperature (C) | 27.8  |
+| Max Ambient (C)          | 78.2  |
+| Junction Temperature (C) | 31.8  |
 | Confidence Level         | Low   |
 | Setting File             | ---   |
 | Simulation Activity File | ---   |
@@ -49,15 +49,17 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Slice Logic    |     0.012 |       17 |       --- |             --- |
-|   LUT as Logic |     0.006 |        3 |     63400 |           <0.01 |
+| Slice Logic    |     0.088 |       73 |       --- |             --- |
+|   LUT as Logic |     0.053 |       13 |     63400 |            0.02 |
+|   CARRY4       |     0.015 |        8 |     15850 |            0.05 |
+|   Register     |     0.011 |       40 |    126800 |            0.03 |
 |   BUFG         |     0.006 |        1 |        32 |            3.13 |
-|   Register     |    <0.001 |        8 |    126800 |           <0.01 |
-|   Others       |     0.000 |        3 |       --- |             --- |
-| Signals        |     0.017 |       14 |       --- |             --- |
-| I/O            |     0.484 |        7 |       210 |            3.33 |
-| Static Power   |     0.099 |          |           |                 |
-| Total          |     0.612 |          |           |                 |
+|   F7/F8 Muxes  |     0.003 |        4 |     63400 |           <0.01 |
+|   Others       |     0.000 |        5 |       --- |             --- |
+| Signals        |     0.120 |       66 |       --- |             --- |
+| I/O            |     1.186 |       12 |       210 |            5.71 |
+| Static Power   |     0.102 |          |           |                 |
+| Total          |     1.496 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -67,9 +69,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.053 |       0.037 |      0.016 |
-| Vccaux    |       1.800 |     0.036 |       0.017 |      0.018 |
-| Vcco33    |       3.300 |     0.139 |       0.135 |      0.004 |
+| Vccint    |       1.000 |     0.255 |       0.235 |      0.019 |
+| Vccaux    |       1.800 |     0.061 |       0.042 |      0.019 |
+| Vcco33    |       3.300 |     0.332 |       0.328 |      0.004 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
@@ -131,10 +133,11 @@ Table of Contents
 3.1 By Hierarchy
 ----------------
 
-+----------+-----------+
-| Name     | Power (W) |
-+----------+-----------+
-| flow_led |     0.513 |
-+----------+-----------+
++-----------+-----------+
+| Name      | Power (W) |
++-----------+-----------+
+| flow_led  |     1.394 |
+|   DIVIDER |     0.145 |
++-----------+-----------+
 
 

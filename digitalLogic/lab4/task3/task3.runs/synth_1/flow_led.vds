@@ -2,8 +2,8 @@
 # Vivado v2016.1 (64-bit)
 # SW Build 1538259 on Fri Apr  8 15:45:23 MDT 2016
 # IP Build 1537824 on Fri Apr  8 04:28:57 MDT 2016
-# Start of session at: Sun Jun  5 23:34:19 2016
-# Process ID: 27915
+# Start of session at: Fri Jun 10 20:07:00 2016
+# Process ID: 5720
 # Current directory: /home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task3/task3.runs/synth_1
 # Command line: vivado -log flow_led.vds -mode batch -messageDb vivado.pb -notrace -source flow_led.tcl
 # Log file: /home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task3/task3.runs/synth_1/flow_led.vds
@@ -15,19 +15,23 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 28084 
+INFO: Helper process launched with PID 6005 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1045.012 ; gain = 154.078 ; free physical = 3300 ; free virtual = 13172
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1045.012 ; gain = 154.078 ; free physical = 4638 ; free virtual = 14266
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'flow_led' [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task3/task3.srcs/sources_1/new/flow_led.v:23]
+	Parameter LEN bound to: 32 - type: integer 
 	Parameter l0 bound to: 1 - type: integer 
 	Parameter l1 bound to: 2 - type: integer 
 	Parameter l2 bound to: 4 - type: integer 
 	Parameter l3 bound to: 8 - type: integer 
-INFO: [Synth 8-155] case statement is not full and has no default [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task3/task3.srcs/sources_1/new/flow_led.v:39]
-INFO: [Synth 8-256] done synthesizing module 'flow_led' (1#1) [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task3/task3.srcs/sources_1/new/flow_led.v:23]
+INFO: [Synth 8-638] synthesizing module 'binary_counter' [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task3/task3.srcs/sources_1/new/binary_counter.v:23]
+	Parameter LEN bound to: 32 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'binary_counter' (1#1) [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task3/task3.srcs/sources_1/new/binary_counter.v:23]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task3/task3.srcs/sources_1/new/flow_led.v:49]
+INFO: [Synth 8-256] done synthesizing module 'flow_led' (2#1) [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task3/task3.srcs/sources_1/new/flow_led.v:23]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1085.449 ; gain = 194.516 ; free physical = 3239 ; free virtual = 13111
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1085.449 ; gain = 194.516 ; free physical = 4596 ; free virtual = 14224
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -37,7 +41,7 @@ Report Check Netlist:
 |1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
 +------+------------------+-------+---------+-------+------------------+
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1085.449 ; gain = 194.516 ; free physical = 3238 ; free virtual = 13110
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1085.449 ; gain = 194.516 ; free physical = 4596 ; free virtual = 14224
 ---------------------------------------------------------------------------------
 INFO: [Device 21-403] Loading part xc7a100tcsg324-1
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -45,7 +49,7 @@ INFO: [Project 1-570] Preparing netlist for logic optimization
 Processing XDC Constraints
 Initializing timing engine
 Parsing XDC File [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task3/task3.srcs/constrs_1/new/flow_led.xdc]
-WARNING: [Vivado 12-507] No nets matched 'Clk_IBUF'. [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task3/task3.srcs/constrs_1/new/flow_led.xdc:6]
+WARNING: [Vivado 12-507] No nets matched 'clk_src_IBUF'. [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task3/task3.srcs/constrs_1/new/flow_led.xdc:6]
 CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task3/task3.srcs/constrs_1/new/flow_led.xdc:6]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
 WARNING: [Vivado 12-507] No nets matched 'reset_IBUF'. [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task3/task3.srcs/constrs_1/new/flow_led.xdc:9]
@@ -53,6 +57,21 @@ CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/h
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
 WARNING: [Vivado 12-507] No nets matched 'M_IBUF'. [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task3/task3.srcs/constrs_1/new/flow_led.xdc:12]
 CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task3/task3.srcs/constrs_1/new/flow_led.xdc:12]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-507] No nets matched 'clk_sel[0]_IBUF'. [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task3/task3.srcs/constrs_1/new/flow_led.xdc:15]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task3/task3.srcs/constrs_1/new/flow_led.xdc:15]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-507] No nets matched 'clk_sel[1]_IBUF'. [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task3/task3.srcs/constrs_1/new/flow_led.xdc:18]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task3/task3.srcs/constrs_1/new/flow_led.xdc:18]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-507] No nets matched 'clk_sel[2]_IBUF'. [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task3/task3.srcs/constrs_1/new/flow_led.xdc:21]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task3/task3.srcs/constrs_1/new/flow_led.xdc:21]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-507] No nets matched 'clk_sel[3]_IBUF'. [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task3/task3.srcs/constrs_1/new/flow_led.xdc:24]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task3/task3.srcs/constrs_1/new/flow_led.xdc:24]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-507] No nets matched 'clk_sel[4]_IBUF'. [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task3/task3.srcs/constrs_1/new/flow_led.xdc:27]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task3/task3.srcs/constrs_1/new/flow_led.xdc:27]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
 Finished Parsing XDC File [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task3/task3.srcs/constrs_1/new/flow_led.xdc]
 INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task3/task3.srcs/constrs_1/new/flow_led.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/flow_led_propImpl.xdc].
@@ -62,28 +81,28 @@ Completed Processing XDC Constraints
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1369.926 ; gain = 0.000 ; free physical = 3068 ; free virtual = 12939
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1411.926 ; gain = 0.000 ; free physical = 4338 ; free virtual = 13966
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1369.926 ; gain = 478.992 ; free physical = 3058 ; free virtual = 12930
+Finished Constraint Validation : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1411.926 ; gain = 520.992 ; free physical = 4337 ; free virtual = 13965
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a100tcsg324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1369.926 ; gain = 478.992 ; free physical = 3058 ; free virtual = 12930
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1411.926 ; gain = 520.992 ; free physical = 4337 ; free virtual = 13965
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1369.926 ; gain = 478.992 ; free physical = 3058 ; free virtual = 12930
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1411.926 ; gain = 520.992 ; free physical = 4337 ; free virtual = 13965
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-3898] No Re-encoding of one hot register 'state_reg' in module 'flow_led'
 INFO: [Synth 8-5544] ROM "nextState" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-WARNING: [Synth 8-327] inferring latch for variable 'nextState_reg' [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task3/task3.srcs/sources_1/new/flow_led.v:40]
+WARNING: [Synth 8-327] inferring latch for variable 'nextState_reg' [/home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task3/task3.srcs/sources_1/new/flow_led.v:50]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1369.926 ; gain = 478.992 ; free physical = 3058 ; free virtual = 12930
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1411.926 ; gain = 520.992 ; free physical = 4335 ; free virtual = 13963
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -128,14 +147,14 @@ BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
 ---------------------------------------------------------------------------------
 Finished Part Resource Summary
 ---------------------------------------------------------------------------------
-Start Parallel Synthesis Optimization  : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1369.926 ; gain = 478.992 ; free physical = 3058 ; free virtual = 12930
+Start Parallel Synthesis Optimization  : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1411.926 ; gain = 520.992 ; free physical = 4335 ; free virtual = 13963
 ---------------------------------------------------------------------------------
 Start Cross Boundary Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Cross Boundary Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1369.926 ; gain = 478.992 ; free physical = 3053 ; free virtual = 12924
+Finished Cross Boundary Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1411.926 ; gain = 520.992 ; free physical = 4335 ; free virtual = 13963
 ---------------------------------------------------------------------------------
-Finished Parallel Reinference  : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1369.926 ; gain = 478.992 ; free physical = 3053 ; free virtual = 12924
+Finished Parallel Reinference  : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1411.926 ; gain = 520.992 ; free physical = 4335 ; free virtual = 13963
 
 Report RTL Partitions: 
 +-+--------------+------------+----------+
@@ -146,9 +165,9 @@ Report RTL Partitions:
 Start Area Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Area Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1369.926 ; gain = 478.992 ; free physical = 3045 ; free virtual = 12916
+Finished Area Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1411.926 ; gain = 520.992 ; free physical = 4335 ; free virtual = 13963
 ---------------------------------------------------------------------------------
-Finished Parallel Area Optimization  : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1369.926 ; gain = 478.992 ; free physical = 3045 ; free virtual = 12916
+Finished Parallel Area Optimization  : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1411.926 ; gain = 520.992 ; free physical = 4335 ; free virtual = 13963
 
 Report RTL Partitions: 
 +-+--------------+------------+----------+
@@ -162,10 +181,10 @@ Start Timing Optimization
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 1386.926 ; gain = 495.992 ; free physical = 2994 ; free virtual = 12866
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:24 ; elapsed = 00:00:24 . Memory (MB): peak = 1411.926 ; gain = 520.992 ; free physical = 4342 ; free virtual = 13962
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 1386.926 ; gain = 495.992 ; free physical = 2994 ; free virtual = 12866
+Finished Timing Optimization : Time (s): cpu = 00:00:24 ; elapsed = 00:00:24 . Memory (MB): peak = 1411.926 ; gain = 520.992 ; free physical = 4342 ; free virtual = 13962
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -177,16 +196,16 @@ Report RTL Partitions:
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 1405.957 ; gain = 515.023 ; free physical = 2976 ; free virtual = 12847
+Finished Technology Mapping : Time (s): cpu = 00:00:24 ; elapsed = 00:00:24 . Memory (MB): peak = 1411.926 ; gain = 520.992 ; free physical = 4342 ; free virtual = 13962
 ---------------------------------------------------------------------------------
-Finished Parallel Technology Mapping Optimization  : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 1405.957 ; gain = 515.023 ; free physical = 2976 ; free virtual = 12847
+Finished Parallel Technology Mapping Optimization  : Time (s): cpu = 00:00:24 ; elapsed = 00:00:24 . Memory (MB): peak = 1411.926 ; gain = 520.992 ; free physical = 4342 ; free virtual = 13962
 
 Report RTL Partitions: 
 +-+--------------+------------+----------+
 | |RTL Partition |Replication |Instances |
 +-+--------------+------------+----------+
 +-+--------------+------------+----------+
-Finished Parallel Synthesis Optimization  : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 1405.957 ; gain = 515.023 ; free physical = 2976 ; free virtual = 12847
+Finished Parallel Synthesis Optimization  : Time (s): cpu = 00:00:24 ; elapsed = 00:00:24 . Memory (MB): peak = 1411.926 ; gain = 520.992 ; free physical = 4342 ; free virtual = 13962
 ---------------------------------------------------------------------------------
 Start IO Insertion
 ---------------------------------------------------------------------------------
@@ -203,7 +222,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 1405.957 ; gain = 515.023 ; free physical = 2976 ; free virtual = 12847
+Finished IO Insertion : Time (s): cpu = 00:00:24 ; elapsed = 00:00:24 . Memory (MB): peak = 1411.926 ; gain = 520.992 ; free physical = 4342 ; free virtual = 13962
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -216,7 +235,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 1405.957 ; gain = 515.023 ; free physical = 2976 ; free virtual = 12847
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:24 ; elapsed = 00:00:24 . Memory (MB): peak = 1411.926 ; gain = 520.992 ; free physical = 4342 ; free virtual = 13962
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -228,25 +247,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 1405.957 ; gain = 515.023 ; free physical = 2976 ; free virtual = 12847
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:24 ; elapsed = 00:00:24 . Memory (MB): peak = 1411.926 ; gain = 520.992 ; free physical = 4342 ; free virtual = 13962
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 1405.957 ; gain = 515.023 ; free physical = 2976 ; free virtual = 12847
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:24 ; elapsed = 00:00:24 . Memory (MB): peak = 1411.926 ; gain = 520.992 ; free physical = 4342 ; free virtual = 13962
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 1405.957 ; gain = 515.023 ; free physical = 2976 ; free virtual = 12847
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:24 ; elapsed = 00:00:24 . Memory (MB): peak = 1411.926 ; gain = 520.992 ; free physical = 4342 ; free virtual = 13962
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 1405.957 ; gain = 515.023 ; free physical = 2976 ; free virtual = 12847
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:24 ; elapsed = 00:00:24 . Memory (MB): peak = 1411.926 ; gain = 520.992 ; free physical = 4342 ; free virtual = 13962
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -259,33 +278,38 @@ Report BlackBoxes:
 +-+--------------+----------+
 
 Report Cell Usage: 
-+------+-----+------+
-|      |Cell |Count |
-+------+-----+------+
-|1     |BUFG |     1|
-|2     |LUT3 |     4|
-|3     |LUT4 |     1|
-|4     |FDCE |     3|
-|5     |FDPE |     1|
-|6     |LD   |     4|
-|7     |IBUF |     3|
-|8     |OBUF |     4|
-+------+-----+------+
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |BUFG   |     1|
+|2     |CARRY4 |     8|
+|3     |LUT1   |    32|
+|4     |LUT3   |     4|
+|5     |LUT4   |     1|
+|6     |LUT6   |     9|
+|7     |MUXF7  |     4|
+|8     |FDCE   |    35|
+|9     |FDPE   |     1|
+|10    |LD     |     4|
+|11    |IBUF   |     8|
+|12    |OBUF   |     4|
++------+-------+------+
 
 Report Instance Areas: 
-+------+---------+-------+------+
-|      |Instance |Module |Cells |
-+------+---------+-------+------+
-|1     |top      |       |    21|
-+------+---------+-------+------+
++------+----------+---------------+------+
+|      |Instance  |Module         |Cells |
++------+----------+---------------+------+
+|1     |top       |               |   111|
+|2     |  DIVIDER |binary_counter |    85|
++------+----------+---------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 1405.957 ; gain = 515.023 ; free physical = 2976 ; free virtual = 12847
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:24 ; elapsed = 00:00:24 . Memory (MB): peak = 1411.926 ; gain = 520.992 ; free physical = 4342 ; free virtual = 13962
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1405.957 ; gain = 143.465 ; free physical = 2976 ; free virtual = 12847
-Synthesis Optimization Complete : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 1405.965 ; gain = 515.031 ; free physical = 2976 ; free virtual = 12847
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1411.926 ; gain = 107.434 ; free physical = 4342 ; free virtual = 13962
+Synthesis Optimization Complete : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 1411.934 ; gain = 521.000 ; free physical = 4342 ; free virtual = 13962
 INFO: [Project 1-571] Translating synthesized netlist
-INFO: [Netlist 29-17] Analyzing 7 Unisim elements for replacement
+INFO: [Netlist 29-17] Analyzing 20 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
@@ -294,8 +318,8 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   LD => LDCE: 4 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-17 Infos, 4 Warnings, 3 Critical Warnings and 0 Errors encountered.
+19 Infos, 9 Warnings, 8 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:24 ; elapsed = 00:00:24 . Memory (MB): peak = 1405.965 ; gain = 440.535 ; free physical = 2976 ; free virtual = 12847
-report_utilization: Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.07 . Memory (MB): peak = 1437.973 ; gain = 0.000 ; free physical = 2976 ; free virtual = 12847
-INFO: [Common 17-206] Exiting Vivado at Sun Jun  5 23:34:52 2016...
+synth_design: Time (s): cpu = 00:00:23 ; elapsed = 00:00:23 . Memory (MB): peak = 1411.934 ; gain = 446.504 ; free physical = 4352 ; free virtual = 13972
+report_utilization: Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.07 . Memory (MB): peak = 1443.941 ; gain = 0.000 ; free physical = 4352 ; free virtual = 13972
+INFO: [Common 17-206] Exiting Vivado at Fri Jun 10 20:07:32 2016...
