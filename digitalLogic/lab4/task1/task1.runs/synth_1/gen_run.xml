@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1465134709">
-  <File Type="RDS-UTIL-PB" Name="_4bit_binary_counter_utilization_synth.pb"/>
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1465553039">
+  <File Type="VDS-TIMING-PB" Name="_4bit_binary_counter_timing_summary_synth.pb"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="_4bit_binary_counter_timing_summary_synth.rpt"/>
   <File Type="RDS-DCP" Name="_4bit_binary_counter.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="_4bit_binary_counter_utilization_synth.pb"/>
   <File Type="RDS-UTIL" Name="_4bit_binary_counter_utilization_synth.rpt"/>
   <File Type="RDS-PROPCONSTRS" Name="_4bit_binary_counter_drc_synth.rpt"/>
   <File Type="RDS-RDS" Name="_4bit_binary_counter.vds"/>
-  <File Type="VDS-TIMING-PB" Name="_4bit_binary_counter_timing_summary_synth.pb"/>
   <File Type="PA-TCL" Name="_4bit_binary_counter.tcl"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="_4bit_binary_counter_timing_summary_synth.rpt"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/_4bit_binary_counter.v">

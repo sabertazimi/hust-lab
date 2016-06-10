@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.1 (lin64) Build 1538259 Fri Apr  8 15:45:23 MDT 2016
-| Date         : Sun Jun  5 21:53:25 2016
+| Date         : Fri Jun 10 18:05:36 2016
 | Host         : avalon running 64-bit Ubuntu 16.04 LTS
 | Command      : report_timing_summary -warn_on_violation -max_paths 10 -file _4bit_binary_counter_timing_summary_routed.rpt -rpx _4bit_binary_counter_timing_summary_routed.rpx
 | Design       : _4bit_binary_counter
@@ -117,7 +117,7 @@ Table of Contents
 
 12. checking latch_loops
 ------------------------
- There are 4 combinational latch loops in the design through latch input (HIGH)
+ There are 5 combinational latch loops in the design through latch input (HIGH)
 
 
 

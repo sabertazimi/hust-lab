@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.1 (lin64) Build 1538259 Fri Apr  8 15:45:23 MDT 2016
-| Date         : Sun Jun  5 22:09:34 2016
+| Date         : Fri Jun 10 18:09:43 2016
 | Host         : avalon running 64-bit Ubuntu 16.04 LTS
 | Command      : report_timing_summary -warn_on_violation -max_paths 10 -file _4bit_mod8_counter_timing_summary_routed.rpt -rpx _4bit_mod8_counter_timing_summary_routed.rpx
 | Design       : _4bit_mod8_counter
@@ -64,7 +64,7 @@ Table of Contents
 
  There are 5 register/latch pins with no clock driven by root clock pin: COUNT/Q_reg[2]/G (HIGH)
 
- There are 5 register/latch pins with no clock driven by root clock pin: COUNT/Q_reg[3]/G (HIGH)
+ There is 1 register/latch pin with no clock driven by root clock pin: COUNT/Q_reg[3]/G (HIGH)
 
 
 2. checking constant_clock
