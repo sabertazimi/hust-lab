@@ -31,7 +31,7 @@ module _4bit_binary_counter(
     );
     
     always @(CLR_n or LD_n or CP or D) begin
-        if (Qcc_n <= 0) begin
+        if (Qcc_n == 0) begin
             Qcc_n <= 1;
         end
         if (!CLR_n) begin
