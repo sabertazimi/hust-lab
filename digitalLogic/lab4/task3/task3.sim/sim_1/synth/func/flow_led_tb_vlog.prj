@@ -1,6 +1,0 @@
-# compile verilog/system verilog design source files
-verilog xil_defaultlib  "flow_led_tb_func_synth.v"
-verilog xil_defaultlib  "../../../../task3.srcs/sim_1/new/flow_led_tb.v"
-
-# Do not sort compile order
-nosort

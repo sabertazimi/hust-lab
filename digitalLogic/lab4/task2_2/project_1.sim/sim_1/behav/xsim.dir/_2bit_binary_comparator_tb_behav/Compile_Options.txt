@@ -1,1 +1,0 @@
--wto "02de92d7cdf748f29a62126a03a0e208" --debug "typical" --relax --mt "8" -L "xil_defaultlib" -L "unisims_ver" -L "unimacro_ver" -L "secureip" --snapshot "_2bit_binary_comparator_tb_behav" "xil_defaultlib._2bit_binary_comparator_tb" "xil_defaultlib.glbl" -log "elaborate.log" 
