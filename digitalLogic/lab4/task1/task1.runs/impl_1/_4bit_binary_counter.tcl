@@ -48,6 +48,7 @@ set_msg_config -id {HDL 9-1654} -limit 100000
 start_step write_bitstream
 set rc [catch {
   create_msg_db write_bitstream.pb
+  set_param xicom.use_bs_reader 1
   open_checkpoint _4bit_binary_counter_routed.dcp
   set_property webtalk.parent_dir /home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task1/task1.cache/wt [current_project]
   catch { write_mem_info -force _4bit_binary_counter.mmi }

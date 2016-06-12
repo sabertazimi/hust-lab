@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2016.1 (lin64) Build 1538259 Fri Apr  8 15:45:23 MDT 2016
-| Date             : Fri Jun 10 18:09:43 2016
+| Date             : Sun Jun 12 15:07:47 2016
 | Host             : avalon running 64-bit Ubuntu 16.04 LTS
 | Command          : report_power -file _4bit_mod8_counter_power_routed.rpt -pb _4bit_mod8_counter_power_summary_routed.pb -rpx _4bit_mod8_counter_power_routed.rpx
 | Design           : _4bit_mod8_counter
@@ -30,12 +30,12 @@ Table of Contents
 ----------
 
 +--------------------------+-------+
-| Total On-Chip Power (W)  | 1.627 |
-| Dynamic (W)              | 1.524 |
-| Device Static (W)        | 0.103 |
+| Total On-Chip Power (W)  | 6.388 |
+| Dynamic (W)              | 6.252 |
+| Device Static (W)        | 0.136 |
 | Effective TJA (C/W)      | 4.6   |
-| Max Ambient (C)          | 77.6  |
-| Junction Temperature (C) | 32.4  |
+| Max Ambient (C)          | 55.9  |
+| Junction Temperature (C) | 54.1  |
 | Confidence Level         | Low   |
 | Setting File             | ---   |
 | Simulation Activity File | ---   |
@@ -49,14 +49,15 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Slice Logic    |     0.025 |       17 |       --- |             --- |
-|   LUT as Logic |     0.025 |        9 |     63400 |            0.01 |
-|   Others       |     0.000 |        2 |       --- |             --- |
-|   Register     |     0.000 |        5 |    126800 |           <0.01 |
-| Signals        |     0.044 |       13 |       --- |             --- |
-| I/O            |     1.456 |        8 |       210 |            3.81 |
-| Static Power   |     0.103 |          |           |                 |
-| Total          |     1.627 |          |           |                 |
+| Slice Logic    |     0.041 |       13 |       --- |             --- |
+|   LUT as Logic |     0.033 |        4 |     63400 |           <0.01 |
+|   BUFG         |     0.006 |        1 |        32 |            3.13 |
+|   Register     |     0.002 |        5 |    126800 |           <0.01 |
+|   Others       |     0.000 |        1 |       --- |             --- |
+| Signals        |     0.051 |       10 |       --- |             --- |
+| I/O            |     6.160 |        8 |       210 |            3.81 |
+| Static Power   |     0.136 |          |           |                 |
+| Total          |     6.388 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -66,16 +67,16 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.100 |       0.081 |      0.020 |
-| Vccaux    |       1.800 |     0.071 |       0.053 |      0.019 |
-| Vcco33    |       3.300 |     0.413 |       0.409 |      0.004 |
+| Vccint    |       1.000 |     0.151 |       0.104 |      0.047 |
+| Vccaux    |       1.800 |     0.247 |       0.225 |      0.022 |
+| Vcco33    |       3.300 |     1.744 |       1.740 |      0.004 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |
-| Vccbram   |       1.000 |     0.000 |       0.000 |      0.000 |
+| Vccbram   |       1.000 |     0.001 |       0.000 |      0.001 |
 | MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |
 | MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |
 | Vccadc    |       1.800 |     0.020 |       0.000 |      0.020 |
@@ -133,8 +134,8 @@ Table of Contents
 +--------------------+-----------+
 | Name               | Power (W) |
 +--------------------+-----------+
-| _4bit_mod8_counter |     1.524 |
-|   COUNT            |     0.043 |
+| _4bit_mod8_counter |     6.252 |
+|   COUNT            |     0.073 |
 +--------------------+-----------+
 
 

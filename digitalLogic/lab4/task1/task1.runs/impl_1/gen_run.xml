@@ -1,26 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1465553081">
+<GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1465714524">
+  <File Type="PA-TCL" Name="_4bit_binary_counter.tcl"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="_4bit_binary_counter_postroute_physopt.dcp"/>
+  <File Type="INIT-TIMING" Name="_4bit_binary_counter_timing_summary_init.rpt"/>
+  <File Type="OPT-DCP" Name="_4bit_binary_counter_opt.dcp"/>
+  <File Type="OPT-DRC" Name="_4bit_binary_counter_drc_opted.rpt"/>
+  <File Type="OPT-METHODOLOGY-DRC" Name="_4bit_binary_counter_methodology_drc_opted.rpt"/>
+  <File Type="OPT-HWDEF" Name="_4bit_binary_counter.hwdef"/>
+  <File Type="OPT-TIMING" Name="_4bit_binary_counter_timing_summary_opted.rpt"/>
+  <File Type="PWROPT-DCP" Name="_4bit_binary_counter_pwropt.dcp"/>
+  <File Type="PWROPT-DRC" Name="_4bit_binary_counter_drc_pwropted.rpt"/>
+  <File Type="PWROPT-TIMING" Name="_4bit_binary_counter_timing_summary_pwropted.rpt"/>
+  <File Type="PLACE-DCP" Name="_4bit_binary_counter_placed.dcp"/>
+  <File Type="PLACE-IO" Name="_4bit_binary_counter_io_placed.rpt"/>
+  <File Type="PLACE-CLK" Name="_4bit_binary_counter_clock_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL" Name="_4bit_binary_counter_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="_4bit_binary_counter_utilization_placed.pb"/>
+  <File Type="PLACE-CTRL" Name="_4bit_binary_counter_control_sets_placed.rpt"/>
+  <File Type="PLACE-SIMILARITY" Name="_4bit_binary_counter_incremental_reuse_placed.rpt"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="_4bit_binary_counter_incremental_reuse_pre_placed.rpt"/>
+  <File Type="PLACE-TIMING" Name="_4bit_binary_counter_timing_summary_placed.rpt"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="_4bit_binary_counter_postplace_pwropt.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="_4bit_binary_counter_timing_summary_postroute_physopted.rpt"/>
+  <File Type="BG-BIT" Name="_4bit_binary_counter.bit"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="_4bit_binary_counter_timing_summary_routed.rpt"/>
+  <File Type="BG-BIN" Name="_4bit_binary_counter.bin"/>
+  <File Type="ROUTE-SIMILARITY" Name="_4bit_binary_counter_incremental_reuse_routed.rpt"/>
+  <File Type="BITSTR-MSK" Name="_4bit_binary_counter.msk"/>
+  <File Type="ROUTE-CLK" Name="_4bit_binary_counter_clock_utilization_routed.rpt"/>
+  <File Type="BITSTR-RBT" Name="_4bit_binary_counter.rbt"/>
+  <File Type="BITSTR-NKY" Name="_4bit_binary_counter.nky"/>
+  <File Type="BITSTR-BMM" Name="_4bit_binary_counter_bd.bmm"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="_4bit_binary_counter_postroute_physopt_bb.dcp"/>
   <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
   <File Type="RDI-RDI" Name="_4bit_binary_counter.vdi"/>
-  <File Type="BG-DRC" Name="_4bit_binary_counter.drc"/>
-  <File Type="BG-BGN" Name="_4bit_binary_counter.bgn"/>
-  <File Type="BITSTR-SYSDEF" Name="_4bit_binary_counter.sysdef"/>
-  <File Type="BITSTR-MMI" Name="_4bit_binary_counter.mmi"/>
-  <File Type="BITSTR-BMM" Name="_4bit_binary_counter_bd.bmm"/>
-  <File Type="BITSTR-NKY" Name="_4bit_binary_counter.nky"/>
-  <File Type="BITSTR-RBT" Name="_4bit_binary_counter.rbt"/>
-  <File Type="BITSTR-MSK" Name="_4bit_binary_counter.msk"/>
-  <File Type="BG-BIN" Name="_4bit_binary_counter.bin"/>
-  <File Type="BG-BIT" Name="_4bit_binary_counter.bit"/>
-  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="_4bit_binary_counter_timing_summary_postroute_physopted.rpx"/>
   <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="_4bit_binary_counter_timing_summary_postroute_physopted.pb"/>
-  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="_4bit_binary_counter_timing_summary_postroute_physopted.rpt"/>
-  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="_4bit_binary_counter_postroute_physopt_bb.dcp"/>
-  <File Type="ROUTE-CLK" Name="_4bit_binary_counter_clock_utilization_routed.rpt"/>
-  <File Type="ROUTE-SIMILARITY" Name="_4bit_binary_counter_incremental_reuse_routed.rpt"/>
-  <File Type="ROUTE-TIMING-RPX" Name="_4bit_binary_counter_timing_summary_routed.rpx"/>
+  <File Type="BG-DRC" Name="_4bit_binary_counter.drc"/>
   <File Type="ROUTE-TIMING-PB" Name="_4bit_binary_counter_timing_summary_routed.pb"/>
-  <File Type="ROUTE-TIMINGSUMMARY" Name="_4bit_binary_counter_timing_summary_routed.rpt"/>
+  <File Type="BITSTR-MMI" Name="_4bit_binary_counter.mmi"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="_4bit_binary_counter_timing_summary_postroute_physopted.rpx"/>
+  <File Type="BG-BGN" Name="_4bit_binary_counter.bgn"/>
+  <File Type="ROUTE-TIMING-RPX" Name="_4bit_binary_counter_timing_summary_routed.rpx"/>
+  <File Type="BITSTR-SYSDEF" Name="_4bit_binary_counter.sysdef"/>
   <File Type="ROUTE-STATUS-PB" Name="_4bit_binary_counter_route_status.pb"/>
   <File Type="ROUTE-STATUS" Name="_4bit_binary_counter_route_status.rpt"/>
   <File Type="ROUTE-PWR-RPX" Name="_4bit_binary_counter_power_routed.rpx"/>
@@ -36,27 +57,6 @@
   <File Type="PHYSOPT-DRC" Name="_4bit_binary_counter_drc_physopted.rpt"/>
   <File Type="PHYSOPT-DCP" Name="_4bit_binary_counter_physopt.dcp"/>
   <File Type="POSTPLACE-PWROPT-TIMING" Name="_4bit_binary_counter_timing_summary_postplace_pwropted.rpt"/>
-  <File Type="POSTPLACE-PWROPT-DCP" Name="_4bit_binary_counter_postplace_pwropt.dcp"/>
-  <File Type="PLACE-TIMING" Name="_4bit_binary_counter_timing_summary_placed.rpt"/>
-  <File Type="PLACE-PRE-SIMILARITY" Name="_4bit_binary_counter_incremental_reuse_pre_placed.rpt"/>
-  <File Type="PLACE-SIMILARITY" Name="_4bit_binary_counter_incremental_reuse_placed.rpt"/>
-  <File Type="PLACE-CTRL" Name="_4bit_binary_counter_control_sets_placed.rpt"/>
-  <File Type="PLACE-UTIL-PB" Name="_4bit_binary_counter_utilization_placed.pb"/>
-  <File Type="PLACE-UTIL" Name="_4bit_binary_counter_utilization_placed.rpt"/>
-  <File Type="PLACE-CLK" Name="_4bit_binary_counter_clock_utilization_placed.rpt"/>
-  <File Type="PLACE-IO" Name="_4bit_binary_counter_io_placed.rpt"/>
-  <File Type="PLACE-DCP" Name="_4bit_binary_counter_placed.dcp"/>
-  <File Type="PWROPT-TIMING" Name="_4bit_binary_counter_timing_summary_pwropted.rpt"/>
-  <File Type="PWROPT-DRC" Name="_4bit_binary_counter_drc_pwropted.rpt"/>
-  <File Type="PWROPT-DCP" Name="_4bit_binary_counter_pwropt.dcp"/>
-  <File Type="OPT-TIMING" Name="_4bit_binary_counter_timing_summary_opted.rpt"/>
-  <File Type="OPT-HWDEF" Name="_4bit_binary_counter.hwdef"/>
-  <File Type="OPT-METHODOLOGY-DRC" Name="_4bit_binary_counter_methodology_drc_opted.rpt"/>
-  <File Type="OPT-DRC" Name="_4bit_binary_counter_drc_opted.rpt"/>
-  <File Type="OPT-DCP" Name="_4bit_binary_counter_opt.dcp"/>
-  <File Type="INIT-TIMING" Name="_4bit_binary_counter_timing_summary_init.rpt"/>
-  <File Type="POSTROUTE-PHYSOPT-DCP" Name="_4bit_binary_counter_postroute_physopt.dcp"/>
-  <File Type="PA-TCL" Name="_4bit_binary_counter.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/_4bit_binary_counter.v">

@@ -30,9 +30,9 @@ module _4bit_binary_counter(
     output reg  Qcc_n
     );
     
-    always @(CLR_n or LD_n or CP or D) begin
+    always @(negedge CLR_n or negedge LD_n or posedge CP) begin
         if (Qcc_n == 0) begin
-            Qcc_n <= 1;
+            Qcc_n = 1;
         end
         if (!CLR_n) begin
             {Qcc_n, Q} <= 5'b10000;

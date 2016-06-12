@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1465560420">
-  <File Type="PA-TCL" Name="flow_led.tcl"/>
-  <File Type="RDS-RDS" Name="flow_led.vds"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="flow_led_timing_summary_synth.rpt"/>
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1465715789">
   <File Type="VDS-TIMING-PB" Name="flow_led_timing_summary_synth.pb"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="flow_led_timing_summary_synth.rpt"/>
   <File Type="RDS-DCP" Name="flow_led.dcp"/>
   <File Type="RDS-UTIL-PB" Name="flow_led_utilization_synth.pb"/>
   <File Type="RDS-UTIL" Name="flow_led_utilization_synth.rpt"/>
   <File Type="RDS-PROPCONSTRS" Name="flow_led_drc_synth.rpt"/>
+  <File Type="RDS-RDS" Name="flow_led.vds"/>
+  <File Type="PA-TCL" Name="flow_led.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/binary_counter.v">

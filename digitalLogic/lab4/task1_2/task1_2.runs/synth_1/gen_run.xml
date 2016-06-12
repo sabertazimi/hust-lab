@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1465553140">
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1465715178">
   <File Type="VDS-TIMING-PB" Name="_4bit_mod8_counter_timing_summary_synth.pb"/>
   <File Type="VDS-TIMINGSUMMARY" Name="_4bit_mod8_counter_timing_summary_synth.rpt"/>
   <File Type="RDS-DCP" Name="_4bit_mod8_counter.dcp"/>

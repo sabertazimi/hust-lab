@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.1 (lin64) Build 1538259 Fri Apr  8 15:45:23 MDT 2016
-| Date         : Fri Jun 10 18:09:43 2016
+| Date         : Sun Jun 12 15:07:46 2016
 | Host         : avalon running 64-bit Ubuntu 16.04 LTS
 | Command      : report_timing_summary -warn_on_violation -max_paths 10 -file _4bit_mod8_counter_timing_summary_routed.rpt -rpx _4bit_mod8_counter_timing_summary_routed.rpx
 | Design       : _4bit_mod8_counter
@@ -54,18 +54,6 @@ Table of Contents
 --------------------
  There are 5 register/latch pins with no clock driven by root clock pin: CP (HIGH)
 
- There are 5 register/latch pins with no clock driven by root clock pin: M (HIGH)
-
- There are 5 register/latch pins with no clock driven by root clock pin: reset (HIGH)
-
- There are 5 register/latch pins with no clock driven by root clock pin: COUNT/Q_reg[0]/G (HIGH)
-
- There are 5 register/latch pins with no clock driven by root clock pin: COUNT/Q_reg[1]/G (HIGH)
-
- There are 5 register/latch pins with no clock driven by root clock pin: COUNT/Q_reg[2]/G (HIGH)
-
- There is 1 register/latch pin with no clock driven by root clock pin: COUNT/Q_reg[3]/G (HIGH)
-
 
 2. checking constant_clock
 --------------------------
@@ -79,14 +67,14 @@ Table of Contents
 
 4. checking unconstrained_internal_endpoints
 --------------------------------------------
- There are 6 pins that are not constrained for maximum delay. (HIGH)
+ There are 10 pins that are not constrained for maximum delay. (HIGH)
 
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 
 
 5. checking no_input_delay
 --------------------------
- There are 3 input ports with no input delay specified. (HIGH)
+ There are 2 input ports with no input delay specified. (HIGH)
 
  There are 0 input ports with no input delay but user has a false path constraint.
 
@@ -127,7 +115,7 @@ Table of Contents
 
 12. checking latch_loops
 ------------------------
- There are 2 combinational latch loops in the design through latch input (HIGH)
+ There are 0 combinational latch loops in the design through latch input
 
 
 

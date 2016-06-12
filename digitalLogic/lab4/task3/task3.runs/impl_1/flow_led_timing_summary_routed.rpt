@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.1 (lin64) Build 1538259 Fri Apr  8 15:45:23 MDT 2016
-| Date         : Fri Jun 10 20:08:24 2016
+| Date         : Sun Jun 12 15:17:57 2016
 | Host         : avalon running 64-bit Ubuntu 16.04 LTS
 | Command      : report_timing_summary -warn_on_violation -max_paths 10 -file flow_led_timing_summary_routed.rpt -rpx flow_led_timing_summary_routed.rpx
 | Design       : flow_led
@@ -128,14 +128,6 @@ Table of Contents
 
  There are 4 register/latch pins with no clock driven by root clock pin: DIVIDER/clk_group_reg[9]/C (HIGH)
 
- There are 4 register/latch pins with no clock driven by root clock pin: state_reg[0]/C (HIGH)
-
- There are 4 register/latch pins with no clock driven by root clock pin: state_reg[1]/C (HIGH)
-
- There are 4 register/latch pins with no clock driven by root clock pin: state_reg[2]/C (HIGH)
-
- There are 4 register/latch pins with no clock driven by root clock pin: state_reg[3]/C (HIGH)
-
 
 2. checking constant_clock
 --------------------------
@@ -149,7 +141,7 @@ Table of Contents
 
 4. checking unconstrained_internal_endpoints
 --------------------------------------------
- There are 76 pins that are not constrained for maximum delay. (HIGH)
+ There are 72 pins that are not constrained for maximum delay. (HIGH)
 
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 

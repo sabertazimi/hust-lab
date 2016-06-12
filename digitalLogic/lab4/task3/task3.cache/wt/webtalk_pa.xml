@@ -3,10 +3,10 @@
 <!--The data in this file is primarily intended for consumption by Xilinx tools.
 The structure and the elements are likely to change over the next few releases.
 This means code written to parse this file will need to be revisited each subsequent release.-->
-<application name="pa" timeStamp="Sun Jun 12 10:53:47 2016">
+<application name="pa" timeStamp="Sun Jun 12 15:23:40 2016">
 <section name="Project Information" visible="false">
 <property name="ProjectID" value="5830a343323448418b72037144d9a366" type="ProjectID"/>
-<property name="ProjectIteration" value="7" type="ProjectIteration"/>
+<property name="ProjectIteration" value="9" type="ProjectIteration"/>
 </section>
 <section name="PlanAhead Usage" visible="true">
 <item name="Project Data">
@@ -18,37 +18,55 @@ This means code written to parse this file will need to be revisited each subseq
 </item>
 <item name="Java Command Handlers">
 <property name="AddSources" value="5" type="JavaHandler"/>
+<property name="CloseProject" value="1" type="JavaHandler"/>
 <property name="EditDelete" value="1" type="JavaHandler"/>
+<property name="LaunchOpenTarget" value="1" type="JavaHandler"/>
+<property name="LaunchProgramFpga" value="1" type="JavaHandler"/>
 <property name="NewProject" value="1" type="JavaHandler"/>
 <property name="OpenFile" value="3" type="JavaHandler"/>
-<property name="OpenProject" value="3" type="JavaHandler"/>
+<property name="OpenHardwareManager" value="1" type="JavaHandler"/>
+<property name="OpenProject" value="4" type="JavaHandler"/>
 <property name="ProjectSettingsCmdHandler" value="1" type="JavaHandler"/>
-<property name="RunBitgen" value="3" type="JavaHandler"/>
-<property name="RunImplementation" value="3" type="JavaHandler"/>
+<property name="RunBitgen" value="4" type="JavaHandler"/>
+<property name="RunImplementation" value="4" type="JavaHandler"/>
 <property name="RunSchematic" value="1" type="JavaHandler"/>
-<property name="RunSynthesis" value="4" type="JavaHandler"/>
+<property name="RunSynthesis" value="5" type="JavaHandler"/>
 <property name="ShowView" value="1" type="JavaHandler"/>
-<property name="SimulationClose" value="4" type="JavaHandler"/>
-<property name="SimulationRun" value="10" type="JavaHandler"/>
+<property name="SimulationClose" value="5" type="JavaHandler"/>
+<property name="SimulationRun" value="12" type="JavaHandler"/>
 </item>
 <item name="Gui Resources Info">
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, flow_led (flow_led.v" value="3" type="GuiResourceData"/>
-<property name="PAResourceEtoH.GettingStartedView_RECENT_PROJECTS, /home/sabertazimi/gitrepo/hust-lab/digitalLogic/lab4/task3/task3.xpr, 0" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.PAViews_CODE, Code" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.PAViews_PROJECT_SUMMARY, Project Summary" value="1" type="GuiResourceData"/>
-<property name="flow_led.v, 177, 175" value="1" type="GuiResourceData"/>
-<property name="flow_led.v, 186, 167" value="1" type="GuiResourceData"/>
-<property name="flow_led.v, 189, 173" value="1" type="GuiResourceData"/>
-<property name="flow_led.v, 191, 171" value="1" type="GuiResourceData"/>
-<property name="flow_led.v, 196, 169" value="1" type="GuiResourceData"/>
-<property name="flow_led.v, 201, 151" value="1" type="GuiResourceData"/>
-<property name="flow_led.v, 206, 156" value="1" type="GuiResourceData"/>
-<property name="flow_led.v, 209, 156" value="1" type="GuiResourceData"/>
+<property name="FINISH, Finish" value="1" type="GuiResourceData"/>
+<property name="NEXT, Next " value="3" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_OPEN_HARDWARE_MANAGER, Open Hardware Manager" value="1" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_OPEN_TARGET_WIZARD, Open New Target..." value="1" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_SIMULATION_RUN_BEHAVIORAL, Run Behavioral Simulation" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Simulation, Run Simulation], 11, false" value="2" type="GuiResourceData"/>
+<property name="PAResourceOtoP.ProgramDebugTab_OPEN_RECENTLY_OPENED_TARGET, Recent Targets" value="1" type="GuiResourceData"/>
+<property name="PAResourceOtoP.ProgramDebugTab_OPEN_TARGET, Open target" value="2" type="GuiResourceData"/>
+<property name="PAResourceOtoP.ProgramDebugTab_PROGRAM_DEVICE, Program device" value="2" type="GuiResourceData"/>
+<property name="PAResourceOtoP.ProgramFpgaDialog_PROGRAM, Program" value="2" type="GuiResourceData"/>
+<property name="RDIResource.BaseDialog_OK, OK" value="4" type="GuiResourceData"/>
+<property name="RDIResource.GraphicalView_ZOOM_FIT, Waveform Viewer_zoom_fit" value="2" type="GuiResourceData"/>
+<property name="RDIResource.GraphicalView_ZOOM_IN, Waveform Viewer_zoom_in" value="5" type="GuiResourceData"/>
+<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 10" value="1" type="GuiResourceData"/>
+<property name="RDIResource.WaveformNameTree_WAVEFORM_NAME_TREE, [true, clk_sel[4:0], [4]], 4, false" value="1" type="GuiResourceData"/>
+<property name="RDIResource.WaveformNameTree_WAVEFORM_NAME_TREE, [true, clk_sel[4:0]], 3" value="1" type="GuiResourceData"/>
+<property name="flow_led.xdc, 214, 193" value="1" type="GuiResourceData"/>
+<property name="flow_led.xdc, 226, 140" value="1" type="GuiResourceData"/>
+<property name="flow_led.xdc, 255, 106" value="1" type="GuiResourceData"/>
+<property name="flow_led.xdc, 268, 150" value="1" type="GuiResourceData"/>
+<property name="flow_led.xdc, 303, 233" value="1" type="GuiResourceData"/>
+<property name="flow_led.xdc, 331, 120" value="1" type="GuiResourceData"/>
+<property name="flow_led.xdc, 335, 153" value="1" type="GuiResourceData"/>
+<property name="flow_led.xdc, 342, 186" value="1" type="GuiResourceData"/>
+<property name="flow_led.xdc, 366, 210" value="1" type="GuiResourceData"/>
+<property name="flow_led.xdc, 412, 228, false, false, false, true, false" value="1" type="GuiResourceData"/>
 </item>
 <item name="Other">
-<property name="GuiMode" value="58" type="GuiMode"/>
+<property name="GuiMode" value="59" type="GuiMode"/>
 <property name="BatchMode" value="0" type="BatchMode"/>
-<property name="TclMode" value="50" type="TclMode"/>
+<property name="TclMode" value="51" type="TclMode"/>
 </item>
 </section>
 </application>

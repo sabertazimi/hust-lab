@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.1 (lin64) Build 1538259 Fri Apr  8 15:45:23 MDT 2016
-| Date         : Fri Jun 10 18:05:35 2016
+| Date         : Sun Jun 12 14:56:15 2016
 | Host         : avalon running 64-bit Ubuntu 16.04 LTS
 | Command      : report_drc -file _4bit_binary_counter_drc_routed.rpt -pb _4bit_binary_counter_drc_routed.pb
 | Design       : _4bit_binary_counter
@@ -23,7 +23,7 @@ Table of Contents
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 4
+             Violations found: 7
 
 2. REPORT DETAILS
 -----------------
@@ -42,17 +42,32 @@ Related violations: <none>
 
 PDRC-153#1 Warning
 Gated clock check  
-Net Q_reg[3]_i_2_n_0 is a gated clock net sourced by a combinational pin Q_reg[3]_i_2/O, cell Q_reg[3]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net Q_reg[0]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin Q_reg[0]_LDC_i_1/O, cell Q_reg[0]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#2 Warning
 Gated clock check  
-Net Qcc_n_reg_i_2_n_0 is a gated clock net sourced by a combinational pin Qcc_n_reg_i_2/O, cell Qcc_n_reg_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net Q_reg[1]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin Q_reg[1]_LDC_i_1/O, cell Q_reg[1]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#3 Warning
 Gated clock check  
-Net Qcc_n_reg_i_2_n_0 is a gated clock net sourced by a combinational pin Qcc_n_reg_i_2/O, cell Qcc_n_reg_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net Q_reg[1]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin Q_reg[1]_LDC_i_1/O, cell Q_reg[1]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#4 Warning
+Gated clock check  
+Net Q_reg[2]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin Q_reg[2]_LDC_i_1/O, cell Q_reg[2]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#5 Warning
+Gated clock check  
+Net Q_reg[2]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin Q_reg[2]_LDC_i_1/O, cell Q_reg[2]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#6 Warning
+Gated clock check  
+Net Q_reg[3]_LDC_i_1_n_0 is a gated clock net sourced by a combinational pin Q_reg[3]_LDC_i_1/O, cell Q_reg[3]_LDC_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 

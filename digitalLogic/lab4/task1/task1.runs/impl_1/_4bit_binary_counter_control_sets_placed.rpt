@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.1 (lin64) Build 1538259 Fri Apr  8 15:45:23 MDT 2016
-| Date         : Fri Jun 10 18:05:10 2016
+| Date         : Sun Jun 12 14:55:51 2016
 | Host         : avalon running 64-bit Ubuntu 16.04 LTS
 | Command      : report_control_sets -verbose -file _4bit_binary_counter_control_sets_placed.rpt
 | Design       : _4bit_binary_counter
@@ -22,8 +22,8 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Number of unique control sets                            |     2 |
-| Unused register locations in slices containing registers |    11 |
+| Number of unique control sets                            |    13 |
+| Unused register locations in slices containing registers |    91 |
 +----------------------------------------------------------+-------+
 
 
@@ -34,8 +34,8 @@ Table of Contents
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | No           | No                    | No                     |               0 |            0 |
-| No           | No                    | Yes                    |               0 |            0 |
-| No           | Yes                   | No                     |               5 |            2 |
+| No           | No                    | Yes                    |               9 |            9 |
+| No           | Yes                   | No                     |               4 |            4 |
 | Yes          | No                    | No                     |               0 |            0 |
 | Yes          | No                    | Yes                    |               0 |            0 |
 | Yes          | Yes                   | No                     |               0 |            0 |
@@ -45,11 +45,22 @@ Table of Contents
 3. Detailed Control Set Information
 -----------------------------------
 
-+--------------------+---------------+-------------------+------------------+----------------+
-|    Clock Signal    | Enable Signal |  Set/Reset Signal | Slice Load Count | Bel Load Count |
-+--------------------+---------------+-------------------+------------------+----------------+
-|  Qcc_n_reg_i_2_n_0 |               | Qcc_n_reg_i_3_n_0 |                1 |              1 |
-|  Q_reg[3]_i_2_n_0  |               | Q_reg[3]_i_3_n_0  |                1 |              4 |
-+--------------------+---------------+-------------------+------------------+----------------+
++-----------------------+---------------+----------------------+------------------+----------------+
+|      Clock Signal     | Enable Signal |   Set/Reset Signal   | Slice Load Count | Bel Load Count |
++-----------------------+---------------+----------------------+------------------+----------------+
+|  Q_reg[3]_LDC_i_1_n_0 |               | Q_reg[3]_LDC_i_2_n_0 |                1 |              1 |
+|  Q_reg[2]_LDC_i_1_n_0 |               | Q_reg[2]_LDC_i_2_n_0 |                1 |              1 |
+|  Q_reg[1]_LDC_i_1_n_0 |               | Q_reg[1]_LDC_i_2_n_0 |                1 |              1 |
+|  Q_reg[0]_LDC_i_1_n_0 |               | Q_reg[0]_LDC_i_2_n_0 |                1 |              1 |
+|  CP_IBUF_BUFG         |               | Qcc_n_i_2_n_0        |                1 |              1 |
+|  CP_IBUF_BUFG         |               | Q_reg[3]_LDC_i_2_n_0 |                1 |              1 |
+|  CP_IBUF_BUFG         |               | Q_reg[3]_LDC_i_1_n_0 |                1 |              1 |
+|  CP_IBUF_BUFG         |               | Q_reg[2]_LDC_i_2_n_0 |                1 |              1 |
+|  CP_IBUF_BUFG         |               | Q_reg[2]_LDC_i_1_n_0 |                1 |              1 |
+|  CP_IBUF_BUFG         |               | Q_reg[1]_LDC_i_2_n_0 |                1 |              1 |
+|  CP_IBUF_BUFG         |               | Q_reg[1]_LDC_i_1_n_0 |                1 |              1 |
+|  CP_IBUF_BUFG         |               | Q_reg[0]_LDC_i_2_n_0 |                1 |              1 |
+|  CP_IBUF_BUFG         |               | Q_reg[0]_LDC_i_1_n_0 |                1 |              1 |
++-----------------------+---------------+----------------------+------------------+----------------+
 
 

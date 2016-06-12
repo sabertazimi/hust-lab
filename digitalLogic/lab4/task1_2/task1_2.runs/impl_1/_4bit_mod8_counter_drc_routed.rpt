@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.1 (lin64) Build 1538259 Fri Apr  8 15:45:23 MDT 2016
-| Date         : Fri Jun 10 18:09:43 2016
+| Date         : Sun Jun 12 15:07:46 2016
 | Host         : avalon running 64-bit Ubuntu 16.04 LTS
 | Command      : report_drc -file _4bit_mod8_counter_drc_routed.rpt -pb _4bit_mod8_counter_drc_routed.pb
 | Design       : _4bit_mod8_counter
@@ -23,7 +23,7 @@ Table of Contents
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 3
+             Violations found: 1
 
 2. REPORT DETAILS
 -----------------
@@ -38,16 +38,6 @@ Neither the CFGBVS nor CONFIG_VOLTAGE voltage property is set in the current_des
  #where value2 is the voltage provided to configuration bank 0
 
 Refer to the device configuration user guide for more information.
-Related violations: <none>
-
-PDRC-153#1 Warning
-Gated clock check  
-Net COUNT/Q_reg[3]_i_2_n_0 is a gated clock net sourced by a combinational pin COUNT/Q_reg[3]_i_2/O, cell COUNT/Q_reg[3]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#2 Warning
-Gated clock check  
-Net COUNT/Qcc_n_reg_i_2_n_0 is a gated clock net sourced by a combinational pin COUNT/Qcc_n_reg_i_2/O, cell COUNT/Qcc_n_reg_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 

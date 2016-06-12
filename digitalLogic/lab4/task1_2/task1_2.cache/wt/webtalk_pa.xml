@@ -3,10 +3,10 @@
 <!--The data in this file is primarily intended for consumption by Xilinx tools.
 The structure and the elements are likely to change over the next few releases.
 This means code written to parse this file will need to be revisited each subsequent release.-->
-<application name="pa" timeStamp="Fri Jun 10 18:11:30 2016">
+<application name="pa" timeStamp="Sun Jun 12 15:11:46 2016">
 <section name="Project Information" visible="false">
 <property name="ProjectID" value="55e11d757adf47f0a5000741a3b203cc" type="ProjectID"/>
-<property name="ProjectIteration" value="5" type="ProjectIteration"/>
+<property name="ProjectIteration" value="7" type="ProjectIteration"/>
 </section>
 <section name="PlanAhead Usage" visible="true">
 <item name="Project Data">
@@ -20,28 +20,83 @@ This means code written to parse this file will need to be revisited each subseq
 <property name="AddSources" value="7" type="JavaHandler"/>
 <property name="CloseProject" value="1" type="JavaHandler"/>
 <property name="EditDelete" value="2" type="JavaHandler"/>
+<property name="LaunchOpenTarget" value="1" type="JavaHandler"/>
+<property name="LaunchProgramFpga" value="2" type="JavaHandler"/>
 <property name="NewProject" value="2" type="JavaHandler"/>
-<property name="OpenFile" value="3" type="JavaHandler"/>
-<property name="OpenProject" value="4" type="JavaHandler"/>
+<property name="OpenFile" value="4" type="JavaHandler"/>
+<property name="OpenHardwareManager" value="2" type="JavaHandler"/>
+<property name="OpenProject" value="5" type="JavaHandler"/>
+<property name="OpenRecentTarget" value="1" type="JavaHandler"/>
 <property name="ProjectSettingsCmdHandler" value="1" type="JavaHandler"/>
 <property name="ProjectSummary" value="1" type="JavaHandler"/>
-<property name="RunBitgen" value="2" type="JavaHandler"/>
-<property name="RunImplementation" value="2" type="JavaHandler"/>
+<property name="RunBitgen" value="3" type="JavaHandler"/>
+<property name="RunImplementation" value="3" type="JavaHandler"/>
 <property name="RunSchematic" value="1" type="JavaHandler"/>
-<property name="RunSynthesis" value="2" type="JavaHandler"/>
+<property name="RunSynthesis" value="3" type="JavaHandler"/>
 <property name="SaveFileProxyHandler" value="3" type="JavaHandler"/>
-<property name="SimulationClose" value="27" type="JavaHandler"/>
-<property name="SimulationRun" value="37" type="JavaHandler"/>
+<property name="ShowView" value="2" type="JavaHandler"/>
+<property name="SimulationClose" value="28" type="JavaHandler"/>
+<property name="SimulationRun" value="38" type="JavaHandler"/>
 </item>
 <item name="Gui Resources Info">
-<property name="PAResourceCommand.PACommandNames_PROJECT_SUMMARY, project_summary" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.PAViews_CODE, Code" value="1" type="GuiResourceData"/>
-<property name="RDIResource.BaseDialog_CANCEL, Cancel" value="1" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_OPEN_HARDWARE_MANAGER, Open Hardware Manager" value="1" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_OPEN_PROJECT, Open Project..." value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, _4bit_mod8_counter (_4bit_mod8_counter.v" value="2" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_FILE, File" value="2" type="GuiResourceData"/>
+<property name="PAResourceOtoP.ProgramDebugTab_PROGRAM_DEVICE, Program device" value="2" type="GuiResourceData"/>
+<property name="PAResourceOtoP.ProgramFpgaDialog_PROGRAM, Program" value="2" type="GuiResourceData"/>
+<property name="RDIResource.BaseDialog_OK, OK" value="2" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 102, 135" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 136, 127" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 141, 139" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 144, 108" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 148, 114" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 149, 125" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 150, 124" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 153, 125" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 156, 121" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 158, 111" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 158, 127" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 163, 109" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 165, 120" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 166, 98" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 171, 121" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 173, 101" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 173, 106" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 173, 109" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 173, 120" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 174, 132" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 175, 105" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 176, 104" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 176, 110" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 176, 115" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 177, 109" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 177, 136" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 179, 113" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 180, 110" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 180, 111" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 180, 117" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 181, 107" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 188, 114" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 195, 106" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 196, 126" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 197, 114" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 208, 99" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 211, 91" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 212, 96" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 213, 101" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 213, 97" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 215, 97" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 216, 86" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 216, 98" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 225, 95" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 84, 113" value="1" type="GuiResourceData"/>
+<property name="_4bit_binary_counter.v, 87, 133" value="1" type="GuiResourceData"/>
 </item>
 <item name="Other">
-<property name="GuiMode" value="50" type="GuiMode"/>
+<property name="GuiMode" value="59" type="GuiMode"/>
 <property name="BatchMode" value="0" type="BatchMode"/>
-<property name="TclMode" value="42" type="TclMode"/>
+<property name="TclMode" value="51" type="TclMode"/>
 </item>
 </section>
 </application>
