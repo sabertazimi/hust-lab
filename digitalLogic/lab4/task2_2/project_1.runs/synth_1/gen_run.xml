@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1465136912">
-  <File Type="RDS-DCP" Name="_2bit_binary_comparator.dcp"/>
-  <File Type="RDS-UTIL-PB" Name="_2bit_binary_comparator_utilization_synth.pb"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="_2bit_binary_comparator_timing_summary_synth.rpt"/>
-  <File Type="VDS-TIMING-PB" Name="_2bit_binary_comparator_timing_summary_synth.pb"/>
-  <File Type="RDS-RDS" Name="_2bit_binary_comparator.vds"/>
   <File Type="PA-TCL" Name="_2bit_binary_comparator.tcl"/>
+  <File Type="RDS-RDS" Name="_2bit_binary_comparator.vds"/>
   <File Type="RDS-PROPCONSTRS" Name="_2bit_binary_comparator_drc_synth.rpt"/>
   <File Type="RDS-UTIL" Name="_2bit_binary_comparator_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="_2bit_binary_comparator_utilization_synth.pb"/>
+  <File Type="RDS-DCP" Name="_2bit_binary_comparator.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="_2bit_binary_comparator_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="_2bit_binary_comparator_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/_1bit_binary_comparator.v">

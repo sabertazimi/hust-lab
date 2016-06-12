@@ -1,26 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1465137153">
+  <File Type="PA-TCL" Name="_1bit_binary_comparator.tcl"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="_1bit_binary_comparator_postroute_physopt.dcp"/>
+  <File Type="INIT-TIMING" Name="_1bit_binary_comparator_timing_summary_init.rpt"/>
+  <File Type="OPT-DCP" Name="_1bit_binary_comparator_opt.dcp"/>
+  <File Type="OPT-DRC" Name="_1bit_binary_comparator_drc_opted.rpt"/>
+  <File Type="OPT-METHODOLOGY-DRC" Name="_1bit_binary_comparator_methodology_drc_opted.rpt"/>
+  <File Type="OPT-HWDEF" Name="_1bit_binary_comparator.hwdef"/>
+  <File Type="OPT-TIMING" Name="_1bit_binary_comparator_timing_summary_opted.rpt"/>
+  <File Type="PWROPT-DCP" Name="_1bit_binary_comparator_pwropt.dcp"/>
+  <File Type="PWROPT-DRC" Name="_1bit_binary_comparator_drc_pwropted.rpt"/>
+  <File Type="PWROPT-TIMING" Name="_1bit_binary_comparator_timing_summary_pwropted.rpt"/>
+  <File Type="PLACE-DCP" Name="_1bit_binary_comparator_placed.dcp"/>
+  <File Type="PLACE-IO" Name="_1bit_binary_comparator_io_placed.rpt"/>
+  <File Type="PLACE-CLK" Name="_1bit_binary_comparator_clock_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL" Name="_1bit_binary_comparator_utilization_placed.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="_1bit_binary_comparator_utilization_placed.pb"/>
+  <File Type="PLACE-CTRL" Name="_1bit_binary_comparator_control_sets_placed.rpt"/>
+  <File Type="PLACE-SIMILARITY" Name="_1bit_binary_comparator_incremental_reuse_placed.rpt"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="_1bit_binary_comparator_incremental_reuse_pre_placed.rpt"/>
+  <File Type="PLACE-TIMING" Name="_1bit_binary_comparator_timing_summary_placed.rpt"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="_1bit_binary_comparator_postplace_pwropt.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="_1bit_binary_comparator_timing_summary_postroute_physopted.rpt"/>
+  <File Type="BG-BIT" Name="_1bit_binary_comparator.bit"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="_1bit_binary_comparator_timing_summary_routed.rpt"/>
+  <File Type="BG-BIN" Name="_1bit_binary_comparator.bin"/>
+  <File Type="ROUTE-SIMILARITY" Name="_1bit_binary_comparator_incremental_reuse_routed.rpt"/>
+  <File Type="BITSTR-MSK" Name="_1bit_binary_comparator.msk"/>
+  <File Type="ROUTE-CLK" Name="_1bit_binary_comparator_clock_utilization_routed.rpt"/>
+  <File Type="BITSTR-RBT" Name="_1bit_binary_comparator.rbt"/>
+  <File Type="BITSTR-NKY" Name="_1bit_binary_comparator.nky"/>
+  <File Type="BITSTR-BMM" Name="_1bit_binary_comparator_bd.bmm"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="_1bit_binary_comparator_postroute_physopt_bb.dcp"/>
   <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
   <File Type="RDI-RDI" Name="_1bit_binary_comparator.vdi"/>
-  <File Type="BG-DRC" Name="_1bit_binary_comparator.drc"/>
-  <File Type="BG-BGN" Name="_1bit_binary_comparator.bgn"/>
-  <File Type="BITSTR-SYSDEF" Name="_1bit_binary_comparator.sysdef"/>
-  <File Type="BITSTR-MMI" Name="_1bit_binary_comparator.mmi"/>
-  <File Type="BITSTR-BMM" Name="_1bit_binary_comparator_bd.bmm"/>
-  <File Type="BITSTR-NKY" Name="_1bit_binary_comparator.nky"/>
-  <File Type="BITSTR-RBT" Name="_1bit_binary_comparator.rbt"/>
-  <File Type="BITSTR-MSK" Name="_1bit_binary_comparator.msk"/>
-  <File Type="BG-BIN" Name="_1bit_binary_comparator.bin"/>
-  <File Type="BG-BIT" Name="_1bit_binary_comparator.bit"/>
-  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="_1bit_binary_comparator_timing_summary_postroute_physopted.rpx"/>
   <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="_1bit_binary_comparator_timing_summary_postroute_physopted.pb"/>
-  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="_1bit_binary_comparator_timing_summary_postroute_physopted.rpt"/>
-  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="_1bit_binary_comparator_postroute_physopt_bb.dcp"/>
-  <File Type="ROUTE-CLK" Name="_1bit_binary_comparator_clock_utilization_routed.rpt"/>
-  <File Type="ROUTE-SIMILARITY" Name="_1bit_binary_comparator_incremental_reuse_routed.rpt"/>
-  <File Type="ROUTE-TIMING-RPX" Name="_1bit_binary_comparator_timing_summary_routed.rpx"/>
+  <File Type="BG-DRC" Name="_1bit_binary_comparator.drc"/>
   <File Type="ROUTE-TIMING-PB" Name="_1bit_binary_comparator_timing_summary_routed.pb"/>
-  <File Type="ROUTE-TIMINGSUMMARY" Name="_1bit_binary_comparator_timing_summary_routed.rpt"/>
+  <File Type="BITSTR-MMI" Name="_1bit_binary_comparator.mmi"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="_1bit_binary_comparator_timing_summary_postroute_physopted.rpx"/>
+  <File Type="BG-BGN" Name="_1bit_binary_comparator.bgn"/>
+  <File Type="ROUTE-TIMING-RPX" Name="_1bit_binary_comparator_timing_summary_routed.rpx"/>
+  <File Type="BITSTR-SYSDEF" Name="_1bit_binary_comparator.sysdef"/>
   <File Type="ROUTE-STATUS-PB" Name="_1bit_binary_comparator_route_status.pb"/>
   <File Type="ROUTE-STATUS" Name="_1bit_binary_comparator_route_status.rpt"/>
   <File Type="ROUTE-PWR-RPX" Name="_1bit_binary_comparator_power_routed.rpx"/>
@@ -36,27 +57,6 @@
   <File Type="PHYSOPT-DRC" Name="_1bit_binary_comparator_drc_physopted.rpt"/>
   <File Type="PHYSOPT-DCP" Name="_1bit_binary_comparator_physopt.dcp"/>
   <File Type="POSTPLACE-PWROPT-TIMING" Name="_1bit_binary_comparator_timing_summary_postplace_pwropted.rpt"/>
-  <File Type="POSTPLACE-PWROPT-DCP" Name="_1bit_binary_comparator_postplace_pwropt.dcp"/>
-  <File Type="PLACE-TIMING" Name="_1bit_binary_comparator_timing_summary_placed.rpt"/>
-  <File Type="PLACE-PRE-SIMILARITY" Name="_1bit_binary_comparator_incremental_reuse_pre_placed.rpt"/>
-  <File Type="PLACE-SIMILARITY" Name="_1bit_binary_comparator_incremental_reuse_placed.rpt"/>
-  <File Type="PLACE-CTRL" Name="_1bit_binary_comparator_control_sets_placed.rpt"/>
-  <File Type="PLACE-UTIL-PB" Name="_1bit_binary_comparator_utilization_placed.pb"/>
-  <File Type="PLACE-UTIL" Name="_1bit_binary_comparator_utilization_placed.rpt"/>
-  <File Type="PLACE-CLK" Name="_1bit_binary_comparator_clock_utilization_placed.rpt"/>
-  <File Type="PLACE-IO" Name="_1bit_binary_comparator_io_placed.rpt"/>
-  <File Type="PLACE-DCP" Name="_1bit_binary_comparator_placed.dcp"/>
-  <File Type="PWROPT-TIMING" Name="_1bit_binary_comparator_timing_summary_pwropted.rpt"/>
-  <File Type="PWROPT-DRC" Name="_1bit_binary_comparator_drc_pwropted.rpt"/>
-  <File Type="PWROPT-DCP" Name="_1bit_binary_comparator_pwropt.dcp"/>
-  <File Type="OPT-TIMING" Name="_1bit_binary_comparator_timing_summary_opted.rpt"/>
-  <File Type="OPT-HWDEF" Name="_1bit_binary_comparator.hwdef"/>
-  <File Type="OPT-METHODOLOGY-DRC" Name="_1bit_binary_comparator_methodology_drc_opted.rpt"/>
-  <File Type="OPT-DRC" Name="_1bit_binary_comparator_drc_opted.rpt"/>
-  <File Type="OPT-DCP" Name="_1bit_binary_comparator_opt.dcp"/>
-  <File Type="INIT-TIMING" Name="_1bit_binary_comparator_timing_summary_init.rpt"/>
-  <File Type="POSTROUTE-PHYSOPT-DCP" Name="_1bit_binary_comparator_postroute_physopt.dcp"/>
-  <File Type="PA-TCL" Name="_1bit_binary_comparator.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/_1bit_binary_comparator.v">

@@ -63,7 +63,7 @@ module flow_led(
     always @(M or state) begin
         case (state)
             l0: if (!M) nextState = l1;
-                else nextState = l3;
+                else nextState = l15;
             l1: if (!M) nextState = l2;
                 else nextState = l0;
             l2: if (!M) nextState = l3;

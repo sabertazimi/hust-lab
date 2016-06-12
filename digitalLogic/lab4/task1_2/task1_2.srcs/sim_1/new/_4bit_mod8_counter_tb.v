@@ -24,7 +24,7 @@ module _4bit_mod8_counter_tb(
     
     );
 
-    parameter COUNT = 200;
+    parameter COUNT = 100;
     parameter DELAY = 10;
     parameter TIME = COUNT*DELAY;
     

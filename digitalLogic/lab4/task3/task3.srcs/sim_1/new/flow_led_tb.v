@@ -46,8 +46,8 @@ module flow_led_tb(
     end
     
     initial begin
-        M = 0;
-        #(COUNT*DELAY/2) M = 1;
+        M = 1;
+        #(COUNT*DELAY/2) M = 0;
     end
     
     initial begin
