@@ -1,1 +1,0 @@
--wto "16408126a2724c96845e641e9736cb37" --debug "typical" --relax --mt "8" -L "xil_defaultlib" -L "unisims_ver" -L "unimacro_ver" -L "secureip" --snapshot "gated_SR_latch_dataflow_tb_behav" "xil_defaultlib.gated_SR_latch_dataflow_tb" "xil_defaultlib.glbl" -log "elaborate.log" 

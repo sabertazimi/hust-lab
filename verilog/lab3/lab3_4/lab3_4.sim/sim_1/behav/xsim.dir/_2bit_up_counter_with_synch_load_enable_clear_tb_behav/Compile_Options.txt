@@ -1,1 +1,0 @@
--wto "fee81a2f2c314ac09855f3f4dae8347d" --debug "typical" --relax --mt "8" -L "xil_defaultlib" -L "unisims_ver" -L "unimacro_ver" -L "secureip" --snapshot "_2bit_up_counter_with_synch_load_enable_clear_tb_behav" "xil_defaultlib._2bit_up_counter_with_synch_load_enable_clear_tb" "xil_defaultlib.glbl" -log "elaborate.log" 

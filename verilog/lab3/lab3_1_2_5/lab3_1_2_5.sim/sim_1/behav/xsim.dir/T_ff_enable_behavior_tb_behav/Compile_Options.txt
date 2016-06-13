@@ -1,1 +1,0 @@
--wto "25f5d2ab515e4b09b323e28eb4e1f5bf" --debug "typical" --relax --mt "8" -L "xil_defaultlib" -L "unisims_ver" -L "unimacro_ver" -L "secureip" --snapshot "T_ff_enable_behavior_tb_behav" "xil_defaultlib.T_ff_enable_behavior_tb" "xil_defaultlib.glbl" -log "elaborate.log" 

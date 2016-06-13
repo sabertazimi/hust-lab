@@ -1,1 +1,0 @@
--wto "2254246d33db4e9b97eba8d49feaef0f" --debug "typical" --relax --mt "8" -L "xil_defaultlib" -L "unisims_ver" -L "unimacro_ver" -L "secureip" --snapshot "Serial_in_parallel_out_enable_behavior_tb_behav" "xil_defaultlib.Serial_in_parallel_out_enable_behavior_tb" "xil_defaultlib.glbl" -log "elaborate.log" 
