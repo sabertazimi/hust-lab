@@ -3,7 +3,7 @@
 <!--The data in this file is primarily intended for consumption by Xilinx tools.
 The structure and the elements are likely to change over the next few releases.
 This means code written to parse this file will need to be revisited each subsequent release.-->
-<application name="pa" timeStamp="Mon Jun  6 20:14:04 2016">
+<application name="pa" timeStamp="Mon Jun 13 21:14:03 2016">
 <section name="Project Information" visible="false">
 <property name="ProjectID" value="424cd490a35349cb87709a11b705ceef" type="ProjectID"/>
 <property name="ProjectIteration" value="1" type="ProjectIteration"/>
@@ -19,181 +19,25 @@ This means code written to parse this file will need to be revisited each subseq
 <item name="Java Command Handlers">
 <property name="AddSources" value="2" type="JavaHandler"/>
 <property name="NewProject" value="1" type="JavaHandler"/>
+<property name="OpenProject" value="3" type="JavaHandler"/>
 <property name="SaveFileProxyHandler" value="1" type="JavaHandler"/>
 <property name="SimulationClose" value="6" type="JavaHandler"/>
-<property name="SimulationRun" value="8" type="JavaHandler"/>
+<property name="SimulationRun" value="9" type="JavaHandler"/>
 </item>
 <item name="Gui Resources Info">
-<property name="FINISH, Finish" value="3" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 100, 185" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 102, 308" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 109, 252" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 110, 244" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 111, 175" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 111, 263" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 112, 193" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 112, 228" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 112, 229" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 112, 242" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 113, 260" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 113, 277" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 114, 172" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 114, 204" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 114, 218" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 114, 261" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 115, 187" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 115, 204" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 116, 186" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 117, 262" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 119, 266" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 121, 268" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 122, 262" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 124, 266" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 125, 204" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 127, 177" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 128, 298" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 129, 232" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 131, 267" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 132, 234" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 133, 248" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 140, 172" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 140, 222" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 142, 266" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 144, 235" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 149, 238" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 150, 243" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 156, 252" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 16, 190" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 162, 264" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 162, 268" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 163, 251" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 163, 278" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 166, 216" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 168, 52" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 168, 77" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 171, 151" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 172, 203" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 173, 265" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 174, 221" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 174, 55" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 176, 238" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 177, 132" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 191, 237" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 192, 268" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 196, 239" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 202, 252" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 207, 248" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 213, 280" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 215, 245" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 222, 227" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 224, 252" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 226, 251" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 226, 255" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 228, 253" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 230, 249" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 232, 144" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 232, 153" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 234, 251" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 236, 251" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 247, 254" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 256, 233" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 256, 254" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 257, 221" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 259, 252" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 263, 217" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 265, 173" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 265, 255" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 266, 127" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 276, 182" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 278, 159" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 279, 200" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 280, 156" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 280, 170" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 280, 171" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 280, 180" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 280, 181" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 280, 195" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 281, 101" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 281, 168" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 283, 112" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 284, 116" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 297, 192" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 303, 208" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 304, 209, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 305, 210" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 43, 186" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 5, 187" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 56, 281" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 64, 250" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 64, 255" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 65, 199" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 70, 261" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 71, 249" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 73, 260" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 77, 223" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 77, 238" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 77, 241" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 79, 133" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 79, 254" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 79, 270" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 82, 133" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 83, 275" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 92, 271" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 96, 215" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 96, 255" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 97, 296" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM.v, 99, 163" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM_tb.v, 105, 263" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM_tb.v, 110, 119" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM_tb.v, 126, 72" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM_tb.v, 154, 84" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM_tb.v, 266, 133" value="1" type="GuiResourceData"/>
-<property name="Moore_FSM_tb.v, 316, 116" value="1" type="GuiResourceData"/>
-<property name="NEXT, Next " value="9" type="GuiResourceData"/>
-<property name="PAResourceAtoD.AddSrcWizard_SPECIFY_HDL_AND_NETLIST_FILES_OR_DIRECTORIES, Add or create design sources" value="1" type="GuiResourceData"/>
-<property name="PAResourceAtoD.AddSrcWizard_SPECIFY_SIMULATION_SPECIFIC_HDL_FILES, Add or create simulation sources" value="1" type="GuiResourceData"/>
-<property name="PAResourceAtoD.CmdMsgDialog_OK, OK" value="2" type="GuiResourceData"/>
-<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, Moore_FSM" value="1" type="GuiResourceData"/>
-<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, Moore_FSM_tb" value="1" type="GuiResourceData"/>
-<property name="PAResourceCommand.PACommandNames_NEW_PROJECT, New Project..." value="1" type="GuiResourceData"/>
-<property name="PAResourceCommand.PACommandNames_SIMULATION_RUN_BEHAVIORAL, Run Behavioral Simulation" value="8" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Constraints], 1" value="2" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Moore_FSM (Moore_FSM.v" value="2" type="GuiResourceData"/>
+<property name="Moore_FSM.v, 1, 156" value="1" type="GuiResourceData"/>
+<property name="Moore_FSM_tb.v, 1, 159" value="1" type="GuiResourceData"/>
+<property name="Moore_FSM_tb.v, 35, 162" value="1" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_OPEN_PROJECT, Open Project..." value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Moore_FSM (Moore_FSM.v" value="4" type="GuiResourceData"/>
 <property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, Moore_FSM_tb (Moore_FSM_tb.v" value="2" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1], 4" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Project Manager, Add Sources], 2, false" value="2" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Simulation, Run Simulation], 11, false" value="8" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources], 3" value="1" type="GuiResourceData"/>
 <property name="PAResourceItoN.MainMenuMgr_FILE, File" value="2" type="GuiResourceData"/>
-<property name="PAResourceOtoP.PAViews_PROJECT_SUMMARY, Project Summary" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.PartChooser_FAMILY_CHOOSER, Artix-7, 1" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.PartChooser_PARTS, xc7a100tcsg324-1 ; 324 ; 135 ; 240 ; 126800 ; 0 ; 0 ; 210 ; 63400 ; 6 ; 1 ; 85 ; 0 ; 85 ; C ; 1.05 ; 0.95 ; 0.95, 4, xc7a100tcsg324-1, 0" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.PartChooser_PART_PACKAGE_CHOOSER, csg324, 2" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.PartChooser_PART_SPEED_CHOOSER, -1, 1" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.ProjectNameChooser_PROJECT_NAME, Mealy_FSM_ROM" value="1" type="GuiResourceData"/>
-<property name="PAResourceQtoS.SrcChooserPanel_CREATE_FILE, Create File" value="4" type="GuiResourceData"/>
-<property name="RDIResource.BaseDialog_OK, OK" value="23" type="GuiResourceData"/>
-<property name="RDIResource.GraphicalView_ZOOM_FIT, Waveform Viewer_zoom_fit" value="11" type="GuiResourceData"/>
-<property name="RDIResource.GraphicalView_ZOOM_IN, Waveform Viewer_zoom_in" value="2" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 111, 103, false, false, false, true, false" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 252, 113, false, false, false, true, false" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 294, 141" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 94, 122" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 94, 122, false, false, false, true, false" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 97, 123" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 14*" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 15" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 16*" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 17*" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 18" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 19*" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 20*" value="1" type="GuiResourceData"/>
-<property name="RDIResource.WaveformNameTree_WAVEFORM_NAME_TREE, [true, state[2:0]], 4" value="3" type="GuiResourceData"/>
-<property name="RDIResource.WaveformNameTree_WAVEFORM_NAME_TREE, [true, yout], 3, false" value="5" type="GuiResourceData"/>
 </item>
 <item name="Other">
-<property name="GuiMode" value="41" type="GuiMode"/>
+<property name="GuiMode" value="66" type="GuiMode"/>
 <property name="BatchMode" value="0" type="BatchMode"/>
-<property name="TclMode" value="34" type="TclMode"/>
+<property name="TclMode" value="57" type="TclMode"/>
 </item>
 </section>
 </application>

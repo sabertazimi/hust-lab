@@ -2,8 +2,8 @@
 # Webtalk v2016.1 (64-bit)
 # SW Build 1538259 on Fri Apr  8 15:45:23 MDT 2016
 # IP Build 1537824 on Fri Apr  8 04:28:57 MDT 2016
-# Start of session at: Tue Jun  7 21:10:00 2016
-# Process ID: 6865
+# Start of session at: Mon Jun 13 21:11:13 2016
+# Process ID: 20216
 # Current directory: /home/sabertazimi/gitrepo/hust-lab/verilog/lab5/ASM_3Bit_binary_multiplier/ASM_3Bit_binary_multiplier.sim/sim_1/behav
 # Command line: wbtcv -mode batch -source /home/sabertazimi/gitrepo/hust-lab/verilog/lab5/ASM_3Bit_binary_multiplier/ASM_3Bit_binary_multiplier.sim/sim_1/behav/xsim.dir/_3bit_binary_multiplier_tb_behav/webtalk/xsim_webtalk.tcl -notrace
 # Log file: /home/sabertazimi/gitrepo/hust-lab/verilog/lab5/ASM_3Bit_binary_multiplier/ASM_3Bit_binary_multiplier.sim/sim_1/behav/webtalk.log

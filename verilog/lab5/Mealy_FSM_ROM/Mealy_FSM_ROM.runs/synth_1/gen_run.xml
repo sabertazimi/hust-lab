@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1465217294">
-  <File Type="RDS-DCP" Name="Mealy_FSM_ROM.dcp"/>
-  <File Type="RDS-UTIL-PB" Name="Mealy_FSM_ROM_utilization_synth.pb"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="Mealy_FSM_ROM_timing_summary_synth.rpt"/>
-  <File Type="VDS-TIMING-PB" Name="Mealy_FSM_ROM_timing_summary_synth.pb"/>
-  <File Type="RDS-RDS" Name="Mealy_FSM_ROM.vds"/>
   <File Type="PA-TCL" Name="Mealy_FSM_ROM.tcl"/>
+  <File Type="RDS-RDS" Name="Mealy_FSM_ROM.vds"/>
   <File Type="RDS-PROPCONSTRS" Name="Mealy_FSM_ROM_drc_synth.rpt"/>
   <File Type="RDS-UTIL" Name="Mealy_FSM_ROM_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="Mealy_FSM_ROM_utilization_synth.pb"/>
+  <File Type="RDS-DCP" Name="Mealy_FSM_ROM.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="Mealy_FSM_ROM_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="Mealy_FSM_ROM_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/Mealy_FSM_ROM.v">
