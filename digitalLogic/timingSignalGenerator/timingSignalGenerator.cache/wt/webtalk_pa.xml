@@ -3,7 +3,7 @@
 <!--The data in this file is primarily intended for consumption by Xilinx tools.
 The structure and the elements are likely to change over the next few releases.
 This means code written to parse this file will need to be revisited each subsequent release.-->
-<application name="pa" timeStamp="Wed Jun  8 23:12:15 2016">
+<application name="pa" timeStamp="Mon Jun 13 16:28:33 2016">
 <section name="Project Information" visible="false">
 <property name="ProjectID" value="0925942ff01f459cb04d662095998ff3" type="ProjectID"/>
 <property name="ProjectIteration" value="1" type="ProjectIteration"/>
@@ -30,45 +30,12 @@ This means code written to parse this file will need to be revisited each subseq
 <property name="ViewTaskRTLAnalysis" value="1" type="JavaHandler"/>
 </item>
 <item name="Gui Resources Info">
-<property name="PAResourceCommand.PACommandNames_SIMULATION_RUN_BEHAVIORAL, Run Behavioral Simulation" value="3" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, timing_signal_generator (timing_signal_generator.v" value="48" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, timing_signal_generator_tb (timing_signal_generator_tb.v" value="2" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1], 10" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources], 9" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, RTL Analysis, Open Elaborated Design, Schematic], 17, false" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, RTL Analysis, Open Elaborated Design], 14" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Simulation, Run Simulation], 11, false" value="3" type="GuiResourceData"/>
-<property name="PAResourceOtoP.PAViews_CODE, Code" value="2" type="GuiResourceData"/>
-<property name="PAResourceOtoP.PAViews_PROJECT_SUMMARY, Project Summary" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.PAViews_SCHEMATIC, Schematic" value="2" type="GuiResourceData"/>
-<property name="PAResourceOtoP.ProjectTab_RELOAD, Reload" value="1" type="GuiResourceData"/>
 <property name="RDIResource.BaseDialog_CANCEL, Cancel" value="1" type="GuiResourceData"/>
-<property name="RDIResource.BaseDialog_OK, OK" value="3" type="GuiResourceData"/>
-<property name="RDIResource.GraphicalView_ZOOM_FIT, Waveform Viewer_zoom_fit" value="3" type="GuiResourceData"/>
-<property name="RDIResource.GraphicalView_ZOOM_IN, Waveform Viewer_zoom_in" value="4" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 483, 46" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 1" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 2" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 3" value="1" type="GuiResourceData"/>
-<property name="clock_generator.v, 139, 99" value="1" type="GuiResourceData"/>
-<property name="signal_source.v, 102, 249" value="1" type="GuiResourceData"/>
-<property name="signal_source.v, 109, 250" value="1" type="GuiResourceData"/>
-<property name="signal_source.v, 120, 213" value="1" type="GuiResourceData"/>
-<property name="signal_source.v, 142, 99" value="1" type="GuiResourceData"/>
-<property name="signal_source.v, 159, 100" value="1" type="GuiResourceData"/>
-<property name="signal_source.v, 200, 121" value="1" type="GuiResourceData"/>
-<property name="timing_signal_generator.v, 141, 173" value="1" type="GuiResourceData"/>
-<property name="timing_signal_generator.v, 143, 173" value="1" type="GuiResourceData"/>
-<property name="timing_signal_generator.v, 221, 185" value="1" type="GuiResourceData"/>
-<property name="timing_signal_generator.v, 224, 166" value="1" type="GuiResourceData"/>
-<property name="timing_signal_generator_tb.v, 151, 201" value="1" type="GuiResourceData"/>
-<property name="timing_signal_generator_tb.v, 157, 39" value="1" type="GuiResourceData"/>
-<property name="timing_signal_generator_tb.v, 160, 100" value="1" type="GuiResourceData"/>
 </item>
 <item name="Other">
-<property name="GuiMode" value="45" type="GuiMode"/>
+<property name="GuiMode" value="64" type="GuiMode"/>
 <property name="BatchMode" value="0" type="BatchMode"/>
-<property name="TclMode" value="38" type="TclMode"/>
+<property name="TclMode" value="55" type="TclMode"/>
 </item>
 </section>
 </application>
