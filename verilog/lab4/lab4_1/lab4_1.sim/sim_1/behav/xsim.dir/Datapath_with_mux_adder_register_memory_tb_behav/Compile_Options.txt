@@ -1,1 +1,0 @@
--wto "cee0fe733e184a6eba903c6915a14cd8" --debug "typical" --relax --mt "8" -L "xil_defaultlib" -L "unisims_ver" -L "unimacro_ver" -L "secureip" --snapshot "Datapath_with_mux_adder_register_memory_tb_behav" "xil_defaultlib.Datapath_with_mux_adder_register_memory_tb" "xil_defaultlib.glbl" -log "elaborate.log" 

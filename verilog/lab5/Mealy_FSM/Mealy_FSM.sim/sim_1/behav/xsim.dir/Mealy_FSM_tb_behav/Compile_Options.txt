@@ -1,1 +1,0 @@
--wto "e183520fd6fe403786450d8303addcb5" --debug "typical" --relax --mt "8" -L "xil_defaultlib" -L "unisims_ver" -L "unimacro_ver" -L "secureip" --snapshot "Mealy_FSM_tb_behav" "xil_defaultlib.Mealy_FSM_tb" "xil_defaultlib.glbl" -log "elaborate.log" 
