@@ -18,5 +18,5 @@ rlocus(num,den)
 title('像函数 F(s) 极、零图');
 subplot(1,2,2)
 ft=maple('convert',ft,'radical');
-ezplot(ft,[0,4*pi])
+ezplot(ft,[0,10*pi])
 title('时域原函数f(t)');

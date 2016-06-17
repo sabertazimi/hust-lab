@@ -29,4 +29,4 @@ text={...
    ' '
    [' '*ones(1,12),num2str(y,'%8g')]
    ' '};
-textwin('卷积结果——数值表示',text)
+% textwin('卷积结果——数值表示',text)

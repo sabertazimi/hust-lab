@@ -4,7 +4,7 @@
 %   1 - 0.81z^-2
 figure
 colorn=['b' 'm' 'c']
-for n=1:3
+for n=1:1
    b=[1 0 -1];  % 分子系数向量
    a=[1 0 -0.81];  % 分母系数向量
    printsys(b,a,'z')
