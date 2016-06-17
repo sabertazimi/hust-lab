@@ -10,5 +10,5 @@ subplot(1,2,1)
 ezplot(f,[-2*pi,2*pi])
 title(' ±”Ú≤®–Œ f(t)');
 subplot(1,2,2)
-ezplot(FFF,[-2*pi,2*pi])
+ezplot(FFF,[-5*pi,5*pi])
 title('∆µ”Ú≤®–Œ F(jw)');

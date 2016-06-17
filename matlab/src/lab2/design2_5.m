@@ -7,8 +7,8 @@ FF=maple('convert',F,'piecewise');  % ¶Ô Fourier ±ä»»µÄ·ûºÅ±í´ïÊ½½øÐÐ×ª»»£¬Ê¹Æä±
 FFF=abs(FF);  % µÃµ½ÆµÆ×·ûºÅ±í´ïÊ½
 figure
 subplot(1,2,1)
-ezplot(f,[-2*pi,2*pi])
+ezplot(f,[-10*pi,10*pi])
 title('Ê±Óò²¨ÐÎ f(t)');
 subplot(1,2,2)
-ezplot(FFF,[-2*pi,2*pi])
+ezplot(FFF,[-pi,pi])
 title('ÆµÓò²¨ÐÎ F(jw)');
