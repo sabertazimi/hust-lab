@@ -1,4 +1,4 @@
-% design2_2.m
+% design2_3.m
 
 sym t;
 f=sym('Heaviside(t+2)-Heaviside(t-2)');  % 信号的符号表达式

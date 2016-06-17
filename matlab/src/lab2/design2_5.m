@@ -1,4 +1,4 @@
-% design2_2.m
+% design2_5.m
 
 sym t;
 f=sym('exp(-1*t)*Heaviside(t)');  % 信号的符号表达式

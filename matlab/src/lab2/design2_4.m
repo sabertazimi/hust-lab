@@ -1,4 +1,4 @@
-% design2_2.m
+% design2_4.m
 
 sym t;
 f=sym('(1-abs(t))*(Heaviside(t+1)-Heaviside(t-1))');  % ÐÅºÅµÄ·ûºÅ±í´ïÊ½
@@ -7,8 +7,8 @@ FF=maple('convert',F,'piecewise');  % ¶Ô Fourier ±ä»»µÄ·ûºÅ±í´ïÊ½½øÐÐ×ª»»£¬Ê¹Æä±
 FFF=abs(FF);  % µÃµ½ÆµÆ×·ûºÅ±í´ïÊ½
 figure
 subplot(1,2,1)
-ezplot(f,[-4*pi,4*pi])
+ezplot(f,[-pi,pi])
 title('Ê±Óò²¨ÐÎ f(t)');
 subplot(1,2,2)
-ezplot(FFF,[-4*pi,4*pi])
+ezplot(FFF,[-8*pi,8*pi])
 title('ÆµÓò²¨ÐÎ F(jw)');

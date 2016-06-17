@@ -1,4 +1,4 @@
-%  design1_2.m
+%  design1_1.m
 t = 0:0.01:4; % 时间周期起始点为 0,取样间隔 0.1,取样周期 2*pi
 ty = 0:0.01:8;
 x=exp(-1*t).*(Heaviside(t)-Heaviside(t-2));

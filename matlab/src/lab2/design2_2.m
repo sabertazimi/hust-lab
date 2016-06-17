@@ -1,4 +1,3 @@
-% 修正原design2_1.m（现在的design2_1_bak.m），改变不能运行的函数以及谐波的个数改少
 clear
 TT=10;  % 周期信号周期
 N=10;  % 希望看到的谐波次数
@@ -29,10 +28,10 @@ figure
 n=-N:N;
 as=abs(a)*2;  % 由 Fourier 系数得到频谱幅度
 subplot(3,1,1)
-ezplot(y,[-TT,TT])
+ezplot(y,[-TT/8,TT/8])
 ylabel('原函数');
 subplot(3,1,2)
-ezplot(f,[-TT,TT])
+ezplot(f,[-TT/4,TT/4])
 ylabel('合成函数');
 subplot(3,1,3)
 stem(n,as)

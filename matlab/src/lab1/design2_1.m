@@ -28,10 +28,10 @@ figure
 n=-N:N;
 as=abs(a)*2;  % 由 Fourier 系数得到频谱幅度
 subplot(3,1,1)
-ezplot(y,[-TT/3,TT/3])
+ezplot(y,[-TT,TT])
 ylabel('原函数');
 subplot(3,1,2)
-ezplot(f,[-TT/3,TT/3])
+ezplot(f,[-TT,TT])
 ylabel('合成函数');
 subplot(3,1,3)
 stem(n,as)
