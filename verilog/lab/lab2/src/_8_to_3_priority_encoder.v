@@ -1,22 +1,22 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
+// Company:
+// Engineer:
+//
 // Create Date: 2016/05/24 14:50:26
-// Design Name: 
+// Design Name:
 // Module Name: _8_to_3_priority_encoder
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
+// Project Name:
+// Target Devices:
+// Tool Versions:
+// Description:
+//
+// Dependencies:
+//
 // Revision:
 // Revision 0.01 - File Created
 // Additional Comments:
-// 
+//
 //////////////////////////////////////////////////////////////////////////////////
 
 
@@ -27,11 +27,11 @@ module _8_to_3_priority_encoder(
     output reg en_out,
     output reg gs
     );
-    
+
     always @(v or en_in_n) begin
         case ({en_in_n, v})
             9'b1_xxxx_xxxx: {y, gs, en_out} = 5'b1_1111;
-            9'b0_1111_1111: {y, gs, en_out} = 5'b1_1110;                                            
+            9'b0_1111_1111: {y, gs, en_out} = 5'b1_1110;
             9'b0_xxxx_xxx0: {y, gs, en_out} = 5'b0_0001;
             9'b0_xxxx_xx01: {y, gs, en_out} = 5'b0_0101;
             9'b0_xxxx_x011: {y, gs, en_out} = 5'b0_1001;
