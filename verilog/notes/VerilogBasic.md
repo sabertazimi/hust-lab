@@ -166,9 +166,7 @@ reg [Bit - 1:0] A;
 A = A + cnt_up;
 ```
 
-### 定义
-
-#### 向量
+### 向量
 
 ```verilog
 [MSB: LSB] 或 [LSB: MSB]
@@ -196,12 +194,24 @@ B[1][0] = 1;                  // B[1][0](1 bit)置1
 C[0][0][3:0] = 4'b0010;      // C[0][0] 低4bit为0010
 C[2][8][5] = 1;               // C[2][8] 第5bit为1
 ```
+#### 部分位选
+
+```verilog
+vector[base_expr+: const_width];
+vector[base_expr-: const_width];
+
+inst_mode[mark+:2]; // => mark,mark+1
+gpio_mode[mark-:4]; // => mark,mark-1,mark-2,mark-3
+```
 
 ### 数字
 
 ```verilog
-<Bits长度>'<进制><数值>
+// size ' signed base value
+<Bits长度>'[signed]<进制><数值>
 ```
+
+-   位长不能用表达式表示,只可用固定的 parameter
 
 ```verilog
 Num = 5'b01101;               // 二进制
@@ -212,12 +222,18 @@ Num = 4'bxxx1;              // 前三位未知
 Num = 4'bz01;               // 前两位为z, 后两位为01
 ```
 
-### Net - wire/wand/wor
+#### 有符号数 
 
--   局部变量, 没有记忆性
--   默认值: z
--   wire 间不可直接相连, wand/wor 间课直接相连
--   可用 wire 定义局部变量
+- signed reg
+- signed wire
+- integer
+- 'sxx
+
+#### 无符号数
+
+- reg
+- wire
+- 'xx
 
 ### Register - reg/integer/time/real/realtime
 
@@ -236,6 +252,18 @@ always @(posedge CLK)
     end
 ```
 
+#### real
+
+-   real 默认值为0,不可为x/z
+-   不可声明位宽
+
+### Net - wire/wand/wor
+
+-   局部变量, 没有记忆性
+-   默认值: z
+-   wire 间不可直接相连, wand/wor 间课直接相连
+-   可用 wire 定义局部变量
+
 ## Gate Level
 
 ### Basic Gate
@@ -249,13 +277,44 @@ always @(posedge CLK)
 
 ### Use Gate
 
+- 同一模块中, 实例名不能与线网名相同
+
 ```verilog
 and (w1, In1, In2);        // w1 = Int and In2
 or or1(w2, w1, In2);      // w2 = w1 or In2
 xor xor(Out, w1, w2);    // Out = w1 xor w2
 ```
 
+- 实例数组
+
+```verilog
+wire [3:0] irq, ctrl, sense;
+
+/*
+ * =>
+ * nand
+ *      u8nand3 (irq[3], ctrl[3], sense[3]);
+ *      u8nand2 (irq[2], ctrl[2], sense[2]);
+ *      u8nand1 (irq[1], ctrl[1], sense[1]);
+ *      u8nand0 (irq[0], ctrl[0], sense[0]);
+ */
+nand u8nand [3:0] (irq, ctrl, sense);
+```
+
+```verilog
+parameter NUM_BITS = 4;
+wire [NUM_BITS - 1 : 0] gated_d, din;
+wire bypass;
+
+and #(1, 2) u0and [NUM_BITS - 1: 0] (gated_d, din, bypass);
+```
+
 ### Self-Defined Gate(用户自定义原语)
+
+-   可以有一个/多个输入
+-   只能有一个输出
+-   第一个端口必须是输出端口
+-   - 表示 值"无变化"
 
 ```verilog
 primitive XOR2 (DOUT, X1, X2);
@@ -285,6 +344,10 @@ endprimitive
 <<, >>
 +, -, *, /, %
 ```
+
+### 整数提升
+
+-   表达式所有中间取 最大位宽(最长(左/右)操作数)
 
 #### { }
 
@@ -445,10 +508,33 @@ end
 
 -   语句内时延
 -   语句间时延
+-   语句内时延期间：右值保持稳定不变，才可成功赋给左值
 
 ```verilog
 sum = (a ^ b) ^ cin;
 #4 t1 = a & cin;
+```
+
+## 预编译指令
+
+### define 宏
+
+将多个 define 宏,放至 _defines.v, 作为全局宏
+
+### 默认未连接端口
+
+```verilog
+`unconnected_drive pull1
+
+// 此区间未连接输入端口为上拉(1)
+
+`nounconnected_drive
+
+`unconnected_drive pull0
+
+// 此区间未连接输入端口为下拉(0)
+
+`nounconnected_drive
 ```
 
 ## Data Path
@@ -543,6 +629,8 @@ end
 ```
 
 ### Parameter
+
+-   只在定义的模块内部起作用
 
 #### Overload Method
 
