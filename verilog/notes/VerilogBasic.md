@@ -365,7 +365,7 @@ A = { 3'b101, 2{1'b0} };        // A = 5'b101_00
 
 -   reg = net/reg: **左式只能是reg*
 
-### 时延
+### 时延控制
 
 ```verilog
 #num
@@ -376,7 +376,7 @@ parameter cycle = 30;
 # cycle/2
 ```
 
-### 事件
+### 事件控制
 
 ```verilog
 @(*);
@@ -384,6 +384,15 @@ parameter cycle = 30;
 @(sel or a or b);
 @(posedge CLK);
 @(negedge CLK);
+```
+
+### 语句内/间控制
+
+```verilog
+q = @(posedge clk_iol) d; // 语句内事件控制
+
+@(posedge clk_iol)        // 语句间事件控制
+    q = temp;
 ```
 
 ### always
@@ -452,6 +461,16 @@ for (循环初值; 循环条件; 控制部分)
 
 -   initial for **test bench**
 -   当需 if/else 进行断言时,注意 **延时** 造成的错误逻辑
+
+```verilog
+// 重复事件控制:
+// 先计算好右值, 等待时钟 tclk 上出现2个负跳变沿, 再把右值赋给 hresult
+hresult = repeat (2) @(negedge tclk) hw_data + hr_data;
+
+// repeat 循环语句:
+repeat (2)
+    @(posedge tclk) hresult = hw_data + hr_data;
+```
 
 ```verilog
 initial begin
