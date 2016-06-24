@@ -236,11 +236,9 @@ always @(posedge CLK)
     end
 ```
 
-## Level
+## Gate Level
 
-### Gate Level
-
-#### Basic Gate
+### Basic Gate
 
 -   and
 -   nand(与非)
@@ -249,7 +247,7 @@ always @(posedge CLK)
 -   xor(异或)
 -   xnor(同或)
 
-#### Use Gate
+### Use Gate
 
 ```verilog
 and (w1, In1, In2);        // w1 = Int and In2
@@ -257,7 +255,7 @@ or or1(w2, w1, In2);      // w2 = w1 or In2
 xor xor(Out, w1, w2);    // Out = w1 xor w2
 ```
 
-#### Self-Defined Gate(用户自定义原语)
+### Self-Defined Gate(用户自定义原语)
 
 ```verilog
 primitive XOR2 (DOUT, X1, X2);
@@ -273,11 +271,11 @@ primitive XOR2 (DOUT, X1, X2);
 endprimitive
 ```
 
-### Dataflow Level
+## Dataflow Level
 
 -    assign net = net/reg: **左式只能是net**
 
-#### [Operators](https://hom-wang.gitbooks.io/verilog-hdl/content/Chapter_04.html)
+### [Operators](https://hom-wang.gitbooks.io/verilog-hdl/content/Chapter_04.html)
 
 ```verilog
 赋值: <=, =
@@ -288,7 +286,7 @@ endprimitive
 +, -, *, /, %
 ```
 
-##### { }
+#### { }
 
 **可实现 haskell 中的模式匹配**
 
@@ -300,11 +298,11 @@ A = { 2{2'b01} };                  // A = 4'b0101
 A = { 3'b101, 2{1'b0} };        // A = 5'b101_00
 ```
 
-### Behavior Level
+## Behavior Level
 
 -   reg = net/reg: **左式只能是reg*
 
-#### 时延
+### 时延
 
 ```verilog
 #num
@@ -315,7 +313,7 @@ parameter cycle = 30;
 # cycle/2
 ```
 
-#### 事件
+### 事件
 
 ```verilog
 @(*);
@@ -325,7 +323,7 @@ parameter cycle = 30;
 @(negedge CLK);
 ```
 
-#### always
+### always
 
 ```verilog
 always @(事件1, 事件2, ...)
@@ -334,7 +332,7 @@ always @(事件1, 事件2, ...)
     end
 ```
 
-#### if-else
+### if-else
 
 -   必须添加 else
 
@@ -353,7 +351,7 @@ else
     end
 ```
 
-#### case/casex/casez
+### case/casex/casez
 
 -   expr: 常量/变量/连接运算符{ }/x/z
 -   casex: 当输入某一位为 x/z 时，忽略此位匹配(恒将此位匹配为真)
@@ -378,7 +376,7 @@ case (expr)
 endcase
 ```
 
-#### for
+### for
 
 ```verilog
 for (循环初值; 循环条件; 控制部分)
@@ -387,7 +385,7 @@ for (循环初值; 循环条件; 控制部分)
     end
 ```
 
-#### repeat loop
+### repeat loop
 
 -   initial for **test bench**
 -   当需 if/else 进行断言时,注意 **延时** 造成的错误逻辑
@@ -409,14 +407,14 @@ initial begin
 end
 ```
 
-#### forever loop
+### forever loop
 
 ```verilog
 // $stop, $finish 可以终止 forevr loop
 forever #10 clk = ~ clk;
 ```
 
-#### Blocking/Non-Blocking
+### Blocking/Non-Blocking
 
 -   Blocking(=): 顺序执行
 -   Non-Blocking(<=): 并行执行
@@ -427,7 +425,7 @@ output = input_logic;
 output <= input_logic;
 ```
 
-#### disable
+### disable
 
 ```verilog
 begin : break
@@ -441,6 +439,16 @@ begin : break
         statement2
     end
 end
+```
+
+## Delay(时延)
+
+-   语句内时延
+-   语句间时延
+
+```verilog
+sum = (a ^ b) ^ cin;
+#4 t1 = a & cin;
 ```
 
 ## Data Path
