@@ -80,6 +80,27 @@ module moduleName( In1, In2, Out1, Out2, InOut1);
 endmodule
 ```
 
+### 外部端口
+
+-   封装内部端口,装饰者模式
+-   一个内部端口可与多个外部端口相连
+
+```verilog
+module scram_b (
+    .data(arb),
+    .control(ctrl),
+    .mem_word(mem_blk),
+    .addr(byte)
+);
+
+    input [0:3] arb;
+    input ctrl;
+    input [8:0] mem_blk;
+    output [0:3] byte;
+
+endmodule
+```
+
 ## function
 
 -   不含时间/事件控制
@@ -494,6 +515,17 @@ end
 ```verilog
 // $stop, $finish 可以终止 forevr loop
 forever #10 clk = ~ clk;
+```
+
+### force/release
+
+```verilog
+initial
+    begin
+        force test_reset = penable & rtc_intr;
+        #5;
+        release test_reset;
+    end
 ```
 
 ### Blocking/Non-Blocking
