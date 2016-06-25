@@ -5,6 +5,6 @@
 !*.[cSh]
 !test.sh
 !.gitignore
-!README.md
+!*.md
 !lib-common/newlib/libc.a
 !kernel/src/memory/mm_malloc.o
