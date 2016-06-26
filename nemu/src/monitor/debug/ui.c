@@ -105,6 +105,44 @@ static int cmd_si(char *args) {
 	return 0;
 }
 
+static int cmd_info(char *args) {
+	args = strtok(args, " ");
+
+	if (NULL == args) {
+		printf("Missing required parameters\n");
+	} else if (strcmp(args, "r") == 0) {
+		print_registers();
+	} else if (strcmp(args, "w") == 0) {
+		print_watchpoints();
+	} else {
+		printf("Unknown command '%s'\n", args);
+	}
+
+	return 0;
+}
+
+int print_registers(void) {
+	printf("eax\t\t0x%08x\t%d\n",cpu.eax, cpu.eax);
+	printf("ecx\t\t0x%08x\t%d\n",cpu.ecx, cpu.ecx);
+	printf("edx\t\t0x%08x\t%d\n",cpu.edx, cpu.edx);
+	printf("ebx\t\t0x%08x\t%d\n",cpu.ebx, cpu.ebx);
+	printf("esp\t\t0x%08x\t%d\n",cpu.esp, cpu.esp);
+	printf("ebp\t\t0x%08x\t%d\n",cpu.ebp, cpu.ebp);
+	printf("esi\t\t0x%08x\t%d\n",cpu.esi, cpu.esi);
+	printf("edi\t\t0x%08x\t%d\n",cpu.edi, cpu.edi);
+	printf("eip\t\t0x%08x\t%d\n",cpu.eip, cpu.eip);
+
+	return 0;
+}
+
+int print_watchpoints(void) {
+	return 0;
+}
+
+static int cmd_x(char *args) {
+	return 0;
+}
+
 void ui_mainloop() {
 	while(1) {
 		char *str = rl_gets();
