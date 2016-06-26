@@ -7,24 +7,39 @@
 #include <regex.h>
 
 enum {
-	NOTYPE = 256, EQ
-
-	/* TODO: Add more token types */
-
+	NOTYPE = 256,
+	DECIMAL_NUM,
+    HEX_NUM,
+    REGS,
+    VAR,
+	EQ,
+    NEQ,
+    AND,
+    OR,
+    NOT,
+    DEREF
 };
 
 static struct rule {
 	char *regex;
 	int token_type;
 } rules[] = {
-
-	/* TODO: Add more rules.
-	 * Pay attention to the precedence level of different rules.
-	 */
-
 	{" +",	NOTYPE},				// spaces
+    {"0|[1-9][0-9]*", DECIMAL_NUM}, // decimal number
+    {"0x[0-9a-fA-F]+", HEX_NUM},    // hexadecimal number
+    {"\\$[a-z]+", REGS},            // registers
+    {"[a-zA-Z_]\\w*", VAR},         // variable
+    {"\\(", '('},                   // left parenthese
+    {"\\)", ')'},                   // right parenthese
 	{"\\+", '+'},					// plus
-	{"==", EQ}						// equal
+	{"-", '-'},					    // minus or de-refference
+	{"\\*", '*'},					// multiple
+	{"/", '/'},					    // divide
+	{"==", EQ},						// equal
+	{"!=", NEQ},				    // not equal
+	{"&&", AND},				    // logical and
+	{"\\|\\|", OR},				    // logical or
+	{"!", NOT}						// logical not
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -60,7 +75,7 @@ static bool make_token(char *e) {
 	int position = 0;
 	int i;
 	regmatch_t pmatch;
-	
+
 	nr_token = 0;
 
 	while(e[position] != '\0') {
@@ -74,7 +89,7 @@ static bool make_token(char *e) {
 				position += substr_len;
 
 				/* TODO: Now a new token is recognized with rules[i]. Add codes
-				 * to record the token in the array ``tokens''. For certain 
+				 * to record the token in the array ``tokens''. For certain
 				 * types of tokens, some extra actions should be performed.
 				 */
 
@@ -92,7 +107,7 @@ static bool make_token(char *e) {
 		}
 	}
 
-	return true; 
+	return true;
 }
 
 uint32_t expr(char *e, bool *success) {
