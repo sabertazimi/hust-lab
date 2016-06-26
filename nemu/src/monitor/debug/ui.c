@@ -38,6 +38,18 @@ static int cmd_q(char *args) {
 
 static int cmd_help(char *args);
 
+static int cmd_si(char *args);
+
+static int cmd_info(char *args);
+
+/**
+ * two simple helper functions for cmd_info
+ */
+int print_registers(void);
+int print_watchpoints(void);
+
+static int cmd_x(char *args);
+
 static struct {
 	char *name;
 	char *description;
@@ -48,6 +60,9 @@ static struct {
 	{ "q", "Exit NEMU", cmd_q },
 
 	/* TODO: Add more commands */
+	{ "si", "Step one instruction exactly", cmd_si},
+	{"info", "List of integer registers contents and specified watchpoints", cmd_info},
+	{"x", "Print value of expression EXP each time the program stops", cmd_x}
 
 };
 
@@ -73,6 +88,20 @@ static int cmd_help(char *args) {
 		}
 		printf("Unknown command '%s'\n", arg);
 	}
+	return 0;
+}
+
+static int cmd_si(char *args) {
+	int steps;
+
+	// whether has specific steps or not
+	if (NULL == args) {
+		cpu_exec(1);
+	} else {
+		sscanf(args, "%d", &steps);
+		cpu_exec(steps);
+	}
+
 	return 0;
 }
 
