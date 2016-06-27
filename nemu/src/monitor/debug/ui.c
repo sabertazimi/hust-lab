@@ -144,13 +144,38 @@ static int cmd_x(char *args) {
 }
 
 void ui_mainloop() {
+
+	// offset for history list
+	int offset = 0;
+
+	HIST_ENTRY * cmd_prev = NULL;
+
 	while(1) {
+		offset = where_history();
+
+		while(cmd_prev == NULL) {
+			cmd_prev = history_get(offset--);
+
+			if (offset < 0) {
+				break;
+			}
+		}
+
 		char *str = rl_gets();
 		char *str_end = str + strlen(str);
 
 		/* extract the first token as the command */
 		char *cmd = strtok(str, " ");
-		if(cmd == NULL) { continue; }
+		if(cmd == NULL) {
+			if (cmd_prev->line) {
+				cmd = strtok((char *)(cmd_prev->line), " ");
+				str_end = (char *)(cmd_prev->line + strlen(cmd_prev->line));
+			} else {
+				continue;
+			}
+		}
+
+		cmd_prev = current_history();
 
 		/* treat the remaining string as the arguments,
 		 * which may need further parsing
