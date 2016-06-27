@@ -5,6 +5,8 @@
  */
 #include <sys/types.h>
 #include <regex.h>
+#include <stdlib.h>
+#include <elf.h>
 
 enum {
 	NOTYPE = 256,
@@ -45,6 +47,7 @@ static struct rule {
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
 
 static regex_t re[NR_REGEX];
+static uint8_t token_priority[300];
 
 /* Rules are used for many times.
  * Therefore we compile them only once before any usage.
@@ -61,6 +64,14 @@ void init_regex() {
 			Assert(ret == 0, "regex compilation failed: %s\n%s", error_msg, rules[i].regex);
 		}
 	}
+
+	// establish token priority table
+	token_priority['!'] = token_priority[DEREF] = 5;
+	token_priority['*'] = token_priority['/'] = 4;
+	token_priority['+'] = token_priority['-'] = 3;
+	token_priority[EQ] = token_priority[NEQ] = 2;
+	token_priority[AND] = 1;
+	token_priority[OR] = 0;
 }
 
 typedef struct token {
@@ -71,6 +82,7 @@ typedef struct token {
 Token tokens[32];
 int nr_token;
 
+// step one: generate tokens
 static bool make_token(char *e) {
 	int position = 0;
 	int i;
@@ -94,7 +106,19 @@ static bool make_token(char *e) {
 				 */
 
 				switch(rules[i].token_type) {
-					default: panic("please implement me");
+					case DECIMAL_NUM:
+					case HEX_NUM:
+					case REGS:
+					case VAR:
+						strncpy(tokens[nr_token].str, substr_start, substr_len);
+						tokens[nr_token].str[substr_len] = '\0';
+						tokens[nr_token++].type = rules[i].token_type;
+						break;
+					case NOTYPE:
+						break;
+					default:
+						tokens[nr_token++].type = rules[i].token_type;
+						break;
 				}
 
 				break;
@@ -108,6 +132,80 @@ static bool make_token(char *e) {
 	}
 
 	return true;
+}
+
+// step two: generate token tree by priority
+// priority table will be initialized in function init_regex
+int get_dominant_op(Token *tokens, int p, int q, bool *success) {
+	int nr_parens = 0,
+		op = -1,
+		priority = -1,
+		type,
+		i;
+
+	*success = false;
+
+	for (i = p; i <= q; i++) {
+		type = tokens[i].type;
+
+		// dominant operator can't be in parensthese expression
+		if (type == "(") {
+			nr_parens += 1;
+		} else if (type == ")") {
+			nr_parens -= 1;
+		}
+
+		if (0 == nr_parens) {
+
+			// dominant operator can't be parensthese or number/variable/registers
+			switch (type) {
+				case DECIMAL_NUM:
+				case HEX_NUM:
+				case REGS:
+				case VAR:
+				case '(':
+				case ')':
+					continue;
+				// unkown token
+				default:
+					break;
+			}
+
+			// first loop
+			if (op == -1) {
+				*success = true;
+				op = i;
+				priority = token_priority[type];
+			} else {
+				// dominant operator must have lower priority
+				if (token_priority[type] <= priority) {
+					op = i;
+					priority = token_priority[type];
+				}
+			}
+		}
+	}
+
+	return op;
+}
+
+// step three: recursive evaluation
+
+/**
+ * helper function: check_parentheses
+ */
+bool check_parentheses(Token *tokens, int p, int q, bool *success) {
+	int nr_left = 0,
+		nr_right = 0,
+		i;
+
+	for (i = p; i <= q; i++) {
+		if (tokens[i].type == '(') {
+			nr_left += 1;
+		} else if (tokens[i].type == ')') {
+
+		}
+	}
 }
 
 uint32_t expr(char *e, bool *success) {

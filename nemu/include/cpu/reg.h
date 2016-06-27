@@ -30,6 +30,17 @@ typedef struct {
 	    };
     };
 
+	struct {
+		char *eax_name = "eax";
+		char *ecx_name = "ecx";
+		char *edx_name = "edx";
+		char *ebx_name = "ebx";
+		char *esp_name = "esp";
+		char *ebp_name = "ebp";
+		char *esi_name = "esi";
+		char *edi_name = "edi";
+	};
+
     swaddr_t eip;
 
 } CPU_state;
