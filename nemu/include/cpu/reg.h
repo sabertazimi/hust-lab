@@ -1,6 +1,7 @@
 #ifndef __REG_H__
 #define __REG_H__
 
+#include <stdint.h>
 #include "common.h"
 
 enum { R_EAX, R_ECX, R_EDX, R_EBX, R_ESP, R_EBP, R_ESI, R_EDI };
@@ -29,17 +30,6 @@ typedef struct {
 		    uint32_t eax, ecx, edx, ebx, esp, ebp, esi, edi;
 	    };
     };
-
-	struct {
-		char *eax_name = "eax";
-		char *ecx_name = "ecx";
-		char *edx_name = "edx";
-		char *ebx_name = "ebx";
-		char *esp_name = "esp";
-		char *ebp_name = "ebp";
-		char *esi_name = "esi";
-		char *edi_name = "edi";
-	};
 
     swaddr_t eip;
 

@@ -140,6 +140,52 @@ int print_watchpoints(void) {
 }
 
 static int cmd_x(char *args) {
+	if(!args) {
+		printf("\033[1m\033[31mMissing required parameters\n\033[0m");
+		return 0;
+	}
+	uint32_t num,
+             addr,
+             i;
+    // j
+
+	char *n = strtok(NULL, " ");
+
+	if (sscanf(n, "%u", &num) < 1) {
+		printf("\033[1m\033[31mInvalid ram unit numbers\n\033[0m");
+		return 0;
+	}
+
+	char *expression = n + strlen(n) + 1;
+	bool success = false;
+	addr = expr(expression, &success);
+
+	if(!success){
+		printf("\033[1m\033[31mInvalid expression\n\033[0m");
+		return 0;
+	}
+
+    for (i = 0; i < num; i++ ) {
+		printf("\033[1m\033[35m0x%08x:\t\n", addr + i);
+    }
+
+    printf("\n\033[0m");
+
+    /**
+     * TODO: implement cache/memory
+     *
+	for(i = 0; i < num; i += 4) {
+		printf("\033[1m\033[35m0x%08x:\t", addr + i * 4);
+
+		for(j = 0; i + j< num && j < NR_RAM_UNIT_EACH_LINE; ++j) {
+			printf("0x%08x\t", swaddr_read(addr + (i + j) * 4, 4));
+		}
+
+		printf("\n\033[0m");
+	}
+     *
+     */
+
 	return 0;
 }
 

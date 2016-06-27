@@ -8,6 +8,12 @@
 #include <stdlib.h>
 #include <elf.h>
 
+uint32_t expr(char *, bool *);
+
+extern char *strtab;
+extern Elf32_Sym *symtab;
+extern int nr_symtab_entry;
+
 enum {
 	NOTYPE = 256,
 	DECIMAL_NUM,
@@ -149,9 +155,9 @@ int get_dominant_op(Token *tokens, int p, int q, bool *success) {
 		type = tokens[i].type;
 
 		// dominant operator can't be in parensthese expression
-		if (type == "(") {
+		if (type == '(') {
 			nr_parens += 1;
-		} else if (type == ")") {
+		} else if (type == ')') {
 			nr_parens -= 1;
 		}
 
@@ -203,19 +209,225 @@ bool check_parentheses(Token *tokens, int p, int q, bool *success) {
 		if (tokens[i].type == '(') {
 			nr_left += 1;
 		} else if (tokens[i].type == ')') {
+			nr_right += 1;
 
+			// no matching parentheses
+			if (nr_right > nr_left) {
+				*success = false;
+				return false;
+			}
 		}
 	}
+
+	// no matching parentheses
+	if (nr_right != nr_left) {
+		*success = false;
+		return false;
+	}
+
+	*success = true;
+
+	if (tokens[p].type == '(' && tokens[q].type == ')') {
+		nr_left = nr_right = 0;
+
+		for (i = p + 1; i <= q - 1; ++i) {
+			if (tokens[i].type == '(') {
+				nr_left += 1;
+			} else if (tokens[i].type == ')') {
+				nr_right += 1;
+
+				if(nr_right > nr_left) {
+					return false;
+				}
+			}
+		}
+
+		return true;
+	}
+
+	return false;
+}
+
+char regs_name[][5] = {
+	"eax", "ecx", "edx", "ebx", "esp", "ebp", "esi", "edi", "eip"
+};
+
+uint32_t regs_num = 9;
+
+/**
+ * recursive evaluation
+ */
+uint32_t eval(Token *tokens, int p, int q, bool *success) {
+	int i;
+
+	// recursive termination condition
+	if (p > q) {
+		*success = false;
+		return 0;
+	} else if (p == q) {
+		if (tokens[p].type == DECIMAL_NUM) {
+			*success = true;
+			return strtoul(tokens[p].str, NULL, 10);
+		} else if (tokens[p].type == HEX_NUM) {
+			*success = true;
+			return strtoul(tokens[p].str, NULL, 16);
+		} else if (tokens[p].type == REGS) {
+			for (i = 0; i < regs_num; i++) {
+				if (strcmp(tokens[p].str + 1, regs_name[i]) == 0) {
+					break;
+				}
+			}
+
+			*success = true;
+
+			switch (i) {
+				case 0:
+					return cpu.eax;
+				case 1:
+					return cpu.ecx;
+				case 2:
+					return cpu.edx;
+				case 3:
+					return cpu.ebx;
+				case 4:
+					return cpu.esp;
+				case 5:
+					return cpu.ebp;
+				case 6:
+					return cpu.esi;
+				case 7:
+					return cpu.edi;
+				case 8:
+					return cpu.eip;
+				default:
+					*success = false;
+					return 0;
+			}
+		} else if (tokens[p].type == VAR) {
+			*success = true;
+
+			for (i = 0; i < nr_symtab_entry; i++) {
+				Elf32_Sym * syb = symtab + i;
+
+				if (ELF32_ST_TYPE(syb->st_info) == STT_OBJECT) {
+					if (0 == strcmp(tokens[p].str, strtab+syb->st_name)) {
+						return syb->st_value;
+					}
+				}
+			}
+
+			*success = false;
+			return 0;
+		} else {
+			*success = false;
+			return 0;
+		}
+	} else {
+		if (check_parentheses(tokens, p, q, success) == true) {
+			return eval(tokens, p + 1, q - 1, success);
+		}
+
+		if (*success == false) {
+			return 0;
+		}
+
+		int op = get_dominant_op(tokens, p, q, success);
+
+		if (*success == false) {
+			return 0;
+		}
+
+		uint32_t val1 = 0;
+
+		if (tokens[op].type != NOT && tokens[op].type != DEREF) {
+			val1 = eval(tokens, p, op -1, success);
+			if (*success == false) {
+				return 0;
+			}
+		}
+
+		uint32_t val2 = eval(tokens, op + 1, q, success);
+
+		if (*success == false) {
+			return 0;
+		}
+
+		*success = true;
+
+		switch (tokens[op].type) {
+			case '+':
+				return val1 + val2;
+			case '-':
+				return val1 - val2;
+			case '*':
+				return val1 * val2;
+			case '/':
+				return val1 / val2;
+			case EQ :
+				return val1 == val2;
+			case NEQ:
+				return val1 != val2;
+			case AND:
+				return val1 && val2;
+			case OR:
+				return val1 || val2;
+			case NOT:
+				return !val2;
+			case DEREF:
+				// TODO: implement cache/memory
+                // return swaddr_read(val2, 4, DS);
+                return val2;
+			default:
+				assert(0);
+				break;
+		}
+	}
+
+	return 0;
 }
 
 uint32_t expr(char *e, bool *success) {
-	if(!make_token(e)) {
+	int i;
+
+	if (!make_token(e)) {
 		*success = false;
 		return 0;
 	}
 
-	/* TODO: Insert codes to evaluate the expression. */
-	panic("please implement me");
-	return 0;
+	for (i = 0; i < nr_token; ++i) {
+		if (tokens[i].type == '*') {
+			if (i == 0) {
+				tokens[i].type = DEREF;
+				continue;
+			}
+
+			switch (tokens[i - 1].type) {
+				case DEREF:
+				case '(':
+				case '+':
+				case '-':
+				case '*':
+				case '/':
+				case EQ:
+				case NEQ:
+				case AND:
+				case OR:
+				case NOT:
+					tokens[i].type = DEREF;
+					break;
+				case DECIMAL_NUM:
+				case HEX_NUM:
+				case ')':
+				case VAR:
+				case REGS:
+					break;
+				default:
+					assert(0);
+					break;
+			}
+		}
+	}
+
+	return eval(tokens, 0, nr_token - 1, success);
 }
 
