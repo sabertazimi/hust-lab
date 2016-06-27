@@ -18,7 +18,7 @@ char* rl_gets() {
 		line_read = NULL;
 	}
 
-	line_read = readline("(nemu) ");
+	line_read = readline("\033[33m(nemu) \033[0m");
 
 	if (line_read && *line_read) {
 		add_history(line_read);
@@ -76,17 +76,17 @@ static int cmd_help(char *args) {
 	if(arg == NULL) {
 		/* no argument given */
 		for(i = 0; i < NR_CMD; i ++) {
-			printf("%s - %s\n", cmd_table[i].name, cmd_table[i].description);
+			printf("\033[1m\033[31m%s - %s\n\033[0m", cmd_table[i].name, cmd_table[i].description);
 		}
 	}
 	else {
 		for(i = 0; i < NR_CMD; i ++) {
 			if(strcmp(arg, cmd_table[i].name) == 0) {
-				printf("%s - %s\n", cmd_table[i].name, cmd_table[i].description);
+				printf("\033[1m\033[31m%s - %s\n\033[0m", cmd_table[i].name, cmd_table[i].description);
 				return 0;
 			}
 		}
-		printf("Unknown command '%s'\n", arg);
+		printf("\033[1m\033[31mUnknown command '%s'\n\033[0m", arg);
 	}
 	return 0;
 }
@@ -109,28 +109,28 @@ static int cmd_info(char *args) {
 	args = strtok(args, " ");
 
 	if (NULL == args) {
-		printf("Missing required parameters\n");
+		printf("\033[1m\033[31mMissing required parameters\n\033[0m");
 	} else if (strcmp(args, "r") == 0) {
 		print_registers();
 	} else if (strcmp(args, "w") == 0) {
 		print_watchpoints();
 	} else {
-		printf("Unknown command '%s'\n", args);
+		printf("\033[1m\033[31mUnknown command '%s'\n\033[0m", args);
 	}
 
 	return 0;
 }
 
 int print_registers(void) {
-	printf("eax\t\t0x%08x\t%d\n",cpu.eax, cpu.eax);
-	printf("ecx\t\t0x%08x\t%d\n",cpu.ecx, cpu.ecx);
-	printf("edx\t\t0x%08x\t%d\n",cpu.edx, cpu.edx);
-	printf("ebx\t\t0x%08x\t%d\n",cpu.ebx, cpu.ebx);
-	printf("esp\t\t0x%08x\t%d\n",cpu.esp, cpu.esp);
-	printf("ebp\t\t0x%08x\t%d\n",cpu.ebp, cpu.ebp);
-	printf("esi\t\t0x%08x\t%d\n",cpu.esi, cpu.esi);
-	printf("edi\t\t0x%08x\t%d\n",cpu.edi, cpu.edi);
-	printf("eip\t\t0x%08x\t%d\n",cpu.eip, cpu.eip);
+	printf("\033[1m\033[35meax\t\t0x%08x\t%d\n\033[0m",cpu.eax, cpu.eax);
+	printf("\033[1m\033[35mecx\t\t0x%08x\t%d\n\033[0m",cpu.ecx, cpu.ecx);
+	printf("\033[1m\033[35medx\t\t0x%08x\t%d\n\033[0m",cpu.edx, cpu.edx);
+	printf("\033[1m\033[35mebx\t\t0x%08x\t%d\n\033[0m",cpu.ebx, cpu.ebx);
+	printf("\033[1m\033[35mesp\t\t0x%08x\t%d\n\033[0m",cpu.esp, cpu.esp);
+	printf("\033[1m\033[35mebp\t\t0x%08x\t%d\n\033[0m",cpu.ebp, cpu.ebp);
+	printf("\033[1m\033[35mesi\t\t0x%08x\t%d\n\033[0m",cpu.esi, cpu.esi);
+	printf("\033[1m\033[35medi\t\t0x%08x\t%d\n\033[0m",cpu.edi, cpu.edi);
+	printf("\033[1m\033[35meip\t\t0x%08x\t%d\n\033[0m",cpu.eip, cpu.eip);
 
 	return 0;
 }
@@ -198,6 +198,6 @@ void ui_mainloop() {
 			}
 		}
 
-		if(i == NR_CMD) { printf("Unknown command '%s'\n", cmd); }
+		if(i == NR_CMD) { printf("\033[1m\033[31mUnknown command '%s'\n\033[0m", cmd); }
 	}
 }
