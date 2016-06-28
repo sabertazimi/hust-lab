@@ -42,13 +42,11 @@ static int cmd_si(char *args);
 
 static int cmd_info(char *args);
 
-/**
- * two simple helper functions for cmd_info
- */
 int print_registers(void);
-int print_watchpoints(void);
 
 static int cmd_x(char *args);
+
+static int cmd_w(char *);
 
 static struct {
 	char *name;
@@ -60,10 +58,10 @@ static struct {
 	{ "q", "Exit NEMU", cmd_q },
 
 	/* TODO: Add more commands */
-	{ "si", "Step one instruction exactly", cmd_si},
-	{"info", "List of integer registers contents and specified watchpoints", cmd_info},
-	{"x", "Print value of expression EXP each time the program stops", cmd_x}
-
+	{ "si", "Step one instruction exactly", cmd_si },
+	{ "info", "List of integer registers contents and specified watchpoints", cmd_info },
+	{ "x", "Print value of expression EXP each time the program stops", cmd_x },
+	{ "w", "Set watchpoint", cmd_w }
 };
 
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
@@ -135,10 +133,6 @@ int print_registers(void) {
 	return 0;
 }
 
-int print_watchpoints(void) {
-	return 0;
-}
-
 static int cmd_x(char *args) {
 	if(!args) {
 		printf("\033[1m\033[31mMissing required parameters\n\033[0m");
@@ -186,6 +180,40 @@ static int cmd_x(char *args) {
      *
      */
 
+	return 0;
+}
+
+static int cmd_w(char *args) {
+	if (!args) {
+		printf("\033[1m\033[31mMissing required parameters\n\033[0m");
+		return 0;
+	}
+
+	while (*args == ' ') {
+		args++;
+	}
+
+	WP *wp = new_wp();
+
+	if (!wp) {
+		printf("\033[1m\033[31mNo enough watchpoints\n\033[0m");
+		return 0;
+	}
+
+	bool success = false;
+
+	wp->old_val = expr(args, &success);
+
+	if (!success) {
+		if(!free_wp(wp->NO)){
+			printf("\033[1m\033[31mNo required watchpoint.\n\033[0m");
+			return 0;
+		}
+		printf("\033[1m\033[31mInvalid expression.\n\033[0m");
+		return 0;
+	}
+
+	strcpy(wp->str, args);
 	return 0;
 }
 
