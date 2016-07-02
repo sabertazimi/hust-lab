@@ -555,6 +555,24 @@ begin : break
 end
 ```
 
+## 结构建模
+
+### generate 语句
+
+```verilog
+generate
+    for (gv_i = 0; gv_i < SIZE; gv_i = gv_i + 1)
+        begin: sblka
+            xor uxor (y[gv_i], a[gv_i], b[gv_i]);
+        end
+endgenerate
+// =>
+// module.sblka[0].uxor
+// module.sblka[1].uxor
+// module.sblka[2].uxor
+// ...
+```
+
 ## Delay(时延)
 
 -   语句内时延
