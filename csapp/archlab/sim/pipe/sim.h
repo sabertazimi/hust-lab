@@ -1,3 +1,9 @@
+/****** HAS_GUI compile flag *****/
+
+#ifndef HAS_GUI
+#define HAS_GUI
+#endif
+
 
 /********** Typedefs ************/
 
@@ -18,7 +24,6 @@ typedef enum { IF_STAGE, ID_STAGE, EX_STAGE, MEM_STAGE, WB_STAGE } stage_id_t;
 
 /* Get rb out of one byte regid field */
 #define GET_RB(r) LO4(r)
-
 
 /************ Global state declaration ****************/
 
@@ -127,7 +132,7 @@ void sim_set_dumpfile(FILE *file);
  */
 void sim_log( const char *format, ... );
 
- 
+
 /******************* GUI Interface Functions **********************/
 #ifdef HAS_GUI
 
@@ -150,4 +155,4 @@ void show_stat(stat_t stat);
 void create_memory_display();
 void set_memory(word_t addr, word_t val);
 #endif
-								       
+
