@@ -1,10 +1,3 @@
-/****** HAS_GUI compile flag *****/
-
-#ifndef HAS_GUI
-#define HAS_GUI
-#endif
-
-
 /********** Typedefs ************/
 
 /* EX stage mux settings */
