@@ -24,5 +24,6 @@ rebuild:
 	make clean && make
 
 test: 
+	make rebuild
 	./driver
 

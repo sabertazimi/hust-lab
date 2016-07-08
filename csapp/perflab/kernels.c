@@ -6,17 +6,17 @@
 #include <stdlib.h>
 #include "defs.h"
 
-/* 
- * Please fill in the following team struct 
+/*
+ * Please fill in the following team struct
  */
 team_t team = {
-    "bovik",              /* Team name */
+    "hust",                   /* Team name */
 
-    "Harry Q. Bovik",     /* First member full name */
-    "bovik@nowhere.edu",  /* First member email address */
+    "sabertazimi",            /* First member full name */
+    "sabertazimi@gmail.com",  /* First member email address */
 
-    "",                   /* Second member full name (leave blank if none) */
-    ""                    /* Second member email addr (leave blank if none) */
+    "hustlyl",                /* Second member full name (leave blank if none) */
+    "hustlyl@163.com"         /* Second member email addr (leave blank if none) */
 };
 
 /***************
@@ -27,11 +27,11 @@ team_t team = {
  * Your different versions of the rotate kernel go here
  ******************************************************/
 
-/* 
- * naive_rotate - The naive baseline version of rotate 
+/*
+ * naive_rotate - The naive baseline version of rotate
  */
 char naive_rotate_descr[] = "naive_rotate: Naive baseline implementation";
-void naive_rotate(int dim, pixel *src, pixel *dst) 
+void naive_rotate(int dim, pixel *src, pixel *dst)
 {
     int i, j;
 
@@ -40,14 +40,41 @@ void naive_rotate(int dim, pixel *src, pixel *dst)
 	    dst[RIDX(dim-1-j, i, dim)] = src[RIDX(i, j, dim)];
 }
 
-/* 
+/*
  * rotate - Your current working version of rotate
  * IMPORTANT: This is the version you will be graded on
  */
-char rotate_descr[] = "rotate: Current working version";
-void rotate(int dim, pixel *src, pixel *dst) 
+char rotate_descr[] = "rotate: Hust version";
+void rotate(int dim, pixel *src, pixel *dst)
 {
-    naive_rotate(dim, src, dst);
+  	int i,j;
+
+    pixel *dptr,*sptr;
+
+    for(i=0;i<dim;i+=16) {
+        for(j=dim-1;j>=0;j--) {
+
+            dptr=dst+RIDX(dim-1-j,i,dim);
+            sptr=src+RIDX(i,j,dim);
+
+            *(dptr)=*(sptr);sptr+=dim;
+            *(dptr+1)=*(sptr);sptr+=dim;
+            *(dptr+2)=*(sptr);sptr+=dim;
+            *(dptr+3)=*(sptr);sptr+=dim;
+            *(dptr+4)=*(sptr);sptr+=dim;
+            *(dptr+5)=*(sptr);sptr+=dim;
+            *(dptr+6)=*(sptr);sptr+=dim;
+            *(dptr+7)=*(sptr);sptr+=dim;
+            *(dptr+8)=*(sptr);sptr+=dim;
+            *(dptr+9)=*(sptr);sptr+=dim;
+            *(dptr+10)=*(sptr);sptr+=dim;
+            *(dptr+11)=*(sptr);sptr+=dim;
+            *(dptr+12)=*(sptr);sptr+=dim;
+            *(dptr+13)=*(sptr);sptr+=dim;
+            *(dptr+14)=*(sptr);sptr+=dim;
+            *(dptr+15)=*(sptr);
+    	}
+    }
 }
 
 /*********************************************************************
@@ -55,13 +82,13 @@ void rotate(int dim, pixel *src, pixel *dst)
  *     of the rotate kernel with the driver by calling the
  *     add_rotate_function() for each test function. When you run the
  *     driver program, it will test and report the performance of each
- *     registered test function.  
+ *     registered test function.
  *********************************************************************/
 
-void register_rotate_functions() 
+void register_rotate_functions()
 {
-    add_rotate_function(&naive_rotate, naive_rotate_descr);   
-    add_rotate_function(&rotate, rotate_descr);   
+    add_rotate_function(&naive_rotate, naive_rotate_descr);
+    add_rotate_function(&rotate, rotate_descr);
     /* ... Register additional test functions here */
 }
 
@@ -87,21 +114,21 @@ typedef struct {
 static int min(int a, int b) { return (a < b ? a : b); }
 static int max(int a, int b) { return (a > b ? a : b); }
 
-/* 
- * initialize_pixel_sum - Initializes all fields of sum to 0 
+/*
+ * initialize_pixel_sum - Initializes all fields of sum to 0
  */
-static void initialize_pixel_sum(pixel_sum *sum) 
+static void initialize_pixel_sum(pixel_sum *sum)
 {
     sum->red = sum->green = sum->blue = 0;
     sum->num = 0;
     return;
 }
 
-/* 
- * accumulate_sum - Accumulates field values of p in corresponding 
- * fields of sum 
+/*
+ * accumulate_sum - Accumulates field values of p in corresponding
+ * fields of sum
  */
-static void accumulate_sum(pixel_sum *sum, pixel p) 
+static void accumulate_sum(pixel_sum *sum, pixel p)
 {
     sum->red += (int) p.red;
     sum->green += (int) p.green;
@@ -110,10 +137,10 @@ static void accumulate_sum(pixel_sum *sum, pixel p)
     return;
 }
 
-/* 
- * assign_sum_to_pixel - Computes averaged pixel value in current_pixel 
+/*
+ * assign_sum_to_pixel - Computes averaged pixel value in current_pixel
  */
-static void assign_sum_to_pixel(pixel *current_pixel, pixel_sum sum) 
+static void assign_sum_to_pixel(pixel *current_pixel, pixel_sum sum)
 {
     current_pixel->red = (unsigned short) (sum.red/sum.num);
     current_pixel->green = (unsigned short) (sum.green/sum.num);
@@ -121,19 +148,24 @@ static void assign_sum_to_pixel(pixel *current_pixel, pixel_sum sum)
     return;
 }
 
-/* 
- * avg - Returns averaged pixel value at (i,j) 
+/*
+ * avg - Returns averaged pixel value at (i,j)
  */
-static pixel avg(int dim, int i, int j, pixel *src) 
+static pixel avg(int dim, int i, int j, pixel *src)
 {
     int ii, jj;
+    int min_i = min(i + 1, dim - 1);
+    int min_j = min(j + 1, dim - 1);
     pixel_sum sum;
     pixel current_pixel;
 
     initialize_pixel_sum(&sum);
-    for(ii = max(i-1, 0); ii <= min(i+1, dim-1); ii++) 
-	for(jj = max(j-1, 0); jj <= min(j+1, dim-1); jj++) 
-	    accumulate_sum(&sum, src[RIDX(ii, jj, dim)]);
+
+    for(ii = max(i-1, 0); ii <= min_i; ii++) {
+	    for(jj = max(j-1, 0); jj <= min_j; jj++) {
+	        accumulate_sum(&sum, src[RIDX(ii, jj, dim)]);
+        }
+    }
 
     assign_sum_to_pixel(&current_pixel, sum);
     return current_pixel;
@@ -144,10 +176,10 @@ static pixel avg(int dim, int i, int j, pixel *src)
  ******************************************************/
 
 /*
- * naive_smooth - The naive baseline version of smooth 
+ * naive_smooth - The naive baseline version of smooth
  */
 char naive_smooth_descr[] = "naive_smooth: Naive baseline implementation";
-void naive_smooth(int dim, pixel *src, pixel *dst) 
+void naive_smooth(int dim, pixel *src, pixel *dst)
 {
     int i, j;
 
@@ -157,22 +189,29 @@ void naive_smooth(int dim, pixel *src, pixel *dst)
 }
 
 /*
- * smooth - Your current working version of smooth. 
+ * smooth - Your current working version of smooth.
  * IMPORTANT: This is the version you will be graded on
  */
-char smooth_descr[] = "smooth: Current working version";
-void smooth(int dim, pixel *src, pixel *dst) 
+char smooth_descr[] = "smooth: Hust version";
+void smooth(int dim, pixel *src, pixel *dst)
 {
-    naive_smooth(dim, src, dst);
+    register int i, j;
+    register int reg_dim = dim;
+    register pixel * reg_src = src;
+    register pixel * reg_dst = dst;
+
+    for (i = 0; i < reg_dim; i++)
+	for (j = 0; j < reg_dim; j++)
+	    reg_dst[RIDX(i, j, reg_dim)] = avg(reg_dim, i, j, reg_src);
 }
 
 
-/********************************************************************* 
+/*********************************************************************
  * register_smooth_functions - Register all of your different versions
  *     of the smooth kernel with the driver by calling the
  *     add_smooth_function() for each test function.  When you run the
  *     driver program, it will test and report the performance of each
- *     registered test function.  
+ *     registered test function.
  *********************************************************************/
 
 void register_smooth_functions() {
