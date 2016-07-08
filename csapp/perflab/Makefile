@@ -1,5 +1,5 @@
 # Student's Makefile for the CS:APP Performance Lab
-TEAM = bovik
+TEAM = sabertazimi
 VERSION = 1
 HANDINDIR = 
 
@@ -20,4 +20,9 @@ handin:
 clean: 
 	-rm -f $(OBJS) driver core *~ *.o
 
+rebuild:
+	make clean && make
+
+test: 
+	./driver
 
