@@ -1,7 +1,9 @@
 /* 
  * tsh - A tiny shell program with job control
  * 
- * <Put your name and login ID here>
+ * Name: sabertazimi
+ * userID: U201414800
+ * email: sabertazimi@gmail.com
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,6 +14,15 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <errno.h>
+
+#define LOG_DEBUG_STR
+#undef LOG_DEBUG_STR
+
+#ifdef LOG_DEBUG_STR
+  #define Error(args...) fprintf(stderr, args);
+#else
+  #define Error(args...)
+#endif
 
 /* Misc manifest constants */
 #define MAXLINE    1024   /* max line size */
