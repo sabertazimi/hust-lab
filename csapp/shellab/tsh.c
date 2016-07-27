@@ -139,7 +139,7 @@ void Sigprocmask(int how, const sigset_t *set, sigset_t *oldset) {
     }
 }
 
-void Execve(const char*filename, const char *argv[], const char *envp[]) {
+void Execve(const char*filename, char * const *argv, char * const *envp) {
     if (execve(filename, argv, envp) == -1) {
         printf("%s: Command not found\n", filename);
     }
@@ -239,7 +239,7 @@ int main(int argc, char **argv)
 */
 void eval(char *cmdline) 
 {
-    char *argv[MAXARGS] = {NULl};
+    char *argv[MAXARGS] = {NULL};
     int bg = parseline(cmdline, argv);
 
     if (!argv[0]) {
