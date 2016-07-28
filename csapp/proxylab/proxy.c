@@ -115,6 +115,7 @@ void parse_url(char *url, char *hostname, char *query_path, int *port) {
     }
 }
 
+// treat proxy as client
 int connect_server(char *hostname, int port, char *query_path) {
     char buf[MAXLINE];
     int proxy_clientfd;
@@ -128,4 +129,133 @@ int connect_server(char *hostname, int port, char *query_path) {
     Rio_writen(proxy_clientfd, "\r\n", strlen("\r\n"));
 
     return proxy_clientfd;
+}
+
+// treat proxy as server
+void *thread(void *p) {
+    // make thread can be free automatically
+    Pthread_detach(pthread_self());
+
+    int connfd = ((struct arg*)p->)connfd,
+        turn = ((struct arg*)p)->turn;
+    free(p);
+
+    char buf[MAXLINE];
+    char method[MAXLINE],
+         version[MAXLINE],
+         url[MAXLINE];
+    char host[MAXLINE],
+         query[MAXLINE];
+    char url_tmp[300],
+         *data_tmp;
+    rio_t rio;
+    int index,
+        port,
+        content_length;
+    int serverfd;
+
+    rio_readinitb(&rio, connfd);
+    rio_readlineb(&rio, buf, MAXLINE);
+    sscanf(buf, "%s %s %s", method, url, version);
+
+    if (strcasecmp(method, "GET")) {
+        printf("Not Get\r\n");
+        Close(connfd);
+        return NULL;
+    }
+
+    do {
+        rio_readlineb(&rio, buf, MAXLINE - 1);
+    } while (strcmp(buf, "\r\n"));
+
+    for (index = 0; index < 10; index++) {
+        cache_url_read(index, url_tmp);
+        if (!strcmp(url, url_tmp)) {
+            // found in cache
+            break;
+        }
+    }
+
+    data_tmp = (char *)Malloc(MAX_OBJECT_SIZE);
+    data_tmp[0] = '\0';
+
+    if (index < 10) {
+        // directly return data(cache) to client(browser)
+        cache_data_read(index, data_tmp, turn);
+        rio_writen(connfd, data_tmp, strlen(data_tmp));
+        Close(connfd);
+        free(data_tmp);
+        return NULL;
+    }
+
+   // connect to server
+   parse_url(url, host, query, &post);
+
+   if ((serverfd = connect_server(host, port, query)) < 0) {
+        free(data_tmp);
+        Close(connfd);
+        return NULL;
+   }
+
+   rio_readlineb(&rio, serverfd);
+   content_length = 0;
+
+   // read response header
+   do {
+       int t = rio_readlineb(&rio, buf, MAXLINE - 1);
+
+       if ( t <= 0) {
+           break;
+       }
+
+       strncat(data_tmp, buf, t);
+
+       if (strstr(buf, "Content-length") != NULL) {
+           sscanf(buf, "Content-length: %d\r\n", &content_length);
+       }
+
+       rio_writen(connfd, buf, t);
+   } while (strcmp(buf, "\r\n"));
+
+   // read response body
+   if (content_length + strlen(data_tmp) < MAX_OBJECT_SIZE) {
+        while (content_length > 0) {
+            int t = rio_readnb(&rio, buf, (content_length < MAXLINE - 1) ? content_length : MAXLINE - 1);
+
+            if (t <= 0) {
+                continue;
+            }
+
+            content_length -= t;
+            strncat(data_tmp, buf, t);
+            rio_writen(connfd, buf, t);
+        }
+        
+        index = 0;
+        for(int i = 1; i < 10; i++) {
+            if(cache_turn_read(i) < cache_turn_read(index)) {
+                index = i;
+            }
+        }
+
+        // cache write
+        cache_write(index, url, data_tmp, turn);
+    } else {
+        // there no enough cache space
+        while(content_length > 0) {
+             int t = rio_readnb(&rio, buf, (content_length < MAXLINE - 1) ? content_length : MAXLINE - 1);
+
+             if(t <= 0) {
+                 break;
+             }
+
+             content_length -= t;
+             rio_writen(connfd, buf, t);
+         }
+    }
+
+     Close(connfd);
+     Close(serverfd);
+     free(data_tmp);
+     return NULL;
 }
