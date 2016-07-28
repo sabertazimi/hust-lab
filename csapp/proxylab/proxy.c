@@ -15,8 +15,8 @@ struct arg {
     int turn;
 };
 
-void parse_url(char *url, char *hostname, char *query_path, int *port);
-int connect_server(char *hostname, int port, char *query_path);
+void parse_url(char *url, char *hostname, char *query_path, char *port);
+int connect_server(char *hostname, char *port, char *query_path);
 void *thread(void *connfdp);
 
 struct cache_block {
@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
 {
     Signal(SIGPIPE, SIG_IGN);
     struct sockaddr_in clientaddr;
-    int port, listenfd, clientlen;
+    int listenfd, clientlen;
     int turn = 1;
     pthread_t tid;
     struct arg *p;
@@ -62,12 +62,11 @@ int main(int argc, char *argv[])
         cache_erase(i);
     }
 
-    port = atoi(argv[1]);
-    listenfd = Open_listenfd(port);
+    listenfd = Open_listenfd(argv[1]);
     clientlen = sizeof(clientaddr);
 
     while (1) {
-        p = (int *)Malloc(sizeof(struct arg));
+        p = (struct arg *)Malloc(sizeof(struct arg));
         p->connfd = Accept(listenfd, (SA*)&clientaddr, &clientlen);
         p->turn = turn++;
         Pthread_create(&tid, NULL, thread, (void *)p);
@@ -76,7 +75,7 @@ int main(int argc, char *argv[])
     return 0;
 }
 
-void parse_url(char *url, char *hostname, char *query_path, int *port) {
+void parse_url(char *url, char *hostname, char *query_path, char *port) {
     char _url[100];
     _url[0] = '\0';
     strcat(_url, url);
@@ -116,13 +115,13 @@ void parse_url(char *url, char *hostname, char *query_path, int *port) {
 }
 
 // treat proxy as client
-int connect_server(char *hostname, int port, char *query_path) {
+int connect_server(char *hostname, char *port, char *query_path) {
     char buf[MAXLINE];
     int proxy_clientfd;
 
     proxy_clientfd = Open_clientfd(hostname, port);
     sprintf(buf, "GET %s HTTP/1.0\r\n", query_path);
-    Rio_writen(proxy_clientfd, buf, strlen(buf);
+    Rio_writen(proxy_clientfd, buf, strlen(buf));
     Rio_writen(proxy_clientfd, user_agent_hdr, strlen(user_agent_hdr));
     Rio_writen(proxy_clientfd, accept_str, strlen(accept_str));
     Rio_writen(proxy_clientfd, connection, strlen(connection));
@@ -136,7 +135,7 @@ void *thread(void *p) {
     // make thread can be free automatically
     Pthread_detach(pthread_self());
 
-    int connfd = ((struct arg*)p->)connfd,
+    int connfd = ((struct arg*)p)->connfd,
         turn = ((struct arg*)p)->turn;
     free(p);
 
@@ -145,12 +144,12 @@ void *thread(void *p) {
          version[MAXLINE],
          url[MAXLINE];
     char host[MAXLINE],
+         port[MAXLINE],
          query[MAXLINE];
     char url_tmp[300],
          *data_tmp;
     rio_t rio;
     int index,
-        port,
         content_length;
     int serverfd;
 
@@ -189,7 +188,7 @@ void *thread(void *p) {
     }
 
    // connect to server
-   parse_url(url, host, query, &post);
+   parse_url(url, host, query, port);
 
    if ((serverfd = connect_server(host, port, query)) < 0) {
         free(data_tmp);
@@ -197,7 +196,6 @@ void *thread(void *p) {
         return NULL;
    }
 
-   rio_readlineb(&rio, serverfd);
    content_length = 0;
 
    // read response header
