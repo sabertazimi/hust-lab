@@ -259,3 +259,104 @@ void *thread(void *p) {
      free(data_tmp);
      return NULL;
 }
+
+void cache_erase(int index)
+{
+    cache[index].turn = 0;    
+    cache[index].url[0] = '\0';
+    cache[index].data[0] = '\0';
+    Sem_init(&cache[index].t_mutex, 0, 1);
+    Sem_init(&cache[index].t_w, 0, 1);
+    cache[index].t_readcnt = 0;
+    Sem_init(&cache[index].url_mutex, 0, 1);
+    Sem_init(&cache[index].url_w, 0, 1);
+    cache[index].url_readcnt = 0;
+    Sem_init(&cache[index].mutex, 0, 1);
+    Sem_init(&cache[index].w, 0, 1);
+    cache[index].readcnt = 0;
+}
+ 
+void cache_write(int index,char *url, char *data, int turn) {
+    // semaphore
+    P(&cache[index].url_w);
+    P(&cache[index].w);
+    P(&cache[index].t_w);
+
+    cache[index].turn = turn;
+    strcpy(cache[index].data, data);
+    strcpy(cache[index].url, url);
+
+    // semaphore
+    V(&cache[index].t_w);
+    V(&cache[index].w);
+    V(&cache[index].url_w);
+}
+ 
+void cache_data_read(int index, char *dst, int turn) {
+    // semaphore
+    P(&cache[index].mutex);
+    cache[index].readcnt++;
+    if (cache[index].readcnt == 1) {
+        P(&cache[index].w);
+    }
+    V(&cache[index].mutex);
+    P(&cache[index].t_w);
+
+    cache[index].turn=turn;
+    strcpy(dst,cache[index].data);
+
+    // semphore
+    V(&cache[index].t_w);
+    P(&cache[index].mutex);
+    if (cache[index].readcnt == 0) {
+        V(&cache[index].w);
+    }
+    cache[index].readcnt--;
+    V(&cache[index].mutex);
+}
+
+void cache_url_read(int index,char *dst)
+{
+    // semaphore
+    P(&cache[index].url_mutex);
+    cache[index].url_readcnt++;
+    if (cache[index].url_readcnt == 1) {
+        P(&cache[index].url_w);
+    }
+    V(&cache[index].url_mutex);
+
+    strcpy(dst,cache[index].url);
+
+    // semphore
+    P(&cache[index].url_mutex);
+    if (cache[index].url_readcnt == 0) {
+        V(&cache[index].url_w);
+    }
+    cache[index].url_readcnt--;
+    V(&cache[index].url_mutex);
+}
+
+int cache_turn_read(int index)
+{
+    int t;
+
+    // semaphore
+    P(&cache[index].t_mutex);
+    cache[index].t_readcnt++;
+    if (cache[index].t_readcnt == 1) {
+        P(&cache[index].t_w);
+    }
+    V(&cache[index].t_mutex);
+
+    t=cache[index].turn;
+
+    // semphore
+    P(&cache[index].t_mutex);
+    cache[index].t_readcnt--;
+    if (cache[index].t_readcnt == 0) {
+        V(&cache[index].t_w);
+    }
+    V(&cache[index].t_mutex);
+ 
+    return t;
+}
