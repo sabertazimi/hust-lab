@@ -57,6 +57,11 @@ test15:
 	$(DRIVER) -t trace15.txt -s $(TSH) -a $(TSHARGS)
 test16:
 	$(DRIVER) -t trace16.txt -s $(TSH) -a $(TSHARGS)
+test:
+	make test01;make test02;make test03;make test04;
+	make test05;make test06;make test07;make test08;
+	make test09;make test10;make test11;make test12;
+	make test13;make test14;make test15;make test16;
 
 # Run the tests using the reference shell program
 rtest01:
@@ -91,7 +96,11 @@ rtest15:
 	$(DRIVER) -t trace15.txt -s $(TSHREF) -a $(TSHARGS)
 rtest16:
 	$(DRIVER) -t trace16.txt -s $(TSHREF) -a $(TSHARGS)
-
+rtest:
+	make rtest01;make rtest02;make rtest03;make rtest04;
+	make rtest05;make rtest06;make rtest07;make rtest08;
+	make rtest09;make rtest10;make rtest11;make rtest12;
+	make rtest13;make rtest14;make rtest15;make rtest16;
 
 # clean up
 clean:
