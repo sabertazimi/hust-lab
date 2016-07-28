@@ -96,6 +96,20 @@ void app_error(char *msg);
 typedef void handler_t(int);
 handler_t *Signal(int signum, handler_t *handler);
 
+/* Begin of wrapper and helper function */
+
+pid_t Fork(void) {
+	pid_t pid;
+
+	if ((pid = fork()) < 0) {
+		unix_error("Fork error");
+	}
+
+	return pid;
+}
+
+/* End of wrapper and helper function */
+
 /*
  * main - The shell's main routine 
  */
