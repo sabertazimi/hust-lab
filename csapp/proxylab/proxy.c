@@ -15,9 +15,9 @@ struct arg {
     int turn;
 };
 
-void *thread(void *connfdp);
 void parse_url(char *url, char *hostname, char *query_path, int *port);
 int connect_server(char *hostname, int port, char *query_path);
+void *thread(void *connfdp);
 
 struct cache_block {
     char data[MAX_OBJECT_SIZE];
@@ -74,4 +74,58 @@ int main()
     }
 
     return 0;
+}
+
+void parse_url(char *url, char *hostname, char *query_path, int *port) {
+    char _url[100];
+    _url[0] = '\0';
+    strcat(_url, url);
+    hostname[0] = query_path[0] = '\0';
+    char *p = strstr(_url, "//");
+
+    if (p) {
+        p += 2;
+    } else {
+        p = _url;
+    }
+
+    char *q = strstr(p, ":");
+
+    if (q) {
+        *q = '\0';
+        sscanf(p, "%s", hostname);
+        sscanf(q+1, "%d%s", port, query_path);
+    } else {
+        q = strstr(p, "/");
+
+        if (q) {
+            *q = '\0';
+            sscanf(p, "%s", hostname);
+            *q = '/';
+            sscanf(q, "%s", query_path);
+        } else {
+            sscanf(p, "%s", hostname);
+        }
+
+        *port = 80;
+    }
+
+    if (strlen(query_path) <= 1) {
+        strcpy(query_path, "/index.html");
+    }
+}
+
+int connect_server(char *hostname, int port, char *query_path) {
+    char buf[MAXLINE];
+    int proxy_clientfd;
+
+    proxy_clientfd = Open_clientfd(hostname, port);
+    sprintf(buf, "GET %s HTTP/1.0\r\n", query_path);
+    Rio_writen(proxy_clientfd, buf, strlen(buf);
+    Rio_writen(proxy_clientfd, user_agent_hdr, strlen(user_agent_hdr));
+    Rio_writen(proxy_clientfd, accept_str, strlen(accept_str));
+    Rio_writen(proxy_clientfd, connection, strlen(connection));
+    Rio_writen(proxy_clientfd, "\r\n", strlen("\r\n"));
+
+    return proxy_clientfd;
 }
