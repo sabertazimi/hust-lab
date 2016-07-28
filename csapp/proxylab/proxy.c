@@ -31,7 +31,7 @@ struct cache_block {
     int t_readcnt;
 
     char url[300];
-    sem_t url_mutex
+    sem_t url_mutex;
     sem_t url_w;
     int url_readcnt;
 };
@@ -44,11 +44,11 @@ void cache_data_read(int index, char *dst, int turn);
 void cache_url_read(int index, char *dst);
 int cache_turn_read(int index);
 
-int main()
+int main(int argc, char *argv[])
 {
     Signal(SIGPIPE, SIG_IGN);
     struct sockaddr_in clientaddr;
-    int post, listenfd, clientlen;
+    int port, listenfd, clientlen;
     int turn = 1;
     pthread_t tid;
     struct arg *p;
@@ -59,7 +59,7 @@ int main()
     }
 
     for (int i = 0; i < 10; i++) {
-        cache_erase[i];
+        cache_erase(i);
     }
 
     port = atoi(argv[1]);
