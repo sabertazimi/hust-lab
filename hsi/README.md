@@ -1,7 +1,7 @@
 
 * [Hust Hardware/Software Interface](#hust-hardwaresoftware-interface)
-	* [Contact](#contact)
 	* [LICENSE](#license)
+	* [Contact](#contact)
 
 # Hust Hardware/Software Interface
 
@@ -13,10 +13,6 @@
 **University Learning**
 
 > 防止代码丢失，招致教师怨怼，你必须建立一个作业用repo -- 亚里士多德
-
-## Contact
-
--   e-mail: sabertazimi@gmail.com
 
 ## LICENSE
 
@@ -33,3 +29,8 @@ Being a dick includes - but is not limited to - the following instances:
 
 If you become rich through modifications, related worksrvices, or supporting the original work, share the love. Only a dick would make loads off this work and not buy the original works creator(s) a pint.Code is provided with no warranty. Using somebody else's code and bitching when it goes wrong makes you a DONKEY dick. Fix the problem yourself. A non-dick would submit the fix back.
 
+## Contact
+
+-   [![Email](https://img.shields.io/badge/mailto-sabertazimi-brightgreen.svg?style=flat-square)](mailto:sabertazimi@gmail.com)
+-   [![GitHub](https://img.shields.io/badge/contact-github-000000.svg?style=flat-square)](https://github.com/sabertazimi)
+-   [![Twitter](https://img.shields.io/badge/contact-twitter-blue.svg?style=flat-square)](https://twitter.com/sabertazimi)    

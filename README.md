@@ -1,7 +1,7 @@
 
 * [Hust Lab](#hust-lab)
-	* [Directory](#directory)
 	* [LICENSE](#license)
+	* [Contact](#contact)
 
 # Hust Lab
 
@@ -11,13 +11,6 @@
 [![License](https://img.shields.io/badge/license-HPL-blue.svg)](https://raw.githubusercontent.com/sabertazimi/hust-lab/master/LICENSE)
 
 **University Learning**
-
-## Directory
-
-1. assembly: For assembly language lab
-2. dataStructure: For data structure lab
-3. hsi: For hardware/software interface lab
-4. verilog: For verilog language lab
 
 ## LICENSE
 
@@ -33,3 +26,9 @@ Being a dick includes - but is not limited to - the following instances:
 2.   Reserve a copy of this project and tell your teacher that it is your own homework - Plagiarism is shame.
 
 If you become rich through modifications, related worksrvices, or supporting the original work, share the love. Only a dick would make loads off this work and not buy the original works creator(s) a pint.Code is provided with no warranty. Using somebody else's code and bitching when it goes wrong makes you a DONKEY dick. Fix the problem yourself. A non-dick would submit the fix back.
+
+## Contact
+
+-   [![Email](https://img.shields.io/badge/mailto-sabertazimi-brightgreen.svg?style=flat-square)](mailto:sabertazimi@gmail.com)
+-   [![GitHub](https://img.shields.io/badge/contact-github-000000.svg?style=flat-square)](https://github.com/sabertazimi)
+-   [![Twitter](https://img.shields.io/badge/contact-twitter-blue.svg?style=flat-square)](https://twitter.com/sabertazimi)    

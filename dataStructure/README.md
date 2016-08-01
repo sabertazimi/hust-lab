@@ -128,9 +128,8 @@ If you become rich through modifications, related worksrvices, or supporting the
 
 (4)通过此次课程设计，有效地掌握了堆排序算法以及优先级队列这一数据结构，收获颇丰。
 
-## Daily Lab
-
 ## Contact
 
--   e-mail: sabertazimi@gmail.com
--   QQ && WeChat: 2426543832
+-   [![Email](https://img.shields.io/badge/mailto-sabertazimi-brightgreen.svg?style=flat-square)](mailto:sabertazimi@gmail.com)
+-   [![GitHub](https://img.shields.io/badge/contact-github-000000.svg?style=flat-square)](https://github.com/sabertazimi)
+-   [![Twitter](https://img.shields.io/badge/contact-twitter-blue.svg?style=flat-square)](https://twitter.com/sabertazimi)    
