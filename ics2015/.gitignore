@@ -1,0 +1,11 @@
+*.*
+*
+!*/
+samples/
+!Makefile*
+!*.[cSh]
+!test.sh
+!.gitignore
+!*.md
+!lib-common/newlib/libc.a
+!kernel/src/memory/mm_malloc.o
