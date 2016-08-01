@@ -14,6 +14,6 @@ $ sudo apt-get install spim
 
 ## Contact
 
--   mailto: [@sabertazimi](sabertazimi@gmail.com)
--   github: [@sabertazimi](https://github.com/sabertazimi)
--   twitter: [@sabertazimi](https://twitter/sabertazimi)
+-   Mail To: [@sabertazimi](sabertazimi@gmail.com)
+-   GitHub: [@sabertazimi](https://github.com/sabertazimi)
+-   Twitter: [@sabertazimi](https://twitter.com/sabertazimi)
