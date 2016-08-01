@@ -1,3 +1,8 @@
+
+* [Hust Hardware/Software Interface](#hust-hardwaresoftware-interface)
+	* [Contact](#contact)
+	* [LICENSE](#license)
+
 # Hust Hardware/Software Interface
 
 *Don't Reserve a Copy for Your Own Homework - That's Cheating Behavior*

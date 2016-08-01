@@ -1,5 +1,4 @@
-# 
-Try below command
+# Try below command
 
 ```
 echo "compile and watch the syscalls from lab1-ex1"

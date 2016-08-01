@@ -1,3 +1,18 @@
+
+* [ICS 2015 Programming Assignment](#ics-2015-programming-assignment)
+	* [Notes](#notes)
+		* [Basic](#basic)
+			* [Set up](#set-up)
+			* [Basic Tools](#basic-tools)
+		* [PA 1 - Simple debugger notes](#pa-1---simple-debugger-notes)
+			* [Useful function](#useful-function)
+			* [Basic idea](#basic-idea)
+				* [ String manipulation algorithms](#-string-manipulation-algorithms)
+				* [Workflow](#workflow)
+	* [Samples](#samples)
+	* [License](#license)
+	* [Contact](#contact)
+
 # ICS 2015 Programming Assignment
 
 [![Author](https://img.shields.io/badge/author-sabertazimi-lightgrey.svg)](https://github.com/sabertazimi)

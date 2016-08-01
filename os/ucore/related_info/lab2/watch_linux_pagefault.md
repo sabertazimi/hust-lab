@@ -1,3 +1,8 @@
+
+* [linux系统中查看程序page fault（缺页异常）信息](#linux系统中查看程序page-fault缺页异常信息)
+	* [介绍](#介绍)
+	* [查看方法](#查看方法)
+
 # linux系统中查看程序page fault（缺页异常）信息
 
 ## 介绍

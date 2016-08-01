@@ -1,4 +1,24 @@
 
+* [threads: Python threads synchronization: Locks, RLocks, Semaphores, Conditions, Events and Queues.](#threads-python-threads-synchronization-locks-rlocks-semaphores-conditions-events-and-queues)
+	* [threading简介](#threading简介)
+		* [实现模块](#实现模块)
+		* [threading模块](#threading模块)
+	* [Thread类常用方法](#thread类常用方法)
+		* [getName(self)](#getnameself)
+		* [setName方法](#setname方法)
+		* [isAlive(self)](#isaliveself)
+		* [ isDaemon(self)](#-isdaemonself)
+		* [  run(self)](#--runself)
+		* [ start方法](#-start方法)
+		* [ join方法](#-join方法)
+		* [setDaemon方法](#setdaemon方法)
+	* [Queue提供的类](#queue提供的类)
+	* [互斥锁](#互斥锁)
+	* [Condition条件变量](#condition条件变量)
+		* [“生产者-消费者”模型](#生产者-消费者模型)
+	* [信号量semaphore](#信号量semaphore)
+	* [死锁现象](#死锁现象)
+
 From:
 
 - http://www.laurentluce.com/posts/python-threads-synchronization-locks-rlocks-semaphores-conditions-events-and-queues/

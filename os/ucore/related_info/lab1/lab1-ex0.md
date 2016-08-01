@@ -1,5 +1,5 @@
-# 
-Try below command
+#  Try below command
+
 ```
 gcc -g  -m32 -o lab1-ex0.exe lab1-ex0.s
 ```

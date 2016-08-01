@@ -1,3 +1,8 @@
+
+* [Notes for ucore os lab](#notes-for-ucore-os-lab)
+	* [Set up](#set-up)
+	* [Contact](#contact)
+
 # Notes for ucore os lab
 
 ## Set up

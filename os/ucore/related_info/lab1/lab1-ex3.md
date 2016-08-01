@@ -1,4 +1,5 @@
 # inline assembly for C example
+
 Try below command
 ```
 gcc -m32 -S lab1-ex3.c

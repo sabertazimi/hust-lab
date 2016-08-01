@@ -1,3 +1,19 @@
+
+* [Lab 3 Notes](#lab-3-notes)
+	* [Task 2](#task-2)
+		* [Grade 运行效率](#grade-运行效率)
+			* [调优方法](#调优方法)
+			* [调优结果](#调优结果)
+	* [Task 3](#task-3)
+		* [ex3D.exe 反汇编分析](#ex3dexe-反汇编分析)
+			* [各主要函数调用入口](#各主要函数调用入口)
+			* [Average()](#average)
+			* [Search(name)](#searchname)
+		* [ex3F.exe 反汇编分析](#ex3fexe-反汇编分析)
+			* [各主要函数入口](#各主要函数入口)
+			* [Average()](#average-1)
+			* [Search(name)](#searchname-1)
+
 # Lab 3 Notes
 
 ## Task 2

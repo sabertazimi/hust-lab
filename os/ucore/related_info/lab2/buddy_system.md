@@ -1,9 +1,21 @@
+
+* [buddy system example code](#buddy-system-example-code)
+	* [run & debug](#run--debug)
+	* [background](#background)
+		* [数据结构总体思路](#数据结构总体思路)
+		* [初始化](#初始化)
+		* [分配阶段](#分配阶段)
+		* [释放阶段](#释放阶段)
+		* [小结](#小结)
+
 # buddy system example code
+
 From
  - https://github.com/wuwenbin/buddy2
  - [伙伴分配器的一个极简实现 by 我的上铺叫路遥 酷 壳 – CoolShell.cn](http://coolshell.cn/articles/10427.html) 
 
 ## run & debug 
+
 try to 
 ```
 gcc -g -O0 -o buddy_system buddy_system.c
@@ -11,9 +23,11 @@ gdb buddy_system
 ```
 
 ## background
+
 > 下述内容直接来源于 [伙伴分配器的一个极简实现 by 我的上铺叫路遥 酷 壳 – CoolShell.cn](http://coolshell.cn/articles/10427.html) 
 
 ### 数据结构总体思路
+
 通过一个数组形式的完全二叉树来监控管理内存，二叉树的节点用于标记相应内存块的使用状态，高层节点对应大的块，低层节点对应小的块，在分配和释放中我们就通过这些节点的标记属性来进行块的分离合并。如图所示，假设总大小为16单位的内存，我们就建立一个深度为5的满二叉树，根节点从数组下标[0]开始，监控大小16的块；它的左右孩子节点下标[1~2]，监控大小8的块；第三层节点下标[3~6]监控大小4的块……依此类推。
 ```
 struct buddy2 {

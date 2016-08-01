@@ -1,3 +1,24 @@
+ 
+* [基本指令](#基本指令)
+* [Phase 1](#phase-1)
+	* [分析 `strings_not_equal`](#分析-strings_not_equal)
+	* [主函数](#主函数)
+* [Phase 2](#phase-2)
+	* [分析 `read_six_numbers`](#分析-read_six_numbers)
+	* [主函数](#主函数-1)
+	* [解决方法](#解决方法)
+* [Phase 3](#phase-3)
+* [Phase 4](#phase-4)
+	* [分析 func4](#分析-func4)
+	* [解决方法](#解决方法-1)
+* [Phase 5](#phase-5)
+* [Phase 6](#phase-6)
+	* [解决方法](#解决方法-2)
+* [Phase 7](#phase-7)
+	* [分析 `secret_phase`](#分析-secret_phase)
+	* [分析 `fun7`](#分析-fun7)
+	* [解决方法](#解决方法-3)
+ 
  二进制炸弹实验(Bomb Lab)
 
 * 74  - 阶段1：字符串比较

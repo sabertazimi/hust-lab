@@ -1,3 +1,13 @@
+
+* [Lab 8 Notes](#lab-8-notes)
+	* [Intro](#intro)
+	* [Workflow](#workflow)
+		* [env.bat](#envbat)
+		* [Makefile](#makefile)
+	* [Bug](#bug)
+		* [Caller Reservation](#caller-reservation)
+		* [`WM_PAINT`](#wm_paint)
+
 # Lab 8 Notes
 
 ## Intro

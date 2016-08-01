@@ -1,3 +1,12 @@
+
+* [Bugs](#bugs)
+	* [xor](#xor)
+	* [取值](#取值)
+	* [cmp](#cmp)
+	* [m_num](#m_num)
+	* [do_while while_do](#do_while-while_do)
+* [Defects](#defects)
+
 ## Bugs
 
 ### xor

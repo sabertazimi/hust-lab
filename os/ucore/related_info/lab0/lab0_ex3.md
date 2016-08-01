@@ -1,4 +1,5 @@
 #README
+
 Try below command
 ```
 gcc -g -m32 lab0_ex3.c 2>&1|tee make.log

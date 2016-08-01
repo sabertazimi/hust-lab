@@ -1,3 +1,13 @@
+
+* [汇编程序设计上机实验一](#汇编程序设计上机实验一)
+	* [任务一: TD 中直接求和/差](#任务一-td-中直接求和差)
+	* [任务二: 教材 2-3](#任务二-教材-2-3)
+		* [Register](#register)
+		* [Memory](#memory)
+	* [任务三: 教材 2-4](#任务三-教材-2-4)
+		* [Writing Code](#writing-code)
+		* [Machine Code and Ojbdump](#machine-code-and-ojbdump)
+
 # 汇编程序设计上机实验一
 
 ## 任务一: TD 中直接求和/差

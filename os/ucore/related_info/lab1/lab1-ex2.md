@@ -1,4 +1,5 @@
 # lab1-ex2
+
 Try below command (stack)
 
 ```

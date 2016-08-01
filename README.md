@@ -1,3 +1,8 @@
+
+* [Hust Lab](#hust-lab)
+	* [Directory](#directory)
+	* [LICENSE](#license)
+
 # Hust Lab
 
 *Don't Reserve a Copy for Your Own Homework - That's Cheating Behavior*

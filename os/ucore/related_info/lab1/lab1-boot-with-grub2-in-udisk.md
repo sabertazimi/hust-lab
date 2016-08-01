@@ -1,11 +1,20 @@
+
+* [制作在真机上u盘启动的ucore lab](#制作在真机上u盘启动的ucore-lab)
+	* [编译 ucore lab for 真机上u盘启动](#编译-ucore-lab-for-真机上u盘启动)
+	* [格式化u盘](#格式化u盘)
+	* [在u盘上安装grub2](#在u盘上安装grub2)
+	* [启动u盘运行ucore lab](#启动u盘运行ucore-lab)
+
 # 制作在真机上u盘启动的ucore lab
 
 ## 编译 ucore lab for 真机上u盘启动
+
 请参考
 https://github.com/chyyuu/ucore_lab/blob/lab1_X/labcodes_answer/lab1_result/readme.md#for-kernel-with-grub-loading-in-real-x86-machine
 编译出 ucore lab1 kernel: grub_kernel
 
 ## 格式化u盘
+
 插入u盘，执行如下命令
 ```
 df
@@ -47,6 +56,7 @@ mkfs.vfat -F 32 -n MULTIBOOT /dev/sdb1     #将分区格式化为fat32
 ```
 
 ## 在u盘上安装grub2
+
 继续执行如下命令操作 
 ```
 mkdir /media/MULTIBOOT/              #创建目录用于挂载和拷贝文件
@@ -67,6 +77,7 @@ cp /YOU_DIR/ucore_lab/labcodes_answer/lab1_result/bin/grub_kernel /media/MULTIBO
 这时，准备工作完成了。
 
 ## 启动u盘运行ucore lab
+
 重启机器，选择u盘启动（可能需要修改BIOS的启动选项），可以看到grub的选项菜单，点选`ucore_lab1`
 就可以看到ucore lab1在真机上运行了。
 

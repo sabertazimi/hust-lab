@@ -1,3 +1,14 @@
+
+* [Tips](#tips)
+	* [Array](#array)
+	* [Struct](#struct)
+	* [Function](#function)
+		* [Reservation](#reservation)
+		* [Call](#call)
+* [Bugs](#bugs)
+	* [下标](#下标)
+	* [传参](#传参)
+
 ## Tips
 
 ### Array

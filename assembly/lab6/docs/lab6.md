@@ -1,3 +1,11 @@
+
+* [Task 1](#task-1)
+	* [Method 1 - TD.exe](#method-1---tdexe)
+	* [Method 2 - dos 系统调用](#method-2---dos-系统调用)
+	* [Method 3 - Memory](#method-3---memory)
+* [Task 2](#task-2)
+* [Task 3](#task-3)
+
 ## Task 1
 
 ### Method 1 - TD.exe
