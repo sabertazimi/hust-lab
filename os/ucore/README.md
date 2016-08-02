@@ -8,7 +8,8 @@
 ## Set up
 
 ```shell
-$ sudo apt-get install meld cgdb qemu
+$ sudo apt-get install meld qemu
+$ sudo apt-get install kcope
 ```
 
 -   MIPS emulator
