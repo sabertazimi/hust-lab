@@ -9,8 +9,39 @@
 
 ```shell
 $ sudo apt-get install meld qemu
-$ sudo apt-get install kcope
+$ sudo apt-get doxygen doxygen-gui graphviz
 ```
+
+### doxygen
+
+在代码根目录:
+
+```shell
+$ doxygen -g
+$ cim Doxyfile
+```
+
+```config
+OPTIMIZE_OUTPUT_FOR_C
+OPTIMIZE_OUTPUT_JAVA
+OPTIMIZE_FOR_FORTRAN
+OPTIMIZE_OUTPUT_VHDL
+
+GENERATE_HTML
+GENERATE_LATEX
+GENERATE_RTF
+GENERATE_XML
+GENERATE_DOCBOOK
+GENERATE_MAN
+
+HAVE_DOT YES
+DOT_NUM_THREADS 4
+```
+
+```shell
+doxygen
+```
+
 
 -   MIPS emulator
 
