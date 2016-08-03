@@ -120,3 +120,80 @@ x /8i $pc
 ```shell
 $ make debug
 ```
+
+## Ex3 - bootloader
+
+### A20
+
+-   内存回滚 - 保持向下兼容
+-   关闭 A20 才能使得访问更多的内存空间, 否则 1-2M,3-4M,... 永远只能访问1M
+
+```asm
+# 0xdl -> port 0x64
+# 0xdf -> port 0x60
+
+movb $0xdl, %al
+outb %al, $0x64
+movb $0xdf, %al
+outb %al, $0x60
+```
+
+### GDT(简化)
+
+-   gdt 全局描述符表每项保存着一个段描述符(段的所有信息, 如特权级, 段首址, 段大小等)
+-   lgdt 指令将全局描述符表的地址与大小信息装入 gdt 寄存器
+
+```c
+// SEG_ASM 用于展开为全局描述符表中的有效项
+// 根据 段描述符 的相关格式建立表项
+#define SEG_ASM(type, base, limit)                          \
+    .word (((limit) >> 12) & 0xffff), ((base) & 0xffff);    \
+    .byte (((base) >> 16) & 0xff), (0x90 | type)),          \
+        (0xC0 | (((limit) >> 28) & 0xf)), (((base) >> 24) & 0xff)
+```
+
+```asm
+gdt:
+    .word 0, 0;
+    .byte 0, 0, 0, 0
+    .word ...;
+    .byte ...
+    SEG_ASM(type1, base1, limit1)
+    SEG_ASM(type2, base2, limit2)
+
+gdtdesc:
+    .word 0x17 # sizeof(gdt) - 1
+    .long gdt  # address gdt
+
+lgdt gdtdesc
+```
+
+**实际上**全局描述符表往往保存着指向局部描述符表的指针, 局部描述符表中才保存着真正的段描述符.本次实验做了简化处理.
+
+### CR0
+
+将 CR0 寄存器的最低 bit 位置1, 开启保护模式
+
+```asm
+.set CR0_PE_ON 0x1
+
+movl %cr0, %eax
+orl $CR0_PE_ON, %eax
+mov %eax, %cr0
+```
+
+### 开启保护模式
+
+-   将段寄存器全部置为 0x10
+-   ebp = 0, esp = 0x7c00
+
+```asm
+# start = 0x7c00
+.global start
+start:
+
+...
+
+    movl $0x0, %ebp
+    movl $start, %esp
+```
