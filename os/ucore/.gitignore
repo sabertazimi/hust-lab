@@ -20,4 +20,9 @@ a.out
 chytesting
 disk0
 *.orig
+
 .gdb_history
+
+# editor/ide
+.vscode/
+.idea/
