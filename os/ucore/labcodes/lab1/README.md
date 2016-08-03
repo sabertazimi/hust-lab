@@ -1,3 +1,15 @@
+
+* [Lab 1 Notes](#lab-1-notes)
+	* [Ex 1 - Make workflow](#ex-1---make-workflow)
+	* [Ex 2 - Debug with gdb](#ex-2---debug-with-gdb)
+	* [Ex3 - enable protected mode(bootloader)](#ex3---enable-protected-modebootloader)
+		* [A20](#a20)
+		* [GDT(简化)](#gdt简化)
+		* [CR0](#cr0)
+		* [开启保护模式](#开启保护模式)
+	* [Ex4 - load elf kernel(bootloader)](#ex4---load-elf-kernelbootloader)
+	* [Contact](#contact)
+
 # Lab 1 Notes
 
 ## Ex 1 - Make workflow
@@ -99,29 +111,32 @@ dd if=bin/kernel of=bin/ucore.img seek=1 conv=notrunc
 
 ## Ex 2 - Debug with gdb
 
-```shell
+```sh
 $ vim tools/gdbinit
 ```
 
-```gdbinit
+```gdb
 file bin/kernel
 target remote:1234
 ```
 
 -   stop at 0x7c00, print instructions here
 
-```gdbinit
+```gdb
 set architecture i8086
 b *0x7c00
 continue
 x /8i $pc
 ```
 
-```shell
+```sh
 $ make debug
 ```
 
-## Ex3 - bootloader
+## Ex3 - enable protected mode(bootloader)
+
+-   boot/asm.h
+-   bott/bootasm.S
 
 ### A20
 
@@ -196,4 +211,33 @@ start:
 
     movl $0x0, %ebp
     movl $start, %esp
+```
+
+## Ex4 - load elf kernel(bootloader)
+
+Nothing new: everything has learned in csapp
+
+```sh
+$ readelf <elf-excutable>
+```
+
+## Ex5 - print stackframe
+
+Nothing new: everything has learned in csapp
+
+```asm
+call: pushl %eip
+      movl $func_address, %eip
+
+caller:
+    pushl %ebp
+    movl %esp, %ebp
+    subl $0x..., %esp
+
+    ...
+
+    movl %ebp, %esp 
+    popl %ebp
+
+    pool %eip
 ```

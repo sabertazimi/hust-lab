@@ -7,6 +7,9 @@
 
 #define STACKFRAME_DEPTH 20
 
+#define DEBUG
+// #undef  DEBUG
+
 extern const struct stab __STAB_BEGIN__[];  // beginning of stabs table
 extern const struct stab __STAB_END__[];    // end of stabs table
 extern const char __STABSTR_BEGIN__[];      // beginning of string table
@@ -247,11 +250,16 @@ print_debuginfo(uintptr_t eip) {
     }
 }
 
-static __noinline uint32_t
-read_eip(void) {
+static __noinline uint32_t read_eip(void) {
     uint32_t eip;
     asm volatile("movl 4(%%ebp), %0" : "=r" (eip));
     return eip;
+}
+
+static __noinline uint32_t popup_stackframe(uint32_t old_ebp) {
+    uint32_t new_ebp;
+    asm volatile("movl (%1), %0" : "=r" (new_ebp) : "r" (old_ebp));
+    return new_ebp;
 }
 
 /* *
@@ -290,7 +298,7 @@ read_eip(void) {
  * */
 void
 print_stackframe(void) {
-     /* LAB1 YOUR CODE : STEP 1 */
+     /* LAB1 U201414800 : STEP 1 */
      /* (1) call read_ebp() to get the value of ebp. the type is (uint32_t);
       * (2) call read_eip() to get the value of eip. the type is (uint32_t);
       * (3) from 0 .. STACKFRAME_DEPTH
@@ -302,5 +310,36 @@ print_stackframe(void) {
       *           NOTICE: the calling funciton's return addr eip  = ss:[ebp+4]
       *                   the calling funciton's ebp = ss:[ebp]
       */
+    uint32_t ebp = read_ebp(),
+             eip = read_eip();
+    uint32_t *arguments;
+
+    for (int i = 0; i < STACKFRAME_DEPTH; i++) {
+        // printf ebp, eip and arguments
+        arguments = (uint32_t *)ebp + 2;
+        cprintf("ebp:0x%08x eip:0x%08x args:0x%08x 0x%08x 0x%08x 0x%08x\n", ebp, eip,
+                 arguments[0], arguments[1], arguments[2], arguments[3]);
+
+        // print C calling function name and line number
+        print_debuginfo(eip - 1);
+
+#ifdef DEBUG
+        cprintf("DEBUG: ");
+        cprintf("old_ebp: 0x%08x\t", ebp);
+        cprintf("0x%08x\t", *((uint32_t *)ebp + 1));
+        cprintf("old_eip: 0x%08x\n", eip);
+#endif
+
+        // pop up stackframe
+        ebp = popup_stackframe(ebp);
+        eip = *((uint32_t *)ebp + 1);
+
+#ifdef DEBUG
+        cprintf("DEBUG: ");
+        cprintf("new_ebp: 0x%08x\t", ebp);
+        cprintf("0x%08x\t", *((uint32_t *)ebp + 1));
+        cprintf("new_eip: 0x%08x\n", eip);
+#endif
+    }
 }
 
