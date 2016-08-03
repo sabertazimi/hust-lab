@@ -18,8 +18,9 @@ struct command {
 
 static struct command commands[] = {
     {"help", "Display this list of commands.", mon_help},
-    {"kerninfo", "Display information about the kernel.", mon_kerninfo},
-    {"backtrace", "Print backtrace of stack frame.", mon_backtrace},
+    {"k", "Display information about the kernel.", mon_kerninfo},
+    {"bt", "Print backtrace of stack frame.", mon_backtrace},
+    {"r", "Print registers of stack frame.", mon_registers}
 };
 
 #define NCOMMANDS (sizeof(commands)/sizeof(struct command))
@@ -101,7 +102,7 @@ int
 mon_help(int argc, char **argv, struct trapframe *tf) {
     int i;
     for (i = 0; i < NCOMMANDS; i ++) {
-        cprintf("%s - %s\n", commands[i].name, commands[i].desc);
+        cprintf("%-8s - %s\n", commands[i].name, commands[i].desc);
     }
     return 0;
 }
@@ -126,3 +127,8 @@ mon_backtrace(int argc, char **argv, struct trapframe *tf) {
     return 0;
 }
 
+int
+mon_registers(int argc, char **argv, struct trapframe *tf) {
+    print_regs(&tf->tf_regs);
+    return 0;
+}
