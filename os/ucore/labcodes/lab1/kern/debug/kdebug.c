@@ -7,8 +7,14 @@
 
 #define STACKFRAME_DEPTH 20
 
-#define DEBUG
-// #undef  DEBUG
+#ifndef DEBUG_GRADE
+#define DEBUG_GRADE
+#endif
+
+// comment out below three lines to open debug
+#ifdef DEBUG_GRADE
+#undef  DEBUG_GRADE
+#endif
 
 extern const struct stab __STAB_BEGIN__[];  // beginning of stabs table
 extern const struct stab __STAB_END__[];    // end of stabs table
@@ -323,7 +329,7 @@ print_stackframe(void) {
         // print C calling function name and line number
         print_debuginfo(eip - 1);
 
-#ifdef DEBUG
+#ifdef DEBUG_GRADE
         cprintf("DEBUG: ");
         cprintf("old_ebp: 0x%08x\t", ebp);
         cprintf("0x%08x\t", *((uint32_t *)ebp + 1));
@@ -334,7 +340,7 @@ print_stackframe(void) {
         ebp = popup_stackframe(ebp);
         eip = *((uint32_t *)ebp + 1);
 
-#ifdef DEBUG
+#ifdef DEBUG_GRADE
         cprintf("DEBUG: ");
         cprintf("new_ebp: 0x%08x\t", ebp);
         cprintf("0x%08x\t", *((uint32_t *)ebp + 1));

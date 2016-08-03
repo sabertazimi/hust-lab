@@ -111,6 +111,8 @@ dd if=bin/kernel of=bin/ucore.img seek=1 conv=notrunc
 
 ## Ex 2 - Debug with gdb
 
+-   tools/gdbinit
+
 ```sh
 $ vim tools/gdbinit
 ```
@@ -136,7 +138,7 @@ $ make debug
 ## Ex3 - enable protected mode(bootloader)
 
 -   boot/asm.h
--   bott/bootasm.S
+-   boot/bootasm.S
 
 ### A20
 
@@ -217,6 +219,8 @@ start:
 
 Nothing new: everything has learned in csapp
 
+-   boot/bootmain.c
+
 ```sh
 $ readelf <elf-excutable>
 ```
@@ -224,6 +228,10 @@ $ readelf <elf-excutable>
 ## Ex5 - print stackframe
 
 Nothing new: everything has learned in csapp
+
+-   kern/debug/kdebug.c -> `void print_stackframe(void)`
+    -   kern/debug/kdebug.c -> `uint32_t popup_stackframe(uint32_t old_ebp)`
+
 
 ```asm
 call: pushl %eip
@@ -241,3 +249,14 @@ caller:
 
     pool %eip
 ```
+
+## Ex6
+
+-   kern/trap/trap.c -> `idt_init`
+    -   kern/mm/mmu.h
+    -   kern/trap/vectors.S
+-   kern/trap/trap.c -> `trap_dispatch()`
+
+### trap handler
+
+trapentry.S::alltraps() -> trap.c::trap() -> trap.c::`trap_dispatch()`
