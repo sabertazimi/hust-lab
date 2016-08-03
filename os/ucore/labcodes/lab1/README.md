@@ -116,3 +116,7 @@ b *0x7c00
 continue
 x /8i $pc
 ```
+
+```shell
+$ make debug
+```
