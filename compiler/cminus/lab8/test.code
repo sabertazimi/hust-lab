@@ -1,0 +1,7 @@
+{
+  int a;
+  bool b;
+
+  printi (88);
+  printb(true);
+}
