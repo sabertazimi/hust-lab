@@ -3,6 +3,7 @@
 
 typedef struct Node_t *Node_t;
 typedef struct Nfa_t *Nfa_t;
+
 struct Nfa_t
 {
   int start;     // start node of an NFA
@@ -11,6 +12,7 @@ struct Nfa_t
 };
 
 Nfa_t Nfa_new ();
+Node_t Nfa_lookupOrInsert (Nfa_t nfa, int num);
 void Nfa_addEdge(Nfa_t nfa, int from, int to, int c);
 void Nfa_print (Nfa_t nfa);
 

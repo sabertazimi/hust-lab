@@ -2,6 +2,7 @@
 #define RE_H
 
 #include "nfa.h"
+#include "dfa.h"
 
 /////////////////////////////////
 // data structures
@@ -33,7 +34,7 @@ struct Re_Eps_t
 };
 
 typedef struct Re_Char_t *Re_Char_t;
-struct Re_Char_t 
+struct Re_Char_t
 {
   Re_Kind_t kind;
   int c;

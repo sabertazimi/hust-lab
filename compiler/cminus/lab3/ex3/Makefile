@@ -1,7 +1,7 @@
 PROG=lexer.exe
 
 all::
-	gcc -o $(PROG) main.c re.c nfa.c
+	gcc -o $(PROG) main.c re.c dfa.c nfa.c 
 
 .PHONY=clean run gdb
 
