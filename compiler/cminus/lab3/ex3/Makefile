@@ -1,14 +1,16 @@
+PROG=lexer.exe
+
 all::
-	gcc -o lexer main.c re.c nfa.c
+	gcc -o $(PROG) main.c re.c nfa.c
 
 .PHONY=clean run gdb
 
 clean:
-	rm -fr lexer
+	rm -fr $(PROG) 
 
 run:
-	./lexer
+	./$(PROG)
 
 gdb:
-	gdb lexer
+	gdb $(PROG)
 
