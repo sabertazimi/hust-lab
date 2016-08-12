@@ -12,7 +12,7 @@ all:
 .PHONY=compile clean purge run gdb
 
 compile:
-	gcc -o g--.exe main.c exp.tab.c ast.c
+	gcc -o g--.exe main.c exp.tab.c ast.c 
 
 clean:
 	rm -fr exp.tab.c

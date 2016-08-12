@@ -1,5 +1,6 @@
 %{
 #include <stdio.h>
+#include <stdlib.h>
 #include "ast.h"
   int yylex(void); // this function will be called in the parser
   void yyerror(char *);
@@ -15,8 +16,8 @@
 %type <exp> digit exp program
 
 
-%left '+'
-%left '*'
+%left '+' '-'
+%left '*' '/'
 
 %start program
 
@@ -27,7 +28,10 @@ program: exp {tree = $1;}
 
 exp: digit     {$$ = $1;}
 | exp '+' exp  {$$ = Exp_Add_new ($1, $3);}
+| exp '-' exp  {$$ = Exp_Minus_new ($1, $3);}
 | exp '*' exp  {$$ = Exp_Times_new ($1, $3);}
+| exp '/' exp  {$$ = Exp_Divide_new ($1, $3);}
+| '(' exp ')'  {$$ = $2;}
 ;
 
 digit: '0'  {$$ = Exp_Int_new (0);}
@@ -54,7 +58,7 @@ int yylex (void)
 // error message
 void yyerror(char *err)
 {
-  fprintf (stderr, "%s\n", err);
+  printf(">> ");
   return;
 }
 
