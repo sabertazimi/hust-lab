@@ -14,9 +14,13 @@ void error (char *want, char got)
 {
   fprintf (stderr, "Compling this expression:\n%s\n", str);
   int j = i;
+
+  // print error in the second line
   while (j--)
     fprintf (stderr, " ");
   fprintf (stderr, "^\n");
+
+  // print error
   fprintf (stderr, "Syntax error at position: %d\n"
            "\texpecting: %s\n"
            "\tbut got  : %c\n",
@@ -52,7 +56,7 @@ void parse_T()
 {
   parse_F();
   char c = str[i];
-  while (c=='*'){
+  while (c=='*' || c=='/'){
     i++;
     parse_F();
     c = str[i];
@@ -64,7 +68,7 @@ void parse_E()
 {
   parse_T();
   char c = str[i];
-  while (c=='+'){
+  while (c=='+' || c=='-'){
     i++;
     parse_T();
     c = str[i];
@@ -100,7 +104,7 @@ int main (char argc, char **argv)
   e = "(2)";
   parse(e);
 
-  e = "(3+4*5))";
+  e = "(3+4*5)";
   parse(e);
 
   e = "(8-2)*3";
@@ -108,6 +112,11 @@ int main (char argc, char **argv)
 
   e = "(8-2)/3";
   parse(e);
-  
+
+  e = "((9-2)+4+4*4/2)";
+  parse(e);
+
+  fprintf(stdout, "Parse success!\n");
+
   return 0;
 }
