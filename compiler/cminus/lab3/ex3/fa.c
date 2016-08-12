@@ -1,26 +1,7 @@
 #include <assert.h>
 #include <stdio.h>
-#include "nfa.h"
+#include "fa.h"
 #include "new.h"
-
-typedef struct Edge_t *Edge_t;
-struct Node_t
-{
-  int num;
-  int visited;
-  Edge_t edges;
-  Node_t next;
-};
-
-struct Edge_t
-{
-  int c;
-  Node_t from;
-  Node_t to;
-  Edge_t next;
-};
-
-
 
 // list head insert
 static Node_t Node_new (int num, Node_t n)
@@ -62,7 +43,7 @@ Nfa_t Nfa_new ()
 // it; if that
 // node does not exist, create a fresh one
 // and return it.
-Node_t Nfa_lookupOrInsert (Nfa_t nfa, int num)
+static Node_t Nfa_lookupOrInsert (Nfa_t nfa, int num)
 {
   assert (nfa);
   Node_t nodes = nfa->nodes;
@@ -101,4 +82,16 @@ void Nfa_print (Nfa_t nfa)
     nodes = nodes->next;
   }
   return;
+}
+
+Dfa_t Dfa_new () {
+    return (Dfa_t)Nfa_new();
+}
+
+void Dfa_addEdge(Dfa_t dfa, int from, int to, int c) {
+    Nfa_addEdge((Nfa_t)dfa, from, to, c);
+}
+
+void Dfa_print (Dfa_t dfa) {
+    Nfa_print((Nfa_t)dfa);
 }

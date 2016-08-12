@@ -5,6 +5,7 @@
 #include "todo.h"
 
 #define EPS (-1)
+#define NODES_MAXNUM 20
 
 Re_t Re_Eps_new ()
 {
@@ -95,7 +96,7 @@ void Re_print (Re_t e)
   return;
 }
 
-static int counter = 0;
+static int counter = 1;
 static int nextNum ()
 {
   return counter++;
@@ -182,7 +183,81 @@ static Nfa_t Re_thompsonDoit (Nfa_t nfa,Re_t e)
 Nfa_t Re_thompson (Re_t e)
 {
   Nfa_t nfa = Nfa_new ();
-  counter = 0;
+  counter = 1;
   Re_thompsonDoit (nfa, e);
   return nfa;
+}
+
+/*
+ * Transfer NFA to DFA
+ *
+ */
+
+static void dfs(Nfa_t nfa, int num, int closure) {
+    Node_t node = nfa->nodes;
+
+    while (node) {
+        if (num == node->num) {
+            node->closure = closure;
+            node->visited = 1;
+            Edge_t edge = node->edges;
+
+            while (edge) {
+                if (edge->to->visited == 0 && edge->c == EPS) {
+                    dfs(nfa, edge->to->num, node->closure);
+                }
+
+                node = node->next;
+            }
+        }
+
+        node = node->next;
+    }
+}
+
+static int closure(Nfa_t nfa, int num) {
+    int closure = nextNum();
+    dfs(nfa, num, closure);
+    return closure;
+}
+
+static int nfa_visited(Nfa_t nfa) {
+    Node_t node = nfa->nodes;
+
+    while (node) {
+        if (node->closure == 0) {
+            return 0;
+        }
+        node = node->next;
+    }
+
+    return 1;
+}
+
+Dfa_t Nfa_Dfa(Nfa_t nfa) {
+    counter = 1;
+    Node_t node;
+    Edge_t edge;
+    Dfa_t dfa = Dfa_new();
+    int closure = closure(nfa, nfa->start);
+    dfa->start = closure;
+
+    while (!nfa_visited) {
+        for (int i = 0; i < 255; i++) {
+            node = nfa->nodes;
+            while (node) {
+                if (node->num == closure) {
+                    edge = node->edge;
+                    while (edge) {
+                        if (edge->c == i) {
+                            closure = closure(nfa, edge->to->num);
+                            break;
+                        }
+                        edge = edge->next;
+                    }
+                }
+                node = node->next;
+            }
+        }
+    }
 }

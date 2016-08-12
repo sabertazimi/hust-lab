@@ -1,8 +1,7 @@
 #ifndef RE_H
 #define RE_H
 
-#include "nfa.h"
-#include "dfa.h"
+#include "fa.h"
 
 /////////////////////////////////
 // data structures
@@ -73,5 +72,6 @@ Re_t Re_Closure_new (Re_t exp);
 
 void Re_print (Re_t e);
 Nfa_t Re_thompson (Re_t e);
+Dfa_t Nfa_Dfa(Nfa_t nfa);
 
 #endif
