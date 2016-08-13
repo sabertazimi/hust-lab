@@ -136,7 +136,7 @@ Type_t check_exp (Exp_t exp)
             Type_t left = check_exp(e->left);
             Type_t right = check_exp(e->right);
 
-            if (left != TYPE_BOOL != TYPE_BOOL) {
+            if (left != TYPE_BOOL || right != TYPE_BOOL) {
                 fprintf(stderr, "Error: mismatching type in and expression!\n");
                 exit(0);
             }
