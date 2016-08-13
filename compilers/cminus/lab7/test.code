@@ -1,9 +1,0 @@
-{
-  int a;
-  bool b;
-
-  printb (b);
-  a = a + 3333;
-  b = b && true;
-  printi(a);
-}
