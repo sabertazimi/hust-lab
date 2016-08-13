@@ -55,22 +55,41 @@ void gen_exp (Exp_t exp)
     return;
   }
   case EXP_SUB:{
-    TODO();
+    Exp_Sub p = (Exp_Sub)exp;
+    gen_exp (p->left);
+    gen_exp (p->right);
+    emit (Stack_Instr_Sub_new());
     return;
   }
   case EXP_TIMES:{
+    Exp_Times p = (Exp_Times)exp;
+    gen_exp (p->left);
+    gen_exp (p->right);
+    emit (Stack_Instr_Times_new());
     TODO();
     return;
   }
   case EXP_DIVIDE:{
+    Exp_Divide p = (Exp_Divide)exp;
+    gen_exp (p->left);
+    gen_exp (p->right);
+    emit (Stack_Instr_Divide_new());
     TODO();
     return;
   }
   case EXP_AND:{
+    Exp_And p = (Exp_And)exp;
+    gen_exp (p->left);
+    gen_exp (p->right);
+    emit (Stack_Instr_And_new());
     TODO();
     return;
   }
   case EXP_OR:{
+    Exp_Or p = (Exp_Or)exp;
+    gen_exp (p->left);
+    gen_exp (p->right);
+    emit (Stack_Instr_Or_new());
     TODO();
     return;
   }

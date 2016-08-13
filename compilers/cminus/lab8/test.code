@@ -1,7 +1,15 @@
 {
   int a;
+  int c;
   bool b;
 
+  a = 5;
+  b = true;
+  c = 2;
+  a = a + c;
+  a = a / c;
+
   printi (88);
-  printb(true);
+  printi (a);
+  printb(b);
 }

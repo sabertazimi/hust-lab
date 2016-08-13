@@ -44,12 +44,13 @@ build:
 	make purge
 	make
 	make clean
+	@echo 'Build success!'
 
 clean:
-	rm -rf c--.tab.h c--.tab.c lex.yy.c *.o *~ *.exe *.s
+	rm -rf c--.tab.h c--.tab.c lex.yy.c *.o *~ *.s
 
 purge:
-	rm -rf g--.exe c--.tab.h c--.tab.c lex.yy.c *.o *~ *.exe *.s
+	rm -rf c--.tab.h c--.tab.c lex.yy.c *.o *~ *.exe *.s
 
 run:
 	./g--.exe < test.code

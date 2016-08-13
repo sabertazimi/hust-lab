@@ -20,7 +20,7 @@ int main (int argc, char **argv)
   */
   yyparse();
   printf ("lex and parse finished\n");
-  
+
   printf ("print the AST starting...\n");
   Prog_print (tree);
   printf ("print the AST finished\n");
@@ -40,7 +40,7 @@ int main (int argc, char **argv)
   printf ("x86 code generation starting...\n");
   Stack2x86_print (stack);
   printf ("x86 code generation finished (writing to file \"temp.s\")\n");
-  //system("cat temp.s");
+  system("cat temp.s");
 
   printf ("executable generation starting...\n");
   system ("gcc -o stack.exe temp.s");

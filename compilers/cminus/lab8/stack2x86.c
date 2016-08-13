@@ -55,8 +55,16 @@ static void genx86_instr (Stack_Instr_t s)
     fprintf (fp, "times");
     break;
   }
-  case STACK_INSTR_DIV:{
-    fprintf (fp, "div");
+  case STACK_INSTR_DIVIDE:{
+    fprintf (fp, "divide");
+    break;
+  }
+  case STACK_INSTR_AND:{
+    fprintf (fp, "and");
+    break;
+  }
+  case STACK_INSTR_OR:{
+    fprintf (fp, "or");
     break;
   }
   case STACK_INSTR_PRINTI:{

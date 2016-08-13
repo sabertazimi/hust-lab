@@ -35,8 +35,8 @@ void Stack_Instr_print (Stack_Instr_t s)
     printf ("times\n");
     break;
   }
-  case STACK_INSTR_DIV:{
-    printf ("div");
+  case STACK_INSTR_DIVIDE:{
+    printf ("divide");
     break;
   }
   case STACK_INSTR_PRINTI:{
@@ -52,7 +52,7 @@ void Stack_Instr_print (Stack_Instr_t s)
   }
 }
 
-// push 
+// push
 Stack_Instr_t Stack_Instr_Push_new (int n)
 {
   Stack_Instr_Push p = malloc (sizeof(*p));
@@ -84,6 +84,41 @@ Stack_Instr_t Stack_Instr_Add_new ()
 {
   Stack_Instr_Add p = malloc (sizeof(*p));
   p->kind = STACK_INSTR_ADD;
+  return (Stack_Instr_t)p;
+}
+
+Stack_Instr_t Stack_Instr_Sub_new ()
+{
+  Stack_Instr_Sub p = malloc (sizeof(*p));
+  p->kind = STACK_INSTR_SUB;
+  return (Stack_Instr_t)p;
+}
+
+Stack_Instr_t Stack_Instr_Times_new ()
+{
+  Stack_Instr_Times p = malloc (sizeof(*p));
+  p->kind = STACK_INSTR_TIMES;
+  return (Stack_Instr_t)p;
+}
+
+Stack_Instr_t Stack_Instr_Divide_new ()
+{
+  Stack_Instr_Divide p = malloc (sizeof(*p));
+  p->kind = STACK_INSTR_DIVIDE;
+  return (Stack_Instr_t)p;
+}
+
+Stack_Instr_t Stack_Instr_And_new ()
+{
+  Stack_Instr_And p = malloc (sizeof(*p));
+  p->kind = STACK_INSTR_AND;
+  return (Stack_Instr_t)p;
+}
+
+Stack_Instr_t Stack_Instr_Or_new ()
+{
+  Stack_Instr_Or p = malloc (sizeof(*p));
+  p->kind = STACK_INSTR_OR;
   return (Stack_Instr_t)p;
 }
 
