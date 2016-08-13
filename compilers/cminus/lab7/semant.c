@@ -88,7 +88,7 @@ Type_t check_exp (Exp_t exp)
             Type_t left = check_exp(e->left);
             Type_t right = check_exp(e->right);
 
-            if (left != right) {
+            if (left != TYPE_INT || right != TYPE_INT) {
                 fprintf(stderr, "Error: mismatching type in add expression!\n");
                 exit(0);
             }
@@ -100,7 +100,7 @@ Type_t check_exp (Exp_t exp)
             Type_t left = check_exp(e->left);
             Type_t right = check_exp(e->right);
 
-            if (left != right) {
+            if (left != TYPE_INT || right != TYPE_INT) {
                 fprintf(stderr, "Error:  mismatching type in sub expression!\n");
                 exit(0);
             }
@@ -112,7 +112,7 @@ Type_t check_exp (Exp_t exp)
             Type_t left = check_exp(e->left);
             Type_t right = check_exp(e->right);
 
-            if (left != right) {
+            if (left != TYPE_INT || right != TYPE_INT) {
                 fprintf(stderr, "Error: mismatching type in times expression!\n");
                 exit(0);
             }
@@ -124,7 +124,7 @@ Type_t check_exp (Exp_t exp)
             Type_t left = check_exp(e->left);
             Type_t right = check_exp(e->right);
 
-            if (left != right) {
+            if (left != TYPE_INT || right != TYPE_INT) {
                 fprintf(stderr, "Error: mismatching type in divide expression!\n");
                 exit(0);
             }
@@ -136,7 +136,7 @@ Type_t check_exp (Exp_t exp)
             Type_t left = check_exp(e->left);
             Type_t right = check_exp(e->right);
 
-            if (left != right) {
+            if (left != TYPE_BOOL != TYPE_BOOL) {
                 fprintf(stderr, "Error: mismatching type in and expression!\n");
                 exit(0);
             }
@@ -148,7 +148,7 @@ Type_t check_exp (Exp_t exp)
             Type_t left = check_exp(e->left);
             Type_t right = check_exp(e->right);
 
-            if (left != right) {
+            if (left != TYPE_BOOL || right != TYPE_BOOL) {
                 fprintf(stderr, "Error: mismatching type in or expression!\n");
                 exit(0);
             }
