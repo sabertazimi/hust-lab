@@ -38,13 +38,14 @@ stack2x86.o: stack2x86.c
 main.o: main.c
 	$(CC) -c main.c
 
-.PHONY=build clean purge run gdb
+.PHONY=build clean purge run test gdb
 
 build:
 	make purge
 	make
 	make clean
-	@echo 'Build success!'
+	@echo
+	@echo '===== Build success!'
 
 clean:
 	rm -rf c--.tab.h c--.tab.c lex.yy.c *.o *~ *.s
@@ -54,6 +55,13 @@ purge:
 
 run:
 	./g--.exe < test.code
+	@echo
+	@echo '===== Compile success!'
+
+
+test:
+	make clean
+	./stack.exe
 
 gdb:
-	gdb g--.exe
+	gdb stack.exe

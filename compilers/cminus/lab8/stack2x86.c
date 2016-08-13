@@ -35,16 +35,19 @@ static void genx86_instr (Stack_Instr_t s)
   }
   case STACK_INSTR_LOAD:{
     Stack_Instr_Load p = (Stack_Instr_Load)s;
-    fprintf (fp, "\tmovl\t%s, %%eax", p->x);
+    fprintf (fp, "\tpushl\t%s", p->x);
     break;
   }
   case STACK_INSTR_STORE:{
     Stack_Instr_Store p = (Stack_Instr_Store)s;
-    fprintf (fp, "store %s", p->x);
+    fprintf (fp, "\tpopl\t%s", p->x);
     break;
   }
   case STACK_INSTR_ADD:{
-    fprintf (fp, "add");
+    fprintf (fp, "\tpopl\t%%eax\n"
+            "\tpopl\t%%ebx\n"
+            "\taddl\t%%ebx, %%eax\n"
+            "\tpushl\t%%eax");
     break;
   }
   case STACK_INSTR_SUB:{
@@ -56,7 +59,11 @@ static void genx86_instr (Stack_Instr_t s)
     break;
   }
   case STACK_INSTR_DIVIDE:{
-    fprintf (fp, "divide");
+    fprintf (fp, "\tpopl\t%%ebx\n"
+            "\tpopl\t%%eax\n"
+            "\tcwtd\n"
+            "\tidivw\t%%bx\n"
+            "\tpushl\t%%eax");
     break;
   }
   case STACK_INSTR_AND:{
@@ -96,7 +103,8 @@ void genx86_instrs(List_t l)
     l = l->next;
   }
   fprintf (fp, "\tleave\n"
-	   "\tret\n");
+       "\tpushl\t$0\n"
+	   "\tcall\texit\n");
   fprintf (fp, "\t.globl printi\n"
 	   "printi:\n"
 	   "\tpush\t%%ebp\n"
@@ -128,7 +136,7 @@ void genx86_instrs(List_t l)
 // prog
 void Stack2x86_print (Stack_Prog_t p)
 {
-  fp = fopen ("temp.s", "w+");
+  fp = fopen ("stack.s", "w+");
   if (fp==0){
     printf ("error in open file\n");
     exit (0);

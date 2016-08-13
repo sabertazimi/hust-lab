@@ -66,7 +66,6 @@ void gen_exp (Exp_t exp)
     gen_exp (p->left);
     gen_exp (p->right);
     emit (Stack_Instr_Times_new());
-    TODO();
     return;
   }
   case EXP_DIVIDE:{
@@ -74,7 +73,6 @@ void gen_exp (Exp_t exp)
     gen_exp (p->left);
     gen_exp (p->right);
     emit (Stack_Instr_Divide_new());
-    TODO();
     return;
   }
   case EXP_AND:{
@@ -82,7 +80,6 @@ void gen_exp (Exp_t exp)
     gen_exp (p->left);
     gen_exp (p->right);
     emit (Stack_Instr_And_new());
-    TODO();
     return;
   }
   case EXP_OR:{
@@ -90,7 +87,6 @@ void gen_exp (Exp_t exp)
     gen_exp (p->left);
     gen_exp (p->right);
     emit (Stack_Instr_Or_new());
-    TODO();
     return;
   }
   default:
