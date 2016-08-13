@@ -3,13 +3,23 @@
   int c;
   bool b;
 
-  a = 5;
-  b = true;
-  c = 1;
-  a = a + c;
-  a = a / c;
-
-  printi (88);
+  a = 10;
+  c = 5;
   printi (a);
+  printi (c);
+  a = a + c;
+  printi (a);
+  a = a / c;
+  printi (a);
+  a = a * c;
+  printi (a);
+  a = a - c;
+  printi (a);
+
+  b = true;
+  printb(b);
+  b = b && false;
+  printb(b);
+  b = b || true;
   printb(b);
 }

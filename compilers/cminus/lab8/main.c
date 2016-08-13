@@ -46,10 +46,10 @@ int main (int argc, char **argv)
 
   printf ("x86 code generation starting...\n");
   Stack2x86_print (stack);
-  printf ("x86 code generation finished (writing to file \"temp.s\")\n");
+  printf ("x86 code generation finished (writing to file \"stack.s\")\n");
 
 #ifdef DEBUG
-  system("cat temp.s");
+  system("cat stack.s");
 #endif
 
   printf ("executable generation starting...\n");

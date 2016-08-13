@@ -44,18 +44,24 @@ static void genx86_instr (Stack_Instr_t s)
     break;
   }
   case STACK_INSTR_ADD:{
-    fprintf (fp, "\tpopl\t%%eax\n"
-            "\tpopl\t%%ebx\n"
+    fprintf (fp, "\tpopl\t%%ebx\n"
+            "\tpopl\t%%eax\n"
             "\taddl\t%%ebx, %%eax\n"
             "\tpushl\t%%eax");
     break;
   }
   case STACK_INSTR_SUB:{
-    fprintf (fp, "sub");
+    fprintf (fp, "\tpopl\t%%ebx\n"
+            "\tpopl\t%%eax\n"
+            "\tsubl\t%%ebx, %%eax\n"
+            "\tpushl\t%%eax");
     break;
   }
   case STACK_INSTR_TIMES:{
-    fprintf (fp, "times");
+    fprintf (fp, "\tpopl\t%%ebx\n"
+            "\tpopl\t%%eax\n"
+            "\timull\t%%ebx, %%eax\n"
+            "\tpushl\t%%eax");
     break;
   }
   case STACK_INSTR_DIVIDE:{
@@ -67,11 +73,17 @@ static void genx86_instr (Stack_Instr_t s)
     break;
   }
   case STACK_INSTR_AND:{
-    fprintf (fp, "and");
+    fprintf (fp, "\tpopl\t%%ebx\n"
+            "\tpopl\t%%eax\n"
+            "\tandl\t%%ebx, %%eax\n"
+            "\tpushl\t%%eax");
     break;
   }
   case STACK_INSTR_OR:{
-    fprintf (fp, "or");
+    fprintf (fp, "\tpopl\t%%ebx\n"
+            "\tpopl\t%%eax\n"
+            "\torl\t%%ebx, %%eax\n"
+            "\tpushl\t%%eax");
     break;
   }
   case STACK_INSTR_PRINTI:{
@@ -126,7 +138,7 @@ void genx86_instrs(List_t l)
 	   ".L_f:\n"
 	   "\tpushl\t$falses\n"
 	   ".L_e:\n"
-	   "\tcall\tputs\n"
+	   "\tcall\tprintf\n"
 	   "\tleave\n"
 	   "\tret\n");
   return;
