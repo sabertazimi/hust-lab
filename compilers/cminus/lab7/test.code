@@ -1,6 +1,6 @@
 {
   int a;
-  bool a;
+  bool b;
 
   printb (b);
   a = a + 3333;
