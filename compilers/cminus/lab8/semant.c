@@ -2,7 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include "semant.h"
-#include "todo.h"
+
+#define TODO()\
+  do{\
+  printf ("TODO: add your code at file: \"%s\", line: %d\n", __FILE__, __LINE__);\
+}while(0)
 
 //////////////////////////////////////
 // the symbol table
@@ -24,7 +28,7 @@ Type_t Table_lookup (char *id)
 
 void Table_insert (Dec_t dec)
 {
-  
+
   if (Table_lookup (dec->id) != -1){
     fprintf (stderr, "Error: the variable "
 	     "\"%s\" has been declared!\n", dec->id);
@@ -57,8 +61,102 @@ void check_decs(List_t decs)
 // Your job:
 Type_t check_exp (Exp_t exp)
 {
-  TODO();
-  return 0;
+    switch (exp->kind) {
+        case EXP_INT: {
+            return TYPE_INT;
+        }
+        case EXP_TRUE: {
+            return TYPE_BOOL;
+        }
+        case EXP_FALSE: {
+            return TYPE_BOOL;
+        }
+        case EXP_ID: {
+            Exp_Id e = (Exp_Id)exp;
+            Type_t type = Table_lookup(e->id);
+
+            if (type == -1){
+                fprintf (stderr, "Error: the variable "
+	                    "\"%s\" hasn't been declared!\n", e->id);
+                exit (0);
+            }
+
+            return type;
+       }
+        case EXP_ADD: {
+            Exp_Add e = (Exp_Add)exp;
+            Type_t left = check_exp(e->left);
+            Type_t right = check_exp(e->right);
+
+            if (left != TYPE_INT || right != TYPE_INT) {
+                fprintf(stderr, "Error: mismatching type in add expression!\n");
+                exit(0);
+            }
+
+            return left;
+        }
+        case EXP_SUB: {
+            Exp_Sub e = (Exp_Sub)exp;
+            Type_t left = check_exp(e->left);
+            Type_t right = check_exp(e->right);
+
+            if (left != TYPE_INT || right != TYPE_INT) {
+                fprintf(stderr, "Error:  mismatching type in sub expression!\n");
+                exit(0);
+            }
+
+            return left;
+        }
+        case EXP_TIMES: {
+            Exp_Times e = (Exp_Times)exp;
+            Type_t left = check_exp(e->left);
+            Type_t right = check_exp(e->right);
+
+            if (left != TYPE_INT || right != TYPE_INT) {
+                fprintf(stderr, "Error: mismatching type in times expression!\n");
+                exit(0);
+            }
+
+            return left;
+        }
+        case EXP_DIVIDE: {
+            Exp_Divide e = (Exp_Divide)exp;
+            Type_t left = check_exp(e->left);
+            Type_t right = check_exp(e->right);
+
+            if (left != TYPE_INT || right != TYPE_INT) {
+                fprintf(stderr, "Error: mismatching type in divide expression!\n");
+                exit(0);
+            }
+
+            return left;
+        }
+        case EXP_AND: {
+            Exp_And e = (Exp_And)exp;
+            Type_t left = check_exp(e->left);
+            Type_t right = check_exp(e->right);
+
+            if (left != TYPE_BOOL != TYPE_BOOL) {
+                fprintf(stderr, "Error: mismatching type in and expression!\n");
+                exit(0);
+            }
+
+            return left;
+        }
+        case EXP_OR: {
+            Exp_Or e = (Exp_Or)exp;
+            Type_t left = check_exp(e->left);
+            Type_t right = check_exp(e->right);
+
+            if (left != TYPE_BOOL || right != TYPE_BOOL) {
+                fprintf(stderr, "Error: mismatching type in or expression!\n");
+                exit(0);
+            }
+
+            return left;
+        }
+    }
+
 }
 
 ////////////////////////////////////////
@@ -67,7 +165,51 @@ Type_t check_exp (Exp_t exp)
 // Your job:
 void check_stm (Stm_t stm)
 {
-  TODO();
+    switch (stm->kind) {
+    case STM_ASSIGN: {
+                         Stm_Assign s = (Stm_Assign)stm;
+                         Type_t left = Table_lookup(s->id);
+
+                         if (left == -1){
+                            fprintf (stderr, "Error: the variable "
+	                                "\"%s\" hasn't been declared!\n",s->id);
+                            exit (0);
+                         }
+
+                         Type_t right = check_exp(s->exp);
+
+                         if (left != right) {
+                            fprintf(stderr, "Error: mismatching type in assign statement!\n");
+                            exit(0);
+                         }
+
+                         break;
+                     }
+    case STM_PRINTI: {
+                         Stm_Printi s = (Stm_Printi)stm;
+                         Type_t t = check_exp(s->exp);
+
+                         if (t != TYPE_INT) {
+                             fprintf(stderr, "Error: in printi function, expect int expression, but got bool expression!\n");
+                             exit(0);
+                         }
+
+                         break;
+                     }
+    case STM_PRINTB: {
+                         Stm_Printi s = (Stm_Printi)stm;
+                         Type_t t = check_exp(s->exp);
+
+                         if (t != TYPE_BOOL) {
+                             fprintf(stderr, "Error: in printb function, expect bool expression, but got int expression!\n");
+                             exit(0);
+                         }
+
+                         break;
+                     }
+    }
+
+    return;
 }
 
 void check_stms(List_t stms)
@@ -78,7 +220,6 @@ void check_stms(List_t stms)
     stms = stms->next;
   }
   return;
-  TODO();
 }
 
 
