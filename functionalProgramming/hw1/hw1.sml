@@ -177,9 +177,9 @@ fun date_to_string(d: int*int*int) =
   end
 
 fun number_before_reaching_sum(s: int, n: int list) =
-  if s < 0 orelse null n
+  if s - (hd n) <= 0 orelse null n
   then 0
-  else 1 + number_before_reaching_sum(10 - (hd n), tl n)
+  else 1 + number_before_reaching_sum(s - (hd n), tl n)
 
 fun what_month(d: int) =
   let
