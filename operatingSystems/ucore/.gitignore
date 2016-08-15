@@ -22,6 +22,7 @@ disk0
 *.orig
 
 .gdb_history
+*.patch
 
 # editor/ide
 .vscode/
