@@ -7,15 +7,6 @@
 
 #define STACKFRAME_DEPTH 20
 
-#ifndef DEBUG_GRADE
-#define DEBUG_GRADE
-#endif
-
-// comment out below three lines to open debug
-#ifdef DEBUG_GRADE
-#undef  DEBUG_GRADE
-#endif
-
 extern const struct stab __STAB_BEGIN__[];  // beginning of stabs table
 extern const struct stab __STAB_END__[];    // end of stabs table
 extern const char __STABSTR_BEGIN__[];      // beginning of string table
@@ -256,16 +247,11 @@ print_debuginfo(uintptr_t eip) {
     }
 }
 
-static __noinline uint32_t read_eip(void) {
+static __noinline uint32_t
+read_eip(void) {
     uint32_t eip;
     asm volatile("movl 4(%%ebp), %0" : "=r" (eip));
     return eip;
-}
-
-static __noinline uint32_t popup_stackframe(uint32_t old_ebp) {
-    uint32_t new_ebp;
-    asm volatile("movl (%1), %0" : "=r" (new_ebp) : "r" (old_ebp));
-    return new_ebp;
 }
 
 /* *
@@ -316,36 +302,19 @@ print_stackframe(void) {
       *           NOTICE: the calling funciton's return addr eip  = ss:[ebp+4]
       *                   the calling funciton's ebp = ss:[ebp]
       */
-    uint32_t ebp = read_ebp(),
-             eip = read_eip();
-    uint32_t *arguments;
+    uint32_t ebp = read_ebp(), eip = read_eip();
 
-    for (int i = 0; i < STACKFRAME_DEPTH; i++) {
-        // printf ebp, eip and arguments
-        arguments = (uint32_t *)ebp + 2;
-        cprintf("ebp:0x%08x eip:0x%08x args:0x%08x 0x%08x 0x%08x 0x%08x\n", ebp, eip,
-                 arguments[0], arguments[1], arguments[2], arguments[3]);
-
-        // print C calling function name and line number
+    int i, j;
+    for (i = 0; ebp != 0 && i < STACKFRAME_DEPTH; i ++) {
+        cprintf("ebp:0x%08x eip:0x%08x args:", ebp, eip);
+        uint32_t *args = (uint32_t *)ebp + 2;
+        for (j = 0; j < 4; j ++) {
+            cprintf("0x%08x ", args[j]);
+        }
+        cprintf("\n");
         print_debuginfo(eip - 1);
-
-#ifdef DEBUG_GRADE
-        cprintf("DEBUG: ");
-        cprintf("old_ebp: 0x%08x\t", ebp);
-        cprintf("0x%08x\t", *((uint32_t *)ebp + 1));
-        cprintf("old_eip: 0x%08x\n", eip);
-#endif
-
-        // pop up stackframe
-        ebp = popup_stackframe(ebp);
-        eip = *((uint32_t *)ebp + 1);
-
-#ifdef DEBUG_GRADE
-        cprintf("DEBUG: ");
-        cprintf("new_ebp: 0x%08x\t", ebp);
-        cprintf("0x%08x\t", *((uint32_t *)ebp + 1));
-        cprintf("new_eip: 0x%08x\n", eip);
-#endif
+        eip = ((uint32_t *)ebp)[1];
+        ebp = ((uint32_t *)ebp)[0];
     }
 }
 
