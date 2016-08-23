@@ -372,7 +372,7 @@ do_pgfault(struct mm_struct *mm, uint32_t error_code, uintptr_t addr) {
 
     }
     else {
-    /*LAB3 EXERCISE 2: YOUR CODE
+    /*LAB3 EXERCISE 2: U201414800
     * Now we think this pte is a  swap entry, we should load data from disk to a page with phy addr,
     * and map the phy addr with logical addr, trigger swap manager to record the access situation of this page.
     *
@@ -398,7 +398,7 @@ do_pgfault(struct mm_struct *mm, uint32_t error_code, uintptr_t addr) {
 #endif
 
    if ((ptep = get_pte(mm->pgdir, addr, 1)) == NULL) {
-      cprintf("do_pafault failed: create new page table error in get_pte function\n");
+      cprintf("do_pafault failed: get page table entry error in get_pte function\n");
       goto failed;
    }
 
@@ -408,7 +408,19 @@ do_pgfault(struct mm_struct *mm, uint32_t error_code, uintptr_t addr) {
            goto failed;
        }
    } else {
+       // *ptep == 0: this page has been swap out
+       if (swap_init_ok) {
+           struct Page *page = NULL;
 
+           if ((ret = swap_in(mm, addr, &page)) != 0) {
+               cprintf("do_pafault failed: swap in error in swap_in function\n");
+               goto failed;
+           }
+
+           page_insert(mm->pgdir, page, addr, perm);
+           swap_map_swappable(mm, addr, page, 1);
+           page->pra_vaddr = addr;
+       }
    }
    ret = 0;
 failed:
