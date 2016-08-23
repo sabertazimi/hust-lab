@@ -145,6 +145,19 @@ print_regs(struct pushregs *regs) {
     cprintf("  eax  0x%08x\n", regs->reg_eax);
 }
 
+static inline void
+print_pgfault(struct trapframe *tf) {
+    /* error_code:
+     * bit 0 == 0 means no page found, 1 means protection fault
+     * bit 1 == 0 means read, 1 means write
+     * bit 2 == 0 means kernel, 1 means user
+     * */
+    cprintf("page fault at 0x%08x: %c/%c [%s].\n", rcr2(),
+            (tf->tf_err & 4) ? 'U' : 'K',
+            (tf->tf_err & 2) ? 'W' : 'R',
+            (tf->tf_err & 1) ? "protection fault" : "no page found");
+}
+
 /* temporary trapframe or pointer to trapframe */
 struct trapframe switchk2u, *switchu2k;
 
@@ -176,8 +189,8 @@ trap_dispatch(struct trapframe *tf) {
         break;
     case IRQ_OFFSET + IRQ_TIMER:
 #if 0
-    LAB3 : If some page replacement algorithm(such as CLOCK PRA) need tick to change the priority of pages, 
-    then you can add code here. 
+    LAB3 : If some page replacement algorithm(such as CLOCK PRA) need tick to change the priority of pages,
+    then you can add code here.
 #endif
         /* LAB1 U201414800 : STEP 3 */
         /* handle the timer interrupt */
@@ -248,4 +261,3 @@ trap(struct trapframe *tf) {
     // dispatch based on what type of trap occurred
     trap_dispatch(tf);
 }
-
