@@ -215,7 +215,7 @@ trap_dispatch(struct trapframe *tf) {
                     panic("handle pgfault failed in kernel mode. ret=%d\n", ret);
                 }
                 cprintf("killed by kernel.\n");
-                panic("handle user mode pgfault failed. ret=%d\n", ret); 
+                panic("handle user mode pgfault failed. ret=%d\n", ret);
                 do_exit(-E_KILLED);
             }
         }
@@ -226,7 +226,7 @@ trap_dispatch(struct trapframe *tf) {
     case IRQ_OFFSET + IRQ_TIMER:
 #if 0
     LAB3 : If some page replacement algorithm(such as CLOCK PRA) need tick to change the priority of pages,
-    then you can add code here. 
+    then you can add code here.
 #endif
         /* LAB1 U201414800 : STEP 3 */
         /* handle the timer interrupt */
@@ -244,10 +244,8 @@ trap_dispatch(struct trapframe *tf) {
 	     * sched_class_proc_tick
          */
         ticks ++;
-        if (ticks % TICK_NUM == 0) {
-            if (current != NULL) {
-                current->need_resched = 1;
-            }
+        if (current != NULL) {
+            sched_class_proc_tick(current);
         }
         break;
     case IRQ_OFFSET + IRQ_COM1:
@@ -317,11 +315,11 @@ trap(struct trapframe *tf) {
         // keep a trapframe chain in stack
         struct trapframe *otf = current->tf;
         current->tf = tf;
-    
+
         bool in_kernel = trap_in_kernel(tf);
-    
+
         trap_dispatch(tf);
-    
+
         current->tf = otf;
         if (!in_kernel) {
             if (current->flags & PF_EXITING) {
@@ -333,4 +331,3 @@ trap(struct trapframe *tf) {
         }
     }
 }
-
