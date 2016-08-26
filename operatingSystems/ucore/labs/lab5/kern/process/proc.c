@@ -23,20 +23,20 @@ manage all these details efficiently. In ucore, a thread is just a special kind 
 process state       :     meaning               -- reason
     PROC_UNINIT     :   uninitialized           -- alloc_proc
     PROC_SLEEPING   :   sleeping                -- try_free_pages, do_wait, do_sleep
-    PROC_RUNNABLE   :   runnable(maybe running) -- proc_init, wakeup_proc, 
+    PROC_RUNNABLE   :   runnable(maybe running) -- proc_init, wakeup_proc,
     PROC_ZOMBIE     :   almost dead             -- do_exit
 
 -----------------------------
 process state changing:
-                                            
+
   alloc_proc                                 RUNNING
       +                                   +--<----<--+
       +                                   + proc_run +
-      V                                   +-->---->--+ 
+      V                                   +-->---->--+
 PROC_UNINIT -- proc_init/wakeup_proc --> PROC_RUNNABLE -- try_free_pages/do_wait/do_sleep --> PROC_SLEEPING --
                                            A      +                                                           +
                                            |      +--- do_exit --> PROC_ZOMBIE                                +
-                                           +                                                                  + 
+                                           +                                                                  +
                                            -----------------------wakeup_proc----------------------------------
 -----------------------------
 process relations
@@ -52,9 +52,9 @@ SYS_wait        : wait process                            -->do_wait
 SYS_exec        : after fork, process execute a program   -->load a program and refresh the mm
 SYS_clone       : create child thread                     -->do_fork-->wakeup_proc
 SYS_yield       : process flag itself need resecheduling, -- proc->need_sched=1, then scheduler will rescheule this process
-SYS_sleep       : process sleep                           -->do_sleep 
+SYS_sleep       : process sleep                           -->do_sleep
 SYS_kill        : kill process                            -->do_kill-->proc->flags |= PF_EXITING
-                                                                 -->wakeup_proc-->do_wait-->do_exit   
+                                                                 -->wakeup_proc-->do_wait-->do_exit
 SYS_getpid      : get the process's pid
 
 */
@@ -105,7 +105,7 @@ alloc_proc(void) {
      */
      //LAB5 YOUR CODE : (update LAB4 steps)
     /*
-     * below fields(add in LAB5) in proc_struct need to be initialized	
+     * below fields(add in LAB5) in proc_struct need to be initialized
      *       uint32_t wait_state;                        // waiting state
      *       struct proc_struct *cptr, *yptr, *optr;     // relations between processes
 	 */
@@ -121,6 +121,8 @@ alloc_proc(void) {
         proc->cr3           = boot_cr3;
         proc->flags         = 0;
         memset(proc->name, 0, sizeof(proc->name));
+        proc->wait_state = 0;
+        proc->cptr = proc->optr = proc->yptr = NULL;
     }
     return proc;
 }
@@ -257,7 +259,7 @@ find_proc(int pid) {
 }
 
 // kernel_thread - create a kernel thread using "fn" function
-// NOTE: the contents of temp trapframe tf will be copied to 
+// NOTE: the contents of temp trapframe tf will be copied to
 //       proc->tf in do_fork-->copy_thread function
 int
 kernel_thread(int (*fn)(void *), void *arg, uint32_t clone_flags) {
@@ -410,7 +412,7 @@ do_fork(uint32_t clone_flags, uintptr_t stack, struct trapframe *tf) {
 
 	//LAB5 YOUR CODE : (update LAB4 steps)
    /* Some Functions
-    *    set_links:  set the relation links of process.  ALSO SEE: remove_links:  lean the relation links of process 
+    *    set_links:  set the relation links of process.  ALSO SEE: remove_links:  lean the relation links of process
     *    -------------------
 	*    update step 1: set child proc's parent to current process, make sure current process's wait_state is 0
 	*    update step 5: insert proc_struct into hash_list && proc_list, set the relation links of process
@@ -438,13 +440,21 @@ do_fork(uint32_t clone_flags, uintptr_t stack, struct trapframe *tf) {
         proc->pid = get_pid();
         hash_proc(proc);
         list_add(&proc_list, &(proc->list_link));
+
+        // 3 steps: self's yptr and optr, optr's yptr, parent's cptr
+        proc->yptr = NULL;
+        if ((proc->optr = proc->parent->cptr) != NULL) {
+            proc->optr->yptr = proc;
+        }
+        proc->parent->cptr = proc;
+
         nr_process++;
     }
     local_intr_restore(intr_flag);
 
     wakeup_proc(proc);
     ret = proc->pid;
-	
+
 fork_out:
     return ret;
 
@@ -467,7 +477,7 @@ do_exit(int error_code) {
     if (current == initproc) {
         panic("initproc exit.\n");
     }
-    
+
     struct mm_struct *mm = current->mm;
     if (mm != NULL) {
         lcr3(boot_cr3);
@@ -480,7 +490,7 @@ do_exit(int error_code) {
     }
     current->state = PROC_ZOMBIE;
     current->exit_code = error_code;
-    
+
     bool intr_flag;
     struct proc_struct *proc;
     local_intr_save(intr_flag);
@@ -492,7 +502,7 @@ do_exit(int error_code) {
         while (current->cptr != NULL) {
             proc = current->cptr;
             current->cptr = proc->optr;
-    
+
             proc->yptr = NULL;
             if ((proc->optr = initproc->cptr) != NULL) {
                 initproc->cptr->yptr = proc;
@@ -507,7 +517,7 @@ do_exit(int error_code) {
         }
     }
     local_intr_restore(intr_flag);
-    
+
     schedule();
     panic("do_exit will not return!! %d.\n", current->pid);
 }
@@ -617,14 +627,16 @@ load_icode(unsigned char *binary, size_t size) {
     }
     //(4) build user stack memory
     vm_flags = VM_READ | VM_WRITE | VM_STACK;
+
     if ((ret = mm_map(mm, USTACKTOP - USTACKSIZE, USTACKSIZE, vm_flags, NULL)) != 0) {
         goto bad_cleanup_mmap;
     }
+
     assert(pgdir_alloc_page(mm->pgdir, USTACKTOP-PGSIZE , PTE_USER) != NULL);
     assert(pgdir_alloc_page(mm->pgdir, USTACKTOP-2*PGSIZE , PTE_USER) != NULL);
     assert(pgdir_alloc_page(mm->pgdir, USTACKTOP-3*PGSIZE , PTE_USER) != NULL);
     assert(pgdir_alloc_page(mm->pgdir, USTACKTOP-4*PGSIZE , PTE_USER) != NULL);
-    
+
     //(5) set current process's mm, sr3, and set CR3 reg = physical addr of Page Directory
     mm_count_inc(mm);
     current->mm = mm;
@@ -634,7 +646,7 @@ load_icode(unsigned char *binary, size_t size) {
     //(6) setup trapframe for user environment
     struct trapframe *tf = current->tf;
     memset(tf, 0, sizeof(struct trapframe));
-    /* LAB5:EXERCISE1 YOUR CODE
+    /* LAB5:EXERCISE1 U201414800
      * should set tf_cs,tf_ds,tf_es,tf_ss,tf_esp,tf_eip,tf_eflags
      * NOTICE: If we set trapframe correctly, then the user level process can return to USER MODE from kernel. So
      *          tf_cs should be USER_CS segment (see memlayout.h)
@@ -643,7 +655,13 @@ load_icode(unsigned char *binary, size_t size) {
      *          tf_eip should be the entry point of this binary program (elf->e_entry)
      *          tf_eflags should be set to enable computer to produce Interrupt
      */
-    ret = 0;
+
+     tf->tf_cs = USER_CS;
+     tf->tf_ss = tf->tf_es = tf->tf_ds = USER_DS;
+     tf->tf_esp = USTACKTOP;
+     tf->tf_eip = elf->e_entry;
+     tf->tf_eflags = FL_IF;
+     ret = 0;
 out:
     return ret;
 bad_cleanup_mmap:
@@ -848,7 +866,7 @@ init_main(void *arg) {
     return 0;
 }
 
-// proc_init - set up the first kernel thread idleproc "idle" by itself and 
+// proc_init - set up the first kernel thread idleproc "idle" by itself and
 //           - create the second kernel thread init_main
 void
 proc_init(void) {
@@ -893,4 +911,3 @@ cpu_idle(void) {
         }
     }
 }
-

@@ -9,9 +9,9 @@
 #include <swap.h>
 #include <kmalloc.h>
 
-/* 
+/*
   vmm design include two parts: mm_struct (mm) & vma_struct (vma)
-  mm is the memory manager for the set of continuous virtual memory  
+  mm is the memory manager for the set of continuous virtual memory
   area which have the same PDT. vma is a continuous virtual memory area.
   There a linear link list for vma & a redblack link list for vma in mm.
 ---------------
@@ -52,10 +52,10 @@ mm_create(void) {
 
         if (swap_init_ok) swap_init_mm(mm);
         else mm->sm_priv = NULL;
-        
+
         set_mm_count(mm, 0);
         lock_init(&(mm->mm_lock));
-    }    
+    }
     return mm;
 }
 
@@ -150,7 +150,7 @@ mm_destroy(struct mm_struct *mm) {
     list_entry_t *list = &(mm->mmap_list), *le;
     while ((le = list_next(list)) != list) {
         list_del(le);
-        kfree(le2vma(le, list_link));  //kfree vma        
+        kfree(le2vma(le, list_link));  //kfree vma
     }
     kfree(mm); //kfree mm
     mm=NULL;
@@ -253,7 +253,7 @@ vmm_init(void) {
 static void
 check_vmm(void) {
     size_t nr_free_pages_store = nr_free_pages();
-    
+
     check_vma_struct();
     check_pgfault();
 
@@ -310,7 +310,7 @@ check_vma_struct(void) {
     for (i =4; i>=0; i--) {
         struct vma_struct *vma_below_5= find_vma(mm,i);
         if (vma_below_5 != NULL ) {
-           cprintf("vma_below_5: i %x, start %x, end %x\n",i, vma_below_5->vm_start, vma_below_5->vm_end); 
+           cprintf("vma_below_5: i %x, start %x, end %x\n",i, vma_below_5->vm_start, vma_below_5->vm_end);
         }
         assert(vma_below_5 == NULL);
     }
@@ -473,7 +473,7 @@ do_pgfault(struct mm_struct *mm, uint32_t error_code, uintptr_t addr) {
     /*
      * LAB5 CHALLENGE ( the implmentation Copy on Write)
 		There are 2 situlations when code comes here.
-		  1) *ptep & PTE_P == 1, it means one process try to write a readonly page. 
+		  1) *ptep & PTE_P == 1, it means one process try to write a readonly page.
 		     If the vma includes this addr is writable, then we can set the page writable by rewrite the *ptep.
 		     This method could be used to implement the Copy on Write (COW) thchnology(a fast fork process method).
 		  2) *ptep & PTE_P == 0 & but *ptep!=0, it means this pte is a  swap entry.
@@ -504,8 +504,7 @@ do_pgfault(struct mm_struct *mm, uint32_t error_code, uintptr_t addr) {
            cprintf("do_pafault failed: map page error in pddir_alloc_page function\n");
            goto failed;
        }
-   } else {
-       // *ptep == 0: this page has been swap out
+   } else { // *ptep == 0: this page has been swap out
        if (swap_init_ok) {
            struct Page *page = NULL;
 
@@ -550,4 +549,3 @@ user_mem_check(struct mm_struct *mm, uintptr_t addr, size_t len, bool write) {
     }
     return KERN_ACCESS(addr, addr + len);
 }
-
