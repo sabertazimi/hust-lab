@@ -21,7 +21,7 @@
 
 
 module down_counter
-#(parameter COUNT = 3)
+#(parameter COUNT = 3, STEP = 1)
 (
     input start,
     input clk,
