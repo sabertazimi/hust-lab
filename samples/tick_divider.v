@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 2016/08/29 21:46:06
+// Create Date: 2016/08/29 21:31:11
 // Design Name: 
-// Module Name: starter
+// Module Name: tick_divider
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,16 +20,18 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module starter
+module tick_divider
+#(parameter WIDTH = 32)
 (
     input clk_src,
-    input sig_en,
-    output sig_start,
-    output sig_end
+    output reg [(WIDTH-1): 0] clk_group
 );
-  
-  parameter WIDTH = 32;
-  wire [WIDTH-1:0] clk_group;
-  counter COUNTER (.clk_src(clk_src), .clk_group(clk_group));
-  timer TIMER (.clk_src(clk_group[0]), .sig_en(sig_en), .sig_start(sig_start), .sig_end(sig_end));
+
+    initial begin
+        clk_group <= {(WIDTH){1'b0}};
+    end
+    
+    always @(posedge clk_src) begin
+        clk_group <= clk_group + 1;
+    end
 endmodule

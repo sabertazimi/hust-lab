@@ -21,28 +21,27 @@
 
 // @input
 // clk_src: clock source
-// time_in: user-defined time(controled by sig_set)
 // power: electronic power
 // switch_en: pause switch
-// sig_set: set pulse
+// sig_up_time: add value of time
 // sig_reset: reset pulse
 // @output
+// count: current count time
 // sig_start: signal implicits arriving at 0
 // sig_end: signal implicits arriving at RANGE
 module timer
-#(parameter WIDTH = 8, RANGE = 10)
+#(parameter WIDTH = 32, RANGE = 60)
 (
     input clk_src,
-    input time_in,
     input power,
     input switch_en,
-    input sig_set,
+    input sig_up_time,
     input sig_reset,
+    output reg [(WIDTH-1):0] count,
     output reg sig_start,
     output reg sig_end   
 );
 
-    reg [(WIDTH-1):0] count;
     
     initial begin
         count <= 0;
@@ -50,12 +49,8 @@ module timer
         sig_end <= 0;
     end
     
-    always @(posedge clk_src or posedge sig_set or posedge sig_reset) begin
+    always @(posedge clk_src or posedge sig_up_time or posedge sig_reset) begin
         if (power) begin
-            if (sig_reset) begin
-                count <= 0;
-            end
-            
             if (switch_en) begin
                 if (count == 0) begin
                     sig_start = 1;
@@ -69,10 +64,10 @@ module timer
                     sig_end = 0;
                 end
                 count = count + 1;
-            end else begin
-                if (sig_set) begin
-                    count = time_in; 
-                end        
+            end else if (sig_reset) begin
+                count <= 0;
+            end else if (sig_up_time) begin
+                count = count + 1;
             end
         end
     end

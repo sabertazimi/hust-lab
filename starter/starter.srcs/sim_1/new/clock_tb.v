@@ -29,7 +29,7 @@ module starter_tb();
     reg clk_src, sig_en;
     wire sig_start, sig_end;
 
-    starter DUT (
+    clock DUT (
         .clk_src(clk_src),
         .sig_en(sig_en),
         .sig_start(sig_start),
