@@ -31,9 +31,8 @@ module clock
     input sig_up_hour,
     input sig_reset,
     output bell,
-    output [15:0] seg_sec,
-    output [15:0] seg_min,
-    output [15:0] seg_hour
+    output [7:0] seg_control,
+    output [7:0] seg_time
 );
 
   // record current time
@@ -44,10 +43,16 @@ module clock
   
   // divided clock source
   wire clk_dst;
+  wire [(WIDTH-1):0] clk_group;
   
-  range_divider DIVIDER (
+  range_divider RANGE_DIVIDER (
     .clk_src(clk_src),
     .clk_dst(clk_dst)
+  );
+  
+  tick_divider TICK_DIVIDER (
+    .clk_src(clk_src),
+    .clk_group(clk_group)
   );
   
   
@@ -90,18 +95,13 @@ module clock
     .bell(bell)
   );
   
-  time_to_segment SEC_SEG (
-     .time_data(sec),
-     .seg_data(seg_sec)
+  time_displayer SEG_SEVEN (
+     .clk_src(clk_group[15]),
+     .sec_data(sec),
+     .min_data(min),
+     .hour_data(hour),
+     .anodes(seg_control),
+     .cnodes(seg_time)
   );
   
-  time_to_segment MIN_SEG (
-     .time_data(min),
-     .seg_data(seg_min)
-  );
-  
-  time_to_segment HOUR_SEG (
-     .time_data(hour),
-     .seg_data(seg_hour)
-  );
 endmodule

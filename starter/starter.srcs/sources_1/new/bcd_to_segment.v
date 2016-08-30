@@ -19,11 +19,11 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
+// seg_data[7:0]: dp-G-F-E-D-C-B-A
 module bcd_to_segment
 (
     input [3:0] bcd_data,
-    output [7:0] seg_data
+    output reg [7:0] seg_data
 );
 
     always @(bcd_data) begin
