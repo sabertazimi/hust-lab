@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 2016/08/29 22:12:21
+// Create Date: 2016/08/30 21:56:20
 // Design Name: 
-// Module Name: starter_tb
+// Module Name: timer_tb
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,8 +20,10 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module clock_tb();
+module timer_tb(
 
+    );
+    
     parameter COUNT = 64;
     parameter DELAY = 10;
     parameter TIME = (COUNT * DELAY);
@@ -29,12 +31,16 @@ module clock_tb();
     reg clk_src, sig_en;
     wire sig_start, sig_end;
 
-    clock DUT (
-        .clk_src(clk_src),
-        .sig_en(sig_en),
-        .sig_start(sig_start),
-        .sig_end(sig_end)
-    );
+    timer #(.WIDTH(WIDTH), .RANGE(59)) SEC_TIMER (
+        .clk_src(clk_dst),
+        .power(power),
+        .switch_en(switch_en),
+        .sig_up_time(sig_up_sec),
+        .sig_reset(sig_reset),
+        .count(sec),
+        .sig_start(),
+        .sig_end(sig_sec)
+    ); 
     
     initial begin
         clk_src <= 0;
@@ -48,5 +54,4 @@ module clock_tb();
     initial begin
         sig_en <= 1;
     end
-
 endmodule

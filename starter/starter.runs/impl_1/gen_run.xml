@@ -1,64 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1472478798">
-  <File Type="PA-TCL" Name="starter.tcl"/>
-  <File Type="POSTROUTE-PHYSOPT-DCP" Name="starter_postroute_physopt.dcp"/>
-  <File Type="INIT-TIMING" Name="starter_timing_summary_init.rpt"/>
-  <File Type="OPT-DCP" Name="starter_opt.dcp"/>
-  <File Type="OPT-DRC" Name="starter_drc_opted.rpt"/>
-  <File Type="OPT-METHODOLOGY-DRC" Name="starter_methodology_drc_opted.rpt"/>
-  <File Type="OPT-HWDEF" Name="starter.hwdef"/>
-  <File Type="OPT-TIMING" Name="starter_timing_summary_opted.rpt"/>
-  <File Type="PWROPT-DCP" Name="starter_pwropt.dcp"/>
-  <File Type="PWROPT-DRC" Name="starter_drc_pwropted.rpt"/>
-  <File Type="PWROPT-TIMING" Name="starter_timing_summary_pwropted.rpt"/>
-  <File Type="PLACE-DCP" Name="starter_placed.dcp"/>
-  <File Type="PLACE-IO" Name="starter_io_placed.rpt"/>
-  <File Type="PLACE-CLK" Name="starter_clock_utilization_placed.rpt"/>
-  <File Type="PLACE-UTIL" Name="starter_utilization_placed.rpt"/>
-  <File Type="PLACE-UTIL-PB" Name="starter_utilization_placed.pb"/>
-  <File Type="PLACE-CTRL" Name="starter_control_sets_placed.rpt"/>
-  <File Type="PLACE-SIMILARITY" Name="starter_incremental_reuse_placed.rpt"/>
-  <File Type="PLACE-PRE-SIMILARITY" Name="starter_incremental_reuse_pre_placed.rpt"/>
-  <File Type="PLACE-TIMING" Name="starter_timing_summary_placed.rpt"/>
-  <File Type="POSTPLACE-PWROPT-DCP" Name="starter_postplace_pwropt.dcp"/>
-  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="starter_timing_summary_postroute_physopted.rpt"/>
-  <File Type="BG-BIT" Name="starter.bit"/>
-  <File Type="ROUTE-TIMINGSUMMARY" Name="starter_timing_summary_routed.rpt"/>
-  <File Type="BG-BIN" Name="starter.bin"/>
-  <File Type="ROUTE-SIMILARITY" Name="starter_incremental_reuse_routed.rpt"/>
-  <File Type="BITSTR-MSK" Name="starter.msk"/>
-  <File Type="ROUTE-CLK" Name="starter_clock_utilization_routed.rpt"/>
-  <File Type="BITSTR-RBT" Name="starter.rbt"/>
-  <File Type="BITSTR-NKY" Name="starter.nky"/>
-  <File Type="BITSTR-BMM" Name="starter_bd.bmm"/>
-  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="starter_postroute_physopt_bb.dcp"/>
+<GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1472564948">
   <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
-  <File Type="RDI-RDI" Name="starter.vdi"/>
-  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="starter_timing_summary_postroute_physopted.pb"/>
-  <File Type="BG-DRC" Name="starter.drc"/>
-  <File Type="ROUTE-TIMING-PB" Name="starter_timing_summary_routed.pb"/>
-  <File Type="BITSTR-MMI" Name="starter.mmi"/>
-  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="starter_timing_summary_postroute_physopted.rpx"/>
-  <File Type="BG-BGN" Name="starter.bgn"/>
-  <File Type="ROUTE-TIMING-RPX" Name="starter_timing_summary_routed.rpx"/>
-  <File Type="BITSTR-SYSDEF" Name="starter.sysdef"/>
-  <File Type="ROUTE-STATUS-PB" Name="starter_route_status.pb"/>
-  <File Type="ROUTE-STATUS" Name="starter_route_status.rpt"/>
-  <File Type="ROUTE-PWR-RPX" Name="starter_power_routed.rpx"/>
-  <File Type="ROUTE-PWR-SUM" Name="starter_power_summary_routed.pb"/>
-  <File Type="ROUTE-PWR" Name="starter_power_routed.rpt"/>
-  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="starter_methodology_drc_routed.pb"/>
-  <File Type="ROUTE-METHODOLOGY-DRC" Name="starter_methodology_drc_routed.rpt"/>
-  <File Type="ROUTE-DRC-PB" Name="starter_drc_routed.pb"/>
-  <File Type="ROUTE-DRC" Name="starter_drc_routed.rpt"/>
-  <File Type="ROUTE-BLACKBOX-DCP" Name="starter_routed_bb.dcp"/>
-  <File Type="ROUTE-DCP" Name="starter_routed.dcp"/>
-  <File Type="PHYSOPT-TIMING" Name="starter_timing_summary_physopted.rpt"/>
-  <File Type="PHYSOPT-DRC" Name="starter_drc_physopted.rpt"/>
-  <File Type="PHYSOPT-DCP" Name="starter_physopt.dcp"/>
-  <File Type="POSTPLACE-PWROPT-TIMING" Name="starter_timing_summary_postplace_pwropted.rpt"/>
+  <File Type="RDI-RDI" Name="clock.vdi"/>
+  <File Type="BG-DRC" Name="clock.drc"/>
+  <File Type="BG-BGN" Name="clock.bgn"/>
+  <File Type="BITSTR-SYSDEF" Name="clock.sysdef"/>
+  <File Type="BITSTR-MMI" Name="clock.mmi"/>
+  <File Type="BITSTR-BMM" Name="clock_bd.bmm"/>
+  <File Type="BITSTR-NKY" Name="clock.nky"/>
+  <File Type="BITSTR-RBT" Name="clock.rbt"/>
+  <File Type="BITSTR-MSK" Name="clock.msk"/>
+  <File Type="BG-BIN" Name="clock.bin"/>
+  <File Type="BG-BIT" Name="clock.bit"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="clock_timing_summary_postroute_physopted.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="clock_timing_summary_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="clock_timing_summary_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="clock_postroute_physopt_bb.dcp"/>
+  <File Type="ROUTE-CLK" Name="clock_clock_utilization_routed.rpt"/>
+  <File Type="ROUTE-SIMILARITY" Name="clock_incremental_reuse_routed.rpt"/>
+  <File Type="ROUTE-TIMING-RPX" Name="clock_timing_summary_routed.rpx"/>
+  <File Type="ROUTE-TIMING-PB" Name="clock_timing_summary_routed.pb"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="clock_timing_summary_routed.rpt"/>
+  <File Type="ROUTE-STATUS-PB" Name="clock_route_status.pb"/>
+  <File Type="ROUTE-STATUS" Name="clock_route_status.rpt"/>
+  <File Type="ROUTE-PWR-RPX" Name="clock_power_routed.rpx"/>
+  <File Type="ROUTE-PWR-SUM" Name="clock_power_summary_routed.pb"/>
+  <File Type="ROUTE-PWR" Name="clock_power_routed.rpt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="clock_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="clock_methodology_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-PB" Name="clock_drc_routed.pb"/>
+  <File Type="ROUTE-DRC" Name="clock_drc_routed.rpt"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="clock_routed_bb.dcp"/>
+  <File Type="ROUTE-DCP" Name="clock_routed.dcp"/>
+  <File Type="PHYSOPT-TIMING" Name="clock_timing_summary_physopted.rpt"/>
+  <File Type="PHYSOPT-DRC" Name="clock_drc_physopted.rpt"/>
+  <File Type="PHYSOPT-DCP" Name="clock_physopt.dcp"/>
+  <File Type="POSTPLACE-PWROPT-TIMING" Name="clock_timing_summary_postplace_pwropted.rpt"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="clock_postplace_pwropt.dcp"/>
+  <File Type="PLACE-TIMING" Name="clock_timing_summary_placed.rpt"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="clock_incremental_reuse_pre_placed.rpt"/>
+  <File Type="PLACE-SIMILARITY" Name="clock_incremental_reuse_placed.rpt"/>
+  <File Type="PLACE-CTRL" Name="clock_control_sets_placed.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="clock_utilization_placed.pb"/>
+  <File Type="PLACE-UTIL" Name="clock_utilization_placed.rpt"/>
+  <File Type="PLACE-CLK" Name="clock_clock_utilization_placed.rpt"/>
+  <File Type="PLACE-IO" Name="clock_io_placed.rpt"/>
+  <File Type="PLACE-DCP" Name="clock_placed.dcp"/>
+  <File Type="PWROPT-TIMING" Name="clock_timing_summary_pwropted.rpt"/>
+  <File Type="PWROPT-DRC" Name="clock_drc_pwropted.rpt"/>
+  <File Type="PWROPT-DCP" Name="clock_pwropt.dcp"/>
+  <File Type="OPT-TIMING" Name="clock_timing_summary_opted.rpt"/>
+  <File Type="OPT-HWDEF" Name="clock.hwdef"/>
+  <File Type="OPT-METHODOLOGY-DRC" Name="clock_methodology_drc_opted.rpt"/>
+  <File Type="OPT-DRC" Name="clock_drc_opted.rpt"/>
+  <File Type="OPT-DCP" Name="clock_opt.dcp"/>
+  <File Type="INIT-TIMING" Name="clock_timing_summary_init.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="clock_postroute_physopt.dcp"/>
+  <File Type="PA-TCL" Name="clock.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/new/integer_to_bcd.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/bcd_to_segment.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/time_to_segment.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/time_displayer.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/tick_divider.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/new/timer.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -66,14 +101,21 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/counter.v">
+    <File Path="$PSRCDIR/sources_1/new/ring.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/starter.v">
+    <File Path="$PSRCDIR/sources_1/new/range_divider.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/clock.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -82,13 +124,13 @@
     </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="starter"/>
+      <Option Name="TopModule" Val="clock"/>
       <Option Name="TopAutoSet" Val="TRUE"/>
     </Config>
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
     <Filter Type="Constrs"/>
-    <File Path="$PSRCDIR/constrs_1/new/starter.xdc">
+    <File Path="$PSRCDIR/constrs_1/new/clock.xdc">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>

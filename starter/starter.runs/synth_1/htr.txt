@@ -6,4 +6,4 @@
 # Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 #
 
-vivado -log starter.vds -m64 -mode batch -messageDb vivado.pb -notrace -source starter.tcl
+vivado -log clock.vds -m64 -mode batch -messageDb vivado.pb -notrace -source clock.tcl

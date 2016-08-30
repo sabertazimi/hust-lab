@@ -42,7 +42,6 @@ module timer
     output reg sig_end   
 );
 
-    
     initial begin
         count <= 0;
         sig_start <= 0;

@@ -19,7 +19,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-// seg_data[7:0]: dp-G-F-E-D-C-B-A
+// seg_data[7:0]a: dp-G-F-E-D-C-B-A
 module bcd_to_segment
 (
     input [3:0] bcd_data,
