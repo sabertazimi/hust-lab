@@ -38,35 +38,36 @@ module timer
     input sig_up_time,
     input sig_reset,
     output reg [(WIDTH-1):0] count,
-    output reg sig_start,
     output reg sig_end   
 );
 
     initial begin
         count <= 0;
-        sig_start <= 0;
+        // sig_start <= 0;
         sig_end <= 0;
     end
     
     always @(posedge clk_src or posedge sig_up_time or posedge sig_reset) begin
         if (power) begin
             if (switch_en) begin
+                count = (count + 1) % RANGE;
+                
                 if (count == 0) begin
-                    sig_start = 1;
-                end else begin
-                    sig_start = 0;
-                end
-                if (count == RANGE) begin
                     sig_end = 1;
-                    count = 0;
                 end else begin
                     sig_end = 0;
                 end
-                count = count + 1;
+//                if (count == RANGE) begin
+//                    sig_end = 1;
+//                end else begin
+//                    sig_end = 0;
+//                end
             end else if (sig_reset) begin
-                count <= 0;
+                sig_end = 0;
+                count = 0;
             end else if (sig_up_time) begin
-                count = count + 1;
+                sig_end = 0;
+                count = (count + 1) % RANGE;
             end
         end
     end

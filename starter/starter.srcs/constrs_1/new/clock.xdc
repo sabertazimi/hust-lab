@@ -59,7 +59,6 @@ set_property IOSTANDARD LVCMOS33 [get_ports sig_reset]
 set_property PACKAGE_PIN T8 [get_ports bell]
 set_property IOSTANDARD LVCMOS33 [get_ports bell]
 
-
 set_property PACKAGE_PIN N6 [get_ports seg_control[0]]
 set_property IOSTANDARD LVCMOS33 [get_ports seg_control[0]]
 set_property PACKAGE_PIN M6 [get_ports seg_control[1]]

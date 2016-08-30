@@ -24,26 +24,31 @@ module timer_tb(
 
     );
     
-    parameter COUNT = 64;
+    parameter COUNT = 1000;
     parameter DELAY = 10;
     parameter TIME = (COUNT * DELAY);
+    parameter WIDTH = 32;
     
-    reg clk_src, sig_en;
-    wire sig_start, sig_end;
+    reg clk_src, power, switch_en, sig_up_time, sig_reset;
+    wire [WIDTH-1:0] count;
+    wire sig_end;
 
-    timer #(.WIDTH(WIDTH), .RANGE(59)) SEC_TIMER (
-        .clk_src(clk_dst),
+    timer #(.WIDTH(WIDTH), .RANGE(10)) SEC_TIMER (
+        .clk_src(clk_src),
         .power(power),
         .switch_en(switch_en),
-        .sig_up_time(sig_up_sec),
+        .sig_up_time(sig_up_time),
         .sig_reset(sig_reset),
-        .count(sec),
-        .sig_start(),
-        .sig_end(sig_sec)
+        .count(count),
+        .sig_end(sig_end)
     ); 
     
     initial begin
         clk_src <= 0;
+        power <= 1;
+        switch_en <= 1;
+        sig_up_time <= 0;
+        sig_reset <= 0;
         #TIME $finish;
     end
     
@@ -51,7 +56,13 @@ module timer_tb(
         #DELAY clk_src <= ~clk_src;
     end
     
-    initial begin
-        sig_en <= 1;
+    always begin
+        #1000 switch_en = 0;
+        #10 sig_up_time = 1;
+        #10 sig_up_time = 0;
+        #10 sig_up_time = 1;
+        #10 sig_up_time = 0;
+        #10 sig_reset = 1;
+        #10 sig_reset = 0;
     end
 endmodule

@@ -54,38 +54,34 @@ module clock
     .clk_src(clk_src),
     .clk_group(clk_group)
   );
-  
-  
-  timer #(.WIDTH(WIDTH), .RANGE(59)) SEC_TIMER (
+
+  timer #(.WIDTH(WIDTH), .RANGE(60)) SEC_TIMER (
     .clk_src(clk_dst),
     .power(power),
     .switch_en(switch_en),
     .sig_up_time(sig_up_sec),
     .sig_reset(sig_reset),
     .count(sec),
-    .sig_start(),
     .sig_end(sig_sec)
   );
   
-  timer #(.WIDTH(WIDTH), .RANGE(59)) MIN_TIMER (
+  timer #(.WIDTH(WIDTH), .RANGE(60)) MIN_TIMER (
     .clk_src(sig_sec),
     .power(power),
     .switch_en(switch_en),
     .sig_up_time(sig_up_min),
     .sig_reset(sig_reset),
     .count(min),
-    .sig_start(),
     .sig_end(sig_min)
   );
   
-  timer #(.WIDTH(WIDTH), .RANGE(23)) HOUR_TIMER (
+  timer #(.WIDTH(WIDTH), .RANGE(24)) HOUR_TIMER (
     .clk_src(sig_min),
     .power(power),
     .switch_en(switch_en),
     .sig_up_time(sig_up_hour),
     .sig_reset(sig_reset),
     .count(hour),
-    .sig_start(),
     .sig_end(sig_hour)
   ); 
 
