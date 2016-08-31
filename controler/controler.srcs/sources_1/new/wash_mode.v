@@ -5,6 +5,7 @@ module wash_mode(
     input weight_ch,
     output reg wash_end
     );
+    // FIX ME: there's 3 state, but state and nextState only can hold 1 bit.
     reg state, nextstate;
     parameter wait_state = 0, water_in = 1, washing = 2;
     
@@ -13,6 +14,7 @@ module wash_mode(
         nextstate = wait_state;
     end
     
+    // FIX ME: edge detective(posedge) can't be mix up with level detective(power).
     always @(posedge wash_start or power or posedge clk or posedge reset)
     begin
     if(power)
