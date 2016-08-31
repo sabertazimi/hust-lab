@@ -78,7 +78,7 @@ module clock_tb();
         #(DELAY) sig_up_min <= 0;
         #(5*DELAY) sig_up_hour <= 1;
         #(DELAY) sig_up_hour <= 0;
-        #(5*DELAY) sig_reset <= 1;
+        #(20*DELAY) sig_reset <= 1;
         #DELAY sig_reset <= 0;
     end
     
