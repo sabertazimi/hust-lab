@@ -19,43 +19,55 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
+// @input
+// clk_src: clock source
+// power: electronic power
+// switch_en: pause switch
+// sig_up_time: add value of time
+// sig_reset: reset pulse
+// @output
+// count: current count time
+// sig_start: signal implicits arriving at 0
+// sig_end: signal implicits arriving at RANGE
 module timer
-#(parameter WIDTH = 8, RANGE = 10)
+#(parameter WIDTH = 32, RANGE = 60)
 (
     input clk_src,
-    input sig_en,
+    input power,
+    input switch_en,
+    input sig_up_time,
+    input sig_reset,
+    output reg [(WIDTH-1):0] count,
     output reg sig_start,
     output reg sig_end   
 );
 
-    reg [(WIDTH-1):0] count;
-    
     initial begin
         count <= 0;
         sig_start <= 0;
         sig_end <= 0;
     end
     
-    always @(posedge clk_src) begin
-        if (sig_en) begin
-            
-            if (count == 0) begin
-                sig_start = 1;
-            end else begin
-                sig_start = 0;
+    always @(posedge clk_src or posedge sig_up_time or posedge sig_reset) begin
+        if (power) begin
+            if (switch_en) begin
+                if (count == 0) begin
+                    sig_start = 1;
+                end else begin
+                    sig_start = 0;
+                end
+                if (count == RANGE) begin
+                    sig_end = 1;
+                    count = 0;
+                end else begin
+                    sig_end = 0;
+                end
+                count = count + 1;
+            end else if (sig_reset) begin
+                count <= 0;
+            end else if (sig_up_time) begin
+                count = count + 1;
             end
-            
-            if (count == RANGE) begin
-                sig_end = 1;
-                count = 0;
-            end else begin
-                sig_end = 0;
-            end
-            
-            count = count + 1;
-                                
         end
     end
-
 endmodule
