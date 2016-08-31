@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.1 (lin64) Build 1538259 Fri Apr  8 15:45:23 MDT 2016
-| Date         : Tue Aug 30 23:59:14 2016
+| Date         : Wed Aug 31 14:09:24 2016
 | Host         : avalon running 64-bit Ubuntu 16.04 LTS
 | Command      : report_control_sets -verbose -file clock_control_sets_placed.rpt
 | Design       : clock
@@ -22,8 +22,8 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Number of unique control sets                            |    10 |
-| Unused register locations in slices containing registers |    40 |
+| Number of unique control sets                            |     4 |
+| Unused register locations in slices containing registers |    14 |
 +----------------------------------------------------------+-------+
 
 
@@ -33,10 +33,10 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              24 |            9 |
-| No           | No                    | Yes                    |               1 |            1 |
+| No           | No                    | No                     |              20 |            7 |
+| No           | No                    | Yes                    |               0 |            0 |
 | No           | Yes                   | No                     |              32 |            8 |
-| Yes          | No                    | No                     |              47 |           14 |
+| Yes          | No                    | No                     |               6 |            2 |
 | Yes          | No                    | Yes                    |               0 |            0 |
 | Yes          | Yes                   | No                     |               0 |            0 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
@@ -45,19 +45,13 @@ Table of Contents
 3. Detailed Control Set Information
 -----------------------------------
 
-+---------------------+--------------------------+---------------------+------------------+----------------+
-|     Clock Signal    |       Enable Signal      |   Set/Reset Signal  | Slice Load Count | Bel Load Count |
-+---------------------+--------------------------+---------------------+------------------+----------------+
-|  clk_dst_BUFG       |                          | MIN_TIMER/bell_reg  |                1 |              1 |
-|  SEC_TIMER/sig_end  |                          |                     |                1 |              2 |
-|  clk_dst_BUFG       |                          |                     |                2 |              2 |
-|  TICK_DIVIDER/CLK   |                          |                     |                1 |              3 |
-|  MIN_TIMER/bell_reg | MIN_TIMER/count_reg[5]_0 |                     |                1 |              5 |
-|  SEC_TIMER/sig_end  | MIN_TIMER/count_reg[5]_0 |                     |                2 |              5 |
-|  clk_dst_BUFG       | MIN_TIMER/count_reg[5]_0 |                     |                2 |              5 |
-|  clk_src_IBUF_BUFG  |                          |                     |                5 |             17 |
-|  clk_src_IBUF_BUFG  |                          | RANGE_DIVIDER/clear |                8 |             32 |
-|  clk_dst_BUFG       | MIN_TIMER/E[0]           |                     |                9 |             32 |
-+---------------------+--------------------------+---------------------+------------------+----------------+
++------------------------+---------------+---------------------+------------------+----------------+
+|      Clock Signal      | Enable Signal |   Set/Reset Signal  | Slice Load Count | Bel Load Count |
++------------------------+---------------+---------------------+------------------+----------------+
+|  TICK_DIVIDER/out[0]   |               |                     |                2 |              3 |
+|  RANGE_DIVIDER/clk_dst | power_IBUF    |                     |                2 |              6 |
+|  clk_src_IBUF_BUFG     |               |                     |                5 |             17 |
+|  clk_src_IBUF_BUFG     |               | RANGE_DIVIDER/clear |                8 |             32 |
++------------------------+---------------+---------------------+------------------+----------------+
 
 

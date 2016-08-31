@@ -43,33 +43,31 @@ module timer
 
     initial begin
         count <= 0;
-        // sig_start <= 0;
         sig_end <= 0;
     end
     
-    always @(posedge clk_src or posedge sig_up_time or posedge sig_reset) begin
+    always @(posedge sig_up_time or posedge sig_reset or posedge clk_src) begin
         if (power) begin
-            if (switch_en && !sig_up_time && !sig_reset) begin
-                count = (count + 1) % RANGE;
-                
-                if (count == 0) begin
-                    sig_end = 1;
-                end else begin
-                    sig_end = 0;
+            if (switch_en) begin
+                if (!sig_up_time && !sig_reset) begin
+                    count = (count + 1) % RANGE;
+                    if (count == 0) begin
+                        sig_end = 1;
+                    end
+                    else begin
+                        sig_end = 0;
+                    end
                 end
-//                if (count == RANGE) begin
-//                    sig_end = 1;
-//                end else begin
-//                    sig_end = 0;
-//                end
-            end 
-            if (!switch_en && sig_reset) begin
-                sig_end = 0;
-                count = 0;
             end
-            if (!switch_en && !sig_reset && sig_up_time) begin
-                sig_end = 0;
-                count = (count + 1) % RANGE;
+            else begin
+                if (sig_reset) begin
+                    count <= 0;
+                end
+                else begin
+                    if (sig_up_time) begin
+                        count <= (count + 1) % RANGE;
+                    end
+                end
             end
         end
     end
