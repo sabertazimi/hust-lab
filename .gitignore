@@ -90,6 +90,8 @@
 !*.docx
 !*.pdf
 
+!start_script
+
 temps/
 vivado.jou
 vivado.log
