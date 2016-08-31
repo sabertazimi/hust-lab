@@ -41,33 +41,35 @@ module timer
     output reg sig_end   
 );
 
+    wire clock = sig_reset || sig_up_time || clk_src;
+
     initial begin
         count <= 0;
+        // sig_start <= 0;
         sig_end <= 0;
     end
     
-    always @(posedge sig_up_time or posedge sig_reset or posedge clk_src) begin
+    always @(posedge clock) begin
         if (power) begin
-            if (switch_en) begin
-                if (!sig_up_time && !sig_reset) begin
-                    count = (count + 1) % RANGE;
-                    if (count == 0) begin
-                        sig_end = 1;
-                    end
-                    else begin
-                        sig_end = 0;
-                    end
+            if (switch_en && !sig_reset && !sig_up_time) begin
+                count = (count + 1) % RANGE;
+                
+                if (count == 0) begin
+                    sig_end = 1;
+                end else begin
+                    sig_end = 0;
                 end
+//                if (count == RANGE) begin
+//                    sig_end = 1;
+//                end else begin
+//                    sig_end = 0;
+//                end
             end
-            else begin
-                if (sig_reset) begin
-                    count <= 0;
-                end
-                else begin
-                    if (sig_up_time) begin
-                        count <= (count + 1) % RANGE;
-                    end
-                end
+            if (!switch_en && sig_reset) begin
+                count = 0;
+            end
+            if (!switch_en && !sig_reset && sig_up_time) begin
+                count = (count + 1) % RANGE;
             end
         end
     end
