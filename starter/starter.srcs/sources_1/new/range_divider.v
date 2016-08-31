@@ -28,6 +28,10 @@ module range_divider
 );
 
     reg[(WIDTH-1):0] count;
+    
+    initial begin
+        count <= 0;
+    end
 
     always@(posedge clk_src) begin
         count = count + 1;

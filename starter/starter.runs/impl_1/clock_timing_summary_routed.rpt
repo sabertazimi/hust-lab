@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.1 (lin64) Build 1538259 Fri Apr  8 15:45:23 MDT 2016
-| Date         : Tue Aug 30 23:00:09 2016
+| Date         : Tue Aug 30 23:59:39 2016
 | Host         : avalon running 64-bit Ubuntu 16.04 LTS
 | Command      : report_timing_summary -warn_on_violation -max_paths 10 -file clock_timing_summary_routed.rpt -rpx clock_timing_summary_routed.rpx
 | Design       : clock

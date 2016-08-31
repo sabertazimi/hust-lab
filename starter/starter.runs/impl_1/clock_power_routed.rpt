@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2016.1 (lin64) Build 1538259 Fri Apr  8 15:45:23 MDT 2016
-| Date             : Tue Aug 30 23:00:10 2016
+| Date             : Tue Aug 30 23:59:40 2016
 | Host             : avalon running 64-bit Ubuntu 16.04 LTS
 | Command          : report_power -file clock_power_routed.rpt -pb clock_power_summary_routed.pb -rpx clock_power_routed.rpx
 | Design           : clock

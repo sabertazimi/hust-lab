@@ -18,9 +18,9 @@ read_verilog -library xil_defaultlib {
   /home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/integer_to_bcd.v
   /home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/bcd_to_segment.v
   /home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/time_to_segment.v
+  /home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/timer.v
   /home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/time_displayer.v
   /home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/tick_divider.v
-  /home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/timer.v
   /home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/ring.v
   /home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/range_divider.v
   /home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/clock.v

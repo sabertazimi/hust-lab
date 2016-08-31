@@ -2,11 +2,11 @@
 # Webtalk v2016.1 (64-bit)
 # SW Build 1538259 on Fri Apr  8 15:45:23 MDT 2016
 # IP Build 1537824 on Fri Apr  8 04:28:57 MDT 2016
-# Start of session at: Tue Aug 30 23:04:00 2016
-# Process ID: 8458
+# Start of session at: Wed Aug 31 11:35:53 2016
+# Process ID: 18973
 # Current directory: /home/sabertazimi/gitrepo/dld/starter/starter.sim/sim_1/behav
-# Command line: wbtcv -mode batch -source /home/sabertazimi/gitrepo/dld/starter/starter.sim/sim_1/behav/xsim.dir/timer_tb_behav/webtalk/xsim_webtalk.tcl -notrace
+# Command line: wbtcv -mode batch -source /home/sabertazimi/gitrepo/dld/starter/starter.sim/sim_1/behav/xsim.dir/clock_tb_behav/webtalk/xsim_webtalk.tcl -notrace
 # Log file: /home/sabertazimi/gitrepo/dld/starter/starter.sim/sim_1/behav/webtalk.log
 # Journal file: /home/sabertazimi/gitrepo/dld/starter/starter.sim/sim_1/behav/webtalk.jou
 #-----------------------------------------------------------
-source /home/sabertazimi/gitrepo/dld/starter/starter.sim/sim_1/behav/xsim.dir/timer_tb_behav/webtalk/xsim_webtalk.tcl -notrace
+source /home/sabertazimi/gitrepo/dld/starter/starter.sim/sim_1/behav/xsim.dir/clock_tb_behav/webtalk/xsim_webtalk.tcl -notrace

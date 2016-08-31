@@ -49,7 +49,7 @@ module timer
     
     always @(posedge clk_src or posedge sig_up_time or posedge sig_reset) begin
         if (power) begin
-            if (switch_en) begin
+            if (switch_en && !sig_up_time && !sig_reset) begin
                 count = (count + 1) % RANGE;
                 
                 if (count == 0) begin
@@ -62,10 +62,12 @@ module timer
 //                end else begin
 //                    sig_end = 0;
 //                end
-            end else if (sig_reset) begin
+            end 
+            if (!switch_en && sig_reset) begin
                 sig_end = 0;
                 count = 0;
-            end else if (sig_up_time) begin
+            end
+            if (!switch_en && !sig_reset && sig_up_time) begin
                 sig_end = 0;
                 count = (count + 1) % RANGE;
             end
