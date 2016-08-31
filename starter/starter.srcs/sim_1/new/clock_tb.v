@@ -22,7 +22,7 @@
 
 module clock_tb();
 
-    parameter COUNT = 1000;
+    parameter COUNT = 10000;
     parameter DELAY = 10;
     parameter TIME = (COUNT * DELAY);
     
@@ -57,28 +57,48 @@ module clock_tb();
     always begin
         #DELAY clk_src <= ~clk_src;
     end
-
+    
     always begin
-        #(5*DELAY) sig_up_sec <= 1;
+        #(TIME/3) switch_en <= 0;
+        #(DELAY) sig_up_sec <= 1;
         #(DELAY) sig_up_sec <= 0;
-        #(5*DELAY) sig_up_min <= 1;
-        #(DELAY) sig_up_min <= 0;
-        #(5*DELAY) sig_up_hour <= 1;
-        #(DELAY) sig_up_hour <= 0;
+        #(DELAY) sig_up_sec <= 1;
+        #(DELAY) sig_up_sec <= 0;
+        #(DELAY) sig_up_sec <= 1;
+        #(DELAY) sig_up_sec <= 0;
+        #(DELAY) sig_up_sec <= 1;
+        #(DELAY) sig_up_sec <= 0;
+        #(DELAY) sig_up_sec <= 1;
+        #(DELAY) sig_up_sec <= 0;
         #(5*DELAY) sig_reset <= 1;
         #DELAY sig_reset <= 0;
-
     end
     
     always begin
-        #(TIME/3) switch_en = 0;
-        #(5*DELAY) sig_up_sec <= 1;
-        #(DELAY) sig_up_sec <= 0;
-        #(5*DELAY) sig_up_min <= 1;
+        #(TIME/3) switch_en <= 0;
+        #(DELAY) sig_up_min <= 1;
         #(DELAY) sig_up_min <= 0;
-        #(5*DELAY) sig_up_hour <= 1;
+        #(DELAY) sig_up_min <= 1;
+        #(DELAY) sig_up_min <= 0;
+        #(DELAY) sig_up_min <= 1;
+        #(DELAY) sig_up_min <= 0;
+        #(DELAY) sig_up_min <= 1;
+        #(DELAY) sig_up_min <= 0;
+        #(5*DELAY) sig_reset <= 1;
+        #DELAY sig_reset <= 0;
+    end    
+       
+    always begin
+        #(TIME/3) switch_en <= 0; 
+        #(DELAY) sig_up_hour <= 1;
         #(DELAY) sig_up_hour <= 0;
-        #(20*DELAY) sig_reset <= 1;
+        #(DELAY) sig_up_hour <= 1;
+        #(DELAY) sig_up_hour <= 0;
+        #(DELAY) sig_up_hour <= 1;
+        #(DELAY) sig_up_hour <= 0;
+        #(DELAY) sig_up_hour <= 1;
+        #(DELAY) sig_up_hour <= 0;
+        #(5*DELAY) sig_reset <= 1;
         #DELAY sig_reset <= 0;
     end
     
