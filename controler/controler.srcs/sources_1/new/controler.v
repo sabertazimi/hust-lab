@@ -21,9 +21,11 @@
 
 
 module controler(
-    input power, input start, input weight_ch, input mode_ch, input clk, input reset,
+    input power, input start_pause, input weight_ch, input mode_ch, input clk,
     input [2:0]w_r_d,// input [2:0]w_r_d_end,
-    output reg [1:0]state, output reg [1:0]nextstate
+    output reg [1:0]state, output reg [1:0]nextstate,
+    //light
+    output reg start_pause_light
     );
     reg [1:0]weight_result;
     //reg [2:0]w_r_d;
@@ -35,12 +37,11 @@ module controler(
 //    weight_water WEIGHT ();//link start to control running
 //    mode MODE ();
     wash_mode WASH (.power(power),
-                    .pause(start),
+                    .pause(start_pause),
                     .weight(weight),
                     .clk(clk),
-                    .reset(reset),
                     .wash_start(w_r_d_start[2]),
-                    .wash_control(w_r_d_control[2]),
+                    //.wash_control(w_r_d_control[2]),
                     .wash_end(w_r_d_end[2])
      );
 //    rinse RINSE ();
@@ -49,28 +50,25 @@ module controler(
     initial begin
         state = mode_weight_choose;
         nextstate = mode_weight_choose;
+        start_pause_light = 0;  //light is off
     end
     
-    // FIX ME: posedge detective can't be mixed up with level detective.
-    always @(power or posedge clk or posedge reset)
-    if(power) begin
-        if(reset)
-            state = mode_weight_choose; //in mode_weight_choose
-        else state = nextstate;
-    end
+    // FIXED ME: posedge detective can't be mixed up with level detective.
+    always @(posedge power or posedge clk or posedge start_pause)
+    if(power) state = nextstate; //in mode_weight_choose
     else nextstate = mode_weight_choose;
     
-    always @(state or start)     //moore
-    if(start) begin
+    always @(state or start_pause)     //moore
+    if(start_pause) begin
         case(state)
-            mode_weight_choose: begin w_r_d_start = 0;end
+            mode_weight_choose: begin w_r_d_start = 0; w_r_d_end = 0; end
             wash:   w_r_d_start = 4;
             rinse:  w_r_d_start = 2;
            dewatering:  w_r_d_start = 1;
         endcase
     end
     
-    always @(posedge w_r_d_end[0] or posedge w_r_d_end[1] or posedge w_r_d_end[2] or w_r_d)
+    always @(w_r_d_end or w_r_d)
     if(start) begin
         case(state)
 //            mode_end:   
