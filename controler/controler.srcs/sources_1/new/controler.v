@@ -51,6 +51,7 @@ module controler(
         nextstate = mode_weight_choose;
     end
     
+    // FIX ME: posedge detective can't be mixed up with level detective.
     always @(power or posedge clk or posedge reset)
     if(power) begin
         if(reset)
