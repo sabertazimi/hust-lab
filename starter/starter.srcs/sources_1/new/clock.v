@@ -45,7 +45,7 @@ module clock
   wire clk_dst;
   wire [(WIDTH-1):0] clk_group;
   
-  range_divider DRANGE_DIVIDER (
+  range_divider #(.WIDTH(WIDTH), .RANGE(2)) DRANGE_DIVIDER (
     .clk_src(clk_src),
     .clk_dst(clk_dst)
   );
