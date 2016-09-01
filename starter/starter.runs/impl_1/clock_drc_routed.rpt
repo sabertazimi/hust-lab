@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.1 (lin64) Build 1538259 Fri Apr  8 15:45:23 MDT 2016
-| Date         : Thu Sep  1 19:30:39 2016
+| Date         : Thu Sep  1 21:05:13 2016
 | Host         : avalon running 64-bit Ubuntu 16.04 LTS
 | Command      : report_drc -file clock_drc_routed.rpt -pb clock_drc_routed.pb
 | Design       : clock
@@ -23,7 +23,7 @@ Table of Contents
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 9
+             Violations found: 7
 
 2. REPORT DETAILS
 -----------------
@@ -42,59 +42,49 @@ Related violations: <none>
 
 PDRC-153#1 Warning
 Gated clock check  
-Net DRANGE_DIVIDER/clock is a gated clock net sourced by a combinational pin DRANGE_DIVIDER/count[5]_i_4/O, cell DRANGE_DIVIDER/count[5]_i_4. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net TICK_DIVIDER/count_reg[0] is a gated clock net sourced by a combinational pin TICK_DIVIDER/count[4]_i_3/O, cell TICK_DIVIDER/count[4]_i_3. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#2 Warning
 Gated clock check  
-Net DRANGE_DIVIDER/clock is a gated clock net sourced by a combinational pin DRANGE_DIVIDER/count[5]_i_4/O, cell DRANGE_DIVIDER/count[5]_i_4. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net TICK_DIVIDER/count_reg[5] is a gated clock net sourced by a combinational pin TICK_DIVIDER/count[5]_i_3__0/O, cell TICK_DIVIDER/count[5]_i_3__0. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PDRC-153#3 Warning
 Gated clock check  
-Net MIN_TIMER/clock is a gated clock net sourced by a combinational pin MIN_TIMER/count[4]_i_3/O, cell MIN_TIMER/count[4]_i_3. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#4 Warning
-Gated clock check  
-Net SEC_TIMER/clock is a gated clock net sourced by a combinational pin SEC_TIMER/count[5]_i_3__0/O, cell SEC_TIMER/count[5]_i_3__0. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
-Related violations: <none>
-
-PDRC-153#5 Warning
-Gated clock check  
-Net SEC_TIMER/clock is a gated clock net sourced by a combinational pin SEC_TIMER/count[5]_i_3__0/O, cell SEC_TIMER/count[5]_i_3__0. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Net TICK_DIVIDER/count_reg[5]_0 is a gated clock net sourced by a combinational pin TICK_DIVIDER/count[5]_i_4/O, cell TICK_DIVIDER/count[5]_i_4. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
 Related violations: <none>
 
 PLHOLDVIO-2#1 Warning
 Non-Optimal connections which could lead to hold violations  
-A LUT DRANGE_DIVIDER/count[5]_i_4 is driving clock pin of 7 cells. This could lead to large hold time violations. First few involved cells are:
-    SEC_TIMER/count_reg[5] {FDRE}
-    SEC_TIMER/count_reg[4] {FDRE}
-    SEC_TIMER/count_reg[3] {FDRE}
-    SEC_TIMER/count_reg[2] {FDRE}
-    SEC_TIMER/count_reg[1] {FDRE}
-
-Related violations: <none>
-
-PLHOLDVIO-2#2 Warning
-Non-Optimal connections which could lead to hold violations  
-A LUT MIN_TIMER/count[4]_i_3 is driving clock pin of 5 cells. This could lead to large hold time violations. First few involved cells are:
-    HOUR_TIMER/count_reg[4] {FDRE}
+A LUT TICK_DIVIDER/count[4]_i_3 is driving clock pin of 5 cells. This could lead to large hold time violations. First few involved cells are:
     HOUR_TIMER/count_reg[3] {FDRE}
     HOUR_TIMER/count_reg[2] {FDRE}
+    HOUR_TIMER/count_reg[4] {FDRE}
     HOUR_TIMER/count_reg[1] {FDRE}
     HOUR_TIMER/count_reg[0] {FDRE}
 
 Related violations: <none>
 
-PLHOLDVIO-2#3 Warning
+PLHOLDVIO-2#2 Warning
 Non-Optimal connections which could lead to hold violations  
-A LUT SEC_TIMER/count[5]_i_3__0 is driving clock pin of 7 cells. This could lead to large hold time violations. First few involved cells are:
+A LUT TICK_DIVIDER/count[5]_i_3__0 is driving clock pin of 7 cells. This could lead to large hold time violations. First few involved cells are:
     MIN_TIMER/count_reg[5] {FDRE}
     MIN_TIMER/count_reg[4] {FDRE}
     MIN_TIMER/count_reg[3] {FDRE}
     MIN_TIMER/count_reg[2] {FDRE}
     MIN_TIMER/count_reg[1] {FDRE}
+
+Related violations: <none>
+
+PLHOLDVIO-2#3 Warning
+Non-Optimal connections which could lead to hold violations  
+A LUT TICK_DIVIDER/count[5]_i_4 is driving clock pin of 7 cells. This could lead to large hold time violations. First few involved cells are:
+    SEC_TIMER/count_reg[5] {FDRE}
+    SEC_TIMER/count_reg[4] {FDRE}
+    SEC_TIMER/count_reg[3] {FDRE}
+    SEC_TIMER/count_reg[2] {FDRE}
+    SEC_TIMER/count_reg[1] {FDRE}
 
 Related violations: <none>
 

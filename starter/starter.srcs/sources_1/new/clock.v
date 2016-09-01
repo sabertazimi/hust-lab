@@ -26,10 +26,13 @@ module clock
     input clk_src,
     input power,
     input switch_en,
-    input sig_up_sec,
-    input sig_up_min,
-    input sig_up_hour,
-    input sig_reset,
+    input switch_upen_sec,
+    input switch_upen_min,
+    input switch_upen_hour,
+    input switch_up_sec,
+    input switch_up_min,
+    input switch_up_hour,
+    input switch_reset,
     output bell,
     output [7:0] seg_control,
     output [7:0] seg_time
@@ -55,32 +58,35 @@ module clock
     .clk_group(clk_group)
   );
 
+  // open switch for time change, change clock source
   timer #(.WIDTH(WIDTH), .RANGE(60)) SEC_TIMER (
-    .clk_src(clk_dst),
+    .clk_src(switch_upen_sec ? clk_group[25] : clk_dst),
     .power(power),
     .switch_en(switch_en),
-    .sig_up_time(sig_up_sec),
-    .sig_reset(sig_reset),
+    .switch_up_time(switch_up_sec),
+    .switch_reset(switch_reset),
     .count(sec),
     .sig_end(sig_sec)
   );
   
+  // open switch for time change, change clock source
   timer #(.WIDTH(WIDTH), .RANGE(60)) MIN_TIMER (
-    .clk_src(sig_sec),
+    .clk_src(switch_upen_min ? clk_group[25] : sig_sec),
     .power(power),
     .switch_en(switch_en),
-    .sig_up_time(sig_up_min),
-    .sig_reset(sig_reset),
+    .switch_up_time(switch_up_min),
+    .switch_reset(switch_reset),
     .count(min),
     .sig_end(sig_min)
   );
   
+  // open switch for time change, change clock source
   timer #(.WIDTH(WIDTH), .RANGE(24)) HOUR_TIMER (
-    .clk_src(sig_min),
+    .clk_src(switch_upen_hour ? clk_group[25] : sig_min),
     .power(power),
     .switch_en(switch_en),
-    .sig_up_time(sig_up_hour),
-    .sig_reset(sig_reset),
+    .switch_up_time(switch_up_hour),
+    .switch_reset(switch_reset),
     .count(hour),
     .sig_end(sig_hour)
   );

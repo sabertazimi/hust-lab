@@ -35,62 +35,32 @@ module timer
     input clk_src,
     input power,
     input switch_en,
-    input sig_up_time,
-    input sig_reset,
+    input switch_up_time,
+    input switch_reset,
     output reg [(WIDTH-1):0] count,
     output reg sig_end   
 );
 
-    wire clock;
-    wire [3:0] flags;
-    
-    assign clock = sig_reset || sig_up_time || clk_src;
-    assign flags = {switch_en, clk_src, sig_reset, sig_up_time};
-
     initial begin
         count <= 0;
-        // sig_start <= 0;
         sig_end <= 0;
     end
     
-    always @(posedge clock) begin
+    always @(posedge clk_src) begin
         if (power) begin
-//            if (clk_src && switch_en) begin
-//                count = (count + 1) % RANGE;
-            
-//                if (count == 0) begin
-//                    sig_end = 1;
-//                end else begin
-//                    sig_end = 0;
-//                end
-//            end else if (sig_reset && !switch_en) begin
-//                count = 0;
-//            end else if (sig_up_time && !switch_en) begin
-//                count = (count + 1) % RANGE;
-//            end
-            case (flags)
-                4'b1000,
-                4'b1100: begin
-                    count = (count + 1) % RANGE;
-                    if (count == 0) begin
-                        sig_end = 1;
-                    end else begin
-                        sig_end = 0;
-                    end
+            if (switch_reset) begin
+                count <= 0;
+            end else if (switch_en) begin
+                count = (count + 1) % RANGE;
+                
+                if (count == 0) begin
+                    sig_end = 1;
+                end else begin
+                    sig_end = 0;
                 end
-                4'b0010,
-                4'b0110,
-                4'b0011,
-                4'b0111: begin
-                    count = 0;
-                end
-                4'b0001,
-                4'b0101: begin
-                    count = (count + 1) % RANGE;
-                end
-                default : begin
-                end
-            endcase
+            end else if (switch_up_time) begin
+                count = (count + 1) % RANGE;
+            end
         end
     end
 endmodule

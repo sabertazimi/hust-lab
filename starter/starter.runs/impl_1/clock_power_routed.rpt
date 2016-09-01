@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2016.1 (lin64) Build 1538259 Fri Apr  8 15:45:23 MDT 2016
-| Date             : Thu Sep  1 19:30:40 2016
+| Date             : Thu Sep  1 21:05:14 2016
 | Host             : avalon running 64-bit Ubuntu 16.04 LTS
 | Command          : report_power -file clock_power_routed.rpt -pb clock_power_summary_routed.pb -rpx clock_power_routed.rpx
 | Design           : clock
@@ -30,8 +30,8 @@ Table of Contents
 ----------
 
 +--------------------------+----------------------------------+
-| Total On-Chip Power (W)  | 56.350 (Junction temp exceeded!) |
-| Dynamic (W)              | 55.554                           |
+| Total On-Chip Power (W)  | 53.092 (Junction temp exceeded!) |
+| Dynamic (W)              | 52.295                           |
 | Device Static (W)        | 0.797                            |
 | Effective TJA (C/W)      | 4.6                              |
 | Max Ambient (C)          | 0.0                              |
@@ -49,16 +49,16 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Slice Logic    |    13.447 |     2119 |       --- |             --- |
-|   LUT as Logic |    11.877 |     1161 |     63400 |            1.83 |
-|   CARRY4       |     1.527 |      357 |     15850 |            2.25 |
-|   Register     |     0.037 |      104 |    126800 |            0.08 |
+| Slice Logic    |    11.385 |     1917 |       --- |             --- |
+|   LUT as Logic |    10.033 |     1043 |     63400 |            1.65 |
+|   CARRY4       |     1.307 |      299 |     15850 |            1.89 |
+|   Register     |     0.039 |      114 |    126800 |            0.09 |
 |   BUFG         |     0.006 |        2 |        32 |            6.25 |
 |   Others       |     0.000 |       21 |       --- |             --- |
-| Signals        |     9.442 |     1606 |       --- |             --- |
-| I/O            |    32.665 |       24 |       210 |           11.43 |
+| Signals        |     8.203 |     1471 |       --- |             --- |
+| I/O            |    32.707 |       27 |       210 |           12.86 |
 | Static Power   |     0.797 |          |           |                 |
-| Total          |    56.350 |          |           |                 |
+| Total          |    53.092 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -68,9 +68,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |    23.479 |      22.917 |      0.563 |
-| Vccaux    |       1.800 |     1.289 |       1.196 |      0.093 |
-| Vcco33    |       3.300 |     9.242 |       9.238 |      0.004 |
+| Vccint    |       1.000 |    20.191 |      19.629 |      0.563 |
+| Vccaux    |       1.800 |     1.290 |       1.197 |      0.093 |
+| Vcco33    |       3.300 |     9.250 |       9.246 |      0.004 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
@@ -135,17 +135,17 @@ Table of Contents
 +------------------+-----------+
 | Name             | Power (W) |
 +------------------+-----------+
-| clock            |    55.554 |
-|   DRANGE_DIVIDER |     0.203 |
-|   HOUR_TIMER     |     2.115 |
-|   MIN_TIMER      |     2.267 |
-|   RING           |     0.167 |
-|   SEC_TIMER      |     2.288 |
-|   SEG_SEVEN      |    13.902 |
-|     HOUR_SEG     |     4.242 |
-|     MIN_SEG      |     4.271 |
-|     SEC_SEG      |     4.749 |
-|   TICK_DIVIDER   |     0.059 |
+| clock            |    52.295 |
+|   DRANGE_DIVIDER |     0.190 |
+|   HOUR_TIMER     |     0.903 |
+|   MIN_TIMER      |     1.970 |
+|   RING           |     0.155 |
+|   SEC_TIMER      |     1.945 |
+|   SEG_SEVEN      |    12.742 |
+|     HOUR_SEG     |     3.262 |
+|     MIN_SEG      |     4.363 |
+|     SEC_SEG      |     4.505 |
+|   TICK_DIVIDER   |     0.102 |
 +------------------+-----------+
 
 

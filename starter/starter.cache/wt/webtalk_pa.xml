@@ -3,10 +3,10 @@
 <!--The data in this file is primarily intended for consumption by Xilinx tools.
 The structure and the elements are likely to change over the next few releases.
 This means code written to parse this file will need to be revisited each subsequent release.-->
-<application name="pa" timeStamp="Thu Sep  1 19:29:14 2016">
+<application name="pa" timeStamp="Thu Sep  1 21:03:47 2016">
 <section name="Project Information" visible="false">
 <property name="ProjectID" value="bfd691259127428f9bc5af8a34b6d11a" type="ProjectID"/>
-<property name="ProjectIteration" value="65" type="ProjectIteration"/>
+<property name="ProjectIteration" value="80" type="ProjectIteration"/>
 </section>
 <section name="PlanAhead Usage" visible="true">
 <item name="Project Data">
@@ -18,22 +18,22 @@ This means code written to parse this file will need to be revisited each subseq
 </item>
 <item name="Java Command Handlers">
 <property name="AddSources" value="13" type="JavaHandler"/>
-<property name="AutoConnectTarget" value="7" type="JavaHandler"/>
+<property name="AutoConnectTarget" value="8" type="JavaHandler"/>
 <property name="EditDelete" value="4" type="JavaHandler"/>
 <property name="EditUndo" value="3" type="JavaHandler"/>
 <property name="LaunchOpenTarget" value="2" type="JavaHandler"/>
-<property name="LaunchProgramFpga" value="43" type="JavaHandler"/>
+<property name="LaunchProgramFpga" value="57" type="JavaHandler"/>
 <property name="NewProject" value="1" type="JavaHandler"/>
-<property name="OpenHardwareManager" value="15" type="JavaHandler"/>
+<property name="OpenHardwareManager" value="16" type="JavaHandler"/>
 <property name="OpenProject" value="3" type="JavaHandler"/>
-<property name="OpenRecentTarget" value="3" type="JavaHandler"/>
+<property name="OpenRecentTarget" value="5" type="JavaHandler"/>
 <property name="ProjectSettingsCmdHandler" value="1" type="JavaHandler"/>
-<property name="RunBitgen" value="56" type="JavaHandler"/>
+<property name="RunBitgen" value="71" type="JavaHandler"/>
 <property name="RunImplementation" value="11" type="JavaHandler"/>
 <property name="RunSynthesis" value="12" type="JavaHandler"/>
 <property name="SaveFileProxyHandler" value="5" type="JavaHandler"/>
 <property name="SetTopNode" value="1" type="JavaHandler"/>
-<property name="ShowView" value="14" type="JavaHandler"/>
+<property name="ShowView" value="15" type="JavaHandler"/>
 <property name="SimulationClose" value="22" type="JavaHandler"/>
 <property name="SimulationRestart" value="10" type="JavaHandler"/>
 <property name="SimulationRun" value="29" type="JavaHandler"/>
