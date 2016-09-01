@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1472702831">
+<GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1472740333">
   <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
   <File Type="RDI-RDI" Name="weight_selector.vdi"/>
   <File Type="BG-DRC" Name="weight_selector.drc"/>
@@ -20,55 +20,68 @@
   <File Type="ROUTE-SIMILARITY" Name="weight_selector_incremental_reuse_routed.rpt"/>
   <File Type="ROUTE-TIMING-RPX" Name="weight_selector_timing_summary_routed.rpx"/>
   <File Type="ROUTE-TIMING-PB" Name="weight_selector_timing_summary_routed.pb"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="weight_selector_timing_summary_routed.rpt"/>
+  <File Type="ROUTE-STATUS-PB" Name="weight_selector_route_status.pb"/>
+  <File Type="ROUTE-STATUS" Name="weight_selector_route_status.rpt"/>
+  <File Type="ROUTE-PWR-RPX" Name="weight_selector_power_routed.rpx"/>
+  <File Type="ROUTE-PWR-SUM" Name="weight_selector_power_summary_routed.pb"/>
+  <File Type="ROUTE-PWR" Name="weight_selector_power_routed.rpt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="weight_selector_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="weight_selector_methodology_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-PB" Name="weight_selector_drc_routed.pb"/>
+  <File Type="ROUTE-DRC" Name="weight_selector_drc_routed.rpt"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="weight_selector_routed_bb.dcp"/>
+  <File Type="ROUTE-DCP" Name="weight_selector_routed.dcp"/>
+  <File Type="PHYSOPT-TIMING" Name="weight_selector_timing_summary_physopted.rpt"/>
+  <File Type="PHYSOPT-DRC" Name="weight_selector_drc_physopted.rpt"/>
+  <File Type="PHYSOPT-DCP" Name="weight_selector_physopt.dcp"/>
+  <File Type="POSTPLACE-PWROPT-TIMING" Name="weight_selector_timing_summary_postplace_pwropted.rpt"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="weight_selector_postplace_pwropt.dcp"/>
+  <File Type="PLACE-TIMING" Name="weight_selector_timing_summary_placed.rpt"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="weight_selector_incremental_reuse_pre_placed.rpt"/>
+  <File Type="PLACE-SIMILARITY" Name="weight_selector_incremental_reuse_placed.rpt"/>
+  <File Type="PLACE-CTRL" Name="weight_selector_control_sets_placed.rpt"/>
   <File Type="PLACE-UTIL-PB" Name="weight_selector_utilization_placed.pb"/>
   <File Type="PLACE-UTIL" Name="weight_selector_utilization_placed.rpt"/>
-  <File Type="PLACE-DCP" Name="weight_selector_placed.dcp"/>
   <File Type="PLACE-CLK" Name="weight_selector_clock_utilization_placed.rpt"/>
-  <File Type="PHYSOPT-TIMING" Name="weight_selector_timing_summary_physopted.rpt"/>
+  <File Type="PLACE-IO" Name="weight_selector_io_placed.rpt"/>
+  <File Type="PLACE-DCP" Name="weight_selector_placed.dcp"/>
   <File Type="PWROPT-TIMING" Name="weight_selector_timing_summary_pwropted.rpt"/>
-  <File Type="OPT-DRC" Name="weight_selector_drc_opted.rpt"/>
   <File Type="PWROPT-DRC" Name="weight_selector_drc_pwropted.rpt"/>
   <File Type="PWROPT-DCP" Name="weight_selector_pwropt.dcp"/>
-  <File Type="POSTROUTE-PHYSOPT-DCP" Name="weight_selector_postroute_physopt.dcp"/>
-  <File Type="PA-TCL" Name="weight_selector.tcl"/>
-  <File Type="PLACE-IO" Name="weight_selector_io_placed.rpt"/>
-  <File Type="POSTPLACE-PWROPT-TIMING" Name="weight_selector_timing_summary_postplace_pwropted.rpt"/>
   <File Type="OPT-TIMING" Name="weight_selector_timing_summary_opted.rpt"/>
-  <File Type="PLACE-CTRL" Name="weight_selector_control_sets_placed.rpt"/>
+  <File Type="OPT-HWDEF" Name="weight_selector.hwdef"/>
   <File Type="OPT-METHODOLOGY-DRC" Name="weight_selector_methodology_drc_opted.rpt"/>
+  <File Type="OPT-DRC" Name="weight_selector_drc_opted.rpt"/>
   <File Type="OPT-DCP" Name="weight_selector_opt.dcp"/>
   <File Type="INIT-TIMING" Name="weight_selector_timing_summary_init.rpt"/>
-  <File Type="OPT-HWDEF" Name="weight_selector.hwdef"/>
-  <File Type="PLACE-TIMING" Name="weight_selector_timing_summary_placed.rpt"/>
-  <File Type="PLACE-SIMILARITY" Name="weight_selector_incremental_reuse_placed.rpt"/>
-  <File Type="ROUTE-METHODOLOGY-DRC" Name="weight_selector_methodology_drc_routed.rpt"/>
-  <File Type="PLACE-PRE-SIMILARITY" Name="weight_selector_incremental_reuse_pre_placed.rpt"/>
-  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="weight_selector_methodology_drc_routed.pb"/>
-  <File Type="POSTPLACE-PWROPT-DCP" Name="weight_selector_postplace_pwropt.dcp"/>
-  <File Type="PHYSOPT-DCP" Name="weight_selector_physopt.dcp"/>
-  <File Type="PHYSOPT-DRC" Name="weight_selector_drc_physopted.rpt"/>
-  <File Type="ROUTE-DCP" Name="weight_selector_routed.dcp"/>
-  <File Type="ROUTE-BLACKBOX-DCP" Name="weight_selector_routed_bb.dcp"/>
-  <File Type="ROUTE-DRC" Name="weight_selector_drc_routed.rpt"/>
-  <File Type="ROUTE-DRC-PB" Name="weight_selector_drc_routed.pb"/>
-  <File Type="ROUTE-PWR" Name="weight_selector_power_routed.rpt"/>
-  <File Type="ROUTE-PWR-SUM" Name="weight_selector_power_summary_routed.pb"/>
-  <File Type="ROUTE-PWR-RPX" Name="weight_selector_power_routed.rpx"/>
-  <File Type="ROUTE-STATUS" Name="weight_selector_route_status.rpt"/>
-  <File Type="ROUTE-STATUS-PB" Name="weight_selector_route_status.pb"/>
-  <File Type="ROUTE-TIMINGSUMMARY" Name="weight_selector_timing_summary_routed.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="weight_selector_postroute_physopt.dcp"/>
+  <File Type="PA-TCL" Name="weight_selector.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
-    <File Path="$PSRCDIR/sources_1/new/weight_selector.v">
+    <File Path="$PSRCDIR/sources_1/new/water_let.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/water_let.v">
+    <File Path="$PSRCDIR/sources_1/new/range_divider.v">
       <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/tick_divider.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/weight_selector.v">
+      <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>

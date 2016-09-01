@@ -25,17 +25,13 @@ set_property IOSTANDARD LVCMOS33 [get_ports switch_en]
 #set_property PACKAGE_PIN T16 [get_ports sig_up_hour]
 #set_property IOSTANDARD LVCMOS33 [get_ports sig_up_hour]
 
+#set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets reset_flag_IBUF]
+#set_property PACKAGE_PIN R7 [get_ports reset_flag]
+#set_property IOSTANDARD LVCMOS33 [get_ports reset_flag]
+
 set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets sig_change_IBUF]
-set_property PACKAGE_PIN E16 [get_ports sig_change]
+set_property PACKAGE_PIN R6 [get_ports sig_change]
 set_property IOSTANDARD LVCMOS33 [get_ports sig_change]
-
-#set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets clk_sel[1]_IBUF]
-#set_property PACKAGE_PIN R7 [get_ports clk_sel[1]]
-#set_property IOSTANDARD LVCMOS33 [get_ports clk_sel[1]]
-
-#set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets clk_sel[2]_IBUF]
-#set_property PACKAGE_PIN R6 [get_ports clk_sel[2]]
-#set_property IOSTANDARD LVCMOS33 [get_ports clk_sel[2]]
 
 #set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets clk_sel[3]_IBUF]
 #set_property PACKAGE_PIN R5 [get_ports clk_sel[3]]

@@ -7,7 +7,8 @@
   <device name="xc7a100t_0" gui_info=""/>
   <ObjectList object_type="hw_device" gui_info="">
     <Object name="xc7a100t_0" gui_info="">
-      <Properties Property="PROGRAM.HW_BITSTREAM" value="/home/sabertazimi/gitrepo/dld/starter/starter.runs/impl_1/clock.bit"/>
+      <Properties Property="PROBES.FILE" value=""/>
+      <Properties Property="PROGRAM.HW_BITSTREAM" value="$_project_name_.runs/impl_1/weight_selector.bit"/>
     </Object>
   </ObjectList>
   <probeset name="hw project" active="false"/>

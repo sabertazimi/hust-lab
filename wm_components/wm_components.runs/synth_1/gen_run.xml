@@ -1,25 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1472702831">
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1472740333">
   <File Type="VDS-TIMING-PB" Name="weight_selector_timing_summary_synth.pb"/>
   <File Type="VDS-TIMINGSUMMARY" Name="weight_selector_timing_summary_synth.rpt"/>
+  <File Type="RDS-DCP" Name="weight_selector.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="weight_selector_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="weight_selector_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="weight_selector_drc_synth.rpt"/>
   <File Type="RDS-RDS" Name="weight_selector.vds"/>
   <File Type="PA-TCL" Name="weight_selector.tcl"/>
-  <File Type="RDS-PROPCONSTRS" Name="weight_selector_drc_synth.rpt"/>
-  <File Type="RDS-UTIL" Name="weight_selector_utilization_synth.rpt"/>
-  <File Type="RDS-UTIL-PB" Name="weight_selector_utilization_synth.pb"/>
-  <File Type="RDS-DCP" Name="weight_selector.dcp"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
-    <File Path="$PSRCDIR/sources_1/new/weight_selector.v">
+    <File Path="$PSRCDIR/sources_1/new/water_let.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/water_let.v">
+    <File Path="$PSRCDIR/sources_1/new/range_divider.v">
       <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/tick_divider.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/weight_selector.v">
+      <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
