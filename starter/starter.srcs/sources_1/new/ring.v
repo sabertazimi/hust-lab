@@ -39,10 +39,10 @@ module ring
         count <= 0;
     end
 
-    always @(posedge sig_ring or posedge sig_step) begin
+    always @(posedge sig_step) begin
         if (sig_ring) begin
             bell = 1;
-        end else if (sig_step) begin 
+        end else begin
             if (bell == 1) begin
                 count = count + 1;
             end

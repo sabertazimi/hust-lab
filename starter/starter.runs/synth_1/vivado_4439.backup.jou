@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2016.1 (64-bit)
+# SW Build 1538259 on Fri Apr  8 15:45:23 MDT 2016
+# IP Build 1537824 on Fri Apr  8 04:28:57 MDT 2016
+# Start of session at: Thu Sep  1 13:16:24 2016
+# Process ID: 4439
+# Current directory: /home/sabertazimi/gitrepo/dld/starter/starter.runs/synth_1
+# Command line: vivado -log clock.vds -mode batch -messageDb vivado.pb -notrace -source clock.tcl
+# Log file: /home/sabertazimi/gitrepo/dld/starter/starter.runs/synth_1/clock.vds
+# Journal file: /home/sabertazimi/gitrepo/dld/starter/starter.runs/synth_1/vivado.jou
+#-----------------------------------------------------------
+source clock.tcl -notrace

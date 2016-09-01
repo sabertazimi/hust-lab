@@ -41,7 +41,11 @@ module timer
     output reg sig_end   
 );
 
-    wire clock = sig_reset || sig_up_time || clk_src;
+    wire clock;
+    wire [3:0] flags;
+    
+    assign clock = sig_reset || sig_up_time || clk_src;
+    assign flags = {switch_en, clk_src, sig_reset, sig_up_time};
 
     initial begin
         count <= 0;
@@ -51,26 +55,42 @@ module timer
     
     always @(posedge clock) begin
         if (power) begin
-            if (switch_en && !sig_reset && !sig_up_time) begin
-                count = (count + 1) % RANGE;
-                
-                if (count == 0) begin
-                    sig_end = 1;
-                end else begin
-                    sig_end = 0;
-                end
-//                if (count == RANGE) begin
+//            if (clk_src && switch_en) begin
+//                count = (count + 1) % RANGE;
+            
+//                if (count == 0) begin
 //                    sig_end = 1;
 //                end else begin
 //                    sig_end = 0;
 //                end
-            end
-            if (!switch_en && sig_reset) begin
-                count = 0;
-            end
-            if (!switch_en && !sig_reset && sig_up_time) begin
-                count = (count + 1) % RANGE;
-            end
+//            end else if (sig_reset && !switch_en) begin
+//                count = 0;
+//            end else if (sig_up_time && !switch_en) begin
+//                count = (count + 1) % RANGE;
+//            end
+            case (flags)
+                4'b1000,
+                4'b1100: begin
+                    count = (count + 1) % RANGE;
+                    if (count == 0) begin
+                        sig_end = 1;
+                    end else begin
+                        sig_end = 0;
+                    end
+                end
+                4'b0010,
+                4'b0110,
+                4'b0011,
+                4'b0111: begin
+                    count = 0;
+                end
+                4'b0001,
+                4'b0101: begin
+                    count = (count + 1) % RANGE;
+                end
+                default : begin
+                end
+            endcase
         end
     end
 endmodule

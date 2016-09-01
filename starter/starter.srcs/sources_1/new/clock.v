@@ -45,7 +45,7 @@ module clock
   wire clk_dst;
   wire [(WIDTH-1):0] clk_group;
   
-  range_divider #(.WIDTH(WIDTH), .RANGE(2)) DRANGE_DIVIDER (
+  range_divider DRANGE_DIVIDER (
     .clk_src(clk_src),
     .clk_dst(clk_dst)
   );
@@ -55,7 +55,7 @@ module clock
     .clk_group(clk_group)
   );
 
-  timer #(.WIDTH(WIDTH), .RANGE(5)) SEC_TIMER (
+  timer #(.WIDTH(WIDTH), .RANGE(60)) SEC_TIMER (
     .clk_src(clk_dst),
     .power(power),
     .switch_en(switch_en),
@@ -65,7 +65,7 @@ module clock
     .sig_end(sig_sec)
   );
   
-  timer #(.WIDTH(WIDTH), .RANGE(5)) MIN_TIMER (
+  timer #(.WIDTH(WIDTH), .RANGE(60)) MIN_TIMER (
     .clk_src(sig_sec),
     .power(power),
     .switch_en(switch_en),
@@ -75,7 +75,7 @@ module clock
     .sig_end(sig_min)
   );
   
-  timer #(.WIDTH(WIDTH), .RANGE(3)) HOUR_TIMER (
+  timer #(.WIDTH(WIDTH), .RANGE(24)) HOUR_TIMER (
     .clk_src(sig_min),
     .power(power),
     .switch_en(switch_en),
@@ -83,10 +83,10 @@ module clock
     .sig_reset(sig_reset),
     .count(hour),
     .sig_end(sig_hour)
-  ); 
+  );
 
   ring RING (
-    .sig_ring(sig_min),
+    .sig_ring(sec == 0 && min == 0),
     .sig_step(clk_dst),
     .bell(bell)
   );

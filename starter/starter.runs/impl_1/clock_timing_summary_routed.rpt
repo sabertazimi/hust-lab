@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.1 (lin64) Build 1538259 Fri Apr  8 15:45:23 MDT 2016
-| Date         : Wed Aug 31 14:09:48 2016
+| Date         : Thu Sep  1 19:30:39 2016
 | Host         : avalon running 64-bit Ubuntu 16.04 LTS
 | Command      : report_timing_summary -warn_on_violation -max_paths 10 -file clock_timing_summary_routed.rpt -rpx clock_timing_summary_routed.rpx
 | Design       : clock
@@ -54,7 +54,19 @@ Table of Contents
 --------------------
  There are 49 register/latch pins with no clock driven by root clock pin: clk_src (HIGH)
 
- There are 6 register/latch pins with no clock driven by root clock pin: RANGE_DIVIDER/clk_dst_reg/C (HIGH)
+ There are 19 register/latch pins with no clock driven by root clock pin: sig_reset (HIGH)
+
+ There are 5 register/latch pins with no clock driven by root clock pin: sig_up_hour (HIGH)
+
+ There are 7 register/latch pins with no clock driven by root clock pin: sig_up_min (HIGH)
+
+ There are 7 register/latch pins with no clock driven by root clock pin: sig_up_sec (HIGH)
+
+ There are 40 register/latch pins with no clock driven by root clock pin: DRANGE_DIVIDER/clk_dst_reg/C (HIGH)
+
+ There are 5 register/latch pins with no clock driven by root clock pin: MIN_TIMER/sig_end_reg/C (HIGH)
+
+ There are 7 register/latch pins with no clock driven by root clock pin: SEC_TIMER/sig_end_reg/C (HIGH)
 
  There are 3 register/latch pins with no clock driven by root clock pin: TICK_DIVIDER/clk_group_reg[15]/C (HIGH)
 
@@ -71,21 +83,21 @@ Table of Contents
 
 4. checking unconstrained_internal_endpoints
 --------------------------------------------
- There are 96 pins that are not constrained for maximum delay. (HIGH)
+ There are 202 pins that are not constrained for maximum delay. (HIGH)
 
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 
 
 5. checking no_input_delay
 --------------------------
- There are 4 input ports with no input delay specified. (HIGH)
+ There are 6 input ports with no input delay specified. (HIGH)
 
  There are 0 input ports with no input delay but user has a false path constraint.
 
 
 6. checking no_output_delay
 ---------------------------
- There are 16 ports with no output delay specified. (HIGH)
+ There are 17 ports with no output delay specified. (HIGH)
 
  There are 0 ports with no output delay but user has a false path constraint
 

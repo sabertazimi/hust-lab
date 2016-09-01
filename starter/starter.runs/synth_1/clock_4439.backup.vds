@@ -1,0 +1,54 @@
+#-----------------------------------------------------------
+# Vivado v2016.1 (64-bit)
+# SW Build 1538259 on Fri Apr  8 15:45:23 MDT 2016
+# IP Build 1537824 on Fri Apr  8 04:28:57 MDT 2016
+# Start of session at: Thu Sep  1 13:16:24 2016
+# Process ID: 4439
+# Current directory: /home/sabertazimi/gitrepo/dld/starter/starter.runs/synth_1
+# Command line: vivado -log clock.vds -mode batch -messageDb vivado.pb -notrace -source clock.tcl
+# Log file: /home/sabertazimi/gitrepo/dld/starter/starter.runs/synth_1/clock.vds
+# Journal file: /home/sabertazimi/gitrepo/dld/starter/starter.runs/synth_1/vivado.jou
+#-----------------------------------------------------------
+source clock.tcl -notrace
+Command: synth_design -top clock -part xc7a100tcsg324-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 4645 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1050.492 ; gain = 154.078 ; free physical = 2742 ; free virtual = 11666
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'clock' [/home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/clock.v:23]
+	Parameter WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'range_divider' [/home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/range_divider.v:23]
+	Parameter WIDTH bound to: 32 - type: integer 
+	Parameter RANGE bound to: 27'b101111101011110000100000000 
+INFO: [Synth 8-256] done synthesizing module 'range_divider' (1#1) [/home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/range_divider.v:23]
+INFO: [Synth 8-638] synthesizing module 'tick_divider' [/home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/tick_divider.v:23]
+	Parameter WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'tick_divider' (2#1) [/home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/tick_divider.v:23]
+INFO: [Synth 8-638] synthesizing module 'timer' [/home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/timer.v:32]
+	Parameter WIDTH bound to: 32 - type: integer 
+	Parameter RANGE bound to: 5 - type: integer 
+WARNING: [Synth 8-152] case item 4'b0xx1 overlaps with previous case item(s) [/home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/timer.v:71]
+INFO: [Synth 8-256] done synthesizing module 'timer' (3#1) [/home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/timer.v:32]
+INFO: [Synth 8-638] synthesizing module 'timer__parameterized0' [/home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/timer.v:32]
+	Parameter WIDTH bound to: 32 - type: integer 
+	Parameter RANGE bound to: 3 - type: integer 
+WARNING: [Synth 8-152] case item 4'b0xx1 overlaps with previous case item(s) [/home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/timer.v:71]
+INFO: [Synth 8-256] done synthesizing module 'timer__parameterized0' (3#1) [/home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/timer.v:32]
+INFO: [Synth 8-638] synthesizing module 'ring' [/home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/ring.v:27]
+	Parameter LEN bound to: 5 - type: integer 
+ERROR: [Synth 8-91] ambiguous clock in event control [/home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/ring.v:42]
+ERROR: [Synth 8-285] failed synthesizing module 'ring' [/home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/ring.v:27]
+ERROR: [Synth 8-285] failed synthesizing module 'clock' [/home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/clock.v:23]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1090.930 ; gain = 194.516 ; free physical = 2701 ; free virtual = 11625
+---------------------------------------------------------------------------------
+RTL Elaboration failed
+INFO: [Common 17-83] Releasing license: Synthesis
+12 Infos, 2 Warnings, 0 Critical Warnings and 4 Errors encountered.
+synth_design failed
+ERROR: [Common 17-69] Command failed: Synthesis failed - please see the console or run log file for details
+INFO: [Common 17-206] Exiting Vivado at Thu Sep  1 13:16:38 2016...

@@ -2,8 +2,8 @@
 # Vivado v2016.1 (64-bit)
 # SW Build 1538259 on Fri Apr  8 15:45:23 MDT 2016
 # IP Build 1537824 on Fri Apr  8 04:28:57 MDT 2016
-# Start of session at: Wed Aug 31 14:08:20 2016
-# Process ID: 1862
+# Start of session at: Thu Sep  1 19:29:14 2016
+# Process ID: 11384
 # Current directory: /home/sabertazimi/gitrepo/dld/starter/starter.runs/synth_1
 # Command line: vivado -log clock.vds -mode batch -messageDb vivado.pb -notrace -source clock.tcl
 # Log file: /home/sabertazimi/gitrepo/dld/starter/starter.runs/synth_1/clock.vds
@@ -15,9 +15,9 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 2137 
+INFO: Helper process launched with PID 11580 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1050.492 ; gain = 154.078 ; free physical = 1261 ; free virtual = 11912
+Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1050.496 ; gain = 154.078 ; free physical = 2468 ; free virtual = 11631
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'clock' [/home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/clock.v:23]
 	Parameter WIDTH bound to: 32 - type: integer 
@@ -31,20 +31,13 @@ INFO: [Synth 8-256] done synthesizing module 'tick_divider' (2#1) [/home/saberta
 INFO: [Synth 8-638] synthesizing module 'timer' [/home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/timer.v:32]
 	Parameter WIDTH bound to: 32 - type: integer 
 	Parameter RANGE bound to: 60 - type: integer 
-CRITICAL WARNING: [Synth 8-5413] Mix of synchronous and asynchronous control for register count_reg in module timer. [/home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/timer.v:52]
-CRITICAL WARNING: [Synth 8-5413] Mix of synchronous and asynchronous control for register count_reg in module timer. [/home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/timer.v:52]
-CRITICAL WARNING: [Synth 8-5413] Mix of synchronous and asynchronous control for register count_reg in module timer. [/home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/timer.v:52]
 INFO: [Synth 8-256] done synthesizing module 'timer' (3#1) [/home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/timer.v:32]
 INFO: [Synth 8-638] synthesizing module 'timer__parameterized0' [/home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/timer.v:32]
 	Parameter WIDTH bound to: 32 - type: integer 
 	Parameter RANGE bound to: 24 - type: integer 
-CRITICAL WARNING: [Synth 8-5413] Mix of synchronous and asynchronous control for register count_reg in module timer__parameterized0. [/home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/timer.v:52]
-CRITICAL WARNING: [Synth 8-5413] Mix of synchronous and asynchronous control for register count_reg in module timer__parameterized0. [/home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/timer.v:52]
-CRITICAL WARNING: [Synth 8-5413] Mix of synchronous and asynchronous control for register count_reg in module timer__parameterized0. [/home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/timer.v:52]
 INFO: [Synth 8-256] done synthesizing module 'timer__parameterized0' (3#1) [/home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/timer.v:32]
 INFO: [Synth 8-638] synthesizing module 'ring' [/home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/ring.v:27]
 	Parameter LEN bound to: 5 - type: integer 
-WARNING: [Synth 8-5788] Register count_reg in module ring is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/ring.v:47]
 INFO: [Synth 8-256] done synthesizing module 'ring' (4#1) [/home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/ring.v:27]
 INFO: [Synth 8-638] synthesizing module 'time_displayer' [/home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/time_displayer.v:22]
 	Parameter WIDTH bound to: 32 - type: integer 
@@ -62,7 +55,7 @@ WARNING: [Synth 8-567] referenced signal 'hour_seg' should be on the sensitivity
 INFO: [Synth 8-256] done synthesizing module 'time_displayer' (8#1) [/home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/time_displayer.v:22]
 INFO: [Synth 8-256] done synthesizing module 'clock' (9#1) [/home/sabertazimi/gitrepo/dld/starter/starter.srcs/sources_1/new/clock.v:23]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1090.930 ; gain = 194.516 ; free physical = 1219 ; free virtual = 11870
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1090.934 ; gain = 194.516 ; free physical = 2426 ; free virtual = 11590
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -72,7 +65,7 @@ Report Check Netlist:
 |1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
 +------+------------------+-------+---------+-------+------------------+
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1090.930 ; gain = 194.516 ; free physical = 1219 ; free virtual = 11870
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1090.934 ; gain = 194.516 ; free physical = 2431 ; free virtual = 11589
 ---------------------------------------------------------------------------------
 INFO: [Device 21-403] Loading part xc7a100tcsg324-1
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -106,29 +99,33 @@ Completed Processing XDC Constraints
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 1425.641 ; gain = 0.000 ; free physical = 1050 ; free virtual = 11696
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1425.645 ; gain = 0.000 ; free physical = 2166 ; free virtual = 11325
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1425.641 ; gain = 529.227 ; free physical = 1048 ; free virtual = 11694
+Finished Constraint Validation : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1425.645 ; gain = 529.227 ; free physical = 2164 ; free virtual = 11322
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a100tcsg324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1425.641 ; gain = 529.227 ; free physical = 1048 ; free virtual = 11694
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1425.645 ; gain = 529.227 ; free physical = 2164 ; free virtual = 11322
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1425.641 ; gain = 529.227 ; free physical = 1048 ; free virtual = 11694
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1425.645 ; gain = 529.227 ; free physical = 2164 ; free virtual = 11322
 ---------------------------------------------------------------------------------
+INFO: [Synth 8-5544] ROM "count" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-5546] ROM "sig_end" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5544] ROM "sig_end" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "count" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-5546] ROM "sig_end" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5544] ROM "sig_end" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-5545] ROM "bell" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
 INFO: [Synth 8-5545] ROM "count" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1425.641 ; gain = 529.227 ; free physical = 1044 ; free virtual = 11690
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1425.645 ; gain = 529.227 ; free physical = 2161 ; free virtual = 11319
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -141,18 +138,20 @@ Start RTL Component Statistics
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input     32 Bit       Adders := 8     
+	   2 Input     32 Bit       Adders := 5     
 	   2 Input      3 Bit       Adders := 1     
 +---Registers : 
 	               32 Bit    Registers := 4     
 	                3 Bit    Registers := 1     
 	                1 Bit    Registers := 5     
 +---Muxes : 
-	   2 Input     32 Bit        Muxes := 7     
+	   4 Input     32 Bit        Muxes := 3     
+	   2 Input     32 Bit        Muxes := 1     
 	  12 Input      8 Bit        Muxes := 6     
 	   8 Input      8 Bit        Muxes := 1     
 	  11 Input      4 Bit        Muxes := 6     
-	   2 Input      1 Bit        Muxes := 7     
+	   4 Input      1 Bit        Muxes := 6     
+	   2 Input      1 Bit        Muxes := 4     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -169,23 +168,25 @@ Detailed RTL Component Info :
 Module timer 
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input     32 Bit       Adders := 2     
+	   2 Input     32 Bit       Adders := 1     
 +---Registers : 
 	               32 Bit    Registers := 1     
 	                1 Bit    Registers := 1     
 +---Muxes : 
-	   2 Input     32 Bit        Muxes := 2     
-	   2 Input      1 Bit        Muxes := 2     
+	   4 Input     32 Bit        Muxes := 1     
+	   4 Input      1 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 1     
 Module timer__parameterized0 
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input     32 Bit       Adders := 2     
+	   2 Input     32 Bit       Adders := 1     
 +---Registers : 
 	               32 Bit    Registers := 1     
 	                1 Bit    Registers := 1     
 +---Muxes : 
-	   2 Input     32 Bit        Muxes := 2     
-	   2 Input      1 Bit        Muxes := 2     
+	   4 Input     32 Bit        Muxes := 1     
+	   4 Input      1 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 1     
 Module ring 
 Detailed RTL Component Info : 
 +---Adders : 
@@ -224,16 +225,16 @@ BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
 ---------------------------------------------------------------------------------
 Finished Part Resource Summary
 ---------------------------------------------------------------------------------
-Start Parallel Synthesis Optimization  : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1425.641 ; gain = 529.227 ; free physical = 1044 ; free virtual = 11690
+Start Parallel Synthesis Optimization  : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1425.645 ; gain = 529.227 ; free physical = 2161 ; free virtual = 11319
 ---------------------------------------------------------------------------------
 Start Cross Boundary Optimization
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5545] ROM "RING/count" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
 INFO: [Synth 8-5545] ROM "RING/bell" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
 ---------------------------------------------------------------------------------
-Finished Cross Boundary Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1425.641 ; gain = 529.227 ; free physical = 1046 ; free virtual = 11692
+Finished Cross Boundary Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1425.645 ; gain = 529.227 ; free physical = 2162 ; free virtual = 11320
 ---------------------------------------------------------------------------------
-Finished Parallel Reinference  : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1425.641 ; gain = 529.227 ; free physical = 1046 ; free virtual = 11692
+Finished Parallel Reinference  : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1425.645 ; gain = 529.227 ; free physical = 2162 ; free virtual = 11320
 
 Report RTL Partitions: 
 +-+--------------+------------+----------+
@@ -243,10 +244,85 @@ Report RTL Partitions:
 ---------------------------------------------------------------------------------
 Start Area Optimization
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (timer:/sig_end_reg)
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\RING/bell_reg )
-WARNING: [Synth 8-3332] Sequential element (sig_end_reg) is unused and will be removed from module timer.
-WARNING: [Synth 8-3332] Sequential element (sig_end_reg) is unused and will be removed from module timer__parameterized0.
+INFO: [Synth 8-3886] merging instance 'HOUR_TIMER/count_reg[5]' (FDE) to 'HOUR_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'HOUR_TIMER/count_reg[6]' (FDE) to 'HOUR_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'HOUR_TIMER/count_reg[7]' (FDE) to 'HOUR_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'HOUR_TIMER/count_reg[8]' (FDE) to 'HOUR_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'HOUR_TIMER/count_reg[9]' (FDE) to 'HOUR_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'HOUR_TIMER/count_reg[10]' (FDE) to 'HOUR_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'HOUR_TIMER/count_reg[11]' (FDE) to 'HOUR_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'HOUR_TIMER/count_reg[12]' (FDE) to 'HOUR_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'HOUR_TIMER/count_reg[13]' (FDE) to 'HOUR_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'HOUR_TIMER/count_reg[14]' (FDE) to 'HOUR_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'HOUR_TIMER/count_reg[15]' (FDE) to 'HOUR_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'HOUR_TIMER/count_reg[16]' (FDE) to 'HOUR_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'HOUR_TIMER/count_reg[17]' (FDE) to 'HOUR_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'HOUR_TIMER/count_reg[18]' (FDE) to 'HOUR_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'HOUR_TIMER/count_reg[19]' (FDE) to 'HOUR_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'HOUR_TIMER/count_reg[20]' (FDE) to 'HOUR_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'HOUR_TIMER/count_reg[21]' (FDE) to 'HOUR_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'HOUR_TIMER/count_reg[22]' (FDE) to 'HOUR_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'HOUR_TIMER/count_reg[23]' (FDE) to 'HOUR_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'HOUR_TIMER/count_reg[24]' (FDE) to 'HOUR_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'HOUR_TIMER/count_reg[25]' (FDE) to 'HOUR_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'HOUR_TIMER/count_reg[26]' (FDE) to 'HOUR_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'HOUR_TIMER/count_reg[27]' (FDE) to 'HOUR_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'HOUR_TIMER/count_reg[28]' (FDE) to 'HOUR_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'HOUR_TIMER/count_reg[29]' (FDE) to 'HOUR_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'HOUR_TIMER/count_reg[30]' (FDE) to 'HOUR_TIMER/count_reg[31]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\HOUR_TIMER/count_reg[31] )
+INFO: [Synth 8-3886] merging instance 'SEC_TIMER/count_reg[6]' (FDE) to 'SEC_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'SEC_TIMER/count_reg[7]' (FDE) to 'SEC_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'SEC_TIMER/count_reg[8]' (FDE) to 'SEC_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'SEC_TIMER/count_reg[9]' (FDE) to 'SEC_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'SEC_TIMER/count_reg[10]' (FDE) to 'SEC_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'SEC_TIMER/count_reg[11]' (FDE) to 'SEC_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'SEC_TIMER/count_reg[12]' (FDE) to 'SEC_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'SEC_TIMER/count_reg[13]' (FDE) to 'SEC_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'SEC_TIMER/count_reg[14]' (FDE) to 'SEC_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'SEC_TIMER/count_reg[15]' (FDE) to 'SEC_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'SEC_TIMER/count_reg[16]' (FDE) to 'SEC_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'SEC_TIMER/count_reg[17]' (FDE) to 'SEC_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'SEC_TIMER/count_reg[18]' (FDE) to 'SEC_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'SEC_TIMER/count_reg[19]' (FDE) to 'SEC_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'SEC_TIMER/count_reg[20]' (FDE) to 'SEC_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'SEC_TIMER/count_reg[21]' (FDE) to 'SEC_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'SEC_TIMER/count_reg[22]' (FDE) to 'SEC_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'SEC_TIMER/count_reg[23]' (FDE) to 'SEC_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'SEC_TIMER/count_reg[24]' (FDE) to 'SEC_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'SEC_TIMER/count_reg[25]' (FDE) to 'SEC_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'SEC_TIMER/count_reg[26]' (FDE) to 'SEC_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'SEC_TIMER/count_reg[27]' (FDE) to 'SEC_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'SEC_TIMER/count_reg[28]' (FDE) to 'SEC_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'SEC_TIMER/count_reg[29]' (FDE) to 'SEC_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'SEC_TIMER/count_reg[30]' (FDE) to 'SEC_TIMER/count_reg[31]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\SEC_TIMER/count_reg[31] )
+INFO: [Synth 8-3886] merging instance 'MIN_TIMER/count_reg[17]' (FDE) to 'MIN_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'MIN_TIMER/count_reg[18]' (FDE) to 'MIN_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'MIN_TIMER/count_reg[19]' (FDE) to 'MIN_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'MIN_TIMER/count_reg[20]' (FDE) to 'MIN_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'MIN_TIMER/count_reg[21]' (FDE) to 'MIN_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'MIN_TIMER/count_reg[22]' (FDE) to 'MIN_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'MIN_TIMER/count_reg[23]' (FDE) to 'MIN_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'MIN_TIMER/count_reg[24]' (FDE) to 'MIN_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'MIN_TIMER/count_reg[25]' (FDE) to 'MIN_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'MIN_TIMER/count_reg[26]' (FDE) to 'MIN_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'MIN_TIMER/count_reg[27]' (FDE) to 'MIN_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'MIN_TIMER/count_reg[28]' (FDE) to 'MIN_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'MIN_TIMER/count_reg[29]' (FDE) to 'MIN_TIMER/count_reg[31]'
+INFO: [Synth 8-3886] merging instance 'MIN_TIMER/count_reg[31]' (FDE) to 'MIN_TIMER/count_reg[30]'
+INFO: [Synth 8-3886] merging instance 'MIN_TIMER/count_reg[30]' (FDE) to 'MIN_TIMER/count_reg[16]'
+INFO: [Synth 8-3886] merging instance 'MIN_TIMER/count_reg[6]' (FDE) to 'MIN_TIMER/count_reg[16]'
+INFO: [Synth 8-3886] merging instance 'MIN_TIMER/count_reg[7]' (FDE) to 'MIN_TIMER/count_reg[16]'
+INFO: [Synth 8-3886] merging instance 'MIN_TIMER/count_reg[8]' (FDE) to 'MIN_TIMER/count_reg[16]'
+INFO: [Synth 8-3886] merging instance 'MIN_TIMER/count_reg[9]' (FDE) to 'MIN_TIMER/count_reg[16]'
+INFO: [Synth 8-3886] merging instance 'MIN_TIMER/count_reg[10]' (FDE) to 'MIN_TIMER/count_reg[16]'
+INFO: [Synth 8-3886] merging instance 'MIN_TIMER/count_reg[11]' (FDE) to 'MIN_TIMER/count_reg[16]'
+INFO: [Synth 8-3886] merging instance 'MIN_TIMER/count_reg[12]' (FDE) to 'MIN_TIMER/count_reg[16]'
+INFO: [Synth 8-3886] merging instance 'MIN_TIMER/count_reg[13]' (FDE) to 'MIN_TIMER/count_reg[16]'
+INFO: [Synth 8-3886] merging instance 'MIN_TIMER/count_reg[14]' (FDE) to 'MIN_TIMER/count_reg[16]'
+INFO: [Synth 8-3886] merging instance 'MIN_TIMER/count_reg[15]' (FDE) to 'MIN_TIMER/count_reg[16]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\MIN_TIMER/count_reg[16] )
 WARNING: [Synth 8-3332] Sequential element (TICK_DIVIDER/clk_group_reg[16]) is unused and will be removed from module clock.
 WARNING: [Synth 8-3332] Sequential element (TICK_DIVIDER/clk_group_reg[17]) is unused and will be removed from module clock.
 WARNING: [Synth 8-3332] Sequential element (TICK_DIVIDER/clk_group_reg[18]) is unused and will be removed from module clock.
@@ -263,70 +339,6 @@ WARNING: [Synth 8-3332] Sequential element (TICK_DIVIDER/clk_group_reg[28]) is u
 WARNING: [Synth 8-3332] Sequential element (TICK_DIVIDER/clk_group_reg[29]) is unused and will be removed from module clock.
 WARNING: [Synth 8-3332] Sequential element (TICK_DIVIDER/clk_group_reg[30]) is unused and will be removed from module clock.
 WARNING: [Synth 8-3332] Sequential element (TICK_DIVIDER/clk_group_reg[31]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (RING/count_reg[31]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (RING/count_reg[30]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (RING/count_reg[29]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (RING/count_reg[28]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (RING/count_reg[27]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (RING/count_reg[26]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (RING/count_reg[25]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (RING/count_reg[24]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (RING/count_reg[23]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (RING/count_reg[22]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (RING/count_reg[21]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (RING/count_reg[20]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (RING/count_reg[19]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (RING/count_reg[18]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (RING/count_reg[17]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (RING/count_reg[16]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (RING/count_reg[15]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (RING/count_reg[14]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (RING/count_reg[13]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (RING/count_reg[12]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (RING/count_reg[11]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (RING/count_reg[10]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (RING/count_reg[9]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (RING/count_reg[8]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (RING/count_reg[7]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (RING/count_reg[6]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (RING/count_reg[5]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (RING/count_reg[4]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (RING/count_reg[3]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (RING/count_reg[2]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (RING/count_reg[1]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (RING/count_reg[0]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (RING/bell_reg) is unused and will be removed from module clock.
----------------------------------------------------------------------------------
-Finished Area Optimization : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1425.641 ; gain = 529.227 ; free physical = 1016 ; free virtual = 11661
----------------------------------------------------------------------------------
-Finished Parallel Area Optimization  : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1425.641 ; gain = 529.227 ; free physical = 1016 ; free virtual = 11661
-
-Report RTL Partitions: 
-+-+--------------+------------+----------+
-| |RTL Partition |Replication |Instances |
-+-+--------------+------------+----------+
-+-+--------------+------------+----------+
----------------------------------------------------------------------------------
-Start Timing Optimization
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Start Applying XDC Timing Constraints
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1425.641 ; gain = 529.227 ; free physical = 965 ; free virtual = 11610
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:27 ; elapsed = 00:00:27 . Memory (MB): peak = 1425.641 ; gain = 529.227 ; free physical = 963 ; free virtual = 11608
----------------------------------------------------------------------------------
-
-Report RTL Partitions: 
-+-+--------------+------------+----------+
-| |RTL Partition |Replication |Instances |
-+-+--------------+------------+----------+
-+-+--------------+------------+----------+
----------------------------------------------------------------------------------
-Start Technology Mapping
----------------------------------------------------------------------------------
 WARNING: [Synth 8-3332] Sequential element (SEC_TIMER/count_reg[31]) is unused and will be removed from module clock.
 WARNING: [Synth 8-3332] Sequential element (SEC_TIMER/count_reg[30]) is unused and will be removed from module clock.
 WARNING: [Synth 8-3332] Sequential element (SEC_TIMER/count_reg[29]) is unused and will be removed from module clock.
@@ -353,12 +365,6 @@ WARNING: [Synth 8-3332] Sequential element (SEC_TIMER/count_reg[9]) is unused an
 WARNING: [Synth 8-3332] Sequential element (SEC_TIMER/count_reg[8]) is unused and will be removed from module clock.
 WARNING: [Synth 8-3332] Sequential element (SEC_TIMER/count_reg[7]) is unused and will be removed from module clock.
 WARNING: [Synth 8-3332] Sequential element (SEC_TIMER/count_reg[6]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (MIN_TIMER/count_reg[5]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (MIN_TIMER/count_reg[4]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (MIN_TIMER/count_reg[3]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (MIN_TIMER/count_reg[2]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (MIN_TIMER/count_reg[1]) is unused and will be removed from module clock.
-WARNING: [Synth 8-3332] Sequential element (MIN_TIMER/count_reg[0]) is unused and will be removed from module clock.
 WARNING: [Synth 8-3332] Sequential element (MIN_TIMER/count_reg[31]) is unused and will be removed from module clock.
 WARNING: [Synth 8-3332] Sequential element (MIN_TIMER/count_reg[30]) is unused and will be removed from module clock.
 WARNING: [Synth 8-3332] Sequential element (MIN_TIMER/count_reg[29]) is unused and will be removed from module clock.
@@ -376,18 +382,84 @@ WARNING: [Synth 8-3332] Sequential element (MIN_TIMER/count_reg[18]) is unused a
 WARNING: [Synth 8-3332] Sequential element (MIN_TIMER/count_reg[17]) is unused and will be removed from module clock.
 WARNING: [Synth 8-3332] Sequential element (MIN_TIMER/count_reg[16]) is unused and will be removed from module clock.
 WARNING: [Synth 8-3332] Sequential element (MIN_TIMER/count_reg[15]) is unused and will be removed from module clock.
-INFO: [Common 17-14] Message 'Synth 8-3332' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+WARNING: [Synth 8-3332] Sequential element (MIN_TIMER/count_reg[14]) is unused and will be removed from module clock.
+WARNING: [Synth 8-3332] Sequential element (MIN_TIMER/count_reg[13]) is unused and will be removed from module clock.
+WARNING: [Synth 8-3332] Sequential element (MIN_TIMER/count_reg[12]) is unused and will be removed from module clock.
+WARNING: [Synth 8-3332] Sequential element (MIN_TIMER/count_reg[11]) is unused and will be removed from module clock.
+WARNING: [Synth 8-3332] Sequential element (MIN_TIMER/count_reg[10]) is unused and will be removed from module clock.
+WARNING: [Synth 8-3332] Sequential element (MIN_TIMER/count_reg[9]) is unused and will be removed from module clock.
+WARNING: [Synth 8-3332] Sequential element (MIN_TIMER/count_reg[8]) is unused and will be removed from module clock.
+WARNING: [Synth 8-3332] Sequential element (MIN_TIMER/count_reg[7]) is unused and will be removed from module clock.
+WARNING: [Synth 8-3332] Sequential element (MIN_TIMER/count_reg[6]) is unused and will be removed from module clock.
+WARNING: [Synth 8-3332] Sequential element (HOUR_TIMER/count_reg[31]) is unused and will be removed from module clock.
+WARNING: [Synth 8-3332] Sequential element (HOUR_TIMER/count_reg[30]) is unused and will be removed from module clock.
+WARNING: [Synth 8-3332] Sequential element (HOUR_TIMER/count_reg[29]) is unused and will be removed from module clock.
+WARNING: [Synth 8-3332] Sequential element (HOUR_TIMER/count_reg[28]) is unused and will be removed from module clock.
+WARNING: [Synth 8-3332] Sequential element (HOUR_TIMER/count_reg[27]) is unused and will be removed from module clock.
+WARNING: [Synth 8-3332] Sequential element (HOUR_TIMER/count_reg[26]) is unused and will be removed from module clock.
+WARNING: [Synth 8-3332] Sequential element (HOUR_TIMER/count_reg[25]) is unused and will be removed from module clock.
+WARNING: [Synth 8-3332] Sequential element (HOUR_TIMER/count_reg[24]) is unused and will be removed from module clock.
+WARNING: [Synth 8-3332] Sequential element (HOUR_TIMER/count_reg[23]) is unused and will be removed from module clock.
+WARNING: [Synth 8-3332] Sequential element (HOUR_TIMER/count_reg[22]) is unused and will be removed from module clock.
+WARNING: [Synth 8-3332] Sequential element (HOUR_TIMER/count_reg[21]) is unused and will be removed from module clock.
+WARNING: [Synth 8-3332] Sequential element (HOUR_TIMER/count_reg[20]) is unused and will be removed from module clock.
+WARNING: [Synth 8-3332] Sequential element (HOUR_TIMER/count_reg[19]) is unused and will be removed from module clock.
+WARNING: [Synth 8-3332] Sequential element (HOUR_TIMER/count_reg[18]) is unused and will be removed from module clock.
+WARNING: [Synth 8-3332] Sequential element (HOUR_TIMER/count_reg[17]) is unused and will be removed from module clock.
+WARNING: [Synth 8-3332] Sequential element (HOUR_TIMER/count_reg[16]) is unused and will be removed from module clock.
+WARNING: [Synth 8-3332] Sequential element (HOUR_TIMER/count_reg[15]) is unused and will be removed from module clock.
+WARNING: [Synth 8-3332] Sequential element (HOUR_TIMER/count_reg[14]) is unused and will be removed from module clock.
+WARNING: [Synth 8-3332] Sequential element (HOUR_TIMER/count_reg[13]) is unused and will be removed from module clock.
+WARNING: [Synth 8-3332] Sequential element (HOUR_TIMER/count_reg[12]) is unused and will be removed from module clock.
+WARNING: [Synth 8-3332] Sequential element (HOUR_TIMER/count_reg[11]) is unused and will be removed from module clock.
+WARNING: [Synth 8-3332] Sequential element (HOUR_TIMER/count_reg[10]) is unused and will be removed from module clock.
+WARNING: [Synth 8-3332] Sequential element (HOUR_TIMER/count_reg[9]) is unused and will be removed from module clock.
+WARNING: [Synth 8-3332] Sequential element (HOUR_TIMER/count_reg[8]) is unused and will be removed from module clock.
+WARNING: [Synth 8-3332] Sequential element (HOUR_TIMER/count_reg[7]) is unused and will be removed from module clock.
+WARNING: [Synth 8-3332] Sequential element (HOUR_TIMER/count_reg[6]) is unused and will be removed from module clock.
+WARNING: [Synth 8-3332] Sequential element (HOUR_TIMER/count_reg[5]) is unused and will be removed from module clock.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB): peak = 1450.055 ; gain = 553.641 ; free physical = 931 ; free virtual = 11576
+Finished Area Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1425.645 ; gain = 529.227 ; free physical = 2162 ; free virtual = 11321
 ---------------------------------------------------------------------------------
-Finished Parallel Technology Mapping Optimization  : Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB): peak = 1450.055 ; gain = 553.641 ; free physical = 931 ; free virtual = 11576
+Finished Parallel Area Optimization  : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1425.645 ; gain = 529.227 ; free physical = 2162 ; free virtual = 11321
 
 Report RTL Partitions: 
 +-+--------------+------------+----------+
 | |RTL Partition |Replication |Instances |
 +-+--------------+------------+----------+
 +-+--------------+------------+----------+
-Finished Parallel Synthesis Optimization  : Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB): peak = 1450.055 ; gain = 553.641 ; free physical = 931 ; free virtual = 11576
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 1425.645 ; gain = 529.227 ; free physical = 2158 ; free virtual = 11316
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 1425.645 ; gain = 529.227 ; free physical = 2158 ; free virtual = 11316
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 1433.652 ; gain = 537.234 ; free physical = 2150 ; free virtual = 11308
+---------------------------------------------------------------------------------
+Finished Parallel Technology Mapping Optimization  : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 1433.652 ; gain = 537.234 ; free physical = 2150 ; free virtual = 11308
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+Finished Parallel Synthesis Optimization  : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 1433.652 ; gain = 537.234 ; free physical = 2150 ; free virtual = 11308
 ---------------------------------------------------------------------------------
 Start IO Insertion
 ---------------------------------------------------------------------------------
@@ -404,7 +476,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:28 ; elapsed = 00:00:28 . Memory (MB): peak = 1450.055 ; gain = 553.641 ; free physical = 931 ; free virtual = 11576
+Finished IO Insertion : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 1433.652 ; gain = 537.234 ; free physical = 2150 ; free virtual = 11308
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -417,7 +489,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:28 ; elapsed = 00:00:28 . Memory (MB): peak = 1450.055 ; gain = 553.641 ; free physical = 931 ; free virtual = 11576
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 1433.652 ; gain = 537.234 ; free physical = 2150 ; free virtual = 11308
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -429,25 +501,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:28 ; elapsed = 00:00:28 . Memory (MB): peak = 1450.055 ; gain = 553.641 ; free physical = 931 ; free virtual = 11576
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 1433.652 ; gain = 537.234 ; free physical = 2150 ; free virtual = 11308
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:28 ; elapsed = 00:00:28 . Memory (MB): peak = 1450.055 ; gain = 553.641 ; free physical = 931 ; free virtual = 11576
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 1433.652 ; gain = 537.234 ; free physical = 2150 ; free virtual = 11308
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:28 ; elapsed = 00:00:28 . Memory (MB): peak = 1450.055 ; gain = 553.641 ; free physical = 931 ; free virtual = 11576
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 1433.652 ; gain = 537.234 ; free physical = 2150 ; free virtual = 11308
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:28 ; elapsed = 00:00:28 . Memory (MB): peak = 1450.055 ; gain = 553.641 ; free physical = 931 ; free virtual = 11576
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 1433.652 ; gain = 537.234 ; free physical = 2150 ; free virtual = 11308
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -463,40 +535,43 @@ Report Cell Usage:
 +------+-------+------+
 |      |Cell   |Count |
 +------+-------+------+
-|1     |BUFG   |     1|
-|2     |CARRY4 |   478|
-|3     |LUT1   |   200|
-|4     |LUT2   |   409|
-|5     |LUT3   |   411|
-|6     |LUT4   |   430|
-|7     |LUT5   |    73|
-|8     |LUT6   |    48|
-|9     |FDRE   |    58|
-|10    |IBUF   |     5|
+|1     |BUFG   |     2|
+|2     |CARRY4 |   357|
+|3     |LUT1   |   279|
+|4     |LUT2   |   535|
+|5     |LUT3   |   332|
+|6     |LUT4   |   559|
+|7     |LUT5   |   110|
+|8     |LUT6   |    36|
+|9     |FDRE   |   104|
+|10    |IBUF   |     7|
 |11    |OBUF   |    17|
 +------+-------+------+
 
 Report Instance Areas: 
-+------+----------------+------------------+------+
-|      |Instance        |Module            |Cells |
-+------+----------------+------------------+------+
-|1     |top             |                  |  2130|
-|2     |  RANGE_DIVIDER |range_divider     |   119|
-|3     |  SEC_TIMER     |timer             |   378|
-|4     |  SEG_SEVEN     |time_displayer    |  1051|
-|5     |    HOUR_SEG    |time_to_segment   |   345|
-|6     |    MIN_SEG     |time_to_segment_0 |   345|
-|7     |    SEC_SEG     |time_to_segment_1 |   346|
-|8     |  TICK_DIVIDER  |tick_divider      |    36|
-+------+----------------+------------------+------+
++------+-----------------+----------------------+------+
+|      |Instance         |Module                |Cells |
++------+-----------------+----------------------+------+
+|1     |top              |                      |  2338|
+|2     |  DRANGE_DIVIDER |range_divider         |   120|
+|3     |  HOUR_TIMER     |timer__parameterized0 |   296|
+|4     |  MIN_TIMER      |timer                 |   287|
+|5     |  RING           |ring                  |    86|
+|6     |  SEC_TIMER      |timer_0               |   288|
+|7     |  SEG_SEVEN      |time_displayer        |  1051|
+|8     |    HOUR_SEG     |time_to_segment       |   306|
+|9     |    MIN_SEG      |time_to_segment_1     |   305|
+|10    |    SEC_SEG      |time_to_segment_2     |   313|
+|11    |  TICK_DIVIDER   |tick_divider          |    36|
++------+-----------------+----------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:28 ; elapsed = 00:00:28 . Memory (MB): peak = 1450.055 ; gain = 553.641 ; free physical = 931 ; free virtual = 11576
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 1433.652 ; gain = 537.234 ; free physical = 2150 ; free virtual = 11308
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 141 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1450.055 ; gain = 131.848 ; free physical = 931 ; free virtual = 11576
-Synthesis Optimization Complete : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1450.062 ; gain = 553.648 ; free physical = 931 ; free virtual = 11576
+Synthesis finished with 0 errors, 0 critical warnings and 95 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:19 ; elapsed = 00:00:19 . Memory (MB): peak = 1433.652 ; gain = 115.441 ; free physical = 2150 ; free virtual = 11308
+Synthesis Optimization Complete : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 1433.660 ; gain = 537.242 ; free physical = 2150 ; free virtual = 11308
 INFO: [Project 1-571] Translating synthesized netlist
-INFO: [Netlist 29-17] Analyzing 483 Unisim elements for replacement
+INFO: [Netlist 29-17] Analyzing 364 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
@@ -504,8 +579,8 @@ INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 INFO: [Common 17-83] Releasing license: Synthesis
-42 Infos, 110 Warnings, 12 Critical Warnings and 0 Errors encountered.
+122 Infos, 104 Warnings, 6 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:27 ; elapsed = 00:00:28 . Memory (MB): peak = 1450.062 ; gain = 479.152 ; free physical = 933 ; free virtual = 11578
-report_utilization: Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.08 . Memory (MB): peak = 1482.070 ; gain = 0.000 ; free physical = 933 ; free virtual = 11578
-INFO: [Common 17-206] Exiting Vivado at Wed Aug 31 14:08:57 2016...
+synth_design: Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 1433.660 ; gain = 462.746 ; free physical = 2152 ; free virtual = 11310
+report_utilization: Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.08 . Memory (MB): peak = 1465.668 ; gain = 0.000 ; free physical = 2152 ; free virtual = 11310
+INFO: [Common 17-206] Exiting Vivado at Thu Sep  1 19:29:48 2016...

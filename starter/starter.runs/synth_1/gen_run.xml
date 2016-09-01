@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1472623700">
-  <File Type="RDS-PROPCONSTRS" Name="clock_drc_synth.rpt"/>
-  <File Type="RDS-UTIL" Name="clock_utilization_synth.rpt"/>
-  <File Type="RDS-RDS" Name="clock.vds"/>
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1472729354">
   <File Type="VDS-TIMING-PB" Name="clock_timing_summary_synth.pb"/>
-  <File Type="PA-TCL" Name="clock.tcl"/>
   <File Type="VDS-TIMINGSUMMARY" Name="clock_timing_summary_synth.rpt"/>
   <File Type="RDS-DCP" Name="clock.dcp"/>
   <File Type="RDS-UTIL-PB" Name="clock_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="clock_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="clock_drc_synth.rpt"/>
+  <File Type="RDS-RDS" Name="clock.vds"/>
+  <File Type="PA-TCL" Name="clock.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/integer_to_bcd.v">
@@ -38,6 +38,13 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/sources_1/new/ring.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/new/time_displayer.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -46,13 +53,6 @@
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/new/tick_divider.v">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/ring.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
