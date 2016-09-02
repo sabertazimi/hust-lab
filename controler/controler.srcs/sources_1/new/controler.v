@@ -26,7 +26,7 @@ module controler(
     //light
     output reg start_pause_light,output [1:0]weight_ch_light,
     output reg water_in_light, output reg washing_light, output reg rinse_light,
-    output reg dewatering_light, output reg water_out_light
+    output reg dewatering_light, output reg water_out_light, output reg buzzer_lamp
     );
 //    reg [1:0]weight_result;
     reg [2:0]w_r_d;
@@ -103,7 +103,8 @@ module controler(
     always @(water_in_light or water_out_light or dewatering_light or washing_light or rinse_light)
     begin
         if(water_in_light) begin
-            
+            #1 water_in_light = 0;
+            #1 water_in_light = 
         end  
     end
     
