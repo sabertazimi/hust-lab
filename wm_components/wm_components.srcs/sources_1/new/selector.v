@@ -1,11 +1,11 @@
 `timescale 1ns / 1ps
 
-// input
+// @input
 // clk_src: input event detective
 // switch_power: power on/off state switch
 // switch_en: start/pause state switch
 // sig_change: plus signal for sel_value
-// output
+// @output
 // sel_value
 module selector
 #(parameter LO = 2, HI = 5)
