@@ -5,10 +5,7 @@
  * Distributed under terms of the MIT license.
  */
 
-#include<sys/types.h>
-#include<sys/stat.h>
-#include<fcntl.h>
-#include <unistd.h>
+#include "c4lib.h"
 #include "c4.h"
 #include "vm.h"
 

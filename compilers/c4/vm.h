@@ -8,10 +8,7 @@
 #ifndef VM_H
 #define VM_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <memory.h>
-#include <string.h>
+#include "c4lib.h"
 
 // instructions
 enum {
