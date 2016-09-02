@@ -27,7 +27,4 @@ int expression(int level) {
     return 0;
 }
 
-int eval(void) {
-    return 0;
-}
 

@@ -5,7 +5,13 @@
  * Distributed under terms of the MIT license.
  */
 
+#include<sys/types.h>
+#include<sys/stat.h>
+#include<fcntl.h>
+#include <unistd.h>
 #include "c4.h"
+#include "vm.h"
+
 
 int main(int argc, char **argv) {
     int i, fd;
@@ -34,6 +40,11 @@ int main(int argc, char **argv) {
 
     src[i] = 0; // EOF character
     close(fd);
+
+    if (vm_init() != 0) {
+        printf("virtual machine set up failure\n");
+        return -1;
+    }
 
     program();
     return eval();
