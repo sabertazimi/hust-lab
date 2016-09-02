@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 2016/08/31 16:37:37
+// Create Date: 2016/09/02 10:05:14
 // Design Name: 
-// Module Name: water_let
+// Module Name: HUD
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -19,16 +19,16 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-// @input
+// input
 // clk_src: input event detective
 // switch_power: power on/off state switch
 // switch_en: start/pause state switch
 // max_water_level: water line standard
 // inwater_flag: flag for water in enable
 // outwater_flag: flag for water out enable
-// @output
+// output
 // water_level: current water level
-module water_let
+module HUD
 (
     input clk_src,
     input switch_power,

@@ -6,4 +6,4 @@
 # Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 #
 
-vivado -log weight_selector.vdi -applog -m64 -messageDb vivado.pb -mode batch -source weight_selector.tcl -notrace
+vivado -log selector.vdi -applog -m64 -messageDb vivado.pb -mode batch -source selector.tcl -notrace
