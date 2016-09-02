@@ -5,7 +5,8 @@ module wash_mode(
     input weight,
     output reg wash_end_sign, 
     //light
-    output reg water_in_light, output reg washing_light
+    output reg water_in_light, output reg washing_light,
+    output reg [2:0]water_level
     );
     // FIXED ME: there's 3 state, but state and nextState only can hold 1 bit.
     reg [1:0]state, nextstate;
@@ -23,7 +24,9 @@ module wash_mode(
                                   .water_in_start(water_in_light),
                                   .clk(clk),
                                   .power(power),
-                                  .weight(weight)
+                                  .weight(weight),
+                                  .pause(pause),
+                                  .water_level(water_level)
                        );
 //     timer TIME_WASH (.(washing_light))
 //     timer TIME_SPANGLE (.clk(clk),
@@ -33,7 +36,7 @@ module wash_mode(
     // FIXED ME: edge detective(posedge) can't be mix up with level detective(power).
     always @(posedge power or posedge clk)
     begin
-    if(power) state = nextstate; //wash_start means that wash_mode can run
+    if(power) state = nextstate;
     else begin
         wash_end_sign = 0;
         nextstate = water_in_state;
@@ -43,7 +46,7 @@ module wash_mode(
     always @(state or pause)
     if(wash_start & !pause) begin
         case(state)
-            water_in_state: water_in_light = 1;   //use light to replace start
+            water_in_state: begin water_in_light = 1; washing_light = 1; end
             washing_state: begin water_in_light  = 0; washing_light = 1; end
             wash_end_state: begin  wash_end_sign = 1; end
         endcase
