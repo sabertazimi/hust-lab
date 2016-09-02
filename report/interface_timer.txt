@@ -1,0 +1,7 @@
+time(
+    input power,
+    input pause,
+    input count_range,
+    input count_start_sign,
+    output count_end_sign,
+    )
