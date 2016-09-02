@@ -18,7 +18,7 @@ module wash_mode(
         water_in_end_sign = 0;
     end
     
-     water_in_made WATER_IN_MODE (.water_in_end_sign(water_in_end_sign),
+     water_in_mode WATER_IN_MODE (.water_in_end_sign(water_in_end_sign),
                                   .water_in_start(water_in_light),
                                   .clk(clk),
                                   .power(power),

@@ -43,6 +43,13 @@
   <FileSets Version="1" Minor="31">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
       <Filter Type="Srcs"/>
+      <File Path="$PSRCDIR/sources_1/new/water_in_mode.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PSRCDIR/sources_1/new/wash_mode.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -52,12 +59,13 @@
       </File>
       <File Path="$PSRCDIR/sources_1/new/controler.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/new/weight_water.v">
+      <File Path="$PSRCDIR/sources_1/new/weight_ch_mode.v">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -67,7 +75,7 @@
       </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
-        <Option Name="TopModule" Val="controler"/>
+        <Option Name="TopModule" Val="wash_mode"/>
         <Option Name="TopAutoSet" Val="TRUE"/>
       </Config>
     </FileSet>

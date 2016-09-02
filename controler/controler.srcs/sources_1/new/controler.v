@@ -25,7 +25,8 @@ module controler(
     output reg [1:0]state, output reg [1:0]nextstate,
     //light
     output reg start_pause_light,output [1:0]weight_ch_light,
-    output reg water_in_light, output reg washing_light 
+    output reg water_in_light, output reg washing_light, output reg rinse_light,
+    output reg dewatering_light, output reg water_out_light
     );
 //    reg [1:0]weight_result;
     reg [2:0]w_r_d;
@@ -35,22 +36,33 @@ module controler(
 //    reg[1:0] state, nextstate;
     parameter weight_ch_state = 0, wash_state = 1, rinse_state = 2, dewatering_state = 3;
     // choose weight don't care system run or pause
-    weight_ch_mode WEIGHT_CH_MODE (.power(power),
+    weight_ch_mode WEIGHT_CH_MODE (.switch_power(power & power_control),
                                   .clk(clk),
-                                  .weight_ch(weight_ch),
-                                  .weight_ch_light(weight_ch_light)
+                                  .sig_change(weight_ch),
+                                  .switch_en(start_pause),
+                                  .weight(weight_ch_light)
     );//link start to control running
-    wash_mode WASH (.power(power & power_control),
-                    .pause(start_pause),
-                    .weight(weight_ch_light),
-                    .clk(clk),
-                    .wash_start(w_r_d_start[2]),
-                    .water_in_light(water_in_light),
-                    .washing_light(washing_light),
-                    //.wash_control(w_r_d_control[2]),
-                    .wash_end_sign(w_r_d_end[2])
+    wash_mode WASH_MODE (.power(power & power_control),
+                         .pause(start_pause),
+                         .weight(weight_ch_light),
+                         .clk(clk),
+                         .wash_start(w_r_d_start[2]),
+                         .water_in_light(water_in_light),
+                         .washing_light(washing_light),
+                       //.wash_control(w_r_d_control[2]),
+                         .wash_end_sign(w_r_d_end[2])
      );
-//    rinse RINSE ();
+     
+    rinse_mode RINSE_MODE (.power(power & power_control),
+                           .pause(start_pause),
+                           .clk(clk),
+                           .rinse_start(w_r_d_start[1]),
+                           .rinse_light(rinse_light),
+                           .wash_end_sign(w_r_d_end[2]),
+                           .water_in_light(rinse_light),
+                           .water_out_light(rinse_light),
+                           .dewatering_light(rinse_light)
+    );
 //    dewatering DEWATERING ();
     
     initial begin
@@ -85,6 +97,12 @@ module controler(
     if(power & power_control)
     begin
         if(weight_ch_light == 0) ;
+    end
+    
+    //light spangle
+    always @(water_in_light or )
+    begin
+        
     end
     
     always @(state or start_pause_light)     //moore
