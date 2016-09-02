@@ -22,95 +22,122 @@
 
 module controler(
     input power, input start_pause, input weight_ch, input mode_ch, input clk,
-    input [2:0]w_r_d,// input [2:0]w_r_d_end,
     output reg [1:0]state, output reg [1:0]nextstate,
     //light
-    output reg start_pause_light
+    output reg start_pause_light,output [1:0]weight_ch_light,
+    output reg water_in_light, output reg washing_light 
     );
-    reg [1:0]weight_result;
-    //reg [2:0]w_r_d;
+//    reg [1:0]weight_result;
+    reg [2:0]w_r_d;
     reg [2:0]w_r_d_start, w_r_d_control, w_r_d_end;
     reg sound; //washing machine can speak
-    //reg[1:0] state, nextstate;
-    parameter mode_weight_choose = 0, wash = 1, rinse = 2, dewatering = 3;
-    
-//    weight_water WEIGHT ();//link start to control running
-//    mode MODE ();
-    wash_mode WASH (.power(power),
+    reg auto_shut_flag, power_control;
+//    reg[1:0] state, nextstate;
+    parameter weight_ch_state = 0, wash_state = 1, rinse_state = 2, dewatering_state = 3;
+    // choose weight don't care system run or pause
+    weight_ch_mode WEIGHT_CH_MODE (.power(power),
+                                  .clk(clk),
+                                  .weight_ch(weight_ch),
+                                  .weight_ch_light(weight_ch_light)
+    );//link start to control running
+    wash_mode WASH (.power(power & power_control),
                     .pause(start_pause),
-                    .weight(weight),
+                    .weight(weight_ch_light),
                     .clk(clk),
                     .wash_start(w_r_d_start[2]),
+                    .water_in_light(water_in_light),
+                    .washing_light(washing_light),
                     //.wash_control(w_r_d_control[2]),
-                    .wash_end(w_r_d_end[2])
+                    .wash_end_sign(w_r_d_end[2])
      );
 //    rinse RINSE ();
 //    dewatering DEWATERING ();
     
     initial begin
-        state = mode_weight_choose;
-        nextstate = mode_weight_choose;
+        state = weight_ch_state;
+        nextstate = weight_ch_state;
         start_pause_light = 0;  //light is off
+        auto_shut_flag = 0;
+        w_r_d = 7;
+        power_control = 1;
     end
     
     // FIXED ME: posedge detective can't be mixed up with level detective.
-    always @(posedge power or posedge clk or posedge start_pause)
-    if(power) state = nextstate; //in mode_weight_choose
-    else nextstate = mode_weight_choose;
+    always @(posedge power or posedge clk)
+    if(power & power_control) begin
+        if(!start_pause_light) begin
+            state = nextstate; //in weight_ch_state
+        end
+    end
+    else if(!power) begin 
+        nextstate = weight_ch_state;
+        power_control = 0;
+    end
     
-    always @(state or start_pause)     //moore
-    if(start_pause) begin
+    //add a block to control start_pause
+    always @(posedge start_pause)
+    if(power & power_control)
+    begin
+        start_pause_light = ~ start_pause_light;
+    end
+    
+    always @(weight_ch_light)
+    if(power & power_control)
+    begin
+        if(weight_ch_light == 0) ;
+    end
+    
+    always @(state or start_pause_light)     //moore
+    if(start_pause_light) begin
         case(state)
-            mode_weight_choose: begin w_r_d_start = 0; w_r_d_end = 0; end
-            wash:   w_r_d_start = 4;
-            rinse:  w_r_d_start = 2;
-           dewatering:  w_r_d_start = 1;
+            weight_ch_state: begin w_r_d_start = 0; w_r_d_end = 0; end
+            wash_state:   w_r_d_start = 4;
+            rinse_state:  w_r_d_start = 2;
+           dewatering_state:  w_r_d_start = 1;
         endcase
     end
     
     always @(w_r_d_end or w_r_d)
-    if(start) begin
+    if(start_pause_light) begin
         case(state)
 //            mode_end:   
-//                if(power) nextstate = mode_weight_choose;
-            mode_weight_choose:
+//                if(power) nextstate = weight_ch_state;
+            weight_ch_state:
                 if(w_r_d[2]) begin    //w_r_d contains wash
-                    //wash_start = 1;
-                    nextstate = wash;
+                    nextstate = wash_state;
                 end
                 else if(!w_r_d[2] & w_r_d[1]) begin
-                    //rinse_start = 1;
-                    nextstate = rinse;
+                    nextstate = rinse_state;
                 end
                 else if(w_r_d == 1) begin
-                    //dewatering_start = 1;
-                    nextstate = dewatering;
+                    nextstate = dewatering_state;
                 end
-                else nextstate = mode_weight_choose;
-            wash:
+                else if(!auto_shut_flag) nextstate = weight_ch_state;
+                else if(auto_shut_flag) begin
+                    nextstate = weight_ch_state;
+                    power_control = 0;
+                end
+            wash_state:
                 if(w_r_d_end[2] & w_r_d[1]) begin
-                    //rinse_start = 1;
-                    nextstate = rinse;
+                    nextstate = rinse_state;
                 end
                 else if(w_r_d_end[2] & !w_r_d[1] & w_r_d[0]) begin
-                    //dewatering_start = 1;
-                    nextstate = dewatering;
+                    nextstate = dewatering_state;
                 end
-                else nextstate = mode_weight_choose;
-            rinse:
+                else nextstate = weight_ch_state;
+            rinse_state:
                 if(w_r_d_end[1] & w_r_d[0]) begin
-                    //dewatering_start = 1;
-                    nextstate = dewatering;
+                    nextstate = dewatering_state;
                 end
-                else nextstate = mode_weight_choose;
-            dewatering:
-                if(w_r_d_end[0]) nextstate = mode_weight_choose;
+                else nextstate = weight_ch_state;
+            dewatering_state:
+                if(w_r_d_end[0]) nextstate = weight_ch_state;
         endcase            
      end     
      else begin
-        if(w_r_d[2]) nextstate = wash;
-        else if(!w_r_d[2] & w_r_d[1]) nextstate = rinse;
-        else if(w_r_d == 1) nextstate = dewatering;
-        else nextstate = mode_weight_choose;
+        if(w_r_d[2]) nextstate = wash_state;
+        else if(!w_r_d[2] & w_r_d[1]) nextstate = rinse_state;
+        else if(w_r_d == 1) nextstate = dewatering_state;
+        else nextstate = weight_ch_state;
      end
 endmodule
