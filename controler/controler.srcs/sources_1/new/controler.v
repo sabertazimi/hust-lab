@@ -77,7 +77,7 @@ module controler(
     // FIXED ME: posedge detective can't be mixed up with level detective.
     always @(posedge power or posedge clk)
     if(power & power_control) begin
-        if(!start_pause_light) begin
+        if(start_pause_light) begin
             state = nextstate; //in weight_ch_state
         end
     end
@@ -100,9 +100,11 @@ module controler(
     end
     
     //light spangle
-    always @(water_in_light or )
+    always @(water_in_light or water_out_light or dewatering_light or washing_light or rinse_light)
     begin
-        
+        if(water_in_light) begin
+            
+        end  
     end
     
     always @(state or start_pause_light)     //moore
