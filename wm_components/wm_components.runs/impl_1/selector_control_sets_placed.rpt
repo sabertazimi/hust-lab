@@ -1,12 +1,12 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
---------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.1 (lin64) Build 1538259 Fri Apr  8 15:45:23 MDT 2016
-| Date         : Thu Sep  1 22:33:10 2016
+| Date         : Fri Sep  2 09:51:00 2016
 | Host         : avalon running 64-bit Ubuntu 16.04 LTS
-| Command      : report_control_sets -verbose -file weight_selector_control_sets_placed.rpt
-| Design       : weight_selector
+| Command      : report_control_sets -verbose -file selector_control_sets_placed.rpt
+| Design       : selector
 | Device       : xc7a100t
---------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
 
 Control Set Information
 

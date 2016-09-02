@@ -19,7 +19,15 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
+// input
+// clk_src: input event detective
+// switch_power: power on/off state switch
+// switch_en: start/pause state switch
+// max_water_level: water line standard
+// inwater_flag: flag for water in enable
+// outwater_flag: flag for water out enable
+// output
+// water_level: current water level
 module water_let
 (
     input clk_src,

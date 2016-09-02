@@ -1,12 +1,12 @@
 `timescale 1ns / 1ps
 
 // input
-// reset_power: power
-// switch_en: start/pause
-// clk_src: clock source
-// sig_ch: button for selecting weight
+// clk_src: input event detective
+// switch_power: power on/off state switch
+// switch_en: start/pause state switch
+// sig_change: plus signal for sel_value
 // output
-// weight: weight of clothes
+// sel_value
 module selector
 #(parameter LO = 2, HI = 5)
 (
@@ -14,14 +14,14 @@ module selector
     input switch_power,
     input switch_en,
     input sig_change,
-    output reg [2:0] weight
+    output reg [2:0] sel_value
 );
 
     reg init_flag;
 
     initial begin
         init_flag <= 1;
-        weight <= LO;
+        sel_value <= LO;
     end
     
     wire [31:0] clk;
@@ -35,17 +35,17 @@ module selector
         if (switch_power) begin
             if (switch_en) begin
                 if (init_flag) begin
-                    weight <= LO;
+                    sel_value <= LO;
                     init_flag <= 0;
                 end else if (sig_change) begin
-                    weight = (weight + 1) % (HI+1) ? (weight + 1) % (HI+1) : LO;
+                    sel_value = (sel_value + 1) % (HI+1) ? (sel_value + 1) % (HI+1) : LO;
                 end
             // TODO: button-down signal led
             // btn_sig_led(bool sig_flicker, output btn_l   ed)
             end
         end else begin
             init_flag <= 1;
-            weight <= 0;
+            sel_value <= 0;
         end
     end
     

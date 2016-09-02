@@ -42,24 +42,22 @@ proc step_failed { step } {
   close $ch
 }
 
-set_msg_config -id {Common 17-41} -limit 10000000
 set_msg_config -id {HDL 9-1061} -limit 100000
 set_msg_config -id {HDL 9-1654} -limit 100000
 
 start_step init_design
 set rc [catch {
   create_msg_db init_design.pb
-  set_param xicom.use_bs_reader 1
   set_property design_mode GateLvl [current_fileset]
   set_param project.singleFileAddWarning.threshold 0
   set_property webtalk.parent_dir /home/sabertazimi/gitrepo/dld/wm_components/wm_components.cache/wt [current_project]
   set_property parent.project_path /home/sabertazimi/gitrepo/dld/wm_components/wm_components.xpr [current_project]
   set_property ip_repo_paths /home/sabertazimi/gitrepo/dld/wm_components/wm_components.cache/ip [current_project]
   set_property ip_output_repo /home/sabertazimi/gitrepo/dld/wm_components/wm_components.cache/ip [current_project]
-  add_files -quiet /home/sabertazimi/gitrepo/dld/wm_components/wm_components.runs/synth_1/weight_selector.dcp
+  add_files -quiet /home/sabertazimi/gitrepo/dld/wm_components/wm_components.runs/synth_1/selector.dcp
   read_xdc /home/sabertazimi/gitrepo/dld/wm_components/wm_components.srcs/constrs_1/new/weight_selector.xdc
-  link_design -top weight_selector -part xc7a100tcsg324-1
-  write_hwdef -file weight_selector.hwdef
+  link_design -top selector -part xc7a100tcsg324-1
+  write_hwdef -file selector.hwdef
   close_msg_db -file init_design.pb
 } RESULT]
 if {$rc} {
@@ -73,8 +71,8 @@ start_step opt_design
 set rc [catch {
   create_msg_db opt_design.pb
   opt_design 
-  write_checkpoint -force weight_selector_opt.dcp
-  report_drc -file weight_selector_drc_opted.rpt
+  write_checkpoint -force selector_opt.dcp
+  report_drc -file selector_drc_opted.rpt
   close_msg_db -file opt_design.pb
 } RESULT]
 if {$rc} {
@@ -89,10 +87,10 @@ set rc [catch {
   create_msg_db place_design.pb
   implement_debug_core 
   place_design 
-  write_checkpoint -force weight_selector_placed.dcp
-  report_io -file weight_selector_io_placed.rpt
-  report_utilization -file weight_selector_utilization_placed.rpt -pb weight_selector_utilization_placed.pb
-  report_control_sets -verbose -file weight_selector_control_sets_placed.rpt
+  write_checkpoint -force selector_placed.dcp
+  report_io -file selector_io_placed.rpt
+  report_utilization -file selector_utilization_placed.rpt -pb selector_utilization_placed.pb
+  report_control_sets -verbose -file selector_control_sets_placed.rpt
   close_msg_db -file place_design.pb
 } RESULT]
 if {$rc} {
@@ -106,12 +104,12 @@ start_step route_design
 set rc [catch {
   create_msg_db route_design.pb
   route_design 
-  write_checkpoint -force weight_selector_routed.dcp
-  report_drc -file weight_selector_drc_routed.rpt -pb weight_selector_drc_routed.pb
-  report_timing_summary -warn_on_violation -max_paths 10 -file weight_selector_timing_summary_routed.rpt -rpx weight_selector_timing_summary_routed.rpx
-  report_power -file weight_selector_power_routed.rpt -pb weight_selector_power_summary_routed.pb -rpx weight_selector_power_routed.rpx
-  report_route_status -file weight_selector_route_status.rpt -pb weight_selector_route_status.pb
-  report_clock_utilization -file weight_selector_clock_utilization_routed.rpt
+  write_checkpoint -force selector_routed.dcp
+  report_drc -file selector_drc_routed.rpt -pb selector_drc_routed.pb
+  report_timing_summary -warn_on_violation -max_paths 10 -file selector_timing_summary_routed.rpt -rpx selector_timing_summary_routed.rpx
+  report_power -file selector_power_routed.rpt -pb selector_power_summary_routed.pb -rpx selector_power_routed.rpx
+  report_route_status -file selector_route_status.rpt -pb selector_route_status.pb
+  report_clock_utilization -file selector_clock_utilization_routed.rpt
   close_msg_db -file route_design.pb
 } RESULT]
 if {$rc} {
@@ -124,9 +122,9 @@ if {$rc} {
 start_step write_bitstream
 set rc [catch {
   create_msg_db write_bitstream.pb
-  catch { write_mem_info -force weight_selector.mmi }
-  write_bitstream -force weight_selector.bit 
-  catch { write_sysdef -hwdef weight_selector.hwdef -bitfile weight_selector.bit -meminfo weight_selector.mmi -file weight_selector.sysdef }
+  catch { write_mem_info -force selector.mmi }
+  write_bitstream -force selector.bit 
+  catch { write_sysdef -hwdef selector.hwdef -bitfile selector.bit -meminfo selector.mmi -file selector.sysdef }
   catch {write_debug_probes -quiet -force debug_nets}
   close_msg_db -file write_bitstream.pb
 } RESULT]
