@@ -65,6 +65,6 @@ int *pc,
     cycle;
 
 int vm_init(void);
-int eval(void);
+int eval(int *pc);
 
 #endif /* !VM_H */

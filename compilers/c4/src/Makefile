@@ -68,7 +68,7 @@ MY_CFLAGS =
 MY_LIBS   =
 
 # The pre-processor options used by the cpp (man cpp for more).
-CPPFLAGS  = -Wall -std=c99
+CPPFLAGS  = -Wall -Wno-pointer-to-int-cast -Wno-int-to-pointer-cast -std=c99 -g 
 
 # The options used in linking as well as in any direct use of ld.
 LDFLAGS   =

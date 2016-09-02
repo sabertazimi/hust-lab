@@ -5,36 +5,39 @@
  * Distributed under terms of the MIT license.
  */
 
+#include "c4.h"
 #include "vm.h"
 
+#define POOL_SIZE (1024 * 256)
+
 int vm_init(void) {
-    if (!(text = old_text = malloc(poolsize))) {
-        printf("could not malloc(%d) for text area\n", poolsize);
+    if (!(text = old_text = (int *)malloc(POOL_SIZE))) {
+        printf("could not malloc(%d) for text area\n", POOL_SIZE);
         return -1;
     }
 
-    if (!(data = malloc(poolsize))) {
-        printf("could not malloc(%d) for data area\n", poolsize);
+    if (!(data = (char *)malloc(POOL_SIZE))) {
+        printf("could not malloc(%d) for data area\n", POOL_SIZE);
         return -1;
     }
 
-    if (!(stack = malloc(poolsize))) {
-        printf("could not malloc(%d) for stack area\n", poolsize);
+    if (!(stack = (int *)malloc(POOL_SIZE))) {
+        printf("could not malloc(%d) for stack area\n", POOL_SIZE);
         return -1;
     }
 
-    memset(text, 0, poolsize);
-    memset(data, 0, poolsize);
-    memset(stack, 0, poolsize);
+    memset(text, 0, POOL_SIZE);
+    memset(data, 0, POOL_SIZE);
+    memset(stack, 0, POOL_SIZE);
 
-    bp = sp = (int *)((int)stack + poolsize);
+    bp = sp = (int *)((long)stack + POOL_SIZE);
     ax = 0;
 
     return 0;
 }
 
-int eval(void) {
-    int op,
+int eval(int *pc) {
+    int op = 0,
         *tmp;
 
     while (1) {
@@ -44,6 +47,8 @@ int eval(void) {
          * *--sp: push
          * *sp++: pop
          */
+
+        op = *pc++;
 
         if (op == IMM) {
             ax = *pc++;
@@ -80,7 +85,7 @@ int eval(void) {
         } else if (op == ADJ) {
             sp = sp + *pc++;
         } else if (op == LEV) {
-            sp = bp
+            sp = bp;
             // pop bp
             bp = (int *)*sp++;
             // pop eip (ret)
@@ -95,17 +100,17 @@ int eval(void) {
         } else if (op == AND) {
             ax = *sp++ & ax;
         } else if (op == EQ) {
-             ax = *sp++ == ax;
+            ax = *sp++ == ax;
         } else if (op == NE) {
-             ax = *sp++ != ax;
+            ax = *sp++ != ax;
         } else if (op == LT) {
-             ax = *sp++ < ax;
+            ax = *sp++ < ax;
         } else if (op == LE) {
-             ax = *sp++ <= ax;
+            ax = *sp++ <= ax;
         } else if (op == GT) {
-             ax = *sp++ >  ax;
+            ax = *sp++ >  ax;
         } else if (op == GE) {
-             ax = *sp++ >= ax;
+            ax = *sp++ >= ax;
         } else if (op == SHL) {
             ax = *sp++ << ax;
         } else if (op == SHR) {
