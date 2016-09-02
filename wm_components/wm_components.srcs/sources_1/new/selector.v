@@ -7,7 +7,8 @@
 // sig_ch: button for selecting weight
 // output
 // weight: weight of clothes
-module weight_selector
+module selector
+#(parameter LO = 2, HI = 5)
 (
     input clk_src,
     input switch_power,
@@ -20,7 +21,7 @@ module weight_selector
 
     initial begin
         init_flag <= 1;
-        weight <= 2;
+        weight <= LO;
     end
     
     wire [31:0] clk;
@@ -34,10 +35,10 @@ module weight_selector
         if (switch_power) begin
             if (switch_en) begin
                 if (init_flag) begin
-                    weight <= 2;
+                    weight <= LO;
                     init_flag <= 0;
                 end else if (sig_change) begin
-                    weight = (weight + 1) % 6 ? (weight + 1) % 6 : 2;
+                    weight = (weight + 1) % (HI+1) ? (weight + 1) % (HI+1) : LO;
                 end
             // TODO: button-down signal led
             // btn_sig_led(bool sig_flicker, output btn_l   ed)
