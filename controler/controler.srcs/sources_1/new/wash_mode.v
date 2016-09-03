@@ -18,7 +18,7 @@ module wash_mode(
         nextstate = water_in_state;
 //        water_in_end_sign = 0;
 //        spangle_start = 0;
-        water_in_light = 1;
+        water_in_light = 0;
         washing_light = 1;
     end
     

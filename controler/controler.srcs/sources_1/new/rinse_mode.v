@@ -20,7 +20,7 @@ module rinse_mode(
             water_out_end_sign = 0;
             dewatering_end_sign = 0;
             rinsing_end_sign = 0;
-            water_out_light = 1;
+            water_out_light = 0;
             dewatering_light = 0;
             water_in_light = 0;
             rinsing_light = 1;

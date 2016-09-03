@@ -78,10 +78,9 @@ module controler(
                                .clk(clk),
                                .water_level_current(water_level_current),
                                .dewater_start(w_r_d_start[0]),
-                               .dewater_light(dewater_light),
+                               .dewatering_light(dewatering_light),
                                .dewater_end_sign(w_r_d_end[0]),
                                .water_out_light(water_out_light),
-                               .dewatering_light(dewatering_light),
                                .water_level(water_level)
     );
     
