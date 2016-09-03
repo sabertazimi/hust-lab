@@ -1,14 +1,11 @@
 /*
- * vm.c
+ * dasm.c
  * Copyright (C) 2016 sabertazimi <sabertazimi@avalon>
  *
  * Distributed under terms of the MIT license.
  */
 
-#include "c4.h"
-#include "vm.h"
-
-#define POOL_SIZE (1024 * 256)
+#include "dasm.h"
 
 int vm_init(void) {
     if (!(text = old_text = (int *)malloc(POOL_SIZE))) {
@@ -126,7 +123,7 @@ int eval(int *pc) {
         } else if (op == MOD) {
             ax = *sp++ % ax;
         } else if (op == EXIT) {
-            printf("exit(%d)", *sp); return *sp;
+            printf("exit(%d)\n", *sp); return *sp;
         } else if (op == OPEN) {
             ax = open((char *)sp[1], sp[0]);
         } else if (op == CLOS) {
@@ -149,3 +146,4 @@ int eval(int *pc) {
 
     return 0;
 }
+

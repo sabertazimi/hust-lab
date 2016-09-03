@@ -5,28 +5,23 @@
  * Distributed under terms of the MIT license.
  */
 
-#include "c4lib.h"
-#include "lexer.h"
-#include "c4.h"
-#include "vm.h"
+#include "dasm.h"
 
 #define DEBUG
 // #undef DEBUG
 
 #define DEBUG_VM
-#undef DEBUG_VM
+// #undef DEBUG_VM
 
 int main(int argc, char **argv) {
-    int i, fd;
+    int i;
 
 #ifndef DEBUG_VM
+    int fd;
+
     argc--;
     argv++;
 #endif
-
-    line = 1;
-
-    keywords_init();
 
 #ifndef DEBUG_VM
     if ((fd = open(*argv, 0)) < 0) {
@@ -34,13 +29,13 @@ int main(int argc, char **argv) {
         return -1;
     }
 
-    if (!(src = old_src = malloc(poolsize))) {
-        printf("could not malloc(%d) for source area\n", poolsize);
+    if (!(src = old_src = malloc(POOL_SIZE))) {
+        printf("could not malloc(%d) for source area\n", POOL_SIZE);
         return -1;
     }
 
     // read source code
-    if ((i = read(fd, src, poolsize - 1)) <= 0) {
+    if ((i = read(fd, src, POOL_SIZE - 1)) <= 0) {
         printf("read() returned %d\n", i);
         return -1;
     }
@@ -65,10 +60,6 @@ int main(int argc, char **argv) {
     text[i++] = PUSH;
     text[i++] = EXIT;
     pc = text;
-#endif
-
-#ifndef DEBUG_VM
-    program();
 #endif
 
     return eval(pc);

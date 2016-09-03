@@ -1,14 +1,24 @@
 /*
- * vm.h
+ * dasm.h
  * Copyright (C) 2016 sabertazimi <sabertazimi@avalon>
  *
  * Distributed under terms of the MIT license.
  */
 
-#ifndef VM_H
-#define VM_H
+#ifndef DASM_H
+#define DASM_H
 
-#include "c4lib.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <memory.h>
+#include <string.h>
+#include <ctype.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+#define POOL_SIZE (1024 * 256)
 
 // instructions
 enum {
@@ -52,6 +62,7 @@ enum {
     EXIT
 };
 
+// memory management
 int *text,
     *old_text,
     *stack;
@@ -64,7 +75,11 @@ int *pc,
     ax,
     cycle;
 
+// source code
+char *src,
+     *old_src;
+
 int vm_init(void);
 int eval(int *pc);
 
-#endif /* !VM_H */
+#endif /* !DASM_H */
