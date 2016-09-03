@@ -10,18 +10,20 @@ module wash_mode(
     );
     // FIXED ME: there's 3 state, but state and nextState only can hold 1 bit.
     reg [1:0]state, nextstate;
-    reg water_in_end_sign, spangle_start;
+    reg water_in_end_sign, water_in_start, washing_start;
     parameter water_in_state = 0, washing_state = 1, wash_end_state = 2;
     
     initial begin
         state = water_in_state;
         nextstate = water_in_state;
-        water_in_end_sign = 0;
-        spangle_start = 0;
+//        water_in_end_sign = 0;
+//        spangle_start = 0;
+        water_in_light = 1;
+        washing_light = 1;
     end
     
      water_in_mode WATER_IN_MODE (.water_in_end_sign(water_in_end_sign),
-                                  .water_in_start(water_in_light),
+                                  .water_in_start(water_in_start),
                                   .clk(clk),
                                   .power(power),
                                   .weight(weight),
@@ -43,16 +45,27 @@ module wash_mode(
     end
     end
     
-    always @(state or pause)
-    if(wash_start & !pause) begin
+    //spangle light
+    always @(posedge clk)
+    if(wash_start & power)
+    begin
         case(state)
-            water_in_state: begin water_in_light = 1; washing_light = 1; end
-            washing_state: begin water_in_light  = 0; washing_light = 1; end
-            wash_end_state: begin  wash_end_sign = 1; end
+            water_in_state: water_in_light = ~water_in_light;
+            washing_state: begin water_in_light = 0; washing_light = ~washing_light; end
+            wash_end_state: begin washing_light = 0; end
         endcase
     end
     
-    always @(water_in_light or washing_light or water_in_end_sign or wash_end_sign)
+    always @(state or pause)
+    if(wash_start & !pause) begin
+        case(state)
+            water_in_state: begin wash_end_sign = 0; water_in_start = 1; end
+            washing_state: begin water_in_start = 0; washing_start = 1; end
+            wash_end_state: begin  washing_start = 0; wash_end_sign = 1; end
+        endcase
+    end
+    
+    always @(water_in_end_sign or wash_end_sign or wash_start)
     begin
         case(state)
             water_in_state:
