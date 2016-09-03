@@ -1,8 +1,7 @@
 `timescale 1ns / 1ps
 
 module rinse_mode(
-    input rinse_start, input pause, input power, input clk,
-    input weight,
+    input rinse_start, input pause, input power, input clk, input weight,
     output reg rinse_end_sign, 
     //light
     output reg water_in_light, output reg rinsing_light,output reg water_out_light,
@@ -30,19 +29,28 @@ module rinse_mode(
             rinsing_start = 0;
         end
         
-         water_in_mode WATER_IN_MODE (.water_in_end_sign(water_in_end_sign),
-                                      .water_in_start(water_in_start),
-                                      .clk(clk),
-                                      .power(power),
-                                      .weight(weight),
-                                      .pause(pause),
-                                      .water_level(water_level)
-                           );
-    //     timer TIME_WASH (.(washing_light))
-    //     timer TIME_SPANGLE (.clk(clk),
-    //                         .start(spangle_start),
-    //                         .(washing_light));
-        
+         water_let_mode WATER_IN_MODE (.water_in_end_sign(water_in_end_sign),
+                                       .water_in_start(water_in_start),
+                                       .water_out_start(0),
+                                       .water_out_end_sign(water_out_end_sign),
+                                       .clk(clk),
+                                       .power(power),
+                                       .max_water_level(weight),
+                                       .pause(pause),
+                                       .water_level(water_level)
+          );
+          
+          water_let_mode WATER_OUT_MODE (.water_in_end_sign(water_in_end_sign),
+                                        .water_in_start(0),
+                                        .water_out_start(water_out_start),
+                                        .water_out_end_sign(water_out_end_sign),
+                                        .clk(clk),
+                                        .power(power),
+                                        .max_water_level(weight),
+                                        .pause(pause),
+                                        .water_level(water_level)
+          );
+
         // FIXED ME: edge detective(posedge) can't be mix up with level detective(power).
         always @(posedge power or posedge clk)
         begin

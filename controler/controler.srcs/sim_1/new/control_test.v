@@ -1,20 +1,26 @@
 `timescale 1ns / 1ps
 
 module control_test();
-    reg power, start, weight_ch, mode_ch, clk, reset;
-    reg [2:0]w_r_d, w_r_d_end;
-    wire [1:0]state, nextstate;
+    reg power, start, weight_ch, mode_ch, clk;
+    wire [2:0]state, nextstate, weight_ch_light;
+    wire start_pause_light, water_in_light, 
     parameter TIME = 1000, DELAY = 10;
     
     controler CONTROLER (
-        .reset(reset),
         .power(power),
-        .start(start),
+        .start_pause(start),
         .weight_ch(weight_ch),
         .mode_ch(mode_ch),
+        .weight_ch(weight_ch),
         .clk(clk),
-        .w_r_d(w_r_d),
-        .w_r_d_end(w_r_d_end),
+        .start_pause_light(start_pause_light),
+        .weight_ch_light(weight_ch_light),
+        .water_in_light(water_in_light),
+        .water_out_light(water_out_light),
+        .washing_light(washing_light),
+        .rinsing_light(rinsing_light),
+        .dewatering_light(dewatering_light),
+        .buzzer_lamp(dewatering_light),
         .state(state),
         .nextstate(nextstate)
     );

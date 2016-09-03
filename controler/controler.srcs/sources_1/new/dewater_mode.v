@@ -2,7 +2,7 @@
 
 module dewater_mode(
     input dewater_start, input pause, input power, input clk,
-    input water_level_current, 
+    input weight, 
     output reg dewater_end_sign, 
     //light
     output reg dewatering_light,output reg water_out_light,
@@ -21,13 +21,15 @@ module dewater_mode(
         dewatering_light = 1;
     end
     
-     water_out_mode WATER_OUT_MODE (.water_out_end_sign(water_out_end_sign),
-                                  .water_out_start(water_out_start),
-                                  .clk(clk),
-                                  .power(power),
-                                  .water_level_current(water_level_current),
-                                  .pause(pause),
-                                  .water_level(water_level)
+     water_let_mode WATER_OUT_MODE (.water_out_end_sign(water_out_end_sign),
+                                    .water_in_end_sign(water_out_end_sign),
+                                    .water_out_start(water_out_start),
+                                    .water_in_start(water_in_start),
+                                    .clk(clk),
+                                    .power(power),
+                                    .max_water_level(weight),
+                                    .pause(pause),
+                                    .water_level(water_level)
                        );
 //     timer TIME_WASH (.(washing_light))
 //     timer TIME_SPANGLE (.clk(clk),
