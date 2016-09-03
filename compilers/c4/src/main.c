@@ -26,6 +26,8 @@ int main(int argc, char **argv) {
 
     line = 1;
 
+    keywords_init();
+
 #ifndef DEBUG_VM
     if ((fd = open(*argv, 0)) < 0) {
         printf("could not open(%s)\n", *argv);

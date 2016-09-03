@@ -91,6 +91,16 @@ enum {
     ID_Size         // total count of fields for a single identifier
 };
 
+// keywords type
+enum {
+    CHAR,
+    INT,
+    PTR
+};
+
+int *idmain
+
+int keywords_init(void);
 int next(void);
 
 #endif /* !LEXER_H */
