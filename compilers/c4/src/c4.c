@@ -5,6 +5,7 @@
  * Distributed under terms of the MIT license.
  */
 
+#include "lexer.h"
 #include "c4.h"
 
 int program(void) {
@@ -18,10 +19,6 @@ int program(void) {
     return 0;
 }
 
-int next(void) {
-    token = *src++;
-    return 0;
-}
 
 int expression(int level) {
     return 0;

@@ -6,6 +6,7 @@
  */
 
 #include "c4lib.h"
+#include "lexer.h"
 #include "c4.h"
 #include "vm.h"
 

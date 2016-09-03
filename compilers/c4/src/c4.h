@@ -10,14 +10,8 @@
 
 #include "c4lib.h"
 
-char *src,
-     *old_src;
-int token;
-int poolsize;
-int line;
 
 int program(void);
-int next(void);
 int expression(int level);
 
 #endif /* !C4_H */
