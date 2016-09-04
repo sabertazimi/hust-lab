@@ -3,7 +3,7 @@
 module wash_mode
 //#(parameter WIDTH = 32)
 (
-    input wash_start, input pause, input power, input [31:0]clk, //input wash_control,
+    input wash_start, input start, input power, input [31:0]clk, //input wash_control,
     input weight,
     output reg wash_end_sign, 
     //light
@@ -33,13 +33,13 @@ module wash_mode
                                   .clk(clk),
                                   .power(power),
                                   .max_water_level(weight),
-                                  .pause(pause),
+                                  .start(start),
                                   .water_level(water_level)
      );
      
      timer TIMER_WASH (.clk_src(clk),
                        .switch_power(power),
-                       .switch_en(pause),
+                       .switch_en(start),
                        .sum_count(weight * 3),
                        .count_start_flag(washing_start),
                        .count_end_flag(wash_end_sign),
@@ -80,8 +80,8 @@ module wash_mode
     end
     end
     
-    always @(state or pause)
-    if(wash_start & !pause) begin
+    always @(state or start)
+    if(wash_start & start) begin
         case(state)
             water_in_state: begin wash_end_sign = 0; water_in_start = 1; end
             washing_state: begin water_in_start = 0; washing_start = 1; end

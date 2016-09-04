@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 module rinse_mode(
-    input rinse_start, input pause, input power, input [31:0]clk, input weight,
+    input rinse_start, input start, input power, input [31:0]clk, input weight,
     output reg rinse_end_sign, 
     //light
     output reg water_in_light, output reg rinsing_light,output reg water_out_light,
@@ -37,12 +37,12 @@ module rinse_mode(
                                        .clk(clk),
                                        .power(power),
                                        .max_water_level(weight),
-                                       .pause(pause),
+                                       .start(start),
                                        .water_level(water_level)
           );
           timer DEWATERIGN_TIMER (.clk_src(clk),
                                   .switch_power(power),
-                                  .switch_en(pause),
+                                  .switch_en(start),
                                   .sum_count(weight),
                                   .count_start_flag(dewatering_start),
                                   .count_end_flag(dewatering_end_sign),
@@ -50,7 +50,7 @@ module rinse_mode(
           );
           timer RINSING_TIMER (.clk_src(clk),
                                   .switch_power(power),
-                                  .switch_en(pause),
+                                  .switch_en(start),
                                   .sum_count(weight * 2),
                                   .count_start_flag(rinsing_start),
                                   .count_end_flag(rinsing_end_sign),
@@ -93,8 +93,8 @@ module rinse_mode(
         end
         end
         
-        always @(state or pause)
-        if(rinse_start & !pause) begin
+        always @(state or start)
+        if(rinse_start & start) begin
             case(state)
                 water_out_state: begin rinse_end_sign = 0; water_out_start = 1; end
                 dewatering_state: begin dewatering_start = 1; water_out_start = 0;end

@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 module dewater_mode(
-    input dewater_start, input pause, input power, input [31:0]clk,
+    input dewater_start, input start, input power, input [31:0]clk,
     input weight, 
     output reg dewater_end_sign, 
     //light
@@ -29,12 +29,12 @@ module dewater_mode(
                                     .clk(clk),
                                     .power(power),
                                     .max_water_level(weight),
-                                    .pause(pause),
+                                    .start(start),
                                     .water_level(water_level)
      );
      timer TIMER_WASH (.clk_src(clk),
                        .switch_power(power),
-                       .switch_en(pause),
+                       .switch_en(start),
                        .sum_count(weight),
                        .count_start_flag(dewatering_start),
                        .count_end_flag(dewatering_end_sign),
@@ -73,8 +73,8 @@ module dewater_mode(
     end
     end
     
-    always @(state or pause)
-    if(dewater_start & !pause) begin
+    always @(state or start)
+    if(dewater_start & start) begin
         case(state)
             water_out_state: begin dewater_end_sign = 0; water_out_start = 1; end
             dewatering_state: begin water_out_start = 0; dewatering_start = 1; end

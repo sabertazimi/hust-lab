@@ -45,7 +45,7 @@ module controler(
     );                
     
     wash_mode WASH_MODE (.power(power & power_control),
-                         .pause(start_pause_light),
+                         .start(start_pause_light),
                          .weight(weight_ch_light),
                          .clk(clk),
                          .wash_start(w_r_d_start[2]),
@@ -56,7 +56,7 @@ module controler(
      );
      
     rinse_mode RINSE_MODE (.power(power & power_control),
-                           .pause(start_pause_light),
+                           .start(start_pause_light),
                            .clk(clk),
                            .weight(weight_ch_light),
                            .rinse_start(w_r_d_start[1]),
@@ -69,7 +69,7 @@ module controler(
     );
     
     dewater_mode DEWATER_MODE (.power(power & power_control),
-                               .pause(start_pause_light),
+                               .start(start_pause_light),
                                .clk(clk),
                                .weight(weight_ch_light),
                                .dewater_start(w_r_d_start[0]),

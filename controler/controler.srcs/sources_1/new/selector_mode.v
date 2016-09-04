@@ -24,13 +24,6 @@ module selector_mode
         init_flag <= 1;
         sel_value <= LO;
     end
-    
-//    wire [31:0] clk;
-    
-//    tick_divider DIVIDER (
-//        .clk_src(clk_src),
-//        .clk_group(clk)
-//    );
 
     always @(posedge sig_change) begin
         if (switch_power) begin
@@ -45,7 +38,7 @@ module selector_mode
             end
         end else begin
             init_flag <= 1;
-            sel_value <= 0;
+            sel_value <= LO;
         end
     end
     

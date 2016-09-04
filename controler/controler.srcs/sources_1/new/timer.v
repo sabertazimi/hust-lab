@@ -1,23 +1,4 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 2016/08/29 20:51:51
-// Design Name: 
-// Module Name: timer
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
 
 // @input
 // clk_src: clock source
@@ -34,34 +15,35 @@ module timer
 (   input [31:0]clk_src,
     input switch_power,
     input switch_en,
-    input sum_count,
+    input [31:0]sum_count,
     input count_start_flag,
     output reg count_end_flag,
     output reg [(WIDTH-1):0] count
 );
-
+    reg power_control;
     initial begin
         count_end_flag <= 0;
         count <= sum_count;
+        power_control = 1;
     end
-    
+    //information: count has a second delay
     always @(posedge clk_src[25]) begin
-        if (switch_power) begin
-            if (count_start_flag) begin
-                if (switch_en) begin
-                    if (count >= 0) begin
-                        count <= count - 1;
-                    end else if (count == 0) begin
-                        count_end_flag <= 0;
-                    end
+        if (switch_power & count_start_flag & power_control) begin
+            if (switch_en) begin
+                if (count > 0) begin
+                    count <= count - 1;
+                end else if (count == 0) begin
+                    count_end_flag <= 1;
                 end
-            end else begin
-                count_end_flag <= 0;
-                count <= sum_count;
             end
         end else begin
             count_end_flag <= 0;
             count <= sum_count;
+            power_control = 1;
         end
+    end
+    
+    always @(negedge switch_power or negedge count_start_flag) begin
+        power_control = 0;
     end
 endmodule
