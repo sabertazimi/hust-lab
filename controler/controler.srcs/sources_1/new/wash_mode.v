@@ -3,7 +3,7 @@
 module wash_mode
 //#(parameter WIDTH = 32)
 (
-    input wash_start, input pause, input power, input clk, //input wash_control,
+    input wash_start, input pause, input power, input [31:0]clk, //input wash_control,
     input weight,
     output reg wash_end_sign, 
     //light
@@ -47,17 +47,18 @@ module wash_mode
      );
     
     // FIXED ME: edge detective(posedge) can't be mix up with level detective(power).
-    always @(posedge power or posedge clk)
+    always @(posedge power or posedge clk[0])
     begin
-    if(power) state = nextstate;
+    if(power & wash_start) state = nextstate;
     else begin
         wash_end_sign = 0;
         nextstate = water_in_state;
+        wash_count = 0;
     end
     end
     
     //spangle light
-    always @(posedge clk)
+    always @(posedge clk[24])
     if(wash_start & power)
     begin
         case(state)
@@ -68,9 +69,9 @@ module wash_mode
     end
     
     //count time
-    always @(posedge clk)
+    always @(posedge clk[0])
     begin
-    if(wash_start & !pause) begin
+    if(wash_start & power) begin
         case(state)
             water_in_state: wash_count = weight * 4 - water_level;
             washing_state: wash_count = washing_count;

@@ -31,7 +31,7 @@
 // sig_end: signal implicits arriving at RANGE
 module timer
 #(parameter WIDTH = 32)
-(   input clk_src,
+(   input [31:0]clk_src,
     input switch_power,
     input switch_en,
     input sum_count,
@@ -45,7 +45,7 @@ module timer
         count <= sum_count;
     end
     
-    always @(posedge clk_src) begin
+    always @(posedge clk_src[25]) begin
         if (switch_power) begin
             if (count_start_flag) begin
                 if (switch_en) begin

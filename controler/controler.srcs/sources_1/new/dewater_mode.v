@@ -1,15 +1,16 @@
 `timescale 1ns / 1ps
 
 module dewater_mode(
-    input dewater_start, input pause, input power, input clk,
+    input dewater_start, input pause, input power, input [31:0]clk,
     input weight, 
     output reg dewater_end_sign, 
     //light
     output reg dewatering_light,output reg water_out_light,
-    output reg [2:0]water_level
+    output reg [2:0]water_level, output reg [31:0]dewater_count
     );
     reg [1:0]state, nextstate;
-    reg water_out_end_sign, water_out_start, dewatering_start, dewatering_end_sign;
+    reg [31:0]dewatering_count;
+    reg water_out_end_sign, water_in_end_sign, water_out_start, dewatering_start, dewatering_end_sign;
     parameter water_out_state = 0, dewatering_state = 1, dewater_end_state = 2;
     
     initial begin
@@ -22,22 +23,25 @@ module dewater_mode(
     end
     
      water_let_mode WATER_OUT_MODE (.water_out_end_sign(water_out_end_sign),
-                                    .water_in_end_sign(water_out_end_sign),
+                                    .water_in_end_sign(water_in_end_sign),
                                     .water_out_start(water_out_start),
-                                    .water_in_start(water_in_start),
+                                    .water_in_start(0),
                                     .clk(clk),
                                     .power(power),
                                     .max_water_level(weight),
                                     .pause(pause),
                                     .water_level(water_level)
-                       );
-//     timer TIME_WASH (.(washing_light))
-//     timer TIME_SPANGLE (.clk(clk),
-//                         .start(spangle_start),
-//                         .(washing_light));
-    
+     );
+     timer TIMER_WASH (.clk_src(clk),
+                       .switch_power(power),
+                       .switch_en(pause),
+                       .sum_count(weight),
+                       .count_start_flag(dewatering_start),
+                       .count_end_flag(dewatering_end_sign),
+                       .count(dewatering_count)
+     );
     // FIXED ME: edge detective(posedge) can't be mix up with level detective(power).
-    always @(posedge power or posedge clk)
+    always @(posedge power or posedge clk[0])
     begin
     if(power) state = nextstate;
     else begin
@@ -47,7 +51,7 @@ module dewater_mode(
     end
     
     //spangle light
-    always @(posedge clk)
+    always @(posedge clk[25])
     if(dewater_start & power)
     begin
         case(state)
@@ -55,6 +59,18 @@ module dewater_mode(
             dewatering_state: begin water_out_light = 0; dewatering_light = ~dewatering_light; end
             dewater_end_state: begin dewatering_light = 0; end
         endcase
+    end
+    
+    //count time
+    always @(posedge clk[0])
+    begin
+    if(dewater_start & power) begin
+        case(state)
+            water_out_state: dewater_count = weight + water_level;
+            dewatering_state: dewater_count = dewatering_count;
+            dewater_end_state: dewater_count = 0;
+        endcase
+    end
     end
     
     always @(state or pause)
