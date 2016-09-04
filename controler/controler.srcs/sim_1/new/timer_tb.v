@@ -20,6 +20,7 @@ module timer_tb();
     initial begin
         power = 0;
         clk[25] = 0;
+        clk[0] = 0;
         start = 0;
         sum_count = 20;
         count_start_flag = 0;

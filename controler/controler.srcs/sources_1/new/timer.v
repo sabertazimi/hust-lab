@@ -39,11 +39,11 @@ module timer
         end else begin
             count_end_flag <= 0;
             count <= sum_count;
-            power_control = 1;
         end
     end
     
-    always @(negedge switch_power or negedge count_start_flag) begin
-        power_control = 0;
+    always @(switch_power or count_start_flag) begin
+        if(switch_power & count_start_flag) power_control = 1;
+        else power_control = 0;
     end
 endmodule

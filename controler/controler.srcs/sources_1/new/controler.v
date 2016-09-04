@@ -9,7 +9,7 @@ module controler(
     output reg start_pause_light,output reg [2:0]weight_ch_light,
     output reg water_in_light, output reg washing_light, output reg rinsing_light,
     output reg dewatering_light, output reg water_out_light, output reg buzzer_lamp,
-    output reg [2:0]water_level, output reg [31:0]sum_count
+    output reg [2:0]water_level, output reg [7:0]anodes, output reg [7:0]cnodes
     );
 
     reg washing_machine_running, power_control;
@@ -19,6 +19,8 @@ module controler(
     reg auto_shut_flag, washing_machine_running;
     reg [2:0]wash_water_level, rinse_water_level, dewater_water_level;
     reg [31:0]wash_count, rinse_count, dewater_count;
+    reg [31:0]mode_count, sum_count;
+    wire [31:0]anodes_mode, cnodes_mode;
 //    reg[1:0] state, nextstate;
     parameter mode_ch_state = 0, wash_state = 1, rinse_state = 2, dewater_state = 3, w_r_d_end_state = 4;
     integer count;
@@ -79,6 +81,14 @@ module controler(
                                .water_level(dewater_water_level)
     );
     
+    //time display
+    time_display TIME_DISPLAY (.clk_src(clk[25]),
+                               .sec_data(sum_count),
+                               .min_data(mode_count),
+                               .hour_data(water_level),
+                               .anodes(anodes_mode),
+                               .cnodes(cnodes_mode)
+    );
     initial begin
         state = mode_ch_state;
         nextstate = mode_ch_state;
@@ -108,12 +118,29 @@ module controler(
     if(power & power_control)
     begin
         water_level = wash_water_level + rinse_water_level + dewater_water_level;
+        anodes = anodes_mode;
+        cnodes = cnodes_mode;
         case(state)
-            mode_ch_state: sum_count = w_r_d[2] * 4 * weight_ch_light + w_r_d[1] * 5 * weight_ch_light + w_r_d[0] * 2 * weight_ch_light;
-            wash_state: sum_count = wash_count + w_r_d[1] * 5 * weight_ch_light + w_r_d[0] * 2 * weight_ch_light;
-            rinse_state: sum_count = rinse_count + w_r_d[0] * 2 * weight_ch_light;
-            dewater_state: sum_count = dewater_count;
-            w_r_d_end_state: sum_count = 0;
+            mode_ch_state: begin
+                sum_count = w_r_d[2] * 4 * weight_ch_light + w_r_d[1] * 5 * weight_ch_light + w_r_d[0] * 2 * weight_ch_light;
+                mode_count = 0;
+            end
+            wash_state: begin
+                sum_count = wash_count + w_r_d[1] * 5 * weight_ch_light + w_r_d[0] * 2 * weight_ch_light;
+                mode_count = wash_count;
+            end
+            rinse_state: begin 
+                sum_count = rinse_count + w_r_d[0] * 2 * weight_ch_light;
+                mode_count = rinse_count;
+            end
+            dewater_state: begin
+                sum_count = dewater_count;
+                mode_count = dewater_count;
+            end
+            w_r_d_end_state: begin
+                sum_count = 0;
+                mode_count = 0;
+            end
         endcase
     end
     // FIXED ME: posedge detective can't be mixed up with level detective.

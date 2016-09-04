@@ -7,8 +7,8 @@
   <keyValuePair key="date_generated" value="Sun Sep  4 20:57:56 2016" description="" />
   <keyValuePair key="os_platform" value="LIN64" description="" />
   <keyValuePair key="product_version" value="XSIM v2016.2 (64-bit)" description="" />
-  <keyValuePair key="project_id" value="698bfb5f-31ab-4bb5-a115-3cdfa6e670bb" description="" />
-  <keyValuePair key="project_iteration" value="1" description="" />
+  <keyValuePair key="project_id" value="4ae77b9bd24a40a8840849b12436a6b8" description="" />
+  <keyValuePair key="project_iteration" value="2" description="" />
   <keyValuePair key="random_id" value="c0c074b4-a072-440a-bee1-8a0307c7d883" description="" />
   <keyValuePair key="registration_id" value="c0c074b4-a072-440a-bee1-8a0307c7d883" description="" />
   <keyValuePair key="route_design" value="FALSE" description="" />
@@ -16,11 +16,11 @@
   <keyValuePair key="target_family" value="not_applicable" description="" />
   <keyValuePair key="target_package" value="not_applicable" description="" />
   <keyValuePair key="target_speed" value="not_applicable" description="" />
-  <keyValuePair key="tool_flow" value="xsim" description="" />
+  <keyValuePair key="tool_flow" value="xsim_vivado" description="" />
  </section>
  <section name="user_environment" level="1" order="2" description="">
   <keyValuePair key="cpu_name" value="Intel(R) Core(TM) i7-4510U CPU @ 2.00GHz" description="" />
-  <keyValuePair key="cpu_speed" value="2964.914 MHz" description="" />
+  <keyValuePair key="cpu_speed" value="2981.875 MHz" description="" />
   <keyValuePair key="os_name" value="Ubuntu" description="" />
   <keyValuePair key="os_release" value="Ubuntu 16.04 LTS" description="" />
   <keyValuePair key="system_ram" value="8.000 GB" description="" />
@@ -35,7 +35,7 @@
   <section name="usage" level="2" order="2" description="">
    <keyValuePair key="iteration" value="0" description="" />
    <keyValuePair key="runtime" value="1 us" description="" />
-   <keyValuePair key="simulation_memory" value="138900_KB" description="" />
+   <keyValuePair key="simulation_memory" value="138912_KB" description="" />
    <keyValuePair key="simulation_time" value="0.02_sec" description="" />
    <keyValuePair key="trace_waveform" value="true" description="" />
   </section>
