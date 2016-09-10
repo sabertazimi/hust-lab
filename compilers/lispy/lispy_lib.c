@@ -299,6 +299,55 @@ lval *builtin_put(lenv *e, lval *a) {
     return builtin_var(e, a, "=");
 }
 
+static lval *builtin_ord(lenv *e, lval *a, char *op) {
+    LASSERT(a, a->count == 2,
+        "Function '%s' passed too many arguments: "
+        "Got %i, Expected %i.",
+        op, a->count, 2);
+    LASSERT(a, a->cell[0]->type == LVAL_NUM,
+        "Function '%s' passed incorrect type for argument 0: "
+        "Got %s, Expected %s.",
+        op, ltype_name(a->cell[0]->type), ltype_name(LVAL_NUM));
+    LASSERT(a, a->cell[1]->type == LVAL_NUM,
+        "Function '%s' passed incorrect type for argument 1: " "Got %s, Expected %s.",
+        op, ltype_name(a->cell[1]->type), ltype_name(LVAL_NUM));
+
+    int r;
+
+    if (strcmp(op, ">") == 0) {
+        r = (a->cell[0]->num > a->cell[1]->num);
+    }
+    if (strcmp(op, "<") == 0) {
+        r = (a->cell[0]->num < a->cell[1]->num);
+    }
+    if (strcmp(op, ">=") == 0) {
+        r = (a->cell[0]->num >= a->cell[1]->num);
+    }
+    if (strcmp(op, "<=") == 0) {
+        r = (a->cell[0]->num <= a->cell[1]->num);
+    }
+
+    lval_del(a);
+
+    return lval_num(r);
+}
+
+lval *builtin_gt(lenv *e, lval *a) {
+    return builtin_ord(e, a, ">");
+}
+
+lval *builtin_lt(lenv *e, lval *a) {
+    return builtin_ord(e, a, "<");
+}
+
+lval *builtin_ge(lenv *e, lval *a) {
+    return builtin_ord(e, a, ">=");
+}
+
+lval *builtin_le(lenv *e, lval *a) {
+    return builtin_ord(e, a, "<=");
+}
+
 void lenv_add_builtin(lenv *e, char *name, lbuiltin func) {
     lval *k = lval_sym(name);
     lval *v = lval_fun(func);
