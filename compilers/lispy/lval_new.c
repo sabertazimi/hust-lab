@@ -7,13 +7,31 @@
 
 #include "lispy.h"
 
-lval *lval_err(char *m) {
+char *ltype_name(int t) {
+    switch(t) {
+        case LVAL_ERR: return "Error";
+        case LVAL_NUM: return "Number";
+        case LVAL_SYM: return "Symbol";
+        case LVAL_FUN: return "Function";
+        case LVAL_SEXPR: return "S-Expression";
+        case LVAL_QEXPR: return "Q-Expression";
+        default: return "Unknown";
+    }
+}
+
+lval *lval_err(char *fmt, ...) {
     lval *v = (lval *)malloc(sizeof(lval));
     v->type = LVAL_ERR;
-    v->err = (char *)malloc(strlen(m) + 1);
-    strcpy(v->err, m);
-    v->count = 0;
-    v->cell = NULL;
+
+    va_list va;
+    va_start(va, fmt);
+
+    v->err = (char *)malloc(512);
+    vsnprintf(v->err, 511, fmt, va);
+    v->err = (char *)realloc(v->err, strlen(v->err) + 1);
+
+    va_end(va);
+
     return v;
 }
 

@@ -10,13 +10,14 @@
 
 #include "mpc.h"
 
-#define LASSERT(args, cond, err)    \
-    do {                            \
-        if (!(cond)) {              \
-            lval_del(args);         \
-            return lval_err(err);   \
-        }                           \
-    } while (0)                     \
+#define LASSERT(args, cond, fmt, ...)                   \
+    do {                                                \
+        if (!(cond)) {                                  \
+            lval *err = lval_err(fmt, ##__VA_ARGS__);   \
+            lval_del(args);                             \
+            return err;                                 \
+        }                                               \
+    } while (0)                                         \
 
 struct lenv;
 struct lval;
@@ -53,9 +54,10 @@ struct lval {
     lval **cell;
 };
 
+char *ltype_name(int t);
 
 /* Contruct new lval node */
-lval *lval_err(char *m);
+lval *lval_err(char *fmt, ...);
 lval *lval_num(long x);
 lval *lval_sym(char *s);
 lval *lval_fun(lbuiltin func);
@@ -92,6 +94,7 @@ lval *builtin_cons(lenv *e, lval *a);
 lval *builtin_len(lenv *e, lval *a);
 lval *builtin_init(lenv *e, lval *a);
 lval *builtin_last(lenv *e, lval *a);
+lval *builtin_def(lenv *e, lval *a);
 lval *builtin_add(lenv *e, lval *a);
 lval *builtin_sub(lenv *e, lval *a);
 lval *builtin_mul(lenv *e, lval *a);
