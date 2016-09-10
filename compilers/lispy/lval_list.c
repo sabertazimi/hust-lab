@@ -75,11 +75,12 @@ lval *lval_copy(lval *v) {
             strcpy(x->err, v->err);
             break;
         case LVAL_NUM:
-            x->num = x->num;
+            x->num = v->num;
             break;
         case LVAL_SYM:
             x->sym = (char *)malloc(strlen(v->sym) + 1);
             strcpy(x->sym, v->sym);
+            break;
         case LVAL_FUN:
             x->fun = v->fun;
             break;

@@ -19,10 +19,10 @@
         }                                               \
     } while (0)                                         \
 
-struct lenv;
 struct lval;
-typedef struct lenv lenv;
+struct lenv;
 typedef struct lval lval;
+typedef struct lenv lenv;
 
 enum {
     LVAL_ERR,
@@ -36,12 +36,6 @@ enum {
 /* Function pointer */
 typedef lval*(*lbuiltin)(lenv *, lval*);
 
-struct lenv {
-    int count;
-    char **syms;
-    lval **vals;
-};
-
 struct lval {
     int type;
 
@@ -52,6 +46,12 @@ struct lval {
 
     int count;
     lval **cell;
+};
+
+struct lenv {
+    int count;
+    char **syms;
+    lval **vals;
 };
 
 char *ltype_name(int t);
@@ -105,7 +105,6 @@ lval *lval_eval(lenv *e, lval *v);
 /* Screen display functions */
 void lval_print(lval *v);
 void lval_expr_print(lval *v, char open, char close);
-void lval_print(lval *v);
 void lval_println(lval *v);
 
 #endif /* !LISPY_H */

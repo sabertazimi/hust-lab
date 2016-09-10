@@ -77,7 +77,8 @@ lval *builtin_join(lenv *e, lval *a) {
     lval *x = lval_pop(a, 0);
 
     while (a->count) {
-        x = lval_join(x, lval_pop(a, 0));
+        lval *y = lval_pop(a, 0);
+        x = lval_join(x, y);
     }
 
     lval_del(a);
@@ -198,10 +199,11 @@ lval *builtin_def(lenv *e, lval *a) {
 static lval *builtin_op(lenv *e, lval *a, char *op) {
     for (int i = 0; i < a->count; i++) {
         if (a->cell[i]->type != LVAL_NUM) {
+            int type = a->cell[i]->type;
             lval_del(a);
             return lval_err("Function '%s' passed incorrect type for argument %i: "
-                    "Got %s, Expected %s"
-                    op, i, ltype_name(a->cell[i]->type), ltype_name(LVAL_NUM));
+                    "Got %s, Expected %s.",
+                    op, i, ltype_name(type), ltype_name(LVAL_NUM));
         }
     }
 
@@ -266,6 +268,7 @@ void lenv_add_builtin(lenv *e, char *name, lbuiltin func) {
 }
 
 void lenv_add_builtins(lenv *e) {
+    lenv_add_builtin(e, "def", builtin_def);
     lenv_add_builtin(e, "list", builtin_list);
     lenv_add_builtin(e, "head", builtin_head);
     lenv_add_builtin(e, "tail", builtin_tail);
@@ -275,7 +278,6 @@ void lenv_add_builtins(lenv *e) {
     lenv_add_builtin(e, "len", builtin_len);
     lenv_add_builtin(e, "init", builtin_init);
     lenv_add_builtin(e, "last", builtin_last);
-    lenv_add_builtin(e, "def", builtin_def);
     lenv_add_builtin(e, "+", builtin_add);
     lenv_add_builtin(e, "-", builtin_sub);
     lenv_add_builtin(e, "*", builtin_mul);
@@ -301,10 +303,16 @@ lval *lval_eval_sexpr(lenv *e, lval *v) {
     }
 
     lval *f = lval_pop(v, 0);
+
     if (f->type != LVAL_FUN) {
-        lval_del(v);
+        lval* err = lval_err(
+            "S-Expression starts with incorrect type. "
+            "Got %s, Expected %s.",
+            ltype_name(f->type), ltype_name(LVAL_FUN));
+
         lval_del(f);
-        return lval_err("First element is not a function.");
+        lval_del(v);
+        return err;
     }
 
     lval *result = f->fun(e, v);

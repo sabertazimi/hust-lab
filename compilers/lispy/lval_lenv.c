@@ -46,12 +46,12 @@ void lenv_put(lenv *e, lval *k, lval *v) {
     }
 
     e->count++;
-    e->syms = (char **)realloc(e->syms, sizeof(char *) * e->count);
     e->vals = (lval **)realloc(e->vals, sizeof(lval *) * e->count);
+    e->syms = (char **)realloc(e->syms, sizeof(char *) * e->count);
 
+    e->vals[e->count - 1] = lval_copy(v);
     e->syms[e->count - 1] = (char *)malloc(strlen(k->sym) + 1);
     strcpy(e->syms[e->count - 1], k->sym);
-    e->vals[e->count - 1] = lval_copy(v);
 }
 
 
