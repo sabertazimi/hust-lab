@@ -17,6 +17,8 @@ void lval_del(lval *v) {
         case LVAL_SYM:
             free(v->sym);
             break;
+        case LVAL_FUN:
+            break;
 
         /* If Sepxr of Qexpr, then delete all elements inside */
         case LVAL_SEXPR:
@@ -63,4 +65,36 @@ lval *lval_take(lval *v, int i) {
     return x;
 }
 
+lval *lval_copy(lval *v) {
+    lval *x = (lval *)malloc(sizeof(lval));
+    x->type = v->type;
+
+    switch(v->type) {
+        case LVAL_ERR:
+            x->err = (char *)malloc(strlen(v->err) + 1);
+            strcpy(x->err, v->err);
+            break;
+        case LVAL_NUM:
+            x->num = x->num;
+            break;
+        case LVAL_SYM:
+            x->sym = (char *)malloc(strlen(v->sym) + 1);
+            strcpy(x->sym, v->sym);
+        case LVAL_FUN:
+            x->fun = v->fun;
+            break;
+        case LVAL_SEXPR:
+        case LVAL_QEXPR:
+            x->count = v->count;
+            x->cell = (lval **)malloc(sizeof(lval *) * x->count);
+
+            for (int i = 0; i < x->count; i++) {
+                x->cell[i] = lval_copy(v->cell[i]);
+            }
+
+            break;
+    }
+
+    return x;
+}
 

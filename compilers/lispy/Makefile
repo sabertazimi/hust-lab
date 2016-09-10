@@ -10,7 +10,7 @@ MV=mv
 RM=rm -fr
 
 $(PROG):
-	$(CC) -o $(PROG) $(CC_FLAG) lispy.c lval_read.c lval_eval.c lval_print.c lval_list.c lval_new.c mpc.c -ledit
+	$(CC) -o $(PROG) $(CC_FLAG) lispy.c lval_read.c lval_eval.c lval_print.c lval_lenv.c lval_list.c lval_new.c mpc.c -ledit
 
 .PHONY=build clean purge run gdb
 
