@@ -1,6 +1,6 @@
 /*
  * lval_new.c
- * Copyright (C) 2016 sabertazimi <sabertazimi@avalon>
+ * Copyright (C) 2016 sabertazimi <sabertazimi@gmail.com>
  *
  * Distributed under terms of the MIT license.
  */
