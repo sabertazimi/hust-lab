@@ -57,12 +57,23 @@ int main(int argc, char **argv) {
     lenv_add_builtins(e);
 
     int init_flag = 0;
+    FILE * fp = fopen("libs.lispy", "rt");
 
     while (1) {
         mpc_result_t r;
 
+        /* Import lib functions */
         if (!init_flag) {
-            /* Add lib functions */
+
+            if (fp) {
+                char pbuf [2048];
+
+                while (fgets(pbuf, 2048, fp)) {
+                    mpc_parse("libs.lispy", pbuf, Lispy, &r);
+                    lval_del(lval_eval(e, lval_read(r.output)));
+                }
+            }
+
             mpc_parse("init", "def {fun} (\\ {args body} {def (head args) (\\ (tail args) body)})", Lispy, &r);
             lval_del(lval_eval(e, lval_read(r.output)));
             mpc_parse("init", "fun {unpack f xs} {eval (join (list f) xs)}", Lispy, &r);
@@ -97,6 +108,7 @@ int main(int argc, char **argv) {
     }
 
     mpc_cleanup(6, Number, Symbol, Sexpr, Qexpr, Expr, Lispy);
+    fclose(fp);
 
     return 0;
 }

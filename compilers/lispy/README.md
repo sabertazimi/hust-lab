@@ -17,3 +17,11 @@ $ sudo apt-get install libedit-dev
 *   法一可以用于编写大部分方法, 但编写高级方法时可能造成链表操作过于复杂
 *   法二通过编写 lisp 函数式代码的方式, 可以使用极少量的代码实现库函数, 但其无法实现过于底层的库函数(e.g head)
 
+## TODO(May be long after)
+
+*   string type
+*   boolean type
+*   adapt built-in list functions to work on string
+*   `builtin_xxx` lib functions
+*   `mpc_parse_file` lib functions(most lib functions implemented by such method)
+*   cli(with file input)
