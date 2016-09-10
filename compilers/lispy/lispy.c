@@ -65,7 +65,14 @@ int main(int argc, char **argv) {
             /* Add lib functions */
             mpc_parse("init", "def {fun} (\\ {args body} {def (head args) (\\ (tail args) body)})", Lispy, &r);
             lval_del(lval_eval(e, lval_read(r.output)));
-
+            mpc_parse("init", "fun {unpack f xs} {eval (join (list f) xs)}", Lispy, &r);
+            lval_del(lval_eval(e, lval_read(r.output)));
+            mpc_parse("init", "fun {pack f & xs} {f xs}", Lispy, &r);
+            lval_del(lval_eval(e, lval_read(r.output)));
+            mpc_parse("init", "def {uncurry} pack", Lispy, &r);
+            lval_del(lval_eval(e, lval_read(r.output)));
+            mpc_parse("init", "def {curry} unpack", Lispy, &r);
+            lval_del(lval_eval(e, lval_read(r.output)));
 
             mpc_ast_delete(r.output);
             init_flag = 1;
