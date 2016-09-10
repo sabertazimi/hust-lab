@@ -18,6 +18,11 @@ void lval_del(lval *v) {
             free(v->sym);
             break;
         case LVAL_FUN:
+            if (!v->builtin) {
+                lenv_del(v->env);
+                lval_del(v->formals);
+                lval_del(v->body);
+            }
             break;
 
         /* If Sepxr of Qexpr, then delete all elements inside */
@@ -82,7 +87,14 @@ lval *lval_copy(lval *v) {
             strcpy(x->sym, v->sym);
             break;
         case LVAL_FUN:
-            x->fun = v->fun;
+            if (v->builtin) {
+                x->builtin = v->builtin;
+            } else {
+                x->builtin = NULL;
+                x->env = lenv_copy(v->env);
+                x->formals = lval_copy(v->formals);
+                x->body = lval_copy(v->body);
+            }
             break;
         case LVAL_SEXPR:
         case LVAL_QEXPR:

@@ -259,6 +259,34 @@ lval *builtin_div(lenv *e, lval *a) {
     return builtin_op(e, a, "/");
 }
 
+lval *builtin_lambda(lenv *e, lval *a) {
+    LASSERT(a, a->count == 2,
+        "Function '\\' passed too many arguments: "
+        "Got %i, Expected %i.",
+        a->count, 2);
+    LASSERT(a, a->cell[0]->type == LVAL_QEXPR,
+        "Function '\\' passed incorrect type for argument 0: "
+        "Got %s, Expected %s.",
+        ltype_name(a->cell[0]->type), ltype_name(LVAL_QEXPR));
+    LASSERT(a, a->cell[1]->type == LVAL_QEXPR,
+        "Function '\\' passed incorrect type for argument 1: "
+        "Got %s, Expected %s.",
+        ltype_name(a->cell[1]->type), ltype_name(LVAL_QEXPR));
+
+    for (int i = 0;; i < a->cell[0]->count; i++) {
+        LASSERT(a, a->cell[0]->cell[i]->type == LVAL_SYM,
+            "Cannot define non-symbol: "
+            "Got %s, Expected %s.",
+            ltype_name(a->cell[0]->cell[i]->type), ltype_name(LVAL_SYM));
+    }
+
+    lval *formals = lval_pop(a, 0);
+    lval *body = lval_pop(a, 0);
+    lval_del(a);
+
+    return lval_lambda(formals, body);
+}
+
 void lenv_add_builtin(lenv *e, char *name, lbuiltin func) {
     lval *k = lval_sym(name);
     lval *v = lval_fun(func);
@@ -269,6 +297,7 @@ void lenv_add_builtin(lenv *e, char *name, lbuiltin func) {
 
 void lenv_add_builtins(lenv *e) {
     lenv_add_builtin(e, "def", builtin_def);
+    lenv_add_builtin(e, "\\", builtin_lambda);
     lenv_add_builtin(e, "list", builtin_list);
     lenv_add_builtin(e, "head", builtin_head);
     lenv_add_builtin(e, "tail", builtin_tail);
@@ -315,7 +344,7 @@ lval *lval_eval_sexpr(lenv *e, lval *v) {
         return err;
     }
 
-    lval *result = f->fun(e, v);
+    lval *result = f->builtin(e, v);
     lval_del(f);
     return result;
 }

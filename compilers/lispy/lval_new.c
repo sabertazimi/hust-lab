@@ -53,7 +53,7 @@ lval *lval_sym(char *s) {
 lval *lval_fun(lbuiltin func) {
     lval *v = (lval *)malloc(sizeof(lval));
     v->type = LVAL_FUN;
-    v->fun = func;
+    v->builtin = func;
     return v;
 }
 
@@ -70,6 +70,16 @@ lval *lval_qexpr(void) {
     v->type = LVAL_QEXPR;
     v->count = 0;
     v->cell = NULL;
+    return v;
+}
+
+lval *lval_lambda(lval *formals, lval *body) {
+    lval *v = (lval *)malloc(sizeof(lval));
+    v->type = LVAL_FUN;
+    v->builtin = NULL;
+    v->env = lenv_new();
+    v->formals = formals;
+    v->body = body;
     return v;
 }
 

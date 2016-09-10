@@ -33,7 +33,15 @@ void lval_print(lval *v) {
             printf("%s", v->sym);
             break;
         case LVAL_FUN:
-            printf("<function>");
+            if (v->builtin) {
+                printf("<builtin>");
+            } else {
+                printf("(\\ ");
+                lval_print(v->formals);
+                putchar(' ');
+                lval_print(v->body);
+                putchar(')');
+            }
             break;
         case LVAL_SEXPR:
             lval_expr_print(v, '(', ')');
