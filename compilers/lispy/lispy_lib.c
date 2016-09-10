@@ -348,6 +348,33 @@ lval *builtin_le(lenv *e, lval *a) {
     return builtin_ord(e, a, "<=");
 }
 
+static lval *builtin_cmp(lenv *e, lval *a, char *op) {
+    LASSERT(a, a->count == 2,
+        "Function 'cmp' passed too many arguments: "
+        "Got %i, Expected %i.",
+        a->count, 2);
+
+    int r;
+
+    if (strcmp(op, "==") == 0) {
+        r = lval_eq(a->cell[0], a->cell[1]);
+    }
+    if (strcmp(op, "!=") == 0) {
+        r = !lval_eq(a->cell[0], a->cell[1]);
+    }
+
+    lval_del(a);
+    return lval_num(r);
+}
+
+lval *builtin_eq(lenv *e, lval *a) {
+    return builtin_cmp(e, a, "==");
+}
+
+lval *builtin_ne(lenv *e, lval *a) {
+    return builtin_cmp(e, a, "!=");
+}
+
 lval *builtin_exit(lenv *e, lval *a) {
     LASSERT(a, a->count == 1,
         "Function 'exit' passed too many arguments: "
@@ -403,6 +430,8 @@ void lenv_add_builtins(lenv *e) {
     lenv_add_builtin(e, "<", builtin_lt);
     lenv_add_builtin(e, ">=", builtin_ge);
     lenv_add_builtin(e, "<=", builtin_le);
+    lenv_add_builtin(e, "==", builtin_eq);
+    lenv_add_builtin(e, "!=", builtin_ne);
     lenv_add_builtin(e, "exit", builtin_exit);
     lenv_add_builtin(e, "quit", builtin_quit);
 }
