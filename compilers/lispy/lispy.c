@@ -56,11 +56,24 @@ int main(int argc, char **argv) {
     lenv *e = lenv_new();
     lenv_add_builtins(e);
 
+    int init_flag = 0;
+
     while (1) {
+        mpc_result_t r;
+
+        if (!init_flag) {
+            /* Add lib functions */
+            mpc_parse("init", "def {fun} (\\ {args body} {def (head args) (\\ (tail args) body)})", Lispy, &r);
+            lval_del(lval_eval(e, lval_read(r.output)));
+
+
+            mpc_ast_delete(r.output);
+            init_flag = 1;
+            continue;
+        }
+
         char *input = readline("lispy> ");
         add_history(input);
-
-        mpc_result_t r;
 
         if (mpc_parse("<stdin>", input, Lispy, &r)) {
             lval *x = lval_eval(e, lval_read(r.output));
