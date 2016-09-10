@@ -69,6 +69,72 @@ lval *builtin_join(lval *a) {
     return x;
 }
 
+lval *builtin_cons(lval *a) {
+    LASSERT(a, a->count == 2,
+        "Function 'cons' passed wrong number of arguments.");
+    LASSERT(a, a->cell[0]->type == LVAL_NUM,
+        "Function 'cons' passed incorrect type.");
+    LASSERT(a, a->cell[1]->type == LVAL_QEXPR,
+        "Function 'cons' passed incorrect type.");
+    LASSERT(a, a->cell[1]->count != 0,
+        "Function 'cons' passed {}.");
+
+    lval *v = lval_pop(a, 0);
+    lval *x = lval_qexpr();
+
+    x = lval_add(x, v);
+    x = lval_join(x, lval_pop(a, 0));
+
+    lval_del(a);
+    lval_del(v);
+    return x;
+}
+
+lval *builtin_len(lval *a) {
+    LASSERT(a, a->count == 1,
+        "Function 'len' passed two many arguments.");
+    LASSERT(a, a->cell[0]->type == LVAL_QEXPR,
+        "Function 'len' passed incorrect type.");
+
+    lval *v = lval_pop(a, 0);
+    lval *x = lval_num(v->count);
+
+    lval_del(a);
+    lval_del(v);
+    return x;
+}
+
+lval *builtin_init(lval *a) {
+    LASSERT(a, a->count == 1,
+        "Function 'init' passed too many arguments.");
+    LASSERT(a, a->cell[0]->type == LVAL_QEXPR,
+        "Function 'init' passed incorrect type.");
+    LASSERT(a, a->cell[0]->count != 0,
+        "Function 'init' passed {}.");
+
+    lval *x = lval_pop(a, 0);
+    lval_del(lval_pop(x, x->count - 1));
+
+    return x;
+}
+
+lval *builtin_last(lval *a) {
+    LASSERT(a, a->count == 1,
+        "Function 'last' passed too many arguments.");
+    LASSERT(a, a->cell[0]->type == LVAL_QEXPR,
+        "Function 'last' passed incorrect type.");
+    LASSERT(a, a->cell[0]->count != 0,
+        "Function 'last' passed {}.");
+
+    lval *v = lval_pop(a, 0);
+    lval *x = lval_pop(v, v->count - 1);
+
+    lval_del(a);
+    lval_del(v);
+    return x;
+}
+
+
 lval *builtin_op(lval *a, char *op) {
     for (int i = 0; i < a->count; i++) {
         if (a->cell[i]->type != LVAL_NUM) {
@@ -128,6 +194,18 @@ lval *builtin(lval *a, char *func) {
     }
     if (strcmp("eval", func) == 0) {
         return builtin_eval(a);
+    }
+    if (strcmp("cons", func) == 0) {
+        return builtin_cons(a);
+    }
+    if (strcmp("len", func) == 0) {
+        return builtin_len(a);
+    }
+    if (strcmp("init", func) == 0) {
+        return builtin_init(a);
+    }
+    if (strcmp("last", func) == 0) {
+        return builtin_last(a);
     }
     if (strstr("+-/*", func)) {
         return builtin_op(a, func);

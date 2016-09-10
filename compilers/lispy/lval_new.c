@@ -11,6 +11,8 @@ lval *lval_num(long x) {
     lval *v = (lval *)malloc(sizeof(lval));
     v->type = LVAL_NUM;
     v->num = x;
+    v->count = 0;
+    v->cell = NULL;
     return v;
 }
 
@@ -19,6 +21,8 @@ lval *lval_err(char *m) {
     v->type = LVAL_ERR;
     v->err = (char *)malloc(strlen(m) + 1);
     strcpy(v->err, m);
+    v->count = 0;
+    v->cell = NULL;
     return v;
 }
 
@@ -27,6 +31,8 @@ lval *lval_sym(char *s) {
     v->type = LVAL_SYM;
     v->sym = (char *)malloc(strlen(s) + 1);
     strcpy(v->sym, s);
+    v->count = 0;
+    v->cell = NULL;
     return v;
 }
 
