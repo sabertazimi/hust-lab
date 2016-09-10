@@ -142,7 +142,7 @@ int lval_eq(lval *x, lval *y) {
                 }
             }
 
-            return 0;
+            return 1;
     }
 
     return 0;

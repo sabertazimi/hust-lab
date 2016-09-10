@@ -119,6 +119,7 @@ lval *builtin_ge(lenv *e, lval *a);
 lval *builtin_le(lenv *e, lval *a);
 lval *builtin_eq(lenv *e, lval *a);
 lval *builtin_ne(lenv *e, lval *a);
+lval *builtin_if(lenv *e, lval *a);
 lval *builtin_exit(lenv *e, lval *a);
 lval *builtin_quit(lenv *e, lval *a);
 
