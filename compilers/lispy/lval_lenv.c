@@ -9,6 +9,7 @@
 
 lenv *lenv_new(void) {
     lenv *e = (lenv *)malloc(sizeof(lenv));
+    e->par = NULL;
     e->count = 0;
     e->syms = NULL;
     e->vals = NULL;
@@ -33,9 +34,23 @@ lval *lenv_get(lenv *e, lval *k) {
         }
     }
 
-    return lval_err("Unfound symbol '%s'", k->sym);
+    if (e->par) {
+        return lenv_get(e->par, k);
+    } else {
+        return lval_err("Unfound symbol '%s'", k->sym);
+    }
 }
 
+/* Global variables */
+void lenv_def(lenv *e, lval *k, lval *v) {
+    while (e->par) {
+        e = e->par;
+    }
+
+    lenv_put(e, k, v);
+}
+
+/* Local variables */
 void lenv_put(lenv *e, lval *k, lval *v) {
     for (int i = 0; i < e->count; i++) {
         if (strcmp(e->syms[i], k->sym) == 0) {
@@ -54,4 +69,20 @@ void lenv_put(lenv *e, lval *k, lval *v) {
     strcpy(e->syms[e->count - 1], k->sym);
 }
 
+lenv *lenv_copy(lenv *e) {
+    lenv *n = (lenv *)malloc(sizeof(lenv));
+
+    n->par = e->par;
+    n->count = e->count;
+    n->syms = (char **)malloc(sizeof(char *) * n->count);
+    n->vals = (lval **)malloc(sizeof(lval *) * n->count);
+
+    for (int i = 0; i < e->count; i++) {
+        n->syms[i] = (char *)malloc(strlen(e->syms[i]) + 1);
+        strcpy(n->syms[i], e->syms[i]);
+        n->vals[i] = lval_copy(e->vals[i]);
+    }
+
+    return n;
+}
 

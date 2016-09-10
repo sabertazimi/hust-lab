@@ -56,6 +56,7 @@ struct lval {
 };
 
 struct lenv {
+    lenv *par;
     int count;
     char **syms;
     lval **vals;
@@ -84,7 +85,9 @@ lval *lval_copy(lval *v);
 lenv *lenv_new(void);
 void lenv_del(lenv *e);
 lval *lenv_get(lenv *e, lval *k);
+void lenv_def(lenv *e, lval *k, lval *v);
 void lenv_put(lenv *e, lval *k, lval *v);
+lenv *lenv_copy(lenv *e);
 void lenv_add_builtin(lenv *e, char *name, lbuiltin func);
 void lenv_add_builtins(lenv *e);
 
@@ -92,7 +95,7 @@ void lenv_add_builtins(lenv *e);
 lval *lval_read_num(mpc_ast_t *t);
 lval *lval_read(mpc_ast_t *t);
 
-/* Evaluation Functions */
+/* Built in functions */
 lval *builtin_list(lenv *e, lval *a);
 lval *builtin_head(lenv *e, lval *a);
 lval *builtin_tail(lenv *e, lval *a);
@@ -102,12 +105,16 @@ lval *builtin_cons(lenv *e, lval *a);
 lval *builtin_len(lenv *e, lval *a);
 lval *builtin_init(lenv *e, lval *a);
 lval *builtin_last(lenv *e, lval *a);
-lval *builtin_def(lenv *e, lval *a);
 lval *builtin_add(lenv *e, lval *a);
 lval *builtin_sub(lenv *e, lval *a);
 lval *builtin_mul(lenv *e, lval *a);
 lval *builtin_div(lenv *e, lval *a);
 lval *builtin_lambda(lenv *e, lval *a);
+lval *builtin_def(lenv *e, lval *a);
+lval *builtin_put(lenv *e, lval *a);
+
+/* Evaluation Functions */
+lval *lval_call(lenv *e, lval *f, lval *a);
 lval *lval_eval_sexpr(lenv *e, lval *v);
 lval *lval_eval(lenv *e, lval *v);
 
