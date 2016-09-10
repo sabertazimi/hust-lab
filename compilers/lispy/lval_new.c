@@ -7,20 +7,20 @@
 
 #include "lispy.h"
 
-lval *lval_num(long x) {
-    lval *v = (lval *)malloc(sizeof(lval));
-    v->type = LVAL_NUM;
-    v->num = x;
-    v->count = 0;
-    v->cell = NULL;
-    return v;
-}
-
 lval *lval_err(char *m) {
     lval *v = (lval *)malloc(sizeof(lval));
     v->type = LVAL_ERR;
     v->err = (char *)malloc(strlen(m) + 1);
     strcpy(v->err, m);
+    v->count = 0;
+    v->cell = NULL;
+    return v;
+}
+
+lval *lval_num(long x) {
+    lval *v = (lval *)malloc(sizeof(lval));
+    v->type = LVAL_NUM;
+    v->num = x;
     v->count = 0;
     v->cell = NULL;
     return v;
@@ -33,6 +33,13 @@ lval *lval_sym(char *s) {
     strcpy(v->sym, s);
     v->count = 0;
     v->cell = NULL;
+    return v;
+}
+
+lval *lval_fun(lbuiltin func) {
+    lval *v = (lval *)malloc(sizeof(lval));
+    v->type = LVAL_FUN;
+    v->fun = func;
     return v;
 }
 

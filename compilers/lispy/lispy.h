@@ -18,29 +18,47 @@
         }                           \
     } while (0)                     \
 
+struct lenv;
+struct lval;
+typedef struct lenv lenv;
+typedef struct lval lval;
+
 enum {
     LVAL_ERR,
     LVAL_NUM,
     LVAL_SYM,
+    LVAL_FUN,
     LVAL_SEXPR,
     LVAL_QEXPR
 };
 
-typedef struct lval {
+/* Function pointer */
+typedef lval*(*lbuiltin)(lenv *, lval*);
+
+struct lenv {
+    int count;
+    char **syms;
+    lval **vals;
+};
+
+struct lval {
     int type;
 
     long num;
     char *err;
     char *sym;
+    lbuiltin fun;
 
     int count;
-    struct lval **cell;
-} lval;
+    lval **cell;
+};
+
 
 /* Contruct new lval node */
-lval *lval_num(long x);
 lval *lval_err(char *m);
+lval *lval_num(long x);
 lval *lval_sym(char *s);
+lval *lval_fun(lbuiltin func);
 lval *lval_sexpr(void);
 lval *lval_qexpr(void);
 
