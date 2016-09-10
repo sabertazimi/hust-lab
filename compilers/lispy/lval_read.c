@@ -37,7 +37,7 @@ lval *lval_read(mpc_ast_t *t) {
         if (strcmp(t->children[i]->contents, ")") == 0) continue;
         if (strcmp(t->children[i]->contents, "{") == 0) continue;
         if (strcmp(t->children[i]->contents, "}") == 0) continue;
-        if (strcmp(t->children[i]->contents, "regex") == 0) continue;
+        if (strcmp(t->children[i]->tag, "regex") == 0) continue;
         x = lval_add(x, lval_read(t->children[i]));
     }
 

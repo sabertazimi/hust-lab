@@ -5,14 +5,14 @@
 
 PROG=lispy
 CC=gcc
-CC_FLAG=-std=c99 -Wall -ledit
+CC_FLAG=-std=c99 -Wall -g
 MV=mv
 RM=rm -fr
 
 $(PROG):
-	$(CC) -o $(PROG) $(CC_FLAG) lispy.c lval_read.c lval_eval.c lval_print.c lval_list.c lval_new.c mpc.c
+	$(CC) -o $(PROG) $(CC_FLAG) lispy.c lval_read.c lval_eval.c lval_print.c lval_list.c lval_new.c mpc.c -ledit
 
-.PHONY=build clean purge run
+.PHONY=build clean purge run gdb
 
 build:
 	make purge
@@ -27,6 +27,9 @@ purge:
 
 run:
 	./$(PROG)
+
+gdb:
+	gdb $(PROG)
 
 # vim:ft=make
 #

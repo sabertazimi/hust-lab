@@ -129,7 +129,7 @@ lval *builtin(lval *a, char *func) {
     if (strcmp("eval", func) == 0) {
         return builtin_eval(a);
     }
-    if (strstr("+-*/", func) == 0) {
+    if (strstr("+-/*", func)) {
         return builtin_op(a, func);
     }
 
