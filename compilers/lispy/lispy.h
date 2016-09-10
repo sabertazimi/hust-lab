@@ -80,6 +80,7 @@ lval *lval_pop(lval *v, int i);
 lval *lval_join(lval *x, lval *y);
 lval *lval_take(lval *v, int i);
 lval *lval_copy(lval *v);
+int lval_eq(lval *x, lval *y);
 
 /* Environment functions */
 lenv *lenv_new(void);
@@ -116,6 +117,8 @@ lval *builtin_gt(lenv *e, lval *a);
 lval *builtin_lt(lenv *e, lval *a);
 lval *builtin_ge(lenv *e, lval *a);
 lval *builtin_le(lenv *e, lval *a);
+lval *builtin_exit(lenv *e, lval *a);
+lval *builtin_quit(lenv *e, lval *a);
 
 /* Evaluation Functions */
 lval *lval_call(lenv *e, lval *f, lval *a);

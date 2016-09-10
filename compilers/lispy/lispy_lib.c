@@ -348,6 +348,32 @@ lval *builtin_le(lenv *e, lval *a) {
     return builtin_ord(e, a, "<=");
 }
 
+lval *builtin_exit(lenv *e, lval *a) {
+    LASSERT(a, a->count == 1,
+        "Function 'exit' passed too many arguments: "
+        "Got %i, Expected %i.",
+        a->count, 1);
+    LASSERT(a, a->cell[0]->type == LVAL_NUM,
+        "Function 'exit' passed incorrect type for argument 0: "
+        "Got %s, Expected %s.",
+        ltype_name(a->cell[0]->type), ltype_name(LVAL_NUM));
+
+    exit(a->cell[0]->num);
+}
+
+lval *builtin_quit(lenv *e, lval *a) {
+    LASSERT(a, a->count == 1,
+        "Function 'quit' passed too many arguments: "
+        "Got %i, Expected %i.",
+        a->count, 1);
+    LASSERT(a, a->cell[0]->type == LVAL_NUM,
+        "Function 'quit' passed incorrect type for argument 0: "
+        "Got %s, Expected %s.",
+        ltype_name(a->cell[0]->type), ltype_name(LVAL_NUM));
+
+    exit(a->cell[0]->num);
+}
+
 void lenv_add_builtin(lenv *e, char *name, lbuiltin func) {
     lval *k = lval_sym(name);
     lval *v = lval_fun(func);
@@ -373,5 +399,11 @@ void lenv_add_builtins(lenv *e) {
     lenv_add_builtin(e, "\\", builtin_lambda);
     lenv_add_builtin(e, "def", builtin_def);
     lenv_add_builtin(e, "=", builtin_put);
+    lenv_add_builtin(e, ">", builtin_gt);
+    lenv_add_builtin(e, "<", builtin_lt);
+    lenv_add_builtin(e, ">=", builtin_ge);
+    lenv_add_builtin(e, "<=", builtin_le);
+    lenv_add_builtin(e, "exit", builtin_exit);
+    lenv_add_builtin(e, "quit", builtin_quit);
 }
 
