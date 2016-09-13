@@ -8,13 +8,15 @@
 # define a variable for the compiler (JC)
 # define a variable for the Java Virtual Machine (JVM)
 
-JFLAGS = -encoding UTF-8 -d $(DSTPATH) -sourcepath $(SRCPATH) -classpath $(DSTPATH) -g
+JFLAGS = -encoding UTF-8 -d $(CLASS_PATH) -sourcepath $(SOURCE_PATH) -classpath $(DSTPATH) -g
 JC = javac
 JVM= java -cp $(DSTPATH)
 RM= rm -fr
 MV= mv
-SRCPATH= src
-DSTPATH= dist
+SOURCE_PATH= src/main/java
+TEST_PATH= src/test/java
+CLASS_PATH= classes
+MAIN = com.sabertazimi.tao.Tao
 FILE=
 
 .SUFFIXES: .java .class
@@ -34,9 +36,8 @@ rwildcard=$(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$2) $(filter $(subst 
 
 # ALL_INDEX_HTMLS := $(call rwildcard,foo/,index.html)
 # ALL_HTMLS := $(call rwildcard,foo/,*.html)
-SOURCE=$(call rwildcard, src/, *.java)
+SOURCE=$(call rwildcard, $(SOURCE_PATH), *.java)
 CLASSES=$(SOURCE:.java=.class)
-MAIN = com.sabertazimi.tao.Tao
 
 # the default make target entry
 # for this example it is the target classes
@@ -48,21 +49,24 @@ default: classes
 
 classes: $(CLASSES)
 
-.PHONY= build run clean show help
+.PHONY= build run clean purge show help
 
 build:
-	make clean
+	make purge
 	make
 
 run:
 	$(JVM) $(MAIN)
 
 clean:
-	$(RM) $(subst src, dist, $(CLASSES))
+	$(RM) $(subst $(SOURCE_PATH), $(CLASS_PATH), $(CLASSES))
+
+purge:
+	$(RM) $(CLASS_PATH)/*
 
 show:
-	@echo 'SOURCE FILES  = '$(SOURCE)
-	@echo 'COMPILE FLAGS = '$(JFLAGS)
+	@echo 'SOURCE FILES  = $(SOURCE)'
+	@echo 'COMPILE FLAGS = $(JFLAGS)'
 
 help:
 	@echo 'Generic Makefile for Java Programs version 1.0'
@@ -73,6 +77,7 @@ help:
 	@echo '  build     generate .class bytecode.'
 	@echo '  run       run main program.'
 	@echo '  clean     clean .class bytecode.'
+	@echo '  purge     purge all files in $(CLASS_PATH)/.'
 	@echo '  show      show variables (for debug use only).'
 	@echo '  help      print this message.'
 	@echo
