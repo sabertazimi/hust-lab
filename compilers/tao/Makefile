@@ -1,6 +1,8 @@
 # Makefile for Java
 # sabertazimi, 2016-09-12 20:12
-# Version: 1.0
+# Version: 1.5
+#
+# Compatible to Gradle Projects
 #
 # Report BUGs to <sabertazimi@gmail.com>
 
@@ -8,16 +10,21 @@
 # define a variable for the compiler (JC)
 # define a variable for the Java Virtual Machine (JVM)
 
-JFLAGS = -encoding UTF-8 -d $(CLASS_PATH) -sourcepath $(SOURCE_PATH) -classpath $(DSTPATH) -g
+JFLAGS = -encoding UTF-8 -d $(CLASS_PATH) -sourcepath $(SOURCE_PATH) -classpath $(CLASS_PATH) -g
 JC = javac
-JVM= java -cp $(DSTPATH)
+JVM= java
+BUILD= gradle
+BROWSER=google-chrome
 RM= rm -fr
 MV= mv
+MKDIR=mkdir -p
 SOURCE_PATH= src/main/java
 TEST_PATH= src/test/java
-CLASS_PATH= classes
-MAIN = com.sabertazimi.tao.Tao
-FILE=
+CLASS_PATH= build/classes/main
+JAR_PATH= build/libs
+REPORT_PATH= build/reports/tests
+MAIN_CLASS = com.sabertazimi.tao.Tao
+MAIN_JAR = tao.jar
 
 .SUFFIXES: .java .class
 
@@ -49,20 +56,32 @@ default: classes
 
 classes: $(CLASSES)
 
-.PHONY= build run clean purge show help
+.PHONY= build dir run test clean report show help
 
 build:
-	make purge
+	make clean
+	make dir
 	make
 
+dir:
+	$(MKDIR) $(SOURCE_PATH)
+	$(MKDIR) $(TEST_PATH)
+	$(MKDIR) $(CLASS_PATH)
+	$(MKDIR) $(JAR_PATH)
+
 run:
-	$(JVM) $(MAIN)
+	# $(JVM) -cp $(CLASS_PATH) $(MAIN_CLASS)
+	$(JVM) -jar $(JAR_PATH)/$(MAIN_JAR)
+
+test:
+	$(BUILD) test
 
 clean:
-	$(RM) $(subst $(SOURCE_PATH), $(CLASS_PATH), $(CLASSES))
-
-purge:
 	$(RM) $(CLASS_PATH)/*
+	$(RM) $(JAR_PATH)/*
+
+report:
+	$(BROWSER) $(REPORT_PATH)/index.html
 
 show:
 	@echo 'SOURCE FILES  = $(SOURCE)'
@@ -75,9 +94,11 @@ help:
 	@echo 'TARGETS:'
 	@echo '  all       (=make) compile and link.'
 	@echo '  build     generate .class bytecode.'
-	@echo '  run       run main program.'
-	@echo '  clean     clean .class bytecode.'
-	@echo '  purge     purge all files in $(CLASS_PATH)/.'
+	@echo '  dir       generate directories of project.'
+	@echo '  run       run main class.'
+	@echo '  test      run unit tests.'
+	@echo '  clean     clean generated files.'
+	@echo '  report    browser reports of unit tests.'
 	@echo '  show      show variables (for debug use only).'
 	@echo '  help      print this message.'
 	@echo

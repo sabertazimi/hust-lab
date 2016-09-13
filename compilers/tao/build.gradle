@@ -1,0 +1,27 @@
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+
+    flatDir {
+        dirs 'build/libs'
+    }
+}
+
+dependencies {
+    compile 'log4j:log4j:1.2.17'
+    testCompile 'junit:junit:4.11'
+}
+
+jar {
+    from {
+        configurations.compile.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+
+    manifest {
+        attributes 'Main-Class': 'com.sabertazimi.tao.Tao'
+    }
+}
+
