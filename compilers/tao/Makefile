@@ -71,7 +71,8 @@ dir:
 
 run:
 	# $(JVM) -cp $(CLASS_PATH) $(MAIN_CLASS)
-	$(JVM) -jar $(JAR_PATH)/$(MAIN_JAR)
+	# $(JVM) -jar $(JAR_PATH)/$(MAIN_JAR)
+	$(BUILD) run
 
 test:
 	$(BUILD) test

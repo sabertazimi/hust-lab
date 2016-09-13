@@ -28,11 +28,8 @@ $ gradle tasks
 
 ```sh
 $ gradle assemble
-$ gradle build
-$ gradle clean
 $ gradle test
-$ gradle jar
-$ gradle javadoc
+$ gradle distZip
 ```
 
 ## Run/Test
