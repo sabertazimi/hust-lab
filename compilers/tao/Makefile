@@ -56,12 +56,15 @@ default: classes
 
 classes: $(CLASSES)
 
-.PHONY= build dir run test clean report show help
+.PHONY= build dist dir run test clean report show help
 
 build:
 	make clean
 	make dir
 	make
+
+dist:
+	$(BUILD) distZip
 
 dir:
 	$(MKDIR) $(SOURCE_PATH)
@@ -95,6 +98,7 @@ help:
 	@echo 'TARGETS:'
 	@echo '  all       (=make) compile and link.'
 	@echo '  build     generate .class bytecode.'
+	@echo '  dist      generate distributions.'
 	@echo '  dir       generate directories of project.'
 	@echo '  run       run main class.'
 	@echo '  test      run unit tests.'
