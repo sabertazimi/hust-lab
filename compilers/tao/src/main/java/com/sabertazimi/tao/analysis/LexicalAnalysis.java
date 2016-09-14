@@ -7,6 +7,7 @@
 
 package com.sabertazimi.tao.analysis;
 
+import java.io.CharArrayReader;
 import java.io.Reader;
 import java.io.IOException;
 import java.util.List;
@@ -66,7 +67,7 @@ public class LexicalAnalysis {
     private static final char[] FilterChar = new char[]{'\b', '\f', '\r'};
     private static final char[] Space = new char[]{' ', '\t'};
     private static final char[] IdentifierRearSign = new char[]{'?', '!'};
-    private static final HashMap StringTMMap = new HashMap<>();
+    private static final HashMap<Character, Character> StringTMMap = new HashMap<>();
     private boolean transferredMeaningSign;
 
     static {
