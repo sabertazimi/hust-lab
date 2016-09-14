@@ -8,12 +8,15 @@ hs_err_pid*
 
 # Gradle files
 .gradle/
-build/
+gradle/
+gradlew
+gradlew.bat
 
 # Generated files
 bin/
 gen/
 out/
+build/
 
 # Package Files #
 *.jar
