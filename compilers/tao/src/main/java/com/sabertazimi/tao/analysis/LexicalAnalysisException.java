@@ -1,20 +1,14 @@
-package com.sabertazimi.tao.analysis;
+package com.taozeyu.taolan.analysis;
 
-/**
- * Created by sabertazimi on 16-9-14.
- */
 public class LexicalAnalysisException extends Exception{
-    private final String errorMsg;
 
-    public LexicalAnalysisException() {
-        errorMsg = "Lexical Exception";
-    }
+    private static final long serialVersionUID = -7651451345797000442L;
 
     public LexicalAnalysisException(char c) {
-        errorMsg = "Lexical Exception: " + c;
+        super("unexpected '" + c + "'");
     }
 
-    public LexicalAnalysisException(String str) {
-        errorMsg = "Lexical Exception: " + str;
+    public LexicalAnalysisException(String msg) {
+        super("unexpected \"" + msg + "\"");
     }
 }
