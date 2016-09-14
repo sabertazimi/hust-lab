@@ -1,13 +1,13 @@
-package com.taozeyu.taolan.virtualMachine;
+package com.sabertazimi.tao.virtualMachine;
 
-import com.taozeyu.taolan.analysis.LexicalAnalysis;
-import com.taozeyu.taolan.analysis.LexicalAnalysisException;
-import com.taozeyu.taolan.analysis.SyntacticAnalysis;
-import com.taozeyu.taolan.analysis.SyntacticAnalysisException;
-import com.taozeyu.taolan.analysis.node.ChunkNode;
-import com.taozeyu.taolan.intermediatecode.CodeChunk;
-import com.taozeyu.taolan.intermediatecode.IntermediateCodeCreator;
-import com.taozeyu.taolan.intermediatecode.IntermediateCodeExpression;
+import com.sabertazimi.tao.analysis.LexicalAnalysis;
+import com.sabertazimi.tao.analysis.LexicalAnalysisException;
+import com.sabertazimi.tao.analysis.SyntacticAnalysis;
+import com.sabertazimi.tao.analysis.SyntacticAnalysisException;
+import com.sabertazimi.tao.analysis.node.ChunkNode;
+import com.sabertazimi.tao.intermediatecode.CodeChunk;
+import com.sabertazimi.tao.intermediatecode.IntermediateCodeCreator;
+import com.sabertazimi.tao.intermediatecode.IntermediateCodeExpression;
 
 import java.io.*;
 import java.nio.charset.Charset;

@@ -1,12 +1,12 @@
-package com.taozeyu.taolan.analysis;
+package com.sabertazimi.tao.analysis;
 
 import java.io.IOException;
 import java.util.HashSet;
 
-import com.taozeyu.taolan.analysis.NonTerminalSymbol.Exp;
-import com.taozeyu.taolan.analysis.Token.Type;
-import com.taozeyu.taolan.analysis.node.ChunkNode;
-import com.taozeyu.taolan.analysis.node.StartChunkNode;
+import com.sabertazimi.tao.analysis.NonTerminalSymbol.Exp;
+import com.sabertazimi.tao.analysis.Token.Type;
+import com.sabertazimi.tao.analysis.node.ChunkNode;
+import com.sabertazimi.tao.analysis.node.StartChunkNode;
 
 
 public class SyntacticAnalysis {

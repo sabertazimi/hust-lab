@@ -1,9 +1,9 @@
-package com.taozeyu.taolan.intermediatecode;
+package com.sabertazimi.tao.intermediatecode;
 
 import java.util.List;
 
-import com.taozeyu.taolan.analysis.node.ChunkNode;
-import com.taozeyu.taolan.intermediatecode.CodeChunk.Command;
+import com.sabertazimi.tao.analysis.node.ChunkNode;
+import com.sabertazimi.tao.intermediatecode.CodeChunk.Command;
 
 public class IntermediateCodeCreator {
 

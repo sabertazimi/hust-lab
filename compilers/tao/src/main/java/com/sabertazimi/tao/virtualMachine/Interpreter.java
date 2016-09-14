@@ -1,9 +1,9 @@
-package com.taozeyu.taolan.virtualMachine;
+package com.sabertazimi.tao.virtualMachine;
 
-import com.taozeyu.taolan.intermediatecode.CodeChunk;
-import com.taozeyu.taolan.intermediatecode.CodeChunk.*;
-import com.taozeyu.taolan.virtualMachine.nativeobject.ArrayNativeObject;
-import com.taozeyu.taolan.virtualMachine.nativeobject.ContainerNativeObject;
+import com.sabertazimi.tao.intermediatecode.CodeChunk;
+import com.sabertazimi.tao.intermediatecode.CodeChunk.*;
+import com.sabertazimi.tao.virtualMachine.nativeobject.ArrayNativeObject;
+import com.sabertazimi.tao.virtualMachine.nativeobject.ContainerNativeObject;
 
 import java.util.ArrayList;
 import java.util.Collections;

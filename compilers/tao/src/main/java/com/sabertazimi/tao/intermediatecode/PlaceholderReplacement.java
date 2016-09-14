@@ -1,10 +1,10 @@
-package com.taozeyu.taolan.intermediatecode;
+package com.sabertazimi.tao.intermediatecode;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.taozeyu.taolan.intermediatecode.CodeChunk.Command;
+import com.sabertazimi.tao.intermediatecode.CodeChunk.Command;
 
 class PlaceholderReplacement {
 

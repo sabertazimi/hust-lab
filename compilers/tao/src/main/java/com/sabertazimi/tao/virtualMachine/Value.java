@@ -1,6 +1,6 @@
-package com.taozeyu.taolan.virtualMachine;
+package com.sabertazimi.tao.virtualMachine;
 
-import com.taozeyu.taolan.intermediatecode.CodeChunk;
+import com.sabertazimi.tao.intermediatecode.CodeChunk;
 
 import java.util.EnumMap;
 import java.util.LinkedList;

@@ -1,9 +1,9 @@
-package com.taozeyu.taolan.intermediatecode;
+package com.sabertazimi.tao.intermediatecode;
 
-import com.taozeyu.taolan.analysis.node.ElementNode;
-import com.taozeyu.taolan.intermediatecode.CodeChunk.Command;
-import com.taozeyu.taolan.intermediatecode.CodeChunk.ImmediateNumber;
-import com.taozeyu.taolan.intermediatecode.CodeChunk.ImmediateType;
+import com.sabertazimi.tao.analysis.node.ElementNode;
+import com.sabertazimi.tao.intermediatecode.CodeChunk.Command;
+import com.sabertazimi.tao.intermediatecode.CodeChunk.ImmediateNumber;
+import com.sabertazimi.tao.intermediatecode.CodeChunk.ImmediateType;
 
 class VariableGenerator {
 

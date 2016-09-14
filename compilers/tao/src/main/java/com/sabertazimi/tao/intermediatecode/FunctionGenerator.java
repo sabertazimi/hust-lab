@@ -1,17 +1,17 @@
-package com.taozeyu.taolan.intermediatecode;
+package com.sabertazimi.tao.intermediatecode;
 
 import java.util.*;
 
-import com.taozeyu.taolan.analysis.node.ChunkNode;
-import com.taozeyu.taolan.analysis.node.DefineFunctionNode;
-import com.taozeyu.taolan.analysis.node.ElementNode;
-import com.taozeyu.taolan.analysis.node.ElementNode.ElementType;
-import com.taozeyu.taolan.analysis.node.ExpressionNode;
-import com.taozeyu.taolan.analysis.node.InvokerNode;
-import com.taozeyu.taolan.analysis.node.LambdaNode;
-import com.taozeyu.taolan.intermediatecode.CodeChunk.Command;
-import com.taozeyu.taolan.intermediatecode.CodeChunk.ImmediateNumber;
-import com.taozeyu.taolan.intermediatecode.CodeChunk.ImmediateType;
+import com.sabertazimi.tao.analysis.node.ChunkNode;
+import com.sabertazimi.tao.analysis.node.DefineFunctionNode;
+import com.sabertazimi.tao.analysis.node.ElementNode;
+import com.sabertazimi.tao.analysis.node.ElementNode.ElementType;
+import com.sabertazimi.tao.analysis.node.ExpressionNode;
+import com.sabertazimi.tao.analysis.node.InvokerNode;
+import com.sabertazimi.tao.analysis.node.LambdaNode;
+import com.sabertazimi.tao.intermediatecode.CodeChunk.Command;
+import com.sabertazimi.tao.intermediatecode.CodeChunk.ImmediateNumber;
+import com.sabertazimi.tao.intermediatecode.CodeChunk.ImmediateType;
 
 class FunctionGenerator {
 

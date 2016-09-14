@@ -1,8 +1,8 @@
-package com.taozeyu.taolan.virtualMachine.nativeobject;
+package com.sabertazimi.tao.virtualMachine.nativeobject;
 
-import com.taozeyu.taolan.virtualMachine.TaolanNativeObject;
-import com.taozeyu.taolan.virtualMachine.TaolanObject;
-import com.taozeyu.taolan.virtualMachine.Value;
+import com.sabertazimi.tao.virtualMachine.TaolanNativeObject;
+import com.sabertazimi.tao.virtualMachine.TaolanObject;
+import com.sabertazimi.tao.virtualMachine.Value;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;

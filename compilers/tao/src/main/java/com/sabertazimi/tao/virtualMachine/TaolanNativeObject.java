@@ -1,7 +1,7 @@
-package com.taozeyu.taolan.virtualMachine;
+package com.sabertazimi.tao.virtualMachine;
 
-import com.taozeyu.taolan.virtualMachine.nativeobject.ArrayNativeObject;
-import com.taozeyu.taolan.virtualMachine.nativeobject.ContainerNativeObject;
+import com.sabertazimi.tao.virtualMachine.nativeobject.ArrayNativeObject;
+import com.sabertazimi.tao.virtualMachine.nativeobject.ContainerNativeObject;
 
 import javax.print.attribute.standard.MediaSize;
 import java.util.HashMap;

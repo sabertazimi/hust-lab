@@ -1,4 +1,4 @@
-package com.taozeyu.taolan.analysis;
+package com.sabertazimi.tao.analysis;
 
 public class SyntacticAnalysisException extends Exception {
 

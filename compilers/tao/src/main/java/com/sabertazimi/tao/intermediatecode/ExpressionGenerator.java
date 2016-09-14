@@ -1,16 +1,16 @@
-package com.taozeyu.taolan.intermediatecode;
+package com.sabertazimi.tao.intermediatecode;
 
 import java.util.ArrayList;
 import java.util.Map.Entry;
 
-import com.taozeyu.taolan.analysis.node.ArrayNode;
-import com.taozeyu.taolan.analysis.node.ContainerNode;
-import com.taozeyu.taolan.analysis.node.ElementNode;
-import com.taozeyu.taolan.analysis.node.ElementNode.ElementType;
-import com.taozeyu.taolan.analysis.node.ExpressionNode;
-import com.taozeyu.taolan.intermediatecode.CodeChunk.Command;
-import com.taozeyu.taolan.intermediatecode.CodeChunk.ImmediateNumber;
-import com.taozeyu.taolan.intermediatecode.CodeChunk.ImmediateType;
+import com.sabertazimi.tao.analysis.node.ArrayNode;
+import com.sabertazimi.tao.analysis.node.ContainerNode;
+import com.sabertazimi.tao.analysis.node.ElementNode;
+import com.sabertazimi.tao.analysis.node.ElementNode.ElementType;
+import com.sabertazimi.tao.analysis.node.ExpressionNode;
+import com.sabertazimi.tao.intermediatecode.CodeChunk.Command;
+import com.sabertazimi.tao.intermediatecode.CodeChunk.ImmediateNumber;
+import com.sabertazimi.tao.intermediatecode.CodeChunk.ImmediateType;
 
 class ExpressionGenerator {
 

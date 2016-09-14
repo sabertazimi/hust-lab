@@ -1,4 +1,4 @@
-package com.taozeyu.taolan.analysis.node;
+package com.sabertazimi.tao.analysis.node;
 
 import java.io.PrintStream;
 import java.util.HashSet;
@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-import com.taozeyu.taolan.analysis.AnalysisNode;
+import com.sabertazimi.tao.analysis.AnalysisNode;
 
 public abstract class LambdaNode extends AnalysisNode {
 
