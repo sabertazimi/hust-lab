@@ -68,7 +68,15 @@ void outportb(unsigned short _port, unsigned char _data) {
 
 int main(void) {
     gdt_install();
+    idt_install();
+    isrs_install();
+    // irq_install();
     init_video();
+    // timer_install();
+    // keyboard_install();
+
+    __asm__ __volatile__ ("sti");
+
     puts((unsigned char *)("Hello World!\n"));
     for (;;) ;
 

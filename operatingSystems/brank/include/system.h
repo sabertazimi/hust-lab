@@ -9,6 +9,16 @@
 #define _SYSTEM_H
 
 #define NULL 0
+typedef int size_t;
+
+struct regs
+
+{
+    unsigned int gs, fs, es, ds;
+    unsigned int edi, esi, ebp, esp, ebx, edx, ecx, eax;
+    unsigned int int_no, err_code;
+    unsigned int eip, cs, eflags, useresp, ss;    
+};
 
 /* def in main.c */
 extern unsigned char *memcpy();
@@ -28,5 +38,24 @@ extern void init_video(void);
 /* def in gdt.c */
 extern void gdt_set_gate(int num, unsigned long base, unsigned long limit, unsigned char access, unsigned char gran);
 extern void gdt_install();
+
+/* def in idt.c */
+extern void idt_set_gate(unsigned char num, unsigned long base, unsigned short sel, unsigned char flags);
+extern void idt_install();
+
+/* def in isrs.c */
+extern void isrs_install();
+
+/* def in irq.c */
+// extern void irq_install_handler(int irq, void (*handler)(struct regs *r));
+// extern void irq_uninstall_handler(int irq);
+// extern void irq_install();
+
+/* def in timer.c */
+// extern void timer_wait(int ticks);
+// extern void timer_install();
+
+/* def in keybord.c */
+// extern void keyboard_install();
 
 #endif
