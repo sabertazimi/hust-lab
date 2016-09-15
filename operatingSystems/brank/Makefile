@@ -17,9 +17,10 @@ compile:
 	gcc $(CFLAG) bin/main.o kern/main.c
 	gcc $(CFLAG) bin/scrn.o kern/scrn.c
 	gcc $(CFLAG) bin/gdt.o kern/gdt.c
+	gcc $(CFLAG) bin/idt.o kern/idt.c
 
 link:
-	ld -T link.ld -m elf_i386 -o bin/kernel.bin bin/boot.o bin/main.o bin/scrn.o bin/gdt.o
+	ld -T link.ld -m elf_i386 -o bin/kernel.bin bin/boot.o bin/main.o bin/scrn.o bin/gdt.o bin/idt.o
 
 clean:
 	rm -fr bin/*.o
