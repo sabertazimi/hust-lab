@@ -1,6 +1,7 @@
 [BITS 32]
-global start
-start:mZ    mov esp, _sys_stack     ; set up brand new stack
+global boot
+boot:
+    mov esp, _sys_stack     ; set up brand new stack
     jmp stublet
 
 ALIGN 4
@@ -23,7 +24,7 @@ mboot:
     dd code
     dd bss
     dd end
-    dd start
+    dd boot
 
 stublet:
     jmp $
