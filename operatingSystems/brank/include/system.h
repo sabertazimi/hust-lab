@@ -47,15 +47,15 @@ extern void idt_install();
 extern void isrs_install();
 
 /* def in irq.c */
-// extern void irq_install_handler(int irq, void (*handler)(struct regs *r));
-// extern void irq_uninstall_handler(int irq);
-// extern void irq_install();
+extern void irq_install_handler(int irq, void (*handler)(struct regs *r));
+extern void irq_uninstall_handler(int irq);
+extern void irq_install();
 
 /* def in timer.c */
-// extern void timer_wait(int ticks);
-// extern void timer_install();
+extern void timer_wait(int ticks);
+extern void timer_install();
 
 /* def in keybord.c */
-// extern void keyboard_install();
+extern void keyboard_install();
 
 #endif

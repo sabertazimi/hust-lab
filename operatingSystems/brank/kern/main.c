@@ -70,10 +70,10 @@ int main(void) {
     gdt_install();
     idt_install();
     isrs_install();
-    // irq_install();
+    irq_install();
     init_video();
-    // timer_install();
-    // keyboard_install();
+    timer_install();
+    keyboard_install();
 
     __asm__ __volatile__ ("sti");
 
