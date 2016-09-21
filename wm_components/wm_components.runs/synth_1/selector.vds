@@ -1,13 +1,13 @@
 #-----------------------------------------------------------
-# Vivado v2016.1 (64-bit)
-# SW Build 1538259 on Fri Apr  8 15:45:23 MDT 2016
-# IP Build 1537824 on Fri Apr  8 04:28:57 MDT 2016
-# Start of session at: Fri Sep  2 09:49:57 2016
-# Process ID: 9229
-# Current directory: /home/sabertazimi/gitrepo/dld/wm_components/wm_components.runs/synth_1
+# Vivado v2016.2 (64-bit)
+# SW Build 1577090 on Thu Jun  2 16:32:35 MDT 2016
+# IP Build 1577682 on Fri Jun  3 12:00:54 MDT 2016
+# Start of session at: Wed Sep 21 15:18:57 2016
+# Process ID: 7308
+# Current directory: /home/sabertazimi/Work/Source/dld/wm_components/wm_components.runs/synth_1
 # Command line: vivado -log selector.vds -mode batch -messageDb vivado.pb -notrace -source selector.tcl
-# Log file: /home/sabertazimi/gitrepo/dld/wm_components/wm_components.runs/synth_1/selector.vds
-# Journal file: /home/sabertazimi/gitrepo/dld/wm_components/wm_components.runs/synth_1/vivado.jou
+# Log file: /home/sabertazimi/Work/Source/dld/wm_components/wm_components.runs/synth_1/selector.vds
+# Journal file: /home/sabertazimi/Work/Source/dld/wm_components/wm_components.runs/synth_1/vivado.jou
 #-----------------------------------------------------------
 source selector.tcl -notrace
 Command: synth_design -top selector -part xc7a100tcsg324-1
@@ -15,19 +15,19 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 9672 
+INFO: Helper process launched with PID 7414 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1050.496 ; gain = 154.078 ; free physical = 3703 ; free virtual = 13333
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1043.691 ; gain = 154.137 ; free physical = 2785 ; free virtual = 12904
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'selector' [/home/sabertazimi/gitrepo/dld/wm_components/wm_components.srcs/sources_1/new/selector.v:10]
+INFO: [Synth 8-638] synthesizing module 'selector' [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/sources_1/new/selector.v:10]
 	Parameter LO bound to: 2 - type: integer 
 	Parameter HI bound to: 5 - type: integer 
-INFO: [Synth 8-638] synthesizing module 'tick_divider' [/home/sabertazimi/gitrepo/dld/wm_components/wm_components.srcs/sources_1/new/tick_divider.v:23]
+INFO: [Synth 8-638] synthesizing module 'tick_divider' [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/sources_1/new/tick_divider.v:3]
 	Parameter WIDTH bound to: 32 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'tick_divider' (1#1) [/home/sabertazimi/gitrepo/dld/wm_components/wm_components.srcs/sources_1/new/tick_divider.v:23]
-INFO: [Synth 8-256] done synthesizing module 'selector' (2#1) [/home/sabertazimi/gitrepo/dld/wm_components/wm_components.srcs/sources_1/new/selector.v:10]
+INFO: [Synth 8-256] done synthesizing module 'tick_divider' (1#1) [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/sources_1/new/tick_divider.v:3]
+INFO: [Synth 8-256] done synthesizing module 'selector' (2#1) [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/sources_1/new/selector.v:10]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1090.934 ; gain = 194.516 ; free physical = 3656 ; free virtual = 13288
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1084.129 ; gain = 194.574 ; free physical = 2742 ; free virtual = 12864
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -37,50 +37,123 @@ Report Check Netlist:
 |1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
 +------+------------------+-------+---------+-------+------------------+
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1090.934 ; gain = 194.516 ; free physical = 3656 ; free virtual = 13288
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1084.129 ; gain = 194.574 ; free physical = 2742 ; free virtual = 12864
 ---------------------------------------------------------------------------------
 INFO: [Device 21-403] Loading part xc7a100tcsg324-1
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [/home/sabertazimi/gitrepo/dld/wm_components/wm_components.srcs/constrs_1/new/weight_selector.xdc]
-WARNING: [Vivado 12-507] No nets matched 'switch_power_IBUF'. [/home/sabertazimi/gitrepo/dld/wm_components/wm_components.srcs/constrs_1/new/weight_selector.xdc:8]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/gitrepo/dld/wm_components/wm_components.srcs/constrs_1/new/weight_selector.xdc:8]
+Parsing XDC File [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/weight_selector.xdc]
+WARNING: [Vivado 12-507] No nets matched 'switch_power_IBUF'. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/weight_selector.xdc:8]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/weight_selector.xdc:8]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-507] No nets matched 'switch_en_IBUF'. [/home/sabertazimi/gitrepo/dld/wm_components/wm_components.srcs/constrs_1/new/weight_selector.xdc:12]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/gitrepo/dld/wm_components/wm_components.srcs/constrs_1/new/weight_selector.xdc:12]
+WARNING: [Vivado 12-507] No nets matched 'switch_en_IBUF'. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/weight_selector.xdc:12]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/weight_selector.xdc:12]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-507] No nets matched 'sig_change_IBUF'. [/home/sabertazimi/gitrepo/dld/wm_components/wm_components.srcs/constrs_1/new/weight_selector.xdc:32]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/gitrepo/dld/wm_components/wm_components.srcs/constrs_1/new/weight_selector.xdc:32]
+WARNING: [Vivado 12-507] No nets matched 'sig_change_IBUF'. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/weight_selector.xdc:20]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/weight_selector.xdc:20]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-Finished Parsing XDC File [/home/sabertazimi/gitrepo/dld/wm_components/wm_components.srcs/constrs_1/new/weight_selector.xdc]
-INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/sabertazimi/gitrepo/dld/wm_components/wm_components.srcs/constrs_1/new/weight_selector.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/selector_propImpl.xdc].
+WARNING: [Vivado 12-584] No ports matched 'weight[0]'. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/weight_selector.xdc:77]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/weight_selector.xdc:77]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'weight[0]'. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/weight_selector.xdc:78]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/weight_selector.xdc:78]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'weight[1]'. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/weight_selector.xdc:80]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/weight_selector.xdc:80]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'weight[1]'. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/weight_selector.xdc:81]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/weight_selector.xdc:81]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'weight[2]'. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/weight_selector.xdc:83]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/weight_selector.xdc:83]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'weight[2]'. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/weight_selector.xdc:84]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/weight_selector.xdc:84]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+Finished Parsing XDC File [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/weight_selector.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/weight_selector.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/selector_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/selector_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Parsing XDC File [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/water_let.xdc]
+WARNING: [Vivado 12-507] No nets matched 'switch_power_IBUF'. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/water_let.xdc:8]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/water_let.xdc:8]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-507] No nets matched 'switch_en_IBUF'. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/water_let.xdc:12]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/water_let.xdc:12]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-507] No nets matched 'max_water_level_IBUF'. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/water_let.xdc:16]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/water_let.xdc:16]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'max_water_level'. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/water_let.xdc:17]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/water_let.xdc:17]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'max_water_level'. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/water_let.xdc:18]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/water_let.xdc:18]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-507] No nets matched 'inwater_flag_IBUF'. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/water_let.xdc:20]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/water_let.xdc:20]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'inwater_flag'. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/water_let.xdc:21]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/water_let.xdc:21]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'inwater_flag'. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/water_let.xdc:22]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/water_let.xdc:22]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-507] No nets matched 'outwater_flag_IBUF'. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/water_let.xdc:24]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/water_let.xdc:24]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'outwater_flag'. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/water_let.xdc:25]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/water_let.xdc:25]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'outwater_flag'. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/water_let.xdc:26]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/water_let.xdc:26]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'water_level[0]'. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/water_let.xdc:77]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/water_let.xdc:77]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'water_level[0]'. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/water_let.xdc:78]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/water_let.xdc:78]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'water_level[1]'. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/water_let.xdc:80]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/water_let.xdc:80]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'water_level[1]'. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/water_let.xdc:81]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/water_let.xdc:81]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'water_level[2]'. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/water_let.xdc:83]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/water_let.xdc:83]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'water_level[2]'. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/water_let.xdc:84]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/water_let.xdc:84]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+Finished Parsing XDC File [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/water_let.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/constrs_1/new/water_let.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/selector_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/selector_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1417.410 ; gain = 0.000 ; free physical = 3362 ; free virtual = 13030
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1410.840 ; gain = 0.000 ; free physical = 2469 ; free virtual = 12615
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:16 ; elapsed = 00:00:19 . Memory (MB): peak = 1417.410 ; gain = 520.992 ; free physical = 3349 ; free virtual = 13022
+Finished Constraint Validation : Time (s): cpu = 00:00:16 ; elapsed = 00:00:21 . Memory (MB): peak = 1410.840 ; gain = 521.285 ; free physical = 2468 ; free virtual = 12613
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a100tcsg324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:16 ; elapsed = 00:00:19 . Memory (MB): peak = 1417.410 ; gain = 520.992 ; free physical = 3349 ; free virtual = 13022
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:16 ; elapsed = 00:00:21 . Memory (MB): peak = 1410.840 ; gain = 521.285 ; free physical = 2468 ; free virtual = 12613
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:19 . Memory (MB): peak = 1417.410 ; gain = 520.992 ; free physical = 3349 ; free virtual = 13022
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:21 . Memory (MB): peak = 1410.840 ; gain = 521.285 ; free physical = 2468 ; free virtual = 12613
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:16 ; elapsed = 00:00:19 . Memory (MB): peak = 1417.410 ; gain = 520.992 ; free physical = 3344 ; free virtual = 13018
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:16 ; elapsed = 00:00:21 . Memory (MB): peak = 1410.840 ; gain = 521.285 ; free physical = 2468 ; free virtual = 12613
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -127,14 +200,14 @@ BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
 ---------------------------------------------------------------------------------
 Finished Part Resource Summary
 ---------------------------------------------------------------------------------
-Start Parallel Synthesis Optimization  : Time (s): cpu = 00:00:16 ; elapsed = 00:00:19 . Memory (MB): peak = 1417.410 ; gain = 520.992 ; free physical = 3343 ; free virtual = 13018
+Start Parallel Synthesis Optimization  : Time (s): cpu = 00:00:16 ; elapsed = 00:00:21 . Memory (MB): peak = 1410.840 ; gain = 521.285 ; free physical = 2468 ; free virtual = 12614
 ---------------------------------------------------------------------------------
 Start Cross Boundary Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Cross Boundary Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:19 . Memory (MB): peak = 1417.410 ; gain = 520.992 ; free physical = 3343 ; free virtual = 13018
+Finished Cross Boundary Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:21 . Memory (MB): peak = 1410.840 ; gain = 521.285 ; free physical = 2466 ; free virtual = 12612
 ---------------------------------------------------------------------------------
-Finished Parallel Reinference  : Time (s): cpu = 00:00:16 ; elapsed = 00:00:19 . Memory (MB): peak = 1417.410 ; gain = 520.992 ; free physical = 3343 ; free virtual = 13018
+Finished Parallel Reinference  : Time (s): cpu = 00:00:16 ; elapsed = 00:00:21 . Memory (MB): peak = 1410.840 ; gain = 521.285 ; free physical = 2466 ; free virtual = 12612
 
 Report RTL Partitions: 
 +-+--------------+------------+----------+
@@ -151,9 +224,9 @@ WARNING: [Synth 8-3332] Sequential element (DIVIDER/clk_group_reg[29]) is unused
 WARNING: [Synth 8-3332] Sequential element (DIVIDER/clk_group_reg[30]) is unused and will be removed from module selector.
 WARNING: [Synth 8-3332] Sequential element (DIVIDER/clk_group_reg[31]) is unused and will be removed from module selector.
 ---------------------------------------------------------------------------------
-Finished Area Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:20 . Memory (MB): peak = 1417.410 ; gain = 520.992 ; free physical = 3342 ; free virtual = 13018
+Finished Area Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:21 . Memory (MB): peak = 1410.840 ; gain = 521.285 ; free physical = 2464 ; free virtual = 12612
 ---------------------------------------------------------------------------------
-Finished Parallel Area Optimization  : Time (s): cpu = 00:00:17 ; elapsed = 00:00:20 . Memory (MB): peak = 1417.410 ; gain = 520.992 ; free physical = 3342 ; free virtual = 13018
+Finished Parallel Area Optimization  : Time (s): cpu = 00:00:16 ; elapsed = 00:00:21 . Memory (MB): peak = 1410.840 ; gain = 521.285 ; free physical = 2464 ; free virtual = 12612
 
 Report RTL Partitions: 
 +-+--------------+------------+----------+
@@ -167,10 +240,10 @@ Start Timing Optimization
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:24 ; elapsed = 00:00:27 . Memory (MB): peak = 1417.410 ; gain = 520.992 ; free physical = 3328 ; free virtual = 13011
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:24 ; elapsed = 00:00:29 . Memory (MB): peak = 1410.840 ; gain = 521.285 ; free physical = 2457 ; free virtual = 12611
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:24 ; elapsed = 00:00:27 . Memory (MB): peak = 1417.410 ; gain = 520.992 ; free physical = 3328 ; free virtual = 13011
+Finished Timing Optimization : Time (s): cpu = 00:00:24 ; elapsed = 00:00:29 . Memory (MB): peak = 1410.840 ; gain = 521.285 ; free physical = 2457 ; free virtual = 12611
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -182,16 +255,16 @@ Report RTL Partitions:
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:24 ; elapsed = 00:00:27 . Memory (MB): peak = 1417.410 ; gain = 520.992 ; free physical = 3328 ; free virtual = 13011
+Finished Technology Mapping : Time (s): cpu = 00:00:24 ; elapsed = 00:00:29 . Memory (MB): peak = 1410.840 ; gain = 521.285 ; free physical = 2457 ; free virtual = 12611
 ---------------------------------------------------------------------------------
-Finished Parallel Technology Mapping Optimization  : Time (s): cpu = 00:00:24 ; elapsed = 00:00:27 . Memory (MB): peak = 1417.410 ; gain = 520.992 ; free physical = 3328 ; free virtual = 13011
+Finished Parallel Technology Mapping Optimization  : Time (s): cpu = 00:00:24 ; elapsed = 00:00:29 . Memory (MB): peak = 1410.840 ; gain = 521.285 ; free physical = 2457 ; free virtual = 12611
 
 Report RTL Partitions: 
 +-+--------------+------------+----------+
 | |RTL Partition |Replication |Instances |
 +-+--------------+------------+----------+
 +-+--------------+------------+----------+
-Finished Parallel Synthesis Optimization  : Time (s): cpu = 00:00:24 ; elapsed = 00:00:27 . Memory (MB): peak = 1417.410 ; gain = 520.992 ; free physical = 3328 ; free virtual = 13011
+Finished Parallel Synthesis Optimization  : Time (s): cpu = 00:00:24 ; elapsed = 00:00:29 . Memory (MB): peak = 1410.840 ; gain = 521.285 ; free physical = 2457 ; free virtual = 12611
 ---------------------------------------------------------------------------------
 Start IO Insertion
 ---------------------------------------------------------------------------------
@@ -208,7 +281,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:25 ; elapsed = 00:00:28 . Memory (MB): peak = 1417.410 ; gain = 520.992 ; free physical = 3328 ; free virtual = 13011
+Finished IO Insertion : Time (s): cpu = 00:00:24 ; elapsed = 00:00:29 . Memory (MB): peak = 1410.840 ; gain = 521.285 ; free physical = 2457 ; free virtual = 12611
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -221,7 +294,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:25 ; elapsed = 00:00:28 . Memory (MB): peak = 1417.410 ; gain = 520.992 ; free physical = 3328 ; free virtual = 13011
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:24 ; elapsed = 00:00:29 . Memory (MB): peak = 1410.840 ; gain = 521.285 ; free physical = 2457 ; free virtual = 12611
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -233,25 +306,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:25 ; elapsed = 00:00:28 . Memory (MB): peak = 1417.410 ; gain = 520.992 ; free physical = 3328 ; free virtual = 13011
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:24 ; elapsed = 00:00:29 . Memory (MB): peak = 1410.840 ; gain = 521.285 ; free physical = 2457 ; free virtual = 12612
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:25 ; elapsed = 00:00:28 . Memory (MB): peak = 1417.410 ; gain = 520.992 ; free physical = 3328 ; free virtual = 13011
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:24 ; elapsed = 00:00:29 . Memory (MB): peak = 1410.840 ; gain = 521.285 ; free physical = 2457 ; free virtual = 12612
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:25 ; elapsed = 00:00:28 . Memory (MB): peak = 1417.410 ; gain = 520.992 ; free physical = 3328 ; free virtual = 13011
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:24 ; elapsed = 00:00:29 . Memory (MB): peak = 1410.840 ; gain = 521.285 ; free physical = 2457 ; free virtual = 12612
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:25 ; elapsed = 00:00:28 . Memory (MB): peak = 1417.410 ; gain = 520.992 ; free physical = 3328 ; free virtual = 13011
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:24 ; elapsed = 00:00:29 . Memory (MB): peak = 1410.840 ; gain = 521.285 ; free physical = 2457 ; free virtual = 12612
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -287,11 +360,11 @@ Report Instance Areas:
 |2     |  DIVIDER |tick_divider |    59|
 +------+----------+-------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:25 ; elapsed = 00:00:28 . Memory (MB): peak = 1417.410 ; gain = 520.992 ; free physical = 3328 ; free virtual = 13011
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:24 ; elapsed = 00:00:29 . Memory (MB): peak = 1410.840 ; gain = 521.285 ; free physical = 2457 ; free virtual = 12612
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 6 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1417.410 ; gain = 107.434 ; free physical = 3328 ; free virtual = 13011
-Synthesis Optimization Complete : Time (s): cpu = 00:00:25 ; elapsed = 00:00:28 . Memory (MB): peak = 1417.418 ; gain = 521.000 ; free physical = 3328 ; free virtual = 13011
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1410.840 ; gain = 107.434 ; free physical = 2457 ; free virtual = 12611
+Synthesis Optimization Complete : Time (s): cpu = 00:00:24 ; elapsed = 00:00:29 . Memory (MB): peak = 1410.848 ; gain = 521.293 ; free physical = 2457 ; free virtual = 12611
 INFO: [Project 1-571] Translating synthesized netlist
 INFO: [Netlist 29-17] Analyzing 11 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
@@ -301,8 +374,8 @@ INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 INFO: [Common 17-83] Releasing license: Synthesis
-16 Infos, 9 Warnings, 3 Critical Warnings and 0 Errors encountered.
+17 Infos, 32 Warnings, 26 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:23 ; elapsed = 00:00:27 . Memory (MB): peak = 1417.418 ; gain = 446.504 ; free physical = 3337 ; free virtual = 13022
-report_utilization: Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.07 . Memory (MB): peak = 1449.426 ; gain = 0.000 ; free physical = 3337 ; free virtual = 13022
-INFO: [Common 17-206] Exiting Vivado at Fri Sep  2 09:50:32 2016...
+synth_design: Time (s): cpu = 00:00:23 ; elapsed = 00:00:28 . Memory (MB): peak = 1410.848 ; gain = 446.738 ; free physical = 2465 ; free virtual = 12622
+report_utilization: Time (s): cpu = 00:00:00.10 ; elapsed = 00:00:00.12 . Memory (MB): peak = 1442.855 ; gain = 0.000 ; free physical = 2463 ; free virtual = 12621
+INFO: [Common 17-206] Exiting Vivado at Wed Sep 21 15:19:34 2016...

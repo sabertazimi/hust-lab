@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2016.2 (64-bit)
+# SW Build 1577090 on Thu Jun  2 16:32:35 MDT 2016
+# IP Build 1577682 on Fri Jun  3 12:00:54 MDT 2016
+# Start of session at: Wed Sep 21 15:20:39 2016
+# Process ID: 9049
+# Current directory: /home/sabertazimi/Work/Source/dld/wm_components/wm_components.runs/impl_1
+# Command line: vivado -log selector.vdi -applog -messageDb vivado.pb -mode batch -source selector.tcl -notrace
+# Log file: /home/sabertazimi/Work/Source/dld/wm_components/wm_components.runs/impl_1/selector.vdi
+# Journal file: /home/sabertazimi/Work/Source/dld/wm_components/wm_components.runs/impl_1/vivado.jou
+#-----------------------------------------------------------
+source selector.tcl -notrace

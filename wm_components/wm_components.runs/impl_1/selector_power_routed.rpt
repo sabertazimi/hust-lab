@@ -1,8 +1,8 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------------------------------------------------------------------
-| Tool Version     : Vivado v.2016.1 (lin64) Build 1538259 Fri Apr  8 15:45:23 MDT 2016
-| Date             : Fri Sep  2 09:51:24 2016
-| Host             : avalon running 64-bit Ubuntu 16.04 LTS
+| Tool Version     : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
+| Date             : Wed Sep 21 15:20:31 2016
+| Host             : avalon running 64-bit Ubuntu 16.04.1 LTS
 | Command          : report_power -file selector_power_routed.rpt -pb selector_power_summary_routed.pb -rpx selector_power_routed.rpx
 | Design           : selector
 | Device           : xc7a100tcsg324-1
@@ -30,12 +30,12 @@ Table of Contents
 ----------
 
 +--------------------------+-------+
-| Total On-Chip Power (W)  | 0.702 |
-| Dynamic (W)              | 0.603 |
-| Device Static (W)        | 0.099 |
+| Total On-Chip Power (W)  | 0.390 |
+| Dynamic (W)              | 0.285 |
+| Device Static (W)        | 0.105 |
 | Effective TJA (C/W)      | 4.6   |
-| Max Ambient (C)          | 81.8  |
-| Junction Temperature (C) | 28.2  |
+| Max Ambient (C)          | 83.2  |
+| Junction Temperature (C) | 26.8  |
 | Confidence Level         | Low   |
 | Setting File             | ---   |
 | Simulation Activity File | ---   |
@@ -55,10 +55,10 @@ Table of Contents
 |   Register     |     0.011 |       30 |    126800 |            0.02 |
 |   BUFG         |     0.006 |        1 |        32 |            3.13 |
 |   Others       |     0.000 |        4 |       --- |             --- |
-| Signals        |     0.080 |       44 |       --- |             --- |
-| I/O            |     0.478 |        7 |       210 |            3.33 |
-| Static Power   |     0.099 |          |           |                 |
-| Total          |     0.702 |          |           |                 |
+| Signals        |     0.073 |       44 |       --- |             --- |
+| I/O            |     0.167 |        7 |       210 |            3.33 |
+| Static Power   |     0.105 |          |           |                 |
+| Total          |     0.390 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -68,11 +68,11 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.157 |       0.141 |      0.017 |
-| Vccaux    |       1.800 |     0.035 |       0.017 |      0.018 |
-| Vcco33    |       3.300 |     0.135 |       0.131 |      0.004 |
+| Vccint    |       1.000 |     0.150 |       0.134 |      0.016 |
+| Vccaux    |       1.800 |     0.031 |       0.012 |      0.018 |
+| Vcco33    |       3.300 |     0.004 |       0.000 |      0.004 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
-| Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |
+| Vcco18    |       1.800 |     0.075 |       0.071 |      0.004 |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |
@@ -135,8 +135,8 @@ Table of Contents
 +-----------+-----------+
 | Name      | Power (W) |
 +-----------+-----------+
-| selector  |     0.603 |
-|   DIVIDER |     0.085 |
+| selector  |     0.285 |
+|   DIVIDER |     0.070 |
 +-----------+-----------+
 
 

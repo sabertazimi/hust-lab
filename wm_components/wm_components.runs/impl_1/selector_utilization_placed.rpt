@@ -1,8 +1,8 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------
-| Tool Version : Vivado v.2016.1 (lin64) Build 1538259 Fri Apr  8 15:45:23 MDT 2016
-| Date         : Fri Sep  2 09:51:00 2016
-| Host         : avalon running 64-bit Ubuntu 16.04 LTS
+| Tool Version : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
+| Date         : Wed Sep 21 15:20:07 2016
+| Host         : avalon running 64-bit Ubuntu 16.04.1 LTS
 | Command      : report_utilization -file selector_utilization_placed.rpt -pb selector_utilization_placed.pb
 | Design       : selector
 | Device       : 7a100tcsg324-1
@@ -68,8 +68,8 @@ Table of Contents
 |                 Site Type                | Used | Fixed | Available | Util% |
 +------------------------------------------+------+-------+-----------+-------+
 | Slice                                    |    8 |     0 |     15850 |  0.05 |
-|   SLICEL                                 |    1 |     0 |           |       |
-|   SLICEM                                 |    7 |     0 |           |       |
+|   SLICEL                                 |    8 |     0 |           |       |
+|   SLICEM                                 |    0 |     0 |           |       |
 | LUT as Logic                             |    5 |     0 |     63400 | <0.01 |
 |   using O5 output only                   |    0 |       |           |       |
 |   using O6 output only                   |    3 |       |           |       |
@@ -115,9 +115,9 @@ Table of Contents
 +-----------------------------+------+-------+-----------+-------+
 |          Site Type          | Used | Fixed | Available | Util% |
 +-----------------------------+------+-------+-----------+-------+
-| Bonded IOB                  |    7 |     7 |       210 |  3.33 |
+| Bonded IOB                  |    7 |     4 |       210 |  3.33 |
 |   IOB Master Pads           |    4 |       |           |       |
-|   IOB Slave Pads            |    2 |       |           |       |
+|   IOB Slave Pads            |    1 |       |           |       |
 | Bonded IPADs                |    0 |     0 |         2 |  0.00 |
 | PHY_CONTROL                 |    0 |     0 |         6 |  0.00 |
 | PHASER_REF                  |    0 |     0 |         6 |  0.00 |
@@ -128,7 +128,6 @@ Table of Contents
 | PHASER_OUT/PHASER_OUT_PHY   |    0 |     0 |        24 |  0.00 |
 | PHASER_IN/PHASER_IN_PHY     |    0 |     0 |        24 |  0.00 |
 | IDELAYE2/IDELAYE2_FINEDELAY |    0 |     0 |       300 |  0.00 |
-| IBUFDS_GTE2                 |    0 |     0 |         4 |  0.00 |
 | ILOGIC                      |    0 |     0 |       210 |  0.00 |
 | OLOGIC                      |    0 |     0 |       210 |  0.00 |
 +-----------------------------+------+-------+-----------+-------+
