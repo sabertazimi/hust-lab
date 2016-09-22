@@ -19,6 +19,14 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
+// @input
+// clk_src: clock source
+// sec_data: raw seconds info
+// min_data: raw minutes info
+// hour_data: raw hours info
+// @output
+// anodes: bind to board
+// cnodes: bind to board
 module time_displayer
 #(parameter WIDTH = 32)
 (
@@ -58,6 +66,10 @@ module time_displayer
         count = count + 1;
     end
     
+    /*
+     * use a 1000Hz to switch which segment light on, 
+     * making looks like there are multiple lights on at the same time.
+     */
     always @(count) begin
         case (count)
             3'b000: begin
@@ -86,15 +98,15 @@ module time_displayer
             end
             3'b110: begin
                 anodes = 8'b10111111;
-                cnodes = 0;
+                cnodes = 8'b11111111;
             end
             3'b111: begin
                 anodes = 8'b01111111;
-                cnodes = 0;
+                cnodes = 8'b11111111;
             end
             default: begin
                 anodes = 8'b11111110;
-                cnodes = sec_seg[7:0];
+                cnodes = 8'b11111111;
             end
         endcase
     end

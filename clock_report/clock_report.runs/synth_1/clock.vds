@@ -2,8 +2,8 @@
 # Vivado v2016.2 (64-bit)
 # SW Build 1577090 on Thu Jun  2 16:32:35 MDT 2016
 # IP Build 1577682 on Fri Jun  3 12:00:54 MDT 2016
-# Start of session at: Thu Sep 22 11:12:10 2016
-# Process ID: 765
+# Start of session at: Thu Sep 22 20:40:23 2016
+# Process ID: 27328
 # Current directory: /home/sabertazimi/Work/Source/dld/clock_report/clock_report.runs/synth_1
 # Command line: vivado -log clock.vds -mode batch -messageDb vivado.pb -notrace -source clock.tcl
 # Log file: /home/sabertazimi/Work/Source/dld/clock_report/clock_report.runs/synth_1/clock.vds
@@ -15,9 +15,9 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 953 
+INFO: Helper process launched with PID 27502 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1043.684 ; gain = 154.137 ; free physical = 1786 ; free virtual = 12234
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1043.688 ; gain = 154.137 ; free physical = 2142 ; free virtual = 12189
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'clock' [/home/sabertazimi/Work/Source/dld/clock_design/src/clock.v:23]
 	Parameter WIDTH bound to: 32 - type: integer 
@@ -39,7 +39,7 @@ INFO: [Synth 8-256] done synthesizing module 'timer__parameterized0' (3#1) [/hom
 INFO: [Synth 8-638] synthesizing module 'ring' [/home/sabertazimi/Work/Source/dld/clock_design/src/ring.v:27]
 	Parameter LEN bound to: 5 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'ring' (4#1) [/home/sabertazimi/Work/Source/dld/clock_design/src/ring.v:27]
-INFO: [Synth 8-638] synthesizing module 'time_displayer' [/home/sabertazimi/Work/Source/dld/clock_design/src/time_displayer.v:22]
+INFO: [Synth 8-638] synthesizing module 'time_displayer' [/home/sabertazimi/Work/Source/dld/clock_design/src/time_displayer.v:30]
 	Parameter WIDTH bound to: 32 - type: integer 
 INFO: [Synth 8-638] synthesizing module 'time_to_segment' [/home/sabertazimi/Work/Source/dld/clock_design/src/time_to_segment.v:23]
 	Parameter WIDTH bound to: 32 - type: integer 
@@ -48,14 +48,14 @@ INFO: [Synth 8-256] done synthesizing module 'integer_to_bcd' (5#1) [/home/saber
 INFO: [Synth 8-638] synthesizing module 'bcd_to_segment' [/home/sabertazimi/Work/Source/dld/clock_design/src/bcd_to_segment.v:23]
 INFO: [Synth 8-256] done synthesizing module 'bcd_to_segment' (6#1) [/home/sabertazimi/Work/Source/dld/clock_design/src/bcd_to_segment.v:23]
 INFO: [Synth 8-256] done synthesizing module 'time_to_segment' (7#1) [/home/sabertazimi/Work/Source/dld/clock_design/src/time_to_segment.v:23]
-INFO: [Synth 8-226] default block is never used [/home/sabertazimi/Work/Source/dld/clock_design/src/time_displayer.v:62]
-WARNING: [Synth 8-567] referenced signal 'sec_seg' should be on the sensitivity list [/home/sabertazimi/Work/Source/dld/clock_design/src/time_displayer.v:61]
-WARNING: [Synth 8-567] referenced signal 'min_seg' should be on the sensitivity list [/home/sabertazimi/Work/Source/dld/clock_design/src/time_displayer.v:61]
-WARNING: [Synth 8-567] referenced signal 'hour_seg' should be on the sensitivity list [/home/sabertazimi/Work/Source/dld/clock_design/src/time_displayer.v:61]
-INFO: [Synth 8-256] done synthesizing module 'time_displayer' (8#1) [/home/sabertazimi/Work/Source/dld/clock_design/src/time_displayer.v:22]
+INFO: [Synth 8-226] default block is never used [/home/sabertazimi/Work/Source/dld/clock_design/src/time_displayer.v:74]
+WARNING: [Synth 8-567] referenced signal 'sec_seg' should be on the sensitivity list [/home/sabertazimi/Work/Source/dld/clock_design/src/time_displayer.v:73]
+WARNING: [Synth 8-567] referenced signal 'min_seg' should be on the sensitivity list [/home/sabertazimi/Work/Source/dld/clock_design/src/time_displayer.v:73]
+WARNING: [Synth 8-567] referenced signal 'hour_seg' should be on the sensitivity list [/home/sabertazimi/Work/Source/dld/clock_design/src/time_displayer.v:73]
+INFO: [Synth 8-256] done synthesizing module 'time_displayer' (8#1) [/home/sabertazimi/Work/Source/dld/clock_design/src/time_displayer.v:30]
 INFO: [Synth 8-256] done synthesizing module 'clock' (9#1) [/home/sabertazimi/Work/Source/dld/clock_design/src/clock.v:23]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1084.121 ; gain = 194.574 ; free physical = 1744 ; free virtual = 12193
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1084.125 ; gain = 194.574 ; free physical = 2101 ; free virtual = 12147
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -65,7 +65,7 @@ Report Check Netlist:
 |1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
 +------+------------------+-------+---------+-------+------------------+
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1084.121 ; gain = 194.574 ; free physical = 1744 ; free virtual = 12193
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1084.125 ; gain = 194.574 ; free physical = 2100 ; free virtual = 12147
 ---------------------------------------------------------------------------------
 INFO: [Device 21-403] Loading part xc7a100tcsg324-1
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -76,20 +76,29 @@ Parsing XDC File [/home/sabertazimi/Work/Source/dld/clock_design/constrs/clock.x
 WARNING: [Vivado 12-507] No nets matched 'power_IBUF'. [/home/sabertazimi/Work/Source/dld/clock_design/constrs/clock.xdc:8]
 CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/Work/Source/dld/clock_design/constrs/clock.xdc:8]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-507] No nets matched 'switch_en_IBUF'. [/home/sabertazimi/Work/Source/dld/clock_design/constrs/clock.xdc:12]
+WARNING: [Vivado 12-507] No nets matched 'enable_IBUF'. [/home/sabertazimi/Work/Source/dld/clock_design/constrs/clock.xdc:12]
 CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/Work/Source/dld/clock_design/constrs/clock.xdc:12]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-507] No nets matched 'switch_up_sec_IBUF'. [/home/sabertazimi/Work/Source/dld/clock_design/constrs/clock.xdc:16]
+WARNING: [Vivado 12-507] No nets matched 'reset_IBUF'. [/home/sabertazimi/Work/Source/dld/clock_design/constrs/clock.xdc:16]
 CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/Work/Source/dld/clock_design/constrs/clock.xdc:16]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-507] No nets matched 'switch_up_min_IBUF'. [/home/sabertazimi/Work/Source/dld/clock_design/constrs/clock.xdc:20]
+WARNING: [Vivado 12-507] No nets matched 'add_time[0]_IBUF'. [/home/sabertazimi/Work/Source/dld/clock_design/constrs/clock.xdc:20]
 CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/Work/Source/dld/clock_design/constrs/clock.xdc:20]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-507] No nets matched 'switch_up_hour_IBUF'. [/home/sabertazimi/Work/Source/dld/clock_design/constrs/clock.xdc:24]
+WARNING: [Vivado 12-507] No nets matched 'add_time[1]_IBUF'. [/home/sabertazimi/Work/Source/dld/clock_design/constrs/clock.xdc:24]
 CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/Work/Source/dld/clock_design/constrs/clock.xdc:24]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-507] No nets matched 'switch_reset_IBUF'. [/home/sabertazimi/Work/Source/dld/clock_design/constrs/clock.xdc:28]
+WARNING: [Vivado 12-507] No nets matched 'add_time[2]_IBUF'. [/home/sabertazimi/Work/Source/dld/clock_design/constrs/clock.xdc:28]
 CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/Work/Source/dld/clock_design/constrs/clock.xdc:28]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-507] No nets matched 'sub_time[0]_IBUF'. [/home/sabertazimi/Work/Source/dld/clock_design/constrs/clock.xdc:32]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/Work/Source/dld/clock_design/constrs/clock.xdc:32]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-507] No nets matched 'sub_time[1]_IBUF'. [/home/sabertazimi/Work/Source/dld/clock_design/constrs/clock.xdc:36]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/Work/Source/dld/clock_design/constrs/clock.xdc:36]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-507] No nets matched 'sub_time[2]_IBUF'. [/home/sabertazimi/Work/Source/dld/clock_design/constrs/clock.xdc:40]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/sabertazimi/Work/Source/dld/clock_design/constrs/clock.xdc:40]
 Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
 Finished Parsing XDC File [/home/sabertazimi/Work/Source/dld/clock_design/constrs/clock.xdc]
 INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/sabertazimi/Work/Source/dld/clock_design/constrs/clock.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/clock_propImpl.xdc].
@@ -99,29 +108,33 @@ Completed Processing XDC Constraints
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1418.598 ; gain = 0.000 ; free physical = 1568 ; free virtual = 12016
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 1419.602 ; gain = 0.000 ; free physical = 1836 ; free virtual = 11883
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1418.598 ; gain = 529.051 ; free physical = 1568 ; free virtual = 12016
+Finished Constraint Validation : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1419.602 ; gain = 530.051 ; free physical = 1835 ; free virtual = 11881
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a100tcsg324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1418.598 ; gain = 529.051 ; free physical = 1568 ; free virtual = 12016
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1419.602 ; gain = 530.051 ; free physical = 1835 ; free virtual = 11881
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1418.598 ; gain = 529.051 ; free physical = 1568 ; free virtual = 12016
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1419.602 ; gain = 530.051 ; free physical = 1835 ; free virtual = 11881
 ---------------------------------------------------------------------------------
+INFO: [Synth 8-5545] ROM "count" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "count" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
 INFO: [Synth 8-5546] ROM "sig_end" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5545] ROM "count" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "count" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
 INFO: [Synth 8-5546] ROM "sig_end" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5545] ROM "bell" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "alarm" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
 INFO: [Synth 8-5545] ROM "count" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1418.598 ; gain = 529.051 ; free physical = 1557 ; free virtual = 12004
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1419.602 ; gain = 530.051 ; free physical = 1832 ; free virtual = 11878
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -134,20 +147,18 @@ Start RTL Component Statistics
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input     32 Bit       Adders := 5     
+	   2 Input     32 Bit       Adders := 8     
 	   2 Input      3 Bit       Adders := 1     
 +---Registers : 
-	               32 Bit    Registers := 1     
-	                6 Bit    Registers := 2     
-	                5 Bit    Registers := 1     
+	               32 Bit    Registers := 4     
 	                3 Bit    Registers := 1     
 	                1 Bit    Registers := 5     
 +---Muxes : 
-	   2 Input     32 Bit        Muxes := 1     
+	   2 Input     32 Bit        Muxes := 13    
 	  12 Input      8 Bit        Muxes := 6     
 	   8 Input      8 Bit        Muxes := 1     
 	  11 Input      4 Bit        Muxes := 6     
-	   2 Input      1 Bit        Muxes := 13    
+	   2 Input      1 Bit        Muxes := 25    
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -164,21 +175,23 @@ Detailed RTL Component Info :
 Module timer 
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input     32 Bit       Adders := 1     
+	   2 Input     32 Bit       Adders := 2     
 +---Registers : 
-	                6 Bit    Registers := 1     
+	               32 Bit    Registers := 1     
 	                1 Bit    Registers := 1     
 +---Muxes : 
-	   2 Input      1 Bit        Muxes := 4     
+	   2 Input     32 Bit        Muxes := 4     
+	   2 Input      1 Bit        Muxes := 8     
 Module timer__parameterized0 
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input     32 Bit       Adders := 1     
+	   2 Input     32 Bit       Adders := 2     
 +---Registers : 
-	                5 Bit    Registers := 1     
+	               32 Bit    Registers := 1     
 	                1 Bit    Registers := 1     
 +---Muxes : 
-	   2 Input      1 Bit        Muxes := 4     
+	   2 Input     32 Bit        Muxes := 4     
+	   2 Input      1 Bit        Muxes := 8     
 Module ring 
 Detailed RTL Component Info : 
 +---Adders : 
@@ -217,16 +230,22 @@ BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
 ---------------------------------------------------------------------------------
 Finished Part Resource Summary
 ---------------------------------------------------------------------------------
-Start Parallel Synthesis Optimization  : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1418.598 ; gain = 529.051 ; free physical = 1557 ; free virtual = 12004
+Start Parallel Synthesis Optimization  : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1419.602 ; gain = 530.051 ; free physical = 1832 ; free virtual = 11878
 ---------------------------------------------------------------------------------
 Start Cross Boundary Optimization
 ---------------------------------------------------------------------------------
+INFO: [Synth 8-5545] ROM "SEC_TIMER/count" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "SEC_TIMER/count" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "MIN_TIMER/count" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "MIN_TIMER/count" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "HOUR_TIMER/count" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "HOUR_TIMER/count" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
 INFO: [Synth 8-5545] ROM "RING/count" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
-INFO: [Synth 8-5545] ROM "RING/bell" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "RING/alarm" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
 ---------------------------------------------------------------------------------
-Finished Cross Boundary Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1418.598 ; gain = 529.051 ; free physical = 1558 ; free virtual = 12005
+Finished Cross Boundary Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1419.602 ; gain = 530.051 ; free physical = 1832 ; free virtual = 11878
 ---------------------------------------------------------------------------------
-Finished Parallel Reinference  : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1418.598 ; gain = 529.051 ; free physical = 1558 ; free virtual = 12005
+Finished Parallel Reinference  : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1419.602 ; gain = 530.051 ; free physical = 1832 ; free virtual = 11878
 
 Report RTL Partitions: 
 +-+--------------+------------+----------+
@@ -243,9 +262,9 @@ WARNING: [Synth 8-3332] Sequential element (TICK_DIVIDER/clk_group_reg[29]) is u
 WARNING: [Synth 8-3332] Sequential element (TICK_DIVIDER/clk_group_reg[30]) is unused and will be removed from module clock.
 WARNING: [Synth 8-3332] Sequential element (TICK_DIVIDER/clk_group_reg[31]) is unused and will be removed from module clock.
 ---------------------------------------------------------------------------------
-Finished Area Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1418.598 ; gain = 529.051 ; free physical = 1545 ; free virtual = 11993
+Finished Area Optimization : Time (s): cpu = 00:00:22 ; elapsed = 00:00:22 . Memory (MB): peak = 1419.602 ; gain = 530.051 ; free physical = 1826 ; free virtual = 11878
 ---------------------------------------------------------------------------------
-Finished Parallel Area Optimization  : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1418.598 ; gain = 529.051 ; free physical = 1545 ; free virtual = 11993
+Finished Parallel Area Optimization  : Time (s): cpu = 00:00:22 ; elapsed = 00:00:22 . Memory (MB): peak = 1419.602 ; gain = 530.051 ; free physical = 1826 ; free virtual = 11878
 
 Report RTL Partitions: 
 +-+--------------+------------+----------+
@@ -259,10 +278,10 @@ Start Timing Optimization
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 1418.598 ; gain = 529.051 ; free physical = 1506 ; free virtual = 11953
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:29 ; elapsed = 00:00:29 . Memory (MB): peak = 1419.602 ; gain = 530.051 ; free physical = 1824 ; free virtual = 11875
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 1418.598 ; gain = 529.051 ; free physical = 1505 ; free virtual = 11952
+Finished Timing Optimization : Time (s): cpu = 00:00:29 ; elapsed = 00:00:29 . Memory (MB): peak = 1419.602 ; gain = 530.051 ; free physical = 1824 ; free virtual = 11875
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -274,16 +293,16 @@ Report RTL Partitions:
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 1426.605 ; gain = 537.059 ; free physical = 1474 ; free virtual = 11920
+Finished Technology Mapping : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 1450.023 ; gain = 560.473 ; free physical = 1795 ; free virtual = 11846
 ---------------------------------------------------------------------------------
-Finished Parallel Technology Mapping Optimization  : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 1426.605 ; gain = 537.059 ; free physical = 1474 ; free virtual = 11920
+Finished Parallel Technology Mapping Optimization  : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 1450.023 ; gain = 560.473 ; free physical = 1795 ; free virtual = 11846
 
 Report RTL Partitions: 
 +-+--------------+------------+----------+
 | |RTL Partition |Replication |Instances |
 +-+--------------+------------+----------+
 +-+--------------+------------+----------+
-Finished Parallel Synthesis Optimization  : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 1426.605 ; gain = 537.059 ; free physical = 1474 ; free virtual = 11920
+Finished Parallel Synthesis Optimization  : Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 1450.023 ; gain = 560.473 ; free physical = 1795 ; free virtual = 11846
 ---------------------------------------------------------------------------------
 Start IO Insertion
 ---------------------------------------------------------------------------------
@@ -300,7 +319,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 1426.605 ; gain = 537.059 ; free physical = 1473 ; free virtual = 11920
+Finished IO Insertion : Time (s): cpu = 00:00:30 ; elapsed = 00:00:30 . Memory (MB): peak = 1450.023 ; gain = 560.473 ; free physical = 1795 ; free virtual = 11846
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -313,7 +332,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 1426.605 ; gain = 537.059 ; free physical = 1473 ; free virtual = 11920
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1450.023 ; gain = 560.473 ; free physical = 1795 ; free virtual = 11846
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -325,25 +344,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 1426.605 ; gain = 537.059 ; free physical = 1473 ; free virtual = 11920
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1450.023 ; gain = 560.473 ; free physical = 1795 ; free virtual = 11846
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 1426.605 ; gain = 537.059 ; free physical = 1473 ; free virtual = 11920
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1450.023 ; gain = 560.473 ; free physical = 1795 ; free virtual = 11846
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 1426.605 ; gain = 537.059 ; free physical = 1473 ; free virtual = 11920
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1450.023 ; gain = 560.473 ; free physical = 1795 ; free virtual = 11846
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 1426.605 ; gain = 537.059 ; free physical = 1473 ; free virtual = 11920
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1450.023 ; gain = 560.473 ; free physical = 1795 ; free virtual = 11846
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -359,16 +378,16 @@ Report Cell Usage:
 +------+-------+------+
 |      |Cell   |Count |
 +------+-------+------+
-|1     |BUFG   |     2|
-|2     |CARRY4 |   299|
-|3     |LUT1   |   207|
-|4     |LUT2   |   449|
-|5     |LUT3   |   303|
-|6     |LUT4   |   526|
-|7     |LUT5   |   101|
-|8     |LUT6   |    47|
-|9     |FDRE   |   114|
-|10    |IBUF   |     7|
+|1     |BUFG   |     5|
+|2     |CARRY4 |   572|
+|3     |LUT1   |   401|
+|4     |LUT2   |   545|
+|5     |LUT3   |   692|
+|6     |LUT4   |   755|
+|7     |LUT5   |   177|
+|8     |LUT6   |   711|
+|9     |FDRE   |   193|
+|10    |IBUF   |    10|
 |11    |OBUF   |    17|
 +------+-------+------+
 
@@ -376,26 +395,26 @@ Report Instance Areas:
 +------+-----------------+----------------------+------+
 |      |Instance         |Module                |Cells |
 +------+-----------------+----------------------+------+
-|1     |top              |                      |  2072|
-|2     |  DRANGE_DIVIDER |range_divider         |   120|
-|3     |  HOUR_TIMER     |timer__parameterized0 |   157|
-|4     |  MIN_TIMER      |timer                 |   214|
+|1     |top              |                      |  4078|
+|2     |  DRANGE_DIVIDER |range_divider         |   122|
+|3     |  HOUR_TIMER     |timer__parameterized0 |   834|
+|4     |  MIN_TIMER      |timer                 |   729|
 |5     |  RING           |ring                  |    86|
-|6     |  SEC_TIMER      |timer_0               |   213|
-|7     |  SEG_SEVEN      |time_displayer        |  1049|
-|8     |    HOUR_SEG     |time_to_segment       |   304|
-|9     |    MIN_SEG      |time_to_segment_1     |   305|
-|10    |    SEC_SEG      |time_to_segment_2     |   313|
-|11    |  TICK_DIVIDER   |tick_divider          |    59|
+|6     |  SEC_TIMER      |timer_0               |   724|
+|7     |  SEG_SEVEN      |time_displayer        |  1244|
+|8     |    HOUR_SEG     |time_to_segment       |   338|
+|9     |    MIN_SEG      |time_to_segment_1     |   338|
+|10    |    SEC_SEG      |time_to_segment_2     |   346|
+|11    |  TICK_DIVIDER   |tick_divider          |    61|
 +------+-----------------+----------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 1426.605 ; gain = 537.059 ; free physical = 1473 ; free virtual = 11920
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1450.023 ; gain = 560.473 ; free physical = 1795 ; free virtual = 11846
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 6 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:19 ; elapsed = 00:00:19 . Memory (MB): peak = 1426.605 ; gain = 115.441 ; free physical = 1473 ; free virtual = 11920
-Synthesis Optimization Complete : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 1426.613 ; gain = 537.066 ; free physical = 1473 ; free virtual = 11920
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1450.023 ; gain = 137.855 ; free physical = 1795 ; free virtual = 11846
+Synthesis Optimization Complete : Time (s): cpu = 00:00:31 ; elapsed = 00:00:31 . Memory (MB): peak = 1450.031 ; gain = 560.480 ; free physical = 1795 ; free virtual = 11846
 INFO: [Project 1-571] Translating synthesized netlist
-INFO: [Netlist 29-17] Analyzing 306 Unisim elements for replacement
+INFO: [Netlist 29-17] Analyzing 582 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
@@ -403,8 +422,8 @@ INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 INFO: [Common 17-83] Releasing license: Synthesis
-39 Infos, 15 Warnings, 6 Critical Warnings and 0 Errors encountered.
+49 Infos, 18 Warnings, 9 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 1426.613 ; gain = 462.512 ; free physical = 1474 ; free virtual = 11921
-report_utilization: Time (s): cpu = 00:00:00.10 ; elapsed = 00:00:00.12 . Memory (MB): peak = 1458.621 ; gain = 0.000 ; free physical = 1473 ; free virtual = 11920
-INFO: [Common 17-206] Exiting Vivado at Thu Sep 22 11:12:44 2016...
+synth_design: Time (s): cpu = 00:00:30 ; elapsed = 00:00:30 . Memory (MB): peak = 1450.031 ; gain = 485.926 ; free physical = 1797 ; free virtual = 11848
+report_utilization: Time (s): cpu = 00:00:00.10 ; elapsed = 00:00:00.13 . Memory (MB): peak = 1482.039 ; gain = 0.000 ; free physical = 1803 ; free virtual = 11846
+INFO: [Common 17-206] Exiting Vivado at Thu Sep 22 20:41:03 2016...

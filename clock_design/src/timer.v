@@ -20,25 +20,26 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 // @input
-// clk_src: normal clock source
-// up_src: manually changing time clock source
+// clk_normal: normal clock source
+// clk_change_time: manually changing time clock source
 // power: electronic power
-// switch_en: pause switch
-// sig_up_time: add value of time
-// sig_reset: reset pulse
+// enable: pause switch
+// reset: reset switch
+// add_time: add time manually
+// sub_time: sub time manually
 // @output
 // count: current count time
-// sig_start: signal implicits arriving at 0
 // sig_end: signal implicits arriving at RANGE
 module timer
 #(parameter WIDTH = 32, RANGE = 60)
 (
-    input clk_src,
-    input change_src,
+    input clk_normal,
+    input clk_change_time,
     input power,
-    input switch_en,
-    input switch_up_time,
-    input switch_reset,
+    input enable,
+    input reset,
+    input add_time,
+    input sub_time,
     output reg [(WIDTH-1):0] count,
     output reg sig_end
 );
@@ -51,13 +52,13 @@ module timer
     end
     
     // change async clk to sync clk
-    assign true_clk = (!power || switch_reset || !switch_en && switch_up_time) ? change_src : clk_src;
+    assign true_clk = (!power || reset || !enable && (add_time || sub_time)) ? clk_change_time : clk_normal;
     
     always @(posedge true_clk) begin
         if (power) begin
-            if (switch_reset) begin
+            if (reset) begin
                 count <= 0;
-            end else if (switch_en) begin
+            end else if (enable) begin
                 count = (count + 1) % RANGE;
                 
                 if (count == 0) begin
@@ -65,8 +66,14 @@ module timer
                 end else begin
                     sig_end = 0;
                 end
-            end else if (switch_up_time) begin
-                count = (count + 1) % RANGE;
+            end else if (add_time) begin
+                count <= (count + 1) % RANGE;
+            end else if (sub_time) begin
+                if (count == 0) begin
+                    count = RANGE-1;
+                end else begin
+                    count <= (count - 1);
+                end
             end
         end else begin
             count <= 0;

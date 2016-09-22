@@ -25,14 +25,13 @@ module clock
 (
     input clk_src,
     input power,
-    input switch_en,
-    input switch_up_sec,
-    input switch_up_min,
-    input switch_up_hour,
-    input switch_reset,
-    output bell,
-    output [7:0] seg_control,
-    output [7:0] seg_time
+    input enable,
+    input reset,
+    input [2:0] add_time,
+    input [2:0] sub_time,
+    output alarm,
+    output [7:0] anodes,
+    output [7:0] cnodes
 );
 
   // record current time
@@ -55,46 +54,46 @@ module clock
     .clk_group(clk_group)
   );
 
-  // open switch for time change, change clock source
   timer #(.WIDTH(WIDTH), .RANGE(60)) SEC_TIMER (
-    .clk_src(clk_dst),
-    .change_src(clk_group[25]),
+    .clk_normal(clk_dst),
+    .clk_change_time(clk_group[25]),
     .power(power),
-    .switch_en(switch_en),
-    .switch_up_time(switch_up_sec),
-    .switch_reset(switch_reset),
+    .enable(enable),
+    .reset(reset),
+    .add_time(add_time[0]),
+    .sub_time(sub_time[0]),
     .count(sec),
     .sig_end(sig_sec)
   );
   
-  // open switch for time change, change clock source
   timer #(.WIDTH(WIDTH), .RANGE(60)) MIN_TIMER (
-    .clk_src(sig_sec),
-    .change_src(clk_group[25]),
+    .clk_normal(sig_sec),
+    .clk_change_time(clk_group[25]),
     .power(power),
-    .switch_en(switch_en),
-    .switch_up_time(switch_up_min),
-    .switch_reset(switch_reset),
+    .enable(enable),
+    .reset(reset),
+    .add_time(add_time[1]),
+    .sub_time(sub_time[1]),
     .count(min),
     .sig_end(sig_min)
   );
   
-  // open switch for time change, change clock source
   timer #(.WIDTH(WIDTH), .RANGE(24)) HOUR_TIMER (
-    .clk_src(sig_min),
-    .change_src(clk_group[25]),
+    .clk_normal(sig_min),
+    .clk_change_time(clk_group[25]),
     .power(power),
-    .switch_en(switch_en),
-    .switch_up_time(switch_up_hour),
-    .switch_reset(switch_reset),
+    .enable(enable),
+    .reset(reset),
+    .add_time(add_time[2]),
+    .sub_time(sub_time[2]),
     .count(hour),
     .sig_end(sig_hour)
   );
 
   ring RING (
-    .sig_ring(sec == 59 && min == 59),
+    .sig_ring(sec == 59 && min == 59 && enable),
     .sig_step(clk_dst),
-    .bell(bell)
+    .alarm(alarm)
   );
   
   time_displayer SEG_SEVEN (
@@ -102,8 +101,8 @@ module clock
      .sec_data(sec),
      .min_data(min),
      .hour_data(hour),
-     .anodes(seg_control),
-     .cnodes(seg_time)
+     .anodes(anodes),
+     .cnodes(cnodes)
   );
   
 endmodule

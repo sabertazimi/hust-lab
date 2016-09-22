@@ -20,35 +20,35 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 // input
-// sig_ring: signal for starting bell
-// sig_step: signal for control bell time range
+// sig_ring: signal for starting alarm
+// sig_step: signal for control alarm time range
 // output
-// bell: bell ring signal
+// alarm: alarm ring signal
 module ring
 #(parameter LEN = 5)
 (
     input sig_ring,
     input sig_step,
-    output reg bell
+    output reg alarm
 );
 
     reg [31:0] count;
 
     initial begin
-        bell <= 0;
+        alarm <= 0;
         count <= 0;
     end
 
     always @(posedge sig_step) begin
         if (sig_ring) begin
-            bell = 1;
+            alarm = 1;
         end else begin
-            if (bell == 1) begin
+            if (alarm == 1) begin
                 count = count + 1;
             end
             if (count == LEN) begin
                 count = 0;
-                bell = 0;
+                alarm = 0;
             end
         end
     end
