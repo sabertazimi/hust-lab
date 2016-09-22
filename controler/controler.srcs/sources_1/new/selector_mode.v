@@ -14,7 +14,7 @@ module selector_mode
     input switch_power,
     input switch_en,
     input sig_change,
-    output reg washing_machine_running,
+//    output reg washing_machine_running,
     output reg [2:0] sel_value
 );
 

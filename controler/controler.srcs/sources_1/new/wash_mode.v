@@ -4,16 +4,18 @@ module wash_mode
 //#(parameter WIDTH = 32)
 (
     input wash_start, input start, input power, input [31:0]clk, //input wash_control,
-    input weight,
-    output reg wash_end_sign, 
+    input weight, input washing_light_control,
+    output wash_end_sign, 
     //light
     output reg water_in_light, output reg washing_light,
-    output reg [2:0]water_level, output reg [31:0]wash_count
+    output [2:0]water_level, output reg [31:0]wash_count,
+    output reg [1:0]state
     );
     // FIXED ME: there's 3 state, but state and nextState only can hold 1 bit.
-    reg [1:0]state, nextstate;
-    reg [31:0]washing_count;
-    reg water_in_end_sign, water_in_start, washing_start, water_out_end_sign;
+    reg [1:0]nextstate;
+    wire [31:0]washing_count;
+    wire water_in_end_sign, water_out_end_sign;
+    reg water_in_start, washing_start;
     parameter water_in_state = 0, washing_state = 1, wash_end_state = 2;
     
     initial begin
@@ -22,7 +24,7 @@ module wash_mode
 //        water_in_end_sign = 0;
 //        spangle_start = 0;
         water_in_light = 0;
-        washing_light = 1;
+        washing_light = 0;
         wash_count = 0;
     end
     
@@ -49,11 +51,12 @@ module wash_mode
     // FIXED ME: edge detective(posedge) can't be mix up with level detective(power).
     always @(posedge power or posedge clk[0])
     begin
-    if(power & wash_start) state = nextstate;
+    if(wash_start) state = nextstate;
     else begin
-        wash_end_sign = 0;
+//        wash_end_sign = 0;
         nextstate = water_in_state;
         wash_count = 0;
+        if(washing_light_control) washing_light = 1;
     end
     end
     
@@ -83,9 +86,9 @@ module wash_mode
     always @(state or start)
     if(wash_start & start) begin
         case(state)
-            water_in_state: begin wash_end_sign = 0; water_in_start = 1; end
+            water_in_state: begin water_in_start = 1; end
             washing_state: begin water_in_start = 0; washing_start = 1; end
-            wash_end_state: begin  washing_start = 0; wash_end_sign = 1; end
+            wash_end_state: begin  washing_start = 0; end
         endcase
     end
     

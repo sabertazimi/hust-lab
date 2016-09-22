@@ -1,29 +1,27 @@
 `timescale 1ns / 1ps
 
 module rinse_mode(
-    input rinse_start, input start, input power, input [31:0]clk, input weight,
+    input rinse_start, input start, input power, input [31:0]clk, input weight, input rinsing_light_control,
     output reg rinse_end_sign, 
     //light
     output reg water_in_light, output reg rinsing_light,output reg water_out_light,
-    output reg [2:0]water_level, output reg dewatering_light, output reg [31:0]rinse_count
+    output [2:0]water_level, output reg dewatering_light, output reg [31:0]rinse_count,
+    output reg [2:0]state
     );
-    reg [2:0]state, nextstate;
-    reg [31:0]dewatering_count, rinsing_count, water_out_count, water_in_count;
-    reg water_in_end_sign, water_in_start, water_out_start, water_out_end_sign, dewatering_start, rinsing_start, dewatering_end_sign, rinsing_end_sign;
+    reg [2:0]nextstate;
+    wire [31:0]dewatering_count, rinsing_count, water_out_count, water_in_count;
+    reg water_in_start, water_out_start, dewatering_start, rinsing_start;
+    wire water_in_end_sign, water_out_end_sign, dewatering_end_sign, rinsing_end_sign;
     parameter water_out_state = 0, dewatering_state = 1, water_in_state = 2, rinsing_state = 3, rinse_end_state = 4;
     
     
     initial begin
             state = water_out_state;
             nextstate = water_out_state;
-            water_in_end_sign = 0;
-            water_out_end_sign = 0;
-            dewatering_end_sign = 0;
-            rinsing_end_sign = 0;
             water_out_light = 0;
             dewatering_light = 0;
             water_in_light = 0;
-            rinsing_light = 1;
+            rinsing_light = 0;
             water_in_start = 0;
             water_out_start = 0;
             dewatering_start = 0;
@@ -59,10 +57,11 @@ module rinse_mode(
         // FIXED ME: edge detective(posedge) can't be mix up with level detective(power).
         always @(posedge power or posedge clk[0])
         begin
-        if(power & rinse_start) state = nextstate;
+        if(rinse_start) state = nextstate;
         else begin
             rinse_end_sign = 0;
             nextstate = water_out_state;
+            if(rinsing_light_control) rinsing_light = 1;
         end
         end
         
