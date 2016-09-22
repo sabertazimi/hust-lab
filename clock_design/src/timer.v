@@ -20,7 +20,8 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 // @input
-// clk_src: clock source
+// clk_src: normal clock source
+// up_src: manually changing time clock source
 // power: electronic power
 // switch_en: pause switch
 // sig_up_time: add value of time
@@ -33,20 +34,26 @@ module timer
 #(parameter WIDTH = 32, RANGE = 60)
 (
     input clk_src,
+    input change_src,
     input power,
     input switch_en,
     input switch_up_time,
     input switch_reset,
     output reg [(WIDTH-1):0] count,
-    output reg sig_end   
+    output reg sig_end
 );
+
+    wire true_clk;
 
     initial begin
         count <= 0;
         sig_end <= 0;
     end
     
-    always @(posedge clk_src) begin
+    // change async clk to sync clk
+    assign true_clk = (!power || switch_reset || !switch_en && switch_up_time) ? change_src : clk_src;
+    
+    always @(posedge true_clk) begin
         if (power) begin
             if (switch_reset) begin
                 count <= 0;
@@ -61,6 +68,8 @@ module timer
             end else if (switch_up_time) begin
                 count = (count + 1) % RANGE;
             end
+        end else begin
+            count <= 0;
         end
     end
 endmodule

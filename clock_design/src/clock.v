@@ -26,9 +26,6 @@ module clock
     input clk_src,
     input power,
     input switch_en,
-    input switch_upen_sec,
-    input switch_upen_min,
-    input switch_upen_hour,
     input switch_up_sec,
     input switch_up_min,
     input switch_up_hour,
@@ -60,7 +57,8 @@ module clock
 
   // open switch for time change, change clock source
   timer #(.WIDTH(WIDTH), .RANGE(60)) SEC_TIMER (
-    .clk_src(switch_upen_sec ? clk_group[25] : clk_dst),
+    .clk_src(clk_dst),
+    .change_src(clk_group[25]),
     .power(power),
     .switch_en(switch_en),
     .switch_up_time(switch_up_sec),
@@ -71,7 +69,8 @@ module clock
   
   // open switch for time change, change clock source
   timer #(.WIDTH(WIDTH), .RANGE(60)) MIN_TIMER (
-    .clk_src(switch_upen_min ? clk_group[25] : sig_sec),
+    .clk_src(sig_sec),
+    .change_src(clk_group[25]),
     .power(power),
     .switch_en(switch_en),
     .switch_up_time(switch_up_min),
@@ -82,7 +81,8 @@ module clock
   
   // open switch for time change, change clock source
   timer #(.WIDTH(WIDTH), .RANGE(24)) HOUR_TIMER (
-    .clk_src(switch_upen_hour ? clk_group[25] : sig_min),
+    .clk_src(sig_min),
+    .change_src(clk_group[25]),
     .power(power),
     .switch_en(switch_en),
     .switch_up_time(switch_up_hour),
@@ -92,7 +92,7 @@ module clock
   );
 
   ring RING (
-    .sig_ring(sec == 0 && min == 0),
+    .sig_ring(sec == 59 && min == 59),
     .sig_step(clk_dst),
     .bell(bell)
   );

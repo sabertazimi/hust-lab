@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<document>
+<!--The data in this file is primarily intended for consumption by Xilinx tools.
+The structure and the elements are likely to change over the next few releases.
+This means code written to parse this file will need to be revisited each subsequent release.-->
+<application name="pa" timeStamp="Thu Sep 22 11:37:03 2016">
+<section name="Project Information" visible="false">
+<property name="ProjectID" value="a94dc46e42d54ab1aad5e8865458a5be" type="ProjectID"/>
+<property name="ProjectIteration" value="14" type="ProjectIteration"/>
+</section>
+<section name="PlanAhead Usage" visible="true">
+<item name="Project Data">
+<property name="SrcSetCount" value="1" type="SrcSetCount"/>
+<property name="ConstraintSetCount" value="1" type="ConstraintSetCount"/>
+<property name="DesignMode" value="RTL" type="DesignMode"/>
+<property name="SynthesisStrategy" value="Vivado Synthesis Defaults" type="SynthesisStrategy"/>
+<property name="ImplStrategy" value="Vivado Implementation Defaults" type="ImplStrategy"/>
+</item>
+<item name="Java Command Handlers">
+<property name="AddSources" value="3" type="JavaHandler"/>
+<property name="AutoConnectTarget" value="16" type="JavaHandler"/>
+<property name="EditPaste" value="1" type="JavaHandler"/>
+<property name="EditUndo" value="11" type="JavaHandler"/>
+<property name="LaunchOpenTarget" value="5" type="JavaHandler"/>
+<property name="LaunchProgramFpga" value="13" type="JavaHandler"/>
+<property name="NewProject" value="1" type="JavaHandler"/>
+<property name="OpenHardwareManager" value="8" type="JavaHandler"/>
+<property name="OpenProject" value="1" type="JavaHandler"/>
+<property name="OpenRecentTarget" value="6" type="JavaHandler"/>
+<property name="OpenTarget" value="1" type="JavaHandler"/>
+<property name="ProjectSettingsCmdHandler" value="2" type="JavaHandler"/>
+<property name="RunBitgen" value="13" type="JavaHandler"/>
+<property name="ShowView" value="2" type="JavaHandler"/>
+<property name="UpdateRegId" value="2" type="JavaHandler"/>
+</item>
+<item name="Gui Resources Info">
+<property name="PAResourceAtoD.CmdMsgDialog_OK, OK" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Constraints], 9" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, clock (clock.v" value="8" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PAViews_CODE, Code" value="2" type="GuiResourceData"/>
+<property name="PAResourceOtoP.ProgramDebugTab_PROGRAM_DEVICE, Program device" value="2" type="GuiResourceData"/>
+<property name="PAResourceOtoP.ProgramFpgaDialog_PROGRAM, Program" value="1" type="GuiResourceData"/>
+<property name="RDIResource.BaseDialog_CANCEL, Cancel" value="1" type="GuiResourceData"/>
+<property name="bcd_to_segment.v, 118, 99" value="1" type="GuiResourceData"/>
+<property name="bcd_to_segment.v, 281, 94" value="1" type="GuiResourceData"/>
+<property name="bcd_to_segment.v, 286, 93" value="1" type="GuiResourceData"/>
+<property name="bcd_to_segment.v, 293, 100" value="1" type="GuiResourceData"/>
+<property name="bcd_to_segment.v, 322, 127" value="1" type="GuiResourceData"/>
+<property name="clock.v, 150, 53" value="4" type="GuiResourceData"/>
+<property name="clock.v, 150, 54" value="3" type="GuiResourceData"/>
+<property name="clock.v, 150, 55" value="1" type="GuiResourceData"/>
+<property name="clock.v, 172, 105" value="1" type="GuiResourceData"/>
+<property name="clock.v, 207, 2, false, false, false, true, false" value="1" type="GuiResourceData"/>
+<property name="clock.v, 218, 64" value="1" type="GuiResourceData"/>
+<property name="clock.v, 235, 100" value="1" type="GuiResourceData"/>
+<property name="clock.v, 235, 99" value="1" type="GuiResourceData"/>
+<property name="clock.v, 236, 101" value="1" type="GuiResourceData"/>
+<property name="clock.v, 238, 31" value="1" type="GuiResourceData"/>
+<property name="clock.v, 240, 106" value="1" type="GuiResourceData"/>
+<property name="clock.v, 241, 34" value="1" type="GuiResourceData"/>
+<property name="clock.v, 260, 42" value="1" type="GuiResourceData"/>
+<property name="time_to_segment.v, 138, 116" value="1" type="GuiResourceData"/>
+<property name="time_to_segment.v, 142, 144" value="1" type="GuiResourceData"/>
+<property name="time_to_segment.v, 155, 155" value="1" type="GuiResourceData"/>
+<property name="time_to_segment.v, 181, 161" value="1" type="GuiResourceData"/>
+<property name="time_to_segment.v, 201, 221" value="1" type="GuiResourceData"/>
+<property name="time_to_segment.v, 218, 161" value="1" type="GuiResourceData"/>
+<property name="time_to_segment.v, 284, 111" value="1" type="GuiResourceData"/>
+<property name="time_to_segment.v, 60, 113" value="1" type="GuiResourceData"/>
+<property name="timer.v, 176, 172" value="1" type="GuiResourceData"/>
+<property name="timer.v, 177, 171" value="1" type="GuiResourceData"/>
+<property name="timer.v, 180, 239" value="1" type="GuiResourceData"/>
+<property name="timer.v, 240, 178" value="1" type="GuiResourceData"/>
+<property name="timer.v, 251, 167" value="1" type="GuiResourceData"/>
+<property name="timer.v, 287, 172" value="1" type="GuiResourceData"/>
+<property name="timer.v, 307, 175" value="1" type="GuiResourceData"/>
+</item>
+<item name="Other">
+<property name="GuiMode" value="5" type="GuiMode"/>
+<property name="BatchMode" value="0" type="BatchMode"/>
+<property name="TclMode" value="4" type="TclMode"/>
+</item>
+</section>
+</application>
+</document>

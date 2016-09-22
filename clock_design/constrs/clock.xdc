@@ -29,22 +29,22 @@ set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets switch_reset_IBUF]
 set_property PACKAGE_PIN V7 [get_ports switch_reset]
 set_property IOSTANDARD LVCMOS33 [get_ports switch_reset]
 
-set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets switch_upen_sec_IBUF]
-set_property PACKAGE_PIN V6 [get_ports switch_upen_sec]
-set_property IOSTANDARD LVCMOS33 [get_ports switch_upen_sec]
+#set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets switch_upen_sec_IBUF]
+#set_property PACKAGE_PIN V6 [get_ports switch_upen_sec]
+#set_property IOSTANDARD LVCMOS33 [get_ports switch_upen_sec]
 
-set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets switch_upen_min]
-set_property PACKAGE_PIN V5 [get_ports switch_upen_min]
-set_property IOSTANDARD LVCMOS33 [get_ports switch_upen_min]
+#set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets switch_upen_min]
+#set_property PACKAGE_PIN V5 [get_ports switch_upen_min]
+#set_property IOSTANDARD LVCMOS33 [get_ports switch_upen_min]
 
-set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets switch_upen_hour]
-set_property PACKAGE_PIN U4 [get_ports switch_upen_hour]
-set_property IOSTANDARD LVCMOS33 [get_ports switch_upen_hour]
+#set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets switch_upen_hour]
+#set_property PACKAGE_PIN U4 [get_ports switch_upen_hour]
+#set_property IOSTANDARD LVCMOS33 [get_ports switch_upen_hour]
 
 ############################
 # Output                   #
 ############################
-set_property PACKAGE_PIN T8 [get_ports bell]
+set_property PACKAGE_PIN V9 [get_ports bell]
 set_property IOSTANDARD LVCMOS33 [get_ports bell]
 
 set_property PACKAGE_PIN N6 [get_ports seg_control[0]]

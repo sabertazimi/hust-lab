@@ -29,12 +29,13 @@ module timer_tb(
     parameter TIME = (COUNT * DELAY);
     parameter WIDTH = 32;
     
-    reg clk_src, power, switch_en, sig_up_time, sig_reset;
+    reg clk_src, change_src, power, switch_en, sig_up_time, sig_reset;
     wire [WIDTH-1:0] count;
     wire sig_end;
 
     timer #(.WIDTH(WIDTH), .RANGE(10)) SEC_TIMER (
         .clk_src(clk_src),
+        .change_src(change_src),
         .power(power),
         .switch_en(switch_en),
         .sig_up_time(sig_up_time),
@@ -45,6 +46,7 @@ module timer_tb(
     
     initial begin
         clk_src <= 0;
+        change_src <= 0;
         power <= 1;
         switch_en <= 1;
         sig_up_time <= 0;
@@ -54,6 +56,7 @@ module timer_tb(
     
     always begin
         #DELAY clk_src <= ~clk_src;
+        #(5*DELAY) change_src <= ~change_src;
     end
     
     always begin
