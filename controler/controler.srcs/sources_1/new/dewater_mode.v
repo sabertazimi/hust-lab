@@ -2,15 +2,17 @@
 
 module dewater_mode(
     input dewater_start, input start, input power, input [31:0]clk,
-    input weight, 
+    input weight, input dewatering_light_control,
     output reg dewater_end_sign, 
     //light
     output reg dewatering_light,output reg water_out_light,
-    output reg [2:0]water_level, output reg [31:0]dewater_count
+    output [2:0]water_level, output reg [31:0]dewater_count,
+    output reg [1:0]state
     );
-    reg [1:0]state, nextstate;
-    reg [31:0]dewatering_count;
-    reg water_out_end_sign, water_in_end_sign, water_out_start, dewatering_start, dewatering_end_sign;
+    reg [1:0]nextstate;
+    wire [31:0]dewatering_count;
+    wire water_out_end_sign, water_in_end_sign, dewatering_end_sign;
+    reg  water_out_start, dewatering_start;
     parameter water_out_state = 0, dewatering_state = 1, dewater_end_state = 2;
     
     initial begin
@@ -47,6 +49,7 @@ module dewater_mode(
     else begin
         dewater_end_sign = 0;
         nextstate = water_out_state;
+        if(dewatering_light_control) dewatering_light = 1;
     end
     end
     

@@ -3,10 +3,10 @@
 <!--The data in this file is primarily intended for consumption by Xilinx tools.
 The structure and the elements are likely to change over the next few releases.
 This means code written to parse this file will need to be revisited each subsequent release.-->
-<application name="pa" timeStamp="Sun Sep  4 20:57:54 2016">
+<application name="pa" timeStamp="Thu Sep 22 12:39:06 2016">
 <section name="Project Information" visible="false">
 <property name="ProjectID" value="8c6b2097171f4edea720294e3754d98d" type="ProjectID"/>
-<property name="ProjectIteration" value="1" type="ProjectIteration"/>
+<property name="ProjectIteration" value="10" type="ProjectIteration"/>
 </section>
 <section name="PlanAhead Usage" visible="true">
 <item name="Project Data">
@@ -17,15 +17,21 @@ This means code written to parse this file will need to be revisited each subseq
 <property name="ImplStrategy" value="Vivado Implementation Defaults" type="ImplStrategy"/>
 </item>
 <item name="Java Command Handlers">
-<property name="AddSources" value="19" type="JavaHandler"/>
+<property name="AddSources" value="20" type="JavaHandler"/>
+<property name="AutoConnectTarget" value="2" type="JavaHandler"/>
 <property name="EditDelete" value="6" type="JavaHandler"/>
 <property name="EditUndo" value="2" type="JavaHandler"/>
 <property name="NewProject" value="1" type="JavaHandler"/>
-<property name="OpenProject" value="9" type="JavaHandler"/>
+<property name="OpenHardwareManager" value="1" type="JavaHandler"/>
+<property name="OpenProject" value="11" type="JavaHandler"/>
+<property name="OpenRecentTarget" value="1" type="JavaHandler"/>
 <property name="ProjectSettingsCmdHandler" value="1" type="JavaHandler"/>
-<property name="SaveFileProxyHandler" value="16" type="JavaHandler"/>
+<property name="RunBitgen" value="9" type="JavaHandler"/>
+<property name="RunImplementation" value="1" type="JavaHandler"/>
+<property name="RunSynthesis" value="16" type="JavaHandler"/>
+<property name="SaveFileProxyHandler" value="21" type="JavaHandler"/>
 <property name="SetTopNode" value="4" type="JavaHandler"/>
-<property name="ShowView" value="2" type="JavaHandler"/>
+<property name="ShowView" value="24" type="JavaHandler"/>
 <property name="SimulationClose" value="36" type="JavaHandler"/>
 <property name="SimulationRestart" value="1" type="JavaHandler"/>
 <property name="SimulationRun" value="67" type="JavaHandler"/>
@@ -33,476 +39,19 @@ This means code written to parse this file will need to be revisited each subseq
 <property name="WaveformSaveConfiguration" value="6" type="JavaHandler"/>
 </item>
 <item name="Gui Resources Info">
-<property name="FINISH, Finish" value="4" type="GuiResourceData"/>
-<property name="NEXT, Next " value="4" type="GuiResourceData"/>
-<property name="PAResourceAtoD.CmdMsgDialog_OK, OK" value="12" type="GuiResourceData"/>
-<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, (String" value="2" type="GuiResourceData"/>
-<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, bcd_" value="1" type="GuiResourceData"/>
-<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, bcd_to_" value="1" type="GuiResourceData"/>
-<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, bcd_to_segment" value="1" type="GuiResourceData"/>
-<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, inte" value="1" type="GuiResourceData"/>
-<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, integer" value="2" type="GuiResourceData"/>
-<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, integer_to_bcd" value="1" type="GuiResourceData"/>
-<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, time" value="2" type="GuiResourceData"/>
-<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, time_display" value="1" type="GuiResourceData"/>
-<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, time_to_" value="1" type="GuiResourceData"/>
-<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, time_to_seg" value="1" type="GuiResourceData"/>
-<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, time_to_segment" value="1" type="GuiResourceData"/>
-<property name="PAResourceCommand.PACommandNames_ADD_SOURCES, Sources_add_sources" value="4" type="GuiResourceData"/>
-<property name="PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, Hierarchy Update" value="2" type="GuiResourceData"/>
-<property name="PAResourceCommand.PACommandNames_SET_AS_TOP, Set as Top" value="2" type="GuiResourceData"/>
-<property name="PAResourceCommand.PACommandNames_SIMULATION_RUN_BEHAVIORAL, Run Behavioral Simulation" value="23" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, controler (controler.v" value="7" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, time_display (time_display.v" value="2" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, time_displayer (time_display.v" value="14" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources], 0, true" value="4" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, controler (controler.v" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, timer_tb (timer_tb.v" value="10" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1, water_let_mode_tb (water_let_mode_tb.v" value="13" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1], 4" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources], 3" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Simulation, Run Simulation], 11, false" value="23" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Simulation, Simulation Settings], 10, false" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.GettingStartedView_OPEN_PROJECT, Open Project" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.PAViews_CODE, Code" value="11" type="GuiResourceData"/>
-<property name="PAResourceOtoP.PAViews_PROJECT_SUMMARY, Project Summary" value="1" type="GuiResourceData"/>
-<property name="PAResourceQtoS.SrcChooserPanel_CREATE_FILE, Create File" value="4" type="GuiResourceData"/>
-<property name="PAResourceQtoS.SrcMenu_IP_HIERARCHY, IP Hierarchy" value="2" type="GuiResourceData"/>
-<property name="RDIResource.BaseDialog_OK, OK" value="16" type="GuiResourceData"/>
-<property name="RDIResource.GraphicalView_ZOOM_FIT, Waveform Viewer_zoom_fit" value="8" type="GuiResourceData"/>
-<property name="RDIResource.HCodeEditor_SEARCH_TEXT_COMBO_BOX, water_in_end_sign" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 100, 115" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 101, 120" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 114, 119" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 120, 118" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 132, 120" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 138, 120" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 140, 121" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 143, 111" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 164, 117" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 167, 116" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 174, 123" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 192, 177" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 195, 118" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 213, 118" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 262, 118" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 262, 121" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 292, 127" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 305, 78" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 37, 111" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 38, 113" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 382, 118" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 392, 94" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 40, 119" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 42, 117" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 43, 123" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 455, 120" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 462, 129" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 475, 87" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 487, 115" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 50, 117" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 54, 119" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 542, 112" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 55, 117" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 580, 90" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 59, 73" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 602, 87" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 610, 92" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 62, 117" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 65, 116" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 663, 86" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 667, 90" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 670, -26" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 689, 86" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 701, 92" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 723, 89" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 74, 118" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 75, 119" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 750, 87" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 778, 89" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 804, 89" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 832, 97" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 87, 116" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 94, 125" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 98, 115" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, 99, 118" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 1" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 10" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 2" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 3" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 4" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 5" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 6" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 7" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 8" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 9" value="1" type="GuiResourceData"/>
-<property name="bcd_to_segment.v, 14, 304" value="1" type="GuiResourceData"/>
-<property name="bcd_to_segment.v, 242, 176" value="1" type="GuiResourceData"/>
-<property name="controler.v, 106, 152" value="1" type="GuiResourceData"/>
-<property name="controler.v, 106, 216" value="1" type="GuiResourceData"/>
-<property name="controler.v, 111, 414" value="1" type="GuiResourceData"/>
-<property name="controler.v, 114, 365" value="1" type="GuiResourceData"/>
-<property name="controler.v, 114, 429" value="1" type="GuiResourceData"/>
-<property name="controler.v, 119, 110" value="1" type="GuiResourceData"/>
-<property name="controler.v, 127, 299" value="1" type="GuiResourceData"/>
-<property name="controler.v, 145, 294" value="1" type="GuiResourceData"/>
-<property name="controler.v, 150, 410" value="1" type="GuiResourceData"/>
-<property name="controler.v, 166, 186" value="1" type="GuiResourceData"/>
-<property name="controler.v, 168, 383" value="1" type="GuiResourceData"/>
-<property name="controler.v, 174, 442" value="1" type="GuiResourceData"/>
-<property name="controler.v, 187, 322" value="1" type="GuiResourceData"/>
-<property name="controler.v, 189, 216" value="1" type="GuiResourceData"/>
-<property name="controler.v, 190, 456" value="1" type="GuiResourceData"/>
-<property name="controler.v, 195, 353" value="1" type="GuiResourceData"/>
-<property name="controler.v, 204, 337" value="1" type="GuiResourceData"/>
-<property name="controler.v, 205, 425" value="1" type="GuiResourceData"/>
-<property name="controler.v, 211, 414" value="1" type="GuiResourceData"/>
-<property name="controler.v, 217, 440" value="1" type="GuiResourceData"/>
-<property name="controler.v, 218, 428" value="1" type="GuiResourceData"/>
-<property name="controler.v, 223, 313" value="1" type="GuiResourceData"/>
-<property name="controler.v, 227, 160" value="1" type="GuiResourceData"/>
-<property name="controler.v, 228, 319" value="1" type="GuiResourceData"/>
-<property name="controler.v, 228, 353" value="1" type="GuiResourceData"/>
-<property name="controler.v, 230, 487" value="1" type="GuiResourceData"/>
-<property name="controler.v, 231, 279" value="1" type="GuiResourceData"/>
-<property name="controler.v, 231, 430" value="1" type="GuiResourceData"/>
-<property name="controler.v, 232, 436" value="2" type="GuiResourceData"/>
-<property name="controler.v, 235, 253" value="1" type="GuiResourceData"/>
-<property name="controler.v, 236, 296" value="1" type="GuiResourceData"/>
-<property name="controler.v, 238, 254" value="1" type="GuiResourceData"/>
-<property name="controler.v, 241, 157" value="1" type="GuiResourceData"/>
-<property name="controler.v, 245, 337" value="1" type="GuiResourceData"/>
-<property name="controler.v, 248, 309" value="1" type="GuiResourceData"/>
-<property name="controler.v, 257, 336" value="1" type="GuiResourceData"/>
-<property name="controler.v, 258, 368" value="1" type="GuiResourceData"/>
-<property name="controler.v, 26, 369" value="1" type="GuiResourceData"/>
-<property name="controler.v, 261, 338" value="1" type="GuiResourceData"/>
-<property name="controler.v, 264, 412" value="1" type="GuiResourceData"/>
-<property name="controler.v, 264, 429" value="1" type="GuiResourceData"/>
-<property name="controler.v, 265, 332" value="1" type="GuiResourceData"/>
-<property name="controler.v, 268, 462" value="1" type="GuiResourceData"/>
-<property name="controler.v, 27, 356" value="1" type="GuiResourceData"/>
-<property name="controler.v, 272, 341" value="1" type="GuiResourceData"/>
-<property name="controler.v, 272, 444" value="1" type="GuiResourceData"/>
-<property name="controler.v, 279, 366" value="1" type="GuiResourceData"/>
-<property name="controler.v, 28, 382" value="1" type="GuiResourceData"/>
-<property name="controler.v, 281, 324" value="1" type="GuiResourceData"/>
-<property name="controler.v, 281, 369" value="1" type="GuiResourceData"/>
-<property name="controler.v, 284, 327" value="1" type="GuiResourceData"/>
-<property name="controler.v, 285, 68" value="1" type="GuiResourceData"/>
-<property name="controler.v, 286, 221" value="1" type="GuiResourceData"/>
-<property name="controler.v, 287, 368" value="1" type="GuiResourceData"/>
-<property name="controler.v, 287, 53" value="1" type="GuiResourceData"/>
-<property name="controler.v, 288, 324" value="1" type="GuiResourceData"/>
-<property name="controler.v, 289, 156" value="1" type="GuiResourceData"/>
-<property name="controler.v, 289, 217" value="1" type="GuiResourceData"/>
-<property name="controler.v, 289, 310" value="1" type="GuiResourceData"/>
-<property name="controler.v, 289, 48" value="1" type="GuiResourceData"/>
-<property name="controler.v, 29, 397" value="1" type="GuiResourceData"/>
-<property name="controler.v, 29, 412" value="1" type="GuiResourceData"/>
-<property name="controler.v, 295, 67" value="1" type="GuiResourceData"/>
-<property name="controler.v, 301, 367" value="1" type="GuiResourceData"/>
-<property name="controler.v, 308, 337" value="1" type="GuiResourceData"/>
-<property name="controler.v, 313, 471" value="2" type="GuiResourceData"/>
-<property name="controler.v, 316, 135" value="1" type="GuiResourceData"/>
-<property name="controler.v, 316, 376" value="1" type="GuiResourceData"/>
-<property name="controler.v, 316, 384" value="1" type="GuiResourceData"/>
-<property name="controler.v, 317, 394" value="1" type="GuiResourceData"/>
-<property name="controler.v, 329, 352" value="1" type="GuiResourceData"/>
-<property name="controler.v, 332, 276" value="1" type="GuiResourceData"/>
-<property name="controler.v, 335, 265" value="1" type="GuiResourceData"/>
-<property name="controler.v, 335, 280" value="1" type="GuiResourceData"/>
-<property name="controler.v, 336, 264" value="1" type="GuiResourceData"/>
-<property name="controler.v, 336, 440" value="1" type="GuiResourceData"/>
-<property name="controler.v, 337, 332" value="1" type="GuiResourceData"/>
-<property name="controler.v, 337, 384" value="1" type="GuiResourceData"/>
-<property name="controler.v, 337, 415" value="1" type="GuiResourceData"/>
-<property name="controler.v, 34, 208" value="1" type="GuiResourceData"/>
-<property name="controler.v, 345, 279" value="1" type="GuiResourceData"/>
-<property name="controler.v, 348, 134" value="1" type="GuiResourceData"/>
-<property name="controler.v, 348, 285" value="1" type="GuiResourceData"/>
-<property name="controler.v, 349, 268" value="1" type="GuiResourceData"/>
-<property name="controler.v, 349, 337" value="1" type="GuiResourceData"/>
-<property name="controler.v, 349, 476" value="1" type="GuiResourceData"/>
-<property name="controler.v, 355, 430" value="1" type="GuiResourceData"/>
-<property name="controler.v, 357, 147" value="1" type="GuiResourceData"/>
-<property name="controler.v, 357, 233" value="1" type="GuiResourceData"/>
-<property name="controler.v, 358, 383" value="1" type="GuiResourceData"/>
-<property name="controler.v, 358, 441" value="1" type="GuiResourceData"/>
-<property name="controler.v, 359, 367" value="1" type="GuiResourceData"/>
-<property name="controler.v, 359, 65" value="1" type="GuiResourceData"/>
-<property name="controler.v, 360, 451" value="1" type="GuiResourceData"/>
-<property name="controler.v, 362, 278" value="1" type="GuiResourceData"/>
-<property name="controler.v, 364, 281" value="1" type="GuiResourceData"/>
-<property name="controler.v, 369, 436" value="1" type="GuiResourceData"/>
-<property name="controler.v, 370, 306" value="1" type="GuiResourceData"/>
-<property name="controler.v, 370, 341" value="1" type="GuiResourceData"/>
-<property name="controler.v, 375, 265" value="1" type="GuiResourceData"/>
-<property name="controler.v, 385, 148" value="1" type="GuiResourceData"/>
-<property name="controler.v, 385, 295" value="1" type="GuiResourceData"/>
-<property name="controler.v, 386, 428" value="1" type="GuiResourceData"/>
-<property name="controler.v, 387, 163" value="1" type="GuiResourceData"/>
-<property name="controler.v, 392, 276" value="1" type="GuiResourceData"/>
-<property name="controler.v, 394, 298" value="1" type="GuiResourceData"/>
-<property name="controler.v, 394, 305" value="1" type="GuiResourceData"/>
-<property name="controler.v, 395, 143" value="1" type="GuiResourceData"/>
-<property name="controler.v, 396, 300" value="1" type="GuiResourceData"/>
-<property name="controler.v, 397, 145" value="1" type="GuiResourceData"/>
-<property name="controler.v, 397, 272" value="1" type="GuiResourceData"/>
-<property name="controler.v, 402, 311" value="1" type="GuiResourceData"/>
-<property name="controler.v, 405, 263" value="1" type="GuiResourceData"/>
-<property name="controler.v, 405, 270" value="1" type="GuiResourceData"/>
-<property name="controler.v, 407, 264" value="1" type="GuiResourceData"/>
-<property name="controler.v, 414, 367" value="1" type="GuiResourceData"/>
-<property name="controler.v, 417, 413" value="1" type="GuiResourceData"/>
-<property name="controler.v, 419, 149" value="1" type="GuiResourceData"/>
-<property name="controler.v, 419, 289" value="1" type="GuiResourceData"/>
-<property name="controler.v, 420, 330" value="1" type="GuiResourceData"/>
-<property name="controler.v, 423, 36" value="1" type="GuiResourceData"/>
-<property name="controler.v, 423, 397" value="1" type="GuiResourceData"/>
-<property name="controler.v, 424, 177" value="1" type="GuiResourceData"/>
-<property name="controler.v, 425, 175" value="1" type="GuiResourceData"/>
-<property name="controler.v, 426, 38" value="1" type="GuiResourceData"/>
-<property name="controler.v, 426, 448" value="1" type="GuiResourceData"/>
-<property name="controler.v, 427, 36" value="1" type="GuiResourceData"/>
-<property name="controler.v, 433, 230" value="1" type="GuiResourceData"/>
-<property name="controler.v, 434, 173" value="1" type="GuiResourceData"/>
-<property name="controler.v, 438, 174" value="1" type="GuiResourceData"/>
-<property name="controler.v, 438, 400" value="1" type="GuiResourceData"/>
-<property name="controler.v, 443, 184" value="1" type="GuiResourceData"/>
-<property name="controler.v, 443, 246" value="1" type="GuiResourceData"/>
-<property name="controler.v, 443, 352" value="1" type="GuiResourceData"/>
-<property name="controler.v, 446, 172" value="1" type="GuiResourceData"/>
-<property name="controler.v, 447, 247" value="1" type="GuiResourceData"/>
-<property name="controler.v, 450, 169" value="1" type="GuiResourceData"/>
-<property name="controler.v, 454, 112" value="1" type="GuiResourceData"/>
-<property name="controler.v, 507, 190" value="1" type="GuiResourceData"/>
-<property name="controler.v, 56, 325" value="1" type="GuiResourceData"/>
-<property name="controler.v, 590, 38" value="1" type="GuiResourceData"/>
-<property name="controler.v, 609, 439" value="1" type="GuiResourceData"/>
-<property name="controler.v, 615, 353" value="1" type="GuiResourceData"/>
-<property name="controler.v, 634, 440" value="2" type="GuiResourceData"/>
-<property name="controler.v, 68, 261" value="1" type="GuiResourceData"/>
-<property name="controler.v, 70, 129" value="1" type="GuiResourceData"/>
-<property name="controler.v, 752, 402" value="1" type="GuiResourceData"/>
-<property name="controler.v, 761, 397" value="1" type="GuiResourceData"/>
-<property name="controler.v, 79, 139" value="1" type="GuiResourceData"/>
-<property name="controler.v, 888, 331" value="1" type="GuiResourceData"/>
-<property name="controler.v, 895, 338" value="1" type="GuiResourceData"/>
-<property name="controler.v, 95, 308" value="1" type="GuiResourceData"/>
-<property name="integer_to_bcd.v, 189, 179" value="1" type="GuiResourceData"/>
-<property name="integer_to_bcd.v, 220, 124" value="1" type="GuiResourceData"/>
-<property name="integer_to_bcd.v, 24, 308" value="1" type="GuiResourceData"/>
-<property name="integer_to_bcd.v, 573, 138" value="1" type="GuiResourceData"/>
-<property name="time_display.v, 152, 218" value="1" type="GuiResourceData"/>
-<property name="time_display.v, 160, 105" value="1" type="GuiResourceData"/>
-<property name="time_display.v, 160, 212" value="1" type="GuiResourceData"/>
-<property name="time_display.v, 160, 70" value="1" type="GuiResourceData"/>
-<property name="time_display.v, 173, 144" value="1" type="GuiResourceData"/>
-<property name="time_display.v, 195, 158" value="1" type="GuiResourceData"/>
-<property name="time_display.v, 216, 118" value="1" type="GuiResourceData"/>
-<property name="time_display.v, 216, 200" value="1" type="GuiResourceData"/>
-<property name="time_display.v, 223, 190" value="1" type="GuiResourceData"/>
-<property name="time_display.v, 227, 291" value="1" type="GuiResourceData"/>
-<property name="time_display.v, 234, 331" value="1" type="GuiResourceData"/>
-<property name="time_display.v, 242, 209" value="1" type="GuiResourceData"/>
-<property name="time_display.v, 242, 389" value="1" type="GuiResourceData"/>
-<property name="time_display.v, 247, 435" value="1" type="GuiResourceData"/>
-<property name="time_display.v, 264, 222" value="1" type="GuiResourceData"/>
-<property name="time_display.v, 69, 303" value="1" type="GuiResourceData"/>
-<property name="time_to_segment.v, 18, 310" value="1" type="GuiResourceData"/>
-<property name="time_to_segment.v, 234, 138" value="1" type="GuiResourceData"/>
-<property name="timer.v, 148, 474" value="1" type="GuiResourceData"/>
-<property name="timer.v, 174, 504" value="1" type="GuiResourceData"/>
-<property name="timer.v, 180, 502" value="1" type="GuiResourceData"/>
-<property name="timer.v, 183, 244" value="1" type="GuiResourceData"/>
-<property name="timer.v, 209, 516" value="1" type="GuiResourceData"/>
-<property name="timer.v, 216, 504" value="1" type="GuiResourceData"/>
-<property name="timer.v, 236, 430" value="1" type="GuiResourceData"/>
-<property name="timer.v, 261, 472" value="1" type="GuiResourceData"/>
-<property name="timer.v, 300, 489" value="1" type="GuiResourceData"/>
-<property name="timer.v, 307, 488" value="1" type="GuiResourceData"/>
-<property name="timer.v, 429, 500" value="1" type="GuiResourceData"/>
-<property name="timer.v, 481, 264" value="1" type="GuiResourceData"/>
-<property name="timer.v, 487, 485" value="1" type="GuiResourceData"/>
-<property name="timer.v, 54, 490" value="1" type="GuiResourceData"/>
-<property name="timer.v, 75, 502" value="1" type="GuiResourceData"/>
-<property name="timer.v, 77, 490" value="1" type="GuiResourceData"/>
-<property name="timer.v, 86, 505" value="1" type="GuiResourceData"/>
-<property name="timer_tb.v, 197, 231" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 104, 111" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 107, 66" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 142, 324" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 153, 155" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 159, 202" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 160, 173" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 163, 307" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 163, 307, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 165, 314" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 167, 320" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 167, 320, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 171, 292" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 171, 292, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 173, 189" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 181, 222" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 184, 272" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 184, 272, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 184, 279" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 184, 279, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 186, 262" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 186, 262, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 187, 342" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 187, 342, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 193, 369" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 195, 403" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 197, 244" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 197, 244, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 197, 296" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 198, 292" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 198, 413" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 199, 292" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 201, 294" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 203, 289" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 204, 292" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 204, 293" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 207, 261" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 208, 321" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 212, 272" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 212, 272, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 215, 259" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 215, 259, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 217, 383" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 218, 285" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 222, 127" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 226, 289" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 227, 173" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 229, 258" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 232, 336" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 236, 303" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 236, 303, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 238, 295" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 256, 126" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 258, 174" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 261, 205" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 265, 443, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 266, 445" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 267, 218" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 269, 226" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 270, 451" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 274, 12" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 280, 172" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 285, 130" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 292, 279" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 295, 307" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 295, 307, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 295, 83" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 299, 379" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 300, 262" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 302, 324" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 302, 324, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 307, 73" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 308, 88" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 327, 213" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 331, 216" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 331, 337" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 335, 257" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 339, 326" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 339, 365" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 343, 402" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 347, 262" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 350, 324" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 353, 352" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 355, 474" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 356, 388" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 362, 202" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 365, 383" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 366, 121" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 370, 356" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 384, 116" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 384, 152" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 385, 108" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 385, 145" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 386, 279" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 387, 98" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 391, 325" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 393, 274" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 394, 400" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 395, 160" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 397, 302" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 397, 302, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 412, 274" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 414, 175" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 419, 296" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 420, 101" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 422, 181" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 426, 134" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 426, 170" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 426, 87" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 438, 259" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 438, 312" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 443, 75" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 444, 114" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 444, 444" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 451, 305" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 452, 320" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 459, 411" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 477, 157" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 477, 301" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 48, 161" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 495, 111" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 50, 115" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 502, 92" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 502, 92, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 504, 300" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 505, 452" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 511, 312" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 520, 337" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 528, 115" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 528, 115, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 546, 94" value="2" type="GuiResourceData"/>
-<property name="water_let_mode.v, 546, 94, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 546, 98" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 547, 96" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 548, 96, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 548, 98" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 55, 22" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 562, 94" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 562, 94, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 575, 97" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 575, 97, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 594, 299" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 655, 112" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 655, 173" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 690, 115" value="2" type="GuiResourceData"/>
-<property name="water_let_mode.v, 690, 115, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="water_let_mode.v, 704, 109" value="1" type="GuiResourceData"/>
-<property name="water_let_mode_tb.v, 107, 320" value="1" type="GuiResourceData"/>
-<property name="water_let_mode_tb.v, 133, 414" value="1" type="GuiResourceData"/>
-<property name="water_let_mode_tb.v, 164, 324" value="1" type="GuiResourceData"/>
-<property name="water_let_mode_tb.v, 175, 323" value="1" type="GuiResourceData"/>
-<property name="water_let_mode_tb.v, 179, 306" value="1" type="GuiResourceData"/>
-<property name="water_let_mode_tb.v, 182, 318" value="1" type="GuiResourceData"/>
-<property name="water_let_mode_tb.v, 182, 49" value="1" type="GuiResourceData"/>
-<property name="water_let_mode_tb.v, 184, 455" value="1" type="GuiResourceData"/>
-<property name="water_let_mode_tb.v, 197, 455" value="1" type="GuiResourceData"/>
-<property name="water_let_mode_tb.v, 207, 240" value="1" type="GuiResourceData"/>
-<property name="water_let_mode_tb.v, 249, 206" value="1" type="GuiResourceData"/>
-<property name="water_let_mode_tb.v, 258, 164" value="1" type="GuiResourceData"/>
-<property name="water_let_mode_tb.v, 282, 204" value="1" type="GuiResourceData"/>
-<property name="water_let_mode_tb.v, 350, 195" value="1" type="GuiResourceData"/>
-<property name="water_let_mode_tb.v, 355, 262" value="1" type="GuiResourceData"/>
-<property name="water_let_mode_tb.v, 356, 218" value="1" type="GuiResourceData"/>
-<property name="water_let_mode_tb.v, 356, 263" value="1" type="GuiResourceData"/>
-<property name="water_let_mode_tb.v, 400, 218" value="1" type="GuiResourceData"/>
-<property name="water_let_mode_tb.v, 413, 217" value="1" type="GuiResourceData"/>
-<property name="water_let_mode_tb.v, 427, 217" value="1" type="GuiResourceData"/>
-<property name="water_let_mode_tb.v, 429, 263" value="1" type="GuiResourceData"/>
-<property name="water_let_mode_tb.v, 433, 262" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, [, Synthesis, [Synth 8-285] failed synthesizing module 'wash_mode' [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/wash_mode.v:3]. ], 7, true" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, [, Synthesis, [Synth 8-91] ambiguous clock in event control [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/wash_mode.v:52]. ], 6, false" value="2" type="GuiResourceData"/>
+<property name="RDIResource.BaseDialog_OK, OK" value="1" type="GuiResourceData"/>
+<property name="wash_mode.v, 255, 230" value="1" type="GuiResourceData"/>
+<property name="wash_mode.v, 309, 156" value="1" type="GuiResourceData"/>
+<property name="wash_mode.v, 318, 160" value="1" type="GuiResourceData"/>
+<property name="wash_mode.v, 338, 151" value="1" type="GuiResourceData"/>
+<property name="wash_mode.v, 90, 158" value="1" type="GuiResourceData"/>
 </item>
 <item name="Other">
-<property name="GuiMode" value="14" type="GuiMode"/>
+<property name="GuiMode" value="15" type="GuiMode"/>
 <property name="BatchMode" value="0" type="BatchMode"/>
-<property name="TclMode" value="12" type="TclMode"/>
+<property name="TclMode" value="13" type="TclMode"/>
 </item>
 </section>
 </application>
