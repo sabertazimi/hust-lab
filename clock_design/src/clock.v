@@ -44,6 +44,9 @@ module clock
   wire clk_dst;
   wire [(WIDTH-1):0] clk_group;
   
+  // segment light when power on
+  wire [7:0] inner_anodes, inner_cnodes;
+  
   range_divider DRANGE_DIVIDER (
     .clk_src(clk_src),
     .clk_dst(clk_dst)
@@ -101,8 +104,12 @@ module clock
      .sec_data(sec),
      .min_data(min),
      .hour_data(hour),
-     .anodes(anodes),
-     .cnodes(cnodes)
+     // when power off, light off
+     .anodes(inner_anodes),
+     .cnodes(inner_cnodes)
   );
+  
+  assign anodes = power ? inner_anodes : 8'b11111111;
+  assign cnodes = power ? inner_cnodes : 8'b11111111;
   
 endmodule

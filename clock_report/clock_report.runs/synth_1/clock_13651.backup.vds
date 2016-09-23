@@ -1,0 +1,90 @@
+#-----------------------------------------------------------
+# Vivado v2016.2 (64-bit)
+# SW Build 1577090 on Thu Jun  2 16:32:35 MDT 2016
+# IP Build 1577682 on Fri Jun  3 12:00:54 MDT 2016
+# Start of session at: Fri Sep 23 15:35:02 2016
+# Process ID: 13651
+# Current directory: /home/sabertazimi/Work/Source/dld/clock_report/clock_report.runs/synth_1
+# Command line: vivado -log clock.vds -mode batch -messageDb vivado.pb -notrace -source clock.tcl
+# Log file: /home/sabertazimi/Work/Source/dld/clock_report/clock_report.runs/synth_1/clock.vds
+# Journal file: /home/sabertazimi/Work/Source/dld/clock_report/clock_report.runs/synth_1/vivado.jou
+#-----------------------------------------------------------
+source clock.tcl -notrace
+Command: synth_design -top clock -part xc7a100tcsg324-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 13827 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1043.688 ; gain = 154.137 ; free physical = 286 ; free virtual = 10913
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'clock' [/home/sabertazimi/Work/Source/dld/clock_design/src/clock.v:23]
+	Parameter WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'range_divider' [/home/sabertazimi/Work/Source/dld/clock_design/src/range_divider.v:23]
+	Parameter WIDTH bound to: 32 - type: integer 
+	Parameter RANGE bound to: 27'b101111101011110000100000000 
+INFO: [Synth 8-256] done synthesizing module 'range_divider' (1#1) [/home/sabertazimi/Work/Source/dld/clock_design/src/range_divider.v:23]
+INFO: [Synth 8-638] synthesizing module 'tick_divider' [/home/sabertazimi/Work/Source/dld/clock_design/src/tick_divider.v:23]
+	Parameter WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'tick_divider' (2#1) [/home/sabertazimi/Work/Source/dld/clock_design/src/tick_divider.v:23]
+INFO: [Synth 8-638] synthesizing module 'timer' [/home/sabertazimi/Work/Source/dld/clock_design/src/timer.v:33]
+	Parameter WIDTH bound to: 32 - type: integer 
+	Parameter RANGE bound to: 60 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'timer' (3#1) [/home/sabertazimi/Work/Source/dld/clock_design/src/timer.v:33]
+INFO: [Synth 8-638] synthesizing module 'timer__parameterized0' [/home/sabertazimi/Work/Source/dld/clock_design/src/timer.v:33]
+	Parameter WIDTH bound to: 32 - type: integer 
+	Parameter RANGE bound to: 24 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'timer__parameterized0' (3#1) [/home/sabertazimi/Work/Source/dld/clock_design/src/timer.v:33]
+INFO: [Synth 8-638] synthesizing module 'ring' [/home/sabertazimi/Work/Source/dld/clock_design/src/ring.v:27]
+	Parameter LEN bound to: 5 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'ring' (4#1) [/home/sabertazimi/Work/Source/dld/clock_design/src/ring.v:27]
+INFO: [Synth 8-638] synthesizing module 'time_displayer' [/home/sabertazimi/Work/Source/dld/clock_design/src/time_displayer.v:30]
+	Parameter WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'time_to_segment' [/home/sabertazimi/Work/Source/dld/clock_design/src/time_to_segment.v:23]
+	Parameter WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'integer_to_bcd' [/home/sabertazimi/Work/Source/dld/clock_design/src/integer_to_bcd.v:23]
+INFO: [Synth 8-256] done synthesizing module 'integer_to_bcd' (5#1) [/home/sabertazimi/Work/Source/dld/clock_design/src/integer_to_bcd.v:23]
+INFO: [Synth 8-638] synthesizing module 'bcd_to_segment' [/home/sabertazimi/Work/Source/dld/clock_design/src/bcd_to_segment.v:23]
+INFO: [Synth 8-256] done synthesizing module 'bcd_to_segment' (6#1) [/home/sabertazimi/Work/Source/dld/clock_design/src/bcd_to_segment.v:23]
+INFO: [Synth 8-256] done synthesizing module 'time_to_segment' (7#1) [/home/sabertazimi/Work/Source/dld/clock_design/src/time_to_segment.v:23]
+INFO: [Synth 8-226] default block is never used [/home/sabertazimi/Work/Source/dld/clock_design/src/time_displayer.v:74]
+WARNING: [Synth 8-567] referenced signal 'sec_seg' should be on the sensitivity list [/home/sabertazimi/Work/Source/dld/clock_design/src/time_displayer.v:73]
+WARNING: [Synth 8-567] referenced signal 'min_seg' should be on the sensitivity list [/home/sabertazimi/Work/Source/dld/clock_design/src/time_displayer.v:73]
+WARNING: [Synth 8-567] referenced signal 'hour_seg' should be on the sensitivity list [/home/sabertazimi/Work/Source/dld/clock_design/src/time_displayer.v:73]
+INFO: [Synth 8-256] done synthesizing module 'time_displayer' (8#1) [/home/sabertazimi/Work/Source/dld/clock_design/src/time_displayer.v:30]
+WARNING: [Synth 8-2900] ignoring illegal expression in output port connection [/home/sabertazimi/Work/Source/dld/clock_design/src/clock.v:105]
+WARNING: [Synth 8-2900] ignoring illegal expression in output port connection [/home/sabertazimi/Work/Source/dld/clock_design/src/clock.v:106]
+WARNING: [Synth 8-3848] Net anodes in module/entity clock does not have driver. [/home/sabertazimi/Work/Source/dld/clock_design/src/clock.v:33]
+WARNING: [Synth 8-3848] Net cnodes in module/entity clock does not have driver. [/home/sabertazimi/Work/Source/dld/clock_design/src/clock.v:34]
+INFO: [Synth 8-256] done synthesizing module 'clock' (9#1) [/home/sabertazimi/Work/Source/dld/clock_design/src/clock.v:23]
+WARNING: [Synth 8-3331] design clock has unconnected port anodes[7]
+WARNING: [Synth 8-3331] design clock has unconnected port anodes[6]
+WARNING: [Synth 8-3331] design clock has unconnected port anodes[5]
+WARNING: [Synth 8-3331] design clock has unconnected port anodes[4]
+WARNING: [Synth 8-3331] design clock has unconnected port anodes[3]
+WARNING: [Synth 8-3331] design clock has unconnected port anodes[2]
+WARNING: [Synth 8-3331] design clock has unconnected port anodes[1]
+WARNING: [Synth 8-3331] design clock has unconnected port anodes[0]
+WARNING: [Synth 8-3331] design clock has unconnected port cnodes[7]
+WARNING: [Synth 8-3331] design clock has unconnected port cnodes[6]
+WARNING: [Synth 8-3331] design clock has unconnected port cnodes[5]
+WARNING: [Synth 8-3331] design clock has unconnected port cnodes[4]
+WARNING: [Synth 8-3331] design clock has unconnected port cnodes[3]
+WARNING: [Synth 8-3331] design clock has unconnected port cnodes[2]
+WARNING: [Synth 8-3331] design clock has unconnected port cnodes[1]
+WARNING: [Synth 8-3331] design clock has unconnected port cnodes[0]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1084.125 ; gain = 194.574 ; free physical = 246 ; free virtual = 10873
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1084.125 ; gain = 194.574 ; free physical = 246 ; free virtual = 10873
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xc7a100tcsg324-1

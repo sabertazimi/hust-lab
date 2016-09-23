@@ -19,10 +19,10 @@ read_verilog -library xil_defaultlib {
   /home/sabertazimi/Work/Source/dld/clock_design/src/integer_to_bcd.v
   /home/sabertazimi/Work/Source/dld/clock_design/src/time_to_segment.v
   /home/sabertazimi/Work/Source/dld/clock_design/src/timer.v
-  /home/sabertazimi/Work/Source/dld/clock_design/src/time_displayer.v
   /home/sabertazimi/Work/Source/dld/clock_design/src/tick_divider.v
   /home/sabertazimi/Work/Source/dld/clock_design/src/ring.v
   /home/sabertazimi/Work/Source/dld/clock_design/src/range_divider.v
+  /home/sabertazimi/Work/Source/dld/clock_design/src/time_displayer.v
   /home/sabertazimi/Work/Source/dld/clock_design/src/clock.v
 }
 foreach dcp [get_files -quiet -all *.dcp] {

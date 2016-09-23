@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1474548023">
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1474616588">
   <File Type="VDS-TIMING-PB" Name="clock_timing_summary_synth.pb"/>
   <File Type="VDS-TIMINGSUMMARY" Name="clock_timing_summary_synth.rpt"/>
   <File Type="RDS-DCP" Name="clock.dcp"/>
@@ -38,13 +38,6 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PPRDIR/../clock_design/src/time_displayer.v">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
     <File Path="$PPRDIR/../clock_design/src/tick_divider.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -60,6 +53,13 @@
       </FileInfo>
     </File>
     <File Path="$PPRDIR/../clock_design/src/range_divider.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../clock_design/src/time_displayer.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
