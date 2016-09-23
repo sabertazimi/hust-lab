@@ -3,10 +3,10 @@
 <!--The data in this file is primarily intended for consumption by Xilinx tools.
 The structure and the elements are likely to change over the next few releases.
 This means code written to parse this file will need to be revisited each subsequent release.-->
-<application name="pa" timeStamp="Fri Sep 23 20:53:13 2016">
+<application name="pa" timeStamp="Fri Sep 23 21:36:58 2016">
 <section name="Project Information" visible="false">
 <property name="ProjectID" value="a94dc46e42d54ab1aad5e8865458a5be" type="ProjectID"/>
-<property name="ProjectIteration" value="32" type="ProjectIteration"/>
+<property name="ProjectIteration" value="34" type="ProjectIteration"/>
 </section>
 <section name="PlanAhead Usage" visible="true">
 <item name="Project Data">
@@ -18,43 +18,52 @@ This means code written to parse this file will need to be revisited each subseq
 </item>
 <item name="Java Command Handlers">
 <property name="AddSources" value="3" type="JavaHandler"/>
-<property name="AutoConnectTarget" value="18" type="JavaHandler"/>
-<property name="CloseProject" value="2" type="JavaHandler"/>
+<property name="AutoConnectTarget" value="19" type="JavaHandler"/>
+<property name="CloseProject" value="3" type="JavaHandler"/>
 <property name="EditPaste" value="1" type="JavaHandler"/>
 <property name="EditUndo" value="11" type="JavaHandler"/>
 <property name="LaunchOpenTarget" value="6" type="JavaHandler"/>
-<property name="LaunchProgramFpga" value="25" type="JavaHandler"/>
+<property name="LaunchProgramFpga" value="27" type="JavaHandler"/>
 <property name="NewProject" value="1" type="JavaHandler"/>
-<property name="OpenHardwareManager" value="12" type="JavaHandler"/>
-<property name="OpenProject" value="5" type="JavaHandler"/>
-<property name="OpenRecentTarget" value="8" type="JavaHandler"/>
+<property name="OpenHardwareManager" value="14" type="JavaHandler"/>
+<property name="OpenProject" value="6" type="JavaHandler"/>
+<property name="OpenRecentTarget" value="9" type="JavaHandler"/>
 <property name="OpenTarget" value="1" type="JavaHandler"/>
 <property name="ProjectSettingsCmdHandler" value="3" type="JavaHandler"/>
-<property name="RunBitgen" value="30" type="JavaHandler"/>
+<property name="RunBitgen" value="32" type="JavaHandler"/>
 <property name="RunImplementation" value="1" type="JavaHandler"/>
 <property name="RunSchematic" value="2" type="JavaHandler"/>
+<property name="RunSynthesis" value="1" type="JavaHandler"/>
 <property name="SetTopNode" value="1" type="JavaHandler"/>
 <property name="ShowSource" value="1" type="JavaHandler"/>
-<property name="ShowView" value="5" type="JavaHandler"/>
+<property name="ShowView" value="6" type="JavaHandler"/>
 <property name="SimulationClose" value="7" type="JavaHandler"/>
 <property name="SimulationRun" value="10" type="JavaHandler"/>
 <property name="UpdateRegId" value="2" type="JavaHandler"/>
 <property name="ViewTaskRTLAnalysis" value="1" type="JavaHandler"/>
 </item>
 <item name="Gui Resources Info">
-<property name="CANCEL, Cancel" value="1" type="GuiResourceData"/>
-<property name="NEXT, Next " value="1" type="GuiResourceData"/>
-<property name="PAResourceAtoD.CmdMsgDialog_OK, OK" value="2" type="GuiResourceData"/>
-<property name="PAResourceCommand.PACommandNames_OPEN_HARDWARE_MANAGER, Open Hardware Manager" value="1" type="GuiResourceData"/>
-<property name="PAResourceCommand.PACommandNames_OPEN_TARGET_WIZARD, Open New Target..." value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Program and Debug, Hardware Manager, Open Target], 27, false" value="1" type="GuiResourceData"/>
-<property name="RDIResource.BaseDialog_CANCEL, Cancel" value="2" type="GuiResourceData"/>
-<property name="RDIResource.BaseDialog_OK, OK" value="4" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_CLOSE_PROJECT, Close Project" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_EXPORT, Export" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_FILE, File" value="2" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_IMPORT, Import" value="2" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_OPEN_RECENT_FILE, Open Recent File" value="2" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_OPEN_RECENT_PROJECT, Open Recent Project" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, [, Synthesis, [Synth 8-567] referenced signal 'sec_seg' should be on the sensitivity list [/home/sabertazimi/Work/Source/dld/clock_design/src/time_displayer.v:75]. ], 28, true" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, [, Synthesis, [Vivado 12-507] No nets matched 'power_IBUF'. [/home/sabertazimi/Work/Source/dld/clock_design/constrs/clock.xdc:8]. ], 30" value="2" type="GuiResourceData"/>
+<property name="PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, [, Synthesis, [Vivado 12-507] No nets matched 'power_IBUF'. [/home/sabertazimi/Work/Source/dld/clock_design/constrs/clock.xdc:8]. ], 30, true" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.MsgView_ERROR_MESSAGES, (String" value="1" type="GuiResourceData"/>
+<property name="RDIResource.BaseDialog_CANCEL, Cancel" value="1" type="GuiResourceData"/>
+<property name="RDIResource.BaseDialog_OK, OK" value="1" type="GuiResourceData"/>
+<property name="time_displayer.v, 115, 220" value="1" type="GuiResourceData"/>
+<property name="time_displayer.v, 140, 202" value="1" type="GuiResourceData"/>
+<property name="time_displayer.v, 175, 216" value="1" type="GuiResourceData"/>
+<property name="time_displayer.v, 65, 234" value="1" type="GuiResourceData"/>
 </item>
 <item name="Other">
-<property name="GuiMode" value="8" type="GuiMode"/>
+<property name="GuiMode" value="9" type="GuiMode"/>
 <property name="BatchMode" value="0" type="BatchMode"/>
-<property name="TclMode" value="6" type="TclMode"/>
+<property name="TclMode" value="7" type="TclMode"/>
 </item>
 </section>
 </application>
