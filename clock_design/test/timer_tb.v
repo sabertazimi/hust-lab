@@ -19,7 +19,6 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
 module timer_tb();
 
     parameter DELAY = 10;
@@ -71,6 +70,7 @@ module timer_tb();
         
         // power = 0, enable = 1
         // all buttons don't work
+        enable = 1;
         #(DELAY) add_time = 1;
         #(DELAY) add_time = 0;
         #(DELAY) sub_time = 1;
@@ -80,13 +80,12 @@ module timer_tb();
         // reset works, add_time/sub_time doesn't work
         // feat: reset && count
         #(DELAY) power = 1;
-        #(DELAY) enable = 1;
         #(DELAY/2);
         #(DELAY) add_time = 1;
         #(DELAY) add_time = 0;
         #(DELAY) sub_time = 1;
         #(DELAY) sub_time = 0;
-        #(5*DELAY) reset = 1;
+        #(3*DELAY) reset = 1;
         #(DELAY) reset = 0;
         
         // power = 1, enable = 0

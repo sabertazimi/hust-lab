@@ -47,3 +47,13 @@ always @(posedge clock) begin
     endcase
 end
 ```
+
+## 模块实例化时模块, 形参与实参位数不匹配
+
+## 在多个 always/module 中, 修改同一变量
+
+## 未初始化
+
+## 七段显示器 0/1 弄反, 0 误以为 暗, 1 误以为 亮
+
+## case 未加 default 语句，遇到 infering latch 警告，导致 bitstream 生成失败

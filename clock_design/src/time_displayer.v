@@ -1,4 +1,5 @@
 `timescale 1ns / 1ps
+
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
@@ -27,6 +28,7 @@
 // @output
 // anodes: bind to board
 // cnodes: bind to board
+
 module time_displayer
 #(parameter WIDTH = 32)
 (
