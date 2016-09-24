@@ -11,7 +11,7 @@
 // sig_start: signal implicits arriving at 0
 // sig_end: signal implicits arriving at RANGE
 module timer
-#(parameter WIDTH = 32)
+#(parameter WIDTH = 32, CLK_CH = 25)
 (   input [31:0]clk_src,
     input switch_power,
     input switch_en,
@@ -29,12 +29,12 @@ module timer
         reverse_count <= 0;
     end
     //information: count has a second delay
-    assign real_clk = (switch_power & count_start_flag & !init_flag) ? clk_src[25] : clk_src[0];
+    assign real_clk = (switch_power & count_start_flag & !init_flag) ? clk_src[CLK_CH] : clk_src[0];
     always @(posedge real_clk) begin
         if (switch_power & count_start_flag) begin
             if(init_flag) begin reverse_count = 0; count = sum_count; init_flag = 0; end
             else if (switch_en) begin
-                if (reverse_count <= sum_count) begin
+                if (sum_count >= reverse_count) begin
                     count = sum_count - reverse_count;
                     reverse_count = reverse_count + 1;
                 end else begin

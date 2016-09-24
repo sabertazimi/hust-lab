@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 module wash_mode
-//#(parameter WIDTH = 32)
+#(parameter WIDTH = 32, CLK_CH = 25)
 (
     input wash_start, input start, input power, input [31:0]clk, //input wash_control,
     input [2:0]weight,
@@ -28,7 +28,7 @@ module wash_mode
         wash_count = 1'b0;
     end
     
-     water_let_mode WATER_IN_MODE (.water_in_end_sign(water_in_end_sign),
+     water_let_mode #(WIDTH, CLK_CH) WATER_IN_MODE (.water_in_end_sign(water_in_end_sign),
                                   .water_in_start(water_in_start),
                                   .water_out_start(1'b0),
                                   .water_out_end_sign(water_out_end_sign),
@@ -39,7 +39,7 @@ module wash_mode
                                   .water_level(water_level)
      );
      
-     timer TIMER_WASH (.clk_src(clk),
+     timer #(WIDTH, CLK_CH) TIMER_WASH (.clk_src(clk),
                        .switch_power(power),
                        .switch_en(start),
                        .sum_count({{29{1'b0}}, weight} * 3),
@@ -59,7 +59,7 @@ module wash_mode
     end
     
     //spangle light
-    always @(posedge clk[25])
+    always @(posedge clk[CLK_CH])
     if(wash_start & power)
     begin
         case(state)

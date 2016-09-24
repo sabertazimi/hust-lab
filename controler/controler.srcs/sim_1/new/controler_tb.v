@@ -9,7 +9,7 @@ module controler_tb();
     wire [2:0]weight_ch_light; 
     parameter TIME = 1000;
 
-    controler CONTROLER (.power(power),
+    controler #(32,1) CONTROLER (.power(power),
                          .start_pause(start_pause),
                          .weight_ch(weight_ch),
                          .mode_ch(mode_ch),
@@ -45,10 +45,10 @@ module controler_tb();
 //        #10 power = 1; weight_ch = 0;
 //        #10 mode_ch = 1; weight_ch = 1;
         #10 power = 1;
-        #10 start_pause = 1;
+//        #30 start_pause = 1;
 //        #100 power = 0;
 //        #40 power = 1;
-        #950 ;
+        #980 ;
     end
 
 endmodule

@@ -1,6 +1,8 @@
 `timescale 1ns / 1ps
 
-module dewater_mode(
+module dewater_mode
+#(parameter WIDTH = 32, CLK_CH = 25)
+(
     input dewater_start, input start, input power, input [31:0]clk,
     input [2:0]weight,
     output reg dewater_end_sign, 
@@ -22,7 +24,7 @@ module dewater_mode(
         dewatering_light = 1'b0;
     end
     
-     water_let_mode WATER_OUT_MODE (.water_out_end_sign(water_out_end_sign),
+     water_let_mode #(WIDTH, CLK_CH) WATER_OUT_MODE (.water_out_end_sign(water_out_end_sign),
                                     .water_in_end_sign(water_in_end_sign),
                                     .water_out_start(water_out_start),
                                     .water_in_start(1'b0),
@@ -32,7 +34,7 @@ module dewater_mode(
                                     .start(start),
                                     .water_level(water_level)
      );
-     timer TIMER_WASH (.clk_src(clk),
+     timer #(WIDTH, CLK_CH) TIMER_WASH (.clk_src(clk),
                        .switch_power(power),
                        .switch_en(start),
                        .sum_count({{29{1'b0}},weight}),
@@ -50,7 +52,7 @@ module dewater_mode(
     end
     
     //spangle light
-    always @(posedge clk[25])
+    always @(posedge clk[CLK_CH])
     if(dewater_start & power)
     begin
         case(state)
@@ -73,7 +75,7 @@ module dewater_mode(
             dewater_end_state: begin dewater_count = 0; dewater_end_sign = 1'b1; end
         endcase
     end else begin
-        dewater_count = 0; dewater_end_sign = 1'b1;
+        dewater_count = 0; dewater_end_sign = 1'b0;
     end
     end
     

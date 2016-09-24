@@ -1,0 +1,20 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  "../../../controler.srcs/sources_1/new/integer_to_bcd.v"
+verilog xil_defaultlib  "../../../controler.srcs/sources_1/new/bcd_to_segment.v"
+verilog xil_defaultlib  "../../../controler.srcs/sources_1/new/timer.v"
+verilog xil_defaultlib  "../../../controler.srcs/sources_1/new/time_to_segment.v"
+verilog xil_defaultlib  "../../../controler.srcs/sources_1/new/water_let_mode.v"
+verilog xil_defaultlib  "../../../controler.srcs/sources_1/new/wash_mode.v"
+verilog xil_defaultlib  "../../../controler.srcs/sources_1/new/time_display.v"
+verilog xil_defaultlib  "../../../controler.srcs/sources_1/new/tick_divider.v"
+verilog xil_defaultlib  "../../../controler.srcs/sources_1/new/selector_mode.v"
+verilog xil_defaultlib  "../../../controler.srcs/sources_1/new/dewater_mode.v"
+verilog xil_defaultlib  "../../../controler.srcs/sources_1/new/rinse_mode.v"
+verilog xil_defaultlib  "../../../controler.srcs/sources_1/new/controler.v"
+verilog xil_defaultlib  "../../../controler.srcs/sim_1/new/controler_tb.v"
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

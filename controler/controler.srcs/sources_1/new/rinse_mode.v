@@ -1,6 +1,8 @@
 `timescale 1ns / 1ps
 
-module rinse_mode(
+module rinse_mode
+#(parameter WIDTH = 32, CLK_CH = 25)
+(
     input rinse_start, input start, input power, input [31:0]clk, input [2:0]weight,
     output reg rinse_end_sign, 
     //light
@@ -28,7 +30,7 @@ module rinse_mode(
             rinsing_start = 1'b0;
         end
         
-         water_let_mode WATER_IN_MODE (.water_in_end_sign(water_in_end_sign),
+         water_let_mode #(WIDTH, CLK_CH) WATER_IN_MODE (.water_in_end_sign(water_in_end_sign),
                                        .water_in_start(water_in_start),
                                        .water_out_start(water_out_start),
                                        .water_out_end_sign(water_out_end_sign),
@@ -38,7 +40,7 @@ module rinse_mode(
                                        .start(start),
                                        .water_level(water_level)
           );
-          timer DEWATERIGN_TIMER (.clk_src(clk),
+          timer #(WIDTH, CLK_CH) DEWATERIGN_TIMER (.clk_src(clk),
                                   .switch_power(power),
                                   .switch_en(start),
                                   .sum_count({{29{1'b0}},weight}),
@@ -46,7 +48,7 @@ module rinse_mode(
                                   .count_end_flag(dewatering_end_sign),
                                   .count(dewatering_count)
           );
-          timer RINSING_TIMER (.clk_src(clk),
+          timer #(WIDTH, CLK_CH) RINSING_TIMER (.clk_src(clk),
                                   .switch_power(power),
                                   .switch_en(start),
                                   .sum_count({{29{1'b0}},weight} * 2),
@@ -62,7 +64,7 @@ module rinse_mode(
         end 
         
         //spangle light
-        always @(posedge clk[25])
+        always @(posedge clk[CLK_CH])
         if(rinse_start & power)
         begin
             case(state)

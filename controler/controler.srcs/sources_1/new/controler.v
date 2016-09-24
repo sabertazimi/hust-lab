@@ -1,7 +1,9 @@
 `timescale 1ns / 1ps
 
 
-module controler(
+module controler
+#(parameter WIDTH = 32, CLK_CH = 25)
+(
     input power, input start_pause, input weight_ch, input mode_ch, input clk_src,
     output start_pause_light,output [2:0]weight_ch_light, output power_light,
     output water_in_light, output reg washing_light, output reg rinsing_light,
@@ -11,8 +13,9 @@ module controler(
     
     reg [2:0]state, nextstate;
     reg [2:0]water_level;
-    wire real_clk;
+    wire real_p_clk, real_s_clk, real_c_clk;
     reg power_control, start_pause_light_one, start_pause_light_two;
+    reg [1:0]washing_machine_running;
     wire true_power;
     wire [7:0]ianodes, icnodes;
     wire [1:0]washing_state, dewatering_state;
@@ -36,11 +39,12 @@ module controler(
     integer count;
     
     // choose weight don't care system run or pause
-    selector_mode  #(0,5) MODE_SEL (.clk(clk),
+    selector_mode  #(0,5,CLK_CH) MODE_SEL (.clk(clk),
                             .switch_power(true_power),
                             .switch_en(start_pause_light),
                             .sig_change(mode_ch),
                             .push(mode_ch_push),
+                            .washing_machine_running(washing_machine_running),
                             .sel_value(w_r_d_change)
     );
     //devider
@@ -48,15 +52,16 @@ module controler(
                                .clk_group(clk)
     );
     
-    selector_mode WEIGHT_SEL (.clk(clk),
+    selector_mode #(2,5,CLK_CH) WEIGHT_SEL (.clk(clk),
                             .switch_power(true_power),
                             .switch_en(start_pause_light),
                             .sig_change(weight_ch),
                             .push(weight_ch_push),
+                            .washing_machine_running(washing_machine_running),
                             .sel_value(weight_ch_light)
     );                
     
-    wash_mode WASH_MODE (.power(true_power),
+    wash_mode #(WIDTH, CLK_CH) WASH_MODE (.power(true_power),
                          .start(start_pause_light),
                          .weight(weight_ch_light),
                          .clk(clk),
@@ -69,7 +74,7 @@ module controler(
                          .state(washing_state)
      );
      
-    rinse_mode RINSE_MODE (.power(true_power),
+    rinse_mode #(WIDTH, CLK_CH) RINSE_MODE (.power(true_power),
                            .start(start_pause_light),
                            .clk(clk),
                            .weight(weight_ch_light),
@@ -84,7 +89,7 @@ module controler(
                            .state(rinsing_state)
     );
     
-    dewater_mode DEWATER_MODE (.power(true_power),
+    dewater_mode #(WIDTH, CLK_CH) DEWATER_MODE (.power(true_power),
                                .start(start_pause_light),
                                .clk(clk),
                                .weight(weight_ch_light),
@@ -126,18 +131,16 @@ module controler(
     assign start_pause_light = start_pause_light_one + start_pause_light_two;
     assign power_light = true_power;
     //w_r_d_change
-    always @(w_r_d_change) begin
+    always @(w_r_d_change or true_power) begin
     if(true_power & !start_pause_light)
-        if(state == 4) begin w_r_d = 7; washing_light_control = 1; rinsing_light_control = 1; dewatering_light_control = 1; end
-        else begin
-            if(w_r_d_change == 0) begin w_r_d = 7; washing_light_control = 1; rinsing_light_control = 1; dewatering_light_control = 1;end
-            else if(w_r_d_change == 1) begin w_r_d = 4; washing_light_control = 1; rinsing_light_control = 0; dewatering_light_control = 0;end
-            else if(w_r_d_change == 2) begin w_r_d = 6; washing_light_control = 1; rinsing_light_control = 1; dewatering_light_control = 0;end
-            else if(w_r_d_change == 3) begin w_r_d = 2; washing_light_control = 0; rinsing_light_control = 1; dewatering_light_control = 0;end
-            else if(w_r_d_change == 4) begin w_r_d = 5; washing_light_control = 1; rinsing_light_control = 0; dewatering_light_control = 1;end
-            else if(w_r_d_change == 5) begin w_r_d = 1; washing_light_control = 0; rinsing_light_control = 0; dewatering_light_control = 1;end
-        end
-    else begin
+//        if(state == 4) begin w_r_d = 7; washing_light_control = 1; rinsing_light_control = 1; dewatering_light_control = 1; end
+        if(w_r_d_change == 0) begin w_r_d = 7; washing_light_control = 1; rinsing_light_control = 1; dewatering_light_control = 1;end
+        else if(w_r_d_change == 1) begin w_r_d = 4; washing_light_control = 1; rinsing_light_control = 0; dewatering_light_control = 0;end
+        else if(w_r_d_change == 2) begin w_r_d = 6; washing_light_control = 1; rinsing_light_control = 1; dewatering_light_control = 0;end
+        else if(w_r_d_change == 3) begin w_r_d = 2; washing_light_control = 0; rinsing_light_control = 1; dewatering_light_control = 0;end
+        else if(w_r_d_change == 4) begin w_r_d = 5; washing_light_control = 1; rinsing_light_control = 0; dewatering_light_control = 1;end
+        else if(w_r_d_change == 5) begin w_r_d = 1; washing_light_control = 0; rinsing_light_control = 0; dewatering_light_control = 1;end
+    else if(!true_power) begin
         w_r_d = 7; washing_light_control = 1; rinsing_light_control = 1; dewatering_light_control = 1;
     end
     end
@@ -169,13 +172,18 @@ module controler(
             end
             rinse_state: begin 
                 water_level = rinse_water_level;
-                if(rinsing_state == 3 | rinsing_state == 4) dewatering_light = dewatering_light_rinse;
+                washing_light = 1'b0;
+                if(rinsing_state == 1) dewatering_light = dewatering_light_rinse;
+                else dewatering_light = dewatering_light_control;
+                if(rinsing_state == 3) rinsing_light = rinsing_light_rinse;
                 sum_count = rinse_count + w_r_d[0] * 2 * {{29{1'b0}},weight_ch_light};
                 mode_count = rinse_count;
             end
             dewater_state: begin
                 water_level = dewater_water_level;
-                if(dewatering_state != 0) dewatering_light = dewatering_light_dewater;
+                washing_light = 1'b0;
+                rinsing_light = 1'b0;
+                if(dewatering_state == 1) dewatering_light = dewatering_light_dewater;
                 sum_count = dewater_count;
                 mode_count = dewater_count;
             end
@@ -200,16 +208,16 @@ module controler(
     end
     // FIXED ME: posedge detective can't be mixed up with level detective.
     always @(posedge clk[0])
-    if(true_power) begin
+    if(true_power & start_pause_light) begin
         state = nextstate; //in mode_ch_state
     end
-    else begin 
+    else if(!true_power) begin 
         state = mode_ch_state;
     end
     
-    assign real_clk = true_power ? clk[25] : clk[0];
+    assign real_p_clk = true_power ? clk[CLK_CH] : power;
     //count ten seconds
-    always @(posedge real_clk)
+    always @(posedge real_p_clk)
     begin
     if(true_power) begin
         if(state == 4) count = count + 1;
@@ -220,7 +228,8 @@ module controler(
     end
     
     //add a block to control  start_pause_light
-    always @(posedge start_pause) 
+    assign real_s_clk = true_power ? start_pause : clk[0];
+    always @(posedge real_s_clk) 
     if(true_power)
     begin
         start_pause_light_one = ~start_pause_light_one;
@@ -232,21 +241,18 @@ module controler(
     always @(state or start_pause_light or true_power)     //moore
     if(true_power & start_pause_light) begin
         case(state)
-            mode_ch_state: begin w_r_d_start = 3'b000; end
-            wash_state:   begin w_r_d_start = 3'b100; end
-            rinse_state:  begin w_r_d_start = 3'b010; end
-           dewater_state:  begin w_r_d_start = 3'b001; end
-           w_r_d_end_state: begin w_r_d_start = 3'b000;end
+            mode_ch_state: begin w_r_d_start = 3'b000; washing_machine_running = 0; end
+            wash_state:   begin w_r_d_start = 3'b100; washing_machine_running = 1; end
+            rinse_state:  begin w_r_d_start = 3'b010; washing_machine_running = 1; end
+           dewater_state:  begin w_r_d_start = 3'b001; washing_machine_running = 1; end
+           w_r_d_end_state: begin w_r_d_start = 3'b000; washing_machine_running = 2; end
         endcase
     end
-    else if(true_power & !start_pause_light) begin
-        if(mode_ch_push | weight_ch_push) w_r_d_start = 3'b000;
-    end
     else if(!true_power) begin
-        w_r_d_start = 3'b000;
+        w_r_d_start = 3'b000; washing_machine_running = 0;
     end
     
-    always @(w_r_d_end or w_r_d or mode_ch_push or weight_ch_push or start_pause_light)
+    always @(w_r_d_end or w_r_d or mode_ch_push or weight_ch_push or start_pause_light or true_power)
     if(start_pause_light & true_power) begin
         case(state)
             mode_ch_state:
@@ -280,9 +286,6 @@ module controler(
                 else nextstate = dewater_state;
             w_r_d_end_state: if(mode_ch_push | weight_ch_push) nextstate = mode_ch_state;
         endcase  
-    end
-    else if(true_power & !start_pause_light) begin
-        if(mode_ch_push | weight_ch_push) nextstate = mode_ch_state;
     end
     else if(!true_power) nextstate = mode_ch_state;
 endmodule
