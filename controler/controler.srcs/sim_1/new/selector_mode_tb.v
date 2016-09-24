@@ -3,7 +3,6 @@
 module selector_mode_tb();
 
     reg [31:0]clk;
-    reg [1:0]washing_machine_running;
     reg start, power, mode_ch;
     wire push;
     wire [2:0]sel_value;
@@ -13,7 +12,6 @@ module selector_mode_tb();
                             .switch_power(power),
                             .switch_en(start),
                             .sig_change(mode_ch),
-                            .washing_machine_running(washing_machine_running),
                             .push(push),
                             .sel_value(sel_value)
 );
@@ -24,7 +22,6 @@ module selector_mode_tb();
         clk[0] = 0;
         start = 0;
         mode_ch = 0;
-        washing_machine_running = 1;
         #TIME $finish;
     end
     

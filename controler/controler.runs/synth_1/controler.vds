@@ -2,8 +2,8 @@
 # Vivado v2016.2 (64-bit)
 # SW Build 1577090 on Thu Jun  2 16:32:35 MDT 2016
 # IP Build 1577682 on Fri Jun  3 12:00:54 MDT 2016
-# Start of session at: Thu Sep 22 11:45:27 2016
-# Process ID: 19994
+# Start of session at: Sat Sep 24 21:43:02 2016
+# Process ID: 1868
 # Current directory: /home/uncertainmove/Document/dld/controler/controler.runs/synth_1
 # Command line: vivado -log controler.vds -mode batch -messageDb vivado.pb -notrace -source controler.tcl
 # Log file: /home/uncertainmove/Document/dld/controler/controler.runs/synth_1/controler.vds
@@ -15,12 +15,9 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 20153 
-WARNING: [Synth 8-976] washing_machine_running has already been declared [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/controler.v:32]
-WARNING: [Synth 8-2654] second declaration of washing_machine_running ignored [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/controler.v:32]
-INFO: [Synth 8-994] washing_machine_running is declared here [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/controler.v:17]
+INFO: Helper process launched with PID 2013 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1055.301 ; gain = 163.324 ; free physical = 4366 ; free virtual = 7798
+Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1046.117 ; gain = 154.137 ; free physical = 3439 ; free virtual = 7514
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'controler' [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/controler.v:4]
 	Parameter mode_ch_state bound to: 0 - type: integer 
@@ -47,19 +44,626 @@ INFO: [Synth 8-638] synthesizing module 'water_let_mode' [/home/uncertainmove/Do
 	Parameter WIDTH bound to: 32 - type: integer 
 INFO: [Synth 8-638] synthesizing module 'timer' [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/timer.v:13]
 	Parameter WIDTH bound to: 32 - type: integer 
-WARNING: [Synth 8-311] ignoring non-constant assignment in initial block [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/timer.v:26]
 INFO: [Synth 8-256] done synthesizing module 'timer' (3#1) [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/timer.v:13]
 INFO: [Synth 8-256] done synthesizing module 'water_let_mode' (4#1) [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/water_let_mode.v:3]
-WARNING: [Synth 8-689] width (1) of port connection 'max_water_level' does not match port width (3) of module 'water_let_mode' [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/wash_mode.v:37]
-ERROR: [Synth 8-91] ambiguous clock in event control [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/wash_mode.v:52]
-ERROR: [Synth 8-285] failed synthesizing module 'wash_mode' [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/wash_mode.v:3]
-ERROR: [Synth 8-285] failed synthesizing module 'controler' [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/controler.v:4]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/wash_mode.v:65]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/wash_mode.v:79]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/wash_mode.v:92]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/wash_mode.v:106]
+WARNING: [Synth 8-567] referenced signal 'state' should be on the sensitivity list [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/wash_mode.v:102]
+INFO: [Synth 8-256] done synthesizing module 'wash_mode' (5#1) [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/wash_mode.v:3]
+INFO: [Synth 8-638] synthesizing module 'rinse_mode' [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/rinse_mode.v:3]
+	Parameter water_out_state bound to: 0 - type: integer 
+	Parameter dewatering_state bound to: 1 - type: integer 
+	Parameter water_in_state bound to: 2 - type: integer 
+	Parameter rinsing_state bound to: 3 - type: integer 
+	Parameter rinse_end_state bound to: 4 - type: integer 
+INFO: [Synth 8-155] case statement is not full and has no default [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/rinse_mode.v:68]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/rinse_mode.v:84]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/rinse_mode.v:99]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/rinse_mode.v:117]
+WARNING: [Synth 8-567] referenced signal 'start' should be on the sensitivity list [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/rinse_mode.v:113]
+WARNING: [Synth 8-567] referenced signal 'state' should be on the sensitivity list [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/rinse_mode.v:113]
+INFO: [Synth 8-256] done synthesizing module 'rinse_mode' (6#1) [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/rinse_mode.v:3]
+INFO: [Synth 8-638] synthesizing module 'dewater_mode' [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/dewater_mode.v:3]
+	Parameter water_out_state bound to: 0 - type: integer 
+	Parameter dewatering_state bound to: 1 - type: integer 
+	Parameter dewater_end_state bound to: 2 - type: integer 
+INFO: [Synth 8-155] case statement is not full and has no default [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/dewater_mode.v:56]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/dewater_mode.v:70]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/dewater_mode.v:82]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/dewater_mode.v:96]
+WARNING: [Synth 8-567] referenced signal 'start' should be on the sensitivity list [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/dewater_mode.v:92]
+WARNING: [Synth 8-567] referenced signal 'state' should be on the sensitivity list [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/dewater_mode.v:92]
+INFO: [Synth 8-256] done synthesizing module 'dewater_mode' (7#1) [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/dewater_mode.v:3]
+INFO: [Synth 8-638] synthesizing module 'time_displayer' [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/time_display.v:3]
+	Parameter WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'time_to_segment' [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/time_to_segment.v:3]
+	Parameter WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'integer_to_bcd' [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/integer_to_bcd.v:4]
+INFO: [Synth 8-256] done synthesizing module 'integer_to_bcd' (8#1) [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/integer_to_bcd.v:4]
+INFO: [Synth 8-638] synthesizing module 'bcd_to_segment' [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/bcd_to_segment.v:4]
+INFO: [Synth 8-256] done synthesizing module 'bcd_to_segment' (9#1) [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/bcd_to_segment.v:4]
+INFO: [Synth 8-256] done synthesizing module 'time_to_segment' (10#1) [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/time_to_segment.v:3]
+INFO: [Synth 8-226] default block is never used [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/time_display.v:43]
+WARNING: [Synth 8-567] referenced signal 'sec_seg' should be on the sensitivity list [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/time_display.v:42]
+WARNING: [Synth 8-567] referenced signal 'min_seg' should be on the sensitivity list [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/time_display.v:42]
+WARNING: [Synth 8-567] referenced signal 'hour_seg' should be on the sensitivity list [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/time_display.v:42]
+INFO: [Synth 8-256] done synthesizing module 'time_displayer' (11#1) [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/time_display.v:3]
+WARNING: [Synth 8-567] referenced signal 'true_power' should be on the sensitivity list [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/controler.v:129]
+WARNING: [Synth 8-567] referenced signal 'start_pause_light' should be on the sensitivity list [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/controler.v:129]
+WARNING: [Synth 8-567] referenced signal 'state' should be on the sensitivity list [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/controler.v:129]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/controler.v:154]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/controler.v:234]
+WARNING: [Synth 8-567] referenced signal 'mode_ch_push' should be on the sensitivity list [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/controler.v:232]
+WARNING: [Synth 8-567] referenced signal 'weight_ch_push' should be on the sensitivity list [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/controler.v:232]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/controler.v:251]
+WARNING: [Synth 8-567] referenced signal 'true_power' should be on the sensitivity list [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/controler.v:249]
+WARNING: [Synth 8-567] referenced signal 'state' should be on the sensitivity list [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/controler.v:249]
+INFO: [Synth 8-256] done synthesizing module 'controler' (12#1) [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/controler.v:4]
+WARNING: [Synth 8-3331] design timer has unconnected port clk_src[31]
+WARNING: [Synth 8-3331] design timer has unconnected port clk_src[30]
+WARNING: [Synth 8-3331] design timer has unconnected port clk_src[29]
+WARNING: [Synth 8-3331] design timer has unconnected port clk_src[28]
+WARNING: [Synth 8-3331] design timer has unconnected port clk_src[27]
+WARNING: [Synth 8-3331] design timer has unconnected port clk_src[26]
+WARNING: [Synth 8-3331] design timer has unconnected port clk_src[24]
+WARNING: [Synth 8-3331] design timer has unconnected port clk_src[23]
+WARNING: [Synth 8-3331] design timer has unconnected port clk_src[22]
+WARNING: [Synth 8-3331] design timer has unconnected port clk_src[21]
+WARNING: [Synth 8-3331] design timer has unconnected port clk_src[20]
+WARNING: [Synth 8-3331] design timer has unconnected port clk_src[19]
+WARNING: [Synth 8-3331] design timer has unconnected port clk_src[18]
+WARNING: [Synth 8-3331] design timer has unconnected port clk_src[17]
+WARNING: [Synth 8-3331] design timer has unconnected port clk_src[16]
+WARNING: [Synth 8-3331] design timer has unconnected port clk_src[15]
+WARNING: [Synth 8-3331] design timer has unconnected port clk_src[14]
+WARNING: [Synth 8-3331] design timer has unconnected port clk_src[13]
+WARNING: [Synth 8-3331] design timer has unconnected port clk_src[12]
+WARNING: [Synth 8-3331] design timer has unconnected port clk_src[11]
+WARNING: [Synth 8-3331] design timer has unconnected port clk_src[10]
+WARNING: [Synth 8-3331] design timer has unconnected port clk_src[9]
+WARNING: [Synth 8-3331] design timer has unconnected port clk_src[8]
+WARNING: [Synth 8-3331] design timer has unconnected port clk_src[7]
+WARNING: [Synth 8-3331] design timer has unconnected port clk_src[6]
+WARNING: [Synth 8-3331] design timer has unconnected port clk_src[5]
+WARNING: [Synth 8-3331] design timer has unconnected port clk_src[4]
+WARNING: [Synth 8-3331] design timer has unconnected port clk_src[3]
+WARNING: [Synth 8-3331] design timer has unconnected port clk_src[2]
+WARNING: [Synth 8-3331] design timer has unconnected port clk_src[1]
+WARNING: [Synth 8-3331] design selector_mode__parameterized0 has unconnected port clk[31]
+WARNING: [Synth 8-3331] design selector_mode__parameterized0 has unconnected port clk[30]
+WARNING: [Synth 8-3331] design selector_mode__parameterized0 has unconnected port clk[29]
+WARNING: [Synth 8-3331] design selector_mode__parameterized0 has unconnected port clk[28]
+WARNING: [Synth 8-3331] design selector_mode__parameterized0 has unconnected port clk[27]
+WARNING: [Synth 8-3331] design selector_mode__parameterized0 has unconnected port clk[26]
+WARNING: [Synth 8-3331] design selector_mode__parameterized0 has unconnected port clk[25]
+WARNING: [Synth 8-3331] design selector_mode__parameterized0 has unconnected port clk[24]
+WARNING: [Synth 8-3331] design selector_mode__parameterized0 has unconnected port clk[23]
+WARNING: [Synth 8-3331] design selector_mode__parameterized0 has unconnected port clk[22]
+WARNING: [Synth 8-3331] design selector_mode__parameterized0 has unconnected port clk[21]
+WARNING: [Synth 8-3331] design selector_mode__parameterized0 has unconnected port clk[20]
+WARNING: [Synth 8-3331] design selector_mode__parameterized0 has unconnected port clk[19]
+WARNING: [Synth 8-3331] design selector_mode__parameterized0 has unconnected port clk[18]
+WARNING: [Synth 8-3331] design selector_mode__parameterized0 has unconnected port clk[17]
+WARNING: [Synth 8-3331] design selector_mode__parameterized0 has unconnected port clk[16]
+WARNING: [Synth 8-3331] design selector_mode__parameterized0 has unconnected port clk[15]
+WARNING: [Synth 8-3331] design selector_mode__parameterized0 has unconnected port clk[14]
+WARNING: [Synth 8-3331] design selector_mode__parameterized0 has unconnected port clk[13]
+WARNING: [Synth 8-3331] design selector_mode__parameterized0 has unconnected port clk[12]
+WARNING: [Synth 8-3331] design selector_mode__parameterized0 has unconnected port clk[11]
+WARNING: [Synth 8-3331] design selector_mode__parameterized0 has unconnected port clk[10]
+WARNING: [Synth 8-3331] design selector_mode__parameterized0 has unconnected port clk[9]
+WARNING: [Synth 8-3331] design selector_mode__parameterized0 has unconnected port clk[8]
+WARNING: [Synth 8-3331] design selector_mode__parameterized0 has unconnected port clk[7]
+WARNING: [Synth 8-3331] design selector_mode__parameterized0 has unconnected port clk[6]
+WARNING: [Synth 8-3331] design selector_mode__parameterized0 has unconnected port clk[5]
+WARNING: [Synth 8-3331] design selector_mode__parameterized0 has unconnected port clk[4]
+WARNING: [Synth 8-3331] design selector_mode__parameterized0 has unconnected port clk[3]
+WARNING: [Synth 8-3331] design selector_mode__parameterized0 has unconnected port clk[2]
+WARNING: [Synth 8-3331] design selector_mode__parameterized0 has unconnected port clk[1]
+WARNING: [Synth 8-3331] design selector_mode has unconnected port clk[31]
+WARNING: [Synth 8-3331] design selector_mode has unconnected port clk[30]
+WARNING: [Synth 8-3331] design selector_mode has unconnected port clk[29]
+WARNING: [Synth 8-3331] design selector_mode has unconnected port clk[28]
+WARNING: [Synth 8-3331] design selector_mode has unconnected port clk[27]
+WARNING: [Synth 8-3331] design selector_mode has unconnected port clk[26]
+WARNING: [Synth 8-3331] design selector_mode has unconnected port clk[25]
+WARNING: [Synth 8-3331] design selector_mode has unconnected port clk[24]
+WARNING: [Synth 8-3331] design selector_mode has unconnected port clk[23]
+WARNING: [Synth 8-3331] design selector_mode has unconnected port clk[22]
+WARNING: [Synth 8-3331] design selector_mode has unconnected port clk[21]
+WARNING: [Synth 8-3331] design selector_mode has unconnected port clk[20]
+WARNING: [Synth 8-3331] design selector_mode has unconnected port clk[19]
+WARNING: [Synth 8-3331] design selector_mode has unconnected port clk[18]
+WARNING: [Synth 8-3331] design selector_mode has unconnected port clk[17]
+WARNING: [Synth 8-3331] design selector_mode has unconnected port clk[16]
+WARNING: [Synth 8-3331] design selector_mode has unconnected port clk[15]
+WARNING: [Synth 8-3331] design selector_mode has unconnected port clk[14]
+WARNING: [Synth 8-3331] design selector_mode has unconnected port clk[13]
+WARNING: [Synth 8-3331] design selector_mode has unconnected port clk[12]
+WARNING: [Synth 8-3331] design selector_mode has unconnected port clk[11]
+WARNING: [Synth 8-3331] design selector_mode has unconnected port clk[10]
+WARNING: [Synth 8-3331] design selector_mode has unconnected port clk[9]
+WARNING: [Synth 8-3331] design selector_mode has unconnected port clk[8]
+WARNING: [Synth 8-3331] design selector_mode has unconnected port clk[7]
+WARNING: [Synth 8-3331] design selector_mode has unconnected port clk[6]
+WARNING: [Synth 8-3331] design selector_mode has unconnected port clk[5]
+WARNING: [Synth 8-3331] design selector_mode has unconnected port clk[4]
+WARNING: [Synth 8-3331] design selector_mode has unconnected port clk[3]
+WARNING: [Synth 8-3331] design selector_mode has unconnected port clk[2]
+WARNING: [Synth 8-3331] design selector_mode has unconnected port clk[1]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1080.551 ; gain = 188.574 ; free physical = 4341 ; free virtual = 7774
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1087.555 ; gain = 195.574 ; free physical = 3397 ; free virtual = 7472
 ---------------------------------------------------------------------------------
-RTL Elaboration failed
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1087.555 ; gain = 195.574 ; free physical = 3397 ; free virtual = 7472
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/uncertainmove/Document/dld/controler/controler.srcs/constrs_1/new/washing_machine.xdc]
+WARNING: [Vivado 12-507] No nets matched 'power_IBUF'. [/home/uncertainmove/Document/dld/controler/controler.srcs/constrs_1/new/washing_machine.xdc:8]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/uncertainmove/Document/dld/controler/controler.srcs/constrs_1/new/washing_machine.xdc:8]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-507] No nets matched 'start_pause_IBUF'. [/home/uncertainmove/Document/dld/controler/controler.srcs/constrs_1/new/washing_machine.xdc:12]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/uncertainmove/Document/dld/controler/controler.srcs/constrs_1/new/washing_machine.xdc:12]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-507] No nets matched 'weight_ch_IBUF'. [/home/uncertainmove/Document/dld/controler/controler.srcs/constrs_1/new/washing_machine.xdc:16]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/uncertainmove/Document/dld/controler/controler.srcs/constrs_1/new/washing_machine.xdc:16]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-507] No nets matched 'mode_ch_IBUF'. [/home/uncertainmove/Document/dld/controler/controler.srcs/constrs_1/new/washing_machine.xdc:20]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/uncertainmove/Document/dld/controler/controler.srcs/constrs_1/new/washing_machine.xdc:20]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+Finished Parsing XDC File [/home/uncertainmove/Document/dld/controler/controler.srcs/constrs_1/new/washing_machine.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/uncertainmove/Document/dld/controler/controler.srcs/constrs_1/new/washing_machine.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/controler_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/controler_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1428.031 ; gain = 0.000 ; free physical = 3213 ; free virtual = 7288
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 1428.031 ; gain = 536.051 ; free physical = 3212 ; free virtual = 7287
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a100tcsg324-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 1428.031 ; gain = 536.051 ; free physical = 3212 ; free virtual = 7287
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 1428.031 ; gain = 536.051 ; free physical = 3212 ; free virtual = 7287
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/rinse_mode.v:84]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <multiplier> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/rinse_mode.v:84]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/controler.v:104]
+INFO: [Synth 8-5544] ROM "rinsing_light_control" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5545] ROM "power_control" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5544] ROM "nextstate" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+WARNING: [Synth 8-327] inferring latch for variable 'nextstate_reg' [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/wash_mode.v:109]
+WARNING: [Synth 8-327] inferring latch for variable 'water_in_start_reg' [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/wash_mode.v:32]
+WARNING: [Synth 8-327] inferring latch for variable 'washing_start_reg' [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/wash_mode.v:46]
+WARNING: [Synth 8-327] inferring latch for variable 'nextstate_reg' [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/rinse_mode.v:120]
+WARNING: [Synth 8-327] inferring latch for variable 'water_in_start_reg' [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/rinse_mode.v:32]
+WARNING: [Synth 8-327] inferring latch for variable 'water_out_start_reg' [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/rinse_mode.v:33]
+WARNING: [Synth 8-327] inferring latch for variable 'rinsing_start_reg' [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/rinse_mode.v:53]
+WARNING: [Synth 8-327] inferring latch for variable 'dewatering_start_reg' [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/rinse_mode.v:45]
+WARNING: [Synth 8-327] inferring latch for variable 'nextstate_reg' [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/dewater_mode.v:99]
+WARNING: [Synth 8-327] inferring latch for variable 'water_out_start_reg' [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/dewater_mode.v:27]
+WARNING: [Synth 8-327] inferring latch for variable 'dewatering_start_reg' [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/dewater_mode.v:39]
+WARNING: [Synth 8-327] inferring latch for variable 'nextstate_reg' [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/controler.v:254]
+WARNING: [Synth 8-327] inferring latch for variable 'washing_light_control_reg' [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/controler.v:131]
+WARNING: [Synth 8-327] inferring latch for variable 'rinsing_light_control_reg' [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/controler.v:131]
+WARNING: [Synth 8-327] inferring latch for variable 'dewatering_light_control_reg' [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/controler.v:131]
+WARNING: [Synth 8-327] inferring latch for variable 'w_r_d_reg' [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/controler.v:131]
+WARNING: [Synth 8-327] inferring latch for variable 'w_r_d_start_reg' [/home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/controler.v:63]
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1428.031 ; gain = 536.051 ; free physical = 3209 ; free virtual = 7284
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 8     
+	   3 Input     32 Bit       Adders := 7     
+	   2 Input      4 Bit       Adders := 3     
+	   2 Input      3 Bit       Adders := 1     
+	   2 Input      1 Bit       Adders := 1     
++---Registers : 
+	               32 Bit    Registers := 20    
+	                3 Bit    Registers := 9     
+	                2 Bit    Registers := 2     
+	                1 Bit    Registers := 44    
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 23    
+	   4 Input     32 Bit        Muxes := 2     
+	   6 Input     32 Bit        Muxes := 6     
+	  12 Input      8 Bit        Muxes := 6     
+	   8 Input      8 Bit        Muxes := 1     
+	   2 Input      8 Bit        Muxes := 2     
+	  11 Input      4 Bit        Muxes := 6     
+	   2 Input      3 Bit        Muxes := 7     
+	   6 Input      3 Bit        Muxes := 4     
+	   4 Input      3 Bit        Muxes := 2     
+	   3 Input      3 Bit        Muxes := 1     
+	   7 Input      3 Bit        Muxes := 2     
+	   2 Input      2 Bit        Muxes := 2     
+	   5 Input      2 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 72    
+	   4 Input      1 Bit        Muxes := 19    
+	   6 Input      1 Bit        Muxes := 21    
+	   5 Input      1 Bit        Muxes := 3     
+	   3 Input      1 Bit        Muxes := 2     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module controler 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 1     
+	   2 Input      1 Bit       Adders := 1     
++---Registers : 
+	               32 Bit    Registers := 3     
+	                3 Bit    Registers := 2     
+	                1 Bit    Registers := 6     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 2     
+	   6 Input     32 Bit        Muxes := 4     
+	   2 Input      8 Bit        Muxes := 2     
+	   4 Input      3 Bit        Muxes := 2     
+	   3 Input      3 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 2     
+	   6 Input      3 Bit        Muxes := 3     
+	   7 Input      3 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 9     
+	   6 Input      1 Bit        Muxes := 7     
+	   4 Input      1 Bit        Muxes := 3     
+	   5 Input      1 Bit        Muxes := 3     
+	   3 Input      1 Bit        Muxes := 2     
+Module selector_mode 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      4 Bit       Adders := 1     
++---Registers : 
+	                3 Bit    Registers := 1     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 3     
+Module selector_mode__parameterized0 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      4 Bit       Adders := 1     
++---Registers : 
+	                3 Bit    Registers := 1     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input      3 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 2     
+Module timer 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 1     
+	   3 Input     32 Bit       Adders := 1     
++---Registers : 
+	               32 Bit    Registers := 2     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 3     
+	   2 Input      1 Bit        Muxes := 7     
+Module water_let_mode 
+Detailed RTL Component Info : 
++---Registers : 
+	                3 Bit    Registers := 1     
+	                1 Bit    Registers := 3     
++---Muxes : 
+	   2 Input      3 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 3     
+Module wash_mode 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 1     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 3     
++---Muxes : 
+	   4 Input     32 Bit        Muxes := 1     
+	   5 Input      2 Bit        Muxes := 1     
+	   4 Input      1 Bit        Muxes := 8     
+Module rinse_mode 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 1     
+	                3 Bit    Registers := 1     
+	                1 Bit    Registers := 5     
++---Muxes : 
+	   6 Input     32 Bit        Muxes := 2     
+	   6 Input      3 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 1     
+	   6 Input      1 Bit        Muxes := 14    
+Module dewater_mode 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      4 Bit       Adders := 1     
++---Registers : 
+	               32 Bit    Registers := 1     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 3     
++---Muxes : 
+	   4 Input     32 Bit        Muxes := 1     
+	   5 Input      2 Bit        Muxes := 1     
+	   4 Input      1 Bit        Muxes := 8     
+Module integer_to_bcd 
+Detailed RTL Component Info : 
++---Muxes : 
+	  11 Input      4 Bit        Muxes := 1     
+Module bcd_to_segment 
+Detailed RTL Component Info : 
++---Muxes : 
+	  12 Input      8 Bit        Muxes := 1     
+Module time_displayer 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      3 Bit       Adders := 1     
++---Registers : 
+	                3 Bit    Registers := 1     
++---Muxes : 
+	   8 Input      8 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+Start Parallel Synthesis Optimization  : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1428.031 ; gain = 536.051 ; free physical = 3209 ; free virtual = 7284
+---------------------------------------------------------------------------------
+Start Cross Boundary Optimization
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5544] ROM "rinsing_light_control2" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5545] ROM "power_control" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "power_control" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+WARNING: [Synth 8-3331] design dewater_mode has unconnected port clk[31]
+WARNING: [Synth 8-3331] design dewater_mode has unconnected port clk[30]
+WARNING: [Synth 8-3331] design dewater_mode has unconnected port clk[29]
+WARNING: [Synth 8-3331] design dewater_mode has unconnected port clk[28]
+WARNING: [Synth 8-3331] design dewater_mode has unconnected port clk[27]
+WARNING: [Synth 8-3331] design dewater_mode has unconnected port clk[26]
+WARNING: [Synth 8-3331] design rinse_mode has unconnected port clk[31]
+WARNING: [Synth 8-3331] design rinse_mode has unconnected port clk[30]
+INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished Cross Boundary Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1428.031 ; gain = 536.051 ; free physical = 3209 ; free virtual = 7284
+---------------------------------------------------------------------------------
+Finished Parallel Reinference  : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 1428.031 ; gain = 536.051 ; free physical = 3209 ; free virtual = 7284
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-3332] Sequential element (RINSE_MODE/rinsing_light_reg) is unused and will be removed from module controler.
+WARNING: [Synth 8-3332] Sequential element (TICK_DEVIDER/clk_group_reg[26]) is unused and will be removed from module controler.
+WARNING: [Synth 8-3332] Sequential element (TICK_DEVIDER/clk_group_reg[27]) is unused and will be removed from module controler.
+WARNING: [Synth 8-3332] Sequential element (TICK_DEVIDER/clk_group_reg[28]) is unused and will be removed from module controler.
+WARNING: [Synth 8-3332] Sequential element (TICK_DEVIDER/clk_group_reg[29]) is unused and will be removed from module controler.
+WARNING: [Synth 8-3332] Sequential element (TICK_DEVIDER/clk_group_reg[30]) is unused and will be removed from module controler.
+WARNING: [Synth 8-3332] Sequential element (TICK_DEVIDER/clk_group_reg[31]) is unused and will be removed from module controler.
+---------------------------------------------------------------------------------
+Finished Area Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1428.031 ; gain = 536.051 ; free physical = 3185 ; free virtual = 7260
+---------------------------------------------------------------------------------
+Finished Parallel Area Optimization  : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1428.031 ; gain = 536.051 ; free physical = 3185 ; free virtual = 7260
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:24 ; elapsed = 00:00:24 . Memory (MB): peak = 1428.031 ; gain = 536.051 ; free physical = 3132 ; free virtual = 7207
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:24 ; elapsed = 00:00:25 . Memory (MB): peak = 1428.031 ; gain = 536.051 ; free physical = 3130 ; free virtual = 7204
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 1458.016 ; gain = 566.035 ; free physical = 3092 ; free virtual = 7167
+---------------------------------------------------------------------------------
+Finished Parallel Technology Mapping Optimization  : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 1458.016 ; gain = 566.035 ; free physical = 3092 ; free virtual = 7167
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+Finished Parallel Synthesis Optimization  : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 1458.016 ; gain = 566.035 ; free physical = 3092 ; free virtual = 7167
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 1458.016 ; gain = 566.035 ; free physical = 3092 ; free virtual = 7167
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 1458.016 ; gain = 566.035 ; free physical = 3092 ; free virtual = 7167
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 1458.016 ; gain = 566.035 ; free physical = 3092 ; free virtual = 7167
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 1458.016 ; gain = 566.035 ; free physical = 3092 ; free virtual = 7167
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 1458.016 ; gain = 566.035 ; free physical = 3092 ; free virtual = 7167
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 1458.016 ; gain = 566.035 ; free physical = 3092 ; free virtual = 7167
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |BUFG   |    12|
+|2     |CARRY4 |   501|
+|3     |LUT1   |   373|
+|4     |LUT2   |   879|
+|5     |LUT3   |   515|
+|6     |LUT4   |   639|
+|7     |LUT5   |   210|
+|8     |LUT6   |   559|
+|9     |MUXF7  |     8|
+|10    |FDRE   |   642|
+|11    |LD     |     6|
+|12    |LDC    |    15|
+|13    |LDP    |     6|
+|14    |IBUF   |     5|
+|15    |OBUF   |    26|
++------+-------+------+
+
+Report Instance Areas: 
++------+---------------------+------------------------------+------+
+|      |Instance             |Module                        |Cells |
++------+---------------------+------------------------------+------+
+|1     |top                  |                              |  4396|
+|2     |  DEWATER_MODE       |dewater_mode                  |   506|
+|3     |    TIMER_WASH       |timer_7                       |   233|
+|4     |    WATER_OUT_MODE   |water_let_mode_8              |   148|
+|5     |      WATER_IN_TIMER |timer_9                       |   130|
+|6     |  MODE_SEL           |selector_mode                 |    21|
+|7     |  RINSE_MODE         |rinse_mode                    |   722|
+|8     |    DEWATERIGN_TIMER |timer_3                       |   239|
+|9     |    RINSING_TIMER    |timer_4                       |   235|
+|10    |    WATER_IN_MODE    |water_let_mode_5              |   148|
+|11    |      WATER_IN_TIMER |timer_6                       |   134|
+|12    |  TICK_DEVIDER       |tick_divider                  |    68|
+|13    |  TIME_DISPLAYER     |time_displayer                |  1728|
+|14    |    HOUR_SEG         |time_to_segment               |   580|
+|15    |    MIN_SEG          |time_to_segment_1             |   572|
+|16    |    SEC_SEG          |time_to_segment_2             |   358|
+|17    |  WASH_MODE          |wash_mode                     |   431|
+|18    |    TIMER_WASH       |timer                         |   197|
+|19    |    WATER_IN_MODE    |water_let_mode                |   175|
+|20    |      WATER_IN_TIMER |timer_0                       |   130|
+|21    |  WEIGHT_SEL         |selector_mode__parameterized0 |    64|
++------+---------------------+------------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 1458.016 ; gain = 566.035 ; free physical = 3092 ; free virtual = 7167
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 42 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1458.016 ; gain = 138.418 ; free physical = 3092 ; free virtual = 7167
+Synthesis Optimization Complete : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 1458.023 ; gain = 566.043 ; free physical = 3092 ; free virtual = 7167
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Netlist 29-17] Analyzing 533 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 2 inverter(s) to 2 load pin(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 27 instances were transformed.
+  LD => LDCE: 6 instances
+  LDC => LDCE: 13 instances
+  LDC => LDCE (inverted pins: G): 2 instances
+  LDP => LDPE: 6 instances
+
 INFO: [Common 17-83] Releasing license: Synthesis
-15 Infos, 4 Warnings, 0 Critical Warnings and 4 Errors encountered.
-synth_design failed
-ERROR: [Common 17-69] Command failed: Synthesis failed - please see the console or run log file for details
-INFO: [Common 17-206] Exiting Vivado at Thu Sep 22 11:45:39 2016...
+64 Infos, 143 Warnings, 4 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 1458.023 ; gain = 491.488 ; free physical = 3094 ; free virtual = 7169
+report_utilization: Time (s): cpu = 00:00:00.09 ; elapsed = 00:00:00.10 . Memory (MB): peak = 1490.031 ; gain = 0.000 ; free physical = 3093 ; free virtual = 7169
+INFO: [Common 17-206] Exiting Vivado at Sat Sep 24 21:43:35 2016...

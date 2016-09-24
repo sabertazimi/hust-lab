@@ -7,8 +7,8 @@ module wash_mode_tb();
     wire [1:0]state;
     reg start, power, wash_start;
     reg [2:0]weight;
-    wire push, water_in_light, washing_light, wash_end_sign;
-    wire [2:0]sel_value, water_level;
+    wire water_in_light, washing_light, wash_end_sign;
+    wire [2:0]water_level;
     parameter TIME = 1000;
 
     wash_mode WASH_MODE (.power(power),
@@ -46,6 +46,8 @@ module wash_mode_tb();
         #10 start = 1;
         #20 power = 1;
         #20 wash_start = 1;
+        #100 power = 0;
+        #40 power = 1;
         #950 ;
     end
 

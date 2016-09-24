@@ -22,7 +22,7 @@ module timer_tb();
         clk[25] = 0;
         clk[0] = 0;
         start = 0;
-        sum_count = 20;
+        sum_count = 2;
         count_start_flag = 0;
         #TIME $finish;
     end
@@ -38,9 +38,9 @@ module timer_tb();
     always begin
         #5 start = 1;
         #20 power = 1;
-        #20 count_start_flag = 1;
+        #20 count_start_flag = 1; start = 1;
         #100 count_start_flag = 0;
-        #320;
+        #420;
         #5 count_start_flag = 1; sum_count = 5;
         #500 ;
     end

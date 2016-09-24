@@ -79,29 +79,32 @@ set_property IOSTANDARD LVCMOS33 [get_ports cnodes[6]]
 set_property PACKAGE_PIN M4 [get_ports cnodes[7]]
 set_property IOSTANDARD LVCMOS33 [get_ports cnodes[7]]
 
-set_property PACKAGE_PIN T8 [get_ports start_pause_light]
+set_property PACKAGE_PIN P2 [get_ports power_light]
+set_property IOSTANDARD LVCMOS33 [get_ports power_light]
+
+set_property PACKAGE_PIN R2 [get_ports start_pause_light]
 set_property IOSTANDARD LVCMOS33 [get_ports start_pause_light]
-
-set_property PACKAGE_PIN V9 [get_ports weight_ch_light[0]]
-set_property IOSTANDARD LVCMOS33 [get_ports weight_ch_light[0]]
-
-set_property PACKAGE_PIN R8 [get_ports weight_ch_light[1]]
-set_property IOSTANDARD LVCMOS33 [get_ports weight_ch_light[1]]
 
 set_property PACKAGE_PIN T6 [get_ports weight_ch_light[2]]
 set_property IOSTANDARD LVCMOS33 [get_ports weight_ch_light[2]]
 
-set_property PACKAGE_PIN T5 [get_ports water_in_light]
+set_property PACKAGE_PIN R8 [get_ports weight_ch_light[1]]
+set_property IOSTANDARD LVCMOS33 [get_ports weight_ch_light[1]]
+
+set_property PACKAGE_PIN V9 [get_ports weight_ch_light[0]]
+set_property IOSTANDARD LVCMOS33 [get_ports weight_ch_light[0]]
+
+set_property PACKAGE_PIN V1 [get_ports water_in_light]
 set_property IOSTANDARD LVCMOS33 [get_ports water_in_light]
 
-set_property PACKAGE_PIN T4 [get_ports water_out_light]
+set_property PACKAGE_PIN U3 [get_ports water_out_light]
 set_property IOSTANDARD LVCMOS33 [get_ports water_out_light]
 
-set_property PACKAGE_PIN U7 [get_ports washing_light]
+set_property PACKAGE_PIN U6 [get_ports washing_light]
 set_property IOSTANDARD LVCMOS33 [get_ports washing_light]
 
-set_property PACKAGE_PIN U6 [get_ports rinsing_light]
+set_property PACKAGE_PIN U7 [get_ports rinsing_light]
 set_property IOSTANDARD LVCMOS33 [get_ports rinsing_light]
 
-set_property PACKAGE_PIN U4 [get_ports dewatering_light]
+set_property PACKAGE_PIN T4 [get_ports dewatering_light]
 set_property IOSTANDARD LVCMOS33 [get_ports dewatering_light]

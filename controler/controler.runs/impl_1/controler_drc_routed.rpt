@@ -1,0 +1,171 @@
+Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
+| Date         : Sat Sep 24 21:44:22 2016
+| Host         : uncertainmove-Lenovo running 64-bit Ubuntu 16.04 LTS
+| Command      : report_drc -file controler_drc_routed.rpt -pb controler_drc_routed.pb
+| Design       : controler
+| Device       : xc7a100tcsg324-1
+| Speed File   : -1
+---------------------------------------------------------------------------------------
+
+Report DRC
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: design_1
+      Design limits: <entire design considered>
+           Ruledeck: default
+             Max violations: <unlimited>
+             Violations found: 23
+
+2. REPORT DETAILS
+-----------------
+CFGBVS-1#1 Warning
+Missing CFGBVS and CONFIG_VOLTAGE Design Properties  
+Neither the CFGBVS nor CONFIG_VOLTAGE voltage property is set in the current_design.  Configuration bank voltage select (CFGBVS) must be set to VCCO or GND, and CONFIG_VOLTAGE must be set to the correct configuration voltage, in order to determine the I/O voltage support for the pins in bank 0.  It is suggested to specify these either using the 'Edit Device Properties' function in the GUI or directly in the XDC file using the following syntax:
+
+ set_property CFGBVS value1 [current_design]
+ #where value1 is either VCCO or GND
+
+ set_property CONFIG_VOLTAGE value2 [current_design]
+ #where value2 is the voltage provided to configuration bank 0
+
+Refer to the device configuration user guide for more information.
+Related violations: <none>
+
+PDRC-153#1 Warning
+Gated clock check  
+Net DEWATER_MODE/dewatering_start_reg_i_1_n_1 is a gated clock net sourced by a combinational pin DEWATER_MODE/dewatering_start_reg_i_1/O, cell DEWATER_MODE/dewatering_start_reg_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#2 Warning
+Gated clock check  
+Net DEWATER_MODE/nextstate_reg[1]_i_2__0_n_1 is a gated clock net sourced by a combinational pin DEWATER_MODE/nextstate_reg[1]_i_2__0/O, cell DEWATER_MODE/nextstate_reg[1]_i_2__0. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#3 Warning
+Gated clock check  
+Net MODE_SEL/E[0] is a gated clock net sourced by a combinational pin MODE_SEL/w_r_d_reg[1]_i_1/O, cell MODE_SEL/w_r_d_reg[1]_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#4 Warning
+Gated clock check  
+Net MODE_SEL/E[1] is a gated clock net sourced by a combinational pin MODE_SEL/w_r_d_reg[2]_i_1/O, cell MODE_SEL/w_r_d_reg[2]_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#5 Warning
+Gated clock check  
+Net MODE_SEL/rinsing_light_reg_0 is a gated clock net sourced by a combinational pin MODE_SEL/rinsing_light_control_reg_i_2/O, cell MODE_SEL/rinsing_light_control_reg_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#6 Warning
+Gated clock check  
+Net MODE_SEL/washing_light_reg is a gated clock net sourced by a combinational pin MODE_SEL/washing_light_control_reg_i_2/O, cell MODE_SEL/washing_light_control_reg_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#7 Warning
+Gated clock check  
+Net MODE_SEL/washing_light_reg is a gated clock net sourced by a combinational pin MODE_SEL/washing_light_control_reg_i_2/O, cell MODE_SEL/washing_light_control_reg_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#8 Warning
+Gated clock check  
+Net RINSE_MODE/dewatering_light00_in is a gated clock net sourced by a combinational pin RINSE_MODE/rinsing_start_reg_i_2/O, cell RINSE_MODE/rinsing_start_reg_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#9 Warning
+Gated clock check  
+Net RINSE_MODE/dewatering_start_reg_i_2_n_1 is a gated clock net sourced by a combinational pin RINSE_MODE/dewatering_start_reg_i_2/O, cell RINSE_MODE/dewatering_start_reg_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#10 Warning
+Gated clock check  
+Net RINSE_MODE/nextstate_reg[2]_i_2_n_1 is a gated clock net sourced by a combinational pin RINSE_MODE/nextstate_reg[2]_i_2/O, cell RINSE_MODE/nextstate_reg[2]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#11 Warning
+Gated clock check  
+Net RINSE_MODE/water_in_start_reg_i_2__0_n_1 is a gated clock net sourced by a combinational pin RINSE_MODE/water_in_start_reg_i_2__0/O, cell RINSE_MODE/water_in_start_reg_i_2__0. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#12 Warning
+Gated clock check  
+Net RINSE_MODE/water_out_start_reg_i_1_n_1 is a gated clock net sourced by a combinational pin RINSE_MODE/water_out_start_reg_i_1/O, cell RINSE_MODE/water_out_start_reg_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#13 Warning
+Gated clock check  
+Net TICK_DEVIDER/push_reg is a gated clock net sourced by a combinational pin TICK_DEVIDER/sel_value[2]_i_2/O, cell TICK_DEVIDER/sel_value[2]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#14 Warning
+Gated clock check  
+Net TICK_DEVIDER/real_clk is a gated clock net sourced by a combinational pin TICK_DEVIDER/sel_value[2]_i_2__0/O, cell TICK_DEVIDER/sel_value[2]_i_2__0. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#15 Warning
+Gated clock check  
+Net WASH_MODE/nextstate_reg[1]_i_2_n_1 is a gated clock net sourced by a combinational pin WASH_MODE/nextstate_reg[1]_i_2/O, cell WASH_MODE/nextstate_reg[1]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#16 Warning
+Gated clock check  
+Net WASH_MODE/nextstate_reg[1]_i_2_n_1 is a gated clock net sourced by a combinational pin WASH_MODE/nextstate_reg[1]_i_2/O, cell WASH_MODE/nextstate_reg[1]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#17 Warning
+Gated clock check  
+Net WASH_MODE/washing_start_reg_i_1_n_1 is a gated clock net sourced by a combinational pin WASH_MODE/washing_start_reg_i_1/O, cell WASH_MODE/washing_start_reg_i_1. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#18 Warning
+Gated clock check  
+Net WEIGHT_SEL/E[0] is a gated clock net sourced by a combinational pin WEIGHT_SEL/w_r_d_start_reg[2]_i_2/O, cell WEIGHT_SEL/w_r_d_start_reg[2]_i_2. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PDRC-153#19 Warning
+Gated clock check  
+Net WEIGHT_SEL/state_reg[2][0] is a gated clock net sourced by a combinational pin WEIGHT_SEL/nextstate_reg[2]_i_2__0/O, cell WEIGHT_SEL/nextstate_reg[2]_i_2__0. This is not good design practice and will likely impact performance. For SLICE registers, for example, use the CE pin to control the loading of data.
+Related violations: <none>
+
+PLCK-12#1 Warning
+Clock Placer Checks  
+Poor placement for routing between an IO pin and BUFG. 
+Resolution: Poor placement of an IO pin and a BUFG has resulted in the router using a non-dedicated path between the two.  There are several things that could trigger this DRC, each of which can cause unpredictable clock insertion delays that result in poor timing.  This DRC could be caused by any of the following: (a) a clock port was placed on a pin that is not a CCIO-pin (b)the BUFG has not been placed in the same half of the device or SLR as the CCIO-pin (c) a single ended clock has been placed on the N-Side of a differential pair CCIO-pin.
+ This is normally an ERROR but the CLOCK_DEDICATED_ROUTE constraint is set to FALSE allowing your design to continue. The use of this override is highly discouraged as it may lead to very poor timing results. It is recommended that this error condition be corrected in the design.
+
+	start_pause_IBUF_inst (IBUF.O) is locked to U8
+	start_pause_IBUF_BUFG_inst (BUFG.I) is provisionally placed by clockplacer on BUFGCTRL_X0Y9
+
+Related violations: <none>
+
+PLHOLDVIO-2#1 Warning
+Non-Optimal connections which could lead to hold violations  
+A LUT TICK_DEVIDER/sel_value[2]_i_2 is driving clock pin of 5 cells. This could lead to large hold time violations. First few involved cells are:
+    WEIGHT_SEL/sel_value_reg[2] {FDRE}
+    WEIGHT_SEL/sel_value_reg[1] {FDRE}
+    WEIGHT_SEL/sel_value_reg[0] {FDRE}
+    WEIGHT_SEL/push_reg {FDRE}
+    WEIGHT_SEL/init_flag_reg {FDRE}
+
+Related violations: <none>
+
+PLHOLDVIO-2#2 Warning
+Non-Optimal connections which could lead to hold violations  
+A LUT TICK_DEVIDER/sel_value[2]_i_2__0 is driving clock pin of 5 cells. This could lead to large hold time violations. First few involved cells are:
+    MODE_SEL/sel_value_reg[2] {FDRE}
+    MODE_SEL/sel_value_reg[1] {FDRE}
+    MODE_SEL/sel_value_reg[0] {FDRE}
+    MODE_SEL/push_reg {FDRE}
+    MODE_SEL/init_flag_reg {FDRE}
+
+Related violations: <none>
+
+

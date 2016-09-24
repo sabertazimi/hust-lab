@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 module rinse_mode(
-    input rinse_start, input start, input power, input [31:0]clk, input weight, input rinsing_light_control,
+    input rinse_start, input start, input power, input [31:0]clk, input [2:0]weight,
     output reg rinse_end_sign, 
     //light
     output reg water_in_light, output reg rinsing_light,output reg water_out_light,
@@ -18,14 +18,14 @@ module rinse_mode(
     initial begin
             state = water_out_state;
             nextstate = water_out_state;
-            water_out_light = 0;
-            dewatering_light = 0;
-            water_in_light = 0;
-            rinsing_light = 0;
-            water_in_start = 0;
-            water_out_start = 0;
-            dewatering_start = 0;
-            rinsing_start = 0;
+            water_out_light = 1'b0;
+            dewatering_light = 1'b0;
+            water_in_light = 1'b0;
+            rinsing_light = 1'b0;
+            water_in_start = 1'b0;
+            water_out_start = 1'b0;
+            dewatering_start = 1'b0;
+            rinsing_start = 1'b0;
         end
         
          water_let_mode WATER_IN_MODE (.water_in_end_sign(water_in_end_sign),
@@ -41,7 +41,7 @@ module rinse_mode(
           timer DEWATERIGN_TIMER (.clk_src(clk),
                                   .switch_power(power),
                                   .switch_en(start),
-                                  .sum_count(weight),
+                                  .sum_count({{29{1'b0}},weight}),
                                   .count_start_flag(dewatering_start),
                                   .count_end_flag(dewatering_end_sign),
                                   .count(dewatering_count)
@@ -49,33 +49,32 @@ module rinse_mode(
           timer RINSING_TIMER (.clk_src(clk),
                                   .switch_power(power),
                                   .switch_en(start),
-                                  .sum_count(weight * 2),
+                                  .sum_count({{29{1'b0}},weight} * 2),
                                   .count_start_flag(rinsing_start),
                                   .count_end_flag(rinsing_end_sign),
                                   .count(rinsing_count)
           );          
         // FIXED ME: edge detective(posedge) can't be mix up with level detective(power).
-        always @(posedge power or posedge clk[0])
+        always @(posedge clk[0])
         begin
-        if(rinse_start) state = nextstate;
-        else begin
-            rinse_end_sign = 0;
-            nextstate = water_out_state;
-            if(rinsing_light_control) rinsing_light = 1;
-        end
-        end
+        if(rinse_start & power) state = nextstate;
+        else state = water_out_state;
+        end 
         
         //spangle light
         always @(posedge clk[25])
         if(rinse_start & power)
         begin
             case(state)
-                water_out_state: water_out_light = ~water_out_light;
-                dewatering_state: begin water_out_light = 0; dewatering_light = ~dewatering_light; end
-                water_in_state: begin dewatering_light = 0; water_in_light = ~water_in_light; end
-                rinsing_state: begin water_in_light = 0; rinsing_light = ~rinsing_light; end
-                rinse_end_state: begin rinsing_light = 0; end
+                water_out_state: begin water_out_light = ~water_out_light; end
+                dewatering_state: begin water_out_light = 1'b0; dewatering_light = ~dewatering_light; end
+                water_in_state: begin dewatering_light = 1'b0; water_in_light = ~water_in_light; end
+                rinsing_state: begin water_in_light = 1'b0; rinsing_light = ~rinsing_light; end
+                rinse_end_state: begin rinsing_light = 1'b0; end
             endcase
+        end
+        else begin
+            water_out_light = 1'b0; dewatering_light = 1'b0; water_in_light = 1'b0; rinsing_light = 1'b0;
         end
         
         //count time
@@ -83,29 +82,37 @@ module rinse_mode(
         begin
         if(rinse_start & power) begin
             case(state)
-                water_out_state: rinse_count = weight * 4 + water_level;
-                dewatering_state: rinse_count = weight * 3 + dewatering_count;
-                water_in_state: rinse_count = weight * 3 - water_level;
+                water_out_state: begin rinse_count = {{29{1'b0}},weight} * 4 + {{29{1'b0}},water_level}; rinse_end_sign = 1'b0; end
+                dewatering_state: rinse_count = {{29{1'b0}},weight} * 3 + dewatering_count;
+                water_in_state: rinse_count = {{29{1'b0}},weight} * 3 - {{29{1'b0}},water_level};
                 rinsing_state: rinse_count = rinsing_count;
-                rinse_end_state: rinse_count = 0;
+                rinse_end_state: begin rinse_count = 0; rinse_end_sign = 1'b1; end
             endcase
+        end
+        else begin
+            rinse_count = 0; rinse_end_sign = 1'b0;
         end
         end
         
-        always @(state or start)
-        if(rinse_start & start) begin
+        always @(state or rinse_start or power)
+        if(rinse_start & power) begin
             case(state)
-                water_out_state: begin rinse_end_sign = 0; water_out_start = 1; end
-                dewatering_state: begin dewatering_start = 1; water_out_start = 0;end
-                water_in_state: begin dewatering_start = 0; water_in_start = 1; end
-                rinsing_state: begin water_in_start = 0; rinsing_start = 1; end
-                rinse_end_state: begin rinse_end_sign = 1; end
+                water_out_state: begin water_out_start = 1'b1; end
+                dewatering_state: begin dewatering_start = 1'b1; water_out_start = 1'b0;end
+                water_in_state: begin dewatering_start = 1'b0; water_in_start = 1'b1; end
+                rinsing_state: begin water_in_start = 1'b0; rinsing_start = 1'b1; end
+                rinse_end_state: begin rinsing_start = 1'b0; end
             endcase
+        end
+        else begin
+            water_out_start = 1'b0; dewatering_start = 1'b0; water_in_start = 1'b0; rinsing_start = 1'b0;
         end
         
         
         
-        always @(water_in_end_sign or water_out_end_sign or dewatering_end_sign or rinsing_end_sign or rinse_start)
+        always @(water_in_end_sign or water_out_end_sign or dewatering_end_sign or rinsing_end_sign or rinse_start or power)
+        if(power & rinse_start) begin
+        if(start)
         begin
             case(state)
                 water_out_state:
@@ -123,8 +130,8 @@ module rinse_mode(
                     if(rinsing_end_sign) nextstate = rinse_end_state;
                     else nextstate = rinsing_state;
                 rinse_end_state:
-                    if(!rinse_start) nextstate = water_out_state;
-                    else nextstate = rinse_end_state;
+                    nextstate = rinse_end_state;
             endcase
         end
+        end else nextstate = water_out_state;
 endmodule

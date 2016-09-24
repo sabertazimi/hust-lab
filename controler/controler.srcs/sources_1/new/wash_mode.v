@@ -5,7 +5,7 @@ module wash_mode
 (
     input wash_start, input start, input power, input [31:0]clk, //input wash_control,
     input [2:0]weight,
-    output wash_end_sign, 
+    output reg wash_end_sign, 
     //light
     output reg water_in_light, output reg washing_light,
     output [2:0]water_level, output reg [31:0]wash_count,
@@ -14,7 +14,7 @@ module wash_mode
     // FIXED ME: there's 3 state, but state and nextState only can hold 1 bit.
     reg [1:0]nextstate;
     wire [31:0]washing_count;
-    wire water_in_end_sign, water_out_end_sign;
+    wire water_in_end_sign, water_out_end_sign, wash_end_sign_mode;
     reg water_in_start, washing_start;
     parameter water_in_state = 0, washing_state = 1, wash_end_state = 2;
     
@@ -23,9 +23,9 @@ module wash_mode
         nextstate = water_in_state;
 //        water_in_end_sign = 0;
 //        spangle_start = 0;
-        water_in_light = 0;
-        washing_light = 0;
-        wash_count = 0;
+        water_in_light = 1'b0;
+        washing_light = 1'b0;
+        wash_count = 1'b0;
     end
     
      water_let_mode WATER_IN_MODE (.water_in_end_sign(water_in_end_sign),
@@ -44,30 +44,32 @@ module wash_mode
                        .switch_en(start),
                        .sum_count({{29{1'b0}}, weight} * 3),
                        .count_start_flag(washing_start),
-                       .count_end_flag(wash_end_sign),
+                       .count_end_flag(wash_end_sign_mode),
                        .count(washing_count)
      );
     
     // FIXED ME: edge detective(posedge) can't be mix up with level detective(power).
-    always @(posedge power or posedge clk[0])
+    always @(posedge clk[0])
     begin
-    if(wash_start) state = nextstate;
+    if(wash_start & power) state = nextstate;
     else begin
-//        wash_end_sign = 0;
-        nextstate = water_in_state;
-        wash_count = 0;
+//        wash_end_sign_mode = 0;
+        state = water_in_state;
     end
     end
     
     //spangle light
-    always @(posedge clk[24])
+    always @(posedge clk[25])
     if(wash_start & power)
     begin
         case(state)
-            water_in_state: water_in_light = ~water_in_light;
-            washing_state: begin water_in_light = 0; washing_light = ~washing_light; end
-            wash_end_state: begin washing_light = 0; end
+            water_in_state: begin water_in_light = ~water_in_light; end
+            washing_state: begin water_in_light = 1'b0; washing_light = ~washing_light; end
+            wash_end_state: begin washing_light = 1'b0; end
         endcase
+    end
+    else begin
+        water_in_light = 1'b0; washing_light = 1'b0;
     end
     
     //count time
@@ -75,23 +77,31 @@ module wash_mode
     begin
     if(wash_start & power) begin
         case(state)
-            water_in_state: wash_count = weight * 4 - water_level;
-            washing_state: wash_count = washing_count;
-            wash_end_state: wash_count = 0;
+            water_in_state: begin wash_count = {{29{1'b0}},weight} * 4 - {{29{1'b0}},water_level}; wash_end_sign = 1'b0; end
+            washing_state: begin wash_count = washing_count; end
+            wash_end_state: begin wash_count = 0; wash_end_sign = 1'b1; end
         endcase
+    end
+    else begin
+        wash_count = 0; wash_end_sign = 1'b0;
     end
     end
     
-    always @(state or start)
-    if(wash_start & start) begin
+    always @(state or start or power or wash_start)
+    if(wash_start & power) begin
         case(state)
-            water_in_state: begin water_in_start = 1; end
-            washing_state: begin water_in_start = 0; washing_start = 1; end
-            wash_end_state: begin  washing_start = 0; end
+            water_in_state: begin water_in_start = 1'b1; end
+            washing_state: begin water_in_start = 1'b0; washing_start = 1'b1; end
+            wash_end_state: begin  washing_start = 1'b0; end
         endcase
     end
+    else begin
+        water_in_start = 1'b0; washing_start = 1'b0;
+    end
     
-    always @(water_in_end_sign or wash_end_sign or wash_start)
+    always @(water_in_end_sign or wash_end_sign_mode or wash_start or power or start)
+    if(power & wash_start) begin
+    if(start)
     begin
         case(state)
             water_in_state:
@@ -99,12 +109,14 @@ module wash_mode
                     nextstate = washing_state;
                 else nextstate = water_in_state;
             washing_state:
-                if(wash_end_sign)
+                if(wash_end_sign_mode)
                     nextstate = wash_end_state;
                 else nextstate = washing_state;
             wash_end_state:
-                if(!wash_start) nextstate = water_in_state;
-                else nextstate = wash_end_state;
+                nextstate = wash_end_state;
         endcase
+    end
+    end else begin
+        nextstate = water_in_state;
     end
 endmodule

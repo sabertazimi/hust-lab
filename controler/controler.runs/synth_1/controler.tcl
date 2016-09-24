@@ -3,6 +3,7 @@
 # 
 
 set_param xicom.use_bs_reader 1
+set_msg_config -id {Common 17-41} -limit 10000000
 set_msg_config -id {HDL 9-1061} -limit 100000
 set_msg_config -id {HDL 9-1654} -limit 100000
 create_project -in_memory -part xc7a100tcsg324-1
@@ -20,12 +21,12 @@ read_verilog -library xil_defaultlib {
   /home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/timer.v
   /home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/time_to_segment.v
   /home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/water_let_mode.v
-  /home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/rinse_mode.v
-  /home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/time_display.v
   /home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/wash_mode.v
+  /home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/time_display.v
+  /home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/tick_divider.v
   /home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/selector_mode.v
   /home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/dewater_mode.v
-  /home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/tick_divider.v
+  /home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/rinse_mode.v
   /home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/controler.v
 }
 foreach dcp [get_files -quiet -all *.dcp] {

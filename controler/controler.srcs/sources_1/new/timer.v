@@ -32,15 +32,15 @@ module timer
     assign real_clk = (switch_power & count_start_flag & !init_flag) ? clk_src[25] : clk_src[0];
     always @(posedge real_clk) begin
         if (switch_power & count_start_flag) begin
-            if (switch_en & !init_flag) begin
-            if (reverse_count < sum_count) begin
-                reverse_count = reverse_count + 1;          
-                count = sum_count - reverse_count;
-            end else begin
-                count_end_flag = 1;
+            if(init_flag) begin reverse_count = 0; count = sum_count; init_flag = 0; end
+            else if (switch_en) begin
+                if (reverse_count <= sum_count) begin
+                    count = sum_count - reverse_count;
+                    reverse_count = reverse_count + 1;
+                end else begin
+                    count_end_flag = 1;
+                end
             end
-            end
-        if(init_flag) begin init_flag = 0; reverse_count = 0; count = sum_count; end
         end else if(!switch_power | !count_start_flag) begin
             count_end_flag <= 0;
             reverse_count <= 0;
