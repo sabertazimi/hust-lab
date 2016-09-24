@@ -3,10 +3,10 @@
 <!--The data in this file is primarily intended for consumption by Xilinx tools.
 The structure and the elements are likely to change over the next few releases.
 This means code written to parse this file will need to be revisited each subsequent release.-->
-<application name="pa" timeStamp="Sat Sep 24 11:38:28 2016">
+<application name="pa" timeStamp="Sat Sep 24 17:40:01 2016">
 <section name="Project Information" visible="false">
 <property name="ProjectID" value="a94dc46e42d54ab1aad5e8865458a5be" type="ProjectID"/>
-<property name="ProjectIteration" value="38" type="ProjectIteration"/>
+<property name="ProjectIteration" value="39" type="ProjectIteration"/>
 </section>
 <section name="PlanAhead Usage" visible="true">
 <item name="Project Data">
@@ -31,7 +31,7 @@ This means code written to parse this file will need to be revisited each subseq
 <property name="OpenTarget" value="1" type="JavaHandler"/>
 <property name="ProgramDevice" value="2" type="JavaHandler"/>
 <property name="ProjectSettingsCmdHandler" value="3" type="JavaHandler"/>
-<property name="RunBitgen" value="36" type="JavaHandler"/>
+<property name="RunBitgen" value="37" type="JavaHandler"/>
 <property name="RunImplementation" value="1" type="JavaHandler"/>
 <property name="RunSchematic" value="2" type="JavaHandler"/>
 <property name="RunSynthesis" value="1" type="JavaHandler"/>
@@ -43,41 +43,10 @@ This means code written to parse this file will need to be revisited each subseq
 <property name="UpdateRegId" value="2" type="JavaHandler"/>
 <property name="ViewTaskRTLAnalysis" value="1" type="JavaHandler"/>
 </item>
-<item name="Gui Resources Info">
-<property name="CANCEL, Cancel" value="1" type="GuiResourceData"/>
-<property name="NEXT, Next " value="1" type="GuiResourceData"/>
-<property name="PAResourceAtoD.CmdMsgDialog_OK, OK" value="1" type="GuiResourceData"/>
-<property name="PAResourceCommand.PACommandNames_ADD_SOURCES, Sources_add_sources" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, clock (clock.v" value="17" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources], 0, true" value="2" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources], 0, true, false, false, false, true, false" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Program and Debug, Hardware Manager, Open Target], 27, false" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Program and Debug, Hardware Manager, Program Device], 28, false" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.PAViews_CODE, Code" value="5" type="GuiResourceData"/>
-<property name="PAResourceOtoP.ProgramDebugTab_PROGRAM_DEVICE, Program device" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.ProgramFpgaDialog_PROGRAM, Program" value="1" type="GuiResourceData"/>
-<property name="PAResourceQtoS.SrcChooserPanel_ADD_HDL_AND_NETLIST_FILES_TO_YOUR_PROJECT, Add Files" value="4" type="GuiResourceData"/>
-<property name="PAResourceQtoS.SrcChooserPanel_CREATE_FILE, Create File" value="1" type="GuiResourceData"/>
-<property name="PAResourceQtoS.SrcChooserPanel_SCAN_AND_ADD_RTL_INCLUDE_FILES_INTO, Scan and add RTL include files into project, true" value="1" type="GuiResourceData"/>
-<property name="RDIResource.BaseDialog_CANCEL, Cancel" value="3" type="GuiResourceData"/>
-<property name="range_divider.v, 108, 206" value="1" type="GuiResourceData"/>
-<property name="range_divider.v, 109, 224" value="1" type="GuiResourceData"/>
-<property name="range_divider.v, 178, 211" value="1" type="GuiResourceData"/>
-<property name="range_divider.v, 85, 221" value="1" type="GuiResourceData"/>
-<property name="timer.v, 125, 218" value="1" type="GuiResourceData"/>
-<property name="timer.v, 29, 219" value="1" type="GuiResourceData"/>
-<property name="timer_tb.v, 164, 153" value="1" type="GuiResourceData"/>
-<property name="timer_tb.v, 186, 171" value="1" type="GuiResourceData"/>
-<property name="timer_tb.v, 207, 157" value="1" type="GuiResourceData"/>
-<property name="timer_tb.v, 239, 163" value="1" type="GuiResourceData"/>
-<property name="timer_tb.v, 248, 160" value="1" type="GuiResourceData"/>
-<property name="timer_tb.v, 258, 194" value="1" type="GuiResourceData"/>
-<property name="timer_tb.v, 270, 151" value="1" type="GuiResourceData"/>
-</item>
 <item name="Other">
-<property name="GuiMode" value="10" type="GuiMode"/>
+<property name="GuiMode" value="11" type="GuiMode"/>
 <property name="BatchMode" value="0" type="BatchMode"/>
-<property name="TclMode" value="8" type="TclMode"/>
+<property name="TclMode" value="9" type="TclMode"/>
 </item>
 </section>
 </application>
