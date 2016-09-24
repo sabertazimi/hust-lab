@@ -77,6 +77,7 @@ module timer
             end
         end else begin
             count <= 0;
+            sig_end <= 0;
         end
     end
 endmodule

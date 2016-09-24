@@ -84,27 +84,27 @@ module time_displayer
             end
             3'b010:  begin
                 anodes = 8'b11111011;
-                cnodes = min_seg[7:0];
+                cnodes = 8'b10111111;
             end
             3'b011: begin
                 anodes = 8'b11110111;
-                cnodes = min_seg[15:8];
+                cnodes = min_seg[7:0];
             end
             3'b100: begin
                 anodes = 8'b11101111;
-                cnodes = hour_seg[7:0];
+                cnodes = min_seg[15:8];
             end
             3'b101: begin
                 anodes = 8'b11011111;
-                cnodes = hour_seg[15:8];
+                cnodes = 8'b10111111;
             end
             3'b110: begin
                 anodes = 8'b10111111;
-                cnodes = 8'b11111111;
+                cnodes = hour_seg[7:0];
             end
             3'b111: begin
                 anodes = 8'b01111111;
-                cnodes = 8'b11111111;
+                cnodes = hour_seg[15:8];
             end
             default: begin
                 anodes = 8'b11111110;
