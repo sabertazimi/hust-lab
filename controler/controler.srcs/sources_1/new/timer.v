@@ -15,35 +15,36 @@ module timer
 (   input [31:0]clk_src,
     input switch_power,
     input switch_en,
-    input [31:0]sum_count,
+    input [(WIDTH-1):0]sum_count,
     input count_start_flag,
     output reg count_end_flag,
     output reg [(WIDTH-1):0] count
 );
-    reg power_control;
+    reg init_flag;
+    wire real_clk;
+    reg [(WIDTH-1):0]reverse_count;
     initial begin
         count_end_flag <= 0;
-        count <= sum_count;
-        power_control = 1;
+        init_flag <= 1;
+        reverse_count <= 0;
     end
     //information: count has a second delay
-    always @(posedge clk_src[25]) begin
-        if (switch_power & count_start_flag & power_control) begin
-            if (switch_en) begin
-                if (count > 0) begin
-                    count <= count - 1;
-                end else if (count == 0) begin
-                    count_end_flag <= 1;
-                end
+    assign real_clk = (switch_power & count_start_flag & !init_flag) ? clk_src[25] : clk_src[0];
+    always @(posedge real_clk) begin
+        if (switch_power & count_start_flag) begin
+            if (switch_en & !init_flag) begin
+            if (reverse_count < sum_count) begin
+                reverse_count = reverse_count + 1;          
+                count = sum_count - reverse_count;
+            end else begin
+                count_end_flag = 1;
             end
-        end else begin
+            end
+        if(init_flag) begin init_flag = 0; reverse_count = 0; count = sum_count; end
+        end else if(!switch_power | !count_start_flag) begin
             count_end_flag <= 0;
-            count <= sum_count;
+            reverse_count <= 0;
+            init_flag <= 1;
         end
-    end
-    
-    always @(switch_power or count_start_flag) begin
-        if(switch_power & count_start_flag) power_control = 1;
-        else power_control = 0;
     end
 endmodule

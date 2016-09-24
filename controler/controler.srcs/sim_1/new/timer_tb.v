@@ -39,7 +39,8 @@ module timer_tb();
         #5 start = 1;
         #20 power = 1;
         #20 count_start_flag = 1;
-        #420 count_start_flag = 0;
+        #100 count_start_flag = 0;
+        #320;
         #5 count_start_flag = 1; sum_count = 5;
         #500 ;
     end

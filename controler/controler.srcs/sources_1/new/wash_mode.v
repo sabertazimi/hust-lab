@@ -4,7 +4,7 @@ module wash_mode
 //#(parameter WIDTH = 32)
 (
     input wash_start, input start, input power, input [31:0]clk, //input wash_control,
-    input weight, input washing_light_control,
+    input weight,
     output wash_end_sign, 
     //light
     output reg water_in_light, output reg washing_light,
