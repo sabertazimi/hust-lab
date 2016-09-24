@@ -43,8 +43,12 @@ module water_let_mode_tb();
         #10 water_in_start = 1;
         #10 start = 1;
         #10 power = 1;
-        #60 start = 0;
+//        #50 start = 0;
         #10 start = 1;
-        #970 ;
+        #50 water_in_start = 0;
+        #10 water_in_start = 1;
+        #500 water_in_start = 0;
+        #10 water_out_start = 1;
+        #460;
      end
 endmodule
