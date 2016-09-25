@@ -19,48 +19,38 @@ module selector_mode
     output reg [2:0] sel_value
 );
 
-    reg init_flag, push_control;
+    reg init_flag;
     wire real_clk;
 
     initial begin
         init_flag <= 1;
-        sel_value <= 0;
-        push_control <= 1'b0;
-        push <= 0;
+        sel_value <= LO;
+        push <= 1'b0;
     end
 
-    assign real_clk = (switch_power & !init_flag & !switch_en) ? sig_change : clk[0];
+    assign real_clk = (switch_power & !switch_en) ? sig_change : clk[0];
     always @(posedge real_clk) begin
-        if (switch_power) begin
-            if(init_flag) begin sel_value <= LO; push <= 0; end
-            if (!switch_en) begin
-                if (init_flag) begin
-                    init_flag <= 0;
-                end
-                else if(washing_machine_running == 0) begin sel_value = (sel_value + 1) % (HI+1) ? (sel_value + 1) % (HI+1) : LO; end
-                else if(washing_machine_running == 1) begin
-                    if(push_control) push_control = 0;
-                    else begin
-                        sel_value = (sel_value + 1) % (HI+1) ? (sel_value + 1) % (HI+1) : LO;
-                    end
-                end
-                else if(washing_machine_running == 2) begin
-                    if(push_control) begin push_control = 0; sel_value <= LO; end
-                    else begin
-                        
-                        push = 0;
-                    end
-                end
+        if (switch_power && !switch_en) begin
+//            if(washing_machine_running == 0) begin sel_value = (sel_value + 1) % (HI+1) ? (sel_value + 1) % (HI+1) : LO; end
+//            else if(washing_machine_running == 1) begin
+//                 sel_value = (sel_value + 1) % (HI+1) ? (sel_value + 1) % (HI+1) : LO;
+//                 push = 1'b1;
+//            end
+//            else if(washing_machine_running == 2) begin
+//                 sel_value = (sel_value + 1) % (HI+1) ? (sel_value + 1) % (HI+1) : LO;
+//                 push = 1'b1;
+//            end
+            if(init_flag) begin sel_value = LO; init_flag = 0; end
+            sel_value = (sel_value + 1) % (HI+1) ? (sel_value + 1) % (HI+1) : LO;
+            if(washing_machine_running[0] || washing_machine_running[1]) push = 1'b1;
             // TODO: button-down signal led
             // btn_sig_led(bool sig_flicker, output btn_l   ed)
-            end
-            else begin
-                push = 0; push_control = 1;
-            end
-        end else begin
-            init_flag <= 1;
-            sel_value <= 0;
-            push_control <= 0;
+        end else if(switch_power && switch_en) begin
+            push = 1'b0; 
+        end else if(!switch_power) begin
+            init_flag = 1;
+            sel_value = LO;
+            push = 1'b0;
         end
     end
     

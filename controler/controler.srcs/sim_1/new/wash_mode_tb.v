@@ -43,11 +43,9 @@ module wash_mode_tb();
     end
     
     always begin
-        #10 start = 1;
-        #20 power = 1;
+        #10 power = 1;
+        #20 start = 1;
         #20 wash_start = 1;
-        #100 power = 0;
-        #40 power = 1;
         #950 ;
     end
 

@@ -12,6 +12,7 @@ module rinse_mode
     );
     reg [2:0]nextstate;
     wire [31:0]dewatering_count, rinsing_count, water_out_count, water_in_count;
+    wire real_clk;
     reg water_in_start, water_out_start, dewatering_start, rinsing_start;
     wire water_in_end_sign, water_out_end_sign, dewatering_end_sign, rinsing_end_sign;
     parameter water_out_state = 0, dewatering_state = 1, water_in_state = 2, rinsing_state = 3, rinse_end_state = 4;
@@ -23,7 +24,7 @@ module rinse_mode
             water_out_light = 1'b0;
             dewatering_light = 1'b0;
             water_in_light = 1'b0;
-            rinsing_light = 1'b0;
+            rinsing_light = 1'b1;
             water_in_start = 1'b0;
             water_out_start = 1'b0;
             dewatering_start = 1'b0;
@@ -59,16 +60,17 @@ module rinse_mode
         // FIXED ME: edge detective(posedge) can't be mix up with level detective(power).
         always @(posedge clk[0])
         begin
-        if(rinse_start & power) state = nextstate;
-        else state = water_out_state;
+        if(rinse_start & power & start) state = nextstate;
+        else if(!(rinse_start & power)) state = water_out_state;
         end 
         
         //spangle light
+//        assign real_clk = (rinse_start & power) ? clk[CLK_CH] : clk[0];
         always @(posedge clk[CLK_CH])
         if(rinse_start & power)
         begin
             case(state)
-                water_out_state: begin water_out_light = ~water_out_light; end
+                water_out_state: begin water_out_light = ~water_out_light; rinsing_light = 1'b1; end
                 dewatering_state: begin water_out_light = 1'b0; dewatering_light = ~dewatering_light; end
                 water_in_state: begin dewatering_light = 1'b0; water_in_light = ~water_in_light; end
                 rinsing_state: begin water_in_light = 1'b0; rinsing_light = ~rinsing_light; end
@@ -76,7 +78,7 @@ module rinse_mode
             endcase
         end
         else begin
-            water_out_light = 1'b0; dewatering_light = 1'b0; water_in_light = 1'b0; rinsing_light = 1'b0;
+            water_out_light = 1'b0; dewatering_light = 1'b0; water_in_light = 1'b0; rinsing_light = 1'b1;
         end
         
         //count time
@@ -96,25 +98,24 @@ module rinse_mode
         end
         end
         
-        always @(state or rinse_start or power)
-        if(rinse_start & power) begin
+        always @(state or rinse_start or power or start)
+        if(rinse_start & power & start) begin
             case(state)
-                water_out_state: begin water_out_start = 1'b1; end
-                dewatering_state: begin dewatering_start = 1'b1; water_out_start = 1'b0;end
-                water_in_state: begin dewatering_start = 1'b0; water_in_start = 1'b1; end
-                rinsing_state: begin water_in_start = 1'b0; rinsing_start = 1'b1; end
-                rinse_end_state: begin rinsing_start = 1'b0; end
+                water_out_state: begin water_out_start = 1'b1; water_in_start = 1'b0; dewatering_start = 1'b0; rinsing_start = 1'b0; end
+                dewatering_state: begin dewatering_start = 1'b1; water_out_start = 1'b0; water_in_start = 1'b0; rinsing_start = 1'b0; end
+                water_in_state: begin dewatering_start = 1'b0; water_in_start = 1'b1; water_out_start = 1'b0; rinsing_start = 1'b0; end
+                rinsing_state: begin water_in_start = 1'b0; rinsing_start = 1'b1; dewatering_start = 1'b0; water_out_start = 1'b0; end
+                rinse_end_state: begin water_in_start = 1'b0; rinsing_start = 1'b0; dewatering_start = 1'b0; water_out_start = 1'b0; end
             endcase
         end
-        else begin
+        else if(!(rinse_start & power)) begin
             water_out_start = 1'b0; dewatering_start = 1'b0; water_in_start = 1'b0; rinsing_start = 1'b0;
         end
         
         
         
         always @(water_in_end_sign or water_out_end_sign or dewatering_end_sign or rinsing_end_sign or rinse_start or power)
-        if(power & rinse_start) begin
-        if(start)
+        if(power & rinse_start)
         begin
             case(state)
                 water_out_state:
@@ -134,6 +135,5 @@ module rinse_mode
                 rinse_end_state:
                     nextstate = rinse_end_state;
             endcase
-        end
         end else nextstate = water_out_state;
 endmodule

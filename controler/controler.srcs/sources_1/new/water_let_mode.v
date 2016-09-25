@@ -13,6 +13,9 @@ module water_let_mode
 //    wire real_clk;
     initial begin
         init_flag <= 1;
+        water_in_end_sign = 1'b0; 
+        water_out_end_sign = 1'b0; 
+        water_level = {3{1'b0}};
     end
     
     timer #(WIDTH, CLK_CH) WATER_IN_TIMER (.clk_src(clk),
@@ -32,7 +35,7 @@ module water_let_mode
                 else if(water_out_start) water_level = max_water_level;
                 init_flag = 0;
             end
-            else begin
+            if(start) begin
                 if (water_in_start) begin
 //                   water_level = (max_water_level * 60 - count) / 20;
                     water_level = max_water_level - water_count[0] - water_count[1] * 2 - water_count[2] * 4;

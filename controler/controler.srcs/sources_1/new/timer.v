@@ -27,6 +27,7 @@ module timer
         count_end_flag <= 0;
         init_flag <= 1;
         reverse_count <= 0;
+        count  <= 0;
     end
     //information: count has a second delay
     assign real_clk = (switch_power & count_start_flag & !init_flag) ? clk_src[CLK_CH] : clk_src[0];
@@ -41,9 +42,10 @@ module timer
                     count_end_flag = 1;
                 end
             end
-        end else if(!switch_power | !count_start_flag) begin
+        end else begin
             count_end_flag <= 0;
             reverse_count <= 0;
+            count <= 0;
             init_flag <= 1;
         end
     end

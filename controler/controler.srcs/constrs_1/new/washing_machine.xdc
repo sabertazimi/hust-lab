@@ -85,6 +85,15 @@ set_property IOSTANDARD LVCMOS33 [get_ports power_light]
 set_property PACKAGE_PIN R2 [get_ports start_pause_light]
 set_property IOSTANDARD LVCMOS33 [get_ports start_pause_light]
 
+set_property PACKAGE_PIN U1 [get_ports state[2]]
+set_property IOSTANDARD LVCMOS33 [get_ports state[2]]
+
+set_property PACKAGE_PIN P5 [get_ports state[1]]
+set_property IOSTANDARD LVCMOS33 [get_ports state[1]]
+
+set_property PACKAGE_PIN R1 [get_ports state[0]]
+set_property IOSTANDARD LVCMOS33 [get_ports state[0]]
+
 set_property PACKAGE_PIN T6 [get_ports weight_ch_light[2]]
 set_property IOSTANDARD LVCMOS33 [get_ports weight_ch_light[2]]
 

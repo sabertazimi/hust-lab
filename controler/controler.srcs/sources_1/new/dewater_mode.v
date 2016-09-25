@@ -13,6 +13,7 @@ module dewater_mode
     );
     reg [1:0]nextstate;
     wire [31:0]dewatering_count;
+    wire real_clk;
     wire water_out_end_sign, water_in_end_sign, dewatering_end_sign;
     reg  water_out_start, dewatering_start;
     parameter water_out_state = 0, dewatering_state = 1, dewater_end_state = 2;
@@ -21,7 +22,11 @@ module dewater_mode
         state = water_out_state;
         nextstate = water_out_state;
         water_out_light = 1'b0;
-        dewatering_light = 1'b0;
+        dewatering_light = 1'b1;
+        water_out_start = 1'b0;
+        dewatering_start = 1'b0;
+        dewater_count = {32{1'b0}};
+        dewater_end_sign = 1'b0;
     end
     
      water_let_mode #(WIDTH, CLK_CH) WATER_OUT_MODE (.water_out_end_sign(water_out_end_sign),
@@ -45,24 +50,25 @@ module dewater_mode
     // FIXED ME: edge detective(posedge) can't be mix up with level detective(power).
     always @(posedge clk[0])
     begin
-    if(power & dewater_start) state = nextstate;
-    else begin
-        state = water_out_state;
+    if(power & dewater_start & start) state <= nextstate;
+    else if(!(power & dewater_start)) begin
+        state <= water_out_state;
     end
     end
     
     //spangle light
+//    assign real_clk = (dewater_start & power) ? clk[CLK_CH] : clk[0];
     always @(posedge clk[CLK_CH])
     if(dewater_start & power)
     begin
         case(state)
-            water_out_state: begin water_out_light = ~water_out_light; end
+            water_out_state: begin water_out_light = ~water_out_light; dewatering_light = 1'b1; end
             dewatering_state: begin water_out_light = 1'b0; dewatering_light = ~dewatering_light; end
             dewater_end_state: begin dewatering_light = 1'b0; end
         endcase
     end
     else begin
-        water_out_light = 1'b0; dewatering_light = 1'b0;
+        water_out_light = 1'b0; dewatering_light = 1'b1;
     end
     
     //count time
@@ -79,21 +85,20 @@ module dewater_mode
     end
     end
     
-    always @(state or start or power or dewater_start)
-    if(dewater_start & power) begin
+    always @(state or power or dewater_start or start)
+    if(dewater_start & power & start) begin
         case(state)
-            water_out_state: begin water_out_start = 1'b1; end
+            water_out_state: begin water_out_start = 1'b1; dewatering_start = 1'b0; end
             dewatering_state: begin water_out_start = 1'b0; dewatering_start = 1'b1; end
-            dewater_end_state: begin  dewatering_start = 1'b0; end
+            dewater_end_state: begin  dewatering_start = 1'b0; water_out_start = 1'b0; end
         endcase
     end
-    else begin
+    else if(!(dewater_start & power)) begin
         water_out_start = 1'b0; dewatering_start = 1'b0; 
     end
     
     always @(water_out_end_sign or dewatering_end_sign or dewater_start or power)
-    if(power & dewater_start) begin
-    if(start)
+    if(power & dewater_start)
     begin
         case(state)
             water_out_state:
@@ -107,7 +112,6 @@ module dewater_mode
             dewater_end_state:
                 nextstate = dewater_end_state;
         endcase
-    end
     end else begin
         nextstate = water_out_state;
     end
