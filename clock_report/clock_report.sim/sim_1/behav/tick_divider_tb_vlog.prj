@@ -1,0 +1,9 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  "../../../../clock_design/src/tick_divider.v"
+verilog xil_defaultlib  "../../../clock_report.srcs/sim_1/new/tick_divider_tb.v"
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
