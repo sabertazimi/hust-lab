@@ -117,3 +117,6 @@ set_property IOSTANDARD LVCMOS33 [get_ports rinsing_light]
 
 set_property PACKAGE_PIN T4 [get_ports dewatering_light]
 set_property IOSTANDARD LVCMOS33 [get_ports dewatering_light]
+
+set_property PACKAGE_PIN T5 [get_ports alarm]
+set_property IOSTANDARD LVCMOS33 [get_ports alarm]
