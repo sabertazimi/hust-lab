@@ -1,0 +1,57 @@
+Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
+| Date         : Mon Sep 26 14:59:36 2016
+| Host         : avalon running 64-bit Ubuntu 16.04.1 LTS
+| Command      : report_control_sets -verbose -file ring_control_sets_placed.rpt
+| Design       : ring
+| Device       : xc7a100t
+------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Flip-Flop Distribution
+3. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Number of unique control sets                            |     4 |
+| Unused register locations in slices containing registers |    19 |
++----------------------------------------------------------+-------+
+
+
+2. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |              29 |            9 |
+| No           | No                    | Yes                    |               0 |            0 |
+| No           | Yes                   | No                     |               0 |            0 |
+| Yes          | No                    | No                     |               0 |            0 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |              32 |            9 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+3. Detailed Control Set Information
+-----------------------------------
+
++--------------------+---------------+-------------------+------------------+----------------+
+|    Clock Signal    | Enable Signal |  Set/Reset Signal | Slice Load Count | Bel Load Count |
++--------------------+---------------+-------------------+------------------+----------------+
+|  p_0_in_BUFG       |               |                   |                1 |              1 |
+|  n_0_16_BUFG       |               |                   |                1 |              2 |
+|  clk_src_IBUF_BUFG |               |                   |                7 |             26 |
+|  p_0_in_BUFG       | n_0_16_BUFG   | count[31]_i_1_n_1 |                9 |             32 |
++--------------------+---------------+-------------------+------------------+----------------+
+
+

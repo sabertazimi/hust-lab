@@ -6,4 +6,4 @@
 # Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 #
 
-vivado -log selector.vds -m64 -mode batch -messageDb vivado.pb -notrace -source selector.tcl
+vivado -log ring.vds -m64 -mode batch -messageDb vivado.pb -notrace -source ring.tcl

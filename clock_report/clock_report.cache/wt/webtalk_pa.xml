@@ -3,7 +3,7 @@
 <!--The data in this file is primarily intended for consumption by Xilinx tools.
 The structure and the elements are likely to change over the next few releases.
 This means code written to parse this file will need to be revisited each subsequent release.-->
-<application name="pa" timeStamp="Sat Sep 24 17:40:01 2016">
+<application name="pa" timeStamp="Mon Sep 26 10:07:03 2016">
 <section name="Project Information" visible="false">
 <property name="ProjectID" value="a94dc46e42d54ab1aad5e8865458a5be" type="ProjectID"/>
 <property name="ProjectIteration" value="39" type="ProjectIteration"/>
@@ -26,7 +26,7 @@ This means code written to parse this file will need to be revisited each subseq
 <property name="LaunchProgramFpga" value="34" type="JavaHandler"/>
 <property name="NewProject" value="1" type="JavaHandler"/>
 <property name="OpenHardwareManager" value="17" type="JavaHandler"/>
-<property name="OpenProject" value="6" type="JavaHandler"/>
+<property name="OpenProject" value="8" type="JavaHandler"/>
 <property name="OpenRecentTarget" value="11" type="JavaHandler"/>
 <property name="OpenTarget" value="1" type="JavaHandler"/>
 <property name="ProgramDevice" value="2" type="JavaHandler"/>
@@ -43,10 +43,32 @@ This means code written to parse this file will need to be revisited each subseq
 <property name="UpdateRegId" value="2" type="JavaHandler"/>
 <property name="ViewTaskRTLAnalysis" value="1" type="JavaHandler"/>
 </item>
+<item name="Gui Resources Info">
+<property name="PAResourceCommand.PACommandNames_OPEN_PROJECT, Open Project..." value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, clock (clock.v" value="12" type="GuiResourceData"/>
+<property name="PAResourceEtoH.GettingStartedView_OPEN_PROJECT, Open Project" value="1" type="GuiResourceData"/>
+<property name="PAResourceItoN.MainMenuMgr_FILE, File" value="4" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PAViews_PROJECT_SUMMARY, Project Summary" value="1" type="GuiResourceData"/>
+<property name="time_displayer.v, 229, 52" value="2" type="GuiResourceData"/>
+<property name="time_displayer.v, 231, 197" value="3" type="GuiResourceData"/>
+<property name="time_displayer.v, 237, 184" value="1" type="GuiResourceData"/>
+<property name="time_displayer.v, 237, 82, false, false, false, true, false" value="1" type="GuiResourceData"/>
+<property name="time_displayer.v, 247, 58" value="1" type="GuiResourceData"/>
+<property name="time_displayer.v, 252, 67" value="1" type="GuiResourceData"/>
+<property name="time_displayer.v, 256, 75" value="1" type="GuiResourceData"/>
+<property name="time_displayer.v, 256, 75, false, false, false, true, false" value="1" type="GuiResourceData"/>
+<property name="time_displayer.v, 258, 124" value="1" type="GuiResourceData"/>
+<property name="time_displayer.v, 284, 63" value="1" type="GuiResourceData"/>
+<property name="time_to_segment.v, 127, 156" value="3" type="GuiResourceData"/>
+<property name="time_to_segment.v, 15, 158" value="1" type="GuiResourceData"/>
+<property name="time_to_segment.v, 170, 170" value="1" type="GuiResourceData"/>
+<property name="time_to_segment.v, 171, 170" value="1" type="GuiResourceData"/>
+<property name="time_to_segment.v, 25, 137" value="1" type="GuiResourceData"/>
+</item>
 <item name="Other">
-<property name="GuiMode" value="11" type="GuiMode"/>
+<property name="GuiMode" value="12" type="GuiMode"/>
 <property name="BatchMode" value="0" type="BatchMode"/>
-<property name="TclMode" value="9" type="TclMode"/>
+<property name="TclMode" value="10" type="TclMode"/>
 </item>
 </section>
 </application>

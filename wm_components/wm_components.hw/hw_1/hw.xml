@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Product Version: Vivado v2016.1 (64-bit)                     -->
+<!-- Product Version: Vivado v2016.2 (64-bit)                     -->
 <!--                                                              -->
 <!-- Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.        -->
 
@@ -8,7 +8,7 @@
   <ObjectList object_type="hw_device" gui_info="">
     <Object name="xc7a100t_0" gui_info="">
       <Properties Property="PROBES.FILE" value=""/>
-      <Properties Property="PROGRAM.HW_BITSTREAM" value="$_project_name_.runs/impl_1/weight_selector.bit"/>
+      <Properties Property="PROGRAM.HW_BITSTREAM" value="$_project_name_.runs/impl_1/ring.bit"/>
     </Object>
   </ObjectList>
   <probeset name="hw project" active="false"/>

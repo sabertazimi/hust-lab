@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1474442336">
-  <File Type="VDS-TIMING-PB" Name="selector_timing_summary_synth.pb"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="selector_timing_summary_synth.rpt"/>
-  <File Type="RDS-DCP" Name="selector.dcp"/>
-  <File Type="RDS-UTIL-PB" Name="selector_utilization_synth.pb"/>
-  <File Type="RDS-UTIL" Name="selector_utilization_synth.rpt"/>
-  <File Type="RDS-PROPCONSTRS" Name="selector_drc_synth.rpt"/>
-  <File Type="RDS-RDS" Name="selector.vds"/>
-  <File Type="PA-TCL" Name="selector.tcl"/>
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1474873118">
+  <File Type="VDS-TIMING-PB" Name="ring_timing_summary_synth.pb"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="ring_timing_summary_synth.rpt"/>
+  <File Type="RDS-DCP" Name="ring.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="ring_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="ring_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="ring_drc_synth.rpt"/>
+  <File Type="RDS-RDS" Name="ring.vds"/>
+  <File Type="PA-TCL" Name="ring.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/water_let.v">
@@ -80,9 +80,16 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/sources_1/new/ring.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="selector"/>
+      <Option Name="TopModule" Val="ring"/>
     </Config>
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
@@ -99,7 +106,14 @@
         <Attr Name="UsedIn" Val="implementation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/constrs_1/new/ring.xdc">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
     <Config>
+      <Option Name="TargetConstrsFile" Val="$PSRCDIR/constrs_1/new/ring.xdc"/>
       <Option Name="ConstrsType" Val="XDC"/>
     </Config>
   </FileSet>

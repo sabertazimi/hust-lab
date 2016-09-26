@@ -1,0 +1,51 @@
+#-----------------------------------------------------------
+# Vivado v2016.2 (64-bit)
+# SW Build 1577090 on Thu Jun  2 16:32:35 MDT 2016
+# IP Build 1577682 on Fri Jun  3 12:00:54 MDT 2016
+# Start of session at: Mon Sep 26 11:01:23 2016
+# Process ID: 22418
+# Current directory: /home/sabertazimi/Work/Source/dld/wm_components/wm_components.runs/synth_1
+# Command line: vivado -log ring.vds -mode batch -messageDb vivado.pb -notrace -source ring.tcl
+# Log file: /home/sabertazimi/Work/Source/dld/wm_components/wm_components.runs/synth_1/ring.vds
+# Journal file: /home/sabertazimi/Work/Source/dld/wm_components/wm_components.runs/synth_1/vivado.jou
+#-----------------------------------------------------------
+source ring.tcl -notrace
+Command: synth_design -top ring -part xc7a100tcsg324-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 22599 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1043.691 ; gain = 154.137 ; free physical = 1443 ; free virtual = 12274
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'ring' [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/sources_1/new/ring.v:22]
+	Parameter WIDTH bound to: 32 - type: integer 
+	Parameter ALARM_STEP bound to: 25 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'tick_divider' [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/sources_1/new/tick_divider.v:3]
+	Parameter WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'tick_divider' (1#1) [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/sources_1/new/tick_divider.v:3]
+WARNING: [Synth 8-567] referenced signal 'btn_pushed' should be on the sensitivity list [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/sources_1/new/ring.v:59]
+WARNING: [Synth 8-567] referenced signal 'phase_ended' should be on the sensitivity list [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/sources_1/new/ring.v:59]
+INFO: [Synth 8-256] done synthesizing module 'ring' (2#1) [/home/sabertazimi/Work/Source/dld/wm_components/wm_components.srcs/sources_1/new/ring.v:22]
+WARNING: [Synth 8-3331] design ring has unconnected port power
+WARNING: [Synth 8-3331] design ring has unconnected port start_pause
+WARNING: [Synth 8-3331] design ring has unconnected port weight_ch
+WARNING: [Synth 8-3331] design ring has unconnected port mode_ch
+WARNING: [Synth 8-3331] design ring has unconnected port w_r_d_end[2]
+WARNING: [Synth 8-3331] design ring has unconnected port w_r_d_end[1]
+WARNING: [Synth 8-3331] design ring has unconnected port w_r_d_end[0]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1084.129 ; gain = 194.574 ; free physical = 1401 ; free virtual = 12233
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1084.129 ; gain = 194.574 ; free physical = 1401 ; free virtual = 12233
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xc7a100tcsg324-1
