@@ -13,6 +13,7 @@ module dewater_mode
     );
     reg [1:0]nextstate;
     wire [31:0]dewatering_count;
+    wire [2:0]water_level_dewater;
     wire real_clk;
     wire water_out_end_sign, water_in_end_sign, dewatering_end_sign;
     reg  water_out_start, dewatering_start;
@@ -29,6 +30,8 @@ module dewater_mode
         dewater_end_sign = 1'b0;
     end
     
+    assign water_level = (state == water_out_state) ? water_level_dewater : 3'b000;
+    
      water_let_mode #(WIDTH, CLK_CH) WATER_OUT_MODE (.water_out_end_sign(water_out_end_sign),
                                     .water_in_end_sign(water_in_end_sign),
                                     .water_out_start(water_out_start),
@@ -37,7 +40,7 @@ module dewater_mode
                                     .power(power),
                                     .max_water_level(weight),
                                     .start(start),
-                                    .water_level(water_level)
+                                    .water_level(water_level_dewater)
      );
      timer #(WIDTH, CLK_CH) TIMER_WASH (.clk_src(clk),
                        .switch_power(power),

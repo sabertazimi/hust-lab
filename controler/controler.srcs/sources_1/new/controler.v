@@ -129,7 +129,7 @@ module controler
     assign true_power = power & power_control;
     assign anodes = true_power ? ianodes : {8{1'b1}};
     assign cnodes = true_power ? icnodes : {8{1'b1}};
-    assign start_pause_light = start_pause & start_pause_light_two;
+    assign start_pause_light = true_power ? (start_pause & start_pause_light_two) : 1'b0;
     assign power_light = true_power;
     assign weight_ch_light = true_power ? weight_ch_light_mode : 3'b000;
     //w_r_d_change
@@ -250,15 +250,30 @@ module controler
     always @(state or true_power or start_pause_light)     //moore
     if(true_power & start_pause_light) begin
         case(state)
-            mode_ch_state: begin w_r_d_start = 3'b000; washing_machine_running = 2'b00; end
-            wash_state:   begin w_r_d_start = 3'b100; washing_machine_running = 2'b01; end
-            rinse_state:  begin w_r_d_start = 3'b010; washing_machine_running = 2'b01; end
-           dewater_state:  begin w_r_d_start = 3'b001; washing_machine_running = 2'b01; end
-           w_r_d_end_state: begin w_r_d_start = 3'b000; washing_machine_running = 2'b10; end
+            mode_ch_state: begin w_r_d_start = 3'b000; end
+            wash_state:   begin w_r_d_start = 3'b100; end
+            rinse_state:  begin w_r_d_start = 3'b010; end
+           dewater_state:  begin w_r_d_start = 3'b001; end
+           w_r_d_end_state: begin w_r_d_start = 3'b000; end
         endcase
     end
     else if(!true_power) begin
-        w_r_d_start <= 3'b000; washing_machine_running <= 2'b00;
+        w_r_d_start <= 3'b000;
+    end
+    
+    //washing machine running flag
+    always @(state or true_power)     //moore
+    if(true_power) begin
+        case(state)
+            mode_ch_state: begin washing_machine_running = 2'b00; end
+            wash_state:   begin washing_machine_running = 2'b01; end
+            rinse_state:  begin washing_machine_running = 2'b01; end
+           dewater_state:  begin washing_machine_running = 2'b01; end
+           w_r_d_end_state: begin washing_machine_running = 2'b10; end
+        endcase
+    end
+    else if(!true_power) begin
+        washing_machine_running <= 2'b00;
     end
     
     always @(w_r_d_end or w_r_d or true_power)
@@ -294,7 +309,7 @@ module controler
                 else if(w_r_d_end[1] & !w_r_d[0]) nextstate = w_r_d_end_state;
                 else nextstate = rinse_state;
             dewater_state:
-                if(mode_ch_push || weight_ch_push) nextstate = mode_ch_state;
+                if(mode_ch_push || weight_ch_push) nextstate = mode_ch_state; 
                 else if(w_r_d_end[0]) nextstate = w_r_d_end_state;
                 else nextstate = dewater_state;
             w_r_d_end_state: begin

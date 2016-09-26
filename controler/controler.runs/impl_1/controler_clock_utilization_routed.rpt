@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------
 | Tool Version      : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
-| Date              : Mon Sep 26 11:15:16 2016
+| Date              : Mon Sep 26 16:16:29 2016
 | Host              : uncertainmove-Lenovo running 64-bit Ubuntu 16.04 LTS
 | Command           : report_clock_utilization -file controler_clock_utilization_routed.rpt
 | Design            : controler
@@ -66,8 +66,8 @@ Table of Contents
 | g7    | src7  | BUFG/O          | None       | BUFGCTRL_X0Y7  | n/a          |      |                   |             1 |          37 |               0 |              |       | count_reg[2]_i_3__0/O    | WATER_OUT_MODE/WATER_IN_TIMER/real_clk  |
 | g8    | src8  | BUFG/O          | None       | BUFGCTRL_X0Y9  | n/a          |      |                   |             1 |          37 |               0 |              |       | real_p_clk_BUFG_inst/O   | real_p_clk_BUFG                         |
 | g9    | src9  | BUFG/O          | None       | BUFGCTRL_X0Y16 | n/a          |      |                   |             1 |          26 |               0 |              |       | clk_src_IBUF_BUFG_inst/O | clk_src_IBUF_BUFG                       |
-| g10   | src10 | BUFG/O          | None       | BUFGCTRL_X0Y1  | n/a          |      |                   |             1 |           3 |              70 |              |       | n_0_1805_BUFG_inst/O     | n_0_1805_BUFG                           |
-| g11   | src11 | BUFG/O          | None       | BUFGCTRL_X0Y10 | n/a          |      |                   |             1 |           3 |              32 |              |       | n_1_1727_BUFG_inst/O     | n_1_1727_BUFG                           |
+| g10   | src10 | BUFG/O          | None       | BUFGCTRL_X0Y1  | n/a          |      |                   |             1 |           3 |              70 |              |       | n_0_1839_BUFG_inst/O     | n_0_1839_BUFG                           |
+| g11   | src11 | BUFG/O          | None       | BUFGCTRL_X0Y10 | n/a          |      |                   |             1 |           3 |              32 |              |       | n_1_1730_BUFG_inst/O     | n_1_1730_BUFG                           |
 +-------+-------+-----------------+------------+----------------+--------------+------+-------------------+---------------+-------------+-----------------+--------------+-------+--------------------------+-----------------------------------------+
 * Note: Multiple constraint types applied to the driver. Please check for potential conflicts.
 
@@ -78,18 +78,18 @@ Table of Contents
 +-------+--------+-----------------+------------+--------------+--------------+-------------+-----------------+---------------------+--------------+------------------------------------------------------------+---------------------------------------------------------+
 | SrcID | GlbIDs | Driver Type/Pin | Constraint | Site         | Clock Region | Clock Loads | Non-Clock Loads | Source Clock Period | Source Clock | Driver Pin                                                 | Net                                                     |
 +-------+--------+-----------------+------------+--------------+--------------+-------------+-----------------+---------------------+--------------+------------------------------------------------------------+---------------------------------------------------------+
-| src0  | g0     | FDRE/Q          | None       | SLICE_X88Y67 | X1Y1         |           0 |              11 |                     |              | TICK_DEVIDER/clk_group_reg[0]/Q                            | TICK_DEVIDER/clk_0__s_net_1                             |
-| src1  | g1     | LUT6/O          | None       | SLICE_X69Y64 | X1Y1         |           0 |               1 |                     |              | TICK_DEVIDER/count[31]_i_11__0/O                           | TICK_DEVIDER/reverse_count_reg[31]_0                    |
-| src2  | g2     | LUT6/O          | None       | SLICE_X68Y66 | X1Y1         |           0 |               1 |                     |              | TICK_DEVIDER/count[31]_i_11__1/O                           | TICK_DEVIDER/reverse_count_reg[31]_1                    |
-| src3  | g3     | LUT6/O          | None       | SLICE_X84Y67 | X1Y1         |           0 |               1 |                     |              | TICK_DEVIDER/count[31]_i_11/O                              | TICK_DEVIDER/reverse_count_reg[31]                      |
-| src4  | g4     | LUT6/O          | None       | SLICE_X66Y68 | X1Y1         |           0 |               1 |                     |              | TICK_DEVIDER/count[31]_i_11__2/O                           | TICK_DEVIDER/reverse_count_reg[31]_2                    |
-| src5  | g5     | LUT6/O          | None       | SLICE_X74Y56 | X1Y1         |           0 |               1 |                     |              | RINSE_MODE/WATER_IN_MODE/WATER_IN_TIMER/count[2]_i_10__0/O | RINSE_MODE/WATER_IN_MODE/WATER_IN_TIMER/init_flag_reg_0 |
-| src6  | g6     | LUT6/O          | None       | SLICE_X78Y56 | X1Y1         |           0 |               1 |                     |              | TICK_DEVIDER/count[2]_i_10/O                               | TICK_DEVIDER/init_flag_reg                              |
-| src7  | g7     | LUT6/O          | None       | SLICE_X65Y60 | X1Y1         |           0 |               1 |                     |              | TICK_DEVIDER/count[2]_i_10__1/O                            | TICK_DEVIDER/init_flag_reg_0                            |
-| src8  | g8     | LUT3/O          | None       | SLICE_X79Y67 | X1Y1         |           0 |               1 |                     |              | TICK_DEVIDER/real_p_clk_BUFG_inst_i_1/O                    | TICK_DEVIDER/real_p_clk                                 |
+| src0  | g0     | FDRE/Q          | None       | SLICE_X89Y74 | X1Y1         |           0 |              11 |                     |              | TICK_DEVIDER/clk_group_reg[0]/Q                            | TICK_DEVIDER/clk_0__s_net_1                             |
+| src1  | g1     | LUT6/O          | None       | SLICE_X67Y71 | X1Y1         |           0 |               1 |                     |              | TICK_DEVIDER/count[31]_i_11__0/O                           | TICK_DEVIDER/reverse_count_reg[31]_0                    |
+| src2  | g2     | LUT6/O          | None       | SLICE_X70Y74 | X1Y1         |           0 |               1 |                     |              | TICK_DEVIDER/count[31]_i_11__1/O                           | TICK_DEVIDER/reverse_count_reg[31]_1                    |
+| src3  | g3     | LUT6/O          | None       | SLICE_X82Y71 | X1Y1         |           0 |               1 |                     |              | TICK_DEVIDER/count[31]_i_11/O                              | TICK_DEVIDER/reverse_count_reg[31]                      |
+| src4  | g4     | LUT6/O          | None       | SLICE_X64Y76 | X1Y1         |           0 |               1 |                     |              | TICK_DEVIDER/count[31]_i_11__2/O                           | TICK_DEVIDER/reverse_count_reg[31]_2                    |
+| src5  | g5     | LUT6/O          | None       | SLICE_X66Y65 | X1Y1         |           0 |               1 |                     |              | RINSE_MODE/WATER_IN_MODE/WATER_IN_TIMER/count[2]_i_10__0/O | RINSE_MODE/WATER_IN_MODE/WATER_IN_TIMER/init_flag_reg_0 |
+| src6  | g6     | LUT6/O          | None       | SLICE_X76Y64 | X1Y1         |           0 |               1 |                     |              | TICK_DEVIDER/count[2]_i_10/O                               | TICK_DEVIDER/init_flag_reg                              |
+| src7  | g7     | LUT6/O          | None       | SLICE_X62Y70 | X1Y1         |           0 |               1 |                     |              | TICK_DEVIDER/count[2]_i_10__1/O                            | TICK_DEVIDER/init_flag_reg_0                            |
+| src8  | g8     | LUT3/O          | None       | SLICE_X73Y81 | X1Y1         |           0 |               1 |                     |              | TICK_DEVIDER/real_p_clk_BUFG_inst_i_1/O                    | TICK_DEVIDER/real_p_clk                                 |
 | src9  | g9     | IBUF/O          | IOB_X1Y126 | IOB_X1Y126   | X1Y2         |           0 |               1 |                     |              | clk_src_IBUF_inst/O                                        | clk_src_IBUF                                            |
-| src10 | g10    | LUT3/O          | None       | SLICE_X87Y59 | X1Y1         |           0 |               1 |                     |              | n_0_1805_BUFG_inst_i_1/O                                   | n_0_1805_BUFG_inst_n_1                                  |
-| src11 | g11    | LUT3/O          | None       | SLICE_X85Y62 | X1Y1         |           0 |               1 |                     |              | RINSE_MODE/n_1_1727_BUFG_inst_i_1/O                        | RINSE_MODE/n_1_1727_BUFG_inst_n_2                       |
+| src10 | g10    | LUT3/O          | None       | SLICE_X78Y64 | X1Y1         |           0 |               1 |                     |              | n_0_1839_BUFG_inst_i_1/O                                   | n_0_1839_BUFG_inst_n_1                                  |
+| src11 | g11    | LUT3/O          | None       | SLICE_X66Y76 | X1Y1         |           0 |               1 |                     |              | RINSE_MODE/n_1_1730_BUFG_inst_i_1/O                        | RINSE_MODE/n_1_1730_BUFG_inst_n_2                       |
 +-------+--------+-----------------+------------+--------------+--------------+-------------+-----------------+---------------------+--------------+------------------------------------------------------------+---------------------------------------------------------+
 * Note: Multiple constraint types applied to the driver. Please check for potential conflicts.
 
@@ -100,8 +100,8 @@ Table of Contents
 +-------+-----------------+------------+------------------+--------------+-------------+-----------------+--------------+-------+----------------------------------+---------------------+
 | LocId | Driver Type/Pin | Constraint | Site/BEL         | Clock Region | Clock Loads | Non-Clock Loads | Clock Period | Clock | Driver Pin                       | Net                 |
 +-------+-----------------+------------+------------------+--------------+-------------+-----------------+--------------+-------+----------------------------------+---------------------+
-| 0     | FDRE/Q          | None       | SLICE_X88Y73/BFF | X1Y1         |           8 |               9 |              |       | TICK_DEVIDER/clk_group_reg[25]/Q | TICK_DEVIDER/clk[1] |
-| 1     | FDRE/Q          | None       | SLICE_X88Y70/DFF | X1Y1         |           3 |               1 |              |       | TICK_DEVIDER/clk_group_reg[15]/Q | TICK_DEVIDER/clk[0] |
+| 0     | FDRE/Q          | None       | SLICE_X89Y80/BFF | X1Y1         |           8 |               9 |              |       | TICK_DEVIDER/clk_group_reg[25]/Q | TICK_DEVIDER/clk[1] |
+| 1     | FDRE/Q          | None       | SLICE_X89Y77/DFF | X1Y1         |           3 |               1 |              |       | TICK_DEVIDER/clk_group_reg[15]/Q | TICK_DEVIDER/clk[0] |
 +-------+-----------------+------------+------------------+--------------+-------------+-----------------+--------------+-------+----------------------------------+---------------------+
 * Note: Multiple constraint types applied to the driver. Please check for potential conflicts.
 
@@ -117,7 +117,7 @@ Table of Contents
 | X0Y0              |    0 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    0 | 20800 |    0 |  2400 |    0 |     0 |    0 |    10 |    0 |    20 |
 | X1Y0              |    0 |    12 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     0 |    0 |     5 |    0 |     0 |    0 |     0 |    0 |     0 |    0 | 12000 |    0 |  2200 |    0 |     0 |    0 |    20 |    0 |    40 |
 | X0Y1              |    0 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    0 | 16000 |    0 |  2400 |    0 |     0 |    0 |    10 |    0 |    20 |
-| X1Y1              |   12 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |  477 | 15200 |   11 |  2600 |    0 |     0 |    0 |    30 |    0 |    40 |
+| X1Y1              |   12 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |  559 | 15200 |   14 |  2600 |    0 |     0 |    0 |    30 |    0 |    40 |
 | X0Y2              |    0 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    0 | 16000 |    0 |  2400 |    0 |     0 |    0 |    10 |    0 |    20 |
 | X1Y2              |    0 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    0 | 15200 |    0 |  2600 |    0 |     0 |    0 |    30 |    0 |    40 |
 | X0Y3              |    0 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    0 | 20800 |    0 |  2400 |    0 |     0 |    0 |    10 |    0 |    20 |
@@ -147,18 +147,18 @@ Table of Contents
 +-------+-------+-----------------+------------+-------------+-----------------+-----+--------+------+-----+----+------+-----+---------+-----------------------------------------+
 | GlbID | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF  | LUTRAM | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net                                     |
 +-------+-------+-----------------+------------+-------------+-----------------+-----+--------+------+-----+----+------+-----+---------+-----------------------------------------+
-| g0    | n/a   | BUFG/O          | None       |           0 |             149 | 149 |      4 |    0 |   0 |  0 |    0 |   0 |       0 | clk_BUFG[0]                             |
-| g1    | n/a   | BUFG/O          | None       |           0 |               1 |   1 |      1 |    0 |   0 |  0 |    0 |   0 |       0 | DEWATERIGN_TIMER/real_clk               |
-| g2    | n/a   | BUFG/O          | None       |           0 |              66 |  66 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | RINSING_TIMER/real_clk                  |
-| g3    | n/a   | BUFG/O          | None       |           0 |              65 |  65 |      1 |    0 |   0 |  0 |    0 |   0 |       0 | TIMER_WASH/real_clk                     |
+| g0    | n/a   | BUFG/O          | None       |           0 |             139 | 139 |      7 |    0 |   0 |  0 |    0 |   0 |       0 | clk_BUFG[0]                             |
+| g1    | n/a   | BUFG/O          | None       |           0 |              35 |  35 |      1 |    0 |   0 |  0 |    0 |   0 |       0 | DEWATERIGN_TIMER/real_clk               |
+| g2    | n/a   | BUFG/O          | None       |           0 |              65 |  65 |      1 |    0 |   0 |  0 |    0 |   0 |       0 | RINSING_TIMER/real_clk                  |
+| g3    | n/a   | BUFG/O          | None       |           0 |              66 |  66 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | TIMER_WASH/real_clk                     |
 | g4    | n/a   | BUFG/O          | None       |           0 |              65 |  65 |      1 |    0 |   0 |  0 |    0 |   0 |       0 | TIMER_WASH/real_clk_0                   |
-| g5    | n/a   | BUFG/O          | None       |           0 |              35 |  35 |      1 |    0 |   0 |  0 |    0 |   0 |       0 | WATER_IN_MODE/WATER_IN_TIMER/real_clk   |
-| g6    | n/a   | BUFG/O          | None       |           0 |               6 |   6 |      1 |    0 |   0 |  0 |    0 |   0 |       0 | WATER_IN_MODE/WATER_IN_TIMER/real_clk_1 |
-| g7    | n/a   | BUFG/O          | None       |           0 |              37 |  37 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | WATER_OUT_MODE/WATER_IN_TIMER/real_clk  |
-| g8    | n/a   | BUFG/O          | None       |           0 |              33 |  33 |      1 |    0 |   0 |  0 |    0 |   0 |       0 | real_p_clk_BUFG                         |
-| g9    | n/a   | BUFG/O          | None       |           0 |               1 |   1 |      1 |    0 |   0 |  0 |    0 |   0 |       0 | clk_src_IBUF_BUFG                       |
-| g10   | n/a   | BUFG/O          | None       |           0 |              53 |  53 |      1 |    0 |   0 |  0 |    0 |   0 |       0 | n_0_1805_BUFG                           |
-| g11   | n/a   | BUFG/O          | None       |           0 |              14 |  14 |      1 |    0 |   0 |  0 |    0 |   0 |       0 | n_1_1727_BUFG                           |
+| g5    | n/a   | BUFG/O          | None       |           0 |              36 |  36 |      1 |    0 |   0 |  0 |    0 |   0 |       0 | WATER_IN_MODE/WATER_IN_TIMER/real_clk   |
+| g6    | n/a   | BUFG/O          | None       |           0 |              34 |  34 |      1 |    0 |   0 |  0 |    0 |   0 |       0 | WATER_IN_MODE/WATER_IN_TIMER/real_clk_1 |
+| g7    | n/a   | BUFG/O          | None       |           0 |              33 |  33 |      1 |    0 |   0 |  0 |    0 |   0 |       0 | WATER_OUT_MODE/WATER_IN_TIMER/real_clk  |
+| g8    | n/a   | BUFG/O          | None       |           0 |              37 |  37 |      1 |    0 |   0 |  0 |    0 |   0 |       0 | real_p_clk_BUFG                         |
+| g9    | n/a   | BUFG/O          | None       |           0 |              26 |  26 |      0 |    0 |   0 |  0 |    0 |   0 |       0 | clk_src_IBUF_BUFG                       |
+| g10   | n/a   | BUFG/O          | None       |           0 |              55 |  55 |      1 |    0 |   0 |  0 |    0 |   0 |       0 | n_0_1839_BUFG                           |
+| g11   | n/a   | BUFG/O          | None       |           0 |              22 |  22 |      1 |    0 |   0 |  0 |    0 |   0 |       0 | n_1_1730_BUFG                           |
 +-------+-------+-----------------+------------+-------------+-----------------+-----+--------+------+-----+----+------+-----+---------+-----------------------------------------+
 * Note: Multiple constraint types applied to the driver. Please check for potential conflicts.
 
@@ -169,7 +169,7 @@ Table of Contents
 +-------+-----------------+-------------------+-------+-------------+---------------+----------+-------------+----------+-------------+----+-------------+
 | GlbID | Driver Type/Pin | Driver Region (D) | Clock | Period (ns) | Waveform (ns) | Root (R) | Slice Loads | IO Loads | Clock Loads | GT | Net         |
 +-------+-----------------+-------------------+-------+-------------+---------------+----------+-------------+----------+-------------+----+-------------+
-| g0    | BUFG/O          | n/a               |       |             |               |          |         149 |        0 |           0 |  0 | clk_BUFG[0] |
+| g0    | BUFG/O          | n/a               |       |             |               |          |         139 |        0 |           0 |  0 | clk_BUFG[0] |
 +-------+-----------------+-------------------+-------+-------------+---------------+----------+-------------+----------+-------------+----+-------------+
 
 
@@ -178,7 +178,7 @@ Table of Contents
 +----+----+------+
 | Y3 |  0 |    0 |
 | Y2 |  0 |    0 |
-| Y1 |  0 |  149 |
+| Y1 |  0 |  139 |
 | Y0 |  0 |    0 |
 +----+----+------+
 
@@ -189,18 +189,18 @@ Table of Contents
 +-------+-----------------+-------------------+-------+-------------+---------------+----------+-------------+----------+-------------+----+---------------------------+
 | GlbID | Driver Type/Pin | Driver Region (D) | Clock | Period (ns) | Waveform (ns) | Root (R) | Slice Loads | IO Loads | Clock Loads | GT | Net                       |
 +-------+-----------------+-------------------+-------+-------------+---------------+----------+-------------+----------+-------------+----+---------------------------+
-| g1    | BUFG/O          | n/a               |       |             |               |          |           1 |        0 |           0 |  0 | DEWATERIGN_TIMER/real_clk |
+| g1    | BUFG/O          | n/a               |       |             |               |          |          35 |        0 |           0 |  0 | DEWATERIGN_TIMER/real_clk |
 +-------+-----------------+-------------------+-------+-------------+---------------+----------+-------------+----------+-------------+----+---------------------------+
 
 
-+----+----+----+
-|    | X0 | X1 |
-+----+----+----+
-| Y3 |  0 |  0 |
-| Y2 |  0 |  0 |
-| Y1 |  0 |  1 |
-| Y0 |  0 |  0 |
-+----+----+----+
++----+----+-----+
+|    | X0 | X1  |
++----+----+-----+
+| Y3 |  0 |   0 |
+| Y2 |  0 |   0 |
+| Y1 |  0 |  35 |
+| Y0 |  0 |   0 |
++----+----+-----+
 
 
 10. Load Cell Placement Summary for Global Clock g2
@@ -209,7 +209,7 @@ Table of Contents
 +-------+-----------------+-------------------+-------+-------------+---------------+----------+-------------+----------+-------------+----+------------------------+
 | GlbID | Driver Type/Pin | Driver Region (D) | Clock | Period (ns) | Waveform (ns) | Root (R) | Slice Loads | IO Loads | Clock Loads | GT | Net                    |
 +-------+-----------------+-------------------+-------+-------------+---------------+----------+-------------+----------+-------------+----+------------------------+
-| g2    | BUFG/O          | n/a               |       |             |               |          |          66 |        0 |           0 |  0 | RINSING_TIMER/real_clk |
+| g2    | BUFG/O          | n/a               |       |             |               |          |          65 |        0 |           0 |  0 | RINSING_TIMER/real_clk |
 +-------+-----------------+-------------------+-------+-------------+---------------+----------+-------------+----------+-------------+----+------------------------+
 
 
@@ -218,7 +218,7 @@ Table of Contents
 +----+----+-----+
 | Y3 |  0 |   0 |
 | Y2 |  0 |   0 |
-| Y1 |  0 |  66 |
+| Y1 |  0 |  65 |
 | Y0 |  0 |   0 |
 +----+----+-----+
 
@@ -229,7 +229,7 @@ Table of Contents
 +-------+-----------------+-------------------+-------+-------------+---------------+----------+-------------+----------+-------------+----+---------------------+
 | GlbID | Driver Type/Pin | Driver Region (D) | Clock | Period (ns) | Waveform (ns) | Root (R) | Slice Loads | IO Loads | Clock Loads | GT | Net                 |
 +-------+-----------------+-------------------+-------+-------------+---------------+----------+-------------+----------+-------------+----+---------------------+
-| g3    | BUFG/O          | n/a               |       |             |               |          |          65 |        0 |           0 |  0 | TIMER_WASH/real_clk |
+| g3    | BUFG/O          | n/a               |       |             |               |          |          66 |        0 |           0 |  0 | TIMER_WASH/real_clk |
 +-------+-----------------+-------------------+-------+-------------+---------------+----------+-------------+----------+-------------+----+---------------------+
 
 
@@ -238,7 +238,7 @@ Table of Contents
 +----+----+-----+
 | Y3 |  0 |   0 |
 | Y2 |  0 |   0 |
-| Y1 |  0 |  65 |
+| Y1 |  0 |  66 |
 | Y0 |  0 |   0 |
 +----+----+-----+
 
@@ -269,7 +269,7 @@ Table of Contents
 +-------+-----------------+-------------------+-------+-------------+---------------+----------+-------------+----------+-------------+----+---------------------------------------+
 | GlbID | Driver Type/Pin | Driver Region (D) | Clock | Period (ns) | Waveform (ns) | Root (R) | Slice Loads | IO Loads | Clock Loads | GT | Net                                   |
 +-------+-----------------+-------------------+-------+-------------+---------------+----------+-------------+----------+-------------+----+---------------------------------------+
-| g5    | BUFG/O          | n/a               |       |             |               |          |          35 |        0 |           0 |  0 | WATER_IN_MODE/WATER_IN_TIMER/real_clk |
+| g5    | BUFG/O          | n/a               |       |             |               |          |          36 |        0 |           0 |  0 | WATER_IN_MODE/WATER_IN_TIMER/real_clk |
 +-------+-----------------+-------------------+-------+-------------+---------------+----------+-------------+----------+-------------+----+---------------------------------------+
 
 
@@ -278,7 +278,7 @@ Table of Contents
 +----+----+-----+
 | Y3 |  0 |   0 |
 | Y2 |  0 |   0 |
-| Y1 |  0 |  35 |
+| Y1 |  0 |  36 |
 | Y0 |  0 |   0 |
 +----+----+-----+
 
@@ -289,18 +289,18 @@ Table of Contents
 +-------+-----------------+-------------------+-------+-------------+---------------+----------+-------------+----------+-------------+----+-----------------------------------------+
 | GlbID | Driver Type/Pin | Driver Region (D) | Clock | Period (ns) | Waveform (ns) | Root (R) | Slice Loads | IO Loads | Clock Loads | GT | Net                                     |
 +-------+-----------------+-------------------+-------+-------------+---------------+----------+-------------+----------+-------------+----+-----------------------------------------+
-| g6    | BUFG/O          | n/a               |       |             |               |          |           6 |        0 |           0 |  0 | WATER_IN_MODE/WATER_IN_TIMER/real_clk_1 |
+| g6    | BUFG/O          | n/a               |       |             |               |          |          34 |        0 |           0 |  0 | WATER_IN_MODE/WATER_IN_TIMER/real_clk_1 |
 +-------+-----------------+-------------------+-------+-------------+---------------+----------+-------------+----------+-------------+----+-----------------------------------------+
 
 
-+----+----+----+
-|    | X0 | X1 |
-+----+----+----+
-| Y3 |  0 |  0 |
-| Y2 |  0 |  0 |
-| Y1 |  0 |  6 |
-| Y0 |  0 |  0 |
-+----+----+----+
++----+----+-----+
+|    | X0 | X1  |
++----+----+-----+
+| Y3 |  0 |   0 |
+| Y2 |  0 |   0 |
+| Y1 |  0 |  34 |
+| Y0 |  0 |   0 |
++----+----+-----+
 
 
 15. Load Cell Placement Summary for Global Clock g7
@@ -309,28 +309,8 @@ Table of Contents
 +-------+-----------------+-------------------+-------+-------------+---------------+----------+-------------+----------+-------------+----+----------------------------------------+
 | GlbID | Driver Type/Pin | Driver Region (D) | Clock | Period (ns) | Waveform (ns) | Root (R) | Slice Loads | IO Loads | Clock Loads | GT | Net                                    |
 +-------+-----------------+-------------------+-------+-------------+---------------+----------+-------------+----------+-------------+----+----------------------------------------+
-| g7    | BUFG/O          | n/a               |       |             |               |          |          37 |        0 |           0 |  0 | WATER_OUT_MODE/WATER_IN_TIMER/real_clk |
+| g7    | BUFG/O          | n/a               |       |             |               |          |          33 |        0 |           0 |  0 | WATER_OUT_MODE/WATER_IN_TIMER/real_clk |
 +-------+-----------------+-------------------+-------+-------------+---------------+----------+-------------+----------+-------------+----+----------------------------------------+
-
-
-+----+----+-----+
-|    | X0 | X1  |
-+----+----+-----+
-| Y3 |  0 |   0 |
-| Y2 |  0 |   0 |
-| Y1 |  0 |  37 |
-| Y0 |  0 |   0 |
-+----+----+-----+
-
-
-16. Load Cell Placement Summary for Global Clock g8
----------------------------------------------------
-
-+-------+-----------------+-------------------+-------+-------------+---------------+----------+-------------+----------+-------------+----+-----------------+
-| GlbID | Driver Type/Pin | Driver Region (D) | Clock | Period (ns) | Waveform (ns) | Root (R) | Slice Loads | IO Loads | Clock Loads | GT | Net             |
-+-------+-----------------+-------------------+-------+-------------+---------------+----------+-------------+----------+-------------+----+-----------------+
-| g8    | BUFG/O          | n/a               |       |             |               |          |          33 |        0 |           0 |  0 | real_p_clk_BUFG |
-+-------+-----------------+-------------------+-------+-------------+---------------+----------+-------------+----------+-------------+----+-----------------+
 
 
 +----+----+-----+
@@ -343,24 +323,44 @@ Table of Contents
 +----+----+-----+
 
 
+16. Load Cell Placement Summary for Global Clock g8
+---------------------------------------------------
+
++-------+-----------------+-------------------+-------+-------------+---------------+----------+-------------+----------+-------------+----+-----------------+
+| GlbID | Driver Type/Pin | Driver Region (D) | Clock | Period (ns) | Waveform (ns) | Root (R) | Slice Loads | IO Loads | Clock Loads | GT | Net             |
++-------+-----------------+-------------------+-------+-------------+---------------+----------+-------------+----------+-------------+----+-----------------+
+| g8    | BUFG/O          | n/a               |       |             |               |          |          37 |        0 |           0 |  0 | real_p_clk_BUFG |
++-------+-----------------+-------------------+-------+-------------+---------------+----------+-------------+----------+-------------+----+-----------------+
+
+
++----+----+-----+
+|    | X0 | X1  |
++----+----+-----+
+| Y3 |  0 |   0 |
+| Y2 |  0 |   0 |
+| Y1 |  0 |  37 |
+| Y0 |  0 |   0 |
++----+----+-----+
+
+
 17. Load Cell Placement Summary for Global Clock g9
 ---------------------------------------------------
 
 +-------+-----------------+-------------------+-------+-------------+---------------+----------+-------------+----------+-------------+----+-------------------+
 | GlbID | Driver Type/Pin | Driver Region (D) | Clock | Period (ns) | Waveform (ns) | Root (R) | Slice Loads | IO Loads | Clock Loads | GT | Net               |
 +-------+-----------------+-------------------+-------+-------------+---------------+----------+-------------+----------+-------------+----+-------------------+
-| g9    | BUFG/O          | n/a               |       |             |               |          |           1 |        0 |           0 |  0 | clk_src_IBUF_BUFG |
+| g9    | BUFG/O          | n/a               |       |             |               |          |          26 |        0 |           0 |  0 | clk_src_IBUF_BUFG |
 +-------+-----------------+-------------------+-------+-------------+---------------+----------+-------------+----------+-------------+----+-------------------+
 
 
-+----+----+----+
-|    | X0 | X1 |
-+----+----+----+
-| Y3 |  0 |  0 |
-| Y2 |  0 |  0 |
-| Y1 |  0 |  1 |
-| Y0 |  0 |  0 |
-+----+----+----+
++----+----+-----+
+|    | X0 | X1  |
++----+----+-----+
+| Y3 |  0 |   0 |
+| Y2 |  0 |   0 |
+| Y1 |  0 |  26 |
+| Y0 |  0 |   0 |
++----+----+-----+
 
 
 18. Load Cell Placement Summary for Global Clock g10
@@ -369,7 +369,7 @@ Table of Contents
 +-------+-----------------+-------------------+-------+-------------+---------------+----------+-------------+----------+-------------+----+---------------+
 | GlbID | Driver Type/Pin | Driver Region (D) | Clock | Period (ns) | Waveform (ns) | Root (R) | Slice Loads | IO Loads | Clock Loads | GT | Net           |
 +-------+-----------------+-------------------+-------+-------------+---------------+----------+-------------+----------+-------------+----+---------------+
-| g10   | BUFG/O          | n/a               |       |             |               |          |          53 |        0 |           0 |  0 | n_0_1805_BUFG |
+| g10   | BUFG/O          | n/a               |       |             |               |          |          55 |        0 |           0 |  0 | n_0_1839_BUFG |
 +-------+-----------------+-------------------+-------+-------------+---------------+----------+-------------+----------+-------------+----+---------------+
 
 
@@ -378,7 +378,7 @@ Table of Contents
 +----+----+-----+
 | Y3 |  0 |   0 |
 | Y2 |  0 |   0 |
-| Y1 |  0 |  53 |
+| Y1 |  0 |  55 |
 | Y0 |  0 |   0 |
 +----+----+-----+
 
@@ -389,7 +389,7 @@ Table of Contents
 +-------+-----------------+-------------------+-------+-------------+---------------+----------+-------------+----------+-------------+----+---------------+
 | GlbID | Driver Type/Pin | Driver Region (D) | Clock | Period (ns) | Waveform (ns) | Root (R) | Slice Loads | IO Loads | Clock Loads | GT | Net           |
 +-------+-----------------+-------------------+-------+-------------+---------------+----------+-------------+----------+-------------+----+---------------+
-| g11   | BUFG/O          | n/a               |       |             |               |          |          14 |        0 |           0 |  0 | n_1_1727_BUFG |
+| g11   | BUFG/O          | n/a               |       |             |               |          |          22 |        0 |           0 |  0 | n_1_1730_BUFG |
 +-------+-----------------+-------------------+-------+-------------+---------------+----------+-------------+----------+-------------+----+---------------+
 
 
@@ -398,7 +398,7 @@ Table of Contents
 +----+----+-----+
 | Y3 |  0 |   0 |
 | Y2 |  0 |   0 |
-| Y1 |  0 |  14 |
+| Y1 |  0 |  22 |
 | Y0 |  0 |   0 |
 +----+----+-----+
 
@@ -406,8 +406,8 @@ Table of Contents
 
 # Location of BUFG Primitives 
 set_property LOC BUFGCTRL_X0Y9 [get_cells real_p_clk_BUFG_inst]
-set_property LOC BUFGCTRL_X0Y10 [get_cells n_1_1727_BUFG_inst]
-set_property LOC BUFGCTRL_X0Y1 [get_cells n_0_1805_BUFG_inst]
+set_property LOC BUFGCTRL_X0Y10 [get_cells n_1_1730_BUFG_inst]
+set_property LOC BUFGCTRL_X0Y1 [get_cells n_0_1839_BUFG_inst]
 set_property LOC BUFGCTRL_X0Y16 [get_cells clk_src_IBUF_BUFG_inst]
 set_property LOC BUFGCTRL_X0Y0 [get_cells clk_BUFG[0]_inst]
 set_property LOC BUFGCTRL_X0Y7 [get_cells count_reg[2]_i_3__0]
@@ -430,18 +430,25 @@ add_cells_to_pblock [get_pblocks  {CLKAG_real_p_clk_BUFG}] [get_cells -filter { 
 resize_pblock [get_pblocks {CLKAG_real_p_clk_BUFG}] -add {CLOCKREGION_X1Y1:CLOCKREGION_X1Y1}
 #endgroup
 
-# Clock net "n_1_1727_BUFG" driven by instance "n_1_1727_BUFG_inst" located at site "BUFGCTRL_X0Y10"
+# Clock net "n_1_1730_BUFG" driven by instance "n_1_1730_BUFG_inst" located at site "BUFGCTRL_X0Y10"
 #startgroup
-create_pblock {CLKAG_n_1_1727_BUFG}
-add_cells_to_pblock [get_pblocks  {CLKAG_n_1_1727_BUFG}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL } -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="n_1_1727_BUFG"}]]]
-resize_pblock [get_pblocks {CLKAG_n_1_1727_BUFG}] -add {CLOCKREGION_X1Y1:CLOCKREGION_X1Y1}
+create_pblock {CLKAG_n_1_1730_BUFG}
+add_cells_to_pblock [get_pblocks  {CLKAG_n_1_1730_BUFG}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL } -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="n_1_1730_BUFG"}]]]
+resize_pblock [get_pblocks {CLKAG_n_1_1730_BUFG}] -add {CLOCKREGION_X1Y1:CLOCKREGION_X1Y1}
 #endgroup
 
-# Clock net "n_0_1805_BUFG" driven by instance "n_0_1805_BUFG_inst" located at site "BUFGCTRL_X0Y1"
+# Clock net "n_0_1839_BUFG" driven by instance "n_0_1839_BUFG_inst" located at site "BUFGCTRL_X0Y1"
 #startgroup
-create_pblock {CLKAG_n_0_1805_BUFG}
-add_cells_to_pblock [get_pblocks  {CLKAG_n_0_1805_BUFG}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL } -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="n_0_1805_BUFG"}]]]
-resize_pblock [get_pblocks {CLKAG_n_0_1805_BUFG}] -add {CLOCKREGION_X1Y1:CLOCKREGION_X1Y1}
+create_pblock {CLKAG_n_0_1839_BUFG}
+add_cells_to_pblock [get_pblocks  {CLKAG_n_0_1839_BUFG}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL } -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="n_0_1839_BUFG"}]]]
+resize_pblock [get_pblocks {CLKAG_n_0_1839_BUFG}] -add {CLOCKREGION_X1Y1:CLOCKREGION_X1Y1}
+#endgroup
+
+# Clock net "clk_src_IBUF_BUFG" driven by instance "clk_src_IBUF_BUFG_inst" located at site "BUFGCTRL_X0Y16"
+#startgroup
+create_pblock {CLKAG_clk_src_IBUF_BUFG}
+add_cells_to_pblock [get_pblocks  {CLKAG_clk_src_IBUF_BUFG}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL } -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="clk_src_IBUF_BUFG"}]]]
+resize_pblock [get_pblocks {CLKAG_clk_src_IBUF_BUFG}] -add {CLOCKREGION_X1Y1:CLOCKREGION_X1Y1}
 #endgroup
 
 # Clock net "clk_BUFG[0]" driven by instance "clk_BUFG[0]_inst" located at site "BUFGCTRL_X0Y0"
@@ -491,4 +498,11 @@ resize_pblock [get_pblocks {CLKAG_TIMER_WASH/real_clk}] -add {CLOCKREGION_X1Y1:C
 create_pblock {CLKAG_RINSING_TIMER/real_clk}
 add_cells_to_pblock [get_pblocks  {CLKAG_RINSING_TIMER/real_clk}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL } -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="RINSING_TIMER/real_clk"}]]]
 resize_pblock [get_pblocks {CLKAG_RINSING_TIMER/real_clk}] -add {CLOCKREGION_X1Y1:CLOCKREGION_X1Y1}
+#endgroup
+
+# Clock net "DEWATERIGN_TIMER/real_clk" driven by instance "count_reg[31]_i_3__1" located at site "BUFGCTRL_X0Y3"
+#startgroup
+create_pblock {CLKAG_DEWATERIGN_TIMER/real_clk}
+add_cells_to_pblock [get_pblocks  {CLKAG_DEWATERIGN_TIMER/real_clk}] [get_cells -filter { PRIMITIVE_GROUP != I/O && IS_PRIMITIVE==1 && PRIMITIVE_LEVEL !=INTERNAL } -of_object [get_pins -filter {DIRECTION==IN} -of_objects [get_nets -hierarchical -filter {PARENT=="DEWATERIGN_TIMER/real_clk"}]]]
+resize_pblock [get_pblocks {CLKAG_DEWATERIGN_TIMER/real_clk}] -add {CLOCKREGION_X1Y1:CLOCKREGION_X1Y1}
 #endgroup

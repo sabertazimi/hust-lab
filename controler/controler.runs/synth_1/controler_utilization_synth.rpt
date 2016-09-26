@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
-| Date         : Mon Sep 26 11:14:27 2016
+| Date         : Mon Sep 26 16:15:41 2016
 | Host         : uncertainmove-Lenovo running 64-bit Ubuntu 16.04 LTS
 | Command      : report_utilization -file controler_utilization_synth.rpt -pb controler_utilization_synth.pb
 | Design       : controler
@@ -30,8 +30,8 @@ Table of Contents
 +-------------------------+------+-------+-----------+-------+
 |        Site Type        | Used | Fixed | Available | Util% |
 +-------------------------+------+-------+-----------+-------+
-| Slice LUTs*             | 2182 |     0 |     63400 |  3.44 |
-|   LUT as Logic          | 2182 |     0 |     63400 |  3.44 |
+| Slice LUTs*             | 2189 |     0 |     63400 |  3.45 |
+|   LUT as Logic          | 2189 |     0 |     63400 |  3.45 |
 |   LUT as Memory         |    0 |     0 |     19000 |  0.00 |
 | Slice Registers         |  681 |     0 |    126800 |  0.54 |
 |   Register as Flip Flop |  655 |     0 |    126800 |  0.52 |
@@ -146,13 +146,13 @@ Table of Contents
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| LUT6     |  684 |                 LUT |
+| LUT6     |  696 |                 LUT |
 | FDRE     |  654 |        Flop & Latch |
-| LUT4     |  629 |                 LUT |
-| LUT2     |  530 |                 LUT |
+| LUT4     |  624 |                 LUT |
+| LUT2     |  533 |                 LUT |
 | LUT3     |  504 |                 LUT |
 | CARRY4   |  504 |          CarryLogic |
-| LUT5     |  429 |                 LUT |
+| LUT5     |  427 |                 LUT |
 | LUT1     |   57 |                 LUT |
 | OBUF     |   29 |                  IO |
 | LDCE     |   23 |        Flop & Latch |
