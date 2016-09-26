@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
-| Date         : Sun Sep 25 17:23:59 2016
+| Date         : Mon Sep 26 16:49:40 2016
 | Host         : uncertainmove-Lenovo running 64-bit Ubuntu 16.04 LTS
 | Command      : report_timing_summary -warn_on_violation -max_paths 10 -file controler_timing_summary_routed.rpt -rpx controler_timing_summary_routed.rpx
 | Design       : controler
@@ -56,15 +56,13 @@ Table of Contents
 
  There are 5 register/latch pins with no clock driven by root clock pin: mode_ch (HIGH)
 
- There are 437 register/latch pins with no clock driven by root clock pin: power (HIGH)
+ There are 438 register/latch pins with no clock driven by root clock pin: power (HIGH)
 
  There are 23 register/latch pins with no clock driven by root clock pin: start_pause (HIGH)
 
  There are 5 register/latch pins with no clock driven by root clock pin: weight_ch (HIGH)
 
  There are 66 register/latch pins with no clock driven by root clock pin: DEWATER_MODE/TIMER_WASH/init_flag_reg/C (HIGH)
-
- There are 37 register/latch pins with no clock driven by root clock pin: DEWATER_MODE/WATER_OUT_MODE/WATER_IN_TIMER/init_flag_reg/C (HIGH)
 
  There are 66 register/latch pins with no clock driven by root clock pin: DEWATER_MODE/dewatering_start_reg/G (HIGH)
 
@@ -86,6 +84,8 @@ Table of Contents
 
  There are 66 register/latch pins with no clock driven by root clock pin: RINSE_MODE/RINSING_TIMER/init_flag_reg/C (HIGH)
 
+ There are 37 register/latch pins with no clock driven by root clock pin: RINSE_MODE/WATER_IN_MODE/WATER_IN_TIMER/init_flag_reg/C (HIGH)
+
  There are 66 register/latch pins with no clock driven by root clock pin: RINSE_MODE/dewatering_start_reg/G (HIGH)
 
  There are 66 register/latch pins with no clock driven by root clock pin: RINSE_MODE/rinsing_start_reg/G (HIGH)
@@ -104,7 +104,7 @@ Table of Contents
 
  There are 3 register/latch pins with no clock driven by root clock pin: TICK_DEVIDER/clk_group_reg[15]/C (HIGH)
 
- There are 419 register/latch pins with no clock driven by root clock pin: TICK_DEVIDER/clk_group_reg[25]/C (HIGH)
+ There are 420 register/latch pins with no clock driven by root clock pin: TICK_DEVIDER/clk_group_reg[25]/C (HIGH)
 
  There are 66 register/latch pins with no clock driven by root clock pin: WASH_MODE/TIMER_WASH/init_flag_reg/C (HIGH)
 
@@ -120,15 +120,15 @@ Table of Contents
 
  There are 3 register/latch pins with no clock driven by root clock pin: WEIGHT_SEL/push_reg/C (HIGH)
 
- There are 36 register/latch pins with no clock driven by root clock pin: power_control_reg/C (HIGH)
+ There are 152 register/latch pins with no clock driven by root clock pin: power_control_reg_rep/C (HIGH)
 
- There are 156 register/latch pins with no clock driven by root clock pin: power_control_reg_rep/C (HIGH)
+ There are 104 register/latch pins with no clock driven by root clock pin: power_control_reg_rep__0/C (HIGH)
 
- There are 76 register/latch pins with no clock driven by root clock pin: power_control_reg_rep__0/C (HIGH)
+ There are 50 register/latch pins with no clock driven by root clock pin: power_control_reg_rep__1/C (HIGH)
 
- There are 169 register/latch pins with no clock driven by root clock pin: power_control_reg_rep__1/C (HIGH)
+ There are 132 register/latch pins with no clock driven by root clock pin: power_control_reg_rep__2/C (HIGH)
 
- There are 23 register/latch pins with no clock driven by root clock pin: start_pause_light_two_reg/C (HIGH)
+ There are 13 register/latch pins with no clock driven by root clock pin: start_pause_light_two_reg/C (HIGH)
 
  There are 8 register/latch pins with no clock driven by root clock pin: state_reg[0]/C (HIGH)
 
@@ -155,7 +155,7 @@ Table of Contents
 
 4. checking unconstrained_internal_endpoints
 --------------------------------------------
- There are 1683 pins that are not constrained for maximum delay. (HIGH)
+ There are 1680 pins that are not constrained for maximum delay. (HIGH)
 
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 

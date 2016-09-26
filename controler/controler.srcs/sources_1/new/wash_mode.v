@@ -14,6 +14,7 @@ module wash_mode
     // FIXED ME: there's 3 state, but state and nextState only can hold 1 bit.
     reg [1:0]nextstate;
     wire [31:0]washing_count;
+    wire [2:0]water_level_wash;
     wire real_clk;
     wire water_in_end_sign, water_out_end_sign, wash_end_sign_mode;
     reg water_in_start, washing_start;
@@ -31,6 +32,8 @@ module wash_mode
         
     end
     
+    assign water_level = (state == 3'b000) ? water_level_wash : weight;
+    
      water_let_mode #(WIDTH, CLK_CH) WATER_IN_MODE (.water_in_end_sign(water_in_end_sign),
                                   .water_in_start(water_in_start),
                                   .water_out_start(1'b0),
@@ -39,7 +42,7 @@ module wash_mode
                                   .power(power),
                                   .max_water_level(weight),
                                   .start(start),
-                                  .water_level(water_level)
+                                  .water_level(water_level_wash)
      );
      
      timer #(WIDTH, CLK_CH) TIMER_WASH (.clk_src(clk),

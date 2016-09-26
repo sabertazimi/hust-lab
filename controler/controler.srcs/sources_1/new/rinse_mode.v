@@ -12,6 +12,7 @@ module rinse_mode
     );
     reg [2:0]nextstate;
     wire [31:0]dewatering_count, rinsing_count, water_out_count, water_in_count;
+    wire [2:0]water_level_rinse;
     wire real_clk;
     reg water_in_start, water_out_start, dewatering_start, rinsing_start;
     wire water_in_end_sign, water_out_end_sign, dewatering_end_sign, rinsing_end_sign;
@@ -31,6 +32,8 @@ module rinse_mode
             rinsing_start = 1'b0;
         end
         
+        assign water_level = (state == rinsing_state) ? weight : water_level_rinse;
+        
          water_let_mode #(WIDTH, CLK_CH) WATER_IN_MODE (.water_in_end_sign(water_in_end_sign),
                                        .water_in_start(water_in_start),
                                        .water_out_start(water_out_start),
@@ -39,7 +42,7 @@ module rinse_mode
                                        .power(power),
                                        .max_water_level(weight),
                                        .start(start),
-                                       .water_level(water_level)
+                                       .water_level(water_level_rinse)
           );
           timer #(WIDTH, CLK_CH) DEWATERIGN_TIMER (.clk_src(clk),
                                   .switch_power(power),

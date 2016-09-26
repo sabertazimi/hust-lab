@@ -39,7 +39,7 @@ module controler
     // choose weight don't care system run or pause
     selector_mode  #(0,5,CLK_CH) MODE_SEL (.clk(clk),
                             .switch_power(true_power),
-                            .switch_en(start_pause_light),
+                            .switch_en(start_pause), //start_pause_light change to start_pause
                             .sig_change(mode_ch),
                             .push(mode_ch_push),
                             .washing_machine_running(washing_machine_running),
@@ -52,7 +52,7 @@ module controler
     
     selector_mode #(2,5,CLK_CH) WEIGHT_SEL (.clk(clk),
                             .switch_power(true_power),
-                            .switch_en(start_pause_light),
+                            .switch_en(start_pause),
                             .sig_change(weight_ch),
                             .push(weight_ch_push),
                             .washing_machine_running(washing_machine_running),
@@ -159,12 +159,6 @@ module controler
         case(state)
             mode_ch_state: begin
                 water_level = 3'b0;
-//                if(w_r_d_change == 0) begin w_r_d = 7; end
-//                else if(w_r_d_change == 1) begin w_r_d = 4; end
-//                else if(w_r_d_change == 2) begin w_r_d = 6; end
-//                        else if(w_r_d_change == 3) begin w_r_d = 2; end
-//                        else if(w_r_d_change == 4) begin w_r_d = 5; end
-//                        else if(w_r_d_change == 5) begin w_r_d = 1; end
                 washing_light = w_r_d[2];
                 rinsing_light = w_r_d[1];
                 dewatering_light = w_r_d[0];
