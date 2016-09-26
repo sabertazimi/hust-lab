@@ -41,9 +41,9 @@ set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets sub_time[2]_IBUF]
 set_property PACKAGE_PIN U4 [get_ports sub_time[2]]
 set_property IOSTANDARD LVCMOS33 [get_ports sub_time[2]]
 
-#set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets switch_upen_sec_IBUF]
-#set_property PACKAGE_PIN V6 [get_ports switch_upen_sec]
-#set_property IOSTANDARD LVCMOS33 [get_ports switch_upen_sec]
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets timing_clock_IBUF]
+set_property PACKAGE_PIN P4 [get_ports timing_clock]
+set_property IOSTANDARD LVCMOS33 [get_ports timing_clock]
 
 #set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets switch_upen_min]
 #set_property PACKAGE_PIN V5 [get_ports switch_upen_min]
@@ -58,6 +58,9 @@ set_property IOSTANDARD LVCMOS33 [get_ports sub_time[2]]
 ############################
 set_property PACKAGE_PIN V9 [get_ports alarm]
 set_property IOSTANDARD LVCMOS33 [get_ports alarm]
+
+set_property PACKAGE_PIN P2 [get_ports timing_clock_alarm]
+set_property IOSTANDARD LVCMOS33 [get_ports timing_clock_alarm]
 
 set_property PACKAGE_PIN N6 [get_ports anodes[0]]
 set_property IOSTANDARD LVCMOS33 [get_ports anodes[0]]

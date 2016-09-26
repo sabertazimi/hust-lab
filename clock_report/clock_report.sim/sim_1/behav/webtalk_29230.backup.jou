@@ -2,8 +2,8 @@
 # Webtalk v2016.2 (64-bit)
 # SW Build 1577090 on Thu Jun  2 16:32:35 MDT 2016
 # IP Build 1577682 on Fri Jun  3 12:00:54 MDT 2016
-# Start of session at: Mon Sep 26 23:50:22 2016
-# Process ID: 7646
+# Start of session at: Mon Sep 26 22:52:18 2016
+# Process ID: 29230
 # Current directory: /home/sabertazimi/Work/Source/dld/clock_report/clock_report.sim/sim_1/behav
 # Command line: wbtcv -mode batch -source /home/sabertazimi/Work/Source/dld/clock_report/clock_report.sim/sim_1/behav/xsim.dir/tick_divider_tb_behav/webtalk/xsim_webtalk.tcl -notrace
 # Log file: /home/sabertazimi/Work/Source/dld/clock_report/clock_report.sim/sim_1/behav/webtalk.log

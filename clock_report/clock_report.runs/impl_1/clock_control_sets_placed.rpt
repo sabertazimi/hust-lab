@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
-| Date         : Sat Sep 24 09:59:03 2016
+| Date         : Mon Sep 26 23:29:46 2016
 | Host         : avalon running 64-bit Ubuntu 16.04.1 LTS
 | Command      : report_control_sets -verbose -file clock_control_sets_placed.rpt
 | Design       : clock
@@ -22,8 +22,8 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Number of unique control sets                            |    10 |
-| Unused register locations in slices containing registers |    31 |
+| Number of unique control sets                            |    17 |
+| Unused register locations in slices containing registers |    48 |
 +----------------------------------------------------------+-------+
 
 
@@ -33,31 +33,38 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              33 |           14 |
+| No           | No                    | No                     |              40 |           19 |
 | No           | No                    | Yes                    |               0 |            0 |
 | No           | Yes                   | No                     |              32 |            8 |
-| Yes          | No                    | No                     |              32 |            9 |
+| Yes          | No                    | No                     |              64 |           18 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |              96 |           26 |
+| Yes          | Yes                   | No                     |             192 |           54 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 3. Detailed Control Set Information
 -----------------------------------
 
-+--------------------+---------------------------------+---------------------------+------------------+----------------+
-|    Clock Signal    |          Enable Signal          |      Set/Reset Signal     | Slice Load Count | Bel Load Count |
-+--------------------+---------------------------------+---------------------------+------------------+----------------+
-|  clk_dst_BUFG      |                                 |                           |                1 |              1 |
-|  true_clk_0        |                                 |                           |                1 |              1 |
-|  true_clk          |                                 |                           |                1 |              1 |
-|  TICK_DIVIDER/CLK  |                                 |                           |                3 |              3 |
-|  clk_src_IBUF_BUFG |                                 |                           |                8 |             27 |
-|  clk_src_IBUF_BUFG |                                 | DRANGE_DIVIDER/clear      |                8 |             32 |
-|  clk_dst_BUFG      | MIN_TIMER/E[0]                  |                           |                9 |             32 |
-|  true_clk_1        | HOUR_TIMER/count[31]_i_1__0_n_0 | SEC_TIMER/count_reg[31]_0 |                9 |             32 |
-|  true_clk_0        | SEC_TIMER/count[31]_i_2_n_0     | SEC_TIMER/count_reg[31]_0 |                9 |             32 |
-|  true_clk          | MIN_TIMER/count[31]_i_1_n_0     | SEC_TIMER/count_reg[31]_0 |                8 |             32 |
-+--------------------+---------------------------------+---------------------------+------------------+----------------+
++----------------------------+----------------------------------------+--------------------------+------------------+----------------+
+|        Clock Signal        |              Enable Signal             |     Set/Reset Signal     | Slice Load Count | Bel Load Count |
++----------------------------+----------------------------------------+--------------------------+------------------+----------------+
+|  TICK_DIVIDER/clk_group[1] |                                        |                          |                1 |              1 |
+|  true_clk                  |                                        |                          |                1 |              1 |
+|  true_clk_2                |                                        |                          |                1 |              1 |
+|  true_clk_4                |                                        |                          |                1 |              1 |
+|  true_clk_3                |                                        |                          |                1 |              1 |
+|  clk_dst_BUFG              |                                        |                          |                2 |              2 |
+|  TICK_DIVIDER/clk_group[0] |                                        |                          |                4 |              6 |
+|  clk_src_IBUF_BUFG         |                                        |                          |                8 |             27 |
+|  true_clk                  | SEC_TIMER/count[31]_i_2_n_0            | MIN_TIMER/count_reg[0]_0 |                7 |             32 |
+|  true_clk_2                | MIN_TIMER/count[31]_i_1_n_0            | MIN_TIMER/count_reg[0]_0 |               10 |             32 |
+|  true_clk_3                | TIMING_MIN_TIMER/count[31]_i_1__2_n_0  | MIN_TIMER/count_reg[0]_0 |                8 |             32 |
+|  true_clk_4                | TIMING_SEC_TIMER/count[31]_i_1__1_n_0  | MIN_TIMER/count_reg[0]_0 |                8 |             32 |
+|  true_clk_5                | HOUR_TIMER/count[31]_i_1__0_n_0        | MIN_TIMER/count_reg[0]_0 |               14 |             32 |
+|  true_clk_6                | TIMING_HOUR_TIMER/count[31]_i_1__3_n_0 | MIN_TIMER/count_reg[0]_0 |                7 |             32 |
+|  clk_dst_BUFG              | SEC_TIMER/E[0]                         |                          |                9 |             32 |
+|  clk_dst_BUFG              | TIMING_RING/count[31]_i_1__5_n_0       |                          |                9 |             32 |
+|  clk_src_IBUF_BUFG         |                                        | DRANGE_DIVIDER/clear     |                8 |             32 |
++----------------------------+----------------------------------------+--------------------------+------------------+----------------+
 
 

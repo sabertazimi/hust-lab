@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
-| Date             : Sat Sep 24 09:59:30 2016
+| Date             : Mon Sep 26 23:30:24 2016
 | Host             : avalon running 64-bit Ubuntu 16.04.1 LTS
 | Command          : report_power -file clock_power_routed.rpt -pb clock_power_summary_routed.pb -rpx clock_power_routed.rpx
 | Design           : clock
@@ -30,8 +30,8 @@ Table of Contents
 ----------
 
 +--------------------------+----------------------------------+
-| Total On-Chip Power (W)  | 46.507 (Junction temp exceeded!) |
-| Dynamic (W)              | 45.711                           |
+| Total On-Chip Power (W)  | 80.326 (Junction temp exceeded!) |
+| Dynamic (W)              | 79.529                           |
 | Device Static (W)        | 0.797                            |
 | Effective TJA (C/W)      | 4.6                              |
 | Max Ambient (C)          | 0.0                              |
@@ -49,17 +49,17 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Slice Logic    |    15.462 |     3839 |       --- |             --- |
-|   LUT as Logic |    13.308 |     2327 |     63400 |            3.67 |
-|   CARRY4       |     2.070 |      572 |     15850 |            3.61 |
-|   Register     |     0.042 |      193 |    126800 |            0.15 |
-|   BUFG         |     0.027 |        5 |        32 |           15.63 |
-|   F7/F8 Muxes  |     0.015 |        7 |     63400 |            0.01 |
-|   Others       |     0.000 |       21 |       --- |             --- |
-| Signals        |    12.152 |     3220 |       --- |             --- |
-| I/O            |    18.097 |       27 |       210 |           12.86 |
+| Slice Logic    |    33.771 |     7599 |       --- |             --- |
+|   LUT as Logic |    29.199 |     4653 |     63400 |            7.34 |
+|   CARRY4       |     4.387 |     1130 |     15850 |            7.13 |
+|   F7/F8 Muxes  |     0.078 |       40 |     63400 |            0.06 |
+|   Register     |     0.068 |      328 |    126800 |            0.26 |
+|   BUFG         |     0.039 |        8 |        32 |           25.00 |
+|   Others       |     0.000 |       38 |       --- |             --- |
+| Signals        |    27.275 |     6239 |       --- |             --- |
+| I/O            |    18.483 |       29 |       210 |           13.81 |
 | Static Power   |     0.797 |          |           |                 |
-| Total          |    46.507 |          |           |                 |
+| Total          |    80.326 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -69,9 +69,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |    28.217 |      27.654 |      0.563 |
-| Vccaux    |       1.800 |     0.755 |       0.662 |      0.093 |
-| Vcco33    |       3.300 |     5.115 |       5.111 |      0.004 |
+| Vccint    |       1.000 |    61.652 |      61.090 |      0.563 |
+| Vccaux    |       1.800 |     0.769 |       0.676 |      0.093 |
+| Vcco33    |       3.300 |     5.223 |       5.219 |      0.004 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
@@ -133,20 +133,28 @@ Table of Contents
 3.1 By Hierarchy
 ----------------
 
-+------------------+-----------+
-| Name             | Power (W) |
-+------------------+-----------+
-| clock            |    45.711 |
-|   DRANGE_DIVIDER |     0.211 |
-|   HOUR_TIMER     |     4.373 |
-|   MIN_TIMER      |     3.350 |
-|   RING           |     0.162 |
-|   SEC_TIMER      |     3.354 |
-|   SEG_SEVEN      |    13.184 |
-|     HOUR_SEG     |     3.966 |
-|     MIN_SEG      |     3.860 |
-|     SEC_SEG      |     4.068 |
-|   TICK_DIVIDER   |     0.101 |
-+------------------+-----------+
++---------------------+-----------+
+| Name                | Power (W) |
++---------------------+-----------+
+| clock               |    79.529 |
+|   DRANGE_DIVIDER    |     0.186 |
+|   HOUR_TIMER        |     5.021 |
+|   MIN_TIMER         |     3.524 |
+|   RING              |     0.179 |
+|   SEC_TIMER         |     3.215 |
+|   SEG_SEVEN         |    12.945 |
+|     HOUR_SEG        |     3.859 |
+|     MIN_SEG         |     4.146 |
+|     SEC_SEG         |     4.414 |
+|   TICK_DIVIDER      |     0.097 |
+|   TIMING_HOUR_TIMER |     5.434 |
+|   TIMING_MIN_TIMER  |     4.052 |
+|   TIMING_RING       |     0.160 |
+|   TIMING_SEC_TIMER  |     3.880 |
+|   TIMING_SEG_SEVEN  |    14.085 |
+|     HOUR_SEG        |     4.235 |
+|     MIN_SEG         |     4.511 |
+|     SEC_SEG         |     4.740 |
++---------------------+-----------+
 
 
