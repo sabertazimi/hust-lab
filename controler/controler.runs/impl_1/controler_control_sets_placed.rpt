@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
-| Date         : Mon Sep 26 16:16:06 2016
+| Date         : Mon Sep 26 17:29:58 2016
 | Host         : uncertainmove-Lenovo running 64-bit Ubuntu 16.04 LTS
 | Command      : report_control_sets -verbose -file controler_control_sets_placed.rpt
 | Design       : controler
@@ -22,8 +22,8 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Number of unique control sets                            |    46 |
-| Unused register locations in slices containing registers |   159 |
+| Number of unique control sets                            |    48 |
+| Unused register locations in slices containing registers |   172 |
 +----------------------------------------------------------+-------+
 
 
@@ -33,67 +33,69 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |             102 |           61 |
+| No           | No                    | No                     |             100 |           60 |
 | No           | No                    | Yes                    |               0 |            0 |
 | No           | Yes                   | No                     |              22 |           16 |
-| Yes          | No                    | No                     |             137 |           35 |
+| Yes          | No                    | No                     |               0 |            0 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |             420 |          123 |
+| Yes          | Yes                   | No                     |             666 |          192 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 3. Detailed Control Set Information
 -----------------------------------
 
-+-------------------------------------------+----------------------------------------------------------------+------------------------------------------------------------------------+------------------+----------------+
-|                Clock Signal               |                          Enable Signal                         |                            Set/Reset Signal                            | Slice Load Count | Bel Load Count |
-+-------------------------------------------+----------------------------------------------------------------+------------------------------------------------------------------------+------------------+----------------+
-|  MODE_SEL/E[1]                            |                                                                | MODE_SEL/AS[1]                                                         |                1 |              1 |
-|  DEWATERIGN_TIMER/real_clk                |                                                                |                                                                        |                1 |              2 |
-|  WATER_IN_MODE/WATER_IN_TIMER/real_clk    |                                                                |                                                                        |                2 |              2 |
-|  RINSING_TIMER/real_clk                   |                                                                |                                                                        |                1 |              2 |
-|  washing_machine_running_reg[1]_i_1_n_2   |                                                                | RINSE_MODE/WATER_IN_MODE/WATER_IN_TIMER/sum_count_reg[0]               |                1 |              2 |
-|  TIMER_WASH/real_clk                      |                                                                |                                                                        |                1 |              2 |
-|  TIMER_WASH/real_clk_0                    |                                                                |                                                                        |                1 |              2 |
-|  WATER_IN_MODE/WATER_IN_TIMER/real_clk_1  |                                                                |                                                                        |                2 |              2 |
-|  DEWATER_MODE/water_out_start_reg_i_2_n_2 |                                                                |                                                                        |                2 |              2 |
-|  WASH_MODE/nextstate_reg[1]_i_2_n_2       |                                                                | WASH_MODE/nextstate_reg[1]_i_3_n_2                                     |                2 |              2 |
-|  WASH_MODE/water_in_start_reg_i_2_n_2     |                                                                |                                                                        |                2 |              2 |
-|  WATER_OUT_MODE/WATER_IN_TIMER/real_clk   |                                                                |                                                                        |                2 |              2 |
-|  MODE_SEL/E[0]                            |                                                                | MODE_SEL/AS[0]                                                         |                1 |              2 |
-|  DEWATER_MODE/nextstate_reg[1]_i_2__0_n_2 |                                                                | DEWATER_MODE/nextstate_reg[1]_i_3__0_n_2                               |                2 |              2 |
-|  WATER_OUT_MODE/WATER_IN_TIMER/real_clk   | DEWATER_MODE/WATER_OUT_MODE/WATER_IN_TIMER/count[2]_i_1__1_n_2 |                                                                        |                1 |              3 |
-|  TICK_DEVIDER/clk[0]                      |                                                                |                                                                        |                2 |              3 |
-|  WATER_IN_MODE/WATER_IN_TIMER/real_clk_1  | WASH_MODE/WATER_IN_MODE/WATER_IN_TIMER/count[2]_i_1_n_2        |                                                                        |                1 |              3 |
-|  w_r_d_start_reg[2]_i_2_n_2               |                                                                | RINSE_MODE/WATER_IN_MODE/WATER_IN_TIMER/sum_count_reg[0]               |                1 |              3 |
-|  n_0_1839_BUFG                            |                                                                | RINSE_MODE/WATER_IN_MODE/WATER_IN_TIMER/sum_count_reg[0]               |                2 |              3 |
-|  n_1_1730_BUFG                            |                                                                | RINSE_MODE/nextstate_reg[2]_i_2_n_2                                    |                2 |              3 |
-|  WATER_IN_MODE/WATER_IN_TIMER/real_clk    | RINSE_MODE/WATER_IN_MODE/WATER_IN_TIMER/count[2]_i_1__0_n_2    |                                                                        |                1 |              3 |
-|  TICK_DEVIDER/clk[1]                      |                                                                | RINSE_MODE/nextstate_reg[2]_i_2_n_2                                    |                4 |              4 |
-|  TICK_DEVIDER/clk[1]                      |                                                                |                                                                        |                4 |              4 |
-|  RINSE_MODE/water_in_start_reg_i_2__0_n_2 |                                                                |                                                                        |                2 |              4 |
-|  real_p_clk_BUFG                          | power_IBUF                                                     | count[31]_i_1_n_2                                                      |                2 |              5 |
-|  TICK_DEVIDER/real_clk                    |                                                                |                                                                        |                3 |              5 |
-|  TICK_DEVIDER/init_flag_reg_1             |                                                                |                                                                        |                3 |              5 |
-|  real_p_clk_BUFG                          |                                                                |                                                                        |                5 |              7 |
-|  real_p_clk_BUFG                          | power_IBUF                                                     | count[30]_i_1_n_2                                                      |                5 |             25 |
-|  clk_src_IBUF_BUFG                        |                                                                |                                                                        |                7 |             26 |
-|  clk_BUFG[0]                              |                                                                |                                                                        |               21 |             30 |
-|  WATER_IN_MODE/WATER_IN_TIMER/real_clk    | RINSE_MODE/WATER_IN_MODE/WATER_IN_TIMER/reverse_count          | RINSE_MODE/WATER_IN_MODE/WATER_IN_TIMER/reverse_count[0]_i_1__1_n_2    |                8 |             32 |
-|  DEWATERIGN_TIMER/real_clk                | RINSE_MODE/DEWATERIGN_TIMER/count[31]_i_1__1_n_2               |                                                                        |                8 |             32 |
-|  DEWATERIGN_TIMER/real_clk                | RINSE_MODE/DEWATERIGN_TIMER/reverse_count                      | RINSE_MODE/DEWATERIGN_TIMER/reverse_count[0]_i_1__2_n_2                |                8 |             32 |
-|  TIMER_WASH/real_clk_0                    | DEWATER_MODE/TIMER_WASH/count[31]_i_1__3_n_2                   |                                                                        |                8 |             32 |
-|  TIMER_WASH/real_clk_0                    | DEWATER_MODE/TIMER_WASH/reverse_count                          | DEWATER_MODE/TIMER_WASH/reverse_count[0]_i_1__5_n_2                    |                8 |             32 |
-|  TIMER_WASH/real_clk                      | WASH_MODE/TIMER_WASH/reverse_count                             | WASH_MODE/TIMER_WASH/reverse_count[0]_i_1__0_n_2                       |                8 |             32 |
-|  TIMER_WASH/real_clk                      | WASH_MODE/TIMER_WASH/count[31]_i_1__0_n_2                      |                                                                        |                8 |             32 |
-|  RINSING_TIMER/real_clk                   | RINSE_MODE/RINSING_TIMER/count[31]_i_1__2_n_2                  |                                                                        |                8 |             32 |
-|  RINSING_TIMER/real_clk                   | RINSE_MODE/RINSING_TIMER/reverse_count                         | RINSE_MODE/RINSING_TIMER/reverse_count[0]_i_1__3_n_2                   |                8 |             32 |
-|  WATER_IN_MODE/WATER_IN_TIMER/real_clk_1  | WASH_MODE/WATER_IN_MODE/WATER_IN_TIMER/reverse_count           | WASH_MODE/WATER_IN_MODE/WATER_IN_TIMER/reverse_count[0]_i_1_n_2        |                8 |             32 |
-|  clk_BUFG[0]                              | DEWATER_MODE/nextstate_reg[1]_i_2__0_n_2                       | DEWATER_MODE/nextstate_reg[1]_i_3__0_n_2                               |               11 |             32 |
-|  clk_BUFG[0]                              | WASH_MODE/nextstate_reg[1]_i_2_n_2                             | WASH_MODE/nextstate_reg[1]_i_3_n_2                                     |               10 |             32 |
-|  WATER_OUT_MODE/WATER_IN_TIMER/real_clk   | DEWATER_MODE/WATER_OUT_MODE/WATER_IN_TIMER/reverse_count       | DEWATER_MODE/WATER_OUT_MODE/WATER_IN_TIMER/reverse_count[0]_i_1__4_n_2 |                8 |             32 |
-|  clk_BUFG[0]                              | n_1_1730_BUFG                                                  | RINSE_MODE/nextstate_reg[2]_i_2_n_2                                    |               11 |             32 |
-|  clk_BUFG[0]                              | n_0_1839_BUFG                                                  | RINSE_MODE/WATER_IN_MODE/WATER_IN_TIMER/sum_count_reg[0]               |               28 |             70 |
-+-------------------------------------------+----------------------------------------------------------------+------------------------------------------------------------------------+------------------+----------------+
++-------------------------------------------+----------------------------------------------------------------------+------------------------------------------------------------------------+------------------+----------------+
+|                Clock Signal               |                             Enable Signal                            |                            Set/Reset Signal                            | Slice Load Count | Bel Load Count |
++-------------------------------------------+----------------------------------------------------------------------+------------------------------------------------------------------------+------------------+----------------+
+|  MODE_SEL/E[1]                            |                                                                      | MODE_SEL/AS[1]                                                         |                1 |              1 |
+|  WATER_IN_MODE/WATER_IN_TIMER/real_clk    |                                                                      |                                                                        |                1 |              2 |
+|  TIMER_WASH/real_clk_0                    |                                                                      |                                                                        |                2 |              2 |
+|  WASH_MODE/nextstate_reg[1]_i_2__1_n_2    |                                                                      | WASH_MODE/nextstate_reg[1]_i_3__0_n_2                                  |                1 |              2 |
+|  WASH_MODE/water_in_start_reg_i_2_n_2     |                                                                      |                                                                        |                1 |              2 |
+|  TIMER_WASH/real_clk                      |                                                                      |                                                                        |                2 |              2 |
+|  RINSING_TIMER/real_clk                   |                                                                      |                                                                        |                1 |              2 |
+|  DEWATERIGN_TIMER/real_clk                |                                                                      |                                                                        |                2 |              2 |
+|  WATER_OUT_MODE/WATER_IN_TIMER/real_clk   |                                                                      |                                                                        |                2 |              2 |
+|  WATER_IN_MODE/WATER_IN_TIMER/real_clk_1  |                                                                      |                                                                        |                2 |              2 |
+|  n_1_6590_BUFG                            |                                                                      |                                                                        |                1 |              2 |
+|  MODE_SEL/E[0]                            |                                                                      | MODE_SEL/AS[0]                                                         |                1 |              2 |
+|  washing_machine_running_reg[1]_i_1_n_2   |                                                                      | RINSE_MODE/WATER_IN_MODE/WATER_IN_TIMER/sum_count_reg[0]               |                1 |              2 |
+|  DEWATER_MODE/water_out_start_reg_i_2_n_2 |                                                                      |                                                                        |                1 |              2 |
+|  DEWATER_MODE/nextstate_reg[1]_i_2_n_2    |                                                                      | DEWATER_MODE/nextstate_reg[1]_i_3_n_2                                  |                2 |              2 |
+|  w_r_d_start_reg[2]_i_2_n_2               |                                                                      | RINSE_MODE/WATER_IN_MODE/WATER_IN_TIMER/sum_count_reg[0]               |                2 |              3 |
+|  n_0_6100_BUFG                            |                                                                      | RINSE_MODE/WATER_IN_MODE/WATER_IN_TIMER/sum_count_reg[0]               |                3 |              3 |
+|  RINSE_MODE/nextstate_reg[2]_i_2_n_2      |                                                                      | RINSE_MODE/nextstate_reg[2]_i_3__0_n_2                                 |                2 |              3 |
+|  TICK_DEVIDER/clk[0]                      |                                                                      |                                                                        |                2 |              3 |
+|  TICK_DEVIDER/real_p_clk                  |                                                                      |                                                                        |                3 |              3 |
+|  RINSE_MODE/water_in_start_reg_i_2__0_n_2 |                                                                      |                                                                        |                1 |              4 |
+|  TICK_DEVIDER/clk[1]                      |                                                                      |                                                                        |                4 |              4 |
+|  TICK_DEVIDER/clk[1]                      |                                                                      | RINSE_MODE/nextstate_reg[2]_i_3__0_n_2                                 |                3 |              4 |
+|  TICK_DEVIDER/real_p_clk                  | power_IBUF                                                           | count[29]_i_1_n_2                                                      |                1 |              4 |
+|  TICK_DEVIDER/init_flag_reg_0             |                                                                      |                                                                        |                2 |              5 |
+|  TICK_DEVIDER/real_clk                    |                                                                      |                                                                        |                3 |              5 |
+|  TICK_DEVIDER/real_p_clk                  | power_IBUF                                                           | count[31]_i_1_n_2                                                      |                7 |             26 |
+|  clk_src_IBUF_BUFG                        |                                                                      |                                                                        |                7 |             26 |
+|  clk_BUFG[0]                              | DEWATER_MODE/nextstate_reg[1]_i_2_n_2                                | DEWATER_MODE/nextstate_reg[1]_i_3_n_2                                  |               10 |             28 |
+|  clk_BUFG[0]                              | WASH_MODE/nextstate_reg[1]_i_2__1_n_2                                | WASH_MODE/nextstate_reg[1]_i_3__0_n_2                                  |               13 |             29 |
+|  clk_BUFG[0]                              | RINSE_MODE/nextstate_reg[2]_i_2_n_2                                  | RINSE_MODE/nextstate_reg[2]_i_3__0_n_2                                 |               14 |             30 |
+|  clk_BUFG[0]                              |                                                                      |                                                                        |               23 |             30 |
+|  TIMER_WASH/real_clk_0                    | DEWATER_MODE/TIMER_WASH/reverse_count                                | DEWATER_MODE/TIMER_WASH/reverse_count[0]_i_1__5_n_2                    |                8 |             32 |
+|  TIMER_WASH/real_clk                      | WASH_MODE/TIMER_WASH/count_mode[31]_i_2__0_n_2                       | WASH_MODE/TIMER_WASH/count_mode[31]_i_1__3_n_2                         |                8 |             32 |
+|  TIMER_WASH/real_clk                      | WASH_MODE/TIMER_WASH/reverse_count                                   | WASH_MODE/TIMER_WASH/reverse_count[0]_i_1_n_2                          |                8 |             32 |
+|  RINSING_TIMER/real_clk                   | RINSE_MODE/RINSING_TIMER/reverse_count                               | RINSE_MODE/RINSING_TIMER/reverse_count[0]_i_1__3_n_2                   |                8 |             32 |
+|  WATER_IN_MODE/WATER_IN_TIMER/real_clk    | RINSE_MODE/WATER_IN_MODE/WATER_IN_TIMER/count_mode[31]_i_2__1_n_2    | RINSE_MODE/WATER_IN_MODE/WATER_IN_TIMER/count_mode[31]_i_1__1_n_2      |                8 |             32 |
+|  WATER_IN_MODE/WATER_IN_TIMER/real_clk    | RINSE_MODE/WATER_IN_MODE/WATER_IN_TIMER/reverse_count                | RINSE_MODE/WATER_IN_MODE/WATER_IN_TIMER/reverse_count[0]_i_1__1_n_2    |                8 |             32 |
+|  RINSING_TIMER/real_clk                   | RINSE_MODE/RINSING_TIMER/count_mode[31]_i_2__3_n_2                   | RINSE_MODE/RINSING_TIMER/count_mode[31]_i_1__5_n_2                     |                8 |             32 |
+|  WATER_IN_MODE/WATER_IN_TIMER/real_clk_1  | WASH_MODE/WATER_IN_MODE/WATER_IN_TIMER/count_mode[31]_i_2_n_2        | WASH_MODE/WATER_IN_MODE/WATER_IN_TIMER/count_mode[31]_i_1__2_n_2       |                8 |             32 |
+|  WATER_IN_MODE/WATER_IN_TIMER/real_clk_1  | WASH_MODE/WATER_IN_MODE/WATER_IN_TIMER/reverse_count                 | WASH_MODE/WATER_IN_MODE/WATER_IN_TIMER/reverse_count[0]_i_1__0_n_2     |                8 |             32 |
+|  DEWATERIGN_TIMER/real_clk                | RINSE_MODE/DEWATERIGN_TIMER/reverse_count                            | RINSE_MODE/DEWATERIGN_TIMER/reverse_count[0]_i_1__2_n_2                |                8 |             32 |
+|  WATER_OUT_MODE/WATER_IN_TIMER/real_clk   | DEWATER_MODE/WATER_OUT_MODE/WATER_IN_TIMER/reverse_count             | DEWATER_MODE/WATER_OUT_MODE/WATER_IN_TIMER/reverse_count[0]_i_1__4_n_2 |                8 |             32 |
+|  WATER_OUT_MODE/WATER_IN_TIMER/real_clk   | DEWATER_MODE/WATER_OUT_MODE/WATER_IN_TIMER/count_mode[31]_i_2__4_n_2 | DEWATER_MODE/WATER_OUT_MODE/WATER_IN_TIMER/count_mode[31]_i_1_n_2      |                8 |             32 |
+|  DEWATERIGN_TIMER/real_clk                | RINSE_MODE/DEWATERIGN_TIMER/count_mode[31]_i_2__2_n_2                | RINSE_MODE/DEWATERIGN_TIMER/count_mode[31]_i_1__4_n_2                  |                8 |             32 |
+|  TIMER_WASH/real_clk_0                    | DEWATER_MODE/TIMER_WASH/count_mode[31]_i_2__5_n_2                    | DEWATER_MODE/TIMER_WASH/count_mode[31]_i_1__0_n_2                      |                8 |             32 |
+|  clk_BUFG[24]                             | n_1_6590_BUFG                                                        | RING/count[31]_i_1__0_n_2                                              |               10 |             33 |
+|  clk_BUFG[0]                              | n_0_6100_BUFG                                                        | RINSE_MODE/WATER_IN_MODE/WATER_IN_TIMER/sum_count_reg[0]               |               25 |             68 |
++-------------------------------------------+----------------------------------------------------------------------+------------------------------------------------------------------------+------------------+----------------+
 
 

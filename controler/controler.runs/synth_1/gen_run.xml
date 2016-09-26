@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1474877707">
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1474882120">
   <File Type="VDS-TIMING-PB" Name="controler_timing_summary_synth.pb"/>
   <File Type="VDS-TIMINGSUMMARY" Name="controler_timing_summary_synth.rpt"/>
   <File Type="RDS-DCP" Name="controler.dcp"/>
@@ -81,6 +81,13 @@
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/new/rinse_mode.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/ring.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>

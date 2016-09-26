@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
-| Date         : Mon Sep 26 16:16:27 2016
+| Date         : Mon Sep 26 17:30:25 2016
 | Host         : uncertainmove-Lenovo running 64-bit Ubuntu 16.04 LTS
 | Command      : report_timing_summary -warn_on_violation -max_paths 10 -file controler_timing_summary_routed.rpt -rpx controler_timing_summary_routed.rpx
 | Design       : controler
@@ -56,7 +56,7 @@ Table of Contents
 
  There are 5 register/latch pins with no clock driven by root clock pin: mode_ch (HIGH)
 
- There are 438 register/latch pins with no clock driven by root clock pin: power (HIGH)
+ There are 523 register/latch pins with no clock driven by root clock pin: power (HIGH)
 
  There are 21 register/latch pins with no clock driven by root clock pin: start_pause (HIGH)
 
@@ -64,7 +64,7 @@ Table of Contents
 
  There are 66 register/latch pins with no clock driven by root clock pin: DEWATER_MODE/TIMER_WASH/init_flag_reg/C (HIGH)
 
- There are 37 register/latch pins with no clock driven by root clock pin: DEWATER_MODE/WATER_OUT_MODE/WATER_IN_TIMER/init_flag_reg/C (HIGH)
+ There are 66 register/latch pins with no clock driven by root clock pin: DEWATER_MODE/WATER_OUT_MODE/WATER_IN_TIMER/init_flag_reg/C (HIGH)
 
  There are 66 register/latch pins with no clock driven by root clock pin: DEWATER_MODE/dewatering_start_reg/G (HIGH)
 
@@ -72,7 +72,7 @@ Table of Contents
 
  There are 4 register/latch pins with no clock driven by root clock pin: DEWATER_MODE/state_reg[1]/C (HIGH)
 
- There are 37 register/latch pins with no clock driven by root clock pin: DEWATER_MODE/water_out_start_reg/G (HIGH)
+ There are 66 register/latch pins with no clock driven by root clock pin: DEWATER_MODE/water_out_start_reg/G (HIGH)
 
  There are 2 register/latch pins with no clock driven by root clock pin: MODE_SEL/sel_value_reg[0]/C (HIGH)
 
@@ -80,11 +80,13 @@ Table of Contents
 
  There are 3 register/latch pins with no clock driven by root clock pin: MODE_SEL/sel_value_reg[2]/C (HIGH)
 
+ There are 2 register/latch pins with no clock driven by root clock pin: RING/next_state_reg[0]/G (HIGH)
+
  There are 66 register/latch pins with no clock driven by root clock pin: RINSE_MODE/DEWATERIGN_TIMER/init_flag_reg/C (HIGH)
 
  There are 66 register/latch pins with no clock driven by root clock pin: RINSE_MODE/RINSING_TIMER/init_flag_reg/C (HIGH)
 
- There are 37 register/latch pins with no clock driven by root clock pin: RINSE_MODE/WATER_IN_MODE/WATER_IN_TIMER/init_flag_reg/C (HIGH)
+ There are 66 register/latch pins with no clock driven by root clock pin: RINSE_MODE/WATER_IN_MODE/WATER_IN_TIMER/init_flag_reg/C (HIGH)
 
  There are 66 register/latch pins with no clock driven by root clock pin: RINSE_MODE/dewatering_start_reg/G (HIGH)
 
@@ -96,19 +98,21 @@ Table of Contents
 
  There are 7 register/latch pins with no clock driven by root clock pin: RINSE_MODE/state_reg[2]/C (HIGH)
 
- There are 37 register/latch pins with no clock driven by root clock pin: RINSE_MODE/water_in_start_reg/G (HIGH)
+ There are 66 register/latch pins with no clock driven by root clock pin: RINSE_MODE/water_in_start_reg/G (HIGH)
 
- There are 37 register/latch pins with no clock driven by root clock pin: RINSE_MODE/water_out_start_reg/G (HIGH)
+ There are 66 register/latch pins with no clock driven by root clock pin: RINSE_MODE/water_out_start_reg/G (HIGH)
 
- There are 581 register/latch pins with no clock driven by root clock pin: TICK_DEVIDER/clk_group_reg[0]/C (HIGH)
+ There are 657 register/latch pins with no clock driven by root clock pin: TICK_DEVIDER/clk_group_reg[0]/C (HIGH)
 
  There are 3 register/latch pins with no clock driven by root clock pin: TICK_DEVIDER/clk_group_reg[15]/C (HIGH)
 
- There are 420 register/latch pins with no clock driven by root clock pin: TICK_DEVIDER/clk_group_reg[25]/C (HIGH)
+ There are 33 register/latch pins with no clock driven by root clock pin: TICK_DEVIDER/clk_group_reg[24]/C (HIGH)
+
+ There are 503 register/latch pins with no clock driven by root clock pin: TICK_DEVIDER/clk_group_reg[25]/C (HIGH)
 
  There are 66 register/latch pins with no clock driven by root clock pin: WASH_MODE/TIMER_WASH/init_flag_reg/C (HIGH)
 
- There are 37 register/latch pins with no clock driven by root clock pin: WASH_MODE/WATER_IN_MODE/WATER_IN_TIMER/init_flag_reg/C (HIGH)
+ There are 66 register/latch pins with no clock driven by root clock pin: WASH_MODE/WATER_IN_MODE/WATER_IN_TIMER/init_flag_reg/C (HIGH)
 
  There are 4 register/latch pins with no clock driven by root clock pin: WASH_MODE/state_reg[0]/C (HIGH)
 
@@ -116,15 +120,9 @@ Table of Contents
 
  There are 66 register/latch pins with no clock driven by root clock pin: WASH_MODE/washing_start_reg/G (HIGH)
 
- There are 37 register/latch pins with no clock driven by root clock pin: WASH_MODE/water_in_start_reg/G (HIGH)
+ There are 66 register/latch pins with no clock driven by root clock pin: WASH_MODE/water_in_start_reg/G (HIGH)
 
- There are 152 register/latch pins with no clock driven by root clock pin: power_control_reg_rep/C (HIGH)
-
- There are 104 register/latch pins with no clock driven by root clock pin: power_control_reg_rep__0/C (HIGH)
-
- There are 50 register/latch pins with no clock driven by root clock pin: power_control_reg_rep__1/C (HIGH)
-
- There are 132 register/latch pins with no clock driven by root clock pin: power_control_reg_rep__2/C (HIGH)
+ There are 523 register/latch pins with no clock driven by root clock pin: power_control_reg/C (HIGH)
 
  There are 11 register/latch pins with no clock driven by root clock pin: start_pause_light_two_reg/C (HIGH)
 
@@ -155,21 +153,21 @@ Table of Contents
 
 4. checking unconstrained_internal_endpoints
 --------------------------------------------
- There are 1680 pins that are not constrained for maximum delay. (HIGH)
+ There are 2142 pins that are not constrained for maximum delay. (HIGH)
 
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 
 
 5. checking no_input_delay
 --------------------------
- There are 2 input ports with no input delay specified. (HIGH)
+ There are 4 input ports with no input delay specified. (HIGH)
 
  There are 0 input ports with no input delay but user has a false path constraint.
 
 
 6. checking no_output_delay
 ---------------------------
- There are 29 ports with no output delay specified. (HIGH)
+ There are 30 ports with no output delay specified. (HIGH)
 
  There are 0 ports with no output delay but user has a false path constraint
 
@@ -203,7 +201,7 @@ Table of Contents
 
 12. checking latch_loops
 ------------------------
- There are 0 combinational latch loops in the design through latch input
+ There are 2 combinational latch loops in the design through latch input (HIGH)
 
 
 

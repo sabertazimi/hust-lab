@@ -2,7 +2,7 @@
 
 
 module controler
-#(parameter WIDTH = 32, CLK_CH = 25)
+#(parameter WIDTH = 32, CLK_CH = 25, TIME_SCORE = 20)
 (
     input power, input start_pause, input weight_ch, input mode_ch, input clk_src,
     output start_pause_light,output [2:0]weight_ch_light, output power_light,
@@ -60,7 +60,7 @@ module controler
                             .sel_value(weight_ch_light_mode)
     );                
     
-    wash_mode #(WIDTH, CLK_CH) WASH_MODE (.power(true_power),
+    wash_mode #(WIDTH, CLK_CH, TIME_SCORE) WASH_MODE (.power(true_power),
                          .start(start_pause_light),
                          .weight(weight_ch_light),
                          .clk(clk),
@@ -73,7 +73,7 @@ module controler
                          .state(washing_state)
      );
      
-    rinse_mode #(WIDTH, CLK_CH) RINSE_MODE (.power(true_power),
+    rinse_mode #(WIDTH, CLK_CH, TIME_SCORE) RINSE_MODE (.power(true_power),
                            .start(start_pause_light),
                            .clk(clk),
                            .weight(weight_ch_light),
@@ -88,7 +88,7 @@ module controler
                            .state(rinsing_state)
     );
     
-    dewater_mode #(WIDTH, CLK_CH) DEWATER_MODE (.power(true_power),
+    dewater_mode #(WIDTH, CLK_CH, TIME_SCORE) DEWATER_MODE (.power(true_power),
                                .start(start_pause_light),
                                .clk(clk),
                                .weight(weight_ch_light),
@@ -141,7 +141,7 @@ module controler
     assign anodes = true_power ? ianodes : {8{1'b1}};
     assign cnodes = true_power ? icnodes : {8{1'b1}};
 
-    assign start_pause_light = true_power ? (start_pause & start_pause_light_two) : 0;
+    assign start_pause_light = true_power ? (start_pause & start_pause_light_two) : 1'b0;
 
     assign power_light = true_power;
     assign weight_ch_light = true_power ? weight_ch_light_mode : 3'b000;

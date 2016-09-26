@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 module water_let_mode
-#(parameter WIDTH = 32, CLK_CH = 25)
+#(parameter WIDTH = 32, CLK_CH = 25, TIME_SCORE = 2)
 (
     input power, input start, input [31:0]clk,
     input water_in_start, input water_out_start, input [2:0]max_water_level,
@@ -18,7 +18,7 @@ module water_let_mode
         water_level = {3{1'b0}};
     end
     
-    timer #(WIDTH, CLK_CH) WATER_IN_TIMER (.clk_src(clk),
+    timer #(WIDTH, CLK_CH, TIME_SCORE) WATER_IN_TIMER (.clk_src(clk),
                  .switch_power(power),
                  .switch_en(start),
                  .sum_count({{29{1'b0}}, max_water_level}),

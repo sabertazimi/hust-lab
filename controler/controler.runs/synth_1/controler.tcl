@@ -26,6 +26,7 @@ read_verilog -library xil_defaultlib {
   /home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/selector_mode.v
   /home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/dewater_mode.v
   /home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/rinse_mode.v
+  /home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/ring.v
   /home/uncertainmove/Document/dld/controler/controler.srcs/sources_1/new/controler.v
 }
 foreach dcp [get_files -quiet -all *.dcp] {

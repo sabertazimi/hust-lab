@@ -75,3 +75,5 @@ set_property src_info {type:XDC file:1 line:115 export:INPUT save:INPUT read:REA
 set_property PACKAGE_PIN U7 [get_ports rinsing_light]
 set_property src_info {type:XDC file:1 line:118 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN T4 [get_ports dewatering_light]
+set_property src_info {type:XDC file:1 line:121 export:INPUT save:INPUT read:READ} [current_design]
+set_property PACKAGE_PIN T5 [get_ports alarm]

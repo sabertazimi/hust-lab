@@ -31,7 +31,7 @@ module selector_mode
     assign real_clk = (switch_power & !switch_en & !washing_machine_running[1]) ? sig_change : clk[0];
     always @(posedge real_clk) begin
         if (switch_power && !switch_en) begin
-            if(washing_machine_running[0]) push = 1'b1;
+            if(washing_machine_running[0]) begin push = 1'b1;sel_value = (sel_value + 1) % (HI+1) ? (sel_value + 1) % (HI+1) : LO; end
             else if(washing_machine_running[1]) begin push = 1'b1; sel_value = LO; end
             else begin 
                 if(init_flag) begin sel_value = LO; init_flag = 0; push = 1'b0; end

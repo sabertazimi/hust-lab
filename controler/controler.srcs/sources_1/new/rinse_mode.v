@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 module rinse_mode
-#(parameter WIDTH = 32, CLK_CH = 25)
+#(parameter WIDTH = 32, CLK_CH = 25, TIME_SCORE = 2)
 (
     input rinse_start, input start, input power, input [31:0]clk, input [2:0]weight,
     output reg rinse_end_sign, 
@@ -34,7 +34,7 @@ module rinse_mode
         
         assign water_level = (state == rinsing_state) ? weight : water_level_rinse;
         
-         water_let_mode #(WIDTH, CLK_CH) WATER_IN_MODE (.water_in_end_sign(water_in_end_sign),
+         water_let_mode #(WIDTH, CLK_CH, TIME_SCORE) WATER_IN_MODE (.water_in_end_sign(water_in_end_sign),
                                        .water_in_start(water_in_start),
                                        .water_out_start(water_out_start),
                                        .water_out_end_sign(water_out_end_sign),
@@ -44,7 +44,7 @@ module rinse_mode
                                        .start(start),
                                        .water_level(water_level_rinse)
           );
-          timer #(WIDTH, CLK_CH) DEWATERIGN_TIMER (.clk_src(clk),
+          timer #(WIDTH, CLK_CH, TIME_SCORE) DEWATERIGN_TIMER (.clk_src(clk),
                                   .switch_power(power),
                                   .switch_en(start),
                                   .sum_count({{29{1'b0}},weight}),
@@ -52,7 +52,7 @@ module rinse_mode
                                   .count_end_flag(dewatering_end_sign),
                                   .count(dewatering_count)
           );
-          timer #(WIDTH, CLK_CH) RINSING_TIMER (.clk_src(clk),
+          timer #(WIDTH, CLK_CH, TIME_SCORE) RINSING_TIMER (.clk_src(clk),
                                   .switch_power(power),
                                   .switch_en(start),
                                   .sum_count({{29{1'b0}},weight} * 2),

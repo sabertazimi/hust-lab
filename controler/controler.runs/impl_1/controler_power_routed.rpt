@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
-| Date             : Mon Sep 26 16:16:28 2016
+| Date             : Mon Sep 26 17:30:27 2016
 | Host             : uncertainmove-Lenovo running 64-bit Ubuntu 16.04 LTS
 | Command          : report_power -file controler_power_routed.rpt -pb controler_power_summary_routed.pb -rpx controler_power_routed.rpx
 | Design           : controler
@@ -30,8 +30,8 @@ Table of Contents
 ----------
 
 +--------------------------+----------------------------------+
-| Total On-Chip Power (W)  | 62.852 (Junction temp exceeded!) |
-| Dynamic (W)              | 62.055                           |
+| Total On-Chip Power (W)  | 65.664 (Junction temp exceeded!) |
+| Dynamic (W)              | 64.867                           |
 | Device Static (W)        | 0.797                            |
 | Effective TJA (C/W)      | 4.6                              |
 | Max Ambient (C)          | 0.0                              |
@@ -49,17 +49,17 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Slice Logic    |    12.385 |     4094 |       --- |             --- |
-|   LUT as Logic |    10.624 |     2187 |     63400 |            3.45 |
-|   CARRY4       |     1.666 |      504 |     15850 |            3.18 |
+| Slice Logic    |    13.040 |     8477 |       --- |             --- |
+|   LUT as Logic |    11.182 |     5290 |     63400 |            8.34 |
+|   CARRY4       |     1.762 |     1098 |     15850 |            6.93 |
 |   BUFG         |     0.058 |       12 |        32 |           37.50 |
-|   Register     |     0.023 |      681 |    126800 |            0.54 |
-|   F7/F8 Muxes  |     0.013 |        7 |     63400 |            0.01 |
-|   Others       |     0.000 |       49 |       --- |             --- |
-| Signals        |     9.415 |     2954 |       --- |             --- |
-| I/O            |    40.255 |       34 |       210 |           16.19 |
+|   Register     |     0.023 |      788 |    126800 |            0.62 |
+|   F7/F8 Muxes  |     0.015 |       11 |     63400 |            0.02 |
+|   Others       |     0.000 |       52 |       --- |             --- |
+| Signals        |    10.558 |     6515 |       --- |             --- |
+| I/O            |    41.270 |       35 |       210 |           16.67 |
 | Static Power   |     0.797 |          |           |                 |
-| Total          |    62.852 |          |           |                 |
+| Total          |    65.664 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -69,9 +69,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |    22.379 |      21.817 |      0.563 |
-| Vccaux    |       1.800 |     1.567 |       1.475 |      0.093 |
-| Vcco33    |       3.300 |    11.393 |      11.389 |      0.004 |
+| Vccint    |       1.000 |    24.176 |      23.614 |      0.563 |
+| Vccaux    |       1.800 |     1.605 |       1.512 |      0.093 |
+| Vcco33    |       3.300 |    11.680 |      11.676 |      0.004 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
@@ -136,27 +136,28 @@ Table of Contents
 +----------------------+-----------+
 | Name                 | Power (W) |
 +----------------------+-----------+
-| controler            |    62.055 |
-|   DEWATER_MODE       |     0.091 |
-|     TIMER_WASH       |     0.024 |
-|     WATER_OUT_MODE   |     0.036 |
-|       WATER_IN_TIMER |     0.025 |
-|   MODE_SEL           |     0.081 |
-|   RINSE_MODE         |     0.196 |
-|     DEWATERIGN_TIMER |     0.044 |
-|     RINSING_TIMER    |     0.039 |
-|     WATER_IN_MODE    |     0.082 |
-|       WATER_IN_TIMER |     0.075 |
-|   TICK_DEVIDER       |     0.168 |
-|   TIME_DISPLAYER     |    15.297 |
-|     HOUR_SEG         |     7.042 |
-|     MIN_SEG          |     5.512 |
-|     SEC_SEG          |     0.333 |
-|   WASH_MODE          |     0.098 |
-|     TIMER_WASH       |     0.040 |
-|     WATER_IN_MODE    |     0.040 |
-|       WATER_IN_TIMER |     0.025 |
-|   WEIGHT_SEL         |     0.425 |
+| controler            |    64.867 |
+|   DEWATER_MODE       |     0.109 |
+|     TIMER_WASH       |     0.031 |
+|     WATER_OUT_MODE   |     0.059 |
+|       WATER_IN_TIMER |     0.044 |
+|   MODE_SEL           |     0.062 |
+|   RING               |     0.022 |
+|   RINSE_MODE         |     0.240 |
+|     DEWATERIGN_TIMER |     0.061 |
+|     RINSING_TIMER    |     0.044 |
+|     WATER_IN_MODE    |     0.090 |
+|       WATER_IN_TIMER |     0.088 |
+|   TICK_DEVIDER       |     0.157 |
+|   TIME_DISPLAYER     |    16.679 |
+|     HOUR_SEG         |     7.564 |
+|     MIN_SEG          |     6.013 |
+|     SEC_SEG          |     0.437 |
+|   WASH_MODE          |     0.114 |
+|     TIMER_WASH       |     0.035 |
+|     WATER_IN_MODE    |     0.067 |
+|       WATER_IN_TIMER |     0.051 |
+|   WEIGHT_SEL         |     1.055 |
 +----------------------+-----------+
 
 
