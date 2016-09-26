@@ -40,6 +40,7 @@ module selector_mode
 //                 sel_value = (sel_value + 1) % (HI+1) ? (sel_value + 1) % (HI+1) : LO;
 //                 push = 1'b1;
 //            end
+//            if(washing)
             if(init_flag) begin sel_value = LO; init_flag = 0; push = 1'b0; end
             sel_value = (sel_value + 1) % (HI+1) ? (sel_value + 1) % (HI+1) : LO;
             if(washing_machine_running[0] || washing_machine_running[1]) push = 1'b1;

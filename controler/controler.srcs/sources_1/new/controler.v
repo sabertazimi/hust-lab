@@ -165,7 +165,10 @@ module controler
                 start_pause_light_two = 1'b1;
 //                sum_count = 0;
                 sum_count = w_r_d[2] * 4 * {{29{1'b0}},weight_ch_light} + w_r_d[1] * 5 * {{29{1'b0}},weight_ch_light} + w_r_d[0] * 2 * {{29{1'b0}},weight_ch_light};
-                mode_count = 0;
+                if(w_r_d[2]) mode_count = w_r_d[2] * 4 * {{29{1'b0}},weight_ch_light};
+                else if(w_r_d[1]) mode_count = w_r_d[1] * 5 * {{29{1'b0}},weight_ch_light};
+                else if(w_r_d[0]) mode_count = w_r_d[0] * 2 * {{29{1'b0}},weight_ch_light};
+                else mode_count = 0;
             end
             wash_state: begin
                 water_level = wash_water_level;
@@ -270,6 +273,7 @@ module controler
                 else if(w_r_d == 1) begin
                     nextstate = dewater_state;
                 end
+                else if(mode_ch_push || weight_ch_push) nextstate = mode_ch_state;
                 else nextstate = mode_ch_state;
             wash_state:
                 if(w_r_d_end[2] & w_r_d[1]) begin
@@ -279,17 +283,25 @@ module controler
                     nextstate = dewater_state;
                 end
                 else if(w_r_d_end[2] & (w_r_d == 4)) nextstate = w_r_d_end_state;
+                else if(mode_ch_push || weight_ch_push) nextstate = mode_ch_state;
                 else nextstate = wash_state;
             rinse_state:
                 if(w_r_d_end[1] & w_r_d[0]) begin
                     nextstate = dewater_state;
                 end
                 else if(w_r_d_end[1] & !w_r_d[0]) nextstate = w_r_d_end_state;
+                else if(mode_ch_push || weight_ch_push) nextstate = mode_ch_state;
                 else nextstate = rinse_state;
             dewater_state:
                 if(w_r_d_end[0]) nextstate = w_r_d_end_state;
                 else nextstate = dewater_state;
-            w_r_d_end_state: if(mode_ch_push | weight_ch_push) nextstate = mode_ch_state;
+            w_r_d_end_state: begin
+                    if(mode_ch_push || weight_ch_push) begin
+                        nextstate = mode_ch_state;
+                    end else begin
+                        nextstate = w_r_d_end_state;
+                    end
+                end
         endcase  
     end
     else nextstate = mode_ch_state;
