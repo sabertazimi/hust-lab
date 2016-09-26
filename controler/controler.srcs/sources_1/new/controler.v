@@ -8,7 +8,8 @@ module controler
     output start_pause_light,output [2:0]weight_ch_light, output power_light,
     output water_in_light, output reg washing_light, output reg rinsing_light,
     output reg dewatering_light, output water_out_light,// output reg buzzer_lamp,
-    output [7:0]anodes, output [7:0]cnodes, output reg [2:0]state
+    output [7:0]anodes, output [7:0]cnodes, output reg [2:0]state,
+    output alarm
     );
     
     reg [2:0]nextstate;
@@ -108,6 +109,16 @@ module controler
                                .anodes(ianodes),
                                .cnodes(icnodes)
     );
+    
+    ring RING (
+        .clk_src(clk),
+        .power(true_power),
+        .weight_ch(weight_ch),
+        .mode_ch(mode_ch),
+        .w_r_d_end(w_r_d_end),
+        .alarm(alarm)
+    );
+    
     initial begin
         state <= mode_ch_state;
         nextstate <= mode_ch_state;
@@ -129,7 +140,9 @@ module controler
     assign true_power = power & power_control;
     assign anodes = true_power ? ianodes : {8{1'b1}};
     assign cnodes = true_power ? icnodes : {8{1'b1}};
-    assign start_pause_light = true_power ? (start_pause & start_pause_light_two) : 1'b0;
+
+    assign start_pause_light = true_power ? (start_pause & start_pause_light_two) : 0;
+
     assign power_light = true_power;
     assign weight_ch_light = true_power ? weight_ch_light_mode : 3'b000;
     //w_r_d_change
