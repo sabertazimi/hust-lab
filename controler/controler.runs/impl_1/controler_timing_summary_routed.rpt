@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
-| Date         : Mon Sep 26 09:44:48 2016
+| Date         : Mon Sep 26 11:15:15 2016
 | Host         : uncertainmove-Lenovo running 64-bit Ubuntu 16.04 LTS
 | Command      : report_timing_summary -warn_on_violation -max_paths 10 -file controler_timing_summary_routed.rpt -rpx controler_timing_summary_routed.rpx
 | Design       : controler
@@ -116,11 +116,9 @@ Table of Contents
 
  There are 37 register/latch pins with no clock driven by root clock pin: WASH_MODE/water_in_start_reg/G (HIGH)
 
- There are 37 register/latch pins with no clock driven by root clock pin: power_control_reg/C (HIGH)
+ There are 150 register/latch pins with no clock driven by root clock pin: power_control_reg_rep/C (HIGH)
 
- There are 115 register/latch pins with no clock driven by root clock pin: power_control_reg_rep/C (HIGH)
-
- There are 104 register/latch pins with no clock driven by root clock pin: power_control_reg_rep__0/C (HIGH)
+ There are 106 register/latch pins with no clock driven by root clock pin: power_control_reg_rep__0/C (HIGH)
 
  There are 50 register/latch pins with no clock driven by root clock pin: power_control_reg_rep__1/C (HIGH)
 

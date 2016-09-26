@@ -42,12 +42,12 @@ module selector_mode
 //            end
 //            if(washing)
             if(init_flag) begin sel_value = LO; init_flag = 0; push = 1'b0; end
-            sel_value = (sel_value + 1) % (HI+1) ? (sel_value + 1) % (HI+1) : LO;
+            sel_value = (sel_value + 1) % (HI+1) ? (sel_value + 1) % (HI+1) : LO; push = 1'b0;
             if(washing_machine_running[0] || washing_machine_running[1]) push = 1'b1;
             // TODO: button-down signal led
             // btn_sig_led(bool sig_flicker, output btn_l   ed)
         end else if(switch_power && switch_en) begin
-            push = 1'b0; 
+            push = 1'b0;
         end else if(!switch_power) begin
             init_flag = 1;
             sel_value = LO;

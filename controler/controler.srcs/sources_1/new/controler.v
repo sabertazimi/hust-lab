@@ -219,6 +219,7 @@ module controler
     if(true_power & start_pause_light) begin
         state <= nextstate; //in mode_ch_state
     end
+    else if(true_power && (mode_ch_push || weight_ch_push)) state = nextstate;
     else if(!true_power) begin 
         state <= mode_ch_state;
     end
@@ -260,11 +261,12 @@ module controler
         w_r_d_start <= 3'b000; washing_machine_running <= 2'b00;
     end
     
-    always @(w_r_d_end or w_r_d or mode_ch_push or weight_ch_push or true_power)
+    always @(w_r_d_end or w_r_d or true_power)
     if(true_power) begin
         case(state)
             mode_ch_state:
-                if(w_r_d[2]) begin    //w_r_d contains wash
+                if(mode_ch_push || weight_ch_push) nextstate = mode_ch_state;
+                else if(w_r_d[2]) begin    //w_r_d contains wash
                     nextstate = wash_state;
                 end
                 else if(!w_r_d[2] & w_r_d[1]) begin
@@ -273,27 +275,27 @@ module controler
                 else if(w_r_d == 1) begin
                     nextstate = dewater_state;
                 end
-                else if(mode_ch_push || weight_ch_push) nextstate = mode_ch_state;
                 else nextstate = mode_ch_state;
             wash_state:
-                if(w_r_d_end[2] & w_r_d[1]) begin
+                if(mode_ch_push || weight_ch_push) nextstate = mode_ch_state;
+                else if(w_r_d_end[2] & w_r_d[1]) begin
                     nextstate = rinse_state;
                 end
                 else if(w_r_d_end[2] & !w_r_d[1] & w_r_d[0]) begin
                     nextstate = dewater_state;
                 end
                 else if(w_r_d_end[2] & (w_r_d == 4)) nextstate = w_r_d_end_state;
-                else if(mode_ch_push || weight_ch_push) nextstate = mode_ch_state;
                 else nextstate = wash_state;
             rinse_state:
-                if(w_r_d_end[1] & w_r_d[0]) begin
+                if(mode_ch_push || weight_ch_push) nextstate = mode_ch_state;
+                else if(w_r_d_end[1] & w_r_d[0]) begin
                     nextstate = dewater_state;
                 end
                 else if(w_r_d_end[1] & !w_r_d[0]) nextstate = w_r_d_end_state;
-                else if(mode_ch_push || weight_ch_push) nextstate = mode_ch_state;
                 else nextstate = rinse_state;
             dewater_state:
-                if(w_r_d_end[0]) nextstate = w_r_d_end_state;
+                if(mode_ch_push || weight_ch_push) nextstate = mode_ch_state;
+                else if(w_r_d_end[0]) nextstate = w_r_d_end_state;
                 else nextstate = dewater_state;
             w_r_d_end_state: begin
                     if(mode_ch_push || weight_ch_push) begin

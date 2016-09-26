@@ -3,10 +3,10 @@
 <!--The data in this file is primarily intended for consumption by Xilinx tools.
 The structure and the elements are likely to change over the next few releases.
 This means code written to parse this file will need to be revisited each subsequent release.-->
-<application name="pa" timeStamp="Mon Sep 26 09:43:22 2016">
+<application name="pa" timeStamp="Mon Sep 26 11:13:53 2016">
 <section name="Project Information" visible="false">
 <property name="ProjectID" value="8c6b2097171f4edea720294e3754d98d" type="ProjectID"/>
-<property name="ProjectIteration" value="77" type="ProjectIteration"/>
+<property name="ProjectIteration" value="83" type="ProjectIteration"/>
 </section>
 <section name="PlanAhead Usage" visible="true">
 <item name="Project Data">
@@ -18,19 +18,19 @@ This means code written to parse this file will need to be revisited each subseq
 </item>
 <item name="Java Command Handlers">
 <property name="AddSources" value="23" type="JavaHandler"/>
-<property name="AutoConnectTarget" value="9" type="JavaHandler"/>
+<property name="AutoConnectTarget" value="12" type="JavaHandler"/>
 <property name="EditDelete" value="6" type="JavaHandler"/>
 <property name="EditPaste" value="3" type="JavaHandler"/>
 <property name="EditUndo" value="5" type="JavaHandler"/>
 <property name="FileExit" value="1" type="JavaHandler"/>
 <property name="LaunchOpenTarget" value="2" type="JavaHandler"/>
-<property name="LaunchProgramFpga" value="54" type="JavaHandler"/>
+<property name="LaunchProgramFpga" value="62" type="JavaHandler"/>
 <property name="NewProject" value="1" type="JavaHandler"/>
-<property name="OpenHardwareManager" value="25" type="JavaHandler"/>
+<property name="OpenHardwareManager" value="26" type="JavaHandler"/>
 <property name="OpenProject" value="17" type="JavaHandler"/>
-<property name="OpenRecentTarget" value="8" type="JavaHandler"/>
+<property name="OpenRecentTarget" value="9" type="JavaHandler"/>
 <property name="ProjectSettingsCmdHandler" value="1" type="JavaHandler"/>
-<property name="RunBitgen" value="77" type="JavaHandler"/>
+<property name="RunBitgen" value="83" type="JavaHandler"/>
 <property name="RunImplementation" value="1" type="JavaHandler"/>
 <property name="RunSynthesis" value="16" type="JavaHandler"/>
 <property name="SaveFileProxyHandler" value="27" type="JavaHandler"/>
