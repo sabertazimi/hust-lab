@@ -6,15 +6,18 @@ module timer_tb();
     reg start, power, count_start_flag;
     wire [31:0]count;
     wire count_end_flag;
+    
+    parameter DELAY = 10;
     parameter TIME = 1000;
     
-    timer TIMER_TEST (.clk_src(clk),
-                      .switch_power(power),
-                      .switch_en(start),
-                      .sum_count(sum_count),
-                      .count_start_flag(count_start_flag),
-                      .count_end_flag(count_end_flag),
-                      .count(count)
+    timer DUT (
+        .clk_src(clk),
+        .switch_power(power),
+        .switch_en(start),
+        .sum_count(sum_count),
+        .count_start_flag(count_start_flag),
+        .count_end_flag(count_end_flag),
+        .count(count)
     );
     
     initial begin
@@ -28,21 +31,21 @@ module timer_tb();
     end
     
     always begin
-        #10 clk[25] = ~clk[25];
+        #(DELAY) clk[25] = ~clk[25];
     end
     
     always begin
-        #1 clk[0] = ~clk[0];
+        #(DELAY/DELAY) clk[0] = ~clk[0];
     end
     
     always begin
-        #5 start = 1;
-        #20 power = 1;
-        #20 count_start_flag = 1; start = 1;
-        #100 count_start_flag = 0;
-        #420;
-        #5 count_start_flag = 1; sum_count = 5;
-        #500 ;
+        #(DELAY/2) start = 1;
+        #(DELAY*2) power = 1;
+        #(DELAY*2) count_start_flag = 1; start = 1;
+        #(DELAY*10) count_start_flag = 0;
+        #(DELAY*42);
+        #(DELAY/2) count_start_flag = 1; sum_count = 5;
+        #(DELAY*50);
     end
     
 endmodule
