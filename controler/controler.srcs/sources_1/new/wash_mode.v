@@ -8,11 +8,10 @@ module wash_mode
     output reg wash_end_sign, 
     //light
     output reg water_in_light, output reg washing_light,
-    output [2:0]water_level, output reg [31:0]wash_count,
-    output reg [1:0]state
+    output [2:0]water_level, output reg [31:0]wash_count
     );
     // FIXED ME: there's 3 state, but state and nextState only can hold 1 bit.
-    reg [1:0]nextstate;
+    reg [1:0]state, nextstate;
     wire [31:0]washing_count;
     wire [2:0]water_level_wash;
     wire real_clk;

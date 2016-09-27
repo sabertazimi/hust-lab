@@ -8,10 +8,9 @@ module dewater_mode
     output reg dewater_end_sign, 
     //light
     output reg dewatering_light,output reg water_out_light,
-    output [2:0]water_level, output reg [31:0]dewater_count,
-    output reg [1:0]state
+    output [2:0]water_level, output reg [31:0]dewater_count
     );
-    reg [1:0]nextstate;
+    reg [1:0]state, nextstate;
     wire [31:0]dewatering_count;
     wire [2:0]water_level_dewater;
     wire real_clk;
