@@ -1,5 +1,11 @@
 `timescale 1ns / 1ps
 
+// @module
+// divide clock source
+// @input
+// clk_src: raw clock source
+// @output
+// clk_group: divided clock source group(32 different Hz)
 module tick_divider
 #(parameter WIDTH = 32)
 (

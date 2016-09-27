@@ -1,5 +1,15 @@
 `timescale 1ns / 1ps
 
+// @module
+// display time on segment
+// @input
+// clk_src: clock source
+// sec_data: raw seconds info
+// min_data: raw minutes info
+// hour_data: raw hours info
+// @output
+// anodes: bind to board for displaying time
+// cnodes: bind to board for displaying time
 module time_displayer
 #(parameter WIDTH = 32)
 (
