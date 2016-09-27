@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
-| Date             : Mon Sep 26 23:30:24 2016
+| Date             : Tue Sep 27 09:07:48 2016
 | Host             : avalon running 64-bit Ubuntu 16.04.1 LTS
 | Command          : report_power -file clock_power_routed.rpt -pb clock_power_summary_routed.pb -rpx clock_power_routed.rpx
 | Design           : clock
@@ -29,18 +29,18 @@ Table of Contents
 1. Summary
 ----------
 
-+--------------------------+----------------------------------+
-| Total On-Chip Power (W)  | 80.326 (Junction temp exceeded!) |
-| Dynamic (W)              | 79.529                           |
-| Device Static (W)        | 0.797                            |
-| Effective TJA (C/W)      | 4.6                              |
-| Max Ambient (C)          | 0.0                              |
-| Junction Temperature (C) | 125.0                            |
-| Confidence Level         | Low                              |
-| Setting File             | ---                              |
-| Simulation Activity File | ---                              |
-| Design Nets Matched      | NA                               |
-+--------------------------+----------------------------------+
++--------------------------+-----------------------------------+
+| Total On-Chip Power (W)  | 109.122 (Junction temp exceeded!) |
+| Dynamic (W)              | 108.325                           |
+| Device Static (W)        | 0.797                             |
+| Effective TJA (C/W)      | 4.6                               |
+| Max Ambient (C)          | 0.0                               |
+| Junction Temperature (C) | 125.0                             |
+| Confidence Level         | Low                               |
+| Setting File             | ---                               |
+| Simulation Activity File | ---                               |
+| Design Nets Matched      | NA                                |
++--------------------------+-----------------------------------+
 
 
 1.1 On-Chip Components
@@ -49,17 +49,17 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Slice Logic    |    33.771 |     7599 |       --- |             --- |
-|   LUT as Logic |    29.199 |     4653 |     63400 |            7.34 |
-|   CARRY4       |     4.387 |     1130 |     15850 |            7.13 |
-|   F7/F8 Muxes  |     0.078 |       40 |     63400 |            0.06 |
-|   Register     |     0.068 |      328 |    126800 |            0.26 |
-|   BUFG         |     0.039 |        8 |        32 |           25.00 |
-|   Others       |     0.000 |       38 |       --- |             --- |
-| Signals        |    27.275 |     6239 |       --- |             --- |
-| I/O            |    18.483 |       29 |       210 |           13.81 |
+| Slice Logic    |    42.650 |     7600 |       --- |             --- |
+|   LUT as Logic |    37.363 |     4654 |     63400 |            7.34 |
+|   CARRY4       |     5.108 |     1130 |     15850 |            7.13 |
+|   Register     |     0.082 |      326 |    126800 |            0.26 |
+|   F7/F8 Muxes  |     0.059 |       31 |     63400 |            0.05 |
+|   BUFG         |     0.037 |        8 |        32 |           25.00 |
+|   Others       |     0.000 |       46 |       --- |             --- |
+| Signals        |    33.309 |     6255 |       --- |             --- |
+| I/O            |    32.366 |       29 |       210 |           13.81 |
 | Static Power   |     0.797 |          |           |                 |
-| Total          |    80.326 |          |           |                 |
+| Total          |   109.121 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -69,9 +69,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |    61.652 |      61.090 |      0.563 |
-| Vccaux    |       1.800 |     0.769 |       0.676 |      0.093 |
-| Vcco33    |       3.300 |     5.223 |       5.219 |      0.004 |
+| Vccint    |       1.000 |    76.561 |      75.999 |      0.563 |
+| Vccaux    |       1.800 |     1.277 |       1.185 |      0.093 |
+| Vcco33    |       3.300 |     9.154 |       9.150 |      0.004 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
@@ -133,28 +133,32 @@ Table of Contents
 3.1 By Hierarchy
 ----------------
 
-+---------------------+-----------+
-| Name                | Power (W) |
-+---------------------+-----------+
-| clock               |    79.529 |
-|   DRANGE_DIVIDER    |     0.186 |
-|   HOUR_TIMER        |     5.021 |
-|   MIN_TIMER         |     3.524 |
-|   RING              |     0.179 |
-|   SEC_TIMER         |     3.215 |
-|   SEG_SEVEN         |    12.945 |
-|     HOUR_SEG        |     3.859 |
-|     MIN_SEG         |     4.146 |
-|     SEC_SEG         |     4.414 |
-|   TICK_DIVIDER      |     0.097 |
-|   TIMING_HOUR_TIMER |     5.434 |
-|   TIMING_MIN_TIMER  |     4.052 |
-|   TIMING_RING       |     0.160 |
-|   TIMING_SEC_TIMER  |     3.880 |
-|   TIMING_SEG_SEVEN  |    14.085 |
-|     HOUR_SEG        |     4.235 |
-|     MIN_SEG         |     4.511 |
-|     SEC_SEG         |     4.740 |
-+---------------------+-----------+
++-----------------------+-----------+
+| Name                  | Power (W) |
++-----------------------+-----------+
+| clock                 |   108.325 |
+|   DRANGE_DIVIDER      |     0.251 |
+|   HOUR_TIMER          |     6.129 |
+|   MIN_TIMER           |     4.377 |
+|   RING                |     0.138 |
+|   SEC_TIMER           |     4.179 |
+|   SEG_SEVEN           |    14.324 |
+|     HOUR_SEG          |     4.509 |
+|       DECADE_BCD      |     0.836 |
+|     MIN_SEG           |     4.424 |
+|       DECADE_BCD      |     0.849 |
+|     SEC_SEG           |     4.872 |
+|       DECADE_BCD      |     0.846 |
+|   TICK_DIVIDER        |     0.099 |
+|   TIMING_CLOCK        |    37.763 |
+|     TIMING_HOUR_TIMER |     8.297 |
+|     TIMING_MIN_TIMER  |     5.858 |
+|     TIMING_RING       |     0.157 |
+|     TIMING_SEC_TIMER  |     5.542 |
+|     TIMING_SEG_SEVEN  |    17.908 |
+|       HOUR_SEG        |     4.973 |
+|       MIN_SEG         |     5.074 |
+|       SEC_SEG         |     5.488 |
++-----------------------+-----------+
 
 

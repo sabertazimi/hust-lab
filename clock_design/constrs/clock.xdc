@@ -5,45 +5,35 @@
 set_property PACKAGE_PIN E3 [get_ports clk_src]
 set_property IOSTANDARD LVCMOS33 [get_ports clk_src]
 
-set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets power_IBUF]
 set_property PACKAGE_PIN U9 [get_ports power]
 set_property IOSTANDARD LVCMOS33 [get_ports power]
 
-set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets enable_IBUF]
 set_property PACKAGE_PIN U8 [get_ports enable]
 set_property IOSTANDARD LVCMOS33 [get_ports enable]
 
-set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets reset_IBUF]
 set_property PACKAGE_PIN R7 [get_ports reset]
 set_property IOSTANDARD LVCMOS33 [get_ports reset]
 
-set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets add_time[0]_IBUF]
 set_property PACKAGE_PIN R6 [get_ports add_time[0]]
 set_property IOSTANDARD LVCMOS33 [get_ports add_time[0]]
 
-set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets add_time[1]_IBUF]
 set_property PACKAGE_PIN R5 [get_ports add_time[1]]
 set_property IOSTANDARD LVCMOS33 [get_ports add_time[1]]
 
-set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets add_time[2]_IBUF]
 set_property PACKAGE_PIN V7 [get_ports add_time[2]]
 set_property IOSTANDARD LVCMOS33 [get_ports add_time[2]]
 
-set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets sub_time[0]_IBUF]
 set_property PACKAGE_PIN V6 [get_ports sub_time[0]]
 set_property IOSTANDARD LVCMOS33 [get_ports sub_time[0]]
 
-set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets sub_time[1]_IBUF]
 set_property PACKAGE_PIN V5 [get_ports sub_time[1]]
 set_property IOSTANDARD LVCMOS33 [get_ports sub_time[1]]
 
-set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets sub_time[2]_IBUF]
 set_property PACKAGE_PIN U4 [get_ports sub_time[2]]
 set_property IOSTANDARD LVCMOS33 [get_ports sub_time[2]]
 
-set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets timing_clock_IBUF]
-set_property PACKAGE_PIN P4 [get_ports timing_clock]
-set_property IOSTANDARD LVCMOS33 [get_ports timing_clock]
+set_property PACKAGE_PIN P4 [get_ports timing_clock_switch]
+set_property IOSTANDARD LVCMOS33 [get_ports timing_clock_switch]
 
 #set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets switch_upen_min]
 #set_property PACKAGE_PIN V5 [get_ports switch_upen_min]

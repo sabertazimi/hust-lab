@@ -19,14 +19,16 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-// input
+// @input
+// power: electric power
 // sig_ring: signal for starting alarm
 // sig_step: signal for control alarm time range
-// output
+// @output
 // alarm: alarm ring signal
 module ring
 #(parameter LEN = 5)
 (
+    input power,
     input sig_ring,
     input sig_step,
     output reg alarm
@@ -40,16 +42,21 @@ module ring
     end
 
     always @(posedge sig_step) begin
-        if (sig_ring) begin
-            alarm = 1;
+        if (power) begin
+            if (sig_ring) begin
+                alarm = 1;
+            end else begin
+                if (alarm == 1) begin
+                    count = count + 1;
+                end
+                if (count == LEN) begin
+                    count = 0;
+                    alarm = 0;
+                end
+            end
         end else begin
-            if (alarm == 1) begin
-                count = count + 1;
-            end
-            if (count == LEN) begin
-                count = 0;
-                alarm = 0;
-            end
+            count = 0;
+            alarm = 0;
         end
     end
 

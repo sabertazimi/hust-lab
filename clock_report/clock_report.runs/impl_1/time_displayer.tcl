@@ -55,10 +55,10 @@ set rc [catch {
   set_property parent.project_path /home/sabertazimi/Work/Source/dld/clock_report/clock_report.xpr [current_project]
   set_property ip_repo_paths /home/sabertazimi/Work/Source/dld/clock_report/clock_report.cache/ip [current_project]
   set_property ip_output_repo /home/sabertazimi/Work/Source/dld/clock_report/clock_report.cache/ip [current_project]
-  add_files -quiet /home/sabertazimi/Work/Source/dld/clock_report/clock_report.runs/synth_1/clock.dcp
+  add_files -quiet /home/sabertazimi/Work/Source/dld/clock_report/clock_report.runs/synth_1/time_displayer.dcp
   read_xdc /home/sabertazimi/Work/Source/dld/clock_design/constrs/clock.xdc
-  link_design -top clock -part xc7a100tcsg324-1
-  write_hwdef -file clock.hwdef
+  link_design -top time_displayer -part xc7a100tcsg324-1
+  write_hwdef -file time_displayer.hwdef
   close_msg_db -file init_design.pb
 } RESULT]
 if {$rc} {
@@ -72,8 +72,8 @@ start_step opt_design
 set rc [catch {
   create_msg_db opt_design.pb
   opt_design 
-  write_checkpoint -force clock_opt.dcp
-  report_drc -file clock_drc_opted.rpt
+  write_checkpoint -force time_displayer_opt.dcp
+  report_drc -file time_displayer_drc_opted.rpt
   close_msg_db -file opt_design.pb
 } RESULT]
 if {$rc} {
@@ -88,10 +88,10 @@ set rc [catch {
   create_msg_db place_design.pb
   implement_debug_core 
   place_design 
-  write_checkpoint -force clock_placed.dcp
-  report_io -file clock_io_placed.rpt
-  report_utilization -file clock_utilization_placed.rpt -pb clock_utilization_placed.pb
-  report_control_sets -verbose -file clock_control_sets_placed.rpt
+  write_checkpoint -force time_displayer_placed.dcp
+  report_io -file time_displayer_io_placed.rpt
+  report_utilization -file time_displayer_utilization_placed.rpt -pb time_displayer_utilization_placed.pb
+  report_control_sets -verbose -file time_displayer_control_sets_placed.rpt
   close_msg_db -file place_design.pb
 } RESULT]
 if {$rc} {
@@ -105,12 +105,12 @@ start_step route_design
 set rc [catch {
   create_msg_db route_design.pb
   route_design 
-  write_checkpoint -force clock_routed.dcp
-  report_drc -file clock_drc_routed.rpt -pb clock_drc_routed.pb
-  report_timing_summary -warn_on_violation -max_paths 10 -file clock_timing_summary_routed.rpt -rpx clock_timing_summary_routed.rpx
-  report_power -file clock_power_routed.rpt -pb clock_power_summary_routed.pb -rpx clock_power_routed.rpx
-  report_route_status -file clock_route_status.rpt -pb clock_route_status.pb
-  report_clock_utilization -file clock_clock_utilization_routed.rpt
+  write_checkpoint -force time_displayer_routed.dcp
+  report_drc -file time_displayer_drc_routed.rpt -pb time_displayer_drc_routed.pb
+  report_timing_summary -warn_on_violation -max_paths 10 -file time_displayer_timing_summary_routed.rpt -rpx time_displayer_timing_summary_routed.rpx
+  report_power -file time_displayer_power_routed.rpt -pb time_displayer_power_summary_routed.pb -rpx time_displayer_power_routed.rpx
+  report_route_status -file time_displayer_route_status.rpt -pb time_displayer_route_status.pb
+  report_clock_utilization -file time_displayer_clock_utilization_routed.rpt
   close_msg_db -file route_design.pb
 } RESULT]
 if {$rc} {
@@ -123,9 +123,9 @@ if {$rc} {
 start_step write_bitstream
 set rc [catch {
   create_msg_db write_bitstream.pb
-  catch { write_mem_info -force clock.mmi }
-  write_bitstream -force clock.bit 
-  catch { write_sysdef -hwdef clock.hwdef -bitfile clock.bit -meminfo clock.mmi -file clock.sysdef }
+  catch { write_mem_info -force time_displayer.mmi }
+  write_bitstream -force time_displayer.bit 
+  catch { write_sysdef -hwdef time_displayer.hwdef -bitfile time_displayer.bit -meminfo time_displayer.mmi -file time_displayer.sysdef }
   catch {write_debug_probes -quiet -force debug_nets}
   close_msg_db -file write_bitstream.pb
 } RESULT]

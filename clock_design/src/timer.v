@@ -56,8 +56,10 @@ module timer
     
     always @(posedge true_clk) begin
         if (power) begin
+            // reset to zero
             if (reset) begin
                 count <= 0;
+            // running
             end else if (enable) begin
                 count = (count + 1) % RANGE;
                 
@@ -66,8 +68,10 @@ module timer
                 end else begin
                     sig_end = 0;
                 end
+            // add time manually
             end else if (add_time) begin
                 count <= (count + 1) % RANGE;
+            // sub time manually
             end else if (sub_time) begin
                 if (count == 0) begin
                     count = RANGE-1;
@@ -75,6 +79,7 @@ module timer
                     count <= (count - 1);
                 end
             end
+        // power off
         end else begin
             count <= 0;
             sig_end <= 0;

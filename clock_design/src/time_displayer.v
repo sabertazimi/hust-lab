@@ -26,9 +26,8 @@
 // min_data: raw minutes info
 // hour_data: raw hours info
 // @output
-// anodes: bind to board
-// cnodes: bind to board
-
+// anodes: bind to board for displaying time
+// cnodes: bind to board for displaying time
 module time_displayer
 #(parameter WIDTH = 32)
 (

@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
-| Date         : Mon Sep 26 23:30:22 2016
+| Date         : Tue Sep 27 09:07:46 2016
 | Host         : avalon running 64-bit Ubuntu 16.04.1 LTS
 | Command      : report_timing_summary -warn_on_violation -max_paths 10 -file clock_timing_summary_routed.rpt -rpx clock_timing_summary_routed.rpx
 | Design       : clock
@@ -52,9 +52,9 @@ Table of Contents
 
 1. checking no_clock
 --------------------
- There are 66 register/latch pins with no clock driven by root clock pin: add_time[0] (HIGH)
+ There are 65 register/latch pins with no clock driven by root clock pin: add_time[0] (HIGH)
 
- There are 66 register/latch pins with no clock driven by root clock pin: add_time[1] (HIGH)
+ There are 65 register/latch pins with no clock driven by root clock pin: add_time[1] (HIGH)
 
  There are 64 register/latch pins with no clock driven by root clock pin: add_time[2] (HIGH)
 
@@ -62,19 +62,19 @@ Table of Contents
 
  There are 98 register/latch pins with no clock driven by root clock pin: enable (HIGH)
 
- There are 196 register/latch pins with no clock driven by root clock pin: power (HIGH)
+ There are 194 register/latch pins with no clock driven by root clock pin: power (HIGH)
 
- There are 196 register/latch pins with no clock driven by root clock pin: reset (HIGH)
+ There are 194 register/latch pins with no clock driven by root clock pin: reset (HIGH)
 
- There are 66 register/latch pins with no clock driven by root clock pin: sub_time[0] (HIGH)
+ There are 65 register/latch pins with no clock driven by root clock pin: sub_time[0] (HIGH)
 
- There are 66 register/latch pins with no clock driven by root clock pin: sub_time[1] (HIGH)
+ There are 65 register/latch pins with no clock driven by root clock pin: sub_time[1] (HIGH)
 
  There are 64 register/latch pins with no clock driven by root clock pin: sub_time[2] (HIGH)
 
- There are 196 register/latch pins with no clock driven by root clock pin: timing_clock (HIGH)
+ There are 194 register/latch pins with no clock driven by root clock pin: timing_clock_switch (HIGH)
 
- There are 132 register/latch pins with no clock driven by root clock pin: DRANGE_DIVIDER/clk_dst_reg/C (HIGH)
+ There are 131 register/latch pins with no clock driven by root clock pin: DRANGE_DIVIDER/clk_dst_reg/C (HIGH)
 
  There are 32 register/latch pins with no clock driven by root clock pin: MIN_TIMER/sig_end_reg/C (HIGH)
 
@@ -82,11 +82,7 @@ Table of Contents
 
  There are 6 register/latch pins with no clock driven by root clock pin: TICK_DIVIDER/clk_group_reg[15]/C (HIGH)
 
- There are 197 register/latch pins with no clock driven by root clock pin: TICK_DIVIDER/clk_group_reg[25]/C (HIGH)
-
- There are 32 register/latch pins with no clock driven by root clock pin: TIMING_MIN_TIMER/sig_end_reg/C (HIGH)
-
- There are 33 register/latch pins with no clock driven by root clock pin: TIMING_SEC_TIMER/sig_end_reg/C (HIGH)
+ There are 195 register/latch pins with no clock driven by root clock pin: TICK_DIVIDER/clk_group_reg[25]/C (HIGH)
 
 
 2. checking constant_clock
@@ -101,7 +97,7 @@ Table of Contents
 
 4. checking unconstrained_internal_endpoints
 --------------------------------------------
- There are 808 pins that are not constrained for maximum delay. (HIGH)
+ There are 870 pins that are not constrained for maximum delay. (HIGH)
 
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 

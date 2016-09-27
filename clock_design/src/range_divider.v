@@ -19,7 +19,10 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
+// @input
+// clk_src: raw clock source
+// @output
+// clk_dst: divided clock source
 module range_divider
 #(parameter WIDTH = 32, RANGE = 27'b101111101011110000100000000)
 (
@@ -33,6 +36,7 @@ module range_divider
         count <= 0;
     end
 
+    // dividing clock source
     always@(posedge clk_src) begin
         count = count + 1;
         if (count == RANGE) begin

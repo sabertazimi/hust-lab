@@ -19,7 +19,10 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
+// @input
+// time_data: raw time
+// @output
+// seg_data: 8 bit seg_data binding to board
 module time_to_segment
 #(parameter WIDTH = 32)
 (

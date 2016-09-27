@@ -20,6 +20,10 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 // integer to 8421 code
+// @input
+// int_data: raw data
+// @ouput
+// bcd_data: bcd code
 module integer_to_bcd
 (
     input [3:0] int_data,
