@@ -1,24 +1,7 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 2016/08/30 10:58:59
-// Design Name: 
-// Module Name: bcd_to_segment
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
 
+// @module
+// decode 8421 bcd code to segment code
 // seg_data[7:0]a: dp-G-F-E-D-C-B-A
 // @input
 // bcd_data: raw bcd(8421) code

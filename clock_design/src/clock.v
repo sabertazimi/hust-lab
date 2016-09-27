@@ -1,24 +1,7 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 2016/08/29 21:46:06
-// Design Name: 
-// Module Name: starter
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
 
+// @module
+// top module
 // @input
 // clk_src: bind to E3(100Hz)
 // power: electric power
@@ -26,12 +9,13 @@
 // reset: reset switch
 // add_time/sub_time: add/sub time manually
 // timing_clock_switch: switch for enabling to change timing clock
+// timing_clock_disable: shutdown timing clock manually
 // @output
 // alarm: round time alarm
 // timing_clock_alarm: timing clock arrive
 // anodes/cnodes: displaye time
 module clock
-#(parameter WIDTH = 32, CLK_CH = 25, SEC_RANGE = 60, MIN_RANGE = 60, HOUR_RANGE = 24)
+#(parameter WIDTH = 32, CLK_CH = 25, SEC_RANGE = 60, MIN_RANGE = 60, HOUR_RANGE = 24, LEN  = 30, NUM = 5)
 (
     input clk_src,
     input power,
@@ -40,8 +24,9 @@ module clock
     input [2:0] add_time,
     input [2:0] sub_time,
     input timing_clock_switch,
+    input timing_clock_disable,
     output alarm,
-    output timing_clock_alarm,
+    output [(NUM-1):0] timing_clock_alarm,
     output [7:0] anodes,
     output [7:0] cnodes
 );
@@ -76,9 +61,9 @@ module clock
     );
 
     timer #(.WIDTH(WIDTH), .RANGE(SEC_RANGE)) SEC_TIMER (
-        // && !timing_clock_switch : for timing clock
-        .clk_normal(clk_dst  && !timing_clock_switch ),
-        .clk_change_time(clk_group[CLK_CH]  && !timing_clock_switch),
+        .clk_normal(clk_dst),
+        // && !timing_clock_switch : when changing timing clock, lock manual changing of real clock
+        .clk_change_time(clk_group[CLK_CH] && !timing_clock_switch),
         .power(power),
         .enable(enable),
         .reset(reset),
@@ -89,8 +74,8 @@ module clock
     );
   
     timer #(.WIDTH(WIDTH), .RANGE(MIN_RANGE)) MIN_TIMER (
-        .clk_normal(sig_sec  && !timing_clock_switch),
-        .clk_change_time(clk_group[CLK_CH]  && !timing_clock_switch),
+        .clk_normal(sig_sec),
+        .clk_change_time(clk_group[CLK_CH] && !timing_clock_switch),
         .power(power),
         .enable(enable),
         .reset(reset),
@@ -101,8 +86,8 @@ module clock
     );
   
     timer #(.WIDTH(WIDTH), .RANGE(HOUR_RANGE)) HOUR_TIMER (
-        .clk_normal(sig_min  && !timing_clock_switch),
-        .clk_change_time(clk_group[CLK_CH]  && !timing_clock_switch),
+        .clk_normal(sig_min),
+        .clk_change_time(clk_group[CLK_CH] && !timing_clock_switch),
         .power(power),
         .enable(enable),
         .reset(reset),
@@ -129,10 +114,11 @@ module clock
         .alarm(alarm)
     );
     
-    timing_clock #(WIDTH, CLK_CH, SEC_RANGE, MIN_RANGE, HOUR_RANGE) TIMING_CLOCK (
+    timing_clock #(WIDTH, CLK_CH, SEC_RANGE, MIN_RANGE, HOUR_RANGE, LEN, NUM) TIMING_CLOCK (
         .clk_dst(clk_dst),
         .clk_group(clk_group),
         .timing_clock_switch(timing_clock_switch),
+        .timing_clock_disable(timing_clock_disable),
         .power(power),
         .enable(enable),
         .reset(reset),

@@ -1,27 +1,11 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 2016/09/27 08:11:19
-// Design Name: 
-// Module Name: timing_clock
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
 
+// @module
+// timing clock alarm
 // @input
 // clk_dst/clk_group: multiple clock source
 // timing_clock_switch: switch for enabling to change timing time
+// timing_clock_disable: shutdown timing_clock manully
 // power: electric power
 // enable: enable switch only for real clock
 // reset: reset switch
@@ -30,11 +14,12 @@
 // timing_anodes/timing_cnodes: port for displaying time
 // timing_clock_alarm: clock alarm when timing clock arrive
 module timing_clock
-#(parameter WIDTH = 32, CLK_CH = 25, SEC_RANGE = 60, MIN_RANGE = 60, HOUR_RANGE = 24)
+#(parameter WIDTH = 32, CLK_CH = 25, SEC_RANGE = 60, MIN_RANGE = 60, HOUR_RANGE = 24, LEN = 30, NUM = 5)
 (
     input clk_dst,
     input [(WIDTH-1):0] clk_group,
     input timing_clock_switch,
+    input timing_clock_disable,
     input power,
     input enable,
     input reset,
@@ -45,7 +30,7 @@ module timing_clock
     input [(WIDTH-1):0] hour,
     output [7:0] timing_anodes,
     output [7:0] timing_cnodes,
-    output timing_clock_alarm
+    output [(NUM-1):0] timing_clock_alarm
 );
 
     // for timer invoking in this module
@@ -64,8 +49,8 @@ module timing_clock
     /* start of cloning a clock that can't run */
     
     timer #(.WIDTH(WIDTH), .RANGE(SEC_RANGE)) TIMING_SEC_TIMER (
-        // && !timing_clock_switch : for timing clock
-        .clk_normal(clk_dst  && timing_clock_switch ),
+        // && !timing_clock_switch : when changing real clock, lock timing clock
+        .clk_normal(clk_dst  && timing_clock_switch),
         .clk_change_time(clk_group[CLK_CH]  && timing_clock_switch),
         .power(power),
         .enable(0),
@@ -114,7 +99,12 @@ module timing_clock
     
     // judge whether tming clock arrive or not
     always @(posedge clk_group[CLK_CH]) begin
-        if (sec == timing_sec - 1
+        // shutdown timing clock manually
+        if (timing_clock_disable) begin
+            timing_clock_alarm_sig = 0;
+        end
+        // arrive target time
+        else if (sec == timing_sec
             && min == timing_min
             && hour == timing_hour
             && enable && !timing_clock_switch) begin
@@ -125,11 +115,11 @@ module timing_clock
     end
 
     // timing clock alarm
-    ring TIMING_RING (
-        .power(power),
+    flow_led #(LEN, NUM) TIMING_RING (
+        .power(power && !timing_clock_disable),
         .sig_ring(timing_clock_alarm_sig),
         .sig_step(clk_dst),
-        .alarm(timing_clock_alarm)
+        .alarm_light(timing_clock_alarm)
     );
 
 endmodule

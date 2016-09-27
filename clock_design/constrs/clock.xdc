@@ -35,6 +35,9 @@ set_property IOSTANDARD LVCMOS33 [get_ports sub_time[2]]
 set_property PACKAGE_PIN P4 [get_ports timing_clock_switch]
 set_property IOSTANDARD LVCMOS33 [get_ports timing_clock_switch]
 
+set_property PACKAGE_PIN P3 [get_ports timing_clock_disable]
+set_property IOSTANDARD LVCMOS33 [get_ports timing_clock_disable]
+
 #set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets switch_upen_min]
 #set_property PACKAGE_PIN V5 [get_ports switch_upen_min]
 #set_property IOSTANDARD LVCMOS33 [get_ports switch_upen_min]
@@ -49,8 +52,23 @@ set_property IOSTANDARD LVCMOS33 [get_ports timing_clock_switch]
 set_property PACKAGE_PIN V9 [get_ports alarm]
 set_property IOSTANDARD LVCMOS33 [get_ports alarm]
 
-set_property PACKAGE_PIN P2 [get_ports timing_clock_alarm]
-set_property IOSTANDARD LVCMOS33 [get_ports timing_clock_alarm]
+#set_property PACKAGE_PIN P2 [get_ports timing_clock_alarm]
+#set_property IOSTANDARD LVCMOS33 [get_ports timing_clock_alarm]
+
+set_property PACKAGE_PIN R1 [get_ports timing_clock_alarm[0]]
+set_property IOSTANDARD LVCMOS33 [get_ports timing_clock_alarm[0]]
+
+set_property PACKAGE_PIN P5 [get_ports timing_clock_alarm[1]]
+set_property IOSTANDARD LVCMOS33 [get_ports timing_clock_alarm[1]]
+
+set_property PACKAGE_PIN U1 [get_ports timing_clock_alarm[2]]
+set_property IOSTANDARD LVCMOS33 [get_ports timing_clock_alarm[2]]
+
+set_property PACKAGE_PIN R2 [get_ports timing_clock_alarm[3]]
+set_property IOSTANDARD LVCMOS33 [get_ports timing_clock_alarm[3]]
+
+set_property PACKAGE_PIN P2 [get_ports timing_clock_alarm[4]]
+set_property IOSTANDARD LVCMOS33 [get_ports timing_clock_alarm[4]]
 
 set_property PACKAGE_PIN N6 [get_ports anodes[0]]
 set_property IOSTANDARD LVCMOS33 [get_ports anodes[0]]

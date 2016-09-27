@@ -11,7 +11,7 @@ module clock_tb();
     wire alarm, timing_clock_alarm;
     wire [7:0] anodes, cnodes;
 
-    clock #(32, 0, 5, 4, 3) DUT (
+    clock #(32, 0, 5, 4, 3, 5, 5) DUT (
         .clk_src(clk_src),
         .power(power),
         .enable(enable),
