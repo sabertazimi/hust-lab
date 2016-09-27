@@ -30,7 +30,7 @@
 // timing_anodes/timing_cnodes: port for displaying time
 // timing_clock_alarm: clock alarm when timing clock arrive
 module timing_clock
-#(parameter WIDTH = 32)
+#(parameter WIDTH = 32, CLK_CH = 25, SEC_RANGE = 60, MIN_RANGE = 60, HOUR_RANGE = 24)
 (
     input clk_dst,
     input [(WIDTH-1):0] clk_group,
@@ -63,10 +63,10 @@ module timing_clock
 
     /* start of cloning a clock that can't run */
     
-    timer #(.WIDTH(WIDTH), .RANGE(60)) TIMING_SEC_TIMER (
+    timer #(.WIDTH(WIDTH), .RANGE(SEC_RANGE)) TIMING_SEC_TIMER (
         // && !timing_clock_switch : for timing clock
         .clk_normal(clk_dst  && timing_clock_switch ),
-        .clk_change_time(clk_group[25]  && timing_clock_switch),
+        .clk_change_time(clk_group[CLK_CH]  && timing_clock_switch),
         .power(power),
         .enable(0),
         .reset(reset),
@@ -76,9 +76,9 @@ module timing_clock
         .sig_end(timing_sig_sec)
     );
 
-    timer #(.WIDTH(WIDTH), .RANGE(60)) TIMING_MIN_TIMER (
+    timer #(.WIDTH(WIDTH), .RANGE(MIN_RANGE)) TIMING_MIN_TIMER (
         .clk_normal(timing_sig_sec  && timing_clock_switch),
-        .clk_change_time(clk_group[25]  && timing_clock_switch),
+        .clk_change_time(clk_group[CLK_CH]  && timing_clock_switch),
         .power(power),
         .enable(0),
         .reset(reset),
@@ -88,9 +88,9 @@ module timing_clock
         .sig_end(timing_sig_min)
     );
 
-    timer #(.WIDTH(WIDTH), .RANGE(24)) TIMING_HOUR_TIMER (
+    timer #(.WIDTH(WIDTH), .RANGE(HOUR_RANGE)) TIMING_HOUR_TIMER (
         .clk_normal(timing_sig_min  && timing_clock_switch),
-        .clk_change_time(clk_group[25]  && timing_clock_switch),
+        .clk_change_time(clk_group[CLK_CH]  && timing_clock_switch),
         .power(power),
         .enable(0),
         .reset(reset),
@@ -113,7 +113,7 @@ module timing_clock
     /* end of cloning a clock that can't run */
     
     // judge whether tming clock arrive or not
-    always @(posedge clk_group[25]) begin
+    always @(posedge clk_group[CLK_CH]) begin
         if (sec == timing_sec - 1
             && min == timing_min
             && hour == timing_hour

@@ -7,17 +7,20 @@ module clock_tb();
     
     reg clk_src, power, enable, reset;
     reg [2:0] add_time, sub_time;
-    wire alarm;
+    reg timing_clock_switch;
+    wire alarm, timing_clock_alarm;
     wire [7:0] anodes, cnodes;
 
-    clock DUT (
+    clock #(32, 0, 5, 4, 3) DUT (
         .clk_src(clk_src),
         .power(power),
         .enable(enable),
         .reset(reset),
         .add_time(add_time),
         .sub_time(sub_time),
+        .timing_clock_switch(timing_clock_switch),
         .alarm(alarm),
+        .timing_clock_alarm(timing_clock_alarm),
         .anodes(anodes),
         .cnodes(cnodes)
     );
@@ -29,6 +32,7 @@ module clock_tb();
         reset <= 0;
         add_time <= 3'b000;
         sub_time <= 3'b000;
+        timing_clock_switch <= 0;
         #TIME $finish;
     end
     
@@ -77,5 +81,13 @@ module clock_tb();
         // power = 0
         // when power off, automatically reset all clock
         #(DELAY) power = 0;
+        
+        // test timing clock feature
+        #(DELAY) power = 1;
+        #(DELAY) timing_clock_switch = 1;
+        #(DELAY) add_time[0] = 1;
+        #(5*DELAY) add_time[1] = 0;
+        #(DELAY) timing_clock_switch = 0;
+        #(DELAY) enable = 1;
     end
 endmodule

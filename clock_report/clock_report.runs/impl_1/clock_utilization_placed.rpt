@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
-| Date         : Tue Sep 27 09:07:16 2016
+| Date         : Tue Sep 27 10:21:16 2016
 | Host         : avalon running 64-bit Ubuntu 16.04.1 LTS
 | Command      : report_utilization -file clock_utilization_placed.rpt -pb clock_utilization_placed.pb
 | Design       : clock
@@ -67,9 +67,9 @@ Table of Contents
 +------------------------------------------+------+-------+-----------+-------+
 |                 Site Type                | Used | Fixed | Available | Util% |
 +------------------------------------------+------+-------+-----------+-------+
-| Slice                                    | 1461 |     0 |     15850 |  9.22 |
-|   SLICEL                                 |  944 |     0 |           |       |
-|   SLICEM                                 |  517 |     0 |           |       |
+| Slice                                    | 1447 |     0 |     15850 |  9.13 |
+|   SLICEL                                 |  950 |     0 |           |       |
+|   SLICEM                                 |  497 |     0 |           |       |
 | LUT as Logic                             | 4654 |     0 |     63400 |  7.34 |
 |   using O5 output only                   |    6 |       |           |       |
 |   using O6 output only                   | 3243 |       |           |       |
@@ -77,10 +77,10 @@ Table of Contents
 | LUT as Memory                            |    0 |     0 |     19000 |  0.00 |
 |   LUT as Distributed RAM                 |    0 |     0 |           |       |
 |   LUT as Shift Register                  |    0 |     0 |           |       |
-| LUT Flip Flop Pairs                      |  141 |     0 |     63400 |  0.22 |
+| LUT Flip Flop Pairs                      |  139 |     0 |     63400 |  0.22 |
 |   fully used LUT-FF pairs                |   66 |       |           |       |
-|   LUT-FF pairs with one unused LUT       |   70 |       |           |       |
-|   LUT-FF pairs with one unused Flip Flop |   73 |       |           |       |
+|   LUT-FF pairs with one unused LUT       |   71 |       |           |       |
+|   LUT-FF pairs with one unused Flip Flop |   70 |       |           |       |
 | Unique Control Sets                      |   15 |       |           |       |
 +------------------------------------------+------+-------+-----------+-------+
 * Note: Review the Control Sets Report for more information regarding control sets.

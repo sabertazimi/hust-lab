@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
-| Date         : Tue Sep 27 09:07:16 2016
+| Date         : Tue Sep 27 10:21:16 2016
 | Host         : avalon running 64-bit Ubuntu 16.04.1 LTS
 | Command      : report_control_sets -verbose -file clock_control_sets_placed.rpt
 | Design       : clock
@@ -33,12 +33,12 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              38 |           17 |
+| No           | No                    | No                     |              38 |           18 |
 | No           | No                    | Yes                    |               0 |            0 |
 | No           | Yes                   | No                     |              32 |            8 |
 | Yes          | No                    | No                     |               0 |            0 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |             256 |           72 |
+| Yes          | Yes                   | No                     |             256 |           74 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
@@ -52,16 +52,16 @@ Table of Contents
 |  true_clk_0                 |                                                     |                                      |                1 |              1 |
 |  true_clk                   |                                                     |                                      |                1 |              1 |
 |  clk_dst_BUFG               |                                                     |                                      |                2 |              2 |
-|  TICK_DIVIDER/clk_group[0]  |                                                     |                                      |                4 |              6 |
+|  TICK_DIVIDER/clk_group[0]  |                                                     |                                      |                5 |              6 |
 |  clk_src_IBUF_BUFG          |                                                     |                                      |                8 |             27 |
 |  clk_src_IBUF_BUFG          |                                                     | DRANGE_DIVIDER/clear                 |                8 |             32 |
 |  clk_dst_BUFG               | MIN_TIMER/E[0]                                      | TIMING_CLOCK/TIMING_RING/SR[0]       |                9 |             32 |
 |  clk_dst_BUFG               | TIMING_CLOCK/TIMING_RING/p_1_in                     | TIMING_CLOCK/TIMING_RING/SR[0]       |                9 |             32 |
-|  TIMING_SEC_TIMER/true_clk  | TIMING_CLOCK/TIMING_SEC_TIMER/count[31]_i_1__3_n_0  | TIMING_CLOCK/TIMING_HOUR_TIMER/SR[0] |                8 |             32 |
-|  TIMING_MIN_TIMER/true_clk  | TIMING_CLOCK/TIMING_MIN_TIMER/count[31]_i_1__2_n_0  | TIMING_CLOCK/TIMING_HOUR_TIMER/SR[0] |               11 |             32 |
+|  TIMING_SEC_TIMER/true_clk  | TIMING_CLOCK/TIMING_SEC_TIMER/count[31]_i_1__3_n_0  | TIMING_CLOCK/TIMING_HOUR_TIMER/SR[0] |               10 |             32 |
+|  TIMING_MIN_TIMER/true_clk  | TIMING_CLOCK/TIMING_MIN_TIMER/count[31]_i_1__2_n_0  | TIMING_CLOCK/TIMING_HOUR_TIMER/SR[0] |               10 |             32 |
 |  TIMING_HOUR_TIMER/true_clk | TIMING_CLOCK/TIMING_HOUR_TIMER/count[31]_i_1__1_n_0 | TIMING_CLOCK/TIMING_HOUR_TIMER/SR[0] |                8 |             32 |
-|  true_clk_1                 | HOUR_TIMER/count[31]_i_1__0_n_0                     | TIMING_CLOCK/TIMING_HOUR_TIMER/SR[0] |                9 |             32 |
-|  true_clk_0                 | MIN_TIMER/count[31]_i_1_n_0                         | TIMING_CLOCK/TIMING_HOUR_TIMER/SR[0] |                9 |             32 |
+|  true_clk_1                 | HOUR_TIMER/count[31]_i_1__0_n_0                     | TIMING_CLOCK/TIMING_HOUR_TIMER/SR[0] |               12 |             32 |
+|  true_clk_0                 | MIN_TIMER/count[31]_i_1_n_0                         | TIMING_CLOCK/TIMING_HOUR_TIMER/SR[0] |                7 |             32 |
 |  true_clk                   | SEC_TIMER/count[31]_i_2_n_0                         | TIMING_CLOCK/TIMING_HOUR_TIMER/SR[0] |                9 |             32 |
 +-----------------------------+-----------------------------------------------------+--------------------------------------+------------------+----------------+
 
