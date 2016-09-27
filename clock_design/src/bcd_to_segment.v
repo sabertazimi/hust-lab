@@ -20,6 +20,10 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 // seg_data[7:0]a: dp-G-F-E-D-C-B-A
+// @input
+// bcd_data: raw bcd(8421) code
+// @output
+// seg_data: 8 bit seg_data binding to board
 module bcd_to_segment
 (
     input [3:0] bcd_data,

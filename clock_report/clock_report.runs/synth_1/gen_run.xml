@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1474682273">
-  <File Type="RDS-PROPCONSTRS" Name="clock_drc_synth.rpt"/>
-  <File Type="RDS-UTIL" Name="clock_utilization_synth.rpt"/>
-  <File Type="RDS-RDS" Name="clock.vds"/>
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1474938353">
   <File Type="VDS-TIMING-PB" Name="clock_timing_summary_synth.pb"/>
-  <File Type="PA-TCL" Name="clock.tcl"/>
   <File Type="VDS-TIMINGSUMMARY" Name="clock_timing_summary_synth.rpt"/>
   <File Type="RDS-DCP" Name="clock.dcp"/>
   <File Type="RDS-UTIL-PB" Name="clock_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="clock_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="clock_drc_synth.rpt"/>
+  <File Type="RDS-RDS" Name="clock.vds"/>
+  <File Type="PA-TCL" Name="clock.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
-    <File Path="$PPRDIR/../clock_design/src/bcd_to_segment.v">
+    <File Path="$PPRDIR/../clock_design/src/integer_to_bcd.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PPRDIR/../clock_design/src/integer_to_bcd.v">
+    <File Path="$PPRDIR/../clock_design/src/bcd_to_segment.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -31,7 +31,28 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PPRDIR/../clock_design/src/ring.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PPRDIR/../clock_design/src/timer.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../clock_design/src/time_displayer.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../clock_design/src/timing_clock.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -45,21 +66,7 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PPRDIR/../clock_design/src/ring.v">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
     <File Path="$PPRDIR/../clock_design/src/range_divider.v">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PPRDIR/../clock_design/src/time_displayer.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>

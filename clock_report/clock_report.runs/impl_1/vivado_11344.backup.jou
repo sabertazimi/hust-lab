@@ -2,11 +2,11 @@
 # Vivado v2016.2 (64-bit)
 # SW Build 1577090 on Thu Jun  2 16:32:35 MDT 2016
 # IP Build 1577682 on Fri Jun  3 12:00:54 MDT 2016
-# Start of session at: Thu Sep 22 09:33:29 2016
-# Process ID: 5425
+# Start of session at: Tue Sep 27 08:43:13 2016
+# Process ID: 11344
 # Current directory: /home/sabertazimi/Work/Source/dld/clock_report/clock_report.runs/impl_1
-# Command line: vivado -log clock.vdi -applog -messageDb vivado.pb -mode batch -source clock.tcl -notrace
-# Log file: /home/sabertazimi/Work/Source/dld/clock_report/clock_report.runs/impl_1/clock.vdi
+# Command line: vivado -log time_displayer.vdi -applog -messageDb vivado.pb -mode batch -source time_displayer.tcl -notrace
+# Log file: /home/sabertazimi/Work/Source/dld/clock_report/clock_report.runs/impl_1/time_displayer.vdi
 # Journal file: /home/sabertazimi/Work/Source/dld/clock_report/clock_report.runs/impl_1/vivado.jou
 #-----------------------------------------------------------
-source clock.tcl -notrace
+source time_displayer.tcl -notrace
