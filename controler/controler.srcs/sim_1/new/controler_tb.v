@@ -7,7 +7,9 @@ module controler_tb();
     wire start_pause_light, water_in_light, washing_light, rinsing_light, dewatering_light, water_out_light;
     wire [7:0]anodes, cnodes;
     wire [2:0]weight_ch_light; 
-    parameter TIME = 1000;
+    wire [2:0]state;
+    wire alarm;
+    parameter TIME = 1000, DELAY = 10;
 
     controler #(32,0) CONTROLER (.power(power),
                          .start_pause(start_pause),
@@ -22,6 +24,8 @@ module controler_tb();
                          .dewatering_light(dewatering_light),
                          .water_out_light(water_out_light),
                          .power_light(power_light),
+                         .state(state),
+                         .alarm(alarm),
                          .anodes(anodes),
                          .cnodes(cnodes)
     );
@@ -36,19 +40,25 @@ module controler_tb();
     end
     
     always begin
-        #1 clk_src = ~clk_src;
+        #(DELAY/10) clk_src = ~clk_src;
     end
     
     always begin
-//        #10 mode_ch = 1;
-//        #10 weight_ch = 1; mode_ch = 0;
-//        #10 power = 1; weight_ch = 0;
-//        #10 mode_ch = 1; weight_ch = 1;
-        #10 power = 1;
-        #30 start_pause = 1;
-//        #100 power = 0;
-//        #40 power = 1;
-        #980 ;
+        #(2*DELAY) mode_ch = 1;
+        #(2*DELAY) weight_ch = 1; mode_ch = 0; // cann't change when machine isn't turn on
+        #(2*DELAY) power = 1; weight_ch = 0;
+        #(2*DELAY) mode_ch = 1; weight_ch = 1;
+        #(DELAY/10) mode_ch = 0; weight_ch = 0;
+        #(2*DELAY) start_pause = 1;
+        #(2*DELAY) mode_ch = 1; weight_ch = 1; // cann't change when machine is start
+        #((2*DELAY)/10) mode_ch = 0; weight_ch = 0;
+        #(2*DELAY) start_pause = 0;
+        #(2*DELAY) mode_ch = 1; weight_ch = 1; // change when machine is pause
+        #(DELAY/10) mode_ch = 0; weight_ch = 0;
+        #(2*DELAY) start_pause = 1; // start in new mode
+        #(2*DELAY) start_pause = 0;
+        #(5*DELAY) start_pause = 1; // test start_pause
+        #(73*DELAY) ;
     end
 
 endmodule

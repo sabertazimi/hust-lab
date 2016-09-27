@@ -38,7 +38,7 @@ module selector_mode
                 sel_value = (sel_value + 1) % (HI+1) ? (sel_value + 1) % (HI+1) : LO; push = 1'b0;
             end
         end else if(switch_power && switch_en) begin
-            push = 1'b0;
+            push = 1'b0; sel_value = sel_value;
         end else if(!switch_power) begin
             init_flag = 1;
             sel_value = LO;

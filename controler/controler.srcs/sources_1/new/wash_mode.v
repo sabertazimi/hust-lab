@@ -13,9 +13,8 @@ module wash_mode
     
     reg [1:0]state, nextstate;
     reg water_in_start, washing_start; // control sbumodules' running
-    wire [31:0]washing_count; // mode time
-    wire [2:0]water_level_wash; // mode water level 
-    wire real_clk; // asynchronous change to synchronization
+    wire [31:0]washing_count; // washing time
+    wire [2:0]water_level_wash; // wash water level 
     wire water_in_end_sign, water_out_end_sign, wash_end_sign_mode; // end sign return to controller
     parameter water_in_state = 0, washing_state = 1, wash_end_state = 2;
     
@@ -72,6 +71,7 @@ module wash_mode
             water_in_state: begin water_in_light = ~water_in_light; washing_light = 1'b1; end
             washing_state: begin water_in_light = 1'b0; washing_light = ~washing_light; end
             wash_end_state: begin washing_light = 1'b0; end
+            default: begin water_in_light = 1'b0; washing_light = 1'b1; end
         endcase
     end
     else begin

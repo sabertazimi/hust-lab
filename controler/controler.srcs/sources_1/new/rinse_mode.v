@@ -15,7 +15,6 @@ module rinse_mode
     reg water_in_start, water_out_start, dewatering_start, rinsing_start; // submodules' start sign
     wire [31:0]dewatering_count, rinsing_count, water_out_count, water_in_count; // count time
     wire [2:0]water_level_rinse; // water level
-    wire real_clk; // asynchronous change to synchronization
     wire water_in_end_sign, water_out_end_sign, dewatering_end_sign, rinsing_end_sign; // submodules' start sign
     parameter water_out_state = 0, dewatering_state = 1, water_in_state = 2, rinsing_state = 3, rinse_end_state = 4;
     
@@ -26,7 +25,7 @@ module rinse_mode
         water_out_light = 1'b0;
         dewatering_light = 1'b0;
         water_in_light = 1'b0;
-        rinsing_light = 1'b1;
+        rinsing_light = 1'b1; // light on when module start
         water_in_start = 1'b0;
         water_out_start = 1'b0;
         dewatering_start = 1'b0;

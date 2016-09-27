@@ -2,7 +2,7 @@
 
 
 module controler
-#(parameter WIDTH = 32, CLK_CH = 25, TIME_SCORE = 20)
+#(parameter WIDTH = 32, CLK_CH = 25, TIME_SCORE = 1)
 (
     input power, input start_pause, input weight_ch, input mode_ch, input clk_src,
     output start_pause_light,output [2:0]weight_ch_light, output power_light,
@@ -147,6 +147,7 @@ module controler
     assign weight_ch_light = true_power ? weight_ch_light_mode : 3'b000;
     
     //change w_r_d_change which from selector mode to w_r_d
+    // problem : w_r_d auto change 
     always @(w_r_d_change or true_power) begin
     if(true_power) begin
         if(w_r_d_change == 0) begin w_r_d = 7; end
@@ -277,7 +278,7 @@ module controler
     end
     
     // nextstate change 
-    always @(w_r_d_end or w_r_d or true_power)
+    always @(w_r_d_end or w_r_d or true_power or mode_ch_push or weight_ch_push)
     if(true_power) begin
         case(state)
             mode_ch_state: begin
@@ -324,6 +325,7 @@ module controler
                         nextstate = w_r_d_end_state;
                     end
                 end
+            default : nextstate = mode_ch_state;
         endcase  
     end
     else nextstate = mode_ch_state;

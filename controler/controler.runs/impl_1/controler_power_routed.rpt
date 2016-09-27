@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
-| Date             : Mon Sep 26 17:30:27 2016
+| Date             : Tue Sep 27 11:22:53 2016
 | Host             : uncertainmove-Lenovo running 64-bit Ubuntu 16.04 LTS
 | Command          : report_power -file controler_power_routed.rpt -pb controler_power_summary_routed.pb -rpx controler_power_routed.rpx
 | Design           : controler
@@ -30,8 +30,8 @@ Table of Contents
 ----------
 
 +--------------------------+----------------------------------+
-| Total On-Chip Power (W)  | 65.664 (Junction temp exceeded!) |
-| Dynamic (W)              | 64.867                           |
+| Total On-Chip Power (W)  | 65.745 (Junction temp exceeded!) |
+| Dynamic (W)              | 64.948                           |
 | Device Static (W)        | 0.797                            |
 | Effective TJA (C/W)      | 4.6                              |
 | Max Ambient (C)          | 0.0                              |
@@ -49,17 +49,17 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Slice Logic    |    13.040 |     8477 |       --- |             --- |
-|   LUT as Logic |    11.182 |     5290 |     63400 |            8.34 |
-|   CARRY4       |     1.762 |     1098 |     15850 |            6.93 |
-|   BUFG         |     0.058 |       12 |        32 |           37.50 |
-|   Register     |     0.023 |      788 |    126800 |            0.62 |
-|   F7/F8 Muxes  |     0.015 |       11 |     63400 |            0.02 |
-|   Others       |     0.000 |       52 |       --- |             --- |
-| Signals        |    10.558 |     6515 |       --- |             --- |
-| I/O            |    41.270 |       35 |       210 |           16.67 |
+| Slice Logic    |    12.795 |     4157 |       --- |             --- |
+|   LUT as Logic |    10.992 |     2202 |     63400 |            3.47 |
+|   CARRY4       |     1.701 |      512 |     15850 |            3.23 |
+|   BUFG         |     0.064 |       12 |        32 |           37.50 |
+|   Register     |     0.024 |      713 |    126800 |            0.56 |
+|   F7/F8 Muxes  |     0.014 |       10 |     63400 |            0.02 |
+|   Others       |     0.000 |       53 |       --- |             --- |
+| Signals        |     9.881 |     2996 |       --- |             --- |
+| I/O            |    42.272 |       35 |       210 |           16.67 |
 | Static Power   |     0.797 |          |           |                 |
-| Total          |    65.664 |          |           |                 |
+| Total          |    65.744 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -69,9 +69,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |    24.176 |      23.614 |      0.563 |
-| Vccaux    |       1.800 |     1.605 |       1.512 |      0.093 |
-| Vcco33    |       3.300 |    11.680 |      11.676 |      0.004 |
+| Vccint    |       1.000 |    23.255 |      22.692 |      0.563 |
+| Vccaux    |       1.800 |     1.641 |       1.548 |      0.093 |
+| Vcco33    |       3.300 |    11.964 |      11.960 |      0.004 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
@@ -136,28 +136,28 @@ Table of Contents
 +----------------------+-----------+
 | Name                 | Power (W) |
 +----------------------+-----------+
-| controler            |    64.867 |
-|   DEWATER_MODE       |     0.109 |
-|     TIMER_WASH       |     0.031 |
-|     WATER_OUT_MODE   |     0.059 |
-|       WATER_IN_TIMER |     0.044 |
-|   MODE_SEL           |     0.062 |
-|   RING               |     0.022 |
-|   RINSE_MODE         |     0.240 |
-|     DEWATERIGN_TIMER |     0.061 |
-|     RINSING_TIMER    |     0.044 |
-|     WATER_IN_MODE    |     0.090 |
-|       WATER_IN_TIMER |     0.088 |
-|   TICK_DEVIDER       |     0.157 |
-|   TIME_DISPLAYER     |    16.679 |
-|     HOUR_SEG         |     7.564 |
-|     MIN_SEG          |     6.013 |
-|     SEC_SEG          |     0.437 |
-|   WASH_MODE          |     0.114 |
-|     TIMER_WASH       |     0.035 |
-|     WATER_IN_MODE    |     0.067 |
-|       WATER_IN_TIMER |     0.051 |
-|   WEIGHT_SEL         |     1.055 |
+| controler            |    64.948 |
+|   DEWATER_MODE       |     0.101 |
+|     TIMER_WASH       |     0.021 |
+|     WATER_OUT_MODE   |     0.041 |
+|       WATER_IN_TIMER |     0.020 |
+|   MODE_SEL           |     0.134 |
+|   RING               |     0.024 |
+|   RINSE_MODE         |     0.246 |
+|     DEWATERIGN_TIMER |     0.034 |
+|     RINSING_TIMER    |     0.068 |
+|     WATER_IN_MODE    |     0.117 |
+|       WATER_IN_TIMER |     0.091 |
+|   TICK_DEVIDER       |     0.165 |
+|   TIME_DISPLAYER     |    15.631 |
+|     HOUR_SEG         |     6.776 |
+|     MIN_SEG          |     5.858 |
+|     SEC_SEG          |     0.453 |
+|   WASH_MODE          |     0.165 |
+|     TIMER_WASH       |     0.053 |
+|     WATER_IN_MODE    |     0.052 |
+|       WATER_IN_TIMER |     0.027 |
+|   WEIGHT_SEL         |     0.703 |
 +----------------------+-----------+
 
 

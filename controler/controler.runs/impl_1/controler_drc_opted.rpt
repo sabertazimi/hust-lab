@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
-| Date         : Mon Sep 26 17:29:50 2016
+| Date         : Tue Sep 27 11:22:05 2016
 | Host         : uncertainmove-Lenovo running 64-bit Ubuntu 16.04 LTS
 | Command      : report_drc -file controler_drc_opted.rpt
 | Design       : controler
@@ -23,7 +23,7 @@ Table of Contents
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 4
+             Violations found: 3
 
 2. REPORT DETAILS
 -----------------
@@ -42,17 +42,6 @@ Related violations: <none>
 
 PLHOLDVIO-2#1 Warning
 Non-Optimal connections which could lead to hold violations  
-A LUT TICK_DEVIDER/count[31]_i_3 is driving clock pin of 33 cells. This could lead to large hold time violations. First few involved cells are:
-    count_reg[9] {FDRE}
-    count_reg[8] {FDRE}
-    count_reg[7] {FDRE}
-    count_reg[6] {FDRE}
-    count_reg[5] {FDRE}
-
-Related violations: <none>
-
-PLHOLDVIO-2#2 Warning
-Non-Optimal connections which could lead to hold violations  
 A LUT TICK_DEVIDER/sel_value[2]_i_2 is driving clock pin of 5 cells. This could lead to large hold time violations. First few involved cells are:
     MODE_SEL/sel_value_reg[2] {FDRE}
     MODE_SEL/sel_value_reg[1] {FDRE}
@@ -62,7 +51,7 @@ A LUT TICK_DEVIDER/sel_value[2]_i_2 is driving clock pin of 5 cells. This could 
 
 Related violations: <none>
 
-PLHOLDVIO-2#3 Warning
+PLHOLDVIO-2#2 Warning
 Non-Optimal connections which could lead to hold violations  
 A LUT TICK_DEVIDER/sel_value[2]_i_2__0 is driving clock pin of 5 cells. This could lead to large hold time violations. First few involved cells are:
     WEIGHT_SEL/sel_value_reg[2] {FDRE}
