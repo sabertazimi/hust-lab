@@ -1,6 +1,0 @@
-#!/bin/bash
-
-stty -echo
-read -p "[sudo] sabertazimi 的密码: " passward
-echo $passward | sudo -S /opt/Xilinx/Vivado/2016.1/bin/vivado & > /dev/null 2>&1
-stty echo
