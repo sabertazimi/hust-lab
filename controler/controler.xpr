@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="14" Path="/home/uncertainmove/Document/dld/controler/controler.xpr">
+<Project Version="7" Minor="14" Path="/home/sabertazimi/Work/Source/dld/controler/controler.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="4ae77b9bd24a40a8840849b12436a6b8"/>

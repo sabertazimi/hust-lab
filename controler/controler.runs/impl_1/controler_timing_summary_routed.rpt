@@ -1,8 +1,8 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
-| Date         : Tue Sep 27 11:22:52 2016
-| Host         : uncertainmove-Lenovo running 64-bit Ubuntu 16.04 LTS
+| Date         : Wed Sep 28 16:14:45 2016
+| Host         : avalon running 64-bit Ubuntu 16.04.1 LTS
 | Command      : report_timing_summary -warn_on_violation -max_paths 10 -file controler_timing_summary_routed.rpt -rpx controler_timing_summary_routed.rpx
 | Design       : controler
 | Device       : 7a100t-csg324
@@ -102,7 +102,7 @@ Table of Contents
 
  There are 37 register/latch pins with no clock driven by root clock pin: RINSE_MODE/water_out_start_reg/G (HIGH)
 
- There are 581 register/latch pins with no clock driven by root clock pin: TICK_DEVIDER/clk_group_reg[0]/C (HIGH)
+ There are 580 register/latch pins with no clock driven by root clock pin: TICK_DEVIDER/clk_group_reg[0]/C (HIGH)
 
  There are 3 register/latch pins with no clock driven by root clock pin: TICK_DEVIDER/clk_group_reg[15]/C (HIGH)
 
@@ -146,8 +146,6 @@ Table of Contents
 
  There are 2 register/latch pins with no clock driven by root clock pin: w_r_d_start_reg[2]/G (HIGH)
 
- There are 10 register/latch pins with no clock driven by root clock pin: washing_machine_running_reg[1]/G (HIGH)
-
 
 2. checking constant_clock
 --------------------------
@@ -161,7 +159,7 @@ Table of Contents
 
 4. checking unconstrained_internal_endpoints
 --------------------------------------------
- There are 1777 pins that are not constrained for maximum delay. (HIGH)
+ There are 1776 pins that are not constrained for maximum delay. (HIGH)
 
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 

@@ -1,4 +1,4 @@
-set_property SRC_FILE_INFO {cfile:/home/uncertainmove/Document/dld/controler/controler.srcs/constrs_1/new/washing_machine.xdc rfile:../../../controler.srcs/constrs_1/new/washing_machine.xdc id:1} [current_design]
+set_property SRC_FILE_INFO {cfile:/home/sabertazimi/Work/Source/dld/controler/controler.srcs/constrs_1/new/washing_machine.xdc rfile:../../../controler.srcs/constrs_1/new/washing_machine.xdc id:1} [current_design]
 set_property src_info {type:XDC file:1 line:5 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN E3 [get_ports clk_src]
 set_property src_info {type:XDC file:1 line:8 export:INPUT save:INPUT read:READ} [current_design]

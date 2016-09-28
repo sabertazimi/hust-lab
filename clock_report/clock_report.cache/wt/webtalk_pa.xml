@@ -3,7 +3,7 @@
 <!--The data in this file is primarily intended for consumption by Xilinx tools.
 The structure and the elements are likely to change over the next few releases.
 This means code written to parse this file will need to be revisited each subsequent release.-->
-<application name="pa" timeStamp="Tue Sep 27 22:04:28 2016">
+<application name="pa" timeStamp="Wed Sep 28 16:57:16 2016">
 <section name="Project Information" visible="false">
 <property name="ProjectID" value="a94dc46e42d54ab1aad5e8865458a5be" type="ProjectID"/>
 <property name="ProjectIteration" value="67" type="ProjectIteration"/>
@@ -19,7 +19,7 @@ This means code written to parse this file will need to be revisited each subseq
 <item name="Java Command Handlers">
 <property name="AddSources" value="9" type="JavaHandler"/>
 <property name="AutoConnectTarget" value="27" type="JavaHandler"/>
-<property name="CloseProject" value="3" type="JavaHandler"/>
+<property name="CloseProject" value="4" type="JavaHandler"/>
 <property name="EditDelete" value="1" type="JavaHandler"/>
 <property name="EditPaste" value="1" type="JavaHandler"/>
 <property name="EditUndo" value="14" type="JavaHandler"/>
@@ -28,7 +28,7 @@ This means code written to parse this file will need to be revisited each subseq
 <property name="NewProject" value="1" type="JavaHandler"/>
 <property name="OpenHardwareManager" value="26" type="JavaHandler"/>
 <property name="OpenProject" value="13" type="JavaHandler"/>
-<property name="OpenRecentTarget" value="16" type="JavaHandler"/>
+<property name="OpenRecentTarget" value="17" type="JavaHandler"/>
 <property name="OpenTarget" value="1" type="JavaHandler"/>
 <property name="ProgramDevice" value="2" type="JavaHandler"/>
 <property name="ProjectSettingsCmdHandler" value="3" type="JavaHandler"/>
@@ -50,41 +50,15 @@ This means code written to parse this file will need to be revisited each subseq
 <property name="ZoomOut" value="1" type="JavaHandler"/>
 </item>
 <item name="Gui Resources Info">
-<property name="CANCEL, Cancel" value="1" type="GuiResourceData"/>
-<property name="NEXT, Next " value="2" type="GuiResourceData"/>
-<property name="PAResourceAtoD.CmdMsgDialog_OK, OK" value="1" type="GuiResourceData"/>
-<property name="PAResourceCommand.PACommandNames_AUTO_CONNECT_TARGET, Auto Connect" value="2" type="GuiResourceData"/>
 <property name="PAResourceCommand.PACommandNames_OPEN_TARGET_WIZARD, Open New Target..." value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, clock (clock.v" value="17" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Program and Debug, Hardware Manager, Open Target], 27, false" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Program and Debug, Open Hardware Manager], 26, true" value="1" type="GuiResourceData"/>
-<property name="PAResourceItoN.MainMenuMgr_FILE, File" value="2" type="GuiResourceData"/>
-<property name="PAResourceOtoP.PAViews_CODE, Code" value="4" type="GuiResourceData"/>
-<property name="PAResourceOtoP.PAViews_PROJECT_SUMMARY, Project Summary" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Program and Debug, Open Hardware Manager, Open Target], 27, false" value="1" type="GuiResourceData"/>
 <property name="PAResourceOtoP.ProgramDebugTab_OPEN_RECENTLY_OPENED_TARGET, Recent Targets" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.ProgramDebugTab_OPEN_TARGET, Open target" value="2" type="GuiResourceData"/>
-<property name="PAResourceOtoP.ProgramDebugTab_PROGRAM_DEVICE, Program device" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.ProgramFpgaDialog_PROGRAM, Program" value="1" type="GuiResourceData"/>
-<property name="PAResourceTtoZ.TargetChooserPanel_TARGET_CHOOSER_TABLE, xilinx_tcf ; Digilent/210274532843A ; 15000000, 0, 15000000, 2" value="1" type="GuiResourceData"/>
-<property name="RDIResource.BaseDialog_CANCEL, Cancel" value="1" type="GuiResourceData"/>
-<property name="clock.v, 1, 35" value="1" type="GuiResourceData"/>
-<property name="clock.v, 220, 177" value="1" type="GuiResourceData"/>
-<property name="clock.v, 3, 37" value="1" type="GuiResourceData"/>
-<property name="clock.v, 91, 117" value="1" type="GuiResourceData"/>
-<property name="flow_led.v, 106, 106" value="1" type="GuiResourceData"/>
-<property name="flow_led.v, 183, 121" value="1" type="GuiResourceData"/>
-<property name="flow_led.v, 195, 113" value="1" type="GuiResourceData"/>
-<property name="flow_led.v, 5, 41" value="1" type="GuiResourceData"/>
-<property name="flow_led.v, 52, 26" value="1" type="GuiResourceData"/>
-<property name="flow_led.v, 78, 252" value="1" type="GuiResourceData"/>
-<property name="flow_led.v, 80, 262" value="1" type="GuiResourceData"/>
-<property name="timing_clock.v, 0, 38" value="1" type="GuiResourceData"/>
-<property name="timing_clock.v, 96, 82" value="1" type="GuiResourceData"/>
+<property name="RDIResource.BaseDialog_OK, OK" value="2" type="GuiResourceData"/>
 </item>
 <item name="Other">
-<property name="GuiMode" value="23" type="GuiMode"/>
+<property name="GuiMode" value="26" type="GuiMode"/>
 <property name="BatchMode" value="0" type="BatchMode"/>
-<property name="TclMode" value="19" type="TclMode"/>
+<property name="TclMode" value="22" type="TclMode"/>
 </item>
 </section>
 </application>

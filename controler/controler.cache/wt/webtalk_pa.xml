@@ -3,10 +3,10 @@
 <!--The data in this file is primarily intended for consumption by Xilinx tools.
 The structure and the elements are likely to change over the next few releases.
 This means code written to parse this file will need to be revisited each subsequent release.-->
-<application name="pa" timeStamp="Tue Sep 27 11:30:36 2016">
+<application name="pa" timeStamp="Wed Sep 28 17:22:28 2016">
 <section name="Project Information" visible="false">
 <property name="ProjectID" value="8c6b2097171f4edea720294e3754d98d" type="ProjectID"/>
-<property name="ProjectIteration" value="108" type="ProjectIteration"/>
+<property name="ProjectIteration" value="116" type="ProjectIteration"/>
 </section>
 <section name="PlanAhead Usage" visible="true">
 <item name="Project Data">
@@ -18,70 +18,46 @@ This means code written to parse this file will need to be revisited each subseq
 </item>
 <item name="Java Command Handlers">
 <property name="AddSources" value="24" type="JavaHandler"/>
-<property name="AutoConnectTarget" value="19" type="JavaHandler"/>
+<property name="AutoConnectTarget" value="29" type="JavaHandler"/>
 <property name="CloseProject" value="1" type="JavaHandler"/>
 <property name="EditDelete" value="6" type="JavaHandler"/>
 <property name="EditPaste" value="3" type="JavaHandler"/>
 <property name="EditUndo" value="5" type="JavaHandler"/>
 <property name="FileExit" value="1" type="JavaHandler"/>
-<property name="LaunchOpenTarget" value="2" type="JavaHandler"/>
-<property name="LaunchProgramFpga" value="82" type="JavaHandler"/>
+<property name="LaunchOpenTarget" value="3" type="JavaHandler"/>
+<property name="LaunchProgramFpga" value="99" type="JavaHandler"/>
 <property name="NewProject" value="1" type="JavaHandler"/>
-<property name="OpenHardwareManager" value="34" type="JavaHandler"/>
-<property name="OpenProject" value="23" type="JavaHandler"/>
-<property name="OpenRecentTarget" value="11" type="JavaHandler"/>
+<property name="OpenHardwareManager" value="45" type="JavaHandler"/>
+<property name="OpenProject" value="24" type="JavaHandler"/>
+<property name="OpenRecentTarget" value="25" type="JavaHandler"/>
+<property name="ProgramDevice" value="1" type="JavaHandler"/>
 <property name="ProjectSettingsCmdHandler" value="1" type="JavaHandler"/>
-<property name="RunBitgen" value="108" type="JavaHandler"/>
+<property name="RunBitgen" value="116" type="JavaHandler"/>
 <property name="RunImplementation" value="1" type="JavaHandler"/>
+<property name="RunSchematic" value="4" type="JavaHandler"/>
 <property name="RunSynthesis" value="16" type="JavaHandler"/>
 <property name="SaveFileProxyHandler" value="28" type="JavaHandler"/>
 <property name="SetTopNode" value="31" type="JavaHandler"/>
-<property name="ShowView" value="57" type="JavaHandler"/>
+<property name="ShowView" value="62" type="JavaHandler"/>
 <property name="SimulationClose" value="137" type="JavaHandler"/>
 <property name="SimulationRestart" value="49" type="JavaHandler"/>
 <property name="SimulationRun" value="202" type="JavaHandler"/>
 <property name="SimulationRunAll" value="51" type="JavaHandler"/>
+<property name="ToggleAutoFitSelection" value="4" type="JavaHandler"/>
+<property name="ToggleSelectAreaMode" value="1" type="JavaHandler"/>
 <property name="ViewTaskImplementation" value="1" type="JavaHandler"/>
 <property name="WaveformSaveConfiguration" value="14" type="JavaHandler"/>
+<property name="ZoomFit" value="12" type="JavaHandler"/>
+<property name="ZoomIn" value="7" type="JavaHandler"/>
+<property name="ZoomOut" value="1" type="JavaHandler"/>
 </item>
 <item name="Gui Resources Info">
-<property name="PAResourceAtoD.CmdMsgDialog_OK, OK" value="3" type="GuiResourceData"/>
-<property name="PAResourceCommand.PACommandNames_AUTO_CONNECT_TARGET, Auto Connect" value="2" type="GuiResourceData"/>
-<property name="PAResourceCommand.PACommandNames_FILESET_WINDOW, Sources" value="1" type="GuiResourceData"/>
-<property name="PAResourceCommand.PACommandNames_SIMULATION_RUN_BEHAVIORAL, Run Behavioral Simulation" value="2" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources, sim_1], 14" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Simulation Sources], 13" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Program and Debug, Open Hardware Manager, Open Target], 36, false" value="2" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, [, Simulation, Run Simulation], 11, false" value="2" type="GuiResourceData"/>
-<property name="PAResourceItoN.MainMenuMgr_WINDOW, Window" value="2" type="GuiResourceData"/>
-<property name="PAResourceOtoP.PAViews_CODE, Code" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.ProgramDebugTab_PROGRAM_DEVICE, Program device" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.ProgramFpgaDialog_PROGRAM, Program" value="1" type="GuiResourceData"/>
-<property name="PAResourceTtoZ.TaskBanner_CLOSE, (String" value="4" type="GuiResourceData"/>
-<property name="RDIResource.BaseDialog_CANCEL, Cancel" value="1" type="GuiResourceData"/>
-<property name="RDIResource.BaseDialog_OK, OK" value="5" type="GuiResourceData"/>
-<property name="RDIResource.GraphicalView_ZOOM_FIT, Waveform Viewer_zoom_fit" value="2" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 1" value="1" type="GuiResourceData"/>
-<property name="RDIResource.RDIViews_WAVEFORM_VIEWER, Untitled 2" value="1" type="GuiResourceData"/>
-<property name="controler.v, 127, 108" value="1" type="GuiResourceData"/>
-<property name="controler.v, 210, 38, false, false, false, true, false" value="1" type="GuiResourceData"/>
-<property name="controler.v, 212, 34, false, false, false, true, false" value="1" type="GuiResourceData"/>
-<property name="controler.v, 253, 111" value="1" type="GuiResourceData"/>
-<property name="controler.v, 342, 263" value="1" type="GuiResourceData"/>
-<property name="controler.v, 392, 161" value="1" type="GuiResourceData"/>
-<property name="controler.v, 542, 228" value="1" type="GuiResourceData"/>
-<property name="controler.v, 579, 415" value="1" type="GuiResourceData"/>
-<property name="controler.v, 580, 413" value="1" type="GuiResourceData"/>
-<property name="controler_tb.v, 179, 139" value="1" type="GuiResourceData"/>
-<property name="controler_tb.v, 192, 157" value="1" type="GuiResourceData"/>
-<property name="controler_tb.v, 202, 153" value="1" type="GuiResourceData"/>
-<property name="selector_mode.v, 384, 386" value="1" type="GuiResourceData"/>
-<property name="selector_mode.v, 489, 197" value="1" type="GuiResourceData"/>
+<property name="RDIResource.BaseDialog_CANCEL, Cancel" value="2" type="GuiResourceData"/>
 </item>
 <item name="Other">
-<property name="GuiMode" value="31" type="GuiMode"/>
+<property name="GuiMode" value="26" type="GuiMode"/>
 <property name="BatchMode" value="0" type="BatchMode"/>
-<property name="TclMode" value="27" type="TclMode"/>
+<property name="TclMode" value="22" type="TclMode"/>
 </item>
 </section>
 </application>
