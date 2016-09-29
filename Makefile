@@ -10,7 +10,7 @@ C_OBJ = $(patsubst %.o, $(OBJ_DIR)/%.o, $(notdir $(C_OBJECTS)))
 PROG=link_list
 
 # macro for tools
-CC = gcc
+CC = g++
 LD = ld
 RM = rm -fr
 MV = mv
@@ -18,8 +18,7 @@ CP = cp -fr
 MKDIR = mkdir -p
 
 # macro for flags
-C_FLAGS = -c -Wall -m32 -g -static-libstdc++ $(addprefix -I, $(INCLUDE))
-LD_FLAGS = -static-libgcc -m elf_i386
+C_FLAGS = -c -Wall -g $(addprefix -I, $(INCLUDE))
 
 # path macro
 BIN_DIR = ./bin
@@ -38,9 +37,9 @@ all: $(C_OBJECTS) link
 	$(MV) $@ $(OBJ_DIR)/$(notdir $@)
 
 link:
-	@echo Linking kernel image
+	@echo Linking Binary File
 	$(MKDIR) $(BIN_DIR)
-	$(LD) $(LD_FLAGS) $(C_OBJ) -o $(BIN_DIR)/$(PROG)
+	$(CC) $(C_OBJ) -o $(BIN_DIR)/$(PROG)
 
 .PHONY:clean
 clean:
