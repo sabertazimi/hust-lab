@@ -16,6 +16,7 @@ RM = rm -fr
 MV = mv
 CP = cp -fr
 MKDIR = mkdir -p
+# DOCS = doxygen
 
 # macro for flags
 C_FLAGS = -c -Wall -g $(addprefix -I, $(INCLUDE))
@@ -23,7 +24,7 @@ C_FLAGS = -c -Wall -g $(addprefix -I, $(INCLUDE))
 # path macro
 BIN_DIR = ./bin
 OBJ_DIR = ./obj
-TOOLS_DIR = ./tools
+# DOCS_DIR = ./docs
 
 # include macro
 INCLUDE += include/ 			\

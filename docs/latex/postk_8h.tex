@@ -1,0 +1,80 @@
+\hypertarget{postk_8h}{}\section{src/postk.h 文件参考}
+\label{postk_8h}\index{src/postk.\+h@{src/postk.\+h}}
+
+
+header file for process-\/oriented stack  
+
+
+\subsection*{类}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structPOSTK}{P\+O\+S\+TK}
+\end{DoxyCompactItemize}
+\subsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{postk_8h_a404a25d222d39742da59078e22fc3580}{init\+P\+O\+S\+TK} (\hyperlink{structPOSTK}{P\+O\+S\+TK} $\ast$const p, int m)
+\begin{DoxyCompactList}\small\item\em initiate stack \end{DoxyCompactList}\item 
+void \hyperlink{postk_8h_af1665b700d0cc8dce05f76d4dbdc537b}{init\+P\+O\+S\+TK} (\hyperlink{structPOSTK}{P\+O\+S\+TK} $\ast$const p, const \hyperlink{structPOSTK}{P\+O\+S\+TK} \&s)
+\begin{DoxyCompactList}\small\item\em initiate stack (with copy) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{详细描述}
+header file for process-\/oriented stack 
+
+\begin{DoxyAuthor}{作者}
+sabertazimi,\href{mailto:sabertazimi@gmail.com}{\tt sabertazimi@gmail.\+com} 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{版本}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{日期}
+2016-\/09-\/29 
+\end{DoxyDate}
+
+
+\subsection{函数说明}
+\index{postk.\+h@{postk.\+h}!init\+P\+O\+S\+TK@{init\+P\+O\+S\+TK}}
+\index{init\+P\+O\+S\+TK@{init\+P\+O\+S\+TK}!postk.\+h@{postk.\+h}}
+\subsubsection[{\texorpdfstring{init\+P\+O\+S\+T\+K(\+P\+O\+S\+T\+K $\ast$const p, int m)}{initPOSTK(POSTK *const p, int m)}}]{\setlength{\rightskip}{0pt plus 5cm}void init\+P\+O\+S\+TK (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+O\+S\+TK} $\ast$const}]{p, }
+\item[{int}]{m}
+\end{DoxyParamCaption}
+)}\hypertarget{postk_8h_a404a25d222d39742da59078e22fc3580}{}\label{postk_8h_a404a25d222d39742da59078e22fc3580}
+
+
+initiate stack 
+
+
+\begin{DoxyParams}{参数}
+{\em p} & stack pointer \\
+\hline
+{\em m} & stack capacity \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+void 
+\end{DoxyReturn}
+\index{postk.\+h@{postk.\+h}!init\+P\+O\+S\+TK@{init\+P\+O\+S\+TK}}
+\index{init\+P\+O\+S\+TK@{init\+P\+O\+S\+TK}!postk.\+h@{postk.\+h}}
+\subsubsection[{\texorpdfstring{init\+P\+O\+S\+T\+K(\+P\+O\+S\+T\+K $\ast$const p, const P\+O\+S\+T\+K \&s)}{initPOSTK(POSTK *const p, const POSTK &s)}}]{\setlength{\rightskip}{0pt plus 5cm}void init\+P\+O\+S\+TK (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+O\+S\+TK} $\ast$const}]{p, }
+\item[{const {\bf P\+O\+S\+TK} \&}]{s}
+\end{DoxyParamCaption}
+)}\hypertarget{postk_8h_af1665b700d0cc8dce05f76d4dbdc537b}{}\label{postk_8h_af1665b700d0cc8dce05f76d4dbdc537b}
+
+
+initiate stack (with copy) 
+
+
+\begin{DoxyParams}{参数}
+{\em p} & dest stack pointer \\
+\hline
+{\em s} & src stack pointer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+void 
+\end{DoxyReturn}
