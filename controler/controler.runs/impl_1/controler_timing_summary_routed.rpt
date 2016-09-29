@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
-| Date         : Wed Sep 28 16:14:45 2016
+| Date         : Thu Sep 29 11:26:31 2016
 | Host         : avalon running 64-bit Ubuntu 16.04.1 LTS
 | Command      : report_timing_summary -warn_on_violation -max_paths 10 -file controler_timing_summary_routed.rpt -rpx controler_timing_summary_routed.rpx
 | Design       : controler
@@ -54,13 +54,9 @@ Table of Contents
 --------------------
  There are 26 register/latch pins with no clock driven by root clock pin: clk_src (HIGH)
 
- There are 5 register/latch pins with no clock driven by root clock pin: mode_ch (HIGH)
+ There are 429 register/latch pins with no clock driven by root clock pin: power (HIGH)
 
- There are 440 register/latch pins with no clock driven by root clock pin: power (HIGH)
-
- There are 21 register/latch pins with no clock driven by root clock pin: start_pause (HIGH)
-
- There are 5 register/latch pins with no clock driven by root clock pin: weight_ch (HIGH)
+ There are 11 register/latch pins with no clock driven by root clock pin: start_pause (HIGH)
 
  There are 66 register/latch pins with no clock driven by root clock pin: DEWATER_MODE/TIMER_WASH/init_flag_reg/C (HIGH)
 
@@ -102,13 +98,13 @@ Table of Contents
 
  There are 37 register/latch pins with no clock driven by root clock pin: RINSE_MODE/water_out_start_reg/G (HIGH)
 
- There are 580 register/latch pins with no clock driven by root clock pin: TICK_DEVIDER/clk_group_reg[0]/C (HIGH)
+ There are 570 register/latch pins with no clock driven by root clock pin: TICK_DEVIDER/clk_group_reg[0]/C (HIGH)
 
  There are 3 register/latch pins with no clock driven by root clock pin: TICK_DEVIDER/clk_group_reg[15]/C (HIGH)
 
  There are 33 register/latch pins with no clock driven by root clock pin: TICK_DEVIDER/clk_group_reg[24]/C (HIGH)
 
- There are 420 register/latch pins with no clock driven by root clock pin: TICK_DEVIDER/clk_group_reg[25]/C (HIGH)
+ There are 430 register/latch pins with no clock driven by root clock pin: TICK_DEVIDER/clk_group_reg[25]/C (HIGH)
 
  There are 66 register/latch pins with no clock driven by root clock pin: WASH_MODE/TIMER_WASH/init_flag_reg/C (HIGH)
 
@@ -122,23 +118,21 @@ Table of Contents
 
  There are 37 register/latch pins with no clock driven by root clock pin: WASH_MODE/water_in_start_reg/G (HIGH)
 
- There are 37 register/latch pins with no clock driven by root clock pin: power_control_reg/C (HIGH)
+ There are 111 register/latch pins with no clock driven by root clock pin: power_control_reg_rep/C (HIGH)
 
- There are 179 register/latch pins with no clock driven by root clock pin: power_control_reg_rep/C (HIGH)
+ There are 136 register/latch pins with no clock driven by root clock pin: power_control_reg_rep__0/C (HIGH)
 
- There are 103 register/latch pins with no clock driven by root clock pin: power_control_reg_rep__0/C (HIGH)
+ There are 50 register/latch pins with no clock driven by root clock pin: power_control_reg_rep__1/C (HIGH)
 
- There are 74 register/latch pins with no clock driven by root clock pin: power_control_reg_rep__1/C (HIGH)
-
- There are 47 register/latch pins with no clock driven by root clock pin: power_control_reg_rep__2/C (HIGH)
+ There are 132 register/latch pins with no clock driven by root clock pin: power_control_reg_rep__2/C (HIGH)
 
  There are 11 register/latch pins with no clock driven by root clock pin: start_pause_light_two_reg/C (HIGH)
 
- There are 5 register/latch pins with no clock driven by root clock pin: state_reg[0]/C (HIGH)
+ There are 4 register/latch pins with no clock driven by root clock pin: state_reg[0]/C (HIGH)
 
- There are 5 register/latch pins with no clock driven by root clock pin: state_reg[1]/C (HIGH)
+ There are 4 register/latch pins with no clock driven by root clock pin: state_reg[1]/C (HIGH)
 
- There are 5 register/latch pins with no clock driven by root clock pin: state_reg[2]/C (HIGH)
+ There are 4 register/latch pins with no clock driven by root clock pin: state_reg[2]/C (HIGH)
 
  There are 2 register/latch pins with no clock driven by root clock pin: w_r_d_start_reg[0]/G (HIGH)
 
@@ -159,7 +153,7 @@ Table of Contents
 
 4. checking unconstrained_internal_endpoints
 --------------------------------------------
- There are 1776 pins that are not constrained for maximum delay. (HIGH)
+ There are 1780 pins that are not constrained for maximum delay. (HIGH)
 
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 
@@ -207,7 +201,7 @@ Table of Contents
 
 12. checking latch_loops
 ------------------------
- There is 1 combinational latch loop in the design through latch input (HIGH)
+ There are 2 combinational latch loops in the design through latch input (HIGH)
 
 
 

@@ -154,7 +154,7 @@ module controler
         else if(w_r_d_change == 1) begin w_r_d = 4; end
         else if(w_r_d_change == 2) begin w_r_d = 6; end
         else if(w_r_d_change == 3) begin w_r_d = 2; end
-        else if(w_r_d_change == 4) begin w_r_d = 5; end
+        else if(w_r_d_change == 4) begin w_r_d = 3; end
         else if(w_r_d_change == 5) begin w_r_d = 1; end
     end
     else if(!true_power) begin

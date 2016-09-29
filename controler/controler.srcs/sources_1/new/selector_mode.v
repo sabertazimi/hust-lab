@@ -28,17 +28,38 @@ module selector_mode
         push <= 1'b0;
     end
 
-    assign real_clk = (switch_power && !switch_en) ? sig_change : clk[0];
-    always @(posedge real_clk) begin
-        if (switch_power && !switch_en) begin
-            if(washing_machine_running[0]) begin push = 1'b1;sel_value = (sel_value + 1) % (HI+1) ? (sel_value + 1) % (HI+1) : LO; end
-            else if(washing_machine_running[1]) begin push = 1'b1; sel_value = LO; end
-            else begin 
-                if(init_flag) begin sel_value = LO; init_flag = 0; push = 1'b0; end
-                sel_value = (sel_value + 1) % (HI+1) ? (sel_value + 1) % (HI+1) : LO; push = 1'b0;
+    // change signal change to level change(with clk[CLK_CH] Hz)
+    always @(posedge clk[CLK_CH]) begin
+        if (switch_power) begin
+            // pause
+            if (!switch_en) begin   
+                // washing finished
+                if(washing_machine_running[1]) begin
+                    push = 1'b1;
+                    sel_value = LO;
+                // true pause
+                end else begin
+                    if(init_flag) begin
+                        sel_value = LO;
+                        init_flag = 0;
+                        push = 1'b0;
+                    end
+                    // start to change value
+                    if (sig_change) begin
+                        sel_value = (sel_value + 1) % (HI+1) ? (sel_value + 1) % (HI+1) : LO;
+                        push = 1'b1;
+                    // otherwise, keep current state
+                    end else begin
+                        sel_value = sel_value;
+                        push = push;
+                    end
+                end
+            // washing running
+            end else begin
+                push = 1'b0;
+                sel_value = sel_value;
             end
-        end else if(switch_power && switch_en) begin
-            push = 1'b0; sel_value = sel_value;
+        // power off
         end else begin
             init_flag = 1;
             sel_value = LO;

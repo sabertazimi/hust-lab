@@ -22,10 +22,10 @@ read_verilog -library xil_defaultlib {
   /home/sabertazimi/Work/Source/dld/controler/controler.srcs/sources_1/new/timer.v
   /home/sabertazimi/Work/Source/dld/controler/controler.srcs/sources_1/new/time_to_segment.v
   /home/sabertazimi/Work/Source/dld/controler/controler.srcs/sources_1/new/water_let_mode.v
+  /home/sabertazimi/Work/Source/dld/controler/controler.srcs/sources_1/new/selector_mode.v
   /home/sabertazimi/Work/Source/dld/controler/controler.srcs/sources_1/new/wash_mode.v
   /home/sabertazimi/Work/Source/dld/controler/controler.srcs/sources_1/new/time_display.v
   /home/sabertazimi/Work/Source/dld/controler/controler.srcs/sources_1/new/tick_divider.v
-  /home/sabertazimi/Work/Source/dld/controler/controler.srcs/sources_1/new/selector_mode.v
   /home/sabertazimi/Work/Source/dld/controler/controler.srcs/sources_1/new/ring.v
   /home/sabertazimi/Work/Source/dld/controler/controler.srcs/sources_1/new/dewater_mode.v
   /home/sabertazimi/Work/Source/dld/controler/controler.srcs/sources_1/new/rinse_mode.v
