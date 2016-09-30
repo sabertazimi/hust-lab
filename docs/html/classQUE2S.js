@@ -10,6 +10,6 @@ var classQUE2S =
     [ "operator[]", "classQUE2S.html#aba1c78ff47088d5f3dd6c392b095dc96", null ],
     [ "print", "classQUE2S.html#ae1fa70c73674f87610db5f7c29dc671e", null ],
     [ "size", "classQUE2S.html#afe217f149462fddb65ac1189e6218b64", null ],
-    [ "s1", "classQUE2S.html#a63dd85107c18a3d6d3c0bc3e17c223b9", null ],
-    [ "s2", "classQUE2S.html#a13ae8f1f1ea8467412febe4b48506671", null ]
+    [ "s1", "classQUE2S.html#ace93c1614a74fe4be1766922a52841ac", null ],
+    [ "s2", "classQUE2S.html#a01e09a5331874f077cedc623666ceec0", null ]
 ];
