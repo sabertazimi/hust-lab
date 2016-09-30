@@ -1,9 +1,10 @@
 var indexSectionsWithContent =
 {
-  0: "ip",
-  1: "p",
-  2: "p",
-  3: "i"
+  0: "adeghimopqs",
+  1: "opqs",
+  2: "opqs",
+  3: "adghiops",
+  4: "emp"
 };
 
 var indexSectionNames =
@@ -11,7 +12,8 @@ var indexSectionNames =
   0: "all",
   1: "classes",
   2: "files",
-  3: "functions"
+  3: "functions",
+  4: "variables"
 };
 
 var indexSectionLabels =
@@ -19,6 +21,7 @@ var indexSectionLabels =
   0: "全部",
   1: "类",
   2: "文件",
-  3: "函数"
+  3: "函数",
+  4: "变量"
 };
 

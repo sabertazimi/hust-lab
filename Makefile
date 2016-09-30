@@ -7,27 +7,27 @@
 C_SOURCES = $(shell find . -path ./test -prune -o -name "*.cpp" -print)
 C_OBJECTS = $(patsubst %.cpp, %.o, $(C_SOURCES))
 C_OBJ = $(patsubst %.o, $(OBJ_DIR)/%.o, $(notdir $(C_OBJECTS)))
-PROG=link_list
+PROG=stack
 
 # macro for tools
 CC = g++
-LD = ld
 RM = rm -fr
 MV = mv
 CP = cp -fr
 MKDIR = mkdir -p
+BROWSER = google-chrome
 # DOCS = doxygen
 
 # macro for flags
-C_FLAGS = -c -Wall -g $(addprefix -I, $(INCLUDE))
+C_FLAGS = -c -Wall -g
 
 # path macro
 BIN_DIR = ./bin
 OBJ_DIR = ./obj
-# DOCS_DIR = ./docs
+DOCS_DIR = ./docs
 
 # include macro
-INCLUDE += include/ 			\
+# INCLUDE += include/ 			\
 
 all: $(C_OBJECTS) link
 
@@ -44,12 +44,16 @@ link:
 
 .PHONY:clean
 clean:
-	$(RM) $(OBJ_DIR)/* $(BIN_DIR)/$(PROG)
+	$(RM) $(OBJ_DIR) $(BIN_DIR)
 	$(RM) .gdb_history
 
 .PHONY:run
 run:
 	./bin/$(PROG)
+
+.PHONY:docs
+docs:
+	$(BROWSER) $(DOCS_DIR)/html/index.html
 
 .PHONY:debug
 debug:

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['postk',['POSTK',['../structPOSTK.html',1,'']]]
+  ['oostk',['OOSTK',['../classOOSTK.html',1,'']]]
 ];
