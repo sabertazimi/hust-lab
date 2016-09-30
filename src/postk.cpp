@@ -7,6 +7,8 @@
  * \date 2016-09-30
  */
 
+#include <stdlib.h>
+#include <stdio.h>
 #include "postk.h"  // add include/ path to g++ flags
 
 /// \brief initiate stack
@@ -14,7 +16,21 @@
 /// \param m stack capacity
 /// \return void
 void initPOSTK(POSTK *const p, int m) {
+    int max;    ///< capacity temporary variable
 
+    // empty check
+    if (p == NULL) return;
+
+    // minus capacity check
+    if (m < 0) {
+        max = 0;
+    } else {
+        max = m;
+    }
+
+    p->elems = (int *)malloc(sizeof(int) * max);
+    p->max   = max;
+    p->pos   = 0;
 }
 
 /// \brief initiate stack (with copy)
@@ -22,21 +38,32 @@ void initPOSTK(POSTK *const p, int m) {
 /// \param s source stack pointer
 /// \return void
 void initPOSTK(POSTK *const p, const POSTK &s) {
+    // empty check
+    if (p == NULL) return;
 
+    p->elems = s.elems;
+    p->max   = s.max;
+    p->pos   = s.pos;
 }
 
 /// \brief get capacity of stack
 /// \param p stack pointer
 /// \return capacity of stack
 int size(const POSTK *const p) {
+    // empty check
+    if (p == NULL) return 0;
 
+    return p->max;
 }
 
 /// \brief get number of elements in stack
 /// \param p stack pointer
 /// \return number of elements in stack
 int howMany(const POSTK *const p) {
+    // empty check
+    if (p == NULL) return 0;
 
+    return p->pos;
 }
 
 /// \brief get target element with index x
@@ -44,7 +71,13 @@ int howMany(const POSTK *const p) {
 /// \param x index of target element
 /// \return tartget element with index x
 int getelem(const POSTK *const p, int x) {
+    // empty check
+    if (p == NULL || p->elems == NULL || p->pos <= 0) return 0;
 
+    // limit check
+    if (x >= p->pos) return p->elems[p->pos-1];
+
+    return p->elems[x];
 }
 
 /// \brief push a new element into stack
@@ -52,7 +85,12 @@ int getelem(const POSTK *const p, int x) {
 /// \param e new element to push
 /// \return stack pointer point to p
 POSTK *const push(POSTK *const p, int e) {
+    // empty pointer check, full stack check
+    if (p == NULL || p->elems == NULL || p->pos >= p->max) return p;
 
+    p->elems[(p->pos)++] = e;
+
+    return p;
 }
 
 /// \brief pop a element from stack
@@ -60,7 +98,12 @@ POSTK *const push(POSTK *const p, int e) {
 /// \param e hold value of element poped
 /// \return stack pointer point to p
 POSTK *const pop(POSTK *const p, int &e) {
+    // empty check
+    if (p == NULL || p->elems == NULL || p->pos <= 0) return p;
 
+    e = p->elems[--(p->pos)];
+
+    return p;
 }
 
 /// \brief assign stack p with stack s
@@ -68,20 +111,34 @@ POSTK *const pop(POSTK *const p, int &e) {
 /// \param s source stack pointer
 /// \return stack pointer point to p
 POSTK *const assign(POSTK *const p, const POSTK &s) {
+    // empty check
+    if (p == NULL) return NULL;
 
+    p->elems = s.elems;
+    p->max   = s.max;
+    p->pos   = s.pos;
+
+    return p;
 }
 
 /// \brief print all elements in stack
 /// \param p stack pointer
 /// \return void
 void print(const POSTK *const p) {
+    // empty check
+    if (p == NULL || p->elems == NULL) return;
 
+    for (int i = 0; i < p->pos; i++) {
+        printf("\t%d", p->elems[i]);
+    }
+    printf("\n");
 }
 
 /// \brief destroy stack
 /// \param p stack pointer
 /// \return void
 void destroyPOSTK(POSTK *const p) {
-
+    free(p->elems);
+    free(p);
 }
 

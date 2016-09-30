@@ -13,11 +13,11 @@
 /// \brief process-oriented stack
 ///
 /// implement process-oriented stack
-struct POSTK {
+typedef struct POSTK {
     int *elems;     ///< store elements
     int max;        ///< capacity of stack
     int pos;        ///< number of elements in stack: when stack is empty, pos = 0
-};
+} POSTK;
 
 /// \brief initiate stack
 /// \param p stack pointer
