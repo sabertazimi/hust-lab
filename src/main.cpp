@@ -19,8 +19,21 @@
 using namespace std;
 
 int main(int argc, char **argv) {
+
+#ifdef DEBUG
+    postk_spec();
+    cout<<"Test: postk_spec passed!\n";
+    oostk_spec();
+    cout<<"Test: oostk_spec passed!\n";
+    stack_spec();
+    cout<<"Test: stack_spec passed!\n";
+    que2s_spec();
+    cout<<"Test: que2s_spec passed!\n";
+    queis_spec();
+    cout<<"Test: queis_spec passed!\n";
+#endif
+
     return 0;
 }
-
 
 
