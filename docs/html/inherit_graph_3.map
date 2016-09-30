@@ -1,4 +1,4 @@
-<map id="类继承关系图" name="类继承关系图">
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
 <area shape="rect" id="node1" href="$classSTACK.html" title="STACK" alt="" coords="5,5,72,32"/>
 <area shape="rect" id="node2" href="$classQUEIS.html" title="QUEIS" alt="" coords="120,5,184,32"/>
 </map>

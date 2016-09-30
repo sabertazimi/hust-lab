@@ -6,7 +6,7 @@ Hust cpp lab
 
 ```sh
 $ sudo apt install gcc-multilib g++-multilib
-$ sudo apt install doxygen graphviz
+$ sudo apt install doxygen graphviz texlive-base
 ```
 
 ## Documentation
