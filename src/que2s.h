@@ -10,6 +10,9 @@
 #ifndef QUE2S_H
 #define QUE2S_H
 
+/// \brief queue consist of 2 stack
+///
+/// implement queue with 2 stack composite
 class QUE2S {
     STACK s1;
     STACK s2;

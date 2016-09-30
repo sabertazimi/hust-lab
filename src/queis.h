@@ -10,6 +10,9 @@
 #ifndef QUEIS_H
 #define QUEIS_H
 
+/// \brief queue inherits from stack
+///
+/// implement queue by inheriting
 class QUEIS: public STACK {
     STACK s;
 public:

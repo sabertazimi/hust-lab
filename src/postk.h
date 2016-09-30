@@ -10,6 +10,9 @@
 #ifndef POSTK_H
 #define POSTK_H
 
+/// \brief process-oriented stack
+///
+/// implement process-oriented stack
 struct POSTK {
     int *elems;     ///< store elements
     int max;        ///< capacity of stack
