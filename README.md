@@ -38,16 +38,12 @@ $ doxygen
 
 ```sh
 ├── bin
-│   └── stack
+│   └── cpp_lab
 ├── docs
 │   └── html
 ├── Doxyfile
 ├── LICENSE
 ├── Makefile
-├── materials
-│   └── labs.doc
-├── obj
-│   └── main.o
 ├── README.md
 ├── src
 │   ├── include
@@ -56,12 +52,24 @@ $ doxygen
 │   │   ├── que2s.h
 │   │   ├── queis.h
 │   │   └── stack.h
-│   └── main.cpp
+│   ├── main.cpp
+│   ├── oostk.cpp
+│   ├── postk.cpp
+│   ├── que2s.cpp
+│   ├── queis.cpp
+│   ├── stack.cpp
+│   └── test
+│       ├── oostk_spec.cpp
+│       ├── postk_spec.cpp
+│       ├── que2s_spec.cpp
+│       ├── queis_spec.cpp
+│       ├── spec.h
+│       └── stack_spec.cpp
 └── tools
     ├── doxygen-theme
     └── line_counter
 
-11 directories, 197 files
+12 directories, 232 files
 ```
 
 ## License
@@ -73,5 +81,4 @@ MIT License Copyright (c) 2016 [sabertazimi](https://github.com/sabertazimi)
 -   [![Email](https://img.shields.io/badge/mailto-sabertazimi-brightgreen.svg?style=flat-square)](mailto:sabertazimi@gmail.com)
 -   [![GitHub](https://img.shields.io/badge/contact-github-000000.svg?style=flat-square)](https://github.com/sabertazimi)
 -   [![Twitter](https://img.shields.io/badge/contact-twitter-blue.svg?style=flat-square)](https://twitter.com/sabertazimi)
-
 

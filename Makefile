@@ -7,7 +7,7 @@
 SOURCES = $(shell find . -path ./test -prune -o -name "*.cpp" -print)
 OBJECTS = $(patsubst %.cpp, %.o, $(SOURCES))
 C_OBJ = $(patsubst %.o, $(OBJ_DIR)/%.o, $(notdir $(OBJECTS)))
-PROG=stack
+PROG=cpp_lab
 
 # macro for tools
 CC = g++
