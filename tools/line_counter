@@ -1,0 +1,9 @@
+#! /bin/sh
+#
+# line_counter
+# Copyright (C) 2016 sabertazimi <sabertazimi@gmail.com>
+#
+# Distributed under terms of the MIT license.
+#
+
+echo "Line: " && find -name "*.[cpp|h]" | xargs cat | grep -v -e ^$ | wc -l

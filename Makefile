@@ -4,9 +4,9 @@
 # Report BUGs to <sabertazimi@gmail.com>
 #
 
-C_SOURCES = $(shell find . -path ./test -prune -o -name "*.cpp" -print)
-C_OBJECTS = $(patsubst %.cpp, %.o, $(C_SOURCES))
-C_OBJ = $(patsubst %.o, $(OBJ_DIR)/%.o, $(notdir $(C_OBJECTS)))
+SOURCES = $(shell find . -path ./test -prune -o -name "*.cpp" -print)
+OBJECTS = $(patsubst %.cpp, %.o, $(SOURCES))
+C_OBJ = $(patsubst %.o, $(OBJ_DIR)/%.o, $(notdir $(OBJECTS)))
 PROG=stack
 
 # macro for tools
@@ -19,7 +19,7 @@ BROWSER = google-chrome
 # DOCS = doxygen
 
 # macro for flags
-C_FLAGS = -c -Wall -g
+FLAGS = -c -Wall -g $(addprefix -I, $(INCLUDE))
 
 # path macro
 BIN_DIR = ./bin
@@ -27,14 +27,14 @@ OBJ_DIR = ./obj
 DOCS_DIR = ./docs
 
 # include macro
-# INCLUDE += include/ 			\
+INCLUDE += src/include/
 
-all: $(C_OBJECTS) link
+all: $(OBJECTS) link
 
 .cpp.o:
 	@echo Compiling C Source Files $< ...
 	$(MKDIR) $(OBJ_DIR)
-	$(CC) $(C_FLAGS) $< -o $@
+	$(CC) $(FLAGS) $< -o $@
 	$(MV) $@ $(OBJ_DIR)/$(notdir $@)
 
 link:
@@ -61,10 +61,16 @@ debug:
 
 .PHONY:show
 show:
-	@echo 'C_SOURCES = $(C_SOURCES)'
-	@echo 'C_OBJECTS = $(C_OBJECTS)'
-	@echo 'C_OBJ     = $(C_OBJ)'
-	@echo 'PROG      = $(PROG)'
+	@echo 'SOURCES    = $(SOURCES)'
+	@echo 'OBJECTS    = $(OBJECTS)'
+	@echo 'C_OBJ        = $(C_OBJ)'
+	@echo 'PROG         = $(PROG)'
+	@echo 'FLAGS      = $(FLAGS)'
+
+
+.PHONY:count
+count:
+	./tools/line_counter
 
 # vim:ft=make
 #

@@ -31,14 +31,12 @@ public:
     STACK(const STACK &s);
 
     /// \brief get capacity of stack
-    /// \param void
     /// \return capacity of stack
     virtual int size(void) const;
 
     /// \brief [type casting] get number of elements in stack
-    /// \param void
     /// \return number of elements in stack
-    virtual operator int(void) const; // type casting
+    virtual operator int(void) const;
 
     /// \brief [operator overload] get target element with index x
     /// \param x index of target element
@@ -55,18 +53,16 @@ public:
     /// \return stack reference of p
     virtual STACK& operator>>(int &e);
 
-    /// \brief [operator overload] assign stack of p with stack of s
+    /// \brief [operator overload] assign stack p with stack s
     /// \param s source stack reference
     /// \return stack reference of p
     virtual STACK& operator=(const STACK &s);
 
     /// \brief print all elements in stack
-    /// \param void
     /// \return void
     virtual void print(void) const;
 
     /// \brief destroy stack
-    /// \param void
     /// \return void
     virtual ~STACK(void);
 };

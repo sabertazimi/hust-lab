@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['size',['size',['../postk_8h.html#adeefb25cecd4f0f14ce696ea9682a92f',1,'postk.h']]]
+  ['que2s',['QUE2S',['../classQUE2S.html#a1c32e8ef08e7c8ea6249a6318dcae8c0',1,'QUE2S::QUE2S(int m)'],['../classQUE2S.html#aa4bdcad6821d11425491e60118fe85f1',1,'QUE2S::QUE2S(const QUE2S &amp;q)']]],
+  ['queis',['QUEIS',['../classQUEIS.html#a8eb66c1ff47e0f0aca03c563ac6e6dce',1,'QUEIS::QUEIS(int m)'],['../classQUEIS.html#ad9d0fe5e4b37f19883c5463173fd8ce6',1,'QUEIS::QUEIS(const QUEIS &amp;q)']]]
 ];

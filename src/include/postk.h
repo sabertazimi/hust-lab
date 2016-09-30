@@ -59,7 +59,7 @@ POSTK *const push(POSTK *const p, int e);
 /// \return stack pointer point to p
 POSTK *const pop(POSTK *const p, int &e);
 
-/// \brief assign stack of p with stack of s
+/// \brief assign stack p with stack s
 /// \param p destination stack pointer
 /// \param s source stack pointer
 /// \return stack pointer point to p

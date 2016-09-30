@@ -31,12 +31,10 @@ public:
     OOSTK(const OOSTK &s);
 
     /// \brief get capacity of stack
-    /// \param void
     /// \return capacity of stack
     int size(void) const;
 
     /// \brief get number of elements in stack
-    /// \param void
     /// \return number of elements in stack
     int howMany(void) const;
 
@@ -55,19 +53,17 @@ public:
     /// \return stack reference of p
     OOSTK &pop(int &e);
 
-    /// \brief assign stack of p with stack of s
+    /// \brief assign stack p with stack s
     /// \param s source stack reference
     /// \return stack reference of p
     OOSTK &assign(const OOSTK &s);
 
     /// \brief print all elements in stack
-    /// \param void
     /// \return void
     void print(void) const;
 
     /// \brief destroy stack
-    /// \param void
-    /// \return void
+    // \return void
     ~OOSTK(void);
 };
 

@@ -108,55 +108,385 @@ $(document).ready(function(){initNavTree('classSTACK.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classSTACK-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">STACK Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>object-oriented stack with overloaded operator and virtual function members  
+ <a href="classSTACK.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="stack_8h_source.html">stack.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a05bc9d50ad557a3674c526a89e86e448"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a05bc9d50ad557a3674c526a89e86e448"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>STACK</b> (int m)</td></tr>
+<tr class="memitem:a05bc9d50ad557a3674c526a89e86e448"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSTACK.html#a05bc9d50ad557a3674c526a89e86e448">STACK</a> (int m)</td></tr>
+<tr class="memdesc:a05bc9d50ad557a3674c526a89e86e448"><td class="mdescLeft">&#160;</td><td class="mdescRight">stack instructor  <a href="#a05bc9d50ad557a3674c526a89e86e448">More...</a><br /></td></tr>
 <tr class="separator:a05bc9d50ad557a3674c526a89e86e448"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3378f08d7a0a6eda56e19cec7259e188"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3378f08d7a0a6eda56e19cec7259e188"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>STACK</b> (const <a class="el" href="classSTACK.html">STACK</a> &amp;s)</td></tr>
+<tr class="memitem:a3378f08d7a0a6eda56e19cec7259e188"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSTACK.html#a3378f08d7a0a6eda56e19cec7259e188">STACK</a> (const <a class="el" href="classSTACK.html">STACK</a> &amp;s)</td></tr>
+<tr class="memdesc:a3378f08d7a0a6eda56e19cec7259e188"><td class="mdescLeft">&#160;</td><td class="mdescRight">deep copy stack instructor  <a href="#a3378f08d7a0a6eda56e19cec7259e188">More...</a><br /></td></tr>
 <tr class="separator:a3378f08d7a0a6eda56e19cec7259e188"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c64a2e35765b1120870e5bd768a6094"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2c64a2e35765b1120870e5bd768a6094"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>size</b> (void) const </td></tr>
+<tr class="memitem:a2c64a2e35765b1120870e5bd768a6094"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSTACK.html#a2c64a2e35765b1120870e5bd768a6094">size</a> (void) const </td></tr>
+<tr class="memdesc:a2c64a2e35765b1120870e5bd768a6094"><td class="mdescLeft">&#160;</td><td class="mdescRight">get capacity of stack  <a href="#a2c64a2e35765b1120870e5bd768a6094">More...</a><br /></td></tr>
 <tr class="separator:a2c64a2e35765b1120870e5bd768a6094"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefb6f31671a86cedb35642f718999655"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aefb6f31671a86cedb35642f718999655"></a>
-virtual&#160;</td><td class="memItemRight" valign="bottom"><b>operator int</b> (void) const </td></tr>
+<tr class="memitem:aefb6f31671a86cedb35642f718999655"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSTACK.html#aefb6f31671a86cedb35642f718999655">operator int</a> (void) const </td></tr>
+<tr class="memdesc:aefb6f31671a86cedb35642f718999655"><td class="mdescLeft">&#160;</td><td class="mdescRight">[type casting] get number of elements in stack  <a href="#aefb6f31671a86cedb35642f718999655">More...</a><br /></td></tr>
 <tr class="separator:aefb6f31671a86cedb35642f718999655"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af623ee48118d6b41b13e37d8d90d76ac"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af623ee48118d6b41b13e37d8d90d76ac"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (int x) const </td></tr>
+<tr class="memitem:af623ee48118d6b41b13e37d8d90d76ac"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSTACK.html#af623ee48118d6b41b13e37d8d90d76ac">operator[]</a> (int x) const </td></tr>
+<tr class="memdesc:af623ee48118d6b41b13e37d8d90d76ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">[operator overload] get target element with index x  <a href="#af623ee48118d6b41b13e37d8d90d76ac">More...</a><br /></td></tr>
 <tr class="separator:af623ee48118d6b41b13e37d8d90d76ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae0163e70963b3dc5b585ebddfa145542"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae0163e70963b3dc5b585ebddfa145542"></a>
-virtual <a class="el" href="classSTACK.html">STACK</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;&lt;</b> (int e)</td></tr>
+<tr class="memitem:ae0163e70963b3dc5b585ebddfa145542"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classSTACK.html">STACK</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSTACK.html#ae0163e70963b3dc5b585ebddfa145542">operator&lt;&lt;</a> (int e)</td></tr>
+<tr class="memdesc:ae0163e70963b3dc5b585ebddfa145542"><td class="mdescLeft">&#160;</td><td class="mdescRight">[operator overload] push a new element into stack  <a href="#ae0163e70963b3dc5b585ebddfa145542">More...</a><br /></td></tr>
 <tr class="separator:ae0163e70963b3dc5b585ebddfa145542"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8581b5dd2195110a1baa0bc39b222db7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8581b5dd2195110a1baa0bc39b222db7"></a>
-virtual <a class="el" href="classSTACK.html">STACK</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator&gt;&gt;</b> (int &amp;e)</td></tr>
+<tr class="memitem:a8581b5dd2195110a1baa0bc39b222db7"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classSTACK.html">STACK</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSTACK.html#a8581b5dd2195110a1baa0bc39b222db7">operator&gt;&gt;</a> (int &amp;e)</td></tr>
+<tr class="memdesc:a8581b5dd2195110a1baa0bc39b222db7"><td class="mdescLeft">&#160;</td><td class="mdescRight">[operator overload] pop a element from stack  <a href="#a8581b5dd2195110a1baa0bc39b222db7">More...</a><br /></td></tr>
 <tr class="separator:a8581b5dd2195110a1baa0bc39b222db7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af05d024de2a827a1812b2860bc86b65a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af05d024de2a827a1812b2860bc86b65a"></a>
-virtual <a class="el" href="classSTACK.html">STACK</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classSTACK.html">STACK</a> &amp;s)</td></tr>
+<tr class="memitem:af05d024de2a827a1812b2860bc86b65a"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classSTACK.html">STACK</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSTACK.html#af05d024de2a827a1812b2860bc86b65a">operator=</a> (const <a class="el" href="classSTACK.html">STACK</a> &amp;s)</td></tr>
+<tr class="memdesc:af05d024de2a827a1812b2860bc86b65a"><td class="mdescLeft">&#160;</td><td class="mdescRight">[operator overload] assign stack p with stack s  <a href="#af05d024de2a827a1812b2860bc86b65a">More...</a><br /></td></tr>
 <tr class="separator:af05d024de2a827a1812b2860bc86b65a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7fbad0471b86e1572c19c91c11389e5f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7fbad0471b86e1572c19c91c11389e5f"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>print</b> (void) const </td></tr>
+<tr class="memitem:a7fbad0471b86e1572c19c91c11389e5f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSTACK.html#a7fbad0471b86e1572c19c91c11389e5f">print</a> (void) const </td></tr>
+<tr class="memdesc:a7fbad0471b86e1572c19c91c11389e5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">print all elements in stack  <a href="#a7fbad0471b86e1572c19c91c11389e5f">More...</a><br /></td></tr>
 <tr class="separator:a7fbad0471b86e1572c19c91c11389e5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c1c9338ec9f1e6038751745d86435e6"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSTACK.html#a0c1c9338ec9f1e6038751745d86435e6">~STACK</a> (void)</td></tr>
+<tr class="memdesc:a0c1c9338ec9f1e6038751745d86435e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">destroy stack  <a href="#a0c1c9338ec9f1e6038751745d86435e6">More...</a><br /></td></tr>
+<tr class="separator:a0c1c9338ec9f1e6038751745d86435e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ae01ffe20776b9a220cc33a14f15f01df"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae01ffe20776b9a220cc33a14f15f01df"></a>
+int *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSTACK.html#ae01ffe20776b9a220cc33a14f15f01df">elems</a></td></tr>
+<tr class="memdesc:ae01ffe20776b9a220cc33a14f15f01df"><td class="mdescLeft">&#160;</td><td class="mdescRight">store elements <br /></td></tr>
+<tr class="separator:ae01ffe20776b9a220cc33a14f15f01df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a487f72f497720a87dd1cb3f74dff6523"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a487f72f497720a87dd1cb3f74dff6523"></a>
+const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSTACK.html#a487f72f497720a87dd1cb3f74dff6523">max</a></td></tr>
+<tr class="memdesc:a487f72f497720a87dd1cb3f74dff6523"><td class="mdescLeft">&#160;</td><td class="mdescRight">capacity of stack <br /></td></tr>
+<tr class="separator:a487f72f497720a87dd1cb3f74dff6523"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34713f9f94a01dcc0642d0ea0870a335"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a34713f9f94a01dcc0642d0ea0870a335"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSTACK.html#a34713f9f94a01dcc0642d0ea0870a335">pos</a></td></tr>
+<tr class="memdesc:a34713f9f94a01dcc0642d0ea0870a335"><td class="mdescLeft">&#160;</td><td class="mdescRight">number of elements in stack: when stack is empty, pos = 0 <br /></td></tr>
+<tr class="separator:a34713f9f94a01dcc0642d0ea0870a335"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p>Definition at line <a class="el" href="stack_8h_source.html#l00013">13</a> of file <a class="el" href="stack_8h_source.html">stack.h</a>.</p>
+<div class="textblock"><p>object-oriented stack with overloaded operator and virtual function members </p>
+<p>implement stack with awesome feature: overloaded operator and virtual function </p>
+
+<p>Definition at line <a class="el" href="stack_8h_source.html#l00016">16</a> of file <a class="el" href="stack_8h_source.html">stack.h</a>.</p>
 </div><div class="dynheader">
 Inheritance diagram for STACK:</div>
 <div class="dyncontent">
 <div class="center"><img src="classSTACK__inherit__graph.png" border="0" usemap="#STACK_inherit__map" alt="Inheritance graph"/></div>
 <map name="STACK_inherit__map" id="STACK_inherit__map">
-<area shape="rect" id="node2" href="classQUEIS.html" title="QUEIS" alt="" coords="7,80,71,107"/>
+<area shape="rect" id="node2" href="classQUEIS.html" title="queue inherits from stack " alt="" coords="7,80,71,107"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a05bc9d50ad557a3674c526a89e86e448"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">STACK::STACK </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>m</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>stack instructor </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">m</td><td>stack capacity </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a3378f08d7a0a6eda56e19cec7259e188"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">STACK::STACK </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classSTACK.html">STACK</a> &amp;&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>deep copy stack instructor </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>source stack reference </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a0c1c9338ec9f1e6038751745d86435e6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual STACK::~STACK </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>destroy stack </p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="aefb6f31671a86cedb35642f718999655"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual STACK::operator int </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>[type casting] get number of elements in stack </p>
+<dl class="section return"><dt>Returns</dt><dd>number of elements in stack </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classQUEIS.html#a0cd5f9b0a81ad316af771078ea723873">QUEIS</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae0163e70963b3dc5b585ebddfa145542"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classSTACK.html">STACK</a>&amp; STACK::operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>e</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>[operator overload] push a new element into stack </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">e</td><td>new element to push </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>stack reference of p </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classQUEIS.html#a6f9891ed65fb0e1127c31d1d9f2e85ee">QUEIS</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af05d024de2a827a1812b2860bc86b65a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classSTACK.html">STACK</a>&amp; STACK::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classSTACK.html">STACK</a> &amp;&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>[operator overload] assign stack p with stack s </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td>source stack reference </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>stack reference of p </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8581b5dd2195110a1baa0bc39b222db7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classSTACK.html">STACK</a>&amp; STACK::operator&gt;&gt; </td>
+          <td>(</td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>e</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>[operator overload] pop a element from stack </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">e</td><td>hold value of element poped </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>stack reference of p </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classQUEIS.html#acbf52122b69ca035a107cca9f4b73ab2">QUEIS</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af623ee48118d6b41b13e37d8d90d76ac"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int STACK::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>[operator overload] get target element with index x </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>index of target element </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>tartget element with index x </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classQUEIS.html#a209efc3823703001c238c74d877e1c2f">QUEIS</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7fbad0471b86e1572c19c91c11389e5f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void STACK::print </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>print all elements in stack </p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classQUEIS.html#a447f31b50d9bea91fc5fc7c7aaffd68a">QUEIS</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2c64a2e35765b1120870e5bd768a6094"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int STACK::size </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>get capacity of stack </p>
+<dl class="section return"><dt>Returns</dt><dd>capacity of stack </dd></dl>
+
+<p>Reimplemented in <a class="el" href="classQUEIS.html#a58bea2b935feb39438cce531555e8ed0">QUEIS</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>src/<a class="el" href="stack_8h_source.html">stack.h</a></li>
+<li>src/include/<a class="el" href="stack_8h_source.html">stack.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

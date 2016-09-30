@@ -7,5 +7,9 @@ var classQUE2S =
     [ "operator<<", "classQUE2S.html#a49358209d2bcc7f85e74b6323c49e983", null ],
     [ "operator=", "classQUE2S.html#abd2b18e0cc36cccf4110f129e9e4f8ed", null ],
     [ "operator>>", "classQUE2S.html#a8a7bc53ccf3e2cdd5416caff5feb5d22", null ],
-    [ "print", "classQUE2S.html#ae1fa70c73674f87610db5f7c29dc671e", null ]
+    [ "operator[]", "classQUE2S.html#aba1c78ff47088d5f3dd6c392b095dc96", null ],
+    [ "print", "classQUE2S.html#ae1fa70c73674f87610db5f7c29dc671e", null ],
+    [ "size", "classQUE2S.html#afe217f149462fddb65ac1189e6218b64", null ],
+    [ "s1", "classQUE2S.html#a63dd85107c18a3d6d3c0bc3e17c223b9", null ],
+    [ "s2", "classQUE2S.html#a13ae8f1f1ea8467412febe4b48506671", null ]
 ];

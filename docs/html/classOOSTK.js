@@ -9,5 +9,8 @@ var classOOSTK =
     [ "pop", "classOOSTK.html#aa0f59937c3dd01d09da5975fe7618f96", null ],
     [ "print", "classOOSTK.html#a343813b38df610cb507884df82715415", null ],
     [ "push", "classOOSTK.html#a352fdeb1209f0de9512c827cd0611117", null ],
-    [ "size", "classOOSTK.html#a1c669595dd6c02f12f73c6682e7ca068", null ]
+    [ "size", "classOOSTK.html#a1c669595dd6c02f12f73c6682e7ca068", null ],
+    [ "elems", "classOOSTK.html#a3814ba20aab92b72f85518982347528f", null ],
+    [ "max", "classOOSTK.html#af40eb03c169fd7e98ac22113f090d712", null ],
+    [ "pos", "classOOSTK.html#ab74eaa49d63f0ca5339a5545cc999a9c", null ]
 ];
