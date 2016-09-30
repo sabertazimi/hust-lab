@@ -1,16 +1,25 @@
-/*
- * main.cpp
- * Copyright (C) 2016 sabertazimi <sabertazimi@avalon>
+/*!
+ * \file main.cpp
+ * \brief program entry(for debug only)
  *
- * Distributed under terms of the MIT license.
+ * \author sabertazimi, <sabertazimi@gmail.com>
+ * \version 1.0
+ * \date 2016-09-30
  */
 
 #include <iostream>
 
+#define DEBUG
+// #undef DEBUG
+
+#ifdef DEBUG
+#include "test/spec.h"
+#endif
+
 using namespace std;
 
 int main(int argc, char **argv) {
-    cout<<"Hello World!\n";
+    return 0;
 }
 
 

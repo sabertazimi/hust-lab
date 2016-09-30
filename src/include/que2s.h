@@ -10,13 +10,15 @@
 #ifndef QUE2S_H
 #define QUE2S_H
 
+#include "stack.h"  // add include/ path to g++ flags
+
 /// \brief queue consist of 2 queue
 ///
 /// implement queue with 2 queue composite
 class QUE2S {
     // TODO: add more details on s1, s2
-    queue s1;   ///< stack one
-    queue s2;   ///< stack two
+    STACK s1;   ///< stack one
+    STACK s2;   ///< stack two
 
 public:
 

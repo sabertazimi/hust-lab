@@ -10,6 +10,8 @@
 #ifndef QUEIS_H
 #define QUEIS_H
 
+#include "stack.h"  // add include/ path to g++ flags
+
 /// \brief queue inherits from stack
 ///
 /// implement queue by inheriting
