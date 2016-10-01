@@ -73,11 +73,8 @@ int howMany(const POSTK *const p) {
 /// \param x index of target element
 /// \return tartget element with index x
 int getelem(const POSTK *const p, int x) {
-    // empty check
-    if (p == NULL || p->elems == NULL || p->pos <= 0) return 0;
-
-    // limit check
-    if (x >= p->pos) return p->elems[p->pos-1];
+    // empty/out of range check
+    if (p == NULL || p->elems == NULL || p->pos <= 0 || x >= p->pos) return 0;
 
     return p->elems[x];
 }
@@ -101,10 +98,12 @@ POSTK *const push(POSTK *const p, int e) {
 /// \return stack pointer point to p
 POSTK *const pop(POSTK *const p, int &e) {
     // empty check
-    if (p == NULL || p->elems == NULL || p->pos <= 0) return p;
+    if (p == NULL || p->elems == NULL || p->pos <= 0) {
+        e = 0;
+        return p;
+    }
 
     e = p->elems[--(p->pos)];
-
     return p;
 }
 
@@ -145,6 +144,7 @@ void destroyPOSTK(POSTK *const p) {
 
     if (p->elems != NULL) {
         free(p->elems);
+        p->elems = NULL;
     }
 
     free(p);
