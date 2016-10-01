@@ -81,21 +81,21 @@ int postk_spec(void) {
     ASSERT("getelem", getelem(p, -1) == 0, "p[-1] is out of range");
     ASSERT("getelem", getelem(p, 1) == 0, "p[1] is out of range");
 
-    ASSERT("push", push(p, 1) && getelem(p, 0) == 1, "push 1 into p");
+    ASSERT("push", push(p, 1) == p && getelem(p, 0) == 1, "push 1 into p");
     ASSERT("howMany", howMany(p) == 1, "p contains 1 element");
-    ASSERT("push", push(p, 2) && getelem(p, 1) == 2, "push 2 into p");
+    ASSERT("push", push(p, 2) == p && getelem(p, 1) == 2, "push 2 into p");
     ASSERT("howMany", howMany(p) == 2, "p contains 2 elements");
-    ASSERT("push", push(p, 3) && getelem(p, 2) == 3, "push 3 into p");
+    ASSERT("push", push(p, 3) == p && getelem(p, 2) == 3, "push 3 into p");
     ASSERT("howMany", howMany(p) == 3, "p contains 3 elements");
-    ASSERT("push", push(p, 4) && getelem(p, 3) == 0, "push 4 failed owing to p is full");
+    ASSERT("push", push(p, 4) == p && getelem(p, 3) == 0, "push 4 failed owing to p is full");
 
-    ASSERT("pop", pop(p, elem) && elem == 3, "pop top element 3 from p");
+    ASSERT("pop", pop(p, elem) == p && elem == 3, "pop top element 3 from p");
     ASSERT("howMany", howMany(p) == 2, "p contains 2 elements");
-    ASSERT("pop", pop(p, elem) && elem == 2, "pop top element 2 from p");
+    ASSERT("pop", pop(p, elem) == p && elem == 2, "pop top element 2 from p");
     ASSERT("howMany", howMany(p) == 1, "p contains 1 element");
-    ASSERT("pop", pop(p, elem) && elem == 1, "pop top element 1 from p");
+    ASSERT("pop", pop(p, elem) == p && elem == 1, "pop top element 1 from p");
     ASSERT("howMany", howMany(p) == 0, "p contains 0 element");
-    ASSERT("pop", pop(p, elem) && elem == 0, "pop top element failed owing to p is empty");
+    ASSERT("pop", pop(p, elem) == p && elem == 0, "pop top element failed owing to p is empty");
 
     ASSERT("assign", assign(p, s) == p && p->elems == s.elems && size(p) == size(&s) && howMany(p) == howMany(&s), "assign(p, s) makes p holds the same stack with s(a copy stack)");
 
