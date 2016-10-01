@@ -105,6 +105,7 @@ $(document).ready(function(){initNavTree('spec_8h.html','');});
 
 <div class="header">
   <div class="summary">
+<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">spec.h File Reference</div>  </div>
@@ -113,9 +114,23 @@ $(document).ready(function(){initNavTree('spec_8h.html','');});
 
 <p>header files for program testing  
 <a href="#details">More...</a></p>
-
+<div class="textblock"><code>#include &lt;iostream&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for spec.h:</div>
+<div class="dyncontent">
+<div class="center"><img src="spec_8h__incl.png" border="0" usemap="#src_2test_2spec_8h" alt=""/></div>
+<map name="src_2test_2spec_8h" id="src_2test_2spec_8h">
+</map>
+</div>
+</div>
 <p><a href="spec_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a73c58538fae83b6b60a15b25f5d4e1cf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="spec_8h.html#a73c58538fae83b6b60a15b25f5d4e1cf">ASSERT</a>(func,  cond,  info)</td></tr>
+<tr class="memdesc:a73c58538fae83b6b60a15b25f5d4e1cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">ASSERTion macro.  <a href="#a73c58538fae83b6b60a15b25f5d4e1cf">More...</a><br /></td></tr>
+<tr class="separator:a73c58538fae83b6b60a15b25f5d4e1cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:acf8b707b05df879b3668116a9fb4cfc8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="spec_8h.html#acf8b707b05df879b3668116a9fb4cfc8">postk_spec</a> (void)</td></tr>
@@ -141,7 +156,53 @@ Functions</h2></td></tr>
 <dl class="section date"><dt>Date</dt><dd>2016-09-30 </dd></dl>
 
 <p>Definition in file <a class="el" href="spec_8h_source.html">spec.h</a>.</p>
-</div><h2 class="groupheader">Function Documentation</h2>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="a73c58538fae83b6b60a15b25f5d4e1cf"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ASSERT</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">func, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">cond, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">info&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                                        \</div><div class="line">        if (!(cond)) {                                                          \</div><div class="line">            cerr&lt;&lt;<span class="stringliteral">&quot;[failed] - function &lt;&quot;</span>&lt;&lt;(func)&lt;&lt;<span class="stringliteral">&quot;&gt; test: &quot;</span>&lt;&lt;(info);          \</div><div class="line">            cerr&lt;&lt;<span class="stringliteral">&quot; in file &lt;&quot;</span>&lt;&lt;(__FILE__)&lt;&lt;<span class="stringliteral">&quot;&gt;, line &lt;&quot;</span>&lt;&lt;(__LINE__)&lt;&lt;<span class="stringliteral">&quot;&gt; !\n&quot;</span>;   \</div><div class="line">            return 0;                                                           \</div><div class="line">        } <span class="keywordflow">else</span> {                                                                \</div><div class="line">            cout&lt;&lt;<span class="stringliteral">&quot;[passed] - function &lt;&quot;</span>&lt;&lt;(func)&lt;&lt;<span class="stringliteral">&quot;&gt; test.\n&quot;</span>;                 \</div><div class="line">        }                                                                       \</div><div class="line">    } <span class="keywordflow">while</span> (0)</div></div><!-- fragment -->
+<p>ASSERTion macro. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">func</td><td>name string of target function to test </td></tr>
+    <tr><td class="paramname">cond</td><td>assertion true condition </td></tr>
+    <tr><td class="paramname">info</td><td>information string to print when assertion failed </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 stands for assertion passed, 0 stands for assertion failed </dd></dl>
+
+<p>Definition at line <a class="el" href="spec_8h_source.html#l00022">22</a> of file <a class="el" href="spec_8h_source.html">spec.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a380c6e085dc2a7da841b4ae6db048835"></a>
 <div class="memitem">
 <div class="memproto">
