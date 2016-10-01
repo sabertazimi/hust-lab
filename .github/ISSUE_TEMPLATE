@@ -1,0 +1,27 @@
+## Description
+
+
+
+## Analysis
+
+
+
+## Bad code
+
+*   <path/to/src.cpp>
+
+```cpp
+/// \comments
+
+/// code
+```
+
+## Solution
+
+*   <path/to/src.cpp>
+
+```cpp
+/// \comments
+
+/// code
+```
