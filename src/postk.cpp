@@ -7,9 +7,11 @@
  * \date 2016-09-30
  */
 
-#include <stdlib.h>
-#include <stdio.h>
+#include <iostream>
+#include <cstdlib>
 #include "postk.h"  // add include/ path to g++ flags
+
+using namespace std;
 
 /// \brief initiate stack
 /// \param p stack pointer
@@ -129,9 +131,9 @@ void print(const POSTK *const p) {
     if (p == NULL || p->elems == NULL) return;
 
     for (int i = 0; i < p->pos; i++) {
-        printf("\t%d", p->elems[i]);
+        cout<<"\t"<<p->elems[i];
     }
-    printf("\n");
+    cout<<"\n";
 }
 
 /// \brief destroy stack

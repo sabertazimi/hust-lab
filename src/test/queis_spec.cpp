@@ -8,12 +8,8 @@
  */
 
 #include <iostream>
-#include <cassert>
 #include "spec.h"
 #include "queis.h"  // added include/ path into g++ flag
-
-// open assertion
-#undef NDEBUG
 
 using namespace std;
 

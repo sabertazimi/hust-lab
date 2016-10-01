@@ -21,16 +21,37 @@ using namespace std;
 int main(int argc, char **argv) {
 
 #ifdef DEBUG
-    postk_spec();
-    cout<<"Test: postk_spec passed!\n";
-    oostk_spec();
-    cout<<"Test: oostk_spec passed!\n";
-    stack_spec();
-    cout<<"Test: stack_spec passed!\n";
-    que2s_spec();
-    cout<<"Test: que2s_spec passed!\n";
-    queis_spec();
-    cout<<"Test: queis_spec passed!\n";
+
+    if (postk_spec()) {
+        cout<<"[passed] - postk_spec test.\n";
+    } else {
+        cerr<<"[failed] - postk_spec test!\n";
+    }
+
+    if (oostk_spec()) {
+        cout<<"[passed] - oostk_spec test.\n";
+    } else {
+        cerr<<"[failed] - oostk_spec test!\n";
+    }
+
+    if (stack_spec()) {
+        cout<<"[passed] - stack_spec test.\n";
+    } else {
+        cerr<<"[failed] - stack_spec test!\n";
+    }
+
+    if (que2s_spec()) {
+        cout<<"[passed] - que2s_spec test.\n";
+    } else {
+        cerr<<"[failed] - que2s_spec test!\n";
+    }
+
+    if (queis_spec()) {
+        cout<<"[passed] - queis_spec test.\n";
+    } else {
+        cerr<<"[failed] - queis_spec test!\n";
+    }
+
 #endif
 
     return 0;
