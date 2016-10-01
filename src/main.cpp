@@ -22,6 +22,9 @@ int main(int argc, char **argv) {
 
 #ifdef DEBUG
 
+    cout<<"Date: "<<(__DATE__)<<"\n";
+    cout<<"Time: "<<(__TIME__)<<"\n";
+
     if (postk_spec()) {
         cout<<"[passed] - postk_spec test.\n";
     } else {
