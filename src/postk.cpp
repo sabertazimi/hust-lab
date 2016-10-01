@@ -140,7 +140,13 @@ void print(const POSTK *const p) {
 /// \param p stack pointer
 /// \return void
 void destroyPOSTK(POSTK *const p) {
-    free(p->elems);
+    // empty check
+    if (p == NULL) return;
+
+    if (p->elems != NULL) {
+        free(p->elems);
+    }
+
     free(p);
 }
 
