@@ -83,8 +83,6 @@ void OOSTK::print(void) const {
     cout<<"\n";
 }
 
-    /// \brief destroy stack
-    // \return void
 OOSTK::~OOSTK(void) {
     // destruction flag avoiding destruct repeatly
     delete this->elems;
