@@ -6,6 +6,7 @@ var classQUE2S =
     [ "operator int", "classQUE2S.html#a8baa6f65d5fccfa902ae6f8b66ed84f5", null ],
     [ "operator<<", "classQUE2S.html#a49358209d2bcc7f85e74b6323c49e983", null ],
     [ "operator=", "classQUE2S.html#abd2b18e0cc36cccf4110f129e9e4f8ed", null ],
+    [ "operator==", "classQUE2S.html#a945a3f222b8c2138b150422b3c03a59b", null ],
     [ "operator>>", "classQUE2S.html#a8a7bc53ccf3e2cdd5416caff5feb5d22", null ],
     [ "operator[]", "classQUE2S.html#aba1c78ff47088d5f3dd6c392b095dc96", null ],
     [ "print", "classQUE2S.html#ae1fa70c73674f87610db5f7c29dc671e", null ],

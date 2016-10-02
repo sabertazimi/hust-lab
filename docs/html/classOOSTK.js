@@ -6,6 +6,7 @@ var classOOSTK =
     [ "assign", "classOOSTK.html#a396ca951fcee87832141d86213cc661c", null ],
     [ "getelem", "classOOSTK.html#a6585038cd5bd92fd24e6ef735778195d", null ],
     [ "howMany", "classOOSTK.html#a836995fe52d01742772caf5352d8b442", null ],
+    [ "operator==", "classOOSTK.html#a02c3cba36158af9c40b4d2724f57537a", null ],
     [ "pop", "classOOSTK.html#aa0f59937c3dd01d09da5975fe7618f96", null ],
     [ "print", "classOOSTK.html#a343813b38df610cb507884df82715415", null ],
     [ "push", "classOOSTK.html#a352fdeb1209f0de9512c827cd0611117", null ],

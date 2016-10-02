@@ -6,6 +6,7 @@ var classQUEIS =
     [ "operator int", "classQUEIS.html#a0cd5f9b0a81ad316af771078ea723873", null ],
     [ "operator<<", "classQUEIS.html#a6f9891ed65fb0e1127c31d1d9f2e85ee", null ],
     [ "operator=", "classQUEIS.html#a9b44dfb89316be0158361b642b7d558a", null ],
+    [ "operator==", "classQUEIS.html#a38bfed238a3d8ee1e73ba11cd79f90f7", null ],
     [ "operator>>", "classQUEIS.html#acbf52122b69ca035a107cca9f4b73ab2", null ],
     [ "operator[]", "classQUEIS.html#a209efc3823703001c238c74d877e1c2f", null ],
     [ "print", "classQUEIS.html#a447f31b50d9bea91fc5fc7c7aaffd68a", null ],
