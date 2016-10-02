@@ -27,11 +27,7 @@ int oostk_spec(void) {
     ASSERT("initOOSTK", 1, "initiate s with 5 capacity return a 5 long stack");
     ASSERT("size", s.size() == 5, "size of s is 5");
     ASSERT("howMany", s.howMany() == 0, "s is a empty stack");
-    s.push(5);
-    s.push(4);
-    s.push(3);
-    s.push(2);
-    s.push(1);
+    s.push(5).push(4).push(3).push(2).push(1);
     ASSERT("howMany", s.howMany() == 5, "s holds 5 elements");
 
     p = new OOSTK(s);
@@ -56,6 +52,10 @@ int oostk_spec(void) {
 
     p->print();
     ASSERT("print", p != NULL, "print p");
+
+    OOSTK t(3);
+    t.push(1).push(2).push(3);
+    ASSERT("equal", *p == t, "p has the same stack with t");
 
     ASSERT("pop", p->pop(elem) == (*p) && elem == 3, "pop top element 3 from p");
     ASSERT("howMany", p->howMany() == 2, "p contains 2 elements");
