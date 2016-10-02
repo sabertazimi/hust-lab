@@ -58,6 +58,11 @@ public:
     /// \return stack reference of p
     virtual STACK& operator=(const STACK &s);
 
+    /// \brief [operator overload] equal function
+    /// \param s source stack reference
+    /// \return ture or false
+    virtual int operator==(const STACK &s) const;
+
     /// \brief print all elements in stack
     /// \return void
     virtual void print(void) const;

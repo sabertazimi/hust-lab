@@ -30,6 +30,7 @@ extern void destroyPOSTK(POSTK *const p);
 /* functions to test */
 
 int postk_spec(void) {
+    cout<<"\n\n<<< ********** POSTK Testing ********** >>>\n";
 
     POSTK *p = NULL;
 
@@ -104,6 +105,8 @@ int postk_spec(void) {
 
     destroyPOSTK(p);
     ASSERT("destroyPOSTK", 1, "destroy p");
+
+    cout<<"<<< ********** POSTK Testing ********** >>>\n";
 
     return 1;
 }

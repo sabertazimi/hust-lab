@@ -14,6 +14,10 @@
 using namespace std;
 
 int que2s_spec(void) {
+    cout<<"\n\n<<< ********** QUE2S Testing ********** >>>\n";
+
+    cout<<"<<< ********** QUE2S Testing ********** >>>\n";
+
     return 1;
 }
 

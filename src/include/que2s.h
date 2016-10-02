@@ -60,6 +60,11 @@ public:
     /// \return queue reference of p
     QUE2S& operator=(const QUE2S &q);
 
+    /// \brief [operator overload] equal function
+    /// \param q source queue reference
+    /// \return ture or false
+    int operator==(const QUE2S &q) const;
+
     /// \brief print all elements in queue
     /// \return void
     void print(void) const;

@@ -14,6 +14,10 @@
 using namespace std;
 
 int queis_spec(void) {
+    cout<<"\n\n<<< ********** QUEIS Testing ********** >>>\n";
+
+    cout<<"<<< ********** QUEIS Testing ********** >>>\n";
+
     return 1;
 }
 

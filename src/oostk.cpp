@@ -12,69 +12,82 @@
 
 using namespace std;
 
-    /// \brief stack instructor
-    /// \param m stack capacity
-    /// \return void
-OOSTK::OOSTK(int m): elems(new int[m]), max(m) {
-
+OOSTK::OOSTK(int m): elems(m > 0 ? new int[m] : new int[0]), max(m > 0 ? m : 0) {
+    this->pos = 0;
 }
 
-    /// \brief deep copy stack instructor
-    /// \param s source stack reference
-    /// \return void
 OOSTK::OOSTK(const OOSTK &s): elems(s.elems), max(s.max) {
-
+    this->pos = 0;
 }
 
-    /// \brief get capacity of stack
-    /// \return capacity of stack
 int OOSTK::size(void) const {
     return this->max;
 }
 
-    /// \brief get number of elements in stack
-    /// \return number of elements in stack
 int OOSTK::howMany(void) const {
     return this->pos;
 }
 
-    /// \brief get target element with index x
-    /// \param x index of target element
-    /// \return tartget element with index x
 int OOSTK::getelem(int x) const {
+    // out of range check
+    if (x < 0 || x >= this->howMany()) return 0;
+
     return this->elems[x];
 }
 
-    /// \brief push a new element into stack
-    /// \param e new element to push
-    /// \return stack reference of p
 OOSTK &OOSTK::push(int e) {
+    // full check
+    if (this->howMany() >= this->size()) return *this;
+
+    this->elems[this->pos++] = e;
     return *this;
 }
 
-    /// \brief pop a element from stack
-    /// \param e hold value of element poped
-    /// \return stack reference of p
 OOSTK &OOSTK::pop(int &e) {
+    // empty check
+    if (this->howMany() <= 0) {
+        e = 0;
+        return *this;
+    }
+
+    e = this->elems[--this->pos];
     return *this;
 }
 
-    /// \brief assign stack p with stack s
-    /// \param s source stack reference
-    /// \return stack reference of p
 OOSTK &OOSTK::assign(const OOSTK &s) {
+    this->pos = 0;
+
+    for (int i = 0; i < s.howMany() && i < this->size(); i++) {
+        this->push(s.getelem(i));
+    }
+
     return *this;
 }
 
-    /// \brief print all elements in stack
-    /// \return void
-void OOSTK::print(void) const {
+int OOSTK::operator==(const OOSTK &s) const {
+    // size or number of elements should equal
+    if (this->size() != s.size() || this->howMany() != s.howMany()) return 0;
 
+    // every single element should equal
+    for (int i = 0; i < this->howMany(); i++) {
+        if (this->getelem(i) != s.getelem(i)) return 0;
+    }
+
+    return 1;
+}
+
+void OOSTK::print(void) const {
+    for (int i = 0; i < this->howMany(); i++) {
+        cout<<"\t"<<this->getelem(i);
+    }
+    cout<<"\n";
 }
 
     /// \brief destroy stack
     // \return void
 OOSTK::~OOSTK(void) {
-
+    // destruction flag avoiding destruct repeatly
+    delete this->elems;
+    this->pos = 0;
 }
 

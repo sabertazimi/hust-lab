@@ -59,6 +59,11 @@ public:
     /// \return queue reference of p
     virtual QUEIS& operator=(const QUEIS &q);
 
+    /// \brief [operator overload] equal function
+    /// \param q source queue reference
+    /// \return ture or false
+    virtual int operator==(const QUEIS &q) const;
+
     /// \brief print all elements in queue
     /// \return void
     virtual void print(void) const;

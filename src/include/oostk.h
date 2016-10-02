@@ -58,6 +58,11 @@ public:
     /// \return stack reference of p
     OOSTK &assign(const OOSTK &s);
 
+    /// \brief [operator overload] equal function
+    /// \param s source stack reference
+    /// \return ture or false
+    int operator==(const OOSTK &s) const;
+
     /// \brief print all elements in stack
     /// \return void
     void print(void) const;
