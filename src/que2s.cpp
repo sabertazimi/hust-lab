@@ -83,7 +83,15 @@ QUE2S& QUE2S::operator=(const QUE2S &q) {
     /// \param q source queue reference
     /// \return ture or false
 int QUE2S::operator==(const QUE2S &q) const {
-    return this->s1 == q.s1 && this->s2 == q.s2;
+    // size or pos should equal
+    if (this->size() != q.size() || (int)(*this) != (int)q) return 0;
+
+    // every single element should equal
+    for (int i = 0; i < (int)(*this); i++) {
+        if ((*this)[i] != q[i]) return 0;
+    }
+
+    return 1;
 }
 
     /// \brief print all elements in queue
@@ -99,6 +107,4 @@ void QUE2S::print(void) const {
     /// \brief destroy queue
     /// \return void
     QUE2S::~QUE2S(void) {
-        delete &s1;
-        delete &s2;
     }

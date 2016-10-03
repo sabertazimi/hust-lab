@@ -54,12 +54,13 @@ int que2s_spec(void) {
     ASSERT("print", p != NULL, "print p");
 
     QUE2S t(3);
-    t<<1<<2<<3;
+    t<<1<<1<<2;
+    t>>elem<<3;
     ASSERT("equal", *p == t, "p has the same queue with t");
 
-    ASSERT("dequeue", (*p)>>elem == (*p) && elem == 3, "dequeue top element 3 from p");
+    ASSERT("dequeue", (*p)>>elem == (*p) && elem == 1 && (*p)[0] == 2, "dequeue top element 1 from p");
     ASSERT("type casting", (int)(*p) == 2, "p contains 2 elements");
-    ASSERT("dequeue", (*p)>>elem>>elem == (*p) && elem == 1, "dequeue top elements 1 and 2 from p");
+    ASSERT("dequeue", (*p)>>elem>>elem == (*p) && elem == 3, "dequeue top elements 2 and 3 from p");
     ASSERT("type casting", (int)(*p) == 0, "p contains 0 element");
     ASSERT("dequeue", (*p)>>elem == (*p) && elem == 0, "dequeue top element failed owing to p is empty");
 
