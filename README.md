@@ -44,6 +44,20 @@ $ doxygen
 ├── Doxyfile
 ├── LICENSE
 ├── Makefile
+├── materials
+│   └── labs.doc
+├── obj
+│   ├── main.o
+│   ├── oostk.o
+│   ├── oostk_spec.o
+│   ├── postk.o
+│   ├── postk_spec.o
+│   ├── que2s.o
+│   ├── que2s_spec.o
+│   ├── queis.o
+│   ├── queis_spec.o
+│   ├── stack.o
+│   └── stack_spec.o
 ├── README.md
 ├── src
 │   ├── include
@@ -67,9 +81,14 @@ $ doxygen
 │       └── stack_spec.cpp
 └── tools
     ├── doxygen-theme
+    │   ├── customdoxygen.css
+    │   ├── DoxygenLayout.xml
+    │   └── metro
+    │       ├── customdoxygen.css
+    │       └── DoxygenLayout.xml
     └── line_counter
 
-12 directories, 232 files
+12 directories, 237 files
 ```
 
 ## License
