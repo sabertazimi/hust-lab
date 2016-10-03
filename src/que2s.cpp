@@ -7,7 +7,10 @@
  * \date 2016-09-30
  */
 
+#include <iostream>
 #include "que2s.h"  // add include/ path to g++ flags
+
+using namespace std;
 
 QUE2S::QUE2S(int m): s1(m), s2(m) {
 }
@@ -42,6 +45,9 @@ int QUE2S::operator[](int x) const {
     /// \param e new element to enqueue
     /// \return queue reference of p
 QUE2S& QUE2S::operator<<(int e) {
+    // full check
+    if (this->size() <= (int)(*this)) return *this;
+
     s1<<e;
     return *this;
 }
@@ -68,6 +74,8 @@ QUE2S& QUE2S::operator>>(int &e) {
     /// \param q source queue reference
     /// \return queue reference of p
 QUE2S& QUE2S::operator=(const QUE2S &q) {
+    this->s1 = q.s1;
+    this->s2 = q.s2;
     return *this;
 }
 
@@ -75,17 +83,22 @@ QUE2S& QUE2S::operator=(const QUE2S &q) {
     /// \param q source queue reference
     /// \return ture or false
 int QUE2S::operator==(const QUE2S &q) const {
-    return 1;
+    return this->s1 == q.s1 && this->s2 == q.s2;
 }
 
     /// \brief print all elements in queue
     /// \return void
 void QUE2S::print(void) const {
+    for (int i = 0; i < (int)s2; i++) {
+        cout<<"\t"<<s2[(int)s2-i-1];
+    }
 
+    this->s1.print();
 }
 
     /// \brief destroy queue
     /// \return void
     QUE2S::~QUE2S(void) {
-
+        delete &s1;
+        delete &s2;
     }
