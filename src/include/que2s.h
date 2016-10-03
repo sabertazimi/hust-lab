@@ -16,9 +16,8 @@
 ///
 /// implement queue with 2 queue composite
 class QUE2S {
-    // TODO: add more details on s1, s2
-    STACK s1;   ///< stack one
-    STACK s2;   ///< stack two
+    STACK s1;   ///< stack one: push new element into this stack
+    STACK s2;   ///< stack two: store elements in reverse order, and pop elements from this stack
 
 public:
 

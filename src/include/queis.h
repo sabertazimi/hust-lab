@@ -16,8 +16,7 @@
 ///
 /// implement queue by inheriting
 class QUEIS: public STACK {
-    // TODO: add more details on s
-    STACK s;    ///< inner stack
+    STACK s;   ///< stack member: store elements in reverse order, and pop elements from this stack
 
 public:
 
