@@ -65,15 +65,6 @@ QUEIS& QUEIS::operator=(const QUEIS &q) {
 }
 
 int QUEIS::operator==(const QUEIS &q) const {
-    /* // size or pos should equal */
-    /* if (this->size() != q.size() || (int)(*this) != (int)q) return 0; */
-
-    /* // every single element should equal */
-    /* for (int i = 0; i < (int)(*this); i++) { */
-    /*     if ((*this)[i] != q[i]) return 0; */
-    /* } */
-
-    /* return 1; */
     return STACK::operator==(q);
 }
 

@@ -76,7 +76,7 @@ int QUE2S::operator==(const QUE2S &q) const {
 }
 
 void QUE2S::print(void) const {
-    for (int i = 0; i < (int)s2; i++) {
+    for (int i = 0; i < (int)(*this); i++) {
         cout<<"\t"<<(*this)[i];
     }
     cout<<"\n";
