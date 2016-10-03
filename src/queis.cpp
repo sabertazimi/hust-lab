@@ -7,7 +7,10 @@
  * \date 2016-09-30
  */
 
+#include <iostream>
 #include "queis.h"  // add include/ path to g++ flags
+
+using namespace std;
 
 QUEIS::QUEIS(int m): STACK(m), s(m) {
 }
@@ -15,62 +18,69 @@ QUEIS::QUEIS(int m): STACK(m), s(m) {
 QUEIS::QUEIS(const QUEIS &q): STACK(q), s(q.s) {
 }
 
-    /// \brief get capacity of queue
-    /// \return capacity of queue
 int QUEIS::size(void) const {
     return STACK::size();
 }
 
-    /// \brief [type casting] get number of elements in queue
-    /// \return number of elements in queue
 QUEIS::operator int(void) const {
-    return 0;
+    return STACK::operator int() + (int)s;
 }
 
-    /// \brief [operator overload] get target element with index x
-    /// \param x index of target element
-    /// \return tartget element with index x
 int QUEIS::operator[](int x) const {
-    return 0;
+    if (x < (int)s) {
+        return s[int(s)-x-1];
+    } else {
+        return STACK::operator[](x-(int)s);
+    }
 }
 
-    /// \brief [operator overload] enqueue method
-    /// \param e new element to enqueue
-    /// \return queue reference of p
 QUEIS& QUEIS::operator<<(int e) {
+    // full check
+    if (this->size() <= (int)(*this)) return *this;
+
+    STACK::operator<<(e);
     return *this;
 }
 
-    /// \brief [operator overload] dequeue method
-    /// \param e hold value of element dequeued
-    /// \return queue reference of p
 QUEIS& QUEIS::operator>>(int &e) {
+    if ((int)s <= 0) {
+        int elem;
+
+        // push all elements of super stack into s
+        while (STACK::operator int()) {
+            STACK::operator>>(elem);
+            s<<elem;
+        }
+    }
+
+    s>>e;
     return *this;
 }
 
-    /// \brief [operator overload] assign queue p with queue q
-    /// \param q source queue reference
-    /// \return queue reference of p
 QUEIS& QUEIS::operator=(const QUEIS &q) {
+    STACK::operator=(q);
+    this->s = q.s;
+
     return *this;
 }
 
-    /// \brief [operator overload] equal function
-    /// \param q source queue reference
-    /// \return ture or false
 int QUEIS::operator==(const QUEIS &q) const {
-    return 1;
+    /* // size or pos should equal */
+    /* if (this->size() != q.size() || (int)(*this) != (int)q) return 0; */
+
+    /* // every single element should equal */
+    /* for (int i = 0; i < (int)(*this); i++) { */
+    /*     if ((*this)[i] != q[i]) return 0; */
+    /* } */
+
+    /* return 1; */
+    return STACK::operator==(q);
 }
 
-    /// \brief print all elements in queue
-    /// \return void
 void QUEIS::print(void) const {
-
+    STACK::print();
 }
 
-    /// \brief destroy queue
-    /// \return void
 QUEIS::~QUEIS(void) {
-
 }
 

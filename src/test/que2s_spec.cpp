@@ -53,16 +53,17 @@ int que2s_spec(void) {
     p->print();
     ASSERT("print", p != NULL, "print p");
 
-    QUE2S t(3);
-    t<<1<<1<<2;
-    t>>elem<<3;
-    ASSERT("equal", *p == t, "p has the same queue with t");
-
     ASSERT("dequeue", (*p)>>elem == (*p) && elem == 1 && (*p)[0] == 2, "dequeue top element 1 from p");
     ASSERT("type casting", (int)(*p) == 2, "p contains 2 elements");
     ASSERT("dequeue", (*p)>>elem>>elem == (*p) && elem == 3, "dequeue top elements 2 and 3 from p");
     ASSERT("type casting", (int)(*p) == 0, "p contains 0 element");
     ASSERT("dequeue", (*p)>>elem == (*p) && elem == 0, "dequeue top element failed owing to p is empty");
+
+    (*p)<<1<<2<<3;
+    QUE2S t(3);
+    t<<1<<1<<2;
+    t>>elem<<3;
+    ASSERT("equal", *p == t, "p has the same queue with t");
 
     ASSERT("assign", ((*p) = q) == (*p) && (*p)[0] == 5 && (*p)[1] == 4 && (*p)[2] == 3 && (*p)[3] == 0,
             "(p = q) makes p holds the same queue with s(a copy queue capatiable to p)");
