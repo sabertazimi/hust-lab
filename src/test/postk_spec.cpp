@@ -98,7 +98,7 @@ int postk_spec(void) {
     ASSERT("howMany", howMany(p) == 0, "p contains 0 element");
     ASSERT("pop", pop(p, elem) == p && elem == 0, "pop top element failed owing to p is empty");
 
-    ASSERT("assign", assign(p, s) == p && p->elems == s.elems && size(p) == size(&s) && howMany(p) == howMany(&s), "assign(p, s) makes p holds the same stack with s(a copy stack)");
+    ASSERT("assign", assign(p, s) == p && getelem(p, 0) == 0 && getelem(p, 1) == 1 && getelem(p, 2) == 2 && getelem(p, 3) == 0, "assign(p, s) makes p holds the same stack with s(a copy stack)");
 
     print(p);
     ASSERT("print", p != NULL, "print p");

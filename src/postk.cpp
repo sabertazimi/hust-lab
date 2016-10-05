@@ -35,9 +35,13 @@ void initPOSTK(POSTK *const p, const POSTK &s) {
     // empty check
     if (p == NULL) return;
 
-    p->elems = s.elems;
     p->max   = s.max;
     p->pos   = s.pos;
+    p->elems = (int *)malloc(sizeof(int) * s.max);
+
+    for (int i = 0; i < s.pos; i++) {
+        p->elems[i] = getelem(&s, i);
+    }
 }
 
 int size(const POSTK *const p) {
@@ -85,9 +89,16 @@ POSTK *const assign(POSTK *const p, const POSTK &s) {
     // empty check
     if (p == NULL) return NULL;
 
-    p->elems = s.elems;
-    p->max   = s.max;
-    p->pos   = s.pos;
+    // free old elems
+    if (p->elems) free(p->elems);
+
+    // keep max old value
+    p->pos   = 0;
+    p->elems = (int *)malloc(sizeof(int) * s.max);
+
+    for (int i = 0; i < s.pos && i < p->max; i++) {
+        push(p,getelem(&s, i));
+    }
 
     return p;
 }
