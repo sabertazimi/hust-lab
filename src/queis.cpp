@@ -73,6 +73,6 @@ void QUEIS::print(void) const {
 }
 
 QUEIS::~QUEIS(void) {
-    this->s.~STACK();
+    // stack member will be destructed automatically when queue vanish
 }
 
