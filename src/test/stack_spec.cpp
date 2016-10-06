@@ -33,7 +33,7 @@ int stack_spec(void) {
     p = new STACK(s);
     ASSERT("initSTACK", 1, "initiate p with s return a 5 long stack");
     ASSERT("size", p->size() == 5, "size of p is 5");
-    ASSERT("type casting", (int)(*p) == 0, "p is a empty stack");
+    ASSERT("type casting", (int)(*p) == 5, "p contains 5 elements");
 
     p = new STACK(3);
     ASSERT("initSTACK", 1, "initiate p with 3 capacity return a 3 long stack");

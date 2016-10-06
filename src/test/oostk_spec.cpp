@@ -33,7 +33,7 @@ int oostk_spec(void) {
     p = new OOSTK(s);
     ASSERT("initOOSTK", 1, "initiate p with s return a 5 long stack");
     ASSERT("size", p->size() == 5, "size of p is 5");
-    ASSERT("howMany", p->howMany() == 0, "p is a empty stack");
+    ASSERT("howMany", p->howMany() == 5, "p contains 5 elements");
 
     p = new OOSTK(3);
     ASSERT("initOOSTK", 1, "initiate p with 3 capacity return a 3 long stack");

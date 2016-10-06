@@ -33,7 +33,7 @@ int queis_spec(void) {
     p = new QUEIS(q);
     ASSERT("initQUEIS", 1, "initiate p with s return a 5 long queue");
     ASSERT("size", p->size() == 5, "size of p is 5");
-    ASSERT("type casting", (int)(*p) == 0, "p is a empty queue");
+    ASSERT("type casting", (int)(*p) == 5, "p contains 5 elements");
 
     p = new QUEIS(3);
     ASSERT("initQUEIS", 1, "initiate p with 3 capacity return a 3 long queue");

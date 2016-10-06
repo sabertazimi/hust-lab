@@ -72,8 +72,11 @@ int postk_spec(void) {
 
     p = (POSTK *)malloc(sizeof(POSTK));
 
+    initPOSTK(p, s);
+    ASSERT("initPOSTK", p->elems != NULL && size(p) == 5 && howMany(p) == 3, "initPOSTK(p, s) set up a 5 long stack");
+
     initPOSTK(p, 3);
-    ASSERT("initPOSTK", p->elems != NULL, "initPOSTK(p, 3) set up a 3 long stack");
+    ASSERT("initPOSTK", p->elems != NULL && size(p) == 3 && howMany(p) == 0, "initPOSTK(p, 3) set up a 3 long stack");
 
     ASSERT("size", size(p) == 3, "size of p is 3");
     ASSERT("howMany", howMany(p) == 0, "p is a empty stack");
