@@ -73,5 +73,6 @@ void QUEIS::print(void) const {
 }
 
 QUEIS::~QUEIS(void) {
+    this->s.~STACK();
 }
 

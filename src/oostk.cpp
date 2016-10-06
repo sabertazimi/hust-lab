@@ -93,7 +93,7 @@ void OOSTK::print(void) const {
 
 OOSTK::~OOSTK(void) {
     // destruction flag avoiding destruct repeatly
-    delete this->elems;
+    delete [](this->elems);
     this->pos = 0;
 }
 

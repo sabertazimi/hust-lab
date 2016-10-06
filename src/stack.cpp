@@ -92,7 +92,7 @@ void STACK::print(void) const {
 }
 
 STACK::~STACK(void) {
-    delete this->elems;
+    delete [](this->elems);
     this->pos = 0;
 }
 

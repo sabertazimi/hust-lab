@@ -83,4 +83,6 @@ void QUE2S::print(void) const {
 }
 
 QUE2S::~QUE2S(void) {
+    this->s1.~STACK();
+    this->s2.~STACK();
 }

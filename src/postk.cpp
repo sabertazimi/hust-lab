@@ -109,6 +109,8 @@ void destroyPOSTK(POSTK *const p) {
         p->elems = NULL;
     }
 
+    p->max = 0;
+    p->pos = 0;
     free(p);
 }
 
