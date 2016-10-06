@@ -14,10 +14,18 @@ using namespace std;
 
 STACK::STACK(int m): elems(m > 0 ? new int[m] : new int[0]), max(m > 0 ? m : 0) {
     this->pos = 0;
+
+    for (int i = 0; i < this->size(); i++) {
+        this->elems[i] = 0;
+    }
 }
 
-STACK::STACK(const STACK &s): elems(s.elems), max(s.max) {
+STACK::STACK(const STACK &s): elems(s.max > 0 ? new int[s.max] : new int[0]), max(s.max > 0 ? s.max : 0) {
     this->pos = 0;
+
+    for (int i = 0; i < (int)s && i < this->size(); i++) {
+        (*this)<<s[i];
+    }
 }
 
 int STACK::size(void) const {
