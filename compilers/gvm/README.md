@@ -16,6 +16,58 @@ Go Virtual Machine - A toy Java virtual machine written in golang
 
 ## Go Basic Notes
 
+### CLI
+
+#### Build
+
+```sh
+# generate library
+$ go build path/to/libpack
+$ go install path/to/libpack
+
+# generate binary
+$ go install path/to/mainpack
+```
+
+#### Test
+
+```sh
+# path/to/pack/demo.go
+# path/to/pack/demo_test.go
+$ go test path/to/pack
+```
+
+#### Clean
+
+```sh
+$ go clean -i path/to/pack
+```
+
+#### Modules
+
+*   remote packages
+
+```sh
+$ go get github.com/golang/example/hello
+$ $GOPATH/bin/hello
+```
+
+### Packages
+
+#### package and import
+
+*   for path/to/pack:
+
+```go
+package pack
+```
+
+```go
+import (
+    "path/to/pack"
+)
+```
+
 ## TODO List
 
 *   [] Merge golang notes into sabertazimi/awesome-notes/language/go/goBasicNotes.md

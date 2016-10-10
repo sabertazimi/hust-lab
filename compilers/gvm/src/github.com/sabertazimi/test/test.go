@@ -7,8 +7,11 @@
 
 package main
 
-import "fmt"
+import (
+    "fmt"
+    "github.com/sabertazimi/stringutils"
+)
 
 func main() {
-	fmt.Printf("Hello, Golang!\n")
+	fmt.Printf(stringutils.Reverse("\n!oG, olleH"))
 }
