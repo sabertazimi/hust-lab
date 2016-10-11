@@ -12,6 +12,19 @@ import (
     "github.com/sabertazimi/stringutils"
 )
 
+func swap(x, y string) (string, string) {
+    return y, x
+}
+
+func swap_(x, y string) (x_, y_ string) {
+    x_, y_ = y, x
+    return
+}
+
 func main() {
-	fmt.Printf(stringutils.Reverse("\n!oG, olleH"))
+    a, b := swap("Hello", "Golang!")
+    a_, b_ := swap_("Hello", "Golang!")
+    fmt.Println(b, a)
+    fmt.Println(b_, a_)
+	fmt.Printf(stringutils.Reverse("\n!gnaloG olleH"))
 }
