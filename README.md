@@ -16,23 +16,38 @@ Hust cpp lab
 ## Pre-Installation
 
 ```sh
-$ sudo apt install gcc-multilib g++-multilib
-$ sudo apt install doxygen graphviz texlive-base
+# install GNU c collection and g++ compiler
+$ sudo apt install build-essentials gcc-multilib g++-multilib
+
+# install doxygen(documentation generator)
+$ sudo apt install doxygen graphviz
 ```
 
-## Testing
+## Run
 
 ```sh
+$ make clean
 $ make
 $ make run
 ```
 
-## Documentation
+## Debug
 
 ```sh
-$ doxygen -g
+$ make debug
+```
+
+## Documentation
+
+### Generation
+
+```sh
 $ doxygen
 ```
+
+### Online Documentation
+
+[Online Cpp Lab API Documentation by sabertazimi](http://sabertazimi.github.io/cpp-lab)
 
 ## Program List
 
@@ -44,8 +59,6 @@ $ doxygen
 ├── Doxyfile
 ├── LICENSE
 ├── Makefile
-├── materials
-│   └── labs.doc
 ├── obj
 │   ├── main.o
 │   ├── oostk.o
@@ -81,11 +94,6 @@ $ doxygen
 │       └── stack_spec.cpp
 └── tools
     ├── doxygen-theme
-    │   ├── customdoxygen.css
-    │   ├── DoxygenLayout.xml
-    │   └── metro
-    │       ├── customdoxygen.css
-    │       └── DoxygenLayout.xml
     └── line_counter
 
 12 directories, 237 files
