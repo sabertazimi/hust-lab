@@ -6,5 +6,5 @@
 # Distributed under terms of the MIT license.
 #
 
-echo "Header Files Line: " && find -name "*.h" | xargs cat | grep -v -e ^$ | wc -l
-echo "Source Files Line: " && find -name "*.cpp" | xargs cat | grep -v -e ^$ | wc -l
+echo "Header Files Line: " && find src/ -name "*.h" | xargs cat | grep -v -e ^$ | wc -l
+echo "Source Files Line: " && find src/ -name "*.cpp" | xargs cat | grep -v -e ^$ | wc -l
