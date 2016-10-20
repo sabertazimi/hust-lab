@@ -34,6 +34,7 @@ line: exp CR {
         yyclearin;
         yyerrok;
     }
+    | CR
     ;
 
 
