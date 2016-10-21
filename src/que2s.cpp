@@ -58,8 +58,8 @@ QUE2S& QUE2S::operator>>(int &e) {
 }
 
 QUE2S& QUE2S::operator=(const QUE2S &q) {
-    this->s1 = q.s1;
-    this->s2 = q.s2;
+    this->~QUE2S();
+    new (this) QUE2S(q);
     return *this;
 }
 

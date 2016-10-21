@@ -80,12 +80,12 @@ POSTK *const assign(POSTK *const p, const POSTK &s) {
     // empty check
     if (p == NULL) return NULL;
 
-    // keep max old value
-    p->pos   = 0;
-
-    for (int i = 0; i < howMany(&s) && i < size(p); i++) {
-        push(p, getelem(&s, i));
+    if (p->elems != NULL) {
+        free(p->elems);
+        p->elems = NULL;
     }
+
+    initPOSTK(p, s);
 
     return p;
 }

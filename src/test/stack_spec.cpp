@@ -63,8 +63,8 @@ int stack_spec(void) {
     ASSERT("type casting", (int)(*p) == 0, "p contains 0 element");
     ASSERT("pop", (*p)>>elem == (*p) && elem == 0, "pop top element failed owing to p is empty");
 
-    ASSERT("assign", ((*p) = s) == (*p) && (*p)[0] == 5 && (*p)[1] == 4 && (*p)[2] == 3 && (*p)[3] == 0,
-            "assign(p, s) makes p holds the same stack with s(a copy stack capatiable to p)");
+    ASSERT("assign", ((*p) = s) == (*p) && (*p)[0] == 5 && (*p)[1] == 4 && (*p)[2] == 3 && (*p) == s,
+            "assign(p, s) makes p holds the same stack with s");
 
     delete p;
     ASSERT("destroySTACK", 1, "destroy p");

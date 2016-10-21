@@ -63,12 +63,8 @@ OOSTK &OOSTK::pop(int &e) {
 }
 
 OOSTK &OOSTK::assign(const OOSTK &s) {
-    this->pos = 0;
-
-    for (int i = 0; i < s.howMany() && i < this->size(); i++) {
-        this->push(s.getelem(i));
-    }
-
+    this->~OOSTK();
+    new (this) OOSTK(s);
     return *this;
 }
 

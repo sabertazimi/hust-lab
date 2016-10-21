@@ -63,8 +63,8 @@ int oostk_spec(void) {
     ASSERT("howMany", p->howMany() == 0, "p contains 0 element");
     ASSERT("pop", p->pop(elem) == (*p) && elem == 0, "pop top element failed owing to p is empty");
 
-    ASSERT("assign", p->assign(s) == (*p) && p->getelem(0) == 5 && p->getelem(1) == 4 && p->getelem(2) == 3 && p->getelem(3) == 0,
-            "assign(p, s) makes p holds the same stack with s(a copy stack capatiable to p)");
+    ASSERT("assign", p->assign(s) == (*p) && p->getelem(0) == 5 && p->getelem(1) == 4 && p->getelem(2) == 3 && *p == s,
+            "assign(p, s) makes p holds the same stack with s");
 
     delete p;
     ASSERT("destroyOOSTK", 1, "destroy p");

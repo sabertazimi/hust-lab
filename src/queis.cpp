@@ -58,18 +58,28 @@ QUEIS& QUEIS::operator>>(int &e) {
 }
 
 QUEIS& QUEIS::operator=(const QUEIS &q) {
-    STACK::operator=(q);
-    this->s = q.s;
-
+    this->~QUEIS();
+    new (this) QUEIS(q);
     return *this;
 }
 
 int QUEIS::operator==(const QUEIS &q) const {
-    return STACK::operator==(q);
+    // size or pos should equal
+    if (this->size() != q.size() || (int)(*this) != (int)q) return 0;
+
+    // every single element should equal
+    for (int i = 0; i < (int)(*this); i++) {
+        if ((*this)[i] != q[i]) return 0;
+    }
+
+    return 1;
 }
 
 void QUEIS::print(void) const {
-    STACK::print();
+    for (int i = 0; i < (int)(*this); i++) {
+        cout<<"\t"<<(*this)[i];
+    }
+    cout<<"\n";
 }
 
 QUEIS::~QUEIS(void) {

@@ -65,8 +65,8 @@ int que2s_spec(void) {
     t>>elem<<3;
     ASSERT("equal", *p == t, "p has the same queue with t");
 
-    ASSERT("assign", ((*p) = q) == (*p) && (*p)[0] == 5 && (*p)[1] == 4 && (*p)[2] == 3 && (*p)[3] == 0,
-            "(p = q) makes p holds the same queue with s(a copy queue capatiable to p)");
+    ASSERT("assign", ((*p) = q) == (*p) && (*p)[0] == 5 && (*p)[1] == 4 && (*p)[2] == 3 && (*p) == q,
+            "(p = q) makes p holds the same queue with q");
 
     delete p;
     ASSERT("destroyQUE2S", 1, "destroy p");

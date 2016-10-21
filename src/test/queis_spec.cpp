@@ -60,13 +60,16 @@ int queis_spec(void) {
     ASSERT("dequeue", (*p)>>elem == (*p) && elem == 0, "dequeue top element failed owing to p is empty");
 
     (*p)<<1<<2<<3;
+    (*p).print();
     QUEIS t(3);
     t<<1<<1<<2;
+    t.print();
     t>>elem<<3;
+    t.print();
     ASSERT("equal", *p == t, "p has the same queue with t");
 
-    ASSERT("assign", ((*p) = q) == (*p) && (*p)[0] == 5 && (*p)[1] == 4 && (*p)[2] == 3 && (*p)[3] == 0,
-            "(p = q) makes p holds the same queue with s(a copy queue capatiable to p)");
+    ASSERT("assign", ((*p) = q) == (*p) && (*p)[0] == 5 && (*p)[1] == 4 && (*p)[2] == 3 && (*p) == q,
+            "(p = q) makes p holds the same queue with q");
 
     delete p;
     ASSERT("destroyQUEIS", 1, "destroy p");

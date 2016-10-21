@@ -63,12 +63,8 @@ STACK& STACK::operator>>(int &e) {
 }
 
 STACK& STACK::operator=(const STACK &s) {
-    this->pos = 0;
-
-    for (int i = 0; i < (int)s && i < this->size(); i++) {
-        (*this)<<(s[i]);
-    }
-
+    this->~STACK();
+    new (this) STACK(s);
     return *this;
 }
 
