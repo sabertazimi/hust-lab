@@ -41,6 +41,8 @@ link:
 	@echo Linking Binary File
 	$(MKDIR) $(BIN_DIR)
 	$(CC) $(C_OBJ) -o $(BIN_DIR)/$(PROG)
+	@echo
+	@echo Build Success!
 
 .PHONY:clean
 clean:
