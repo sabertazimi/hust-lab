@@ -54,8 +54,10 @@ $ doxygen
 ```sh
 ├── bin
 │   └── cpp_lab
+├── CS1409_U201414800.doc
 ├── docs
-│   └── html
+│   ├── html
+│   └── report.doc
 ├── Doxyfile
 ├── LICENSE
 ├── Makefile
@@ -94,9 +96,14 @@ $ doxygen
 │       └── stack_spec.cpp
 └── tools
     ├── doxygen-theme
+    │   ├── customdoxygen.css
+    │   ├── DoxygenLayout.xml
+    │   └── metro
+    │       ├── customdoxygen.css
+    │       └── DoxygenLayout.xml
     └── line_counter
 
-12 directories, 237 files
+11 directories, 238 files
 ```
 
 ## License
@@ -108,4 +115,5 @@ MIT License Copyright (c) 2016 [sabertazimi](https://github.com/sabertazimi)
 -   [![Email](https://img.shields.io/badge/mailto-sabertazimi-brightgreen.svg?style=flat-square)](mailto:sabertazimi@gmail.com)
 -   [![GitHub](https://img.shields.io/badge/contact-github-000000.svg?style=flat-square)](https://github.com/sabertazimi)
 -   [![Twitter](https://img.shields.io/badge/contact-twitter-blue.svg?style=flat-square)](https://twitter.com/sabertazimi)
+
 
