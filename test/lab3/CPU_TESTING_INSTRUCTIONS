@@ -1,0 +1,18 @@
+PART 2 TESTING INSTRUCTIONS
+
+I have added 3 tests to your tests folder: one for addition, one for multiplication, 
+and one for branches (including beqinc). You can run them in the same way you did 
+in part 1. For now, I have commented out the tests for your ALU and regfile, but if
+you want to test those as well, you can open up tests/sanity_test.py and uncomment
+the other tests at the bottom.
+
+For each test, you can find the MIPS code that is running (and possibly some helpful
+hints for analyzing the code) in the tests/assem folder. You can find the compiled 
+instructions in the tests/hex folder. And you can find the expected output in 
+tests/reference_output.
+
+All 3 of these tests will fail if you have not yet pipelined your circuit. 
+
+I have also provided "non-pipelined" versions of the addition and multiplication tests.
+If you would like to check your partial solution against these, you'll need to open 
+tests/sanity_test.py, go to the end, and uncomment the non-pipleined versions.
