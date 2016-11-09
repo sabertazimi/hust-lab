@@ -113,7 +113,7 @@ def run_tests(tests):
 
 tests = [
   ("ALU add (with overflow) test",TestCase(os.path.join(file_locations,'alu-add.circ'), os.path.join(file_locations,'reference_output/alu-add.out'))),
-  ("alu-mult test",TestCase(os.path.join(file_locations,'alu-mult.circ'), os.path.join(file_locations,'reference_output/alu-mult.out'))),
+  ("ALU-mult test",TestCase(os.path.join(file_locations,'alu-mult.circ'), os.path.join(file_locations,'reference_output/alu-mult.out'))),
 ]
 
 if __name__ == '__main__':
