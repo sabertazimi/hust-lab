@@ -1,20 +1,24 @@
-/*
- * main.c
- * Copyright (C) 2016 sabertazimi <sabertazimi@gmail.com>
+/*!
+ * \file main.c
+ * \brief entry file for pthread lab
  *
- * Distributed under terms of the MIT license.
+ * \author sabertazimi, <sabertazimi@gmail.com>
+ * \version 1.0
+ * \date 2016-11-11
+ * \license MIT
  */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
 #include <unistd.h>
+#include "utils/utils.h"
 
 void thread(void) {
     srand((unsigned)time(NULL));
 
     for (int i = 0; i < 3; i++) {
-        fprintf(stdout, "This is a pthread: %d\n", i);
+        LOG("This is a pthread: %d\n", i);
         sleep(rand() % 2);
     }
 }
@@ -27,7 +31,7 @@ int main(void) {
     while ((ret = pthread_create(&id, NULL, (void *)thread, NULL)) != 0);
 
     for (int i = 0; i < 3; i++) {
-        fprintf(stdout, "This is the main process: %d\n", i);
+        LOG("This is a main process: %d\n", i);
         sleep(1);
     }
 

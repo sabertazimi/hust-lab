@@ -22,7 +22,7 @@ OBJ_PATH=obj
 BIN_PATH=bin
 TEST_PATH=test
 TOOLS_PATH=tools
-INCLUDE_PATH=
+INCLUDE_PATH=$(SRC_PATH)
 
 # objects
 SRCS=$(shell find $(SRC_PATH) -name "*.c" -print)
