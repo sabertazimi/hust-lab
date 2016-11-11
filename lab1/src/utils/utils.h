@@ -11,10 +11,6 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#undef DEBUG
-#define DEBUG   ///< macro for enable/disable debug functions
-// #undef DEBUG
-
 typedef char *string;   ///< alias for char *
 
 /// \brief a simple log function

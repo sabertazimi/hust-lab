@@ -8,6 +8,10 @@
  * \license MIT
  */
 
+#undef DEBUG
+#define DEBUG   ///< macro for enable/disable debug functions
+// #undef DEBUG
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
