@@ -24,19 +24,20 @@ void thread(void) {
 
     for (int i = 0; i < 3; i++) {
         LOG("Pthread: %d\n", i);
-        sleep(rand() % 2);
+       sleep(rand() % 2);
     }
 
-    // create semaphore
-    semaphore_t sem = semnew(5);
-    LOG("Pthread: semid %d\n", sem->semid);
-    LOG("Pthread: semval %d\n", sem->semval);
-    sem->del(sem->self);
+
 }
 
 int main(void) {
     int ret;
     pthread_t id;
+
+    // create semaphore
+    semaphore_t sem = semnew(5);
+    LOG("Main: semid %d\n", sem->semid);
+    LOG("Main: semval %d\n", sem->semval);
 
     // error recovery loop
     while ((ret = pthread_create(&id, NULL, (void *)thread, NULL)) != 0);
@@ -46,18 +47,8 @@ int main(void) {
         sleep(1);
     }
 
-    // create semaphore
-    semaphore_t sem = semnew(5);
-    LOG("Main: semid %d\n", sem->semid);
-    LOG("Main: semval %d\n", sem->semval);
-    sem->del(sem->self);
-
-    sem = semnew(10);
-    LOG("Main: semid %d\n", sem->semid);
-    LOG("Main: semval %d\n", sem->semval);
-    sem->del(sem->self);
-
     pthread_join(id, NULL);
+    sem->del(sem);
 
     return 0;
 }

@@ -11,7 +11,7 @@
 #include <stdlib.h>
 #include "semaphore/semaphore.h"
 
-static int SEMKEY = 0;      /// for semget
+static int SEMKEY = 0;      /// for semget functions
 
 /// \brief P function
 /// \param self semaphore pointer
@@ -45,7 +45,6 @@ semaphore_t semnew(int semval) {
     sem->sembuf.sem_num = 0;            // set operation index to sem[0](all semaphores are with single demension)
     sem->sembuf.sem_flg = SEM_UNDO;     // automatically undone when the process terminates
 
-    sem->self = sem;                    // set up self pointer
     sem->P = semP;                      // set up P function pointer
     sem->V = semV;                      // set up V function pointer
     sem->del = semdel;                  // set up destructor pointer
@@ -54,10 +53,14 @@ semaphore_t semnew(int semval) {
 }
 
 static void semP(semaphore_t self) {
+    self->sembuf.sem_op = -1;
+    semop(self->semid, &(self->sembuf), 1);
     self->semval--;
 }
 
 static void semV(semaphore_t self) {
+    self->sembuf.sem_op = +1;
+    semop(self->semid, &(self->sembuf), 1);
     self->semval++;
 }
 
@@ -77,7 +80,3 @@ static void semdel(semaphore_t self) {
         free(self);
     }
 }
-
-
-
-

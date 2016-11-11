@@ -32,7 +32,6 @@ struct _semaphore_ {
     int semval;                     ///< initial value of semaphore
     union semun semun;              ///< struct for semctl function
     struct sembuf sembuf;           ///< struct from stand sem.h for semop function
-    semaphore_t self;               ///< pointer pointing to self memory(for OO pattern implementation)
     void (*P)(semaphore_t self);    ///< function pointer pointing to P function
     void (*V)(semaphore_t self);    ///< function pointer pointing to V function
     void (*del)(semaphore_t self);  ///< function pointer pointing to destructor
