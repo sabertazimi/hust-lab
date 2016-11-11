@@ -9,37 +9,73 @@
  */
 
 #include <stdlib.h>
-#include <time.h>
-#include "semaphore.h"
+#include "semaphore/semaphore.h"
 
-/* int semid;                     ///< id of semaphore */
-/* int semval;                    ///< initial value of semaphore */
-/* semun_t semun;                 ///< struct from stand sem.h for semctl function */
-/* sembuf_t sembuf;               ///< struct from stand sem.h for semop function */
-/* semaphore_t self;               ///< pointer pointing to self memory(for OO pattern implementation) */
-/* void (*P)(semaphore_t self);    ///< function pointer pointing to P function */
-/* void (*V)(semaphore_t self);    ///< function pointer pointing to V function */
-/* void (*del)(semaphore_t self);  ///< function pointer pointing to destructor */
+static int SEMKEY = 0;      /// for semget
+
+/// \brief P function
+/// \param self semaphore pointer
+/// \return void
+static void semP(semaphore_t self);
+
+/// \brief V function
+/// \param self semaphore pointer
+/// \return void
+static void semV(semaphore_t self);
+
+/// \brief destructor for semaphore
+/// \param self semaphore pointer
+/// \return void
+static void semdel(semaphore_t self);
 
 semaphore_t semnew(int semval) {
-    // initialize rand number generator
-    srand((unsigned)time(NULL));
+    // initialize a new semphore
+    semaphore_t sem = (semaphore_t)malloc(sizeof(*sem));
 
-    semaphore_t t sem = (semaphore_t)malloc(sizeof(*sem));
+    // create a semaphore IPC
+    // while loop for semget error recovery
+    while ((sem->semid = semget(SEMKEY++, 1, IPC_CREAT | 0666)) == -1) ;
 
-    return NULL;
+    // initialize value of semaphore
+    // while loop for semctl error recovery
+    sem->semval = semval;
+    sem->semun.val = semval;            // initial value of semaphore for semctl function
+    while (semctl(sem->semid, 0, SETVAL, sem->semun) < 0) ;
+
+    sem->sembuf.sem_num = 0;            // set operation index to sem[0](all semaphores are with single demension)
+    sem->sembuf.sem_flg = SEM_UNDO;     // automatically undone when the process terminates
+
+    sem->self = sem;                    // set up self pointer
+    sem->P = semP;                      // set up P function pointer
+    sem->V = semV;                      // set up V function pointer
+    sem->del = semdel;                  // set up destructor pointer
+
+    return sem;
 }
 
-void semP(semaphore_t self) {
-
+static void semP(semaphore_t self) {
+    self->semval--;
 }
 
-void semV(semaphore_t self) {
-
+static void semV(semaphore_t self) {
+    self->semval++;
 }
 
-void semdel(semaphore_t self) {
+static void semdel(semaphore_t self) {
+    // check to prevent multiple-destruction
+    if (self->P != NULL || self->V != NULL || self->del != NULL) {
+        // delete semaphore IPC
+        // while loop for semctl error recovery
+        while (semctl(self->semid, 0, IPC_RMID) < 0) ;
 
+        // set all pointer member to NULL
+        self->P = NULL;
+        self->V = NULL;
+        self->del = NULL;
+
+        // free heap
+        free(self);
+    }
 }
 
 

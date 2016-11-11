@@ -11,20 +11,27 @@
 #ifndef SEMAPHORE_H
 #define SEMAPHORE_H
 
+#include <sys/types.h>
+#include <sys/ipc.h>
 #include <sys/sem.h>
 
-typedef union semun *semun_t;
-typedef struct sembuf *sembuf_t;
 typedef struct _semaphore_ *semaphore_t;
+
+union semun {
+    int              val;    ///< value for SETVAL
+    struct semid_ds *buf;    ///< buffer for IPC_STAT, IPC_SET
+    unsigned short  *array;  ///< array for GETALL, SETALL
+    struct seminfo  *__buf;  ///< buffer for IPC_INFO (Linux-specific)
+};
 
 /// \brief an OO struct for encapsulating semget/semop/semctl functions
 ///
 /// implement semaphore with OO pattern
 struct _semaphore_ {
-    int semid;                     ///< id of semaphore
-    int semval;                    ///< initial value of semaphore
-    semun_t semun;                 ///< struct from stand sem.h for semctl function
-    sembuf_t sembuf;               ///< struct from stand sem.h for semop function
+    int semid;                      ///< id of semaphore
+    int semval;                     ///< initial value of semaphore
+    union semun semun;              ///< struct for semctl function
+    struct sembuf sembuf;           ///< struct from stand sem.h for semop function
     semaphore_t self;               ///< pointer pointing to self memory(for OO pattern implementation)
     void (*P)(semaphore_t self);    ///< function pointer pointing to P function
     void (*V)(semaphore_t self);    ///< function pointer pointing to V function
