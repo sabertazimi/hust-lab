@@ -19,20 +19,20 @@
 #include "utils/utils.h"
 #include "semaphore/semaphore.h"
 
+static int num_tickets = 20;
+
 void thread(void) {
     srand((unsigned)time(NULL));
 
     for (int i = 0; i < 3; i++) {
         LOG("Pthread: %d\n", i);
-       sleep(rand() % 2);
+        sleep(rand() % 2);
     }
-
-
 }
 
 int main(void) {
     int ret;
-    pthread_t id;
+    pthread_t pid;
 
     // create semaphore
     semaphore_t sem = semnew(5);
@@ -40,14 +40,17 @@ int main(void) {
     LOG("Main: semval %d\n", sem->semval);
 
     // error recovery loop
-    while ((ret = pthread_create(&id, NULL, (void *)thread, NULL)) != 0);
+    while ((ret = pthread_create(&pid, NULL, (void *)thread, NULL)) != 0);
 
     for (int i = 0; i < 3; i++) {
         LOG("Main: %d\n", i);
         sleep(1);
     }
 
-    pthread_join(id, NULL);
+    // wait for sub-thread finish
+    pthread_join(pid, NULL);
+
+    // remove semaphore
     sem->del(sem);
 
     return 0;

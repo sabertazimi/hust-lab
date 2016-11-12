@@ -54,13 +54,13 @@ semaphore_t semnew(int semval) {
 
 static void semP(semaphore_t self) {
     self->sembuf.sem_op = -1;
-    semop(self->semid, &(self->sembuf), 1);
+    while (semop(self->semid, &(self->sembuf), 1) < 0) ;    // while loop for error recovery
     self->semval--;
 }
 
 static void semV(semaphore_t self) {
     self->sembuf.sem_op = +1;
-    semop(self->semid, &(self->sembuf), 1);
+    while (semop(self->semid, &(self->sembuf), 1) < 0) ;    // while loop for error recovery
     self->semval++;
 }
 
