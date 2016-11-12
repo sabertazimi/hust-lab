@@ -30,7 +30,7 @@ void eval_thread(void *args) {
     srand((unsigned)time(NULL));
 
     while (1) {
-        sleep(rand() % 3);
+        sleep(rand() % 2);
 
         semp->P(semp);
 
@@ -53,7 +53,7 @@ void print_thread(void *args) {
     srand((unsigned)time(NULL));
 
     while (1) {
-        sleep(rand() % 3);
+        sleep(rand() % 2);
 
         seme->P(seme);
 
@@ -70,8 +70,6 @@ void print_thread(void *args) {
 int main(void) {
     int ret;                            ///< return value of pthread_create function
     pthread_t eval_pid, print_pid;      ///< thread id for every single window
-
-    srand((unsigned)time(NULL));
 
     // create semaphore
     // start eval_thread first
