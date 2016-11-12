@@ -18,4 +18,8 @@ $ ipcrm -m shmid
 
 # remove sem ipc
 $ ipcrm -s semid
+
+# remove all
+$ ipcrm --all=shm
+$ ipcrm --all=sem
 ```
