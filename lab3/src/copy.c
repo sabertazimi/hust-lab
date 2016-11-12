@@ -1,10 +1,10 @@
 /*!
- * \file main.c
- * \brief entry file for pthread lab
+ * \file copy.c
+ * \brief entry file for copy program
  *
  * \author sabertazimi, <sabertazimi@gmail.com>
  * \version 1.0
- * \date 2016-11-11
+ * \date 2016-11-12
  * \license MIT
  */
 
@@ -15,10 +15,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <sys/shm.h>
 #include "utils/utils.h"
 #include "semaphore/semaphore.h"
 
+const int sem_key = 233;    ///< key of shared memory to store semaphores
+const int bufs_key = 234;   ///< key of shared memory to S buffer
+const int buft_key = 235;   ///< key of shared memory to T buffer
+semaphore_t bufs_empty;     ///< initial value: 1
+semaphore_t bufs_full;      ///< initial value: 0
+semaphore_t buft_empty;     ///< initial value: 1
+semaphore_t buft_full;      ///< initial value: 0
+
 int main(void) {
+    int sem_sid;            ///< shm id of shared memory to store semaphores
     fprintf(stdout, "copy pid = %d\n", getpid());
     return 0;
 }
