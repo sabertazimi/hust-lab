@@ -8,6 +8,7 @@
  * \license MIT
  */
 
+#include <stdio.h>
 #include <stdlib.h>
 #include "semaphore/semaphore.h"
 
@@ -28,19 +29,24 @@ static void semV(semaphore_t self);
 /// \return void
 static void semdel(semaphore_t self);
 
-semaphore_t semnew(int semval) {
+semaphore_t semnew(key_t key,int semval) {
     // initialize a new semphore
     semaphore_t sem = (semaphore_t)malloc(sizeof(*sem));
 
     // create a semaphore IPC
     // while loop for semget error recovery
-    while ((sem->semid = semget(SEMKEY++, 1, IPC_CREAT | 0666)) == -1) ;
-
-    // initialize value of semaphore
-    // while loop for semctl error recovery
-    sem->semval = semval;
-    sem->semun.val = semval;            // initial value of semaphore for semctl function
-    while (semctl(sem->semid, 0, SETVAL, sem->semun) < 0) ;
+    if ((sem->semid = semget(key, 1, IPC_CREAT | 0666)) == -1) {
+        if ((sem->semid = semget(key, 1, 0)) == -1) {
+            perror("semget error\n");
+            return NULL;
+        }
+    } else {
+        // initialize value of semaphore
+        // while loop for semctl error recovery
+        sem->semval = semval;
+        sem->semun.val = semval;            // initial value of semaphore for semctl function
+        while (semctl(sem->semid, 0, SETVAL, sem->semun) < 0) ;
+    }
 
     sem->sembuf.sem_num = 0;            // set operation index to sem[0](all semaphores are with single demension)
     sem->sembuf.sem_flg = SEM_UNDO;     // automatically undone when the process terminates

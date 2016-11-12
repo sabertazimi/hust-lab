@@ -24,10 +24,10 @@
 const key_t sem_key = 233;    ///< key of shared memory to store semaphores
 const key_t bufs_key = 234;   ///< key of shared memory to S buffer
 const key_t buft_key = 235;   ///< key of shared memory to T buffer
-semaphore_t bufs_empty;     ///< initial value: 1
-semaphore_t bufs_full;      ///< initial value: 0
-semaphore_t buft_empty;     ///< initial value: 1
-semaphore_t buft_full;      ///< initial value: 0
+semaphore_t bufs_empty;     ///< initial value: 1, key: 0
+semaphore_t bufs_full;      ///< initial value: 0, key: 1
+semaphore_t buft_empty;     ///< initial value: 1, key: 2
+semaphore_t buft_full;      ///< initial value: 0, key: 3
 
 int main(void) {
     int status;             ///< wait status
@@ -44,15 +44,15 @@ int main(void) {
     char *buft_map;         ///< map address of shm to as T buffer
 
     // create semaphore
-    bufs_empty = semnew(1);
-    bufs_full  = semnew(0);
-    buft_empty = semnew(1);
-    buft_full  = semnew(0);
+    bufs_empty = semnew(0, 1);
+    bufs_full  = semnew(1, 0);
+    buft_empty = semnew(2, 1);
+    buft_full  = semnew(3, 0);
 
     // create shm
     sem_sid = shmget(sem_key, 4096, IPC_CREAT | IPC_EXCL | 0600);
-    bufs_sid = shmget(bufs_key, 4096, IPC_CREAT | IPC_EXCL | 0600);
-    buft_sid = shmget(buft_key, 4096, IPC_CREAT | IPC_EXCL | 0600);
+    bufs_sid = shmget(bufs_key, 2, IPC_CREAT | IPC_EXCL | 0600);
+    buft_sid = shmget(buft_key, 2, IPC_CREAT | IPC_EXCL | 0600);
 
     if (sem_sid == -1 || bufs_sid == -1 || buft_sid == -1) {
         perror("shmget error\n");
@@ -67,15 +67,15 @@ int main(void) {
     bufs_map = (char *)shmat(bufs_sid, NULL, 0);
     buft_map = (char *)shmat(buft_sid, NULL, 0);
 
-    // write data to shm
+    // write data into shm
     // write pointing address of semaphore into sem_shm
     // wrie empty characters into bufs_shm and buft_shm
     sem_map[0] = bufs_empty;
     sem_map[1] = bufs_full;
     sem_map[2] = buft_empty;
     sem_map[3] = buft_full;
-    memset(bufs_map, '\0', 4096);
-    memset(buft_map, '\0', 4096);
+    memset(bufs_map, '\0', 2);
+    memset(buft_map, '\0', 2);
 
     // detach shm
     shmdt(sem_map);
