@@ -12,8 +12,6 @@
 #include <stdlib.h>
 #include "semaphore/semaphore.h"
 
-static int SEMKEY = 0;      /// for semget functions
-
 /// \brief P function
 /// \param self semaphore pointer
 /// \return void
