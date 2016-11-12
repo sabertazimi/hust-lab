@@ -21,8 +21,7 @@
 
 static int number = 0;          ///< shared number
 static const int limit = 100;   ///< max value of shared number
-static semaphore_t seme;       ///< sync semaphore for evaluation
-static semaphore_t semp;       ///< sync semaphore for print
+static semaphore_t mutex;       ///< mutex for adding shared number
 
 void eval_thread(void *args) {
     int pid = *(pthread_t *)args;
@@ -32,15 +31,15 @@ void eval_thread(void *args) {
     while (1) {
         sleep(rand() % 3);
 
-        semp->P(semp);
+        mutex->P(mutex);
 
         if (number < limit) {
             number++;
             LOG("%d: number get 1 added\n", pid);
-            seme->V(seme);
+            mutex->V(mutex);
         } else {
             LOG("%d: number reachs limit %3d\n", pid, number);
-            seme->V(seme);
+            mutex->V(mutex);
             break;
         }
 
@@ -55,13 +54,13 @@ void print_thread(void *args) {
     while (1) {
         sleep(rand() % 3);
 
-        seme->P(seme);
+        mutex->P(mutex);
 
         if (number < limit) {
             fprintf(stdout, "%d: now, the value of shared number is %3d\n", pid, number);
-            semp->V(semp);
+            mutex->V(mutex);
         } else {
-            semp->V(semp);
+            mutex->V(mutex);
             break;
         }
     }
@@ -74,9 +73,7 @@ int main(void) {
     srand((unsigned)time(NULL));
 
     // create semaphore
-    // start eval_thread first
-    seme = semnew(0);
-    semp = semnew(1);
+    mutex = semnew(1);
 
     // create evaluation thread
     while ((ret = pthread_create(&eval_pid, NULL, (void *)eval_thread, &eval_pid)) != 0);
@@ -91,8 +88,7 @@ int main(void) {
     pthread_join(print_pid, NULL);
 
     // remove semaphore
-    semp->del(semp);
-    seme->del(seme);
+    mutex->del(mutex);
 
     return 0;
 }
