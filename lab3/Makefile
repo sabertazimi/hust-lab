@@ -61,7 +61,7 @@ put: $(SRC_PATH)/put.o $(OBJS)
 	$(MKDIR) $(BIN_PATH)
 	$(MV) $(SRC_PATH)/put $(BIN_PATH)/put
 
-.PHONY = clean release run count spec debug
+.PHONY = clean release run count spec debug ipc
 
 clean:
 	$(RM) $(OBJ_PATH) $(OBJS)
@@ -83,6 +83,9 @@ spec:
 debug:
 	$(GDB) $(GFLAGS) $(BIN_PATH)/$(PROG) core
 # $(RM) .gdb_history
+
+ipc:
+	ipcrm --all=sem
 
 # vim:ft=make
 #
