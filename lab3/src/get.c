@@ -32,11 +32,11 @@ int main(void) {
     char *bufs_map;         ///< map address of shm to as S buffer
 
     // get semaphores
-    bufs_empty = semnew(0, 1);
-    bufs_full  = semnew(1, 0);
+    bufs_empty = semnew(0, 1, 0);
+    bufs_full  = semnew(1, 0, 0);
 
     // get shm
-    bufs_sid = shmget(bufs_key, 0, 0);
+    bufs_sid = shmget(bufs_key, 2, IPC_CREAT | 0666);
 
     if (bufs_sid == -1) {
         perror("shmget error\n");
@@ -52,18 +52,29 @@ int main(void) {
         return -1;
     }
 
+    LOG("get: before loop\n");
+
     // get data from src file to S buffer
     while (1) {
+        LOG("get: before P\n");
         bufs_empty->P(bufs_empty);
+        LOG("get: after P\n");
 
         if ((ch = fgetc(fp)) != EOF) {
             bufs_map[0] = ch;       // write character into S buffer
             LOG("get: %c\n", ch);
+            LOG("get: before V\n");
             bufs_full->V(bufs_full);
+            LOG("get: after V\n");
         } else {
             bufs_full->V(bufs_full);
             break;
         }
+    }
+
+    // close src file
+    if (fp != NULL) {
+        fclose(fp);
     }
 
     // detach shm

@@ -36,38 +36,53 @@ int main(void) {
     char *buft_map;         ///< map address of shm to as T buffer
 
     // get semaphores
-    bufs_empty = semnew(0, 1);
-    bufs_full  = semnew(1, 0);
-    buft_empty = semnew(2, 1);
-    buft_full  = semnew(3, 0);
+    bufs_empty = semnew(0, 1, 0);
+    bufs_full  = semnew(1, 0, 0);
+    buft_empty = semnew(2, 1, 0);
+    buft_full  = semnew(3, 0, 0);
 
     // get shm
-    bufs_sid = shmget(bufs_key, 0, 0);
-    buft_sid = shmget(buft_key, 0, 0);
+    bufs_sid = shmget(bufs_key, 2, IPC_CREAT | 0666);
+    buft_sid = shmget(buft_key, 2, IPC_CREAT | 0666);
+
+    if (bufs_sid == -1 || buft_sid == -1) {
+        perror("shmget error\n");
+        return -1;
+    }
 
     // attach shm
     bufs_map = (char *)shmat(bufs_sid, NULL, 0);
     buft_map = (char *)shmat(buft_sid, NULL, 0);
 
+    LOG("copy: before loop\n");
+
     // copy data from S buffer to T buffer
     while (1) {
+        LOG("copy: before P\n");
         bufs_full->P(bufs_full);
+        LOG("copy: after P\n");
 
         // read data from S buffer
         if (bufs_map[0] != EOF) {
             ch = bufs_map[0];           // write character into ch
+            LOG("copy: before V\n");
             bufs_empty->V(bufs_empty);
+            LOG("copy: after V\n");
         } else {
             bufs_empty->V(bufs_empty);
             break;
         }
 
+        LOG("copy: before P\n");
         buft_empty->P(buft_empty);
+        LOG("copy: after P\n");
 
         // write data into T buffer
         if (ch != EOF) {
             buft_map[0] = ch;           // write character into T buffer
+            LOG("copy: before V\n");
             buft_full->V(buft_full);
+            LOG("copy: after V\n");
         } else {
             buft_full->V(buft_full);
             break;

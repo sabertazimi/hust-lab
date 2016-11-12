@@ -32,11 +32,11 @@ int main(void) {
     char *buft_map;         ///< map address of shm to as T buffer
 
     // get semaphores
-    buft_empty = semnew(2, 1);
-    buft_full  = semnew(3, 0);
+    buft_empty = semnew(2, 1, 0);
+    buft_full  = semnew(3, 0, 0);
 
     // get shm
-    buft_sid = shmget(buft_key, 0, 0);
+    buft_sid = shmget(buft_key, 2, IPC_CREAT | 0666);
 
     if (buft_sid == -1) {
         perror("shmget error\n");
@@ -47,23 +47,34 @@ int main(void) {
     buft_map = (char *)shmat(buft_sid, NULL, 0);
 
     // open dist file
-    if ((fp = fopen("./dist.dat", "a+")) == NULL) {
+    if ((fp = fopen("./dist.dat", "w+")) == NULL) {
         perror("fopen error\n");
         return -1;
     }
 
+    LOG("put: before loop\n");
+
     // put data from T buffer to dist file
     while (1) {
+        LOG("put: before P\n");
         buft_full->P(buft_full);
+        LOG("put: after P\n");
 
         if ((ch = buft_map[0]) != EOF) {
             fputc(ch, fp);              // write character into dist file
             LOG("put: %c\n", ch);
+            LOG("put: before V\n");
             buft_empty->V(buft_empty);
+            LOG("put: after V\n");
         } else {
             buft_empty->V(buft_empty);
             break;
         }
+    }
+
+    // close dist file
+    if (fp != NULL) {
+        fclose(fp);
     }
 
     // detach shm

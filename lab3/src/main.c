@@ -41,15 +41,20 @@ int main(void) {
     char *buft_map;         ///< map address of shm to as T buffer
 
     // create semaphore
-    bufs_empty = semnew(0, 1);
-    bufs_full  = semnew(1, 0);
-    buft_empty = semnew(2, 1);
-    buft_full  = semnew(3, 0);
+    bufs_empty = semnew(0, 1, 1);
+    bufs_full  = semnew(1, 0, 1);
+    buft_empty = semnew(2, 1, 1);
+    buft_full  = semnew(3, 0, 1);
+
+    LOG("semid: %d, %d, %d, %d\n",
+            bufs_empty->semid, bufs_full->semid
+            ,buft_empty->semid, buft_full->semid);
 
     // create shm
-    bufs_sid = shmget(bufs_key, 2, IPC_CREAT | IPC_EXCL | 0600);
-    buft_sid = shmget(buft_key, 2, IPC_CREAT | IPC_EXCL | 0600);
+    bufs_sid = shmget(bufs_key, 2, IPC_CREAT | 0666);
+    buft_sid = shmget(buft_key, 2, IPC_CREAT | 0666);
 
+    // get shm failed
     if (bufs_sid == -1 || buft_sid == -1) {
         perror("shmget error\n");
         return -1;

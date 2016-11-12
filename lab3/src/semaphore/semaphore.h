@@ -40,6 +40,6 @@ struct _semaphore_ {
 /// \brief constructor for semaphore struct
 /// \param semval initial value of semaphore
 /// \return pointer pointing to an allocated semaphore
-semaphore_t semnew(key_t key, int semval);
+semaphore_t semnew(key_t key, int semval, int init_flag);
 
 #endif /* !SEMAPHORE_H */

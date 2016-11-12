@@ -8,8 +8,13 @@
  * \license MIT
  */
 
+#undef DEBUG
+#define DEBUG
+// #undef DBUEG
+
 #include <stdio.h>
 #include <stdlib.h>
+#include "utils/utils.h"
 #include "semaphore/semaphore.h"
 
 /// \brief P function
@@ -27,23 +32,22 @@ static void semV(semaphore_t self);
 /// \return void
 static void semdel(semaphore_t self);
 
-semaphore_t semnew(key_t key,int semval) {
+semaphore_t semnew(key_t key,int semval, int init_flag) {
     // initialize a new semphore
     semaphore_t sem = (semaphore_t)malloc(sizeof(*sem));
 
-    // create a semaphore IPC
-    // while loop for semget error recovery
+    // create/get a semaphore IPC
     if ((sem->semid = semget(key, 1, IPC_CREAT | 0666)) == -1) {
-        if ((sem->semid = semget(key, 1, 0)) == -1) {
-            perror("semget error\n");
-            return NULL;
-        }
-    } else {
-        // initialize value of semaphore
-        // while loop for semctl error recovery
-        sem->semval = semval;
-        sem->semun.val = semval;            // initial value of semaphore for semctl function
-        while (semctl(sem->semid, 0, SETVAL, sem->semun) < 0) ;
+        perror("semget error\n");
+        return NULL;
+
+    }
+
+    sem->semval = semval;
+    sem->semun.val = semval;            // initial value of semaphore for semctl function
+
+    if (init_flag == 1) {
+        semctl(sem->semid, 0, SETVAL, sem->semun);
     }
 
     sem->sembuf.sem_num = 0;            // set operation index to sem[0](all semaphores are with single demension)
@@ -57,23 +61,24 @@ semaphore_t semnew(key_t key,int semval) {
 }
 
 static void semP(semaphore_t self) {
-    self->sembuf.sem_op = -1;
-    while (semop(self->semid, &(self->sembuf), 1) < 0) ;    // while loop for error recovery
+    LOG("%d: P\n", self->semid);
     self->semval--;
+    self->sembuf.sem_op = -1;
+    semop(self->semid, &(self->sembuf), 1);
 }
 
 static void semV(semaphore_t self) {
-    self->sembuf.sem_op = +1;
-    while (semop(self->semid, &(self->sembuf), 1) < 0) ;    // while loop for error recovery
+    LOG("%d: V\n", self->semid);
     self->semval++;
+    self->sembuf.sem_op = +1;
+    semop(self->semid, &(self->sembuf), 1);
 }
 
 static void semdel(semaphore_t self) {
     // check to prevent multiple-destruction
     if (self->P != NULL || self->V != NULL || self->del != NULL) {
         // delete semaphore IPC
-        // while loop for semctl error recovery
-        while (semctl(self->semid, 0, IPC_RMID) < 0) ;
+        semctl(self->semid, 0, IPC_RMID);
 
         // set all pointer member to NULL
         self->P = NULL;
