@@ -14,81 +14,46 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <pthread.h>
 #include <unistd.h>
 #include "utils/utils.h"
 #include "semaphore/semaphore.h"
 
-static int number = 0;          ///< shared number
-static const int limit = 100;   ///< max value of shared number
-static semaphore_t mutex;       ///< mutex for adding shared number
-
-void eval_thread(void *args) {
-    int pid = *(pthread_t *)args;
-
-    srand((unsigned)time(NULL));
-
-    while (1) {
-        sleep(rand() % 3);
-
-        mutex->P(mutex);
-
-        if (number < limit) {
-            number++;
-            LOG("%d: number get 1 added\n", pid);
-            mutex->V(mutex);
-        } else {
-            LOG("%d: number reachs limit %3d\n", pid, number);
-            mutex->V(mutex);
-            break;
-        }
-
-    }
-}
-
-void print_thread(void *args) {
-    int pid = *(pthread_t *)args;
-
-    srand((unsigned)time(NULL));
-
-    while (1) {
-        sleep(rand() % 3);
-
-        mutex->P(mutex);
-
-        if (number < limit) {
-            fprintf(stdout, "%d: now, the value of shared number is %3d\n", pid, number);
-            mutex->V(mutex);
-        } else {
-            mutex->V(mutex);
-            break;
-        }
-    }
-}
+semaphore_t bufs_empty;     ///< initial value: 1
+semaphore_t bufs_full;      ///< initial value: 0
+semaphore_t buft_empty;     ///< initial value: 1
+semaphore_t buft_full;      ///< initial value: 0
 
 int main(void) {
-    int ret;                            ///< return value of pthread_create function
-    pthread_t eval_pid, print_pid;      ///< thread id for every single window
-
-    srand((unsigned)time(NULL));
+    pid_t get_pid;          ///< return pid of fork function
+    pid_t copy_pid;         ///< return pid of fork function
+    pid_t put_pid;          ///< return pid of fork function
 
     // create semaphore
-    mutex = semnew(1);
+    bufs_empty = semnew(1);
+    bufs_full  = semnew(0);
+    buft_empty = semnew(1);
+    buft_full  = semnew(0);
 
-    // create evaluation thread
-    while ((ret = pthread_create(&eval_pid, NULL, (void *)eval_thread, &eval_pid)) != 0);
-    LOG("create eval thread with pid %d\n", eval_pid);
-
-    // create print thread
-    while ((ret = pthread_create(&print_pid, NULL, (void *)print_thread, &print_pid)) != 0);
-    LOG("create print thread with pid %d\n", print_pid);
-
-    // wait for finish of threads
-    pthread_join(eval_pid, NULL);
-    pthread_join(print_pid, NULL);
-
-    // remove semaphore
-    mutex->del(mutex);
-
-    return 0;
+    while ((get_pid = fork()) == -1) ;
+    if (get_pid == 0) {                     // sub
+        execlp("./get", "get", NULL);
+    } else {                                // main
+        while ((copy_pid = fork()) == -1) ;
+        if (copy_pid == 0) {                // sub
+            execlp("./copy", "copy", NULL);
+        } else {                            // main
+            while ((put_pid = fork()) == -1) ;
+            if (put_pid == 0) {             // sub
+                execlp("./put", "put", NULL);
+            } else {                        // main
+                LOG("end of main process\n");
+                // remove semaphore
+                bufs_empty->del(bufs_empty);
+                bufs_full->del(bufs_full);
+                buft_empty->del(buft_empty);
+                buft_full->del(buft_full);
+                return 0;
+            }
+        }
+    }
 }

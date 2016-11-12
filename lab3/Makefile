@@ -10,7 +10,7 @@ PROG=process
 CC=gcc
 CFLAGS=-static -Wall -Wextra -std=gnu99 -O2 -g $(addprefix -I, $(INCLUDE_PATH)) -pthread
 GDB=gdb
-GFLAGS= -q -x tools/gdbinit
+GFLAGS= -q -x ../tools/gdbinit
 RM=rm -fr
 MKDIR=mkdir -p
 MV=mv
@@ -31,7 +31,7 @@ OBJS=$(patsubst %.c, %.o, $(SRCS))
 # rules
 %.o: %.c
 	@echo '***' Compiling C Source Files $< ... '***'
-	test -d $(OBJ_PATH) ||$(MKDIR) $(OBJ_PATH)
+	test -d $(OBJ_PATH) || $(MKDIR) $(OBJ_PATH)
 	$(CC) -o $@ $(CFLAGS) -c $<
 	$(MV) $@ $(OBJ_PATH)/$(notdir $@)
 	@echo '***' Compile $< Success! '***'
@@ -48,20 +48,20 @@ $(PROG): $(SRC_PATH)/main.o $(OBJS)
 
 get: $(SRC_PATH)/get.o $(OBJS)
 	$(CC) -o $(SRC_PATH)/get $(CFLAGS) $(OBJ_PATH)/get.o $(patsubst %.o, $(OBJ_PATH)/%.o, $(notdir $(OBJS)))
-	$(MKDIR) $(BIN_PATH)
+	test -d $(BIN_PATH) || $(MKDIR) $(BIN_PATH)
 	$(MV) $(SRC_PATH)/get $(BIN_PATH)/get
 
 copy: $(SRC_PATH)/copy.o $(OBJS)
 	$(CC) -o $(SRC_PATH)/copy $(CFLAGS) $(OBJ_PATH)/copy.o $(patsubst %.o, $(OBJ_PATH)/%.o, $(notdir $(OBJS)))
-	$(MKDIR) $(BIN_PATH)
+	test -d $(BIN_PATH) || $(MKDIR) $(BIN_PATH)
 	$(MV) $(SRC_PATH)/copy $(BIN_PATH)/copy
 
 put: $(SRC_PATH)/put.o $(OBJS)
 	$(CC) -o $(SRC_PATH)/put $(CFLAGS) $(OBJ_PATH)/put.o $(patsubst %.o, $(OBJ_PATH)/%.o, $(notdir $(OBJS)))
-	$(MKDIR) $(BIN_PATH)
+	test -d $(BIN_PATH) || $(MKDIR) $(BIN_PATH)
 	$(MV) $(SRC_PATH)/put $(BIN_PATH)/put
 
-.PHONY = clean release run count spec debug ipc
+.PHONY = clean release run count spec debug ipc proc
 
 clean:
 	$(RM) $(OBJ_PATH) $(OBJS)
@@ -69,11 +69,12 @@ clean:
 # $(RM) .gdb_history
 
 release:
-	$(MKDIR) $(BIN_PATH)
+	test -d $(BIN_PATH) || $(MKDIR) $(BIN_PATH)
 	$(MV) $(SRC_PATH)/$(PROG) $(BIN_PATH)/$(PROG)
 
 run:
-	./$(BIN_PATH)/$(PROG)
+	cd ./$(BIN_PATH) && \
+	./$(PROG)
 
 count:
 	./$(TOOLS_PATH)/line_counter
@@ -81,11 +82,17 @@ count:
 spec:
 
 debug:
-	$(GDB) $(GFLAGS) $(BIN_PATH)/$(PROG) core
+	cd ./$(BIN_PATH) && \
+	$(GDB) $(GFLAGS) $(PROG) core
 # $(RM) .gdb_history
 
 ipc:
 	ipcrm --all=sem
+
+proc:
+	pkill get
+	pkill copy
+	pkill put
 
 # vim:ft=make
 #
