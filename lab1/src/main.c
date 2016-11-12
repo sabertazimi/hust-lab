@@ -19,42 +19,58 @@
 #include "utils/utils.h"
 #include "semaphore/semaphore.h"
 
-static int num_tickets = 20;
+static const int num_windows = 10;  ///< number of windows selling tickets
+static int num_tickets = 100;       ///< number of available tickets
+static semaphore_t mutex;           ///< mutex for adding/subing num_tickets
 
-void thread(void) {
+void window(void *args) {
     srand((unsigned)time(NULL));
 
-    for (int i = 0; i < 3; i++) {
-        LOG("Pthread: %d\n", i);
-        sleep(rand() % 2);
+    int id = *(int *)args;
+
+    while (1) {
+        sleep(rand() % 3);
+
+        mutex->P(mutex);
+
+        if (num_tickets <= 0) {
+            mutex->V(mutex);
+            break;
+        } else {
+            num_tickets--;
+            LOG("window %d sell out 1 ticket, now available %d\n", id, num_tickets);
+            mutex->V(mutex);
+        }
     }
 }
 
 int main(void) {
-    int ret;
-    pthread_t pid;
+    int ret;                                ///< return value of pthread_create function
+    int windows_id[num_windows];            ///< No. id for every single window
+    pthread_t windows_pid[num_windows];     ///< thread id for every single window
+
+    srand((unsigned)time(NULL));
 
     // create semaphore
-    semaphore_t sem = semnew(5);
-    LOG("Main: semid %d\n", sem->semid);
-    LOG("Main: semval %d\n", sem->semval);
+    mutex = semnew(1);
+    // LOG("Main: semid %d\n", mutex->semid);
+    // LOG("Main: semval %d\n", mutex->semval);
 
-    // error recovery loop
-    while ((ret = pthread_create(&pid, NULL, (void *)thread, NULL)) != 0);
-
-    for (int i = 0; i < 3; i++) {
-        LOG("Main: %d\n", i);
-        sleep(1);
+    for (int i = 0; i < num_windows; i++) {
+        windows_id[i] = i + 1;
+        while ((ret = pthread_create(&windows_pid[i], NULL, (void *)window, &windows_id[i])) != 0);
+        LOG("create No.%d window with pid %d\n", windows_id[i], windows_pid[i]);
+        sleep(rand() % 2);
     }
 
     // wait for sub-thread finish
-    pthread_join(pid, NULL);
+    for (int i = 0; i < num_windows; i++) {
+        pthread_join(windows_pid[i], NULL);
+    }
 
     // remove semaphore
-    sem->del(sem);
+    mutex->del(mutex);
 
     return 0;
 }
-
-
 
