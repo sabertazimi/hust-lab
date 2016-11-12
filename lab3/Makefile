@@ -25,7 +25,7 @@ TOOLS_PATH=tools
 INCLUDE_PATH=$(SRC_PATH)
 
 # objects
-SRCS=$(shell find $(SRC_PATH) -name "*.c" -print)
+SRCS=$(shell find $(SRC_PATH) -path $(SRC_PATH)/main.c -o -path $(SRC_PATH)/get.c -o -path $(SRC_PATH)/copy.c -o -path $(SRC_PATH)/put.c -prune -o -name "*.c" -print)
 OBJS=$(patsubst %.c, %.o, $(SRCS))
 
 # rules
@@ -36,15 +36,30 @@ OBJS=$(patsubst %.c, %.o, $(SRCS))
 	$(MV) $@ $(OBJ_PATH)/$(notdir $@)
 	@echo '***' Compile $< Success! '***'
 
-all: $(PROG)
+all: get copy put $(PROG)
 
 # dependencies
-$(PROG): $(OBJS)
-	$(CC) -o $(SRC_PATH)/$(PROG) $(CFLAGS) $(patsubst %.o, $(OBJ_PATH)/%.o, $(notdir $(OBJS)))
+$(PROG): $(SRC_PATH)/main.o $(OBJS)
+	$(CC) -o $(SRC_PATH)/$(PROG) $(CFLAGS) $(OBJ_PATH)/main.o $(patsubst %.o, $(OBJ_PATH)/%.o, $(notdir $(OBJS)))
 	make release
 	make clean
 	@echo
 	@echo '***' Build Success! '***'
+
+get: $(SRC_PATH)/get.o $(OBJS)
+	$(CC) -o $(SRC_PATH)/get $(CFLAGS) $(OBJ_PATH)/get.o $(patsubst %.o, $(OBJ_PATH)/%.o, $(notdir $(OBJS)))
+	$(MKDIR) $(BIN_PATH)
+	$(MV) $(SRC_PATH)/get $(BIN_PATH)/get
+
+copy: $(SRC_PATH)/copy.o $(OBJS)
+	$(CC) -o $(SRC_PATH)/copy $(CFLAGS) $(OBJ_PATH)/copy.o $(patsubst %.o, $(OBJ_PATH)/%.o, $(notdir $(OBJS)))
+	$(MKDIR) $(BIN_PATH)
+	$(MV) $(SRC_PATH)/copy $(BIN_PATH)/copy
+
+put: $(SRC_PATH)/put.o $(OBJS)
+	$(CC) -o $(SRC_PATH)/put $(CFLAGS) $(OBJ_PATH)/put.o $(patsubst %.o, $(OBJ_PATH)/%.o, $(notdir $(OBJS)))
+	$(MKDIR) $(BIN_PATH)
+	$(MV) $(SRC_PATH)/put $(BIN_PATH)/put
 
 .PHONY = clean release run count spec debug
 
