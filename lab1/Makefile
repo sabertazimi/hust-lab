@@ -4,7 +4,7 @@
 #
 
 # program name
-PROG=pthreadlab
+PROG=tickets
 
 # tools and their flags
 CC=gcc

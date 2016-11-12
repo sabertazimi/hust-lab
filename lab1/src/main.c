@@ -24,9 +24,9 @@ static int num_tickets = 100;       ///< number of available tickets
 static semaphore_t mutex;           ///< mutex for adding/subing num_tickets
 
 void window(void *args) {
-    srand((unsigned)time(NULL));
-
     int id = *(int *)args;
+
+    srand((unsigned)time(NULL));
 
     while (1) {
         sleep(rand() % 3);
@@ -38,7 +38,7 @@ void window(void *args) {
             break;
         } else {
             num_tickets--;
-            LOG("window %d sell out 1 ticket, now available %d\n", id, num_tickets);
+            LOG("window %2d sell out 1 ticket, now available %3d\n", id, num_tickets);
             mutex->V(mutex);
         }
     }
@@ -59,7 +59,7 @@ int main(void) {
     for (int i = 0; i < num_windows; i++) {
         windows_id[i] = i + 1;
         while ((ret = pthread_create(&windows_pid[i], NULL, (void *)window, &windows_id[i])) != 0);
-        LOG("create No.%d window with pid %d\n", windows_id[i], windows_pid[i]);
+        LOG("create No.%2d window with pid %d\n", windows_id[i], windows_pid[i]);
         sleep(rand() % 2);
     }
 
