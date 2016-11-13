@@ -31,15 +31,15 @@ void window(void *args) {
     while (1) {
         sleep(rand() % 3);
 
-        // mutex->P(mutex);
+        mutex->P(mutex);
 
         if (num_tickets <= 0) {
-            // mutex->V(mutex);
+            mutex->V(mutex);
             break;
         } else {
             num_tickets--;
             LOG("window %2d sell out 1 ticket, now available %3d\n", id, num_tickets);
-            // mutex->V(mutex);
+            mutex->V(mutex);
         }
     }
 }
@@ -59,7 +59,7 @@ int main(void) {
     for (int i = 0; i < num_windows; i++) {
         windows_id[i] = i + 1;
         while ((ret = pthread_create(&windows_pid[i], NULL, (void *)window, &windows_id[i])) != 0);
-        LOG("create No.%2d window with pid %d\n", windows_id[i], windows_pid[i]);
+        // LOG("create No.%2d window with pid %d\n", windows_id[i], windows_pid[i]);
     }
 
     // wait for sub-thread finish
