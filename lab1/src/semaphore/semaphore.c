@@ -8,6 +8,7 @@
  * \license MIT
  */
 
+#include <stdio.h>
 #include <stdlib.h>
 #include "semaphore/semaphore.h"
 
@@ -33,14 +34,18 @@ semaphore_t semnew(int semval) {
     semaphore_t sem = (semaphore_t)malloc(sizeof(*sem));
 
     // create a semaphore IPC
-    // while loop for semget error recovery
-    while ((sem->semid = semget(SEMKEY++, 1, IPC_CREAT | 0666)) == -1) ;
+    if ((sem->semid = semget(SEMKEY++, 1, IPC_CREAT | 0666)) < 0) {
+        perror("semget error\n");
+        return NULL;
+    }
 
     // initialize value of semaphore
-    // while loop for semctl error recovery
     sem->semval = semval;
     sem->semun.val = semval;            // initial value of semaphore for semctl function
-    while (semctl(sem->semid, 0, SETVAL, sem->semun) < 0) ;
+    if (semctl(sem->semid, 0, SETVAL, sem->semun) < 0) {
+        perror("semctl error\n");
+        return NULL;
+    }
 
     sem->sembuf.sem_num = 0;            // set operation index to sem[0](all semaphores are with single demension)
     sem->sembuf.sem_flg = SEM_UNDO;     // automatically undone when the process terminates
@@ -53,23 +58,29 @@ semaphore_t semnew(int semval) {
 }
 
 static void semP(semaphore_t self) {
-    self->sembuf.sem_op = -1;
-    while (semop(self->semid, &(self->sembuf), 1) < 0) ;    // while loop for error recovery
     self->semval--;
+    self->sembuf.sem_op = -1;
+    if (semop(self->semid, &(self->sembuf), 1) < 0) {
+        perror("P error\n");
+    }
 }
 
 static void semV(semaphore_t self) {
-    self->sembuf.sem_op = +1;
-    while (semop(self->semid, &(self->sembuf), 1) < 0) ;    // while loop for error recovery
     self->semval++;
+    self->sembuf.sem_op = +1;
+    if (semop(self->semid, &(self->sembuf), 1) < 0) {
+        perror("V error\n");
+    }
 }
 
 static void semdel(semaphore_t self) {
     // check to prevent multiple-destruction
     if (self->P != NULL || self->V != NULL || self->del != NULL) {
         // delete semaphore IPC
-        // while loop for semctl error recovery
-        while (semctl(self->semid, 0, IPC_RMID) < 0) ;
+        if (semctl(self->semid, 0, IPC_RMID) < 0) {
+            perror("semctl error\n");
+            return ;
+        }
 
         // set all pointer member to NULL
         self->P = NULL;
