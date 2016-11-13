@@ -30,8 +30,8 @@ int main(void) {
     char *buft_map;         ///< map address of shm to as T buffer
 
     // get semaphores
-    buft_empty = semnew(3, 1, 0);
-    buft_full  = semnew(4, 0, 0);
+    buft_empty = semnew(3, 1);
+    buft_full  = semnew(4, 0);
 
     // get shm
     buft_sid = shmget(buft_key, 2, IPC_CREAT | 0666);

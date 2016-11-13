@@ -27,7 +27,7 @@ static void semV(semaphore_t self);
 /// \return void
 static void semdel(semaphore_t self);
 
-semaphore_t semnew(key_t key,int semval, int init_flag) {
+semaphore_t semnew(key_t key,int semval) {
     // initialize a new semphore
     semaphore_t sem = (semaphore_t)malloc(sizeof(*sem));
 
@@ -44,10 +44,6 @@ semaphore_t semnew(key_t key,int semval, int init_flag) {
             perror("semctl error\n");
             return NULL;
         }
-    }
-
-    if (init_flag == 1) {
-
     }
 
     sem->sembuf.sem_num = 0;            // set operation index to sem[0](all semaphores are with single demension)

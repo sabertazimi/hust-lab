@@ -1,0 +1,12 @@
+#! /bin/sh
+#
+# test.sh
+# Copyright (C) 2016 sabertazimi <sabertazimi@avalon>
+#
+# Distributed under terms of the MIT license.
+#
+
+for i in $(seq 1 10); do
+    make run
+done
+

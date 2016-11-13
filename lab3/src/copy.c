@@ -34,10 +34,10 @@ int main(void) {
     char *buft_map;         ///< map address of shm to as T buffer
 
     // get semaphores
-    bufs_empty = semnew(1, 1, 0);
-    bufs_full  = semnew(2, 0, 0);
-    buft_empty = semnew(3, 1, 0);
-    buft_full  = semnew(4, 0, 0);
+    bufs_empty = semnew(1, 1);
+    bufs_full  = semnew(2, 0);
+    buft_empty = semnew(3, 1);
+    buft_full  = semnew(4, 0);
 
     // get shm
     bufs_sid = shmget(bufs_key, 2, IPC_CREAT | 0666);
@@ -55,7 +55,9 @@ int main(void) {
     // copy data from S buffer to T buffer
     while (1) {
         // read data from S buffer, write character into ch
+        LOG("copy: before P full\n");
         bufs_full->P(bufs_full);
+        LOG("copy: after P full\n");
         ch = bufs_map[0];
         LOG("copy %c from S buffer... \n", ch);
         bufs_empty->V(bufs_empty);
@@ -64,13 +66,12 @@ int main(void) {
         buft_empty->P(buft_empty);
         buft_map[0] = ch;           // write character into T buffer
         LOG("copy %c to T buffer... \n", ch);
+        buft_full->V(buft_full);
 
         // break condition
         if (ch == EOF) {
-            buft_full->V(buft_full);
             break;
         } else {
-            buft_full->V(buft_full);
         }
     }
 

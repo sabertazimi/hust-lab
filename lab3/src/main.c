@@ -41,10 +41,10 @@ int main(void) {
     char *buft_map;         ///< map address of shm to as T buffer
 
     // create semaphore
-    bufs_empty = semnew(1, 1, 1);
-    bufs_full  = semnew(2, 0, 1);
-    buft_empty = semnew(3, 1, 1);
-    buft_full  = semnew(4, 0, 1);
+    bufs_empty = semnew(1, 1);
+    bufs_full  = semnew(2, 0);
+    buft_empty = semnew(3, 1);
+    buft_full  = semnew(4, 0);
 
     // create shm
     bufs_sid = shmget(bufs_key, 2, IPC_CREAT | 0666);

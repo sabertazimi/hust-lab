@@ -30,8 +30,8 @@ int main(void) {
     char *bufs_map;         ///< map address of shm to as S buffer
 
     // get semaphores
-    bufs_empty = semnew(1, 1, 0);
-    bufs_full  = semnew(2, 0, 0);
+    bufs_empty = semnew(1, 1);
+    bufs_full  = semnew(2, 0);
 
     // get shm
     bufs_sid = shmget(bufs_key, 2, IPC_CREAT | 0666);
@@ -58,13 +58,12 @@ int main(void) {
         ch = fgetc(fp);
         bufs_map[0] = ch;       // write character into S buffer
         LOG("get %c from src file to S buffer... \n", ch);
+        bufs_full->V(bufs_full);
 
         // break condition
         if (ch == EOF) {
-            bufs_full->V(bufs_full);
             break;
         } else {
-            bufs_full->V(bufs_full);
         }
     }
 
