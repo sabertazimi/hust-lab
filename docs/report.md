@@ -47,6 +47,12 @@ $ ipcrm --all=sem
 
 EOF 不能写入 dist file, 否则会造成乱码
 
+### Dead Lock
+
+*   problem: get 结束后, 会 detach bufs_map, 导致 copy 得不到正确的信号量(bufs_full)而阻塞, 产生死锁
+*   solution: 由于 get 与 copy 间存在同步关系, get 必定先于 copy 结束, 故不应在 get 中 detach bufs_map. 同理, 在 copy 不应 detach buft_map.
+*   solution: 为了使得 get 程序不太快于 copy 程序结束, copy 程序不太快于 put 程序结束, 使其都在退出前休眠 500 ms.
+
 ## Debug
 
 ```sh

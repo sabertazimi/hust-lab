@@ -24,7 +24,6 @@ semaphore_t bufs_empty;     ///< initial value: 1, key: 1
 semaphore_t bufs_full;      ///< initial value: 0, key: 2
 
 int main(void) {
-    char ch;                ///< character read from src file
     FILE *fp;               ///< src file pointer
     int bufs_sid;           ///< shm id of shared memory as S buffer
     char *bufs_map;         ///< map address of shm to as S buffer
@@ -55,15 +54,15 @@ int main(void) {
     while (1) {
 
         bufs_empty->P(bufs_empty);
-        ch = fgetc(fp);
-        bufs_map[0] = ch;       // write character into S buffer
-        LOG("get %c from src file to S buffer... \n", ch);
-        bufs_full->V(bufs_full);
+        bufs_map[0] = fgetc(fp);    // write character into S buffer
+        LOG("get %c from src file to S buffer... \n", bufs_map[0]);
 
         // break condition
-        if (ch == EOF) {
+        if (bufs_map[0] == EOF) {
+            bufs_full->V(bufs_full);
             break;
         } else {
+            bufs_full->V(bufs_full);
         }
     }
 
@@ -72,8 +71,7 @@ int main(void) {
         fclose(fp);
     }
 
-    // detach shm
-    shmdt(bufs_map);
+    usleep(500);
 
     return 0;
 }

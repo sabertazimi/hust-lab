@@ -24,7 +24,6 @@ semaphore_t buft_empty;     ///< initial value: 1, key: 3
 semaphore_t buft_full;      ///< initial value: 0, key: 4
 
 int main(void) {
-    char ch;                ///< character read from dist file
     FILE *fp;               ///< dist file pointer
     int buft_sid;           ///< shm id of shared memory as T buffer
     char *buft_map;         ///< map address of shm to as T buffer
@@ -55,12 +54,12 @@ int main(void) {
     while (1) {
         buft_full->P(buft_full);
 
-        if ((ch = buft_map[0]) == EOF) {
+        if (buft_map[0] == EOF) {
             buft_empty->V(buft_empty);
             break;
         } else {
-            fputc(ch, fp);              // write character into dist file
-            LOG("put %c from T buffer to dist file... \n", ch);
+            fputc(buft_map[0], fp);              // write character into dist file
+            LOG("put %c from T buffer to dist file... \n", buft_map[0]);
             buft_empty->V(buft_empty);
         }
     }
@@ -72,6 +71,8 @@ int main(void) {
 
     // detach shm
     shmdt(buft_map);
+
+    usleep(500);
 
     return 0;
 }
