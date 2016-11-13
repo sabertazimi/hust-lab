@@ -24,8 +24,6 @@ semaphore_t bufs_empty;     ///< initial value: 1, key: 1
 semaphore_t bufs_full;      ///< initial value: 0, key: 2
 
 int main(void) {
-    LOG("get pid = %d\n", getpid());
-
     char ch;                ///< character read from src file
     FILE *fp;               ///< src file pointer
     int bufs_sid;           ///< shm id of shared memory as S buffer
@@ -34,9 +32,6 @@ int main(void) {
     // get semaphores
     bufs_empty = semnew(1, 1, 0);
     bufs_full  = semnew(2, 0, 0);
-
-    LOG("get semid: %d, %d\n",
-            bufs_empty->semid, bufs_full->semid);
 
     // get shm
     bufs_sid = shmget(bufs_key, 2, IPC_CREAT | 0666);
@@ -58,17 +53,18 @@ int main(void) {
 
     // get data from src file to S buffer
     while (1) {
-        bufs_empty->P(bufs_empty);
 
-        if ((ch = fgetc(fp)) != EOF) {
-            bufs_map[0] = ch;       // write character into S buffer
-            LOG("get: %c\n", ch);
-            bufs_full->V(bufs_full);
-        } else {
-            bufs_map[0] = ch;
-            LOG("get: %d\n", ch);
+        bufs_empty->P(bufs_empty);
+        ch = fgetc(fp);
+        bufs_map[0] = ch;       // write character into S buffer
+        LOG("get %c from src file to S buffer... \n", ch);
+
+        // break condition
+        if (ch == EOF) {
             bufs_full->V(bufs_full);
             break;
+        } else {
+            bufs_full->V(bufs_full);
         }
     }
 

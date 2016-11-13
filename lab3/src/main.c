@@ -46,10 +46,6 @@ int main(void) {
     buft_empty = semnew(3, 1, 1);
     buft_full  = semnew(4, 0, 1);
 
-    LOG("main semid: %d, %d, %d, %d\n",
-            bufs_empty->semid, bufs_full->semid,
-            buft_empty->semid, buft_full->semid);
-
     // create shm
     bufs_sid = shmget(bufs_key, 2, IPC_CREAT | 0666);
     buft_sid = shmget(buft_key, 2, IPC_CREAT | 0666);
@@ -59,8 +55,6 @@ int main(void) {
         perror("shmget error\n");
         return -1;
     }
-
-    LOG("bufs_sid = %d, buft_sid = %d\n", bufs_sid, buft_sid);
 
     // attach shm
     bufs_map = (char *)shmat(bufs_sid, NULL, 0);
@@ -74,6 +68,8 @@ int main(void) {
     // detach shm
     shmdt(bufs_map);
     shmdt(buft_map);
+
+    LOG("start copy data... \n");
 
     while ((get_pid = fork()) == -1) ;
     if (get_pid == 0) {                     // sub
@@ -92,7 +88,7 @@ int main(void) {
                     waitpid(-1, &status, 0);
                 }
 
-                LOG("end of chilren process\n");
+                LOG("done.\n");
 
                 // remove shm
                 shmctl(bufs_sid, IPC_RMID, 0);
@@ -104,7 +100,6 @@ int main(void) {
                 buft_empty->del(buft_empty);
                 buft_full->del(buft_full);
 
-                LOG("end of main process\n");
                 return 0;
             }
         }

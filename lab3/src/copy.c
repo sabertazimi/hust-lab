@@ -27,8 +27,6 @@ semaphore_t buft_empty;     ///< initial value: 1, key: 3
 semaphore_t buft_full;      ///< initial value: 0, key: 4
 
 int main(void) {
-    LOG("copy pid = %d\n", getpid());
-
     char ch;        ///< ch from S buffer
     int bufs_sid;           ///< shm id of shared memory as S buffer
     int buft_sid;           ///< shm id of shared memory as T buffer
@@ -40,10 +38,6 @@ int main(void) {
     bufs_full  = semnew(2, 0, 0);
     buft_empty = semnew(3, 1, 0);
     buft_full  = semnew(4, 0, 0);
-
-    LOG("copy semid: %d, %d, %d, %d\n",
-            bufs_empty->semid, bufs_full->semid,
-            buft_empty->semid, buft_full->semid);
 
     // get shm
     bufs_sid = shmget(bufs_key, 2, IPC_CREAT | 0666);
@@ -58,30 +52,25 @@ int main(void) {
     bufs_map = (char *)shmat(bufs_sid, NULL, 0);
     buft_map = (char *)shmat(buft_sid, NULL, 0);
 
-
     // copy data from S buffer to T buffer
     while (1) {
+        // read data from S buffer, write character into ch
         bufs_full->P(bufs_full);
-
-        // read data from S buffer
-        if (bufs_map[0] != EOF) {
-            ch = bufs_map[0];           // write character into ch
-            bufs_empty->V(bufs_empty);
-        } else {
-            ch = bufs_map[0];
-            bufs_empty->V(bufs_empty);
-        }
-
-        buft_empty->P(buft_empty);
+        ch = bufs_map[0];
+        LOG("copy %c from S buffer... \n", ch);
+        bufs_empty->V(bufs_empty);
 
         // write data into T buffer
-        if (ch != EOF) {
-            buft_map[0] = ch;           // write character into T buffer
-            buft_full->V(buft_full);
-        } else {
-            buft_map[0] = ch;
+        buft_empty->P(buft_empty);
+        buft_map[0] = ch;           // write character into T buffer
+        LOG("copy %c to T buffer... \n", ch);
+
+        // break condition
+        if (ch == EOF) {
             buft_full->V(buft_full);
             break;
+        } else {
+            buft_full->V(buft_full);
         }
     }
 

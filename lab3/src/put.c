@@ -24,8 +24,6 @@ semaphore_t buft_empty;     ///< initial value: 1, key: 3
 semaphore_t buft_full;      ///< initial value: 0, key: 4
 
 int main(void) {
-    LOG("put pid = %d\n", getpid());
-
     char ch;                ///< character read from dist file
     FILE *fp;               ///< dist file pointer
     int buft_sid;           ///< shm id of shared memory as T buffer
@@ -34,9 +32,6 @@ int main(void) {
     // get semaphores
     buft_empty = semnew(3, 1, 0);
     buft_full  = semnew(4, 0, 0);
-
-    LOG("put semid: %d, %d\n",
-            buft_empty->semid, buft_full->semid);
 
     // get shm
     buft_sid = shmget(buft_key, 2, IPC_CREAT | 0666);
@@ -60,14 +55,13 @@ int main(void) {
     while (1) {
         buft_full->P(buft_full);
 
-        if ((ch = buft_map[0]) != EOF) {
-            fputc(ch, fp);              // write character into dist file
-            LOG("put: %c\n", ch);
-            buft_empty->V(buft_empty);
-        } else {
-            LOG("put: %c\n", ch);
+        if ((ch = buft_map[0]) == EOF) {
             buft_empty->V(buft_empty);
             break;
+        } else {
+            fputc(ch, fp);              // write character into dist file
+            LOG("put %c from T buffer to dist file... \n", ch);
+            buft_empty->V(buft_empty);
         }
     }
 
