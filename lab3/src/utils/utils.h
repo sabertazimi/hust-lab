@@ -11,8 +11,6 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-typedef char *string;   ///< alias for char *
-
 /// \brief a simple log function
 /// \param fmt format string
 /// \param ... output string
