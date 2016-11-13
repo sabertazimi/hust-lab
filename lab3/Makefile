@@ -75,6 +75,8 @@ release:
 run:
 	cd ./$(BIN_PATH) && \
 	./$(PROG)
+	make ipc
+	make proc
 
 count:
 	./$(TOOLS_PATH)/line_counter
@@ -87,12 +89,12 @@ debug:
 # $(RM) .gdb_history
 
 ipc:
-	ipcrm --all=sem
+	./$(TOOLS_PATH)/ipcrm
 
 proc:
-	pkill get
-	pkill copy
-	pkill put
+	-pkill get
+	-pkill copy
+	-pkill put
 
 # vim:ft=make
 #

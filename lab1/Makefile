@@ -58,7 +58,9 @@ release:
 	$(MV) $(SRC_PATH)/$(PROG) $(BIN_PATH)/$(PROG)
 
 run:
+	make ipc
 	./$(BIN_PATH)/$(PROG)
+	make ipc
 
 count:
 	./$(TOOLS_PATH)/line_counter
