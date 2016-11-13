@@ -65,6 +65,7 @@ put: $(SRC_PATH)/put.o $(OBJS)
 
 clean:
 	$(RM) $(OBJ_PATH) $(OBJS)
+	$(RM) $(TEST_PATH)/*.dist
 	$(RM) core
 # $(RM) .gdb_history
 
@@ -72,17 +73,24 @@ release:
 	test -d $(BIN_PATH) || $(MKDIR) $(BIN_PATH)
 	$(MV) $(SRC_PATH)/$(PROG) $(BIN_PATH)/$(PROG)
 
+# relative to $(PROG) binary
+ARG_SRC=
+ARG_DIST=
+
 run:
 	make ipc
 	make proc
 	cd ./$(BIN_PATH) && \
-	./$(PROG)
+	./$(PROG) $(ARG_SRC) $(ARG_DIST)
 	make ipc
 
 count:
 	./$(TOOLS_PATH)/line_counter
 
 spec:
+	$(foreach filename, $(patsubst %.src, ../%.src, $(shell find $(TEST_PATH) -name "*.src")), make run ARG_SRC=$(filename); )
+	$(foreach filename, $(shell find $(TEST_PATH) -name "*.src"), diff $(filename) $(patsubst %.src, %.src.dist, $(filename)) || echo "[test] copy $(filename) failed."; )
+	@echo
 
 debug:
 	cd ./$(BIN_PATH) && \

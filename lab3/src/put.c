@@ -14,6 +14,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 #include <sys/shm.h>
 #include "utils/utils.h"
@@ -23,7 +24,7 @@ const key_t buft_key = 235; ///< key of shared memory to T buffer
 semaphore_t buft_empty;     ///< initial value: 1, key: 3
 semaphore_t buft_full;      ///< initial value: 0, key: 4
 
-int main(void) {
+int main(int argc, char **argv) {
     FILE *fp;               ///< dist file pointer
     int buft_sid;           ///< shm id of shared memory as T buffer
     char *buft_map;         ///< map address of shm to as T buffer
@@ -44,11 +45,22 @@ int main(void) {
     buft_map = (char *)shmat(buft_sid, NULL, 0);
 
     // open dist file
-    if ((fp = fopen("./dist.dat", "w+")) == NULL) {
-        perror("fopen error\n");
-        return -1;
+    if (argc < 2) {
+        if ((fp = fopen("./default.dist", "w+")) == NULL) {
+            perror("fopen error\n");
+            return -1;
+        }
+    } else if (argc == 2) {
+        if ((fp = fopen(strcat(argv[1], ".dist"), "w+")) == NULL) {
+            perror("fopen error\n");
+            return -1;
+        }
+    } else {
+        if ((fp = fopen(argv[2], "w+")) == NULL) {
+            perror("fopen error\n");
+            return -1;
+        }
     }
-
 
     // put data from T buffer to dist file
     while (1) {

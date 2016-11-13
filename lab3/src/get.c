@@ -23,7 +23,7 @@ const key_t bufs_key = 234; ///< key of shared memory to S buffer
 semaphore_t bufs_empty;     ///< initial value: 1, key: 1
 semaphore_t bufs_full;      ///< initial value: 0, key: 2
 
-int main(void) {
+int main(int argc, char **argv) {
     FILE *fp;               ///< src file pointer
     int bufs_sid;           ///< shm id of shared memory as S buffer
     char *bufs_map;         ///< map address of shm to as S buffer
@@ -44,11 +44,17 @@ int main(void) {
     bufs_map = (char *)shmat(bufs_sid, NULL, 0);
 
     // open src file
-    if ((fp = fopen("./src.dat", "a+")) == NULL) {
-        perror("fopen error\n");
-        return -1;
+    if (argc <= 1) {
+        if ((fp = fopen("./default.src", "a+")) == NULL) {
+            perror("fopen error\n");
+            return -1;
+        }
+    } else {
+        if ((fp = fopen(argv[1], "a+")) == NULL) {
+            perror("fopen error\n");
+            return -1;
+        }
     }
-
 
     // get data from src file to S buffer
     while (1) {

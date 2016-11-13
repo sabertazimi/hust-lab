@@ -28,7 +28,7 @@ semaphore_t bufs_full;      ///< initial value: 0, key: 2
 semaphore_t buft_empty;     ///< initial value: 1, key: 3
 semaphore_t buft_full;      ///< initial value: 0, key: 4
 
-int main(void) {
+int main(int argc, char **argv) {
     int status;             ///< wait status
 
     pid_t get_pid;          ///< return pid of fork function
@@ -73,7 +73,7 @@ int main(void) {
 
     while ((get_pid = fork()) == -1) ;
     if (get_pid == 0) {                     // sub
-        execlp("./get", "get", NULL);
+        execlp("./get", "get", argv[1], argv[2], argv[argc], NULL);
     } else {                                // main
         while ((copy_pid = fork()) == -1) ;
         if (copy_pid == 0) {                // sub
@@ -81,7 +81,7 @@ int main(void) {
         } else {                            // main
             while ((put_pid = fork()) == -1) ;
             if (put_pid == 0) {             // sub
-                execlp("./put", "put", NULL);
+                execlp("./put", "put", argv[1], argv[2], argv[argc], NULL);
             } else {                        // main
                 // wait for finish of children process
                 for (int i = 0; i < 3; i++) {
