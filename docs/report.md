@@ -46,3 +46,27 @@ $ ipcrm --all=sem
 ### EOF
 
 EOF 不能写入 dist file, 否则会造成乱码
+
+## Debug
+
+```sh
+# debug parent process only
+$ set follow-fork-mode parent set detach-on-fork on
+
+# debug child  process only
+$ set follow-fork-mode child  set detach-on-fork on
+
+# debug processes together, block child process on where fork function get invoked
+$ set follow-fork-mode parent set detach-on-fork off
+
+# debug processes together, block parent process on where fork function get invoked
+$ set follow-fork-mode child  set detach-on-fork off
+
+# info inferiors
+$ info inferiros
+$ inferior <infer number>
+
+# info threads
+$ info threads
+$ thread <thread number>
+```

@@ -1,2 +1,5 @@
-b main.c:1
+set follow-fork-mode child
+set detach-on-fork off
+b main.c: 82
+b copy.c: 1
 r
