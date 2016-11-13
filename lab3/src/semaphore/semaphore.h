@@ -29,7 +29,6 @@ union semun {
 /// implement semaphore with OO pattern
 struct _semaphore_ {
     int semid;                      ///< id of semaphore
-    int semval;                     ///< initial value of semaphore
     union semun semun;              ///< struct for semctl function
     struct sembuf sembuf;           ///< struct from stand sem.h for semop function
     void (*P)(semaphore_t self);    ///< function pointer pointing to P function

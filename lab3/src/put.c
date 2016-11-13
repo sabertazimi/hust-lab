@@ -20,8 +20,8 @@
 #include "semaphore/semaphore.h"
 
 const key_t buft_key = 235; ///< key of shared memory to T buffer
-semaphore_t buft_empty;     ///< initial value: 1, key: 2
-semaphore_t buft_full;      ///< initial value: 0, key: 3
+semaphore_t buft_empty;     ///< initial value: 1, key: 3
+semaphore_t buft_full;      ///< initial value: 0, key: 4
 
 int main(void) {
     LOG("put pid = %d\n", getpid());
@@ -32,8 +32,11 @@ int main(void) {
     char *buft_map;         ///< map address of shm to as T buffer
 
     // get semaphores
-    buft_empty = semnew(2, 1, 0);
-    buft_full  = semnew(3, 0, 0);
+    buft_empty = semnew(3, 1, 0);
+    buft_full  = semnew(4, 0, 0);
+
+    LOG("put semid: %d, %d\n",
+            buft_empty->semid, buft_full->semid);
 
     // get shm
     buft_sid = shmget(buft_key, 2, IPC_CREAT | 0666);

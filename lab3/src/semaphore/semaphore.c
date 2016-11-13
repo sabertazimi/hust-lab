@@ -37,17 +37,22 @@ semaphore_t semnew(key_t key,int semval, int init_flag) {
     semaphore_t sem = (semaphore_t)malloc(sizeof(*sem));
 
     // create/get a semaphore IPC
-    if ((sem->semid = semget(key, 1, IPC_CREAT | 0666)) == -1) {
-        perror("semget error\n");
-        return NULL;
-
+    if ((sem->semid = semget(key, 1, IPC_CREAT | IPC_EXCL | 0666)) == -1) {
+        // get a exist semaphore IPC
+        if ((sem->semid = semget(key, 1, 0)) == -1) {
+            perror("semget error\n");
+            return NULL;
+        }
+    } else {
+        sem->semun.val = semval;            // initial value of semaphore for semctl function
+        if (semctl(sem->semid, 0, SETVAL, sem->semun) < 0) {
+            perror("semctl error\n");
+            return NULL;
+        }
     }
 
-    sem->semval = semval;
-    sem->semun.val = semval;            // initial value of semaphore for semctl function
-
     if (init_flag == 1) {
-        semctl(sem->semid, 0, SETVAL, sem->semun);
+
     }
 
     sem->sembuf.sem_num = 0;            // set operation index to sem[0](all semaphores are with single demension)
@@ -62,23 +67,28 @@ semaphore_t semnew(key_t key,int semval, int init_flag) {
 
 static void semP(semaphore_t self) {
     LOG("%d: P\n", self->semid);
-    self->semval--;
     self->sembuf.sem_op = -1;
-    semop(self->semid, &(self->sembuf), 1);
+    if (semop(self->semid, &(self->sembuf), 1) < 0) {
+        perror("P error\n");
+    }
 }
 
 static void semV(semaphore_t self) {
     LOG("%d: V\n", self->semid);
-    self->semval++;
     self->sembuf.sem_op = +1;
-    semop(self->semid, &(self->sembuf), 1);
+    if (semop(self->semid, &(self->sembuf), 1) < 0) {
+        perror("V error\n");
+    }
 }
 
 static void semdel(semaphore_t self) {
     // check to prevent multiple-destruction
     if (self->P != NULL || self->V != NULL || self->del != NULL) {
         // delete semaphore IPC
-        semctl(self->semid, 0, IPC_RMID);
+        if (semctl(self->semid, 0, IPC_RMID) < 0) {
+            perror("semctl error\n");
+            return ;
+        }
 
         // set all pointer member to NULL
         self->P = NULL;
