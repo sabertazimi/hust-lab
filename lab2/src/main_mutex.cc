@@ -35,10 +35,10 @@ void eval_thread(void *args) {
 
         if (number < limit) {
             number++;
-            LOG("%d: number get 1 added\n", pid);
+            LOG("eval %d: number get 1 added\n", pid);
             mutex->V(mutex);
         } else {
-            LOG("%d: number reachs limit %3d\n", pid, number);
+            LOG("eval %d: number reachs limit %3d\n", pid, number);
             mutex->V(mutex);
             break;
         }
@@ -57,7 +57,7 @@ void print_thread(void *args) {
         mutex->P(mutex);
 
         if (number < limit) {
-            fprintf(stdout, "%d: now, the value of shared number is %3d\n", pid, number);
+            LOG("print %d: now, the value of shared number is %3d\n", pid, number);
             mutex->V(mutex);
         } else {
             mutex->V(mutex);
@@ -77,11 +77,11 @@ int main(void) {
 
     // create evaluation thread
     while ((ret = pthread_create(&eval_pid, NULL, (void *)eval_thread, &eval_pid)) != 0);
-    LOG("create eval thread with pid %d\n", eval_pid);
+    // LOG("create eval thread with pid %d\n", eval_pid);
 
     // create print thread
     while ((ret = pthread_create(&print_pid, NULL, (void *)print_thread, &print_pid)) != 0);
-    LOG("create print thread with pid %d\n", print_pid);
+    // LOG("create print thread with pid %d\n", print_pid);
 
     // wait for finish of threads
     pthread_join(eval_pid, NULL);
