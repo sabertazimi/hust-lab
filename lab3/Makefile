@@ -73,10 +73,11 @@ release:
 	$(MV) $(SRC_PATH)/$(PROG) $(BIN_PATH)/$(PROG)
 
 run:
+	make ipc
+	make proc
 	cd ./$(BIN_PATH) && \
 	./$(PROG)
 	make ipc
-	make proc
 
 count:
 	./$(TOOLS_PATH)/line_counter

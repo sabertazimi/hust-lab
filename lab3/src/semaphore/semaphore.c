@@ -8,13 +8,8 @@
  * \license MIT
  */
 
-#undef DEBUG
-#define DEBUG
-// #undef DBUEG
-
 #include <stdio.h>
 #include <stdlib.h>
-#include "utils/utils.h"
 #include "semaphore/semaphore.h"
 
 /// \brief P function
@@ -66,7 +61,6 @@ semaphore_t semnew(key_t key,int semval, int init_flag) {
 }
 
 static void semP(semaphore_t self) {
-    LOG("%d: P\n", self->semid);
     self->sembuf.sem_op = -1;
     if (semop(self->semid, &(self->sembuf), 1) < 0) {
         perror("P error\n");
@@ -74,7 +68,6 @@ static void semP(semaphore_t self) {
 }
 
 static void semV(semaphore_t self) {
-    LOG("%d: V\n", self->semid);
     self->sembuf.sem_op = +1;
     if (semop(self->semid, &(self->sembuf), 1) < 0) {
         perror("V error\n");

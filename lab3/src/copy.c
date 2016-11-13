@@ -68,8 +68,8 @@ int main(void) {
             ch = bufs_map[0];           // write character into ch
             bufs_empty->V(bufs_empty);
         } else {
+            ch = bufs_map[0];
             bufs_empty->V(bufs_empty);
-            break;
         }
 
         buft_empty->P(buft_empty);
@@ -79,6 +79,7 @@ int main(void) {
             buft_map[0] = ch;           // write character into T buffer
             buft_full->V(buft_full);
         } else {
+            buft_map[0] = ch;
             buft_full->V(buft_full);
             break;
         }

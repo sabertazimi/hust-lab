@@ -38,3 +38,11 @@ $ ipcrm --all=sem
 
 *   `sem_flags` 含有 `IPC_EXCL` 时, 不会返回已经存在的 IPC 信号量
 *   当 key 为 0 时, 返回 id 变成随机值(不再固定)
+
+### copy break condition
+
+当从 S buffer 接收到 EOF 后, 不应该立即 break, 应将 EOF 送入 T buffer 后, 再进行 break, 否则会产生死锁
+
+### EOF
+
+EOF 不能写入 dist file, 否则会造成乱码

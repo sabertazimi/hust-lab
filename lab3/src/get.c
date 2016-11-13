@@ -55,21 +55,18 @@ int main(void) {
         return -1;
     }
 
-    LOG("get: before loop\n");
 
     // get data from src file to S buffer
     while (1) {
-        LOG("get: before P\n");
         bufs_empty->P(bufs_empty);
-        LOG("get: after P\n");
 
         if ((ch = fgetc(fp)) != EOF) {
             bufs_map[0] = ch;       // write character into S buffer
             LOG("get: %c\n", ch);
-            LOG("get: before V\n");
             bufs_full->V(bufs_full);
-            LOG("get: after V\n");
         } else {
+            bufs_map[0] = ch;
+            LOG("get: %d\n", ch);
             bufs_full->V(bufs_full);
             break;
         }

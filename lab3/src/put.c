@@ -55,21 +55,17 @@ int main(void) {
         return -1;
     }
 
-    LOG("put: before loop\n");
 
     // put data from T buffer to dist file
     while (1) {
-        LOG("put: before P\n");
         buft_full->P(buft_full);
-        LOG("put: after P\n");
 
         if ((ch = buft_map[0]) != EOF) {
             fputc(ch, fp);              // write character into dist file
             LOG("put: %c\n", ch);
-            LOG("put: before V\n");
             buft_empty->V(buft_empty);
-            LOG("put: after V\n");
         } else {
+            LOG("put: %c\n", ch);
             buft_empty->V(buft_empty);
             break;
         }
