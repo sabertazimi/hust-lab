@@ -34,6 +34,20 @@ $ ipcrm --all=sem
 
 ## BUGs
 
+### semctl
+
+The **calling** program must define this union as follows:
+
+```c
+union semun {
+    int              val;    /* Value for SETVAL */
+    struct semid_ds *buf;    /* Buffer for IPC_STAT, IPC_SET */
+    unsigned short  *array;  /* Array for GETALL, SETALL */
+    struct seminfo  *__buf;  /* Buffer for IPC_INFO
+    (Linux-specific) */
+};
+```
+
 ### semget/shmget
 
 *   `sem_flags` 含有 `IPC_EXCL` 时, 不会返回已经存在的 IPC 信号量
