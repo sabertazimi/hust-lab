@@ -29,7 +29,7 @@ class TestCase():
 
   def __call__(self):
     output = tempfile.TemporaryFile(mode='r+')
-    proc = subprocess.Popen(["java","-jar",logisim_location,"-tty","table",self.circfile],
+    proc = subprocess.Popen(["logisim","-tty","table",self.circfile],
                             stdin=open('/dev/null'),
                             stdout=subprocess.PIPE)
     try:
