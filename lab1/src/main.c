@@ -15,14 +15,7 @@
 #include <sys/wait.h>   ///< for waitpid()               function
 #include <signal.h>     ///< for kill()    and signal()  function
 
-///< user-defined signal
-typedef enum _sigusr_ {
-    SIGUSRONE = 233,
-    SIGUSRTWO = 234
-} sigusr_t;
-
-pid_t c1, c2;                   ///< pid for child process 1 and child process 2
-int c1_finish, c2_finish = 0;   ///< finish flag for child process
+pid_t c1, c2;           ///< pid for child process 1 and child process 2
 
 /// \brief handler get invoked when process get signal
 /// \param sig_no numero symbol of signal
@@ -30,17 +23,15 @@ int c1_finish, c2_finish = 0;   ///< finish flag for child process
 void handler(int sig_no) {
     switch(sig_no) {
         case SIGINT:
-            kill(c1, SIGUSRONE);
-            kill(c2, SIGUSRTWO);
+            kill(c1, SIGUSR1);
+            kill(c2, SIGUSR2);
             break;
-        case SIGUSRONE:
+        case SIGUSR1:
             fprintf(stdout, "Child Process 1 is Killed by Parent!\n");
             exit(0);
-            break;
-        case SIGUSRTWO:
+        case SIGUSR2:
             fprintf(stdout, "Child Process 2 is Killed by Parent!\n");
             exit(0);
-            break;
         default:
             break;
     }
@@ -70,11 +61,12 @@ int main(void) {
     if (c1 == 0) {                      // child 1
         int cnt = 1;
 
-        signal(SIGINT, 1);                      // ignore SIGINT signal
-        signal(SIGUSRONE, handler);   // handle SIGUSR signal
+        signal(SIGINT, SIG_IGN);        // ignore SIGINT signal
+        signal(SIGUSR1, handler);       // handle SIGUSR signal
 
         // write data to pipe
         close(pipe_fd[0]);
+        sleep(1);
 
         // child 1 won't exit, until get SIGUSRONE signal
         while (1) {
@@ -87,11 +79,12 @@ int main(void) {
     } else {                            // parent
         while ((c2 = fork()) == -1) ;   // while loop for error recovery
         if (c2 == 0) {                  // child 2
-            signal(SIGINT, 1);                      // ignore SIGINT signal
-            signal(SIGUSRTWO, handler);   // handle SIGUSR signal
+            signal(SIGINT, SIG_IGN);    // ignore SIGINT signal
+            signal(SIGUSR2, handler);   // handle SIGUSR signal
 
             // read data from pipe
             close(pipe_fd[1]);
+            sleep(1);
 
             // child 2 won't exit, until get SIGUSRTWO signal
             while (1) {
