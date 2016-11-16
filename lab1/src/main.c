@@ -8,68 +8,111 @@
  * \license MIT
  */
 
-#undef DEBUG
-#define DEBUG   ///< macro for enable/disable debug functions
-// #undef DEBUG
-
 #include <stdio.h>
 #include <stdlib.h>
-#include <pthread.h>
-#include <unistd.h>
-#include "utils/utils.h"
-#include "semaphore/semaphore.h"
+#include <unistd.h>     ///< for fork()    and pipe()    function
+#include <sys/types.h>  ///< for kill()    and waitpid() function
+#include <sys/wait.h>   ///< for waitpid()               function
+#include <signal.h>     ///< for kill()    and signal()  function
 
-static const int num_windows = 10;  ///< number of windows selling tickets
-static int num_tickets = 100;       ///< number of available tickets
-static semaphore_t mutex;           ///< mutex for adding/subing num_tickets
+///< user-defined signal
+typedef enum _sigusr_ {
+    SIGUSRONE = 233,
+    SIGUSRTWO = 234
+} sigusr_t;
 
-void window(void *args) {
-    int id = *(int *)args;
+pid_t c1, c2;                   ///< pid for child process 1 and child process 2
+int c1_finish, c2_finish = 0;   ///< finish flag for child process
 
-    srand((unsigned)time(NULL));
-
-    while (1) {
-        sleep(rand() % 3);
-
-        mutex->P(mutex);
-
-        if (num_tickets <= 0) {
-            mutex->V(mutex);
+/// \brief handler get invoked when process get signal
+/// \param sig_no numero symbol of signal
+/// \return void
+void handler(int sig_no) {
+    switch(sig_no) {
+        case SIGINT:
+            kill(c1, SIGUSRONE);
+            kill(c2, SIGUSRTWO);
             break;
-        } else {
-            num_tickets--;
-            LOG("window %2d sell out 1 ticket, now available %3d\n", id, num_tickets);
-            mutex->V(mutex);
-        }
+        case SIGUSRONE:
+            fprintf(stdout, "Child Process 1 is Killed by Parent!\n");
+            exit(0);
+            break;
+        case SIGUSRTWO:
+            fprintf(stdout, "Child Process 2 is Killed by Parent!\n");
+            exit(0);
+            break;
+        default:
+            break;
     }
 }
 
+/*
+ * parent : create pipe -> close pipe, create process -> wait process, handle SIGINT signal(send signal to children)
+ * child 1: write data to pipe, ignore SIGINT signal, handle SIGUSRONE signal
+ * child 2: read data from pipe, ignore SIGINT signal, handle SIGUSRTWO signal
+ */
 int main(void) {
-    int ret;                                ///< return value of pthread_create function
-    int windows_id[num_windows];            ///< No. id for every single window
-    pthread_t windows_pid[num_windows];     ///< thread id for every single window
+    int status;         ///< child process exit status buffer
 
-    srand((unsigned)time(NULL));
+    int pipe_fd[2];     ///< pipe file descriptor for reading from pipe and writing to pipe
+    char w_buf[80];     ///< write buffer
+    char r_buf[80];     ///< read buffer
 
-    // create semaphore
-    mutex = semnew(1);
-    // LOG("Main: semid %d\n", mutex->semid);
-    // LOG("Main: semval %d\n", mutex->semval);
-
-    for (int i = 0; i < num_windows; i++) {
-        windows_id[i] = i + 1;
-        while ((ret = pthread_create(&windows_pid[i], NULL, (void *)window, &windows_id[i])) != 0);
-        // LOG("create No.%2d window with pid %d\n", windows_id[i], windows_pid[i]);
+    if (pipe(pipe_fd) < 0) {
+        perror("create pipe failed\n");
+        exit(-1);
     }
 
-    // wait for sub-thread finish
-    for (int i = 0; i < num_windows; i++) {
-        pthread_join(windows_pid[i], NULL);
-    }
+    // set handle for SIGINT
+    signal(SIGINT, handler);
 
-    // remove semaphore
-    mutex->del(mutex);
+    while ((c1 = fork()) == -1) ;       // while loop for error recovery
+    if (c1 == 0) {                      // child 1
+        int cnt = 1;
+
+        signal(SIGINT, 1);                      // ignore SIGINT signal
+        signal(SIGUSRONE, handler);   // handle SIGUSR signal
+
+        // write data to pipe
+        close(pipe_fd[0]);
+
+        // child 1 won't exit, until get SIGUSRONE signal
+        while (1) {
+            sprintf(w_buf, "I send you %d times\n", cnt++);
+            if (write(pipe_fd[1], w_buf, 80) < 0) {
+                perror("write error\n");
+                exit(-1);
+            }
+        }
+    } else {                            // parent
+        while ((c2 = fork()) == -1) ;   // while loop for error recovery
+        if (c2 == 0) {                  // child 2
+            signal(SIGINT, 1);                      // ignore SIGINT signal
+            signal(SIGUSRTWO, handler);   // handle SIGUSR signal
+
+            // read data from pipe
+            close(pipe_fd[1]);
+
+            // child 2 won't exit, until get SIGUSRTWO signal
+            while (1) {
+                if (read(pipe_fd[0], r_buf, 80) < 0) {
+                    perror("read error\n");
+                    exit(-1);
+                }
+                fprintf(stdout, "%s", r_buf);
+            }
+        } else {                        // parent
+            // when parent get SIGINT signal, it will send SIGUSR signal to children to kill them
+            // wait child process to finish
+            for (int i = 0; i < 2;i++) {
+                waitpid(-1, &status, 0);
+            }
+
+            close(pipe_fd[0]);          // close read file descriptor for pipe
+            close(pipe_fd[1]);          // close write file descriptor for pipe
+            fprintf(stdout, "Parent Process is Killed!\n");
+        }
+    }
 
     return 0;
 }
-
