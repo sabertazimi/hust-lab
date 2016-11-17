@@ -31,7 +31,7 @@ int main(int argc, char **argv) {
     buf_full  = semnew(2, 0);
 
     // get shm
-    buf_sid = shmget(buf_key, 2, IPC_CREAT | 0666);
+    buf_sid = shmget(buf_key, BUF_SIZE+3, IPC_CREAT | 0666);
 
     if (buf_sid == -1) {
         perror("shmget error\n");
@@ -62,14 +62,20 @@ int main(int argc, char **argv) {
     // put data from buffer to dist file
     while (1) {
         // test whether there is any data in buffer or not
-        buf_full->P(buf_full);
+        while (buf_map[2] == 0) {
+            buf_full->P(buf_full);
+        }
 
         // get buffer read pointer
         int iread = buf_map[1];
 
         // write to dist file from buffer, move read pointer
-        char ch = buf_map[2+iread++];
+        char ch = buf_map[3+iread++];
         iread %= BUF_SIZE;
+
+        buf_map[2]--;
+
+        fprintf(stdout, "buf_size: %d\n", buf_map[2]);
 
         if (ch == EOF) {
             buf_empty->V(buf_empty);

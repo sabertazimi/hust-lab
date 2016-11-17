@@ -21,6 +21,7 @@
 const key_t buf_key = 233; ///< key of shared memory to buffer
 semaphore_t buf_empty;     ///< initial value: 1, key: 1
 semaphore_t buf_full;      ///< initial value: 0, key: 2
+semaphore_t mutex;
 
 int main(int argc, char **argv) {
     int status;             ///< wait status
@@ -34,10 +35,11 @@ int main(int argc, char **argv) {
     // create semaphore
     buf_empty = semnew(1, 1);
     buf_full  = semnew(2, 0);
+    mutex = semnew(3, 1);
 
     // create shm
-    // buf[0] stores write pointer, buf[1] stores read pointer, buf[2:BUF_SIZE+1] stores truly data
-    buf_sid = shmget(buf_key, BUF_SIZE+2, IPC_CREAT | 0666);
+    // buf[0] stores write pointer, buf[1] stores read pointer, buf[2] stores number of data, buf[3:BUF_SIZE+2] stores truly data
+    buf_sid = shmget(buf_key, BUF_SIZE+3, IPC_CREAT | 0666);
 
     // get shm failed
     if (buf_sid == -1) {
@@ -49,7 +51,7 @@ int main(int argc, char **argv) {
     buf_map = (char *)shmat(buf_sid, NULL, 0);
 
     // wrie empty characters into buf_shm
-    memset(buf_map, '\0', BUF_SIZE+2);
+    memset(buf_map, '\0', BUF_SIZE+3);
 
     // detach shm
     shmdt(buf_map);
@@ -77,6 +79,7 @@ int main(int argc, char **argv) {
             // remove semaphore
             buf_empty->del(buf_empty);
             buf_full->del(buf_full);
+            mutex->del(mutex);
 
             return 0;
         }

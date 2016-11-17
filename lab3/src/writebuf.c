@@ -30,7 +30,7 @@ int main(int argc, char **argv) {
     buf_full  = semnew(2, 0);
 
     // get shm
-    buf_sid = shmget(buf_key, 2, IPC_CREAT | 0666);
+    buf_sid = shmget(buf_key, BUF_SIZE+3, IPC_CREAT | 0666);
 
     if (buf_sid == -1) {
         perror("shmget error\n");
@@ -56,15 +56,22 @@ int main(int argc, char **argv) {
     // get data from src file to buffer
     while (1) {
         // test whether buf is empty or not
-        buf_empty->P(buf_empty);
+        while (buf_map[2] == BUF_SIZE) {
+            buf_empty->P(buf_empty);
+        }
 
         // get write buf pointer
         int iwrite = buf_map[0];
 
         // write data to buffer, move write pointer
         char ch = fgetc(fp);
-        buf_map[2+iwrite++] = ch;
+        buf_map[3+iwrite++] = ch;
         iwrite %= BUF_SIZE;
+
+        buf_map[2]++;
+
+        fprintf(stdout, "buf_size: %d\n", buf_map[2]);
+
         fprintf(stdout, "write %c from src file to buffer... \n", ch);
 
         // break condition
