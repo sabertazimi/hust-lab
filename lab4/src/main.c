@@ -16,32 +16,66 @@
 #include <dirent.h>
 
 void printdir(char *dir, int depth) {
-    DIR *dp;
-    struct dirent *entry;
-    struct stat statbuf;
+    DIR *dp;                    ///< for directory info
+    struct dirent *entry;       ///< for directory item info
+    struct stat statbuf;        ///< for file info
 
-    if ((dp = 打开dir目录) 不成功) {
-        打印出错信息;
-        返回;
+    // opendir
+    if ((dp = opendir(dir)) == NULL) {
+        perror("open dir failed\n");
+        return;
     }
 
-    将dir设置为当前目录;
+    // change current dir
+    if (chdir(dir) < 0) {
+        perror("chdir error\n");
+        return;
+    }
 
-    while (读到一个目录项) {
-        以该目录项的名字为参数,调用lstat得到该目录项的相关信息;
+    while ((entry = readdir(dp)) != NULL) {
+        lstat(entry->d_name, &statbuf);
 
-        if (是目录) {
-            if (目录项的名字是”..”或”.”) {
-                跳过该目录项;
+        // a dir item
+        if (S_ISDIR(statbuf.st_mode)) {
+            if(strcmp(entry->d_name, "..") == 0 || strcmp(entry->d_name, ".") == 0) {
+                continue;
             } else {
-                打印目录项的深度、目录名等信息
-                递归调用printdir,打印子目录的信息,其中的depth+4;
+                // recursion
+                printf("%2d\t", depth);
+                printf("%s\n", entry->d_name);
+                printdir(entry->d_name, depth + 1);
             }
         } else {
-            打印文件的深度、文件名等信息
+        // a file item
+            printf("%2d\t", depth);
+            printf("%s\n", entry->d_name);
         }
     }
 
-    返回父目录;
-    关闭目录项;
+    // return to upper dir
+    if (chdir("..") < 0) {
+        perror("chdir error\n");
+        return;
+    }
+
+    // closedir
+    closedir(dp);
+}
+
+int main(int argc, char **argv) {
+    if (argc <= 1) {
+        char cwd_buf[80];
+        if (getcwd(cwd_buf, 80) == NULL) {
+            perror("getcwd error\n");
+            exit(-1);
+        } else {
+            printdir(cwd_buf, 0);
+        }
+    } else {
+        for (int i = 1; i < argc; i++) {
+            printdir(argv[i], 0);
+        }
+    }
+
+    return 0;
 }
