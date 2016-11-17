@@ -8,7 +8,7 @@ PROG=lsr
 
 # tools and their flags
 CC=gcc
-CFLAGS=-static -Wall -Wextra -std=gnu99 -O2 -g $(addprefix -I, $(INCLUDE_PATH))
+CFLAGS=-Wall -Wextra -std=gnu99 -O2 -g $(addprefix -I, $(INCLUDE_PATH))
 GDB=gdb
 GFLAGS= -q -x tools/gdbinit
 RM=rm -fr

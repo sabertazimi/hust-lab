@@ -6,6 +6,6 @@
 # Distributed under terms of the MIT license.
 #
 
-read -s -p "[ sudo  ] input $(whoami)'s password: " password
+read -s -p "[ sudo ] input $(whoami)'s password: " password
 echo $password | sudo -S cp -fr ./bin/lsr /usr/local/bin/lsr
 
