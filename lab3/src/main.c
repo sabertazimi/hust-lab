@@ -4,13 +4,9 @@
  *
  * \author sabertazimi, <sabertazimi@gmail.com>
  * \version 1.0
- * \date 2016-11-12
+ * \date 2016-11-17
  * \license MIT
  */
-
-#undef DEBUG
-#define DEBUG   ///< macro for enable/disable debug functions
-// #undef DEBUG
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -18,90 +14,71 @@
 #include <unistd.h>
 #include <sys/shm.h>
 #include <sys/wait.h>
-#include "utils/utils.h"
 #include "semaphore/semaphore.h"
 
-const key_t bufs_key = 234; ///< key of shared memory to S buffer
-const key_t buft_key = 235; ///< key of shared memory to T buffer
-semaphore_t bufs_empty;     ///< initial value: 1, key: 1
-semaphore_t bufs_full;      ///< initial value: 0, key: 2
-semaphore_t buft_empty;     ///< initial value: 1, key: 3
-semaphore_t buft_full;      ///< initial value: 0, key: 4
+#define BUF_SIZE 10        ///< size of shared buffer
+
+const key_t buf_key = 233; ///< key of shared memory to buffer
+semaphore_t buf_empty;     ///< initial value: 1, key: 1
+semaphore_t buf_full;      ///< initial value: 0, key: 2
 
 int main(int argc, char **argv) {
     int status;             ///< wait status
 
-    pid_t get_pid;          ///< return pid of fork function
-    pid_t copy_pid;         ///< return pid of fork function
-    pid_t put_pid;          ///< return pid of fork function
+    pid_t writebuf_pid;     ///< return pid of fork function
+    pid_t readbuf_pid;      ///< return pid of fork function
 
-    int bufs_sid;           ///< shm id of shared memory as S buffer
-    int buft_sid;           ///< shm id of shared memory as T buffer
-    char *bufs_map;         ///< map address of shm to as S buffer
-    char *buft_map;         ///< map address of shm to as T buffer
+    int buf_sid;           ///< shm id of shared memory as buffer
+    char *buf_map;         ///< map address of shm to as buffer
 
     // create semaphore
-    bufs_empty = semnew(1, 1);
-    bufs_full  = semnew(2, 0);
-    buft_empty = semnew(3, 1);
-    buft_full  = semnew(4, 0);
+    buf_empty = semnew(1, 1);
+    buf_full  = semnew(2, 0);
 
     // create shm
-    bufs_sid = shmget(bufs_key, 2, IPC_CREAT | 0666);
-    buft_sid = shmget(buft_key, 2, IPC_CREAT | 0666);
+    // buf[0] stores write pointer, buf[1] stores read pointer, buf[2:BUF_SIZE+1] stores truly data
+    buf_sid = shmget(buf_key, BUF_SIZE+2, IPC_CREAT | 0666);
 
     // get shm failed
-    if (bufs_sid == -1 || buft_sid == -1) {
+    if (buf_sid == -1) {
         perror("shmget error\n");
         return -1;
     }
 
     // attach shm
-    bufs_map = (char *)shmat(bufs_sid, NULL, 0);
-    buft_map = (char *)shmat(buft_sid, NULL, 0);
+    buf_map = (char *)shmat(buf_sid, NULL, 0);
 
-    // write data into shm
-    // wrie empty characters into bufs_shm and buft_shm
-    memset(bufs_map, '\0', 2);
-    memset(buft_map, '\0', 2);
+    // wrie empty characters into buf_shm
+    memset(buf_map, '\0', BUF_SIZE+2);
 
     // detach shm
-    shmdt(bufs_map);
-    shmdt(buft_map);
+    shmdt(buf_map);
 
-    LOG("start copy data... \n");
+    fprintf(stdout, "start copy data... \n");
 
-    while ((get_pid = fork()) == -1) ;
-    if (get_pid == 0) {                     // sub
-        execlp("./get", "get", argv[1], argv[2], argv[argc], NULL);
-    } else {                                // main
-        while ((copy_pid = fork()) == -1) ;
-        if (copy_pid == 0) {                // sub
-            execlp("./copy", "copy", NULL);
-        } else {                            // main
-            while ((put_pid = fork()) == -1) ;
-            if (put_pid == 0) {             // sub
-                execlp("./put", "put", argv[1], argv[2], argv[argc], NULL);
-            } else {                        // main
-                // wait for finish of children process
-                for (int i = 0; i < 3; i++) {
-                    waitpid(-1, &status, 0);
-                }
-
-                LOG("done.\n");
-
-                // remove shm
-                shmctl(bufs_sid, IPC_RMID, 0);
-                shmctl(buft_sid, IPC_RMID, 0);
-
-                // remove semaphore
-                bufs_empty->del(bufs_empty);
-                bufs_full->del(bufs_full);
-                buft_empty->del(buft_empty);
-                buft_full->del(buft_full);
-
-                return 0;
+    while ((writebuf_pid = fork()) == -1) ;
+    if (writebuf_pid == 0) {            // sub
+        execlp("./writebuf", "writebuf", argv[1], argv[2], argv[argc], NULL);
+    } else {                            // main
+        while ((readbuf_pid = fork()) == -1) ;
+        if (readbuf_pid == 0) {         // sub
+            execlp("./readbuf", "readbuf", argv[1], argv[2], argv[argc], NULL);
+        } else {                        // main
+            // wait for finish of children process
+            for (int i = 0; i < 2; i++) {
+                waitpid(-1, &status, 0);
             }
+
+            fprintf(stdout, "done.\n");
+
+            // remove shm
+            shmctl(buf_sid, IPC_RMID, 0);
+
+            // remove semaphore
+            buf_empty->del(buf_empty);
+            buf_full->del(buf_full);
+
+            return 0;
         }
     }
 }

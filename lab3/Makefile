@@ -4,7 +4,7 @@
 #
 
 # program name
-PROG=process
+PROG=lab3
 
 # tools and their flags
 CC=gcc
@@ -25,7 +25,7 @@ TOOLS_PATH=tools
 INCLUDE_PATH=$(SRC_PATH)
 
 # objects
-SRCS=$(shell find $(SRC_PATH) -path $(SRC_PATH)/main.c -o -path $(SRC_PATH)/get.c -o -path $(SRC_PATH)/copy.c -o -path $(SRC_PATH)/put.c -prune -o -name "*.c" -print)
+SRCS=$(shell find $(SRC_PATH) -path $(SRC_PATH)/main.c -o -path $(SRC_PATH)/writebuf.c -o -path $(SRC_PATH)/readbuf.c -prune -o -name "*.c" -print)
 OBJS=$(patsubst %.c, %.o, $(SRCS))
 
 # rules
@@ -36,7 +36,7 @@ OBJS=$(patsubst %.c, %.o, $(SRCS))
 	$(MV) $@ $(OBJ_PATH)/$(notdir $@)
 	@echo '***' Compile $< Success! '***'
 
-all: get copy put $(PROG)
+all: writebuf readbuf $(PROG)
 
 # dependencies
 $(PROG): $(SRC_PATH)/main.o $(OBJS)
@@ -46,20 +46,15 @@ $(PROG): $(SRC_PATH)/main.o $(OBJS)
 	@echo
 	@echo '***' Build Success! '***'
 
-get: $(SRC_PATH)/get.o $(OBJS)
-	$(CC) -o $(SRC_PATH)/get $(CFLAGS) $(OBJ_PATH)/get.o $(patsubst %.o, $(OBJ_PATH)/%.o, $(notdir $(OBJS)))
+writebuf: $(SRC_PATH)/writebuf.o $(OBJS)
+	$(CC) -o $(SRC_PATH)/writebuf $(CFLAGS) $(OBJ_PATH)/writebuf.o $(patsubst %.o, $(OBJ_PATH)/%.o, $(notdir $(OBJS)))
 	test -d $(BIN_PATH) || $(MKDIR) $(BIN_PATH)
-	$(MV) $(SRC_PATH)/get $(BIN_PATH)/get
+	$(MV) $(SRC_PATH)/writebuf $(BIN_PATH)/writebuf
 
-copy: $(SRC_PATH)/copy.o $(OBJS)
-	$(CC) -o $(SRC_PATH)/copy $(CFLAGS) $(OBJ_PATH)/copy.o $(patsubst %.o, $(OBJ_PATH)/%.o, $(notdir $(OBJS)))
+readbuf: $(SRC_PATH)/readbuf.o $(OBJS)
+	$(CC) -o $(SRC_PATH)/readbuf $(CFLAGS) $(OBJ_PATH)/readbuf.o $(patsubst %.o, $(OBJ_PATH)/%.o, $(notdir $(OBJS)))
 	test -d $(BIN_PATH) || $(MKDIR) $(BIN_PATH)
-	$(MV) $(SRC_PATH)/copy $(BIN_PATH)/copy
-
-put: $(SRC_PATH)/put.o $(OBJS)
-	$(CC) -o $(SRC_PATH)/put $(CFLAGS) $(OBJ_PATH)/put.o $(patsubst %.o, $(OBJ_PATH)/%.o, $(notdir $(OBJS)))
-	test -d $(BIN_PATH) || $(MKDIR) $(BIN_PATH)
-	$(MV) $(SRC_PATH)/put $(BIN_PATH)/put
+	$(MV) $(SRC_PATH)/readbuf $(BIN_PATH)/readbuf
 
 .PHONY = clean release run count spec debug ipc proc
 
@@ -82,7 +77,6 @@ run:
 	make proc
 	cd ./$(BIN_PATH) && \
 	./$(PROG) $(ARG_SRC) $(ARG_DIST)
-	make ipc
 
 count:
 	./$(TOOLS_PATH)/line_counter
@@ -101,9 +95,8 @@ ipc:
 	./$(TOOLS_PATH)/ipcrm
 
 proc:
-	-pkill get
-	-pkill copy
-	-pkill put
+	-pkill writebuf
+	-pkill readbuf
 
 # vim:ft=make
 #

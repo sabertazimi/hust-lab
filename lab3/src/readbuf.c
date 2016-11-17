@@ -1,48 +1,45 @@
 /*!
- * \file put.c
- * \brief entry file for put program
+ * \file readbuf.c
+ * \brief read data from shared buffer to dist file
  *
  * \author sabertazimi, <sabertazimi@gmail.com>
  * \version 1.0
- * \date 2016-11-12
+ * \date 2016-11-17
  * \license MIT
  */
-
-#undef DEBUG
-#define DEBUG   ///< macro for enable/disable debug functions
-// #undef DEBUG
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 #include <sys/shm.h>
-#include "utils/utils.h"
 #include "semaphore/semaphore.h"
 
-const key_t buft_key = 235; ///< key of shared memory to T buffer
-semaphore_t buft_empty;     ///< initial value: 1, key: 3
-semaphore_t buft_full;      ///< initial value: 0, key: 4
+#define BUF_SIZE 10        ///< size of shared buffer
+
+const key_t buf_key = 233; ///< key of shared memory to buffer
+semaphore_t buf_empty;     ///< initial value: 1, key: 1
+semaphore_t buf_full;      ///< initial value: 0, key: 2
 
 int main(int argc, char **argv) {
     FILE *fp;               ///< dist file pointer
-    int buft_sid;           ///< shm id of shared memory as T buffer
-    char *buft_map;         ///< map address of shm to as T buffer
+    int buf_sid;           ///< shm id of shared memory as buffer
+    char *buf_map;         ///< map address of shm to as buffer
 
     // get semaphores
-    buft_empty = semnew(3, 1);
-    buft_full  = semnew(4, 0);
+    buf_empty = semnew(1, 1);
+    buf_full  = semnew(2, 0);
 
     // get shm
-    buft_sid = shmget(buft_key, 2, IPC_CREAT | 0666);
+    buf_sid = shmget(buf_key, 2, IPC_CREAT | 0666);
 
-    if (buft_sid == -1) {
+    if (buf_sid == -1) {
         perror("shmget error\n");
         return -1;
     }
 
     // attach shm
-    buft_map = (char *)shmat(buft_sid, NULL, 0);
+    buf_map = (char *)shmat(buf_sid, NULL, 0);
 
     // open dist file
     if (argc < 2) {
@@ -62,17 +59,17 @@ int main(int argc, char **argv) {
         }
     }
 
-    // put data from T buffer to dist file
+    // put data from buffer to dist file
     while (1) {
-        buft_full->P(buft_full);
+        buf_full->P(buf_full);
 
-        if (buft_map[0] == EOF) {
-            buft_empty->V(buft_empty);
+        if (buf_map[0] == EOF) {
+            buf_empty->V(buf_empty);
             break;
         } else {
-            fputc(buft_map[0], fp);              // write character into dist file
-            LOG("put %c from T buffer to dist file... \n", buft_map[0]);
-            buft_empty->V(buft_empty);
+            fputc(buf_map[0], fp);              // write character into dist file
+            fprintf(stdout, "read %c from buffer to dist file... \n", buf_map[0]);
+            buf_empty->V(buf_empty);
         }
     }
 
@@ -82,7 +79,7 @@ int main(int argc, char **argv) {
     }
 
     // detach shm
-    shmdt(buft_map);
+    shmdt(buf_map);
 
     usleep(500);
 
