@@ -55,13 +55,20 @@ int main(int argc, char **argv) {
 
     // get data from src file to buffer
     while (1) {
-
+        // test whether buf is empty or not
         buf_empty->P(buf_empty);
-        buf_map[0] = fgetc(fp);    // write character into buffer
-        fprintf(stdout, "write %c from src file to buffer... \n", buf_map[0]);
+
+        // get write buf pointer
+        int iwrite = buf_map[0];
+
+        // write data to buffer, move write pointer
+        char ch = fgetc(fp);
+        buf_map[2+iwrite++] = ch;
+        iwrite %= BUF_SIZE;
+        fprintf(stdout, "write %c from src file to buffer... \n", ch);
 
         // break condition
-        if (buf_map[0] == EOF) {
+        if (ch == EOF) {
             buf_full->V(buf_full);
             break;
         } else {

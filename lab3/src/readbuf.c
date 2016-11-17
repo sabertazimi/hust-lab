@@ -61,14 +61,22 @@ int main(int argc, char **argv) {
 
     // put data from buffer to dist file
     while (1) {
+        // test whether there is any data in buffer or not
         buf_full->P(buf_full);
 
-        if (buf_map[0] == EOF) {
+        // get buffer read pointer
+        int iread = buf_map[1];
+
+        // write to dist file from buffer, move read pointer
+        char ch = buf_map[2+iread++];
+        iread %= BUF_SIZE;
+
+        if (ch == EOF) {
             buf_empty->V(buf_empty);
             break;
         } else {
-            fputc(buf_map[0], fp);              // write character into dist file
-            fprintf(stdout, "read %c from buffer to dist file... \n", buf_map[0]);
+            fputc(ch, fp);              // write character into dist file
+            fprintf(stdout, "read %c from buffer to dist file... \n", ch);
             buf_empty->V(buf_empty);
         }
     }

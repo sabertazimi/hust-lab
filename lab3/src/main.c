@@ -1,6 +1,6 @@
 /*!
  * \file main.c
- * \brief entry file for pthread lab
+ * \brief entry file for shm lab
  *
  * \author sabertazimi, <sabertazimi@gmail.com>
  * \version 1.0
