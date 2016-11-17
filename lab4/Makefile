@@ -4,7 +4,7 @@
 #
 
 # program name
-PROG=variable
+PROG=lsr
 
 # tools and their flags
 CC=gcc
@@ -56,6 +56,7 @@ clean:
 release:
 	$(MKDIR) $(BIN_PATH)
 	$(MV) $(SRC_PATH)/$(PROG) $(BIN_PATH)/$(PROG)
+	./$(TOOLS_PATH)/release
 
 run:
 	./$(BIN_PATH)/$(PROG)

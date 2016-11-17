@@ -1,0 +1,11 @@
+#! /bin/bash
+#
+# release.sh
+# Copyright (C) 2016 sabertazimi <sabertazimi@gmail.com>
+#
+# Distributed under terms of the MIT license.
+#
+
+read -s -p "[ sudo  ] input $(whoami)'s password: " password
+echo $password | sudo -S cp -fr ./bin/lsr /usr/local/bin/lsr
+
