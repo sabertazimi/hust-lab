@@ -16,12 +16,12 @@
 #include <sys/wait.h>
 #include "semaphore/semaphore.h"
 
-#define BUF_SIZE 10        ///< size of shared buffer
+#define BUF_SIZE 10         ///< size of shared buffer
 
-const key_t buf_key = 233; ///< key of shared memory to buffer
-semaphore_t buf_empty;     ///< initial value: 1, key: 1
-semaphore_t buf_full;      ///< initial value: 0, key: 2
-semaphore_t mutex;
+const key_t buf_key = 233;  ///< key of shared memory to buffer
+semaphore_t buf_empty;      ///< initial value: 1, key: 1
+semaphore_t buf_full;       ///< initial value: 0, key: 2
+semaphore_t mutex;          ///< mutex for buf_map[2](number of data)
 
 int main(int argc, char **argv) {
     int status;             ///< wait status
@@ -29,8 +29,8 @@ int main(int argc, char **argv) {
     pid_t writebuf_pid;     ///< return pid of fork function
     pid_t readbuf_pid;      ///< return pid of fork function
 
-    int buf_sid;           ///< shm id of shared memory as buffer
-    char *buf_map;         ///< map address of shm to as buffer
+    int buf_sid;            ///< shm id of shared memory as buffer
+    char *buf_map;          ///< map address of shm to as buffer
 
     // create semaphore
     buf_empty = semnew(1, 1);

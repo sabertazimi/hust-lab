@@ -15,20 +15,22 @@
 #include <sys/shm.h>
 #include "semaphore/semaphore.h"
 
-#define BUF_SIZE 10        ///< size of shared buffer
+#define BUF_SIZE 10         ///< size of shared buffer
 
-const key_t buf_key = 233; ///< key of shared memory to buffer
-semaphore_t buf_empty;     ///< initial value: 1, key: 1
-semaphore_t buf_full;      ///< initial value: 0, key: 2
+const key_t buf_key = 233;  ///< key of shared memory to buffer
+semaphore_t buf_empty;      ///< initial value: 1, key: 1
+semaphore_t buf_full;       ///< initial value: 0, key: 2
+semaphore_t mutex;          ///< mutex for buf_map[2](number of data)
 
 int main(int argc, char **argv) {
     FILE *fp;               ///< dist file pointer
-    int buf_sid;           ///< shm id of shared memory as buffer
-    char *buf_map;         ///< map address of shm to as buffer
+    int buf_sid;            ///< shm id of shared memory as buffer
+    char *buf_map;          ///< map address of shm to as buffer
 
     // get semaphores
     buf_empty = semnew(1, 1);
     buf_full  = semnew(2, 0);
+    mutex = semnew(3, 1);
 
     // get shm
     buf_sid = shmget(buf_key, BUF_SIZE+3, IPC_CREAT | 0666);
@@ -72,10 +74,12 @@ int main(int argc, char **argv) {
         // write to dist file from buffer, move read pointer
         char ch = buf_map[3+iread++];
         iread %= BUF_SIZE;
+        buf_map[1] = iread;
 
+        // sub number of data
+        mutex->P(mutex);
         buf_map[2]--;
-
-        fprintf(stdout, "buf_size: %d\n", buf_map[2]);
+        mutex->V(mutex);
 
         if (ch == EOF) {
             buf_empty->V(buf_empty);
