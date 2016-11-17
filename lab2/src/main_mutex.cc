@@ -16,11 +16,14 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <unistd.h>
-#include "utils/utils.h"
 #include "semaphore/semaphore.h"
 
-static int number = 0;          ///< shared number
-static const int limit = 100;   ///< max value of shared number
+#define SLEEP_MIN 0             ///< minimal sleep ms value
+#define SLEEP_MAX 100           ///< maximal sleep ms value
+
+static int sum = 0;             ///< shared number
+static int addend = 1;          ///< addend number
+static const int limit = 100;   ///< max value of addend
 static semaphore_t mutex;       ///< mutex for adding shared number
 
 void eval_thread(void *args) {
@@ -29,16 +32,17 @@ void eval_thread(void *args) {
     srand((unsigned)time(NULL));
 
     while (1) {
-        sleep(rand() % 3);
+        usleep(SLEEP_MIN*1000 + rand() % ((SLEEP_MAX-SLEEP_MIN)*1000));
 
         mutex->P(mutex);
 
-        if (number < limit) {
-            number++;
-            LOG("eval %d: number get 1 added\n", pid);
+        if (addend  <= limit) {
+            sum += addend;
+            fprintf(stdout, "eval %d: sum gets %3d added\n", pid, addend);
+            addend++;
             mutex->V(mutex);
         } else {
-            LOG("eval %d: number reachs limit %3d\n", pid, number);
+            fprintf(stdout, "eval %d: add done, addend = %3d, sum = %3d\n", pid, addend, sum);
             mutex->V(mutex);
             break;
         }
@@ -52,12 +56,12 @@ void print_thread(void *args) {
     srand((unsigned)time(NULL));
 
     while (1) {
-        sleep(rand() % 3);
+        usleep(SLEEP_MIN*1000 + rand() % ((SLEEP_MAX-SLEEP_MIN)*1000));
 
         mutex->P(mutex);
 
-        if (number < limit) {
-            LOG("print %d: now, the value of shared number is %3d\n", pid, number);
+        if (addend <= limit) {
+            fprintf(stdout, "print %d: now, shared sum = %3d\n", pid, sum );
             mutex->V(mutex);
         } else {
             mutex->V(mutex);
@@ -77,11 +81,9 @@ int main(void) {
 
     // create evaluation thread
     while ((ret = pthread_create(&eval_pid, NULL, (void *)eval_thread, &eval_pid)) != 0);
-    // LOG("create eval thread with pid %d\n", eval_pid);
 
     // create print thread
     while ((ret = pthread_create(&print_pid, NULL, (void *)print_thread, &print_pid)) != 0);
-    // LOG("create print thread with pid %d\n", print_pid);
 
     // wait for finish of threads
     pthread_join(eval_pid, NULL);

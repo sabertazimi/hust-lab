@@ -4,7 +4,7 @@
 #
 
 # program name
-PROG=variable
+PROG=lab2
 
 # tools and their flags
 CC=gcc
@@ -46,7 +46,7 @@ $(PROG): $(OBJS)
 	@echo
 	@echo '***' Build Success! '***'
 
-.PHONY = clean release run count spec debug ipc
+.PHONY = clean release run count debug
 
 clean:
 	$(RM) $(OBJ_PATH) $(OBJS)
@@ -58,21 +58,14 @@ release:
 	$(MV) $(SRC_PATH)/$(PROG) $(BIN_PATH)/$(PROG)
 
 run:
-	make ipc
 	./$(BIN_PATH)/$(PROG)
-	make ipc
 
 count:
 	./$(TOOLS_PATH)/line_counter
 
-spec:
-
 debug:
 	$(GDB) $(GFLAGS) $(BIN_PATH)/$(PROG) core
 # $(RM) .gdb_history
-
-ipc:
-	ipcrm --all=sem
 
 # vim:ft=make
 #
