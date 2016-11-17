@@ -1,10 +1,10 @@
 /*!
  * \file main.c
- * \brief entry file for pthread lab
+ * \brief entry file for pipe and signal lab
  *
  * \author sabertazimi, <sabertazimi@gmail.com>
  * \version 1.0
- * \date 2016-11-11
+ * \date 2016-11-17
  * \license MIT
  */
 
