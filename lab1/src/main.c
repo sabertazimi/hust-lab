@@ -75,6 +75,7 @@ int main(void) {
                 perror("write error\n");
                 exit(-1);
             }
+            sleep(1);
         }
     } else {                            // parent
         while ((c2 = fork()) == -1) ;   // while loop for error recovery
