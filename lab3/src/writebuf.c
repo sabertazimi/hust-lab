@@ -17,8 +17,8 @@
 #define BUF_SIZE 10         ///< size of shared buffer
 
 const key_t buf_key = 233;  ///< key of shared memory to buffer
-semaphore_t buf_empty;      ///< initial value: 1, key: 1
-semaphore_t buf_full;       ///< initial value: 0, key: 2
+semaphore_t buf_notfull;      ///< initial value: 1, key: 1
+semaphore_t buf_notempty;       ///< initial value: 0, key: 2
 semaphore_t mutex;          ///< mutex for buf_map[2](number of data)
 
 int main(int argc, char **argv) {
@@ -27,8 +27,8 @@ int main(int argc, char **argv) {
     char *buf_map;          ///< map address of shm to as buffer
 
     // get semaphores
-    buf_empty = semnew(1, 1);
-    buf_full  = semnew(2, 0);
+    buf_notfull = semnew(1, 1);
+    buf_notempty  = semnew(2, 0);
     mutex = semnew(3, 1);
 
     // get shm
@@ -57,9 +57,9 @@ int main(int argc, char **argv) {
 
     // get data from src file to buffer
     while (1) {
-        // test whether buf is empty or not
+        // test whether buf is full or not
         while (buf_map[2] == BUF_SIZE) {
-            buf_empty->P(buf_empty);
+            buf_notfull->P(buf_notfull);
         }
 
         // get write buf pointer
@@ -80,10 +80,10 @@ int main(int argc, char **argv) {
 
         // break condition
         if (ch == EOF) {
-            buf_full->V(buf_full);
+            buf_notempty->V(buf_notempty);
             break;
         } else {
-            buf_full->V(buf_full);
+            buf_notempty->V(buf_notempty);
         }
     }
 

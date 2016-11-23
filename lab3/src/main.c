@@ -19,8 +19,8 @@
 #define BUF_SIZE 10         ///< size of shared buffer
 
 const key_t buf_key = 233;  ///< key of shared memory to buffer
-semaphore_t buf_empty;      ///< initial value: 1, key: 1
-semaphore_t buf_full;       ///< initial value: 0, key: 2
+semaphore_t buf_notfull;      ///< initial value: 1, key: 1
+semaphore_t buf_notempty;       ///< initial value: 0, key: 2
 semaphore_t mutex;          ///< mutex for buf_map[2](number of data)
 
 int main(int argc, char **argv) {
@@ -33,8 +33,8 @@ int main(int argc, char **argv) {
     char *buf_map;          ///< map address of shm to as buffer
 
     // create semaphore
-    buf_empty = semnew(1, 1);
-    buf_full  = semnew(2, 0);
+    buf_notfull = semnew(1, 1);
+    buf_notempty  = semnew(2, 0);
     mutex = semnew(3, 1);
 
     // create shm
@@ -77,8 +77,8 @@ int main(int argc, char **argv) {
             shmctl(buf_sid, IPC_RMID, 0);
 
             // remove semaphore
-            buf_empty->del(buf_empty);
-            buf_full->del(buf_full);
+            buf_notfull->del(buf_notfull);
+            buf_notempty->del(buf_notempty);
             mutex->del(mutex);
 
             return 0;

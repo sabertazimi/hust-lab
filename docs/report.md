@@ -55,6 +55,11 @@ $ ipcrm --all=sem
 *   若 semflags/shmflags 不含有 `IPC_EXCL` , 则函数会返回已创建 IPC 信号量的 id
 *   可以通过对于同一 key, 改变 flags 的方法, 灵活操控 semget/shmget 函数, 以达到创建/获取特定 IPC 信号量的目的, 使得进程间能够进行信息交流
 
+### while (== 0 / == size)
+
+*   由于每次取/写数据都会进行 V, 而 P 操作仅在特定条件下进行, 造成了 P/V 操作无法配对
+*   故利用 while 使得进程一旦进入特定条件, 就会重复进行 P 操作, 直至进程将自己阻塞, 等待另一进程取/写数据后将其唤醒
+
 ### BUGs
 
 #### semctl

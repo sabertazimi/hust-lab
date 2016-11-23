@@ -18,8 +18,8 @@
 #define BUF_SIZE 10         ///< size of shared buffer
 
 const key_t buf_key = 233;  ///< key of shared memory to buffer
-semaphore_t buf_empty;      ///< initial value: 1, key: 1
-semaphore_t buf_full;       ///< initial value: 0, key: 2
+semaphore_t buf_notfull;      ///< initial value: 1, key: 1
+semaphore_t buf_notempty;       ///< initial value: 0, key: 2
 semaphore_t mutex;          ///< mutex for buf_map[2](number of data)
 
 int main(int argc, char **argv) {
@@ -28,8 +28,8 @@ int main(int argc, char **argv) {
     char *buf_map;          ///< map address of shm to as buffer
 
     // get semaphores
-    buf_empty = semnew(1, 1);
-    buf_full  = semnew(2, 0);
+    buf_notfull = semnew(1, 1);
+    buf_notempty  = semnew(2, 0);
     mutex = semnew(3, 1);
 
     // get shm
@@ -63,9 +63,9 @@ int main(int argc, char **argv) {
 
     // put data from buffer to dist file
     while (1) {
-        // test whether there is any data in buffer or not
+        // test whether there is empty or not
         while (buf_map[2] == 0) {
-            buf_full->P(buf_full);
+            buf_notempty->P(buf_notempty);
         }
 
         // get buffer read pointer
@@ -82,12 +82,12 @@ int main(int argc, char **argv) {
         mutex->V(mutex);
 
         if (ch == EOF) {
-            buf_empty->V(buf_empty);
+            buf_notfull->V(buf_notfull);
             break;
         } else {
             fputc(ch, fp);              // write character into dist file
             fprintf(stdout, "read %c from buffer to dist file... \n", ch);
-            buf_empty->V(buf_empty);
+            buf_notfull->V(buf_notfull);
         }
     }
 
