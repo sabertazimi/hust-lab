@@ -33,7 +33,7 @@ int main(int argc, char **argv) {
     mutex = semnew(3, 1);
 
     // get shm
-    buf_sid = shmget(buf_key, BUF_SIZE+3, IPC_CREAT | 0666);
+    buf_sid = shmget(buf_key, BUF_SIZE+4, IPC_CREAT | 0666);
 
     if (buf_sid == -1) {
         perror("shmget error\n");
@@ -72,7 +72,7 @@ int main(int argc, char **argv) {
         int iread = buf_map[1];
 
         // write to dist file from buffer, move read pointer
-        char ch = buf_map[3+iread++];
+        char ch = buf_map[4+iread++];
         iread %= BUF_SIZE;
         buf_map[1] = iread;
 
@@ -81,7 +81,8 @@ int main(int argc, char **argv) {
         buf_map[2]--;
         mutex->V(mutex);
 
-        if (ch == EOF) {
+        // break condition: buffer empty && writebuf finish
+        if (buf_map[2] <= 0 && buf_map[3] == 1 ) {
             buf_notfull->V(buf_notfull);
             break;
         } else {

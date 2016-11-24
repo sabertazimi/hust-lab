@@ -32,7 +32,7 @@ int main(int argc, char **argv) {
     mutex = semnew(3, 1);
 
     // get shm
-    buf_sid = shmget(buf_key, BUF_SIZE+3, IPC_CREAT | 0666);
+    buf_sid = shmget(buf_key, BUF_SIZE+4, IPC_CREAT | 0666);
 
     if (buf_sid == -1) {
         perror("shmget error\n");
@@ -66,8 +66,12 @@ int main(int argc, char **argv) {
         int iwrite = buf_map[0];
 
         // write data to buffer, move write pointer
-        char ch = fgetc(fp);
-        buf_map[3+iwrite++] = ch;
+        char ch;
+        if (fread(&ch, sizeof(char), 1, fp) <= 0) {
+            // set end flag
+            buf_map[3] = 1;
+        }
+        buf_map[4+iwrite++] = ch;
         iwrite %= BUF_SIZE;
         buf_map[0] = iwrite;
 
@@ -78,8 +82,8 @@ int main(int argc, char **argv) {
 
         fprintf(stdout, "write %c from src file to buffer... \n", ch);
 
-        // break condition
-        if (ch == EOF) {
+        // break condition: read the end of file
+        if (buf_map[3] == 1) {
             buf_notempty->V(buf_notempty);
             break;
         } else {

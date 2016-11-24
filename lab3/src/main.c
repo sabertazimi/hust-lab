@@ -38,8 +38,8 @@ int main(int argc, char **argv) {
     mutex = semnew(3, 1);
 
     // create shm
-    // buf[0] stores write pointer, buf[1] stores read pointer, buf[2] stores number of data, buf[3:BUF_SIZE+2] stores truly data
-    buf_sid = shmget(buf_key, BUF_SIZE+3, IPC_CREAT | 0666);
+    // buf[0] stores write pointer, buf[1] stores read pointer, buf[2] stores number of data, buf[3] stores end flag, buf[3:BUF_SIZE+2] stores truly data
+    buf_sid = shmget(buf_key, BUF_SIZE+4, IPC_CREAT | 0666);
 
     // get shm failed
     if (buf_sid == -1) {
@@ -51,7 +51,7 @@ int main(int argc, char **argv) {
     buf_map = (char *)shmat(buf_sid, NULL, 0);
 
     // wrie empty characters into buf_shm
-    memset(buf_map, '\0', BUF_SIZE+3);
+    memset(buf_map, '\0', BUF_SIZE+4);
 
     // detach shm
     shmdt(buf_map);
