@@ -16,6 +16,7 @@
 #include <signal.h>     ///< for kill()    and signal()  function
 
 pid_t c1, c2;           ///< pid for child process 1 and child process 2
+int pipe_fd[2];     ///< pipe file descriptor for reading from pipe and writing to pipe
 
 /// \brief handler get invoked when process get signal
 /// \param sig_no numero symbol of signal
@@ -28,9 +29,11 @@ void handler(int sig_no) {
             break;
         case SIGUSR1:
             fprintf(stdout, "Child Process 1 is Killed by Parent!\n");
+            close(pipe_fd[1]);
             exit(0);
         case SIGUSR2:
             fprintf(stdout, "Child Process 2 is Killed by Parent!\n");
+            close(pipe_fd[0]);
             exit(0);
         default:
             break;
@@ -45,7 +48,6 @@ void handler(int sig_no) {
 int main(void) {
     int status;         ///< child process exit status buffer
 
-    int pipe_fd[2];     ///< pipe file descriptor for reading from pipe and writing to pipe
     char w_buf[80];     ///< write buffer
     char r_buf[80];     ///< read buffer
 
