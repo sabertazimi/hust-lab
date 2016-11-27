@@ -2,6 +2,8 @@
 
 ## Lab 1 Notes
 
+两个子进程必须能够同时退出/强制退出
+
 误以为 SIGUSR1 与 SIGUSR2 是由编程者自定义的枚举量
 
 ```c
@@ -22,6 +24,10 @@ kill(c2, SIGUSRTWO);
 > solution: SIGUSRONE->SIGUSR1, SIGUSRTWO->SIGUSR2
 
 ## Lab 2/3 Notes
+
+### Block
+
+如果 semget/semctl(SEMVAL, IPC_RMID)/pthread_create 中任意函数调用错误, main 将会被阻塞
 
 ### Compile and Link
 
