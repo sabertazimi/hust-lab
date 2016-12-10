@@ -28,7 +28,7 @@ void handler(int sig_no) {
             kill(c2, SIGUSR2);
             break;
         case SIGUSR1:
-            fprintf(stdout, "Child Process 1 is Killed by Parent!\n");
+            fprintf(stdout, "\nChild Process 1 is Killed by Parent!\n");
             close(pipe_fd[1]);
             exit(0);
         case SIGUSR2:
