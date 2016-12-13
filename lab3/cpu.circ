@@ -850,7 +850,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="addrWidth" val="10"/>
       <a name="dataWidth" val="32"/>
       <a name="contents">addr/data: 10 32
-2328020
+22510020 26310020 2328020
 </a>
     </comp>
     <comp lib="0" loc="(280,260)" name="Constant">
