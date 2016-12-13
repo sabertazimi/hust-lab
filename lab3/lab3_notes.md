@@ -23,6 +23,15 @@ Muxing a nop in IFU(instructions fetch unit):
 *   分析数据通路所需控制信号
 *   集成控制信号
 
+## Implementation
+
+*   generate instructions bool signals with and expressions(op + functy)(figure out what instruction it is)
+*   generate control signals with or expressions(instructions bool signals)
+
+When implement a general type instruction, it occurs to me that implementing the same type of instructions becomes smoothly.
+
+e.g if implemented add and addi, then it's uncomplicated to implement and, andi, or, ori etc.
+
 ## Tips
 
 *   Mux: 在原有功能的基础上, 不断利用 mux + control signal 添加新功能
