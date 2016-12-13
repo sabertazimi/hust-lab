@@ -1,2 +1,2 @@
-# addi $s2, $s3, 32
-add $s1, $s2, $s3
+# addi $s1, $s2, 32
+add $s0, $s1, $s2
