@@ -35,4 +35,10 @@ e.g if implemented add and addi, then it's uncomplicated to implement and, andi,
 ## Tips
 
 *   Mux: 在原有功能的基础上, 不断利用 mux + control signal 添加新功能
+*   原有功能尽量置于 mux 0 输入端
 *   one by one: 一个个指令进行实现
+
+## Awesome
+
+*  jal => rd($ra) = 0 + imm26
+*  jr  => rd(not write) = rs + imm16(0)
