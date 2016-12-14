@@ -1,3 +1,4 @@
+.text
 # spec for addx
 addi $s1, $s2, 32
 addiu $s1, $s1, 32
@@ -16,11 +17,15 @@ srl $s1, $s1, 1
 addiu $s0, $zero, 0xff
 sra $s0, $s0, 4
 
+beq $s0, $s1, sort_loop
+
 # spec for sub/or/ori/nor
 sub $s0 ,$s1, $s2
 or $s1, $s0, $s1
 ori $s2, $s2, 0xff
 nor $s0, $s1,$s2
+
+sort_loop:
 
 # spec for lw/sw
 sw $s1, 4($s0)
