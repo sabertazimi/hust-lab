@@ -23,7 +23,17 @@ or $s1, $s0, $s1
 ori $s2, $s2, 0xff
 nor $s0, $s1,$s2
 
+# spec for slt/slti/sltu
+slt $s3, $s1, $s2
+sw $s3, 16($zero)
+slti $s4, $s0, 0x0f
+sw $s4, 20($zero)
+addi $s0, $zero, 0x7fff
+sltu $s5, $s0, $s1
+sw $s5, 24($zero)
+
 # spec for lw/sw
+addi $s0, $zero, 0
 sw $s1, 4($s0)
 addi $s1, $zero, 8
 sw $s2, 4($s1)

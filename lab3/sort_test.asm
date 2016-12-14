@@ -1,6 +1,6 @@
 #################################################################################
-#±¾³ÌÐòÊµÏÖ0-15ºÅ×Öµ¥ÔªµÄ½µÐòÅÅÐò,´Ë³ÌÐò¿ÉÔÚmars mips·ÂÕæÆ÷ÖÐÔËÐÐ
-#ÔËÐÐÊ±Çë½«Mars SettingÖÐµÄMemory ConfigurationÉèÖÃÎªCompact£¬data at address 0
+#ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½0-15ï¿½ï¿½ï¿½Öµï¿½Ôªï¿½Ä½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½Ë³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½mars mipsï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ë½«Mars Settingï¿½Ðµï¿½Memory Configurationï¿½ï¿½ï¿½ï¿½ÎªCompactï¿½ï¿½data at address 0
 #
 #################################################################################
  .text
@@ -60,12 +60,12 @@ sort_init:
  addi $s0,$s0,1
  
  add $s0,$zero,$zero   
- addi $s1,$zero,60   #ÅÅÐòÇø¼ä
+ addi $s1,$zero,60   #ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 sort_loop:
  lw $s3,0($s0)     
  lw $s4,0($s1)
  slt $t0,$s3,$s4
- beq $t0,$0,sort_next   #½µÐòÅÅÐò
+ beq $t0,$0,sort_next   #ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  sw $s3, 0($s1)
  sw $s4, 0($s0)   
 sort_next:
@@ -77,5 +77,5 @@ sort_next:
  bne $s0, $s1, sort_loop
 
  addi   $v0,$zero,10         # system call for exit
- syscall                  # we are out of here.   
- #MIPS´¦ÀíÆ÷ÊµÏÖÖÐÇëÓÃÍ£»úÖ¸ÁîÊµÏÖsyscall
+ # syscall                  # we are out of here.   
+ #MIPSï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½Ö¸ï¿½ï¿½Êµï¿½ï¿½syscall
