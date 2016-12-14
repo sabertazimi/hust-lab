@@ -58,3 +58,25 @@ beq $zero, $zero, bne_next    # j beq_next
 bne_test:
 addi $s1, $zero, 250
 bne_next:
+
+# spec for j/jal/jr
+addi $s0, $zero, 400
+j j_test
+addi $s0, $zero, 401
+addi $s0, $zero, 402
+addi $s0, $zero, 403
+addi $s0, $zero, 40４
+addi $s0, $zero, 40５
+j_test:
+addi $s1, $zero, 500
+jal jal_test
+addi $s1, $zero, 501
+addi $s1, $zero, 502
+addi $s1, $zero, 503
+addi $s1, $zero, 504
+addi $s1, $zero, 505
+j exit
+jal_test:
+addi $s2, $zero, 600
+jr $ra
+exit:
