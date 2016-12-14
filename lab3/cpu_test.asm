@@ -21,3 +21,10 @@ sub $s0 ,$s1, $s2
 or $s1, $s0, $s1
 ori $s2, $s2, 0xff
 nor $s0, $s1,$s2
+
+# spec for lw/sw
+sw $s1, 4($s0)
+addi $s1, $zero, 8
+sw $s2, 4($s1)
+lw $s0, 4($s0)
+lw $s1, 4($s1)

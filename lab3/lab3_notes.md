@@ -42,6 +42,8 @@ e.g if implemented add and addi, then it's uncomplicated to implement and, andi,
 
 *  jal => rd($ra) = 0 + imm26
 *  jr  => rd(not write) = rs + imm16(0)
+*  lw => R = (rs) + imm16 => addr of ram, dataRe of ram => datain of regfile: signal, RAMtoReg 1, RAMWe 0
+*  sw => R = (rs) + imm16 => addr of ram, rt => R2 => dataWr of ram: signal, RAMtoReg 0, RAMWe 1
 
 ## BUGs
 
