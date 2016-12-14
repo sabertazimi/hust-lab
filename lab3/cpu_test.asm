@@ -79,4 +79,14 @@ j exit
 jal_test:
 addi $s2, $zero, 600
 jr $ra
+
 exit:
+
+# spec for exit syscall
+addi $v0, $zero, 10
+syscall
+
+# ignore
+addi $s0, $zero, 100
+addi $s1, $zero, 200
+addi $s2, $zero, 300
