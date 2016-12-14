@@ -42,3 +42,9 @@ e.g if implemented add and addi, then it's uncomplicated to implement and, andi,
 
 *  jal => rd($ra) = 0 + imm26
 *  jr  => rd(not write) = rs + imm16(0)
+
+## BUGs
+
+### Shift
+
+wtf: shift : op + 00000 + rt + rd + sham + functy
