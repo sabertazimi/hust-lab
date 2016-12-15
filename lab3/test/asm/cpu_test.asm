@@ -1,5 +1,8 @@
 .text
 # spec for addx
+addiu $s0 $0 2
+addiu $s1 $0 -1
+addu $s2 $s0 $s1
 addi $s1, $s2, 32
 addiu $s1, $s1, 32
 add $s0, $s1, $s2
@@ -81,8 +84,11 @@ addi $s2, $zero, 600
 jr $ra
 
 exit:
-
+#spec for led syscall
 addi $a0, $zero, 0x7f
+addi $v0, $zero, 0
+# manually add: syscall 0000000c
+
 # spec for exit syscall
 addi $v0, $zero, 10
 syscall
