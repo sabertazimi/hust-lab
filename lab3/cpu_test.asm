@@ -82,6 +82,7 @@ jr $ra
 
 exit:
 
+addi $a0, $zero, 0x7f
 # spec for exit syscall
 addi $v0, $zero, 10
 syscall
