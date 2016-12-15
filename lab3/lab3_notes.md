@@ -52,6 +52,11 @@ e.g if implemented add and addi, then it's uncomplicated to implement and, andi,
 
 wtf: shift : op + 00000 + rt + rd + sham + functy
 
-### MIPS_ISA.pdf
+### ExtOp
 
-pdf 上关于 beq/bne PC 更新逻辑有误, 在 Mars 里运行代码可以看出 PC = PC + signExt(offset||00) + 4, 而不是 PC = PC + signExt(offset||00)
+*  addiu: 0 -> 1(zeroExt -> signExt)
+*  andi/ori: 1 -> 0(signExt -> zeroExt)
+
+### `MIPS_ISA.pdf`
+
+*   pdf 上关于 beq/bne PC 更新逻辑有误, 在 Mars 里运行代码可以看出 PC = PC + signExt(offset||00) + 4, 而不是 PC = PC + signExt(offset||00)
