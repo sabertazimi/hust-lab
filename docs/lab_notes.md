@@ -46,14 +46,7 @@ Owing to casual, get NOR mistakely to NAND.
 
 ## Lab3 Notes
 
-### Harzards (in beq/bneq/j/jr/jal)
-
-Instruction kills for this project should be accomplished by
-MUXing a nop into the instruction stream
-and sending it into the Execute stage
-instead of the fetched instruction.
-Notice that 0x00000000 is a nop instruction;
-please use this, as it will simplify grading and testing
+### hazards (in beq/bneq/j/jr/jal)
 
 *   if branch is taken, kill the next instruction
 *   j/jr/jal, kill the next instruction
