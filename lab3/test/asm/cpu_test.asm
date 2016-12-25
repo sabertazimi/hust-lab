@@ -85,8 +85,10 @@ jr $ra
 
 exit:
 #spec for led syscall
-addi $a0, $zero, 0x7f
 addi $v0, $zero, 0
+addi $a0, $zero, 0x7f
+# manually add: syscall 0000000c
+addi $a0, $zero, 0x3f
 # manually add: syscall 0000000c
 
 # spec for exit syscall
