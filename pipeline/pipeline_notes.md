@@ -1,20 +1,105 @@
 # Pipelined MIPS CPU
 
+## Instructions
+
+1. Data processing
+2. PSR (Program Status Register) transfer
+3. Multiply
+4. Single data swap
+5. Single data transfer
+6. Branch Predictor
+7. Block data transfer
+8. Coprocessor register transfer
+9. Coprocessor data transfer
+10. Coprocessor data operation
+11. Undefined Instruction
+12. Software interrupt 
+
+## Frameworks
+
+### Controller
+
+*   Instruction decoding
+*   Pipeline Registers
+*   FSM(branch predictor)
+*   Interrupt handler
+
 ## Installation
 
 ```sh
 $ sudo apt install logisim # install logisim platform
 $ sudo apt install verilog # install icarus verilog simulatr
-$ sudo apt install gtkwave # install waveform viewer
+$ sudo apt install gtkwave # install waveform viewer comes with icarus verilog
+$ sudo apt install yosys   # synthesize
+$ sudo apt install geda    # graphic eda toolchains
 ```
 
 ## Development
 
 ```sh
-$ iverilog -o demo demo.v demo_tb.v
+$ iverilog -o demo demo_tb.v demo.v # compiler
+$ iverilog -o demo -c src.list      # src.list => demo.v demo_tb.v
+$ iverilog -s main -o hello hello.v # set root module to `main`
+$ vvp demo                          # simulation runtime engine
+$ vvp -n demo -lxt2
+$ gtkwave demo.lxt
+$ gtkwave trace.vcd
 ```
 
+### GTKWave
+
+In your .v file, specify:
+
+```verilog
+$dumpfile(“file.vcd”)
+$dumpvars(level, vars_or_modules)
+```
+
+where level means 0 all or 1 listed only:
+
+*   file.vcd is created when vvp is run
+*   Visualize using: gtkwave file.vcd
+
+```verilog
+module trace;
+    reg clk=0; reg[3:0]a=4'd0; reg b=0;
+    always #1 clk=~clk;
+    always @(posedge clk) begin
+        a=a+1; b=a[2]; end
+    initial begin
+        $dumpfile(“trace.vcd”);
+        $dumpvars(0, trace); // all vars
+    end
+endmodule
+```
+
+### yosys
+
 ## Notes
+
+### hazards
+
+### load use hazard
+
+load use hazard when
+
+```verilog
+ID/EX.MemRead &&
+    ((ID/EX.RegisterRt == IF/ID.RegisterRs) ||
+    (ID/EX.RegisterRt == IF/ID.RegisterRt))
+```
+
+### how to stall the pipeline
+
+*   Force control values in ID/EX register to 0
+    *   EX, MEM and WB do nop (no-operation)
+*   Prevent update of PC and IF/ID register
+    *   Using instruction is decoded again
+    *   Following instruction is fetched again
+    *   1-cycle stall allows MEM to read data for lw
+        *   Can subsequently forward to EX stage
+
+if detected, stall and insert bubble
 
 ### branch predict
 
@@ -26,6 +111,9 @@ $ iverilog -o demo demo.v demo_tb.v
 #### 2 bit predictor
 
 not taken(miss: should taken) -> not taken(miss: should taken) -> taken
+
+*   get true outcome: just like signal in PC update logic = (zero && beq) || (!zero && bne)
+*   Branch target register/buffer
 
 ### interrupts handler
 
@@ -66,8 +154,23 @@ it during the writeback stage—only in the writeback stage. Thus, in addition t
 the pipeline register to hold interrupt type, the MEM/WB register also needs a copy of the program
 counter.
 
+## Code Style
+
+*   Use meaningful names for signals and variables
+*   Don't mix level and edge sensitive elements in the same always block
+*   Avoid mixing positive and negative edge-triggered flip-flops
+*   Use parentheses to optimize logic structure
+*   Use continuous assign statements for simple combo logic
+*   Use nonblocking for sequential and blocking for combo logic
+*   Don't mix blocking and nonblocking assignments in the same always block (even if Design compiler supports them!!).
+*   Be careful with multiple assignments to the same variable
+*   Define if-else or case statements explicitly
+
 ## Reference
 
-*   [interrupts handler part1](http://ijrti.org/papers/IJRTI1612013.pdf)
-*   [interrupts handler part2](https://www.ece.umd.edu/~blj/RiSC/RiSC-pipe.pdf)
 *   [pipeline basis](https://www.cs.utexas.edu/~fussell/courses/cs352h/lectures/)
+*   [pipeline basis part 1](https://www.cs.utexas.edu/~fussell/courses/cs352h/lectures/8-MIPS-Pipeline.pdf)
+*   [pipeline basis part 2](https://www.cs.utexas.edu/~fussell/courses/cs352h/lectures/9-MIPS-Pipeline-Hazards.pdf)
+*   [interrupts handler part 1](http://ijrti.org/papers/IJRTI1612013.pdf)
+*   [interrupts handler part 2](https://www.ece.umd.edu/~blj/RiSC/RiSC-pipe.pdf)
+*   [ARM core](http://www.iuma.ulpgc.es/~nunez/clases-micros-para-com/varios/dcisarch42.pdf)
