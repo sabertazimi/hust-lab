@@ -34,16 +34,112 @@ $ sudo apt install yosys   # synthesize
 $ sudo apt install geda    # graphic eda toolchains
 ```
 
-## Development
+## Tools
 
 ```sh
 $ iverilog -o demo demo_tb.v demo.v # compiler
 $ iverilog -o demo -c src.list      # src.list => demo.v demo_tb.v
 $ iverilog -s main -o hello hello.v # set root module to `main`
+$ iverilog -E -o preprocessed.v unpreprocessed.v # pre-process signal stage
+$ iverilog -I/include               # for `include directive
+$ iverilog -y/lib                   # add lib search path
 $ vvp demo                          # simulation runtime engine
 $ vvp -n demo -lxt2
 $ gtkwave demo.lxt
 $ gtkwave trace.vcd
+```
+
+### test bench
+
+*   `$time/$finish/$display/$monitor`
+
+*   `$value$plusargs`
+
+```verilog
+module main;
+
+  reg clk, reset;
+  reg [31:0] x;
+  wire [15:0] y;
+  wire        rdy;
+
+  sqrt32 dut (clk, rdy, reset, x, y);
+
+  always #10 clk = ~clk;
+
+  initial begin
+     clk = 0;
+     reset = 1;
+
+     if (! $value$plusargs("x=%d", x)) begin
+        $display("ERROR: please specify +x=<value> to start.");
+        $finish;
+     end
+
+     #35 reset = 0;
+
+     wait (rdy) $display("y=%d", y);
+     $finish;
+  end // initial begin
+
+endmodule // main
+```
+
+```sh
+$ iverilog -osqrt_plusargs.vvp sqrt_plusargs.v sqrt.v
+$ vvp sqrt_plusargs.vvp +x=81
+  # => y = 9
+```
+
+*   $readmemh
+
+```verilog
+module main;
+
+  reg clk, reset;
+  reg [31:0] data[4:0];
+  reg [31:0] x;
+  wire [15:0] y;
+  wire        rdy;
+
+  sqrt32 dut (clk, rdy, reset, x, y);
+
+  always #10 clk = ~clk;
+
+  integer i;
+  initial begin
+     /* Load the data set from the hex file. */
+     $readmemh("sqrt.hex", data);
+     for (i = 0 ;  i <= 4 ;  i = i + 1) begin
+       clk = 0;
+       reset = 1;
+
+       x = data[i];
+
+       #35 reset = 0;
+
+       wait (rdy) $display("y=%d", y);
+     end
+     $finish;
+  end // initial begin
+
+endmodule // main
+```
+
+```sh
+  # sqrt.hex =>
+  # 51
+  # 19
+  # 1a
+  # 18
+  # 1
+$ iverilog -osqrt_readmem.vvp sqrt_readmem.vl sqrt.vl
+$ vvp sqrt_readmem.vvp
+  # y = 9
+  # y = 5
+  # y = 5
+  # y = 4
+  # y = 1
 ```
 
 ### GTKWave
