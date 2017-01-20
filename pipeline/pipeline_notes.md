@@ -228,8 +228,23 @@ not taken(miss: should taken) -> not taken(miss: should taken) -> taken
 *   status register (32 bit)
 *   cause register (32 bit)
 *   epc
+*   Coprocessor 0(cr0)
+*   mfc0
+
+```mips
+mfc0 $t0, Cause # copy Cause register into $t0
+
+mfc0 $k0, EPC
+jr   $k0
+```
 
 #### different interrupts
+
+*   hardware interrupt 0x00000000
+*   system call 0x00000020
+*   breakpoint/divide by 0 0x00000024
+*   undefined instruction 0x00000028
+*   arithmetic overflow 0x00000030
 
 if the interrupt is for an invalid opcode (not applicable in this instruction-set, but
 good for an example), it can be determined in the decode stage—and instructions in the execute,
@@ -278,6 +293,10 @@ counter.
 *   Don't mix blocking and nonblocking assignments in the same always block (even if Design compiler supports them!!).
 *   Be careful with multiple assignments to the same variable
 *   Define if-else or case statements explicitly
+
+## Bug
+
+*   error coding style(particularly in synthesize stage)
 
 ## Reference
 
