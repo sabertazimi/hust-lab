@@ -337,6 +337,8 @@ counter.
 ## Bug
 
 *   error coding style(particularly in synthesize stage)
+*   default type: unsigned ( compare )
+*   {carry, sum} = srcA + srcB, {carry, diff} = srcA - srcB;
 
 ## Reference
 
