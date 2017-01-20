@@ -190,6 +190,34 @@ ID/EX.MemRead &&
     (ID/EX.RegisterRt == IF/ID.RegisterRt))
 ```
 
+```verilog
+assign lwstall = ((rsD == rtE) || (rtD == rtE)) and MemtoRegE
+assign StallF = StallD = FlushE = lwstall
+assign en_pipeline_register = !Stall_X
+assign rst_pipeline_register = Flush_E
+```
+
+### hazard detection on forwarding
+
+*   decode stage
+
+```verilog
+assign ForwardAD = (rsD != 0) && (rsD == WriteRegM) && EnRegWriteM
+assign ForwardBD = (rtD != 0) && (rtD == WriteRegM) && EnRegWriteM
+```
+
+*   execute stage
+
+```verilog
+if ((rsE != 0) && (rsE == WriteRegM) && EnRegWriteM) begin
+    ForwardAE = 10 (from memory access stage)
+end else if ((rsE != 0) && (rsE == WriteRegW) && EnRegWriteW) begin
+    ForwardAE = 01 (from write back stage)
+end else begin
+    ForwardAE = 00 (no forwarding)
+end
+```
+
 ### how to stall the pipeline
 
 *   Force control values in ID/EX register to 0
@@ -201,6 +229,13 @@ ID/EX.MemRead &&
         *   Can subsequently forward to EX stage
 
 if detected, stall and insert bubble
+
+```verilog
+// branch stall with branch predicting in decode stage
+assign branchstall = (BranchD && RegWriteE && (WriteRegE == rsD || WriteRegE == rtD))
+    || (BranchD && MemtoRegM && (WriteRegM == rsD || WriteRegM == rtD))
+assign StallF = StallD = FlushE = (lwstall || branchstall)
+```
 
 ### branch predict
 
