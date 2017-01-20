@@ -18,7 +18,7 @@ module imem
     initial begin
         $readmemh("benchmark.asm", ROM);
     end
-    
+
     assign rdata = ROM[addr];
-    
+
 endmodule // imem

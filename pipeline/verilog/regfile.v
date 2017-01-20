@@ -24,14 +24,14 @@ module regfile
 );
 
     reg [DATA_WIDTH-1:0] regfile [31:0];    ///< three ported regfile contains 32 registers
-    
+
     always @ (posedge clk) begin
         if (we) begin
             regfile[waddr] <= wdata;
         end
     end
-    
+
     assign regA = (raddrA != 0) ? regfile[raddrA] : 0;
     assign regB = (raddrB != 0) ? regfile[raddrB] : 0; 
-    
+
 endmodule // regfile

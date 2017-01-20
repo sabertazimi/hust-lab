@@ -22,7 +22,7 @@ module dmem
     reg [DATA_WIDTH-1:0] RAM [(2**BUS_WIDTH)-1:0];
 
     assign rdata = RAM[addr];
-    
+
     always @ (posedge clk) begin
         if (we) begin
             RAM[addr[DATA_WIDTH-1:2]] <= wdata;

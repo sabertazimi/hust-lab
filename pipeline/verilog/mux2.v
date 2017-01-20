@@ -17,5 +17,5 @@ module mux2
 );
 
     assign dout = (sel) ? data1 : data0
-    
+
 endmodule // mux2

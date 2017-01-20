@@ -14,5 +14,5 @@ module unsigext
 );
 
     assign dout = {{(DATA_WIDTH-INPUT_WIDTH){1'b0}}, din};
-    
+
 endmodule // unsigext

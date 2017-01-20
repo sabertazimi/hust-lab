@@ -13,5 +13,5 @@ module shift2
 );
 
     assign dout = din << 2;
-    
+
 endmodule // shift2

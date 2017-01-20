@@ -11,14 +11,14 @@ module harzard_unit
 );
 
     wire lwstallD, branchstallD;
-    
+
     assign forwardAD = rsD && (rsD == writeregM) && regwriteM    // ME => ID
     assign forwardBD = rtD && (rtD == writeregM) && regwriteM    // ME => ID
-    
+
     always @ ( * ) begin    // ME => EX, WB => EX
         forwardAE = 2'b00;
         forwardBE = 2'b00;
-        
+
         if (rsE != 0) begin
             if (rsE == writeregM && regwriteM) begin
                 forwardAE = 2'b10;
@@ -26,7 +26,7 @@ module harzard_unit
                 forwardAE = 2'b01;
             end
         end
-        
+
         if (rtE != 0) begin
             if (rtE == writeregM && regwriteM) begin
                 forwardBE = 2'b10;
@@ -35,15 +35,15 @@ module harzard_unit
             end
         end
     end
-    
+
     assign lwstallD = memtoregE && (rtE == rsD || rtE == rtD)   // lw(rt)
     assign branchstallD = branchD && (
                 (regwriteE && (writeregE == rsD || writeregE == rtD))     // branch taken: stall previous instructions
                 || (memtoregM && (writeregM == rsD || writeregM == rtD))  // branch taken: stall previous instructions  
             );
-            
+
     assign stallD = (lwstallD || branchstallD);
     assign stallF = stallD;
     assign flushE = stallD;
-    
+
 endmodule // harzard_unit

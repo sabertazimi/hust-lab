@@ -14,5 +14,5 @@ module sigext
 );
 
     assign dout = {{(DATA_WIDTH-INPUT_WIDTH){din[INPUT_WIDTH-1]}}, din};
-    
+
 endmodule // sigext

@@ -27,5 +27,5 @@ module register
             dout <= dout;
         end
     end
-    
+
 endmodule // register
