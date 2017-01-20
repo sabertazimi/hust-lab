@@ -28,6 +28,15 @@
 `define JR      7'b1001000
 `define SYSCALL 7'b1001100
 
+`define OP      31:26
+`define RS      25:21
+`define RT      20:16
+`define RD      15:11
+`define SHAM    10:6
+`define FUNCTY  5:0
+`define IMM16   15:0
+`define IMM26   25:0
+
 // `define ADD     6'b100000
 // `define ADDI    6'b001000
 // `define ADDIU   6'b001001
