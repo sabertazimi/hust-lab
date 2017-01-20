@@ -1,5 +1,10 @@
 # Pipelined MIPS CPU
 
+## Warnings
+
+*   for all control signal: explict for zero if it's uneccessory
+*   for all output: explict for zero if it's uneccessory
+
 ## Tips
 
 *   PC，IR最好一直传递到最后一级，这样方便观测流水线运行的状况。
