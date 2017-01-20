@@ -5,8 +5,8 @@
  * @input clk clock signal
  * @input rst reset signal
  * @input en enable signal
- * @input d data in
- * @ouput q data out
+ * @input din data in
+ * @ouput dout data out
  */
 module register
 #(parameter WIDTH = 32)
@@ -14,17 +14,17 @@ module register
     input clk,
     input rst,
     input en,
-    input [WIDTH-1:0] d,
-    output reg [WIDTH-1:)] q
+    input [DATA_WIDTH-1:0] din,
+    output reg [DATA_WIDTH-1:)] dout
 );
 
     always @ (posedge clk or rst) begin
         if (rst) begin
-            q <= 0;
+            dout <= 0;
         end else if (en) begin
-            q <= d;
+            dout <= din;
         end else begin
-            q <= q;
+            dout <= dout;
         end
     end
     

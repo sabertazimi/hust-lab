@@ -2,20 +2,20 @@
  * @module mux2
  * @brief 2 way multiplexer
  * @param WIDTH data width
- * @input s selector
- * @input d0 s == 0
- * @input d1 s == 1
- * @output y 
+ * @input sel selector
+ * @input data0 s == 0
+ * @input data1 s == 1
+ * @output dout data out
  */
 module mux2 
-#(parameter WIDTH = 32)
+#(parameter DATA_WIDTH = 32)
 (
-    input [WIDTH-1:0] d0,
-    input [WIDTH-1:0] d1,
-    input s,
-    output [WIDTH-1:0] y
+    input [DATA_WIDTH-1:0] data0,
+    input [DATA_WIDTH-1:0] data1,
+    input sel,
+    output [DATA_WIDTH-1:0] dout
 );
 
-    assign y = (s) ? d1 : d0
+    assign dout = (sel) ? data1 : data0
     
 endmodule // mux2
