@@ -1,5 +1,10 @@
 # Pipelined MIPS CPU
 
+## Tips
+
+*   PC，IR最好一直传递到最后一级，这样方便观测流水线运行的状况。
+*   流水线各级是否产生气泡可以用LED指示灯显示，方便观察流水线运行状况
+
 ## Instructions
 
 1. Data processing
@@ -217,6 +222,13 @@ not taken(miss: should taken) -> not taken(miss: should taken) -> taken
 *   if there are no separate registers to handle the interrupts, the handler has to move all the data in the general working registers to a stack memory and retrieve once it has been serviced. This takes many more clock cycles. To avoid this it’s better to use a limited number of special registers only for Interrupts.
 *   stages before execute stage should have own reserve stack space, e.g ``fetch` stack space, `decode/reg_read` stack space
 
+
+#### Registers
+
+*   status register (32 bit)
+*   cause register (32 bit)
+*   epc
+
 #### different interrupts
 
 if the interrupt is for an invalid opcode (not applicable in this instruction-set, but
@@ -250,8 +262,13 @@ it during the writeback stage—only in the writeback stage. Thus, in addition t
 the pipeline register to hold interrupt type, the MEM/WB register also needs a copy of the program
 counter.
 
-## Code Style
+## Coding Style
 
+*   信号/变量/模块小写, 常量大写
+*   `_top` for top module
+*   `_cs` for current state, `_ns` for next state
+*   *clk_ -> rst_ -> en_ -> other signals -> address -> data*
+*   `reg [31:0] data_mem [0: 2047]`
 *   Use meaningful names for signals and variables
 *   Don't mix level and edge sensitive elements in the same always block
 *   Avoid mixing positive and negative edge-triggered flip-flops
