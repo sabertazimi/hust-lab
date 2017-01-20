@@ -260,10 +260,10 @@ not taken(miss: should taken) -> not taken(miss: should taken) -> taken
 
 #### Registers
 
+*   Coprocessor 0(cr0): defines up to 32 special-purpose registers
 *   status register (32 bit)
-*   cause register (32 bit)
-*   epc
-*   Coprocessor 0(cr0)
+*   cr0#13: cause register (32 bit)
+*   cr0#14: epc
 *   mfc0
 
 ```mips
