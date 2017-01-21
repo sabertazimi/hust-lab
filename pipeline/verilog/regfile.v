@@ -21,7 +21,11 @@ module regfile
     input [DATA_WIDTH-1:0] wdata,
     output [DATA_WIDTH-1:0] regA,
     output [DATA_WIDTH-1:0] regB
+    output [DATA_WIDTH-1:0] $v0,
+    output [DATA_WIDTH-1:0] $a0
 );
+
+    `include defines.vh
 
     reg [DATA_WIDTH-1:0] regfile [31:0];    ///< three ported regfile contains 32 registers
 
@@ -33,5 +37,7 @@ module regfile
 
     assign regA = (raddrA != 0) ? regfile[raddrA] : 0;
     assign regB = (raddrB != 0) ? regfile[raddrB] : 0; 
+    assign $v0 = regfile[$V0];
+    assign $a0 = regfile[$A0];
 
 endmodule // regfile
