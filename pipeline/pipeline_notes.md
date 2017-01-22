@@ -185,9 +185,12 @@ endmodule
 
 ### hazards
 
+@TODO: is it neccessory to detect rs or rt get read ?
+
 ### load use hazard
 
-load use hazard when
+
+load use hazard when: id/ex r-instr(r-r-alu, r-imm-alu, load/store, branch) + mem load
 
 ```verilog
 ID/EX.MemRead &&
@@ -203,6 +206,11 @@ assign rst_pipeline_register = Flush_E
 ```
 
 ### hazard detection on forwarding
+
+*   id/ex r-instr(r-r-alu, r-imm-alu, load/store, branch) + mem/wb r-r-alu: rd => rs/rt
+*   id/ex r-instr(r-r-alu, r-imm-alu, load/store, branch) + mem/wb r-imm-alu: rd => rs/rt
+*   id/ex r-instr(r-r-alu, r-imm-alu, load/store, branch) + wb load: rt => rs/rt
+*   above reference: computer architecture: a quantitative approach. P322
 
 *   decode stage
 
@@ -255,6 +263,8 @@ not taken(miss: should taken) -> not taken(miss: should taken) -> taken
 
 *   get true outcome: just like signal in PC update logic = (zero && beq) || (!zero && bne)
 *   Branch target register/buffer
+*   [start in weak state(01/10)](https://www.youtube.com/watch?v=AWv8DCm_UYE)
+*   对于 SPEC89 基准测试程序, 使用有 4096 个入口的转移预测缓存会获得 82%~99% 的准确率 亨尼西, 帕特森, 白跃彬译.计算机系统结构:量化研究方法, 北京: 电子工业出版社, 2007.8 P56-P57
 
 ### interrupts handler
 
@@ -349,3 +359,8 @@ counter.
 *   [interrupts handler part 2](https://www.ece.umd.edu/~blj/RiSC/RiSC-pipe.pdf)
 *   [ARM core](http://www.iuma.ulpgc.es/~nunez/clases-micros-para-com/varios/dcisarch42.pdf)
 *   http://iverilog.wikia.com/wiki/User_Guide
+*   computer architecture: a quantitative approach
+*   digital design and computer architecture(basis of pipelined CPU)
+*   computer organization and design
+*   interrupts pdf
+
