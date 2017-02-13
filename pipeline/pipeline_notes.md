@@ -268,6 +268,12 @@ not taken(miss: should taken) -> not taken(miss: should taken) -> taken
 
 ### interrupts handler
 
+#### Single-cycle
+
+将 InstrRAM 分为 2 块, 11 位为 1 时存放中断处理例程
+
+#### Pipeline
+
 *   The interrupts(external) are acknowledged in the execute stage. Then this signal is propagated to the Write Back stage through Memory Access stage. 
 *   if there are no separate registers to handle the interrupts, the handler has to move all the data in the general working registers to a stack memory and retrieve once it has been serviced. This takes many more clock cycles. To avoid this it’s better to use a limited number of special registers only for Interrupts.
 *   stages before execute stage should have own reserve stack space, e.g ``fetch` stack space, `decode/reg_read` stack space
@@ -276,7 +282,7 @@ not taken(miss: should taken) -> not taken(miss: should taken) -> taken
 #### Registers
 
 *   Coprocessor 0(cr0): defines up to 32 special-purpose registers
-*   status register (32 bit)
+*   cr0#12: status register (32 bit)
 *   cr0#13: cause register (32 bit)
 *   cr0#14: epc
 *   mfc0
@@ -358,6 +364,7 @@ counter.
 *   [interrupts handler part 1](http://ijrti.org/papers/IJRTI1612013.pdf)
 *   [interrupts handler part 2](https://www.ece.umd.edu/~blj/RiSC/RiSC-pipe.pdf)
 *   [ARM core](http://www.iuma.ulpgc.es/~nunez/clases-micros-para-com/varios/dcisarch42.pdf)
+*   [CMU Manual](https://www.cs.cmu.edu/afs/cs/academic/class/15740-f97/public/info/pipeline-slide.pdf)
 *   http://iverilog.wikia.com/wiki/User_Guide
 *   computer architecture: a quantitative approach
 *   digital design and computer architecture(basis of pipelined CPU)
