@@ -281,11 +281,17 @@ not taken(miss: should taken) -> not taken(miss: should taken) -> taken
 
 #### Registers
 
-*   Coprocessor 0(cr0): defines up to 32 special-purpose registers
-*   cr0#12: status register (32 bit)
-*   cr0#13: cause register (32 bit)
-*   cr0#14: epc
-*   mfc0
+Coprocessor 0(cr0): defines up to 32 special-purpose registers
+
+##### cr0 No.12: status register (32 bit)
+
+*   Status寄存器是一个读/写寄存器，可以表示处理器的操作模式、中断使能以及诊断状态。该寄存器的区域联合作用，可以创建处理器的工作模式。
+*   中断使能：当以下所有条件都成立时启用中断：IE = 1, EXL = 0, ERL = 0,  DM = 0
+*   当这些条件都符合时，设置IM位和IE位可以使能中断。
+
+##### cr0 No.13: cause register (32 bit)
+
+##### cr0 No.14: epc
 
 ```mips
 mfc0 $t0, Cause # copy Cause register into $t0
@@ -358,16 +364,18 @@ counter.
 
 ## Reference
 
+*   [ARM core](http://www.iuma.ulpgc.es/~nunez/clases-micros-para-com/varios/dcisarch42.pdf)
 *   [pipeline basis](https://www.cs.utexas.edu/~fussell/courses/cs352h/lectures/)
 *   [pipeline basis part 1](https://www.cs.utexas.edu/~fussell/courses/cs352h/lectures/8-MIPS-Pipeline.pdf)
 *   [pipeline basis part 2](https://www.cs.utexas.edu/~fussell/courses/cs352h/lectures/9-MIPS-Pipeline-Hazards.pdf)
 *   [interrupts handler part 1](http://ijrti.org/papers/IJRTI1612013.pdf)
 *   [interrupts handler part 2](https://www.ece.umd.edu/~blj/RiSC/RiSC-pipe.pdf)
-*   [ARM core](http://www.iuma.ulpgc.es/~nunez/clases-micros-para-com/varios/dcisarch42.pdf)
+*   [MIPS CP0 wiki](https://en.wikichip.org/wiki/mips/coprocessor_0)
 *   [CMU Manual](https://www.cs.cmu.edu/afs/cs/academic/class/15740-f97/public/info/pipeline-slide.pdf)
-*   http://iverilog.wikia.com/wiki/User_Guide
-*   computer architecture: a quantitative approach
-*   digital design and computer architecture(basis of pipelined CPU)
+*   [iverilog Wiki](http://iverilog.wikia.com/wiki/User_Guide)
+*   See MIPS Run
 *   computer organization and design
+*   digital design and computer architecture(basis of pipelined CPU)
+*   computer architecture: a quantitative approach
 *   interrupts pdf
 
