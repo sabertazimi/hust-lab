@@ -1,27 +1,18 @@
-# mfc0 $t0, $12
-# mfc0 $t1, $13
-# mfc0 $k0, $14
-# jr $k0
-
 # block interruptions
 addi $k0,$zero,1
-mtc0 $k0,$1 
+mtc0 $k0,$1
 
 addi $gp,$zero,0x400 # base pointer
 add $fp,$gp,$sp
 
 # store EPC value
-mfc0 $k0,$0
-sw $k0,($fp)
+mfc0 $k1,$0
+sw $k1,($fp)
 addi $fp,$fp,4
 addi $sp,$sp,4
 
-# retrive block number
-mfc0 $k1,$2
 # retrive cause number
-mfc0 $k0,$3
-# set block number
-mtc0 $k0,$2
+mfc0 $k0,$2
 
 # protect environment
 sw $s0,($fp)
@@ -40,9 +31,6 @@ sw $a0,($fp)
 addi $sp,$sp,4
 addi $fp,$fp,4
 sw $v0,($fp)
-addi $sp,$sp,4
-addi $fp,$fp,4
-sw $k1,($fp)
 addi $sp,$sp,4
 addi $fp,$fp,4
 
@@ -77,9 +65,6 @@ mtc0 $k0,$1
 # restore environment
 addi $fp,$fp,-4
 addi $sp,$sp,-4
-lw $k1,($fp)
-addi $fp,$fp,-4
-addi $sp,$sp,-4
 lw $v0,($fp)
 addi $fp,$fp,-4
 addi $sp,$sp,-4
@@ -97,18 +82,13 @@ addi $fp,$fp,-4
 addi $sp,$sp,-4
 lw $s0,($fp)
 
-# reset block register
-mtc0 $k1,$2
-
 # restore EPC value
 addi $fp,$fp,-4
 addi $sp,$sp,-4
-lw $k0,($fp)
-mtc0 $k0,$0
+lw $k1,($fp)
 
 # unblock interruptions
 addi $k0,$zero,0
-mtc0 $k0,$1 
+mtc0 $k0,$1
 
-eret
-
+jr $k1

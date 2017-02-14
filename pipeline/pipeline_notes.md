@@ -288,6 +288,8 @@ Coprocessor 0(cr0): defines up to 32 special-purpose registers
 *   Status寄存器是一个读/写寄存器，可以表示处理器的操作模式、中断使能以及诊断状态。该寄存器的区域联合作用，可以创建处理器的工作模式。
 *   中断使能：当以下所有条件都成立时启用中断：IE = 1, EXL = 0, ERL = 0,  DM = 0
 *   当这些条件都符合时，设置IM位和IE位可以使能中断。
+*   SR[15:8] - IM[7:0] (interrupt mask)
+*   为了默认开中断, 将 SR[IE] 功能反转: 1 关中断, 0 开中断
 
 ##### cr0 No.13: cause register (32 bit)
 
