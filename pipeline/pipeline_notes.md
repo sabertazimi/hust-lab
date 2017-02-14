@@ -281,19 +281,22 @@ not taken(miss: should taken) -> not taken(miss: should taken) -> taken
 
 #### Registers
 
-Coprocessor 0(cr0): defines up to 32 special-purpose registers
+Coprocessor 0(cp0): defines up to 32 special-purpose registers
 
-##### cr0 No.12: status register (32 bit)
+##### cp0 No.12: status register (32 bit)
 
 *   Status寄存器是一个读/写寄存器，可以表示处理器的操作模式、中断使能以及诊断状态。该寄存器的区域联合作用，可以创建处理器的工作模式。
 *   中断使能：当以下所有条件都成立时启用中断：IE = 1, EXL = 0, ERL = 0,  DM = 0
 *   当这些条件都符合时，设置IM位和IE位可以使能中断。
 *   SR[15:8] - IM[7:0] (interrupt mask)
 *   为了默认开中断, 将 SR[IE] 功能反转: 1 关中断, 0 开中断
+*   mtc0: 部分实现 - mtc0 $k0, <any register> 都是 mtc0 $k0, $12(status)
+*   mfc0: 部分实现 - 只可取 cp0$12 cp0$13 cp0$14
+*   eret: 未实现 (利用 jr 代替)
 
-##### cr0 No.13: cause register (32 bit)
+##### cp0 No.13: cause register (32 bit)
 
-##### cr0 No.14: epc
+##### cp0 No.14: epc
 
 ```mips
 mfc0 $t0, Cause # copy Cause register into $t0
