@@ -7,14 +7,12 @@ divu $s0, $s1
 mflo $s1
 
 # spec for lb
-addi $s1, $zero, 0xff
-sw $s1, 0($zero)
-addi $s0, $zero, 0 	# reset
-lb $s0, 0($zero)
-addi $s1, $zero, 3
+addi $s1, $zero, 0xabc
 sw $s1, 0($zero)
 addi $s0, $zero, 0	# reset
 lb $s0, 0($zero)
+lb $s0, 1($zero)
+lb $s0, 2($zero)
 
 # spec for bgtz
 addi $s0, $zero, 0	# reset
