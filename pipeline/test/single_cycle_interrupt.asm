@@ -51,7 +51,7 @@ bne $k0, $k1, int2
 mfc0 $k0, $12
 andi $k0, $k0, 0xf8ff   # set IM to 000
 mtc0 $k0, $12
-j endim
+bne $k1, $zero, endim	# jump to endim
 
 int2:
 addi $k1, $zero, 2
@@ -60,7 +60,7 @@ mfc0 $k0, $12
 andi $k0, $k0, 0xf9ff   # set IM to 001
 ori $k0, $k0, 0x0100    # set IM to 001
 mtc0 $k0, $12
-j endim
+bne $k1, $zero, endim	# jump to endim
 
 int3:
 addi $k1, $zero, 3
@@ -128,11 +128,11 @@ mtc0 $k0, $12
 # restore EPC value
 addi $fp, $fp, -4
 addi $sp, $sp, -4
-lw $k1, ($fp)
+lw $t0, ($fp)
 
 # enable interrupts
 mfc0 $k0, $12
 andi $k0, $k0, 0xfffe
 mtc0 $k0, $12
 
-jr $k1
+jr $t0
