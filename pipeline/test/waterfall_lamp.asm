@@ -4,7 +4,7 @@
 # jr $k0
 
 # get Int NO
-addi $s6, $zero, 2
+mfc0 $s6, $13
 
 # start of program
 addi $s4, $zero, 5
