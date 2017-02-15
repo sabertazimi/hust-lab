@@ -222,4 +222,11 @@ mfc0 $k0, $12
 andi $k0, $k0, 0xfffe
 mtc0 $k0, $12
 
+nop
+nop
+nop
+nop
+nop
+nop
+nop
 eret
