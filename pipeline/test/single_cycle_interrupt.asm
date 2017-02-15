@@ -33,6 +33,12 @@ addi $fp, $fp, 4
 sw $s3, ($fp)
 addi $sp, $sp, 4
 addi $fp, $fp, 4
+sw $s4, ($fp)
+addi $sp, $sp, 4
+addi $fp, $fp, 4
+sw $s5, ($fp)
+addi $sp, $sp, 4
+addi $fp, $fp, 4
 sw $a0, ($fp)
 addi $sp, $sp, 4
 addi $fp, $fp, 4
@@ -77,22 +83,96 @@ mfc0 $k0, $12
 andi $k0, $k0, 0xfffe
 mtc0 $k0, $12
 
-# start of waterfall lamp
-addi $s1, $zero, 5 	# loop counter
-addi $s2, $zero, 1 	# step
+### start of waterfall lamp
 
-IntLoop:
-add $s0, $zero, $s3
+startisr:
+addi $v0, $zero, 1
 
-IntLeftShift:
-add $a0, $zero, $s0     # display $s0
+isr3:
+addi $s2, $zero, 3
+bne $s2, $s3, isr1or2
+
+# spec for extend instructions
+addi $s1, $zero, 0xabc
+sw $s1, 0($zero)
+
+addi $s1, $zero, 2              # outer loop counter
+int_loop1:
+lb $s0, 0($zero)
+addi $s2, $zero, 16             # inner loop counter
+int_shift1:
+add $a0, $zero, $s0             # display $s0
 addi $v0, $zero, 1
 syscall
-sll $s0, $s0, 4
-bne $s0, $zero, IntLeftShift
-sub $s1, $s1, $s2
-bne $s1, $zero, IntLoop
-# end of waterfall lamp
+sub $s2, $s2, $v0               # $v0 = 1
+addi $s4, $zero, 8              # constant: 8
+sub $s5, $s2, $s4		# $s2 - 8
+bgtz $s5, int_left_shift1	# $s2 > 8
+addi $s4, $zero, 16             # constant: 16
+divu $s0, $s4
+mflo $s0                        # right shift
+bne $s4, $zero, int_next1        # j int_next
+int_left_shift1:
+sll $s0, $s0, 4			# left shift
+int_next1:
+bne $s2, $zero, int_shift1
+sub $s1, $s1, $v0               # $v0 = 1
+bne $s1, $zero, int_loop1
+
+addi $s1, $zero, 2              # outer loop counter
+int_loop2:
+lb $s0, 1($zero)
+addi $s2, $zero, 16             # inner loop counter
+int_shift2:
+add $a0, $zero, $s0             # display $s0
+addi $v0, $zero, 1
+syscall
+sub $s2, $s2, $v0               # $v0 = 1
+addi $s4, $zero, 8              # constant: 8
+sub $s5, $s2, $s4		# $s2 - 8
+bgtz $s5, int_left_shift2	# $s2 > 8
+addi $s4, $zero, 16             # constant: 16
+divu $s0, $s4
+mflo $s0                        # right shift
+bne $s4, $zero, int_next2        # j int_next
+int_left_shift2:
+sll $s0, $s0, 4			# left shift
+int_next2:
+bne $s2, $zero, int_shift2
+sub $s1, $s1, $v0               # $v0 = 1
+bne $s1, $zero, int_loop2
+
+addi $s2, $zero, 1
+bne $s2, $zero, endisr
+
+isr1or2:
+
+addi $s1, $zero, 6              # outer loop counter
+
+int_loop:
+add $s0, $zero, $s3
+addi $s2, $zero, 16             # inner loop counter
+
+int_shift:
+add $a0, $zero, $s0             # display $s0
+syscall
+sub $s2, $s2, $v0               # $v0 = 1
+addi $s4, $zero, 8              # constant: 8
+sub $s5, $s2, $s4		# $s2 - 8
+bgtz $s5, int_left_shift	# $s2 > 8
+addi $s4, $zero, 16             # constant: 16
+divu $s0, $s4
+mflo $s0                        # right shift
+bne $s4, $zero, int_next        # j int_next
+int_left_shift:
+sll $s0, $s0, 4			# left shift
+int_next:
+bne $s2, $zero, int_shift
+sub $s1, $s1, $v0               # $v0 = 1
+bne $s1, $zero, int_loop
+
+endisr:
+### end of waterfall lamp
 
 # disable interrupts
 mfc0 $k0, $12
@@ -106,6 +186,12 @@ lw $v0, ($fp)
 addi $fp, $fp, -4
 addi $sp, $sp, -4
 lw $a0, ($fp)
+addi $fp, $fp, -4
+addi $sp, $sp, -4
+lw $s5, ($fp)
+addi $fp, $fp, -4
+addi $sp, $sp, -4
+lw $s4, ($fp)
 addi $fp, $fp, -4
 addi $sp, $sp, -4
 lw $s3, ($fp)
