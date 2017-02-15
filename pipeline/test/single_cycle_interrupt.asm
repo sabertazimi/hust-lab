@@ -55,7 +55,8 @@ startim:
 addi $k1, $zero, 1
 bne $k0, $k1, int2
 mfc0 $k0, $12
-andi $k0, $k0, 0xf8ff   # set IM to 000
+andi $k0, $k0, 0xf9ff   # set IM to 001
+ori $k0, $k0, 0x0100    # set IM to 001
 mtc0 $k0, $12
 bne $k1, $zero, endim	# jump to endim
 
@@ -63,8 +64,8 @@ int2:
 addi $k1, $zero, 2
 bne $k0, $k1, int3
 mfc0 $k0, $12
-andi $k0, $k0, 0xf9ff   # set IM to 001
-ori $k0, $k0, 0x0100    # set IM to 001
+andi $k0, $k0, 0xfbff   # set IM to 011
+ori $k0, $k0, 0x0300    # set IM to 011
 mtc0 $k0, $12
 bne $k1, $zero, endim	# jump to endim
 
@@ -72,8 +73,7 @@ int3:
 addi $k1, $zero, 3
 bne $k0, $k1, endim
 mfc0 $k0, $12
-andi $k0, $k0, 0xfbff   # set IM to 011
-ori $k0, $k0, 0x0300    # set IM to 011
+ori $k0, $k0, 0x0700    # set IM to 111
 mtc0 $k0, $12
 
 endim:
