@@ -214,11 +214,12 @@ mtc0 $k0, $12
 # restore EPC value
 addi $fp, $fp, -4
 addi $sp, $sp, -4
-lw $t0, ($fp)
+lw $k0, ($fp)
+mtc0 $k0, $14
 
 # enable interrupts
 mfc0 $k0, $12
 andi $k0, $k0, 0xfffe
 mtc0 $k0, $12
 
-jr $t0
+eret
