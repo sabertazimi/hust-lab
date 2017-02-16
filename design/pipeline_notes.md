@@ -221,11 +221,11 @@ endmodule
 *   imm26(EX)
 *   R1(EX/WB)
 *   R2(EX/MEM)
-*   RW#(WB)
 
 #### EX/MEM
 
 *   LOData(WB)
+*   RW#(WB)
 
 ### hazards
 
