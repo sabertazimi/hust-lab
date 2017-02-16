@@ -183,6 +183,50 @@ endmodule
 
 ## Notes
 
+### ideal pipeline registers
+
+#### IF/ID
+
+*   pc
+*   ir
+
+#### ID/EX
+
+*   pc
+*   ir
+ 
+*   RegWe(WB)
+*   RAMtoReg(WB)
+*   LOToReg(WB)
+*   Syscall(WB)
+*   RAMWe(MEM)
+*   RAMByte(MEM)
+*   RegDst(EX)
+*   ALUOp(EX)
+*   ALUSrc(EX)
+*   ExtOp(EX)
+*   ALUSham(EX)
+*   Beq(EX)
+*   Bne(EX)
+*   Bgtz(EX)
+*   Jmp(EX)
+*   Jal(EX)
+*   Jr(EX)
+*   WriteToLO(EX)
+
+*   rt(EX)
+*   rd(EX)
+*   sham(EX)
+*   imm16(EX)
+*   imm26(EX)
+*   R1(EX/WB)
+*   R2(EX/MEM)
+*   RW#(WB)
+
+#### EX/MEM
+
+*   LOData(WB)
+
 ### hazards
 
 @TODO: is it neccessory to detect rs or rt get read ?
@@ -384,3 +428,7 @@ counter.
 *   computer architecture: a quantitative approach
 *   interrupts pdf
 
+## Sample
+
+*   http://user.engineering.uiowa.edu/~hpca/hw5/
+*   https://github.com/trevor-m/mips-processor
