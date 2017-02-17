@@ -221,6 +221,8 @@ endmodule
 *   imm26(EX)
 *   R1(EX/WB)
 *   R2(EX/MEM)
+*   $v0(WB)
+*   $a0(WB)
 
 #### EX/MEM
 
