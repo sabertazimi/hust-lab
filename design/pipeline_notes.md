@@ -219,7 +219,7 @@ endmodule
 *   sham(EX)
 *   imm16(EX)
 *   imm26(EX)
-*   R1(EX/WB)
+*   R1(EX)
 *   R2(EX/MEM)
 *   $v0(WB)
 *   $a0(WB)
@@ -239,7 +239,6 @@ endmodule
  
 *   Result(MEM/WB)
 *   RW# (WB)
-*   R1(WB)
 *   R2(MEM)
 *   $v0(WB)
 *   $a0(WB)
@@ -258,7 +257,6 @@ endmodule
 *   RAMData(WB)
 *   Result(WB)
 *   RW# (WB)
-*   R1(WB)
 *   $v0(WB)
 *   $a0(WB)
 
