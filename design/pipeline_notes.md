@@ -237,9 +237,28 @@ endmodule
 *   RAMWe(MEM)
 *   RAMByte(MEM)
  
-*   RW#(WB)
-*   R1(EX/WB)
-*   R2(EX/MEM)
+*   Result(MEM/WB)
+*   RW# (WB)
+*   R1(WB)
+*   R2(MEM)
+*   $v0(WB)
+*   $a0(WB)
+
+#### MEM/WB
+
+*   pc
+*   ir
+ 
+*   RegWe(WB)
+*   RAMtoReg(WB)
+*   LOToReg(WB)
+*   Syscall(WB)
+*   WriteTLO(WB)
+ 
+*   RAMData(WB)
+*   Result(WB)
+*   RW# (WB)
+*   R1(WB)
 *   $v0(WB)
 *   $a0(WB)
 
