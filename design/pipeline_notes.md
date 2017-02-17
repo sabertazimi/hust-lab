@@ -195,11 +195,11 @@ endmodule
 *   pc
 *   ir
  
+*   WritetoLO(WB)
 *   RegWe(WB)
 *   RAMtoReg(WB)
-*   LOToReg(WB)
+*   LOtoReg(WB)
 *   Syscall(WB)
-*   WriteTLO(WB)
 *   RAMWe(MEM)
 *   RAMByte(MEM)
 *   RegDst(EX)
@@ -229,11 +229,11 @@ endmodule
 *   pc
 *   ir
  
+*   WriteTLO(WB)
 *   RegWe(WB)
 *   RAMtoReg(WB)
 *   LOToReg(WB)
 *   Syscall(WB)
-*   WriteTLO(WB)
 *   RAMWe(MEM)
 *   RAMByte(MEM)
  
@@ -248,11 +248,11 @@ endmodule
 *   pc
 *   ir
  
+*   WriteTLO(WB)
 *   RegWe(WB)
 *   RAMtoReg(WB)
 *   LOToReg(WB)
 *   Syscall(WB)
-*   WriteTLO(WB)
  
 *   RAMData(WB)
 *   Result(WB)
