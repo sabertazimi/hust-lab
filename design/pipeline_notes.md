@@ -226,8 +226,22 @@ endmodule
 
 #### EX/MEM
 
-*   LOData(WB)
+*   pc
+*   ir
+ 
+*   RegWe(WB)
+*   RAMtoReg(WB)
+*   LOToReg(WB)
+*   Syscall(WB)
+*   WriteTLO(WB)
+*   RAMWe(MEM)
+*   RAMByte(MEM)
+ 
 *   RW#(WB)
+*   R1(EX/WB)
+*   R2(EX/MEM)
+*   $v0(WB)
+*   $a0(WB)
 
 ### hazards
 
