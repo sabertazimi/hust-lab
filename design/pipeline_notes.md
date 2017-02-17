@@ -199,6 +199,7 @@ endmodule
 *   RAMtoReg(WB)
 *   LOToReg(WB)
 *   Syscall(WB)
+*   WriteTLO(WB)
 *   RAMWe(MEM)
 *   RAMByte(MEM)
 *   RegDst(EX)
@@ -212,7 +213,6 @@ endmodule
 *   Jmp(EX)
 *   Jal(EX)
 *   Jr(EX)
-*   WriteToLO(EX)
 
 *   rt(EX)
 *   rd(EX)
