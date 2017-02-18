@@ -264,7 +264,7 @@ endmodule
 
 #### decode stage
 
-for branch usage in decode stage
+*   for branch usage in decode stage
 
 ```verilog
 if ((IF/ID.rs != 0) && (IF/ID.rs == EX/MEM.RW#) && EX/MEM.RegWe) begin
@@ -282,6 +282,13 @@ end else if ((IF/ID.rt != 0) && (IF/ID.rt == MEM/WB.RW#) && MEM/WB.RegWe) begin
 end else begin
     IF/ID.ForwardA = 00 (no forwarding)
 end
+```
+
+*   for WB.RegData -> ID/EX pipeline register data hazard
+
+```verilog
+assign IDforwardC = (IDrs != 0 && MEM/WB.RegWe && IDrs == MEM/WB.RW#)
+assign IDforwardD = (IDrt != 0 && MEM/WB.RegWe && IDrt == MEM/WB.RW#)
 ```
 
 #### execute stage
