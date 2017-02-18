@@ -265,6 +265,7 @@ endmodule
 #### decode stage
 
 *   for branch usage in decode stage
+*   for WB.RegData -> ID/EX pipeline register data hazard
 
 ```verilog
 if ((IF/ID.rs != 0) && (IF/ID.rs == EX/MEM.RW#) && EX/MEM.RegWe) begin
@@ -282,13 +283,6 @@ end else if ((IF/ID.rt != 0) && (IF/ID.rt == MEM/WB.RW#) && MEM/WB.RegWe) begin
 end else begin
     IF/ID.ForwardA = 00 (no forwarding)
 end
-```
-
-*   for WB.RegData -> ID/EX pipeline register data hazard
-
-```verilog
-assign IDforwardC = (IDrs != 0 && MEM/WB.RegWe && IDrs == MEM/WB.RW#)
-assign IDforwardD = (IDrt != 0 && MEM/WB.RegWe && IDrt == MEM/WB.RW#)
 ```
 
 #### execute stage
@@ -321,9 +315,7 @@ end
 ex/mem sw + mem/wb load: $rt => $rt
 
 ```verilog
-if (MEM/WB.RegWe && EX/MEM.RAMWe && EX/MEM.rt == MEM/WB.RW#) begin
-    ForwardRAMIn = MEM/WB.WriteData
-end
+assign MEMForward = (MEM/WB.RegWe && EX/MEM.RAMWe && EX/MEM.rt == MEM/WB.RW#)
 ```
 
 ### load-use hazard and branch hazard
@@ -335,7 +327,7 @@ end
 // load use stall
 // stall 1 clock
 // then forward unit get start to work
-assign lwstall = ID/EX.RAMtoReg && (ID/EX.rt == IF/ID.rs || ID/EX.rt == IF/ID.rt)
+assign lwstall = ID/EX.rt != 0 && ID/EX.RAMtoReg && (ID/EX.rt == IF/ID.rs || ID/EX.rt == IF/ID.rt)
 
 // with forward, hazard still exist (the same to load use stage)
 // branch stall in decode stage
