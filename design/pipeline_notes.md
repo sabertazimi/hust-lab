@@ -181,16 +181,14 @@ endmodule
 
 ### yosys
 
-## Notes
+## ideal pipeline registers
 
-### ideal pipeline registers
-
-#### IF/ID
+### IF/ID
 
 *   pc
 *   ir
 
-#### ID/EX
+### ID/EX
 
 *   pc
 *   ir
@@ -224,7 +222,7 @@ endmodule
 *   $v0(WB)
 *   $a0(WB)
 
-#### EX/MEM
+### EX/MEM
 
 *   pc
 *   ir
@@ -243,7 +241,7 @@ endmodule
 *   $v0(WB)
 *   $a0(WB)
 
-#### MEM/WB
+### MEM/WB
 
 *   pc
 *   ir
@@ -260,81 +258,110 @@ endmodule
 *   $v0(WB)
 *   $a0(WB)
 
-### hazards
+## hazard
 
-@TODO: is it neccessory to detect rs or rt get read ?
+### hazard detection in forward unit
 
-### load use hazard
+#### decode stage
 
-
-load use hazard when: id/ex r-instr(r-r-alu, r-imm-alu, load/store, branch) + mem load
+for branch usage in decode stage
 
 ```verilog
-ID/EX.MemRead &&
-    ((ID/EX.RegisterRt == IF/ID.RegisterRs) ||
-    (ID/EX.RegisterRt == IF/ID.RegisterRt))
+if ((IF/ID.rs != 0) && (IF/ID.rs == EX/MEM.RW#) && EX/MEM.RegWe) begin
+    IF/ID.ForwardA = 10 (from memory access stage)
+end else if ((IF/ID.rs != 0) && (IF/ID.rs == MEM/WB.RW#) && MEM/WB.RegWe) begin
+    IF/ID.ForwardA = 01 (from write back stage)
+end else begin
+    IF/ID.ForwardA = 00 (no forwarding)
+end
+
+if ((IF/ID.rt != 0) && (IF/ID.rt == EX/MEM.RW#) && EX/MEM.RegWe) begin
+    IF/ID.ForwardA = 10 (from memory access stage)
+end else if ((IF/ID.rt != 0) && (IF/ID.rt == MEM/WB.RW#) && MEM/WB.RegWe) begin
+    IF/ID.ForwardA = 01 (from write back stage)
+end else begin
+    IF/ID.ForwardA = 00 (no forwarding)
+end
 ```
 
+#### execute stage
+
+*   id/ex r-instr(r-r-alu, r-imm-alu, load/store, branch) + mem/wb r-r-alu: $rd => $rs/$rt
+*   id/ex r-instr(r-r-alu, r-imm-alu, load/store, branch) + mem/wb r-imm-alu: $rd => $rs/$rt
+*   id/ex r-instr(r-r-alu, r-imm-alu, load/store, branch) + mem/wb load: $rt => $rs/$rt
+*   id/ex r-instr(r-r-alu, r-imm-alu, load/store, branch) + jal : $ra => $rs/$rt
+
 ```verilog
-assign lwstall = ((rsD == rtE) || (rtD == rtE)) and MemtoRegE
-assign StallF = StallD = FlushE = lwstall
+if ((ID/EX.rs != 0) && (ID/EX.rs == EX/MEM.RW#) && EX/MEM.RegWe) begin
+    ID/EX.ForwardA = 10 (from memory access stage)
+end else if ((ID/EX.rs != 0) && (ID/EX.rs == MEM/WB.RW#) && MEM/WB.RegWe) begin
+    ID/EX.ForwardA = 01 (from write back stage)
+end else begin
+    ID/EX.ForwardA = 00 (no forwarding)
+end
+
+if ((ID/EX.rt != 0) && (ID/EX.rt == EX/MEM.RW#) && EX/MEM.RegWe) begin
+    ID/EX.ForwardB = 10 (from memory access stage)
+end else if ((ID/EX.rt != 0) && (ID/EX.rt == MEM/WB.RW#) && MEM/WB.RegWe) begin
+    ID/EX.ForwardB = 01 (from write back stage)
+end else begin
+    ID/EX.ForwardB = 00 (no forwarding)
+end
+```
+
+#### MEM stage
+
+ex/mem sw + mem/wb load: $rt => $rt
+
+```verilog
+if (MEM/WB.RegWe && EX/MEM.RAMWe && EX/MEM.rd == MEM/WB.RW#) begin
+    ForwardRAMIn = MEM/WB.WriteData
+end
+```
+
+### load-use hazard and branch hazard
+
+*   load use hazard when: id/ex r-instr(r-r-alu, r-imm-alu, load/store, branch) mem load
+*   branch hazard: forward + stall
+
+```verilog
+// load use stall
+assign lwstall = ID/EX.MemRead &&
+    ((ID/EX.RegisterRt == IF/ID.RegisterRs) ||
+    (ID/EX.RegisterRt == IF/ID.RegisterRt))
+
+// with forward, hazard still exist (the same to load use stage)
+// branch stall in decode stage
+assign branchstall = (BranchD && RegWriteE && (WriteRegE == rsD || WriteRegE == rtD))
+    || (BranchD && MemtoRegM && (WriteRegM == rsD || WriteRegM == rtD))
+
+assign StallF = StallD = FlushE = (lwstall || branchstall)
+
 assign en_pipeline_register = !Stall_X
 assign rst_pipeline_register = Flush_E
 ```
 
-### hazard detection on forwarding
-
-*   id/ex r-instr(r-r-alu, r-imm-alu, load/store, branch) + mem/wb r-r-alu: rd => rs/rt
-*   id/ex r-instr(r-r-alu, r-imm-alu, load/store, branch) + mem/wb r-imm-alu: rd => rs/rt
-*   id/ex r-instr(r-r-alu, r-imm-alu, load/store, branch) + wb load: rt => rs/rt
-*   above reference: computer architecture: a quantitative approach. P322
-
-*   decode stage
-
-```verilog
-assign ForwardAD = (rsD != 0) && (rsD == WriteRegM) && EnRegWriteM
-assign ForwardBD = (rtD != 0) && (rtD == WriteRegM) && EnRegWriteM
-```
-
-*   execute stage
-
-```verilog
-if ((rsE != 0) && (rsE == WriteRegM) && EnRegWriteM) begin
-    ForwardAE = 10 (from memory access stage)
-end else if ((rsE != 0) && (rsE == WriteRegW) && EnRegWriteW) begin
-    ForwardAE = 01 (from write back stage)
-end else begin
-    ForwardAE = 00 (no forwarding)
-end
-```
-
 ### how to stall the pipeline
 
-*   Force control values in ID/EX register to 0
+*   flush signal: Force control values in ID/EX register to 0
     *   EX, MEM and WB do nop (no-operation)
 *   Prevent update of PC and IF/ID register
     *   Using instruction is decoded again
     *   Following instruction is fetched again
     *   1-cycle stall allows MEM to read data for lw
         *   Can subsequently forward to EX stage
+*   send zero signal(RegWe/RAMWe/WritetoLO) to pipeline registers
 
 if detected, stall and insert bubble
 
-```verilog
-// branch stall with branch predicting in decode stage
-assign branchstall = (BranchD && RegWriteE && (WriteRegE == rsD || WriteRegE == rtD))
-    || (BranchD && MemtoRegM && (WriteRegM == rsD || WriteRegM == rtD))
-assign StallF = StallD = FlushE = (lwstall || branchstall)
-```
-
-### branch predict
+## branch predict
 
 *   always not taken
 *   backward taken, forward not taken
 *   **饱和计数预测器**(Saturating counter/2 bit predictor) algorithm state machine
 *   神经分支预测器
 
-#### 2 bit predictor
+### 2 bit predictor
 
 not taken(miss: should taken) -> not taken(miss: should taken) -> taken
 
@@ -343,24 +370,23 @@ not taken(miss: should taken) -> not taken(miss: should taken) -> taken
 *   [start in weak state(01/10)](https://www.youtube.com/watch?v=AWv8DCm_UYE)
 *   对于 SPEC89 基准测试程序, 使用有 4096 个入口的转移预测缓存会获得 82%~99% 的准确率 亨尼西, 帕特森, 白跃彬译.计算机系统结构:量化研究方法, 北京: 电子工业出版社, 2007.8 P56-P57
 
-### interrupts handler
+## interrupts handler
 
-#### Single-cycle
+### Single-cycle
 
 将 InstrRAM 分为 2 块, 11 位为 1 时存放中断处理例程
 
-#### Pipeline
+### Pipeline
 
 *   The interrupts(external) are acknowledged in the execute stage. Then this signal is propagated to the Write Back stage through Memory Access stage. 
 *   if there are no separate registers to handle the interrupts, the handler has to move all the data in the general working registers to a stack memory and retrieve once it has been serviced. This takes many more clock cycles. To avoid this it’s better to use a limited number of special registers only for Interrupts.
 *   stages before execute stage should have own reserve stack space, e.g ``fetch` stack space, `decode/reg_read` stack space
 
-
-#### Registers
+### Registers
 
 Coprocessor 0(cp0): defines up to 32 special-purpose registers
 
-##### cp0 No.12: status register (32 bit)
+#### cp0 No.12: status register (32 bit)
 
 *   Status寄存器是一个读/写寄存器，可以表示处理器的操作模式、中断使能以及诊断状态。该寄存器的区域联合作用，可以创建处理器的工作模式。
 *   中断使能：当以下所有条件都成立时启用中断：IE = 1, EXL = 0, ERL = 0,  DM = 0
@@ -371,9 +397,9 @@ Coprocessor 0(cp0): defines up to 32 special-purpose registers
 *   mfc0: 部分实现 - 只可取 cp0$12 cp0$13 cp0$14
 *   eret: 未实现 (利用 jr 代替)
 
-##### cp0 No.13: cause register (32 bit)
+#### cp0 No.13: cause register (32 bit)
 
-##### cp0 No.14: epc
+#### cp0 No.14: epc
 
 ```mips
 mfc0 $t0, Cause # copy Cause register into $t0
@@ -382,7 +408,7 @@ mfc0 $k0, EPC
 jr   $k0
 ```
 
-#### different interrupts
+### different interrupts
 
 *   hardware interrupt 0x00000000
 *   system call 0x00000020
@@ -402,14 +428,14 @@ interrupts, giving priority to those further down the pipe. This also implies th
 instruction must be carried down the pipe until the latest stage in which it is possible to cause
 an interrupt (e.g. up to and including the memory-access stage)
 
-#### handler style
+### handler style
 
-##### scheme one: acts upon exceptional conditions as soon as they are detected
+#### scheme one: acts upon exceptional conditions as soon as they are detected
 
 *   send interrupts signal once possible to recognize
 *   requires a bit more logic
 
-##### scheme two: 
+#### scheme two: 
 *   send interrupts signal until a specfic stage such as write back stage; once interrupts get recognized, set CPU state to ERROR, and holding error_state info(interrupt type) down to pipeline: MEM/WB pipeline register need a copy of PC
 
 >   invalid opcode -> ID stage
