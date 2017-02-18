@@ -352,7 +352,6 @@ assign rst_pipeline_register = FlushE
     *   Following instruction is fetched again
     *   1-cycle stall allows MEM to read data for lw
         *   Can subsequently forward to EX stage
-*   send zero signal(RegWe/RAMWe/WritetoLO) to pipeline registers
 
 if detected, stall and insert bubble
 
