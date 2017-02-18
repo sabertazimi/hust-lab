@@ -314,7 +314,7 @@ end
 ex/mem sw + mem/wb load: $rt => $rt
 
 ```verilog
-if (MEM/WB.RegWe && EX/MEM.RAMWe && EX/MEM.rd == MEM/WB.RW#) begin
+if (MEM/WB.RegWe && EX/MEM.RAMWe && EX/MEM.rt == MEM/WB.RW#) begin
     ForwardRAMIn = MEM/WB.WriteData
 end
 ```
@@ -322,23 +322,26 @@ end
 ### load-use hazard and branch hazard
 
 *   load use hazard when: id/ex r-instr(r-r-alu, r-imm-alu, load/store, branch) mem load
-*   branch hazard: forward + stall
+*   branch hazard: forward + stall + flush(IF/ID)
 
 ```verilog
 // load use stall
-assign lwstall = ID/EX.MemRead &&
-    ((ID/EX.RegisterRt == IF/ID.RegisterRs) ||
-    (ID/EX.RegisterRt == IF/ID.RegisterRt))
+// stall 1 clock
+// then forward unit get start to work
+assign lwstall = ID/EX.RAMtoReg && (ID/EX.rt == IF/ID.rs || ID/EX.rt == IF/ID.rt)
 
 // with forward, hazard still exist (the same to load use stage)
 // branch stall in decode stage
+// stall 1 clock
+// then forward unit get start to work
 assign branchstall = (BranchD && RegWriteE && (WriteRegE == rsD || WriteRegE == rtD))
     || (BranchD && MemtoRegM && (WriteRegM == rsD || WriteRegM == rtD))
 
-assign StallF = StallD = FlushE = (lwstall || branchstall)
+assign StallF(PC) = StallD(IF/ID) = FlushE(ID/EX) = (lwstall || branchstall)
+assign FlushD = success (jmp || jr || jal || branch)
 
-assign en_pipeline_register = !Stall_X
-assign rst_pipeline_register = Flush_E
+assign en_pipeline_register = !StallX
+assign rst_pipeline_register = FlushE
 ```
 
 ### how to stall the pipeline
