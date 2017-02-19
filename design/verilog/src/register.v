@@ -20,11 +20,11 @@ module register
 
     always @ (posedge clk or rst) begin
         if (rst) begin
-            dout <= 0;
+            dout <= 0;      // reset
         end else if (en) begin
-            dout <= din;
+            dout <= din;    // update
         end else begin
-            dout <= dout;
+            dout <= dout;   // hold
         end
     end
 

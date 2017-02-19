@@ -27,7 +27,7 @@ module regfile
 
     `include defines.vh
 
-    reg [DATA_WIDTH-1:0] regfile [31:0];    ///< three ported regfile contains 32 registers
+    reg [DATA_WIDTH-1:0] regfile [0:31];    ///< three ported regfile contains 32 registers
     
     initial begin
         if (`DEBUG_REGFILE) begin

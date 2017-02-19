@@ -21,7 +21,7 @@ module dmem
     output [DATA_WIDTH-1:0] rdata
 );
 
-    reg [DATA_WIDTH-1:0] RAM [(2**BUS_WIDTH)-1:0];
+    reg [DATA_WIDTH-1:0] RAM [0:(2**BUS_WIDTH)-1];
 
     always @ (posedge clk) begin
         if (we) begin

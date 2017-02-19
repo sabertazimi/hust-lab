@@ -28,7 +28,7 @@ module dmem_tb;
 	end
 
 	initial begin
-		$dumpfile("dmem_tb.vcd");
+		$dumpfile("vcd/dmem_tb.vcd");
 		$dumpvars(0, dmem_tb);
 
 		$display("clk,\taddr,\t\tre,\twe,\twdata,\t\trdata");
