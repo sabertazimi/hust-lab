@@ -365,6 +365,14 @@ if detected, stall and insert bubble
 ### BTB
 
 *   read at IF stage, written at ID(lower higher priority) and EX stage(higher priority)
+*   not be predicting JR instructions: just stall PC and IF/ID register and insert a bubble as before
+
+### Reference
+
+*   [Branch Prediction Princeton](http://www.princeton.edu/~ajavadia/ELE475.pdf)
+*   [Branch Prediction MIT 1](http://csg.csail.mit.edu/6.375/6_375_2009_www/handouts/labs/lab1.pdf)
+*   [Branch Prediction MIT 2](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-823-computer-system-architecture-fall-2005/lecture-notes/l13_brnchpred.pdf)
+*   [Branch Prediction CMU](http://www.ece.cmu.edu/~ece447/s13/lib/exe/fetch.php?media=onur-447-spring13-lecture11-branch-prediction-afterlecture.pdf)
 
 ### 2 bit predictor
 
@@ -479,7 +487,6 @@ counter.
 
 *   [MIPS CP0 wiki](https://en.wikichip.org/wiki/mips/coprocessor_0)
 *   [iverilog Wiki](http://iverilog.wikia.com/wiki/User_Guide)
-*   [Branch Prediction and BTB](http://www.princeton.edu/~ajavadia/ELE475.pdf)
 *   See MIPS Run
 *   computer organization and design
 *   digital design and computer architecture(basis of pipelined CPU)
