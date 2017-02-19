@@ -355,12 +355,16 @@ assign rst_pipeline_register = FlushE
 
 if detected, stall and insert bubble
 
-## branch predict
+## branch prediction
 
 *   always not taken
 *   backward taken, forward not taken
 *   **饱和计数预测器**(Saturating counter/2 bit predictor) algorithm state machine
 *   神经分支预测器
+
+### BTB
+
+*   read at IF stage, written at ID(lower higher priority) and EX stage(higher priority)
 
 ### 2 bit predictor
 
@@ -473,20 +477,13 @@ counter.
 
 ## Reference
 
-*   [ARM core](http://www.iuma.ulpgc.es/~nunez/clases-micros-para-com/varios/dcisarch42.pdf)
-*   [pipeline basis](https://www.cs.utexas.edu/~fussell/courses/cs352h/lectures/)
-*   [pipeline basis part 1](https://www.cs.utexas.edu/~fussell/courses/cs352h/lectures/8-MIPS-Pipeline.pdf)
-*   [pipeline basis part 2](https://www.cs.utexas.edu/~fussell/courses/cs352h/lectures/9-MIPS-Pipeline-Hazards.pdf)
-*   [interrupts handler part 1](http://ijrti.org/papers/IJRTI1612013.pdf)
-*   [interrupts handler part 2](https://www.ece.umd.edu/~blj/RiSC/RiSC-pipe.pdf)
 *   [MIPS CP0 wiki](https://en.wikichip.org/wiki/mips/coprocessor_0)
-*   [CMU Manual](https://www.cs.cmu.edu/afs/cs/academic/class/15740-f97/public/info/pipeline-slide.pdf)
 *   [iverilog Wiki](http://iverilog.wikia.com/wiki/User_Guide)
+*   [Branch Prediction and BTB](http://www.princeton.edu/~ajavadia/ELE475.pdf)
 *   See MIPS Run
 *   computer organization and design
 *   digital design and computer architecture(basis of pipelined CPU)
 *   computer architecture: a quantitative approach
-*   interrupts pdf
 
 ## Sample
 
