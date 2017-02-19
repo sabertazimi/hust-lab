@@ -362,6 +362,14 @@ if detected, stall and insert bubble
 *   **饱和计数预测器**(Saturating counter/2 bit predictor) algorithm state machine
 *   神经分支预测器
 
+### Basis
+
+Requires three things to be predicted at fetch stage:
+
+*   Whether the fetched instruction is a branch
+*   (Conditional) branch direction
+*   Branch target address (if taken)
+
 ### BTB
 
 *   read at IF stage, written at ID(lower higher priority) and EX stage(higher priority)
@@ -373,6 +381,8 @@ if detected, stall and insert bubble
 *   [Branch Prediction MIT 1](http://csg.csail.mit.edu/6.375/6_375_2009_www/handouts/labs/lab1.pdf)
 *   [Branch Prediction MIT 2](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-823-computer-system-architecture-fall-2005/lecture-notes/l13_brnchpred.pdf)
 *   [Branch Prediction CMU](http://www.ece.cmu.edu/~ece447/s13/lib/exe/fetch.php?media=onur-447-spring13-lecture11-branch-prediction-afterlecture.pdf)
+*   [McFarling, "Combining Branch Predictors," DEC WRL Technical Report, 1993.](http://www.hpl.hp.com/techreports/Compaq-DEC/WRL-TN-36.pdf)
+*   [Smith, "A Study of Branch Prediction Strategies," ISCA 1981.](https://courses.cs.washington.edu/courses/cse590g/04sp/Smith-1981-A-Study-of-Branch-Prediction-Strategies.pdf)
 
 ### 2 bit predictor
 

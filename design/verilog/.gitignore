@@ -1,0 +1,10 @@
+*.out
+*.vcd
+*.text
+*.elf
+*.bak
+*.htm
+*.log
+*.swp
+*BAK*
+log.txt

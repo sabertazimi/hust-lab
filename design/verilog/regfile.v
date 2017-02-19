@@ -28,16 +28,26 @@ module regfile
     `include defines.vh
 
     reg [DATA_WIDTH-1:0] regfile [31:0];    ///< three ported regfile contains 32 registers
+    
+    initial begin
+        if (`DEBUG_REGFILE) begin
+            $display("     $v0,    $a0");
+            $monitor("%x, %x",
+                regfile[`$V0][31:0],	/* $v0 */
+                regfile[`$A0][31:0],	/* $a0 */
+            );
+        end
+    end
 
     always @ (posedge clk) begin
-        if (we) begin
+        if (we && waddr != 0) begin
             regfile[waddr] <= wdata;
         end
     end
 
     assign regA = (raddrA != 0) ? regfile[raddrA] : 0;
     assign regB = (raddrB != 0) ? regfile[raddrB] : 0; 
-    assign $v0 = regfile[$V0];
-    assign $a0 = regfile[$A0];
+    assign $v0 = regfile[`$V0];
+    assign $a0 = regfile[`$A0];
 
 endmodule // regfile
