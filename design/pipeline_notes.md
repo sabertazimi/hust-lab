@@ -475,7 +475,7 @@ counter.
 *   信号/变量/模块小写, 常量大写
 *   `_top` for top module
 *   `_cs` for current state, `_ns` for next state
-*   *clk_ -> rst_ -> en_ -> other signals -> address -> data*
+*   *clk_ -> rst_ -> (r/w)en_ -> other signals -> address -> data*
 *   `reg [31:0] data_mem [0: 2047]`
 *   Use meaningful names for signals and variables
 *   Don't mix level and edge sensitive elements in the same always block

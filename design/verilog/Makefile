@@ -3,83 +3,42 @@
 # sabertazimi, 2017-02-19 16:51
 #
 
-OBJCOPY=mips-linux-gnu-objcopy
-AS=mips-linux-gnu-as
-GCC=mips-linux-gnu-gcc
+SRC_PATH=src
+TEST_PATH=test
+OUT_PATH=out
+VCD_PATH=vcd
 
-OBJS  = $(shell ls t*.asm | sed -e 's/.asm//')
-OBJS += $(shell ls t*.c | sed -e 's/.c//')
+ROOT  = dmem_tb
 
-OUTS  = $(shell ls t*.asm | sed -e 's/.asm/.out/')
-# OUTS  = $(shell ls t*.c | sed -e 's/.c/.out/')
+SRC   = $(shell ls $(SRC_PATH) *.v)
+TEST  = $(shell ls $(TEST_PATH) *tb.v)
 
-HEXS  = $(shell ls t*.asm | sed -e 's/.asm/.hex/')
-HEXS += $(shell ls t*.c | sed -e 's/.c/.hex/')
+CC=iverilog
+CFLAGS=-y$(SRC_PATH) -I$(SRC_PATH)/include
+VM=vvp
+EDA=gtkwave
 
-# $ iverilog -y/lib -I/include -s main -o hello hello.v # set root module to `main`
-# $ vvp demo                                            # simulation runtime engine
-# $ vvp -n demo -lxt2
-# $ gtkwave demo.lxt
-# $ gtkwave trace.vcd
+# OBJS  = $(shell ls t*.asm | sed -e 's/.asm//')
+# OUTS  = $(shell ls t*.asm | sed -e 's/.asm/.out/')
+# HEXS  = $(shell ls t*.asm | sed -e 's/.asm/.hex/')
 
-all: $(OBJS) $(ELFS) $(OUTS) $(HEXS) check
-    
-bin2hex: bin2hex.c
-	gcc -Wall $< -o $@
+all:
+	mkdir -p $(OUT_PATH)
+	$(CC) $(CFLAGS) -s $(ROOT) -o $(OUT_PATH)/$(ROOT) $(TEST_PATH)/$(ROOT).v
 
-# prevent Make from removing these intermediate files
-.PRECIOUS: %.elf %.text
+.PHONY=clean test wave
 
-# To get a dump of the assembly code:
-#mips-linux-gnu-objdump --section=.text -D <file>.elf
+run:
+	$(VM) $(OUT_PATH)/$(ROOT)
+	# $(VM) -n $(OUT_PATH)/$(ROOT) -lxt2
 
-# cancel implicit rule for .c -> (exe)
-%: %.c
+wave:
+	$(EDA) $(VCD_PATH)/$(ROOT).vcd
 
-%.elf: %.c
-	$(GCC) -O0 -mips32 -nostdlib -ffreestanding -o $@ $<
-
-%.elf: %.asm
-	$(AS) -O0 -mips32 -o $@ $<
-
-# extract just the .text section
-%.text: %.elf
-	$(OBJCOPY) -O binary --only-section=.text $< $@
-
-%.hex: %.text bin2hex
-	./bin2hex $< > $@
-
-# build the simulation executable
-%: %.hex cpu_tb.v
-	iverilog -DIM_DATA_FILE="\"$<\"" \
-		-DNUM_IM_DATA=`wc -l $< | awk {'print $$1'}` \
-		-DDUMP_FILE="\"$@.vcd\"" \
-		-DDEBUG_CPU_STAGES="1" \
-		-I../ -g2005 \
-		-o $@ \
-		cpu_tb.v
-
-%.fv: %.fv.hex cpu_tb.v
-	iverilog -DIM_DATA_FILE="\"$<\"" \
-		-DNUM_IM_DATA=`wc -l $< | awk {'print $$1'}` \
-		-DDUMP_FILE="\"$@.vcd\"" \
-		-DDEBUG_CPU_REG="1" \
-		-I../ -g2005 \
-		-o $@ \
-		cpu_tb.v
-
-%.out: %
-	./$< > $<.out
-
-%.fv.out: %.fv
-	./$< | tail -n 1 > $<.out
 
 clean:
 	-rm -f $(OBJS)
-	-rm -f *.vcd
+	-rm -f /*.vcd
 	-rm -f *.out
-	-rm -f t*.hex
-	-rm -f *.elf
-	-rm -f *.text
 
 # vim:ft=make

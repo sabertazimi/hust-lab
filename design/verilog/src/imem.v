@@ -7,7 +7,7 @@
  * @output rdata instruction read out from memory
  */
 module imem
-#(parameter DATA_WIDTH = 32, BUS_WIDTH = 10)
+#(parameter DATA_WIDTH = 32, BUS_WIDTH = 10, CODE_FILE= "../test/benchmark")
 (
     input [BUS_WIDTH-1:0] addr,
     output [DATA_WIDTH-1:0] rdata,
