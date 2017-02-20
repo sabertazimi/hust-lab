@@ -31,11 +31,14 @@ module mips_tb;
 		$monitor("%x,\t%x,\t%x,\t%x", raw_clk, raw_rst, raw_en, a0_data);
 
 		raw_clk <= 1'b0;
-		raw_rst <= 1'b0;
+		raw_rst <= 1'b1;
 		raw_en <= 1'b1;
 
 		@(posedge raw_clk);
 		@(posedge raw_clk);
+        
+		raw_rst <= 1'b0;
+        
 		@(posedge raw_clk);
 		@(posedge raw_clk);
 		@(posedge raw_clk);

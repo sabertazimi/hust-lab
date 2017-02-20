@@ -30,7 +30,8 @@ module mips
     assign clk = raw_clk && ~clk_count;
     
     // pc update unit
-    wire [DATA_WIDTH-1:0] IF_pc, IF_pc_next;
+    wire [DATA_WIDTH-1:0] IF_pc;
+    wire [DATA_WIDTH-1:0] IF_pc_next;
     
     assign IF_pc_next = ID_jmp_reg ? ID_addr_reg
                 : ID_jmp_imm ? ID_addr_imm
@@ -68,7 +69,7 @@ module mips
         .DATA_WIDTH(DATA_WIDTH)
     ) IF_ID (
         .clk(clk),
-        .rst(flushD),
+        .rst(raw_rst || flushD),
         .en(stall),
         .IF_PC(IF_pc),
         .IF_IR(IF_ir),
@@ -237,7 +238,7 @@ module mips
         .DATA_WIDTH(DATA_WIDTH)
     ) ID_EX (
         .clk(clk),
-        .rst(flushE),
+        .rst(raw_rst || flushE),
         .en(raw_en),
         .ID_PC(ID_pc),
         .ID_IR(ID_ir),
@@ -497,5 +498,35 @@ module mips
         .EX_forwardB(EX_forwardB),
         .MEM_forward(MEM_forward)
     );
+    
+    // bubble detection
+    wire stall;
+    wire flushD;
+    wire flushE;
+    
+    // @TODO
+    assign stall = 1;
+    assign flushD = 0;
+    assign flushE = 0;
+    
+    // syscall unit
+    wire equal_ten;
+    wire halt;
+    wire syscall_count;
+    
+    assign equal_ten = (v0_data == 32'ha);
+    assign halt = WB_syscall && equal_ten;
+    
+    counter syscall_counter (
+        .clk(clk),
+        .rst(raw_rst),
+        .en(~equal_ten && syscall),
+        .count(syscall_count)
+    );
+    
+    // led unit
+    wire [DATA_WIDTH-1:0] led_data;
+    
+    assign led_data = syscall_count ? a0_data : 0;
     
 endmodule // mips
