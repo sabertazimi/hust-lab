@@ -18,7 +18,7 @@ module register
     output reg [DATA_WIDTH-1:)] dout
 );
 
-    always @ (posedge clk or rst) begin
+    always @ (posedge clk) begin
         if (rst) begin
             dout <= 0;      // reset
         end else if (en) begin
