@@ -66,7 +66,7 @@ module instruction_typer
     output bgtz
 );
 
-`include defines.vh
+`include "defines.vh"
 
     assign add = (op == 0 && funct == `ADD) ? 1 : 0; 
     assign addi = (op == `ADDI) ? 1 : 0;

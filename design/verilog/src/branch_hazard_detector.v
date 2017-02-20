@@ -31,7 +31,7 @@ module branch_hazard_detector
 );
 
     assign branch_flushD = ID_jmp_imm || ID_jmp_reg || ID_jmp_branch;
-    assign branch_hazard = (ID_jmp_need_reg && EX_regwe && EX_RW != 0 && (EX_RW == ID_rs || EX_RW == ID_rt))
+    assign branch_hazard = (ID_jmp_need_reg && EX_regwe && EX_RW != 0 && (EX_RW == ID_rs || EX_RW == ID_rt));
     || (ID_jmp_need_reg && MEM_ramtoreg && MEM_RW != 0 && (MEM_RW == ID_rs || MEM_RW == ID_rt));
         
 endmodule // branch_hazard_detector

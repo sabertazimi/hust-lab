@@ -39,39 +39,39 @@
 `define LB      6'b100000   // op
 `define BGTZ    6'b000111   // op
 
-`define $ZERO   5'd0
-`define $AT     5'd1
-`define $V0     5'd2
-`define $V1     5'd3
-`define $A0     5'd4
-`define $A1     5'd5
-`define $A2     5'd6
-`define $A3     5'd7
-`define $T0     5'd8
-`define $T1     5'd9
-`define $T2     5'd10
-`define $T3     5'd11
-`define $T4     5'd12
-`define $T5     5'd13
-`define $T6     5'd14
-`define $T7     5'd15
-`define $S0     5'd16
-`define $S1     5'd17
-`define $S2     5'd18
-`define $S3     5'd19
-`define $S4     5'd20
-`define $S5     5'd21
-`define $S6     5'd22
-`define $S7     5'd23
-`define $T8     5'd24
-`define $T9     5'd25
-`define $K0     5'd26
-`define $K1     5'd27
-`define $GP     5'd28
-`define $SP     5'd29
-`define $FP     5'd30
-`define $RA     5'd31
+`define ZERO   5'd0
+`define AT     5'd1
+`define V0     5'd2
+`define V1     5'd3
+`define A0     5'd4
+`define A1     5'd5
+`define A2     5'd6
+`define A3     5'd7
+`define T0     5'd8
+`define T1     5'd9
+`define T2     5'd10
+`define T3     5'd11
+`define T4     5'd12
+`define T5     5'd13
+`define T6     5'd14
+`define T7     5'd15
+`define S0     5'd16
+`define S1     5'd17
+`define S2     5'd18
+`define S3     5'd19
+`define S4     5'd20
+`define S5     5'd21
+`define S6     5'd22
+`define S7     5'd23
+`define T8     5'd24
+`define T9     5'd25
+`define K0     5'd26
+`define K1     5'd27
+`define GP     5'd28
+`define SP     5'd29
+`define FP     5'd30
+`define RA     5'd31
 
-`define DEBUG_REGFILE
+`define DEBUG_REGFILE 1
 
 // `endif

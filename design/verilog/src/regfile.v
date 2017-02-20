@@ -21,12 +21,12 @@ module regfile
     input [4:0] waddr,
     input [DATA_WIDTH-1:0] wdata,
     output [DATA_WIDTH-1:0] regA,
-    output [DATA_WIDTH-1:0] regB
-    output [DATA_WIDTH-1:0] $v0,
-    output [DATA_WIDTH-1:0] $a0
+    output [DATA_WIDTH-1:0] regB,
+    output [DATA_WIDTH-1:0] v0_data,
+    output [DATA_WIDTH-1:0] a0_data
 );
 
-    `include defines.vh
+    `include "defines.vh"
 
     reg [DATA_WIDTH-1:0] regfile [0:31];    ///< three ported regfile contains 32 registers
     
@@ -34,8 +34,8 @@ module regfile
         if (`DEBUG_REGFILE) begin
             $display("     $v0,    $a0");
             $monitor("%x, %x",
-                regfile[`$V0][31:0],	/* $v0 */
-                regfile[`$A0][31:0],	/* $a0 */
+                regfile[`V0][31:0],	/* $v0 */
+                regfile[`A0][31:0],	/* $a0 */
             );
         end
     end
@@ -48,7 +48,7 @@ module regfile
 
     assign regA = (raddrA != 0) ? regfile[raddrA] : 0;
     assign regB = (raddrB != 0) ? regfile[raddrB] : 0; 
-    assign $v0 = regfile[`$V0];
-    assign $a0 = regfile[`$A0];
+    assign v0_data = regfile[`V0];
+    assign a0_data = regfile[`A0];
 
 endmodule // regfile

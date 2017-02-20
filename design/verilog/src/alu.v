@@ -24,8 +24,8 @@ module alu
     wire signed [DATA_WIDTH-1:0] signed_srcA;
     wire signed [DATA_WIDTH-1:0] signed_srcB;
     
-    assign signed_srcA <= $signed(srcA);
-    assign signed_srcB <= $signed(srcB);
+    assign signed_srcA = $signed(srcA);
+    assign signed_srcB = $signed(srcB);
 
     always @ ( * ) begin
         case (aluop)
@@ -40,13 +40,15 @@ module alu
             4'd8: aluout <= srcA | srcB;
             4'd9: aluout <= srcA ^ srcB;
             4'd10: aluout <= ~(srcA | srcB);
-            4'd11: aluout <= (signed_srcA < signed_srcB) 1 : 0;
-            4'd12: aluout <= (srcA < srcB) 1 : 0;
+            4'd11: aluout <= (signed_srcA < signed_srcB) ? 1 : 0;
+            4'd12: aluout <= (srcA < srcB) ? 1 : 0;
             default: aluout <= 0;
         endcase
     end
     
-    alu_flags FLAGS #(.DATA_WIDTH(DATA_WIDTH)) (
+    alu_flags #(
+        .DATA_WIDTH(DATA_WIDTH)
+    ) FLAGS  (
         .srcA(srcA),
         .srcB(srcB),
         .aluop(aluop),

@@ -2,7 +2,7 @@
  * @module controller
  * @brief control signals generator
  * @input op op code
- * @input functy functy code
+ * @input funct functy code
  * @output aluop,
  * @output alusrc 1 => imm16, 0 => rt
  * @output alusham 1 => sham, 0=> rt 
@@ -25,7 +25,7 @@
 module controller
 (
     input [5:0] op,
-    input [5:0] functy,
+    input [5:0] funct,
     output [3:0] aluop,
     output alusrc,
     output alusham,
@@ -45,8 +45,6 @@ module controller
     output lotoreg,
     output rambyte
 );
-
-`include defines.vh
 
     wire add, addi, addiu, addu;
     wire s_and, andi, sll, sra, srl;

@@ -20,7 +20,7 @@ module mips
         .count(latch_out)
     );
     
-    couter clk_counter (
+    counter clk_counter (
         .clk(clk),
         .rst(raw_rst),
         .en(latch_out),
@@ -120,9 +120,9 @@ module mips
     wire ID_lotoreg;
     wire ID_rambyte;
     
-    controller (
+    controller controller (
         .op(ID_op),
-        .functy(ID_funct),
+        .funct(ID_funct),
         .aluop(ID_aluop),
         .alusrc(ID_alusrc),
         .alusham(ID_alusham),
@@ -146,8 +146,7 @@ module mips
     // regfile
     wire [DATA_WIDTH-1:0] ID_raw_r1;
     wire [DATA_WIDTH-1:0] ID_raw_r2;
-    wire [DATA_WIDTH-1:0] $v0;
-    wire [DATA_WIDTH-1:0] $a0;
+    wire [DATA_WIDTH-1:0] v0_data;
     wire [4:0] ID_rs;
     
     assign ID_rs = ID_alusham ? ID_rt : ID_raw_rs;
@@ -163,8 +162,8 @@ module mips
         .wdata(WB_regdata),
         .regA(ID_raw_r1),
         .regB(ID_raw_r2),
-        .$v0($v0),
-        .$a0($a0)
+        .v0_data(v0_data),
+        .a0_data(a0_data)
     );
     
     // forward in ID stage
@@ -198,8 +197,8 @@ module mips
     wire [DATA_WIDTH-1:0] ID_addr_imm;
     wire [DATA_WIDTH-1:0] ID_addr_reg;
     wire [DATA_WIDTH-1:0] ID_addr_branch;
-    wire ID_extshft_imm16;
-    wire ID_extshft_imm26;
+    wire [DATA_WIDTH-1:0] ID_extshft_imm16;
+    wire [DATA_WIDTH-1:0] ID_extshft_imm26;
     
     assign ID_extshft_imm16 = {{(DATA_WIDTH-16){ID_imm16[15]}}, ID_imm16} << 2;
     assign ID_extshft_imm26 = {{(DATA_WIDTH-26){ID_imm26[25]}}, ID_imm26} << 2;
@@ -209,7 +208,6 @@ module mips
     assign ID_addr_branch = ID_extshft_imm16 + ID_pc + 4;
     
     ///> ID stage
-    
     
     /// ID/EX
     wire [DATA_WIDTH-1:0] EX_pc;
@@ -231,7 +229,7 @@ module mips
     wire [4:0] EX_rt;
     wire [4:0] EX_rd;
     wire [4:0] EX_sham;
-    wire [15:0] EX_imm16,
+    wire [15:0] EX_imm16;
     wire [DATA_WIDTH-1:0] EX_r1;
     wire [DATA_WIDTH-1:0] EX_r2;
     
@@ -310,7 +308,7 @@ module mips
                         : (EX_forwardB == 2'b01) ? WB_regdata
                         : EX_r2;
     assign EX_unsigned_imm32 = {{(DATA_WIDTH-16){1'b0}}, EX_imm16};
-    assign EX_signed_imm32 = {{(DATA_WIDTH-16){EX_imm16[15]}, EX_imm16};
+    assign EX_signed_imm32 = {{(DATA_WIDTH-16){EX_imm16[15]}}, EX_imm16};
     assign EX_imm32 = EX_extop ? EX_signed_imm32 : EX_unsigned_imm32;
     assign EX_sham32 = {{(DATA_WIDTH-5){1'b0}}, EX_sham};
     assign EX_aluX = EX_jal ? EX_pc : EX_raw_aluX;
@@ -320,8 +318,6 @@ module mips
                     : EX_raw_aluY;
     
     // alu
-    wire [DATA_WIDTH-1:0] EX_result;
-    
     alu #(
         .DATA_WIDTH(DATA_WIDTH)
     ) alu (
@@ -352,7 +348,7 @@ module mips
     wire [DATA_WIDTH-1:0] MEM_r2;
     
     EX_MEM #(
-        .DATA_WIDTH(DATA_WIDTH
+        .DATA_WIDTH(DATA_WIDTH)
     ) EX_MEM (
         .clk(clk),
         .rst(raw_rst),
@@ -402,12 +398,12 @@ module mips
         .clk(clk),
         .re(MEM_ramtoreg),
         .we(MEM_ramwe && ~halt),
-        .addr(MEM_result),
+        .addr(MEM_result[25:2]),
         .wdata(MEM_wdata),
         .rdata(MEM_raw_ramdata)
     );
     
-    assign MEM_byteaddr = MEM_result[1:0]
+    assign MEM_byteaddr = MEM_result[1:0];
     assign MEM_bytedata8 = (MEM_byteaddr == 2'b00) ? MEM_raw_ramdata[7:0]
                         : (MEM_byteaddr == 2'b01) ? MEM_raw_ramdata[15:8]
                         : (MEM_byteaddr == 2'b10) ? MEM_raw_ramdata[23:16]
@@ -427,7 +423,7 @@ module mips
     wire WB_syscall;
     wire [DATA_WIDTH-1:0] WB_ramdata;
     wire [DATA_WIDTH-1:0] WB_result;
-    wire [4:0] WB_RW
+    wire [4:0] WB_RW;
     
     MEM_WB #(
         .DATA_WIDTH(DATA_WIDTH)
@@ -484,7 +480,7 @@ module mips
     wire [1:0] EX_forwardB;
     wire MEM_forward;
     
-    forward_unit (
+    forward_unit forward_unit (
         .ID_rs(ID_rs),
         .ID_rt(ID_rt),
         .EX_rs(EX_rs),

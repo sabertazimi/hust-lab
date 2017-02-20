@@ -26,7 +26,7 @@ module decoder
     output [25:0] imm26
 );
 
-`include defines.vh
+`include "defines.vh"
 
     assign op    = instruction[`OP];
     assign rs    = instruction[`RS];

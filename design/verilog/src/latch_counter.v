@@ -24,7 +24,7 @@ module latch_counter
                 count <= count;
             end
         end else begin
-            couunt <= count;
+            count <= count;
         end
     end
 

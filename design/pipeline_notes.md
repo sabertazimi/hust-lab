@@ -248,11 +248,11 @@ end else begin
 end
 
 if ((IF/ID.rt != 0) && (IF/ID.rt == EX/MEM.RW#) && EX/MEM.RegWe) begin
-    IF/ID.ForwardA = 10 (from memory access stage)
+    IF/ID.ForwardB = 10 (from memory access stage)
 end else if ((IF/ID.rt != 0) && (IF/ID.rt == MEM/WB.RW#) && MEM/WB.RegWe) begin
-    IF/ID.ForwardA = 01 (from write back stage)
+    IF/ID.ForwardB = 01 (from write back stage)
 end else begin
-    IF/ID.ForwardA = 00 (no forwarding)
+    IF/ID.ForwardB = 00 (no forwarding)
 end
 ```
 
