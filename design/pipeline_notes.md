@@ -5,35 +5,6 @@
 *   for all control signal: explict for zero if it's uneccessory
 *   for all output: explict for zero if it's uneccessory
 
-## Tips
-
-*   PC，IR最好一直传递到最后一级，这样方便观测流水线运行的状况。
-*   流水线各级是否产生气泡可以用LED指示灯显示，方便观察流水线运行状况
-
-## Instructions
-
-1. Data processing
-2. PSR (Program Status Register) transfer
-3. Multiply
-4. Single data swap
-5. Single data transfer
-6. Branch Predictor
-7. Block data transfer
-8. Coprocessor register transfer
-9. Coprocessor data transfer
-10. Coprocessor data operation
-11. Undefined Instruction
-12. Software interrupt 
-
-## Frameworks
-
-### Controller
-
-*   Instruction decoding
-*   Pipeline Registers
-*   FSM(branch predictor)
-*   Interrupt handler
-
 ## Installation
 
 ```sh
@@ -290,7 +261,7 @@ end
 *   id/ex r-instr(r-r-alu, r-imm-alu, load/store, branch) + mem/wb r-r-alu: $rd => $rs/$rt
 *   id/ex r-instr(r-r-alu, r-imm-alu, load/store, branch) + mem/wb r-imm-alu: $rd => $rs/$rt
 *   id/ex r-instr(r-r-alu, r-imm-alu, load/store, branch) + mem/wb load: $rt => $rs/$rt
-*   id/ex r-instr(r-r-alu, r-imm-alu, load/store, branch) + jal : $ra => $rs/$rt
+*   id/ex r-instr(r-r-alu, r-imm-alu, load/store, branch) + mem/wb jal : $ra => $rs/$rt
 
 ```verilog
 if ((ID/EX.rs != 0) && (ID/EX.rs == EX/MEM.RW#) && EX/MEM.RegWe) begin
