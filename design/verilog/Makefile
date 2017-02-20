@@ -8,7 +8,7 @@ TEST_PATH=test
 OUT_PATH=out
 VCD_PATH=vcd
 
-ROOT  = imem_tb
+ROOT  = mips_tb
 
 SRC   = $(shell ls $(SRC_PATH) *.v)
 TEST  = $(shell ls $(TEST_PATH) *tb.v)
