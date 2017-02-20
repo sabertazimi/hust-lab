@@ -386,8 +386,34 @@ module mips
     );
 
     ///< MEM stage
+    wire [DATA_WIDTH-1:0] MEM_wdata;
+    wire [DATA_WIDTH-1:0] MEM_raw_ramdata;
+    wire [1:0] MEM_byteaddr;
+    wire [7:0] MEM_bytedata8;
+    wire [DATA_WIDTH-1:0] MEM_bytedata32;
+    wire [DATA_WIDTH-1:0] MEM_ramdata;
     
+    assign MEM_wdata = MEM_forward ? WB_regdata : MEM_r2;
     
+    dmem #(
+        .DATA_WIDTH(DATA_WIDTH),
+        .BUS_WIDTH(DM_BUS_WIDTH)
+    ) dmem (
+        .clk(clk),
+        .re(MEM_ramtoreg),
+        .we(MEM_ramwe && ~halt),
+        .addr(MEM_result),
+        .wdata(MEM_wdata),
+        .rdata(MEM_raw_ramdata)
+    );
+    
+    assign MEM_byteaddr = MEM_result[1:0]
+    assign MEM_bytedata8 = (MEM_byteaddr == 2'b00) ? MEM_raw_ramdata[7:0]
+                        : (MEM_byteaddr == 2'b01) ? MEM_raw_ramdata[15:8]
+                        : (MEM_byteaddr == 2'b10) ? MEM_raw_ramdata[23:16]
+                        : MEM_raw_ramdata[31:24];
+    assign MEM_bytedata32 = {{(DATA_WIDTH-8){MEM_bytedata8[7]}}, MEM_bytedata8};
+    assign MEM_ramdata = MEM_rambyte ? MEM_bytedata32 : MEM_raw_ramdata;
     
     ///> MEM stage
     
@@ -432,12 +458,26 @@ module mips
     );
     
     ///< WB stage
-    
+    wire [DATA_WIDTH-1:0] WB_lodata;
     wire [DATA_WIDTH-1:0] WB_regdata;
+    
+    register #(
+        .DATA_WIDTH(DATA_WIDTH)
+    ) LO (
+        .clk(clk),
+        .rst(raw_rst),
+        .en(WB_writetolo),
+        .din(MEM_result),
+        .dout(WB_lodata)
+    );
+    
+    assign WB_regdata = WB_lotoreg ? WB_lodata
+                        : WB_ramtoreg ? MEM_ramdata
+                        : MEM_result;
     
     ///> WB stage
     
-    // forward uni
+    // forward unit
     wire [1:0] ID_forwardA;
     wire [1:0] ID_forwardB;
     wire [1:0] EX_forwardA;

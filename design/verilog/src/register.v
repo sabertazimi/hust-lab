@@ -1,7 +1,7 @@
 /**
  * @module register
  * @brief D filp flop
- * @param WIDTH data width
+ * @param DATA_WIDTH data width
  * @input clk clock signal
  * @input rst reset signal
  * @input en enable signal
@@ -9,13 +9,13 @@
  * @ouput dout data out
  */
 module register
-#(parameter WIDTH = 32)
+#(parameter DATA_WIDTH = 32)
 (
     input clk,
     input rst,
     input en,
     input [DATA_WIDTH-1:0] din,
-    output reg [DATA_WIDTH-1:)] dout
+    output reg [DATA_WIDTH-1:0] dout
 );
 
     always @ (posedge clk) begin
