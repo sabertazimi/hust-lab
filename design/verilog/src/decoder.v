@@ -1,4 +1,3 @@
-`include defines.vh
 
 /**
  * @module decoder
@@ -16,17 +15,18 @@
  */
 module decoder
 (
-    input [DATA_WIDTH-1:0] instruction,
-    output [`OP] op,
-    output [`RS] rs,
-    output [`RT] rt,
-    output [`RD] rd,
-    output [`SHAM] sham,
-    output [`FUNCT] funct,
-    output [`IMM16] imm16,
-    output [`IMM26] imm26
+    input [31:0] instruction,
+    output [5:0] op,
+    output [4:0] rs,
+    output [4:0] rt,
+    output [4:0] rd,
+    output [4:0] sham,
+    output [5:0] funct,
+    output [15:0] imm16,
+    output [25:0] imm26
 );
 
+`include defines.vh
 
     assign op    = instruction[`OP];
     assign rs    = instruction[`RS];

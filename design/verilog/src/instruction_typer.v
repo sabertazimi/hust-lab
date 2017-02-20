@@ -1,5 +1,3 @@
-include defines.vh
-
 /**
  * @module instruction_typer
  * @brief instruction typer
@@ -23,8 +21,8 @@ include defines.vh
  * @output beq instruction signal
  * @output bne instruction signal
  * @output slt instruction signal
- * @output slt instruction signal
- * @output slt instruction signal
+ * @output slti instruction signal
+ * @output sltu instruction signal
  * @output j instruction signal
  * @output jal instruction signal
  * @output jr instruction signal
@@ -36,8 +34,8 @@ include defines.vh
  */
 module instruction_typer
 (
-    input [`OP] op,
-    input [`FUNCT] funct,
+    input [5:0] op,
+    input [5:0] funct,
     output add,
     output addi,
     output addiu,
@@ -56,8 +54,8 @@ module instruction_typer
     output beq,
     output bne,
     output slt,
-    output slt,
-    output slt,
+    output slti,
+    output sltu,
     output j,
     output jal,
     output jr,
@@ -68,6 +66,7 @@ module instruction_typer
     output bgtz
 );
 
+`include defines.vh
 
     assign add = (op == 0 && funct == `ADD) ? 1 : 0; 
     assign addi = (op == `ADDI) ? 1 : 0;
