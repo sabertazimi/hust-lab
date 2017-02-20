@@ -12,6 +12,7 @@
  * @output regB B port output
  */
 module regfile
+#(parameter DATA_WIDTH = 32)
 (
     input clk,
     input we,
