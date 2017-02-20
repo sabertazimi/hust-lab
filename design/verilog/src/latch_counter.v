@@ -1,30 +1,31 @@
 /**
- * @module counter
- * @brief up counter 
- * @param DATA_WIDTH data width
- * @param STEP counting step
+ * @module latch_counter
+ * @brief latch counter (latching when reaching max vlaue)
  * @input clk clock signal
  * @input rst reset signal
  * @output en enable signal 
  * @output count counting value
  */
-module counter
-#(parameter DATA_WIDTH = 1, STEP = 1)
+module latch_counter
 (
     input clk,
     input rst,
     input en,
-    output reg [(DATA_WIDTH-1):0] count
+    output reg count
 );
 
     always @(posedge clk) begin
         if (rst) begin
             count <= 0 ;
         end else if (en) begin
-            count <= count + 1;
+            if (count != 1) begin
+                count <= count + 1;
+            end else begin
+                count <= count;
+            end
         end else begin
-            count <= count;
+            couunt <= count;
         end
     end
 
-endmodule // counter
+endmodule // latch_counter
