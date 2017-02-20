@@ -15,7 +15,7 @@ module alu
     input [DATA_WIDTH-1:0] srcA,
     input [DATA_WIDTH-1:0] srcB,
     input [3:0] aluop,
-    output reg [DATA_WIDTH-1:0] aluout
+    output reg [DATA_WIDTH-1:0] aluout,
     output zero,
     output of,
     output uof

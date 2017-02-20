@@ -289,6 +289,50 @@ module mips
     
     ///< EX stage
     
+    wire [4:0] EX_RW;
+    wire [DATA_WIDTH-1:0] EX_raw_aluX;
+    wire [DATA_WIDTH-1:0] EX_raw_aluY;
+    wire [DATA_WIDTH-1:0] EX_unsigned_imm32;
+    wire [DATA_WIDTH-1:0] EX_signed_imm32;
+    wire [DATA_WIDTH-1:0] EX_imm32;
+    wire [DATA_WIDTH-1:0] EX_sham32;
+    wire [DATA_WIDTH-1:0] EX_aluX;
+    wire [DATA_WIDTH-1:0] EX_aluY;
+    wire [DATA_WIDTH-1:0] EX_result;
+    
+    assign EX_RW = EX_jal ? 5'h1f
+                : EX_regdst ? EX_rd
+                : EX_rt;
+    assign EX_raw_aluX = (EX_forwardA == 2'b10) ? MEM_result
+                        : (EX_forwardA == 2'b01) ? WB_regdata
+                        : EX_r1;
+    assign EX_raw_aluY = (EX_forwardB == 2'b10) ? MEM_result
+                        : (EX_forwardB == 2'b01) ? WB_regdata
+                        : EX_r2;
+    assign EX_unsigned_imm32 = {{(DATA_WIDTH-16){1'b0}}, EX_imm16};
+    assign EX_signed_imm32 = {{(DATA_WIDTH-16){EX_imm16[15]}, EX_imm16};
+    assign EX_imm32 = EX_extop ? EX_signed_imm32 : EX_unsigned_imm32;
+    assign EX_sham32 = {{(DATA_WIDTH-5){1'b0}}, EX_sham};
+    assign EX_aluX = EX_jal ? EX_pc : EX_raw_aluX;
+    assign EX_aluY = EX_jal ? 32'h4
+                    : EX_alusham ? EX_sham32
+                    : EX_alusrc ? EX_imm32
+                    : EX_raw_aluY;
+    
+    // alu
+    wire [DATA_WIDTH-1:0] EX_result;
+    
+    alu #(
+        .DATA_WIDTH(DATA_WIDTH)
+    ) alu (
+        .srcA(EX_aluX),
+        .srcB(EX_aluY),
+        .aluop(EX_aluop),
+        .aluout(EX_result),
+        .zero(),
+        .of(),
+        .uof()
+    );
     
     ///> EX stage
     
