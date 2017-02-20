@@ -304,8 +304,8 @@ assign lwstall = ID/EX.rt != 0 && ID/EX.RAMtoReg && (ID/EX.rt == IF/ID.rs || ID/
 // branch stall in decode stage
 // stall 1 clock
 // then forward unit get start to work
-assign branchstall = (IF/ID.Branch && ID/EX.RegWe && ID/EX.RW# != 0 && (ID/EX.RW# == IF/ID.rs || ID/EX.RW# == IF/ID.rt))
-    || (IF/ID.Branch && EX/MEM.RAMtoReg && EX/MEM.RW# != 0 && (EX/MEM.RW# == IF/ID.rs || EX/MEM.RW# == IF/ID.rt))
+assign branchstall = (IF/ID.JmpNeedReg && ID/EX.RegWe && ID/EX.RW# != 0 && (ID/EX.RW# == IF/ID.rs || ID/EX.RW# == IF/ID.rt))
+    || (IF/ID.JmpNeedReg && EX/MEM.RAMtoReg && EX/MEM.RW# != 0 && (EX/MEM.RW# == IF/ID.rs || EX/MEM.RW# == IF/ID.rt))
 
 assign StallF(PC) = StallD(IF/ID) = FlushE(ID/EX) = (lwstall || branchstall)
 assign FlushD = success (jmp || jr || jal || branch)
