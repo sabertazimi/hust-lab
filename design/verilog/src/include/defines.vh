@@ -6,7 +6,7 @@
 `define RT      20:16
 `define RD      15:11
 `define SHAM    10:6
-`define FUNCTY  5:0
+`define FUNCT   5:0
 `define IMM16   15:0
 `define IMM26   25:0
 
@@ -34,6 +34,10 @@
 `define JAL     6'b000011
 `define JR      6'b001000
 `define SYSCALL 6'b001100
+`define DIVU    6'b011011   // functy
+`define MFLO    6'b010010   // functy
+`define LB      6'b100000   // op
+`define BGTZ    6'b000111   // op
 
 `define $ZERO   5'd0
 `define $AT     5'd1

@@ -28,7 +28,7 @@ module controller
     output pcreg
 );
 
-    `include defines.vh
+`include defines.vh
 
     wire add, addi, addiu, addu;
     wire s_and, andi, sll, sra, srl;
@@ -38,6 +38,9 @@ module controller
     wire slt, slti, sltu;
     wire j, jal, jr;
     wire syscall;
+    wire divu, mflo;
+    wire lb;
+    wire bgtz;
     
     assign add = (op == 0 && functy == ADD) ? 1 : 0; 
     assign addi = (op == ADDI) ? 1 : 0;
