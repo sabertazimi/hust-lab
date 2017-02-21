@@ -6,6 +6,7 @@ module mips_tb;
     parameter CODE_FILE = "mips/benchmark.hex";
     parameter IM_BUS_WIDTH = 10;
     parameter DM_BUS_WIDTH = 24;
+    parameter CLK_HZ = 0;
     parameter COUNT = 5000;
     parameter DELAY = 5;
     parameter TIME = (COUNT * DELAY);
@@ -13,6 +14,9 @@ module mips_tb;
     reg raw_clk;
     reg raw_rst;
     reg raw_en;
+    reg switch_stat;
+    reg switch_ram;
+    reg [4:0] switch_addr;
     wire [7:0] anodes;
     wire [7:0] cnodes;
 
@@ -20,11 +24,15 @@ module mips_tb;
         .DATA_WIDTH(DATA_WIDTH),
         .CODE_FILE(CODE_FILE),
         .IM_BUS_WIDTH(IM_BUS_WIDTH),
-        .DM_BUS_WIDTH(DM_BUS_WIDTH)
+        .DM_BUS_WIDTH(DM_BUS_WIDTH),
+        .CLK_HZ(CLK_ZH)
     ) mips (
         .raw_clk(raw_clk),
         .raw_rst(raw_rst),
         .raw_en(raw_en),
+        .switch_stat(switch_stat),
+        .switch_ram(switch_ram),
+        .switch_addr(switch_addr),
         .anodes(anodes),
         .cnodes(cnodes)
     );
@@ -50,6 +58,9 @@ module mips_tb;
         raw_clk <= 1'b0;
 		raw_rst <= 1'b1;
 		raw_en <= 1'b1;
+        switch_stat <= 1'b0;
+        switch_ram <= 1'b0;
+        switch_addr <= 5'b00000;
         
 		@(posedge raw_clk);
 		@(posedge raw_clk);

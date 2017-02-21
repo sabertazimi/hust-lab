@@ -18,7 +18,9 @@ module dmem
     input we,
     input [BUS_WIDTH-1:0] addr,
     input [DATA_WIDTH-1:0] wdata,
-    output [DATA_WIDTH-1:0] rdata
+    input [4:0] switch_addr,
+    output [DATA_WIDTH-1:0] rdata,
+    output [DATA_WIDTH-1:0] led_data
 );
 
     reg [DATA_WIDTH-1:0] RAM [0:(2**BUS_WIDTH)-1];
@@ -30,5 +32,6 @@ module dmem
     end
     
     assign rdata = re ? RAM[addr] : {(DATA_WIDTH-1){1'bx}};
+    assign led_data = RAM[switch_addr];
     
 endmodule // dmem

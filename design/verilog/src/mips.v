@@ -1,9 +1,12 @@
 module mips
-#(parameter DATA_WIDTH = 32, CODE_FILE = "C:\\Users\\Administrator\\Desktop\\architecture\\design\\verilog\\mips\\benchmark.hex", IM_BUS_WIDTH = 10, DM_BUS_WIDTH = 10)
+#(parameter DATA_WIDTH = 32, CODE_FILE = "~/Work/Source/architecture/design/verilog/mips/benchmark.hex", IM_BUS_WIDTH = 10, DM_BUS_WIDTH = 10, CLK_HZ = 18)
 (
     input raw_clk,
     input raw_rst,
     input raw_en,
+    input switch_stat,
+    input switch_ram,
+    input [4:0] switch_addr,
     output [7:0] anodes,
     output [7:0] cnodes
 );
@@ -178,6 +181,12 @@ module mips
 
     // led unit
     wire [DATA_WIDTH-1:0] led_data;
+    
+    // statistic unit
+    wire [DATA_WIDTH-1:0] stat_count;
+    
+    // memory direct output for led display
+    wire [DATA_WIDTH-1:0] ram_data;
    
     ///> wire declaration
 
@@ -206,7 +215,7 @@ module mips
         .count(clk_count)
     );
     
-    assign clk = clk_group[16] && ~clk_count;
+    assign clk = clk_group[CLK_HZ] && ~clk_count;
     
     // pc update unit
     assign IF_pc_next = ID_jmp_reg ? ID_addr_reg
@@ -472,7 +481,9 @@ module mips
         .we(MEM_ramwe && ~halt),
         .addr(MEM_result[25:2]),
         .wdata(MEM_wdata),
-        .rdata(MEM_raw_ramdata)
+        .switch_addr(switch_addr),
+        .rdata(MEM_raw_ramdata),
+        .led_data(ram_data)
     );
     
     assign MEM_byteaddr = MEM_result[1:0];
@@ -594,8 +605,6 @@ module mips
     );
 
     // statistic unit
-    wire [DATA_WIDTH-1:0] stat_count;
-
     counter #(
         .DATA_WIDTH(DATA_WIDTH),
         .STEP(1)
@@ -607,7 +616,10 @@ module mips
     );
 
     // led unit
-    assign led_data = syscall_count ? a0_data : 0;
+    assign led_data = switch_stat ? stat_count
+                    : switch_ram ? ram_data
+                    : syscall_count ? a0_data
+                    : 0;
     
     led_unit #(
         .DATA_WIDTH(DATA_WIDTH)
