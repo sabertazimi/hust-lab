@@ -72,6 +72,7 @@
 `define FP     5'd30
 `define RA     5'd31
 
-`define DEBUG_REGFILE 1
+`define DEBUG_REGFILE   1
+`define DEBUG_MEM_WB    1
 
 // `endif

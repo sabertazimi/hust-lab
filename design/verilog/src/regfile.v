@@ -26,20 +26,10 @@ module regfile
     output [DATA_WIDTH-1:0] a0_data
 );
 
-    `include "defines.vh"
+`include "defines.vh"
 
     reg [DATA_WIDTH-1:0] regfile [0:31];    ///< three ported regfile contains 32 registers
     
-    initial begin
-        if (`DEBUG_REGFILE) begin
-            $display("     $v0,    $a0");
-            $monitor("%x, %x",
-                regfile[`V0][31:0],	/* $v0 */
-                regfile[`A0][31:0],	/* $a0 */
-            );
-        end
-    end
-
     always @ (posedge clk) begin
         if (we && waddr != 0) begin
             regfile[waddr] <= wdata;

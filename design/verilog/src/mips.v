@@ -4,7 +4,7 @@ module mips
     input raw_clk,
     input raw_rst,
     input raw_en,
-    output [DATA_WIDTH-1:0] a0_data
+    output [DATA_WIDTH-1:0] led_data
 );
 
     ///< IF stage
@@ -148,6 +148,7 @@ module mips
     wire [DATA_WIDTH-1:0] ID_raw_r1;
     wire [DATA_WIDTH-1:0] ID_raw_r2;
     wire [DATA_WIDTH-1:0] v0_data;
+    wire [DATA_WIDTH-1:0] a0_data;
     wire [4:0] ID_rs;
     
     assign ID_rs = ID_alusham ? ID_rt : ID_raw_rs;
@@ -469,8 +470,8 @@ module mips
     );
     
     assign WB_regdata = WB_lotoreg ? WB_lodata
-                        : WB_ramtoreg ? MEM_ramdata
-                        : MEM_result;
+                        : WB_ramtoreg ? WB_ramdata
+                        : WB_result;
     
     ///> WB stage
     
@@ -500,14 +501,39 @@ module mips
     );
     
     // bubble detection
+    wire load_use_hazard;
+    wire branch_flushD;
+    wire branch_flushE;
     wire stall;
     wire flushD;
     wire flushE;
     
-    // @TODO
-    assign stall = 1;
-    assign flushD = 0;
-    assign flushE = 0;
+    load_use_detector load_use_detector (
+        .ID_rs(ID_rs),
+        .ID_rt(ID_rt),
+        .EX_rt(EX_rt),
+        .EX_ramtoreg(EX_ramtoreg),
+        .load_use_hazard(load_use_hazard)
+    );
+    
+    branch_hazard_detector branch_hazard_detector (
+        .ID_rs(ID_rs),
+        .ID_rt(ID_rt),
+        .EX_regwe(EX_regwe),
+        .EX_RW(EX_RW),
+        .MEM_ramtoreg(MEM_ramtoreg),
+        .MEM_RW(MEM_RW),
+        .ID_jmp_need_reg(ID_jmp_need_reg),
+        .ID_jmp_imm(ID_jmp_imm),
+        .ID_jmp_reg(ID_jmp_reg),
+        .ID_jmp_branch(ID_jmp_branch),
+        .branch_flushD(branch_flushD),
+        .branch_flushE(branch_flushE)
+    );
+
+    assign stall = ~(load_use_hazard || branch_flushE);
+    assign flushD = branch_flushD;
+    assign flushE = load_use_hazard || branch_flushE;
     
     // syscall unit
     wire equal_ten;
@@ -517,16 +543,17 @@ module mips
     assign equal_ten = (v0_data == 32'ha);
     assign halt = WB_syscall && equal_ten;
     
-    counter syscall_counter (
+    register #(
+        .DATA_WIDTH(1)
+    ) syscall_register (
         .clk(clk),
         .rst(raw_rst),
-        .en(~equal_ten && syscall),
-        .count(syscall_count)
+        .en(~equal_ten && WB_syscall),
+        .din(1),
+        .dout(syscall_count)
     );
-    
+
     // led unit
-    wire [DATA_WIDTH-1:0] led_data;
-    
     assign led_data = syscall_count ? a0_data : 0;
     
 endmodule // mips

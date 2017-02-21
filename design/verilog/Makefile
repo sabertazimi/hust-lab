@@ -11,6 +11,7 @@ VCD_PATH=vcd
 ROOT  = mips_tb
 
 SRC   = $(shell ls $(SRC_PATH) *.v)
+OUT   = $(shell ls $(OUT_PATH) *tb.v)
 TEST  = $(shell ls $(TEST_PATH) *tb.v)
 
 CC=iverilog
@@ -24,21 +25,20 @@ EDA=gtkwave
 
 all:
 	mkdir -p $(OUT_PATH)
-	$(CC) $(CFLAGS) -s $(ROOT) -o $(OUT_PATH)/$(ROOT) $(TEST_PATH)/$(ROOT).v
+	$(CC) $(CFLAGS) -s $(ROOT) -o $(OUT_PATH)/$(ROOT).vvp $(TEST_PATH)/$(ROOT).v
 
 .PHONY=clean test wave
 
 run:
-	$(VM) $(OUT_PATH)/$(ROOT)
-	# $(VM) -n $(OUT_PATH)/$(ROOT) -lxt2
+	$(VM) $(OUT_PATH)/$(ROOT).vvp
+	# $(VM) $(OUT_PATH)/$(ROOT) -lxt2
 
 wave:
-	$(EDA) $(VCD_PATH)/$(ROOT).vcd
+	$(EDA) $(VCD_PATH)/$(ROOT).vcd &
 
 
 clean:
-	-rm -f $(OBJS)
-	-rm -f /*.vcd
-	-rm -f *.out
+	-rm -fr $(OUT_PATH)/*.vvp
+	-rm -fr $(VCD_PATH)/*.vcd
 
 # vim:ft=make
