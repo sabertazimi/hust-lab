@@ -6,15 +6,16 @@ module mips_tb;
     parameter CODE_FILE = "mips/benchmark.hex";
     parameter IM_BUS_WIDTH = 10;
     parameter DM_BUS_WIDTH = 24;
-    parameter COUNT = 2500;
+    parameter COUNT = 5000;
     parameter DELAY = 5;
     parameter TIME = (COUNT * DELAY);
     
     reg raw_clk;
     reg raw_rst;
     reg raw_en;
-    wire [DATA_WIDTH-1:0] led_data;
-    
+    wire [7:0] anodes;
+    wire [7:0] cnodes;
+
     mips #(
         .DATA_WIDTH(DATA_WIDTH),
         .CODE_FILE(CODE_FILE),
@@ -24,7 +25,8 @@ module mips_tb;
         .raw_clk(raw_clk),
         .raw_rst(raw_rst),
         .raw_en(raw_en),
-        .led_data(led_data)
+        .anodes(anodes),
+        .cnodes(cnodes)
     );
     
     always begin
@@ -39,9 +41,9 @@ module mips_tb;
 		$monitor("%x,\t%x,\t%x",
             raw_rst,
             raw_en,
-            led_data,
-            mips.regfile.regfile[`V0][31:0],	/* $v0 */
-            mips.regfile.regfile[`A0][31:0],	/* $a0 */
+            mips.led_data,
+            // mips.regfile.regfile[`V0][31:0],	/* $v0 */
+            // mips.regfile.regfile[`A0][31:0],	/* $a0 */
             // mips.MEM_WB.WB_IR
         );
         
