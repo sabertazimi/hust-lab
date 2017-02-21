@@ -14,6 +14,10 @@ module latch_counter
     output reg count
 );
 
+    initial begin
+        count <= 0;
+    end
+
     always @(posedge clk) begin
         if (rst) begin
             count <= 0 ;
