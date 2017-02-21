@@ -17,8 +17,10 @@ module IF_ID
     input en,
     input [DATA_WIDTH-1:0] IF_PC,
     input [DATA_WIDTH-1:0] IF_IR,
+    input IF_taken,
     output [DATA_WIDTH-1:0] ID_PC,
-    output [DATA_WIDTH-1:0] ID_IR
+    output [DATA_WIDTH-1:0] ID_IR,
+    output ID_taken
 );
 
     wire real_rst = rst && en;
@@ -41,6 +43,16 @@ module IF_ID
         .en(en),
         .din(IF_IR),
         .dout(ID_IR)
+    );
+    
+    register #(
+        .DATA_WIDTH(1)
+    ) taken (
+        .clk(clk),
+        .rst(real_rst),
+        .en(en),
+        .din(IF_taken),
+        .dout(ID_taken)
     );
     
 endmodule // IF_ID

@@ -24,12 +24,16 @@ module mips
     // pc update unit
     wire [DATA_WIDTH-1:0] IF_pc;
     wire [DATA_WIDTH-1:0] IF_pc_next;
+    wire [DATA_WIDTH-1:0] IF_predict_addr;
+    wire [DATA_WIDTH-1:0] IF_mispredict_fix_addr;
+    wire IF_taken;
 
     // instruction memory
     wire [DATA_WIDTH-1:0] IF_ir;
 
     /// IF/ID
     wire [DATA_WIDTH-1:0] ID_pc, ID_ir;
+    wire ID_taken;
 
     // instruction decoder
     wire [5:0] ID_op;
@@ -67,6 +71,11 @@ module mips
     wire [DATA_WIDTH-1:0] v0_data;
     wire [DATA_WIDTH-1:0] a0_data;
     wire [4:0] ID_rs;
+    
+    // prediction handle
+    wire ID_equal_address;
+    wire ID_success_prediction;
+    wire ID_misprediction;
 
     // forward in ID stage
     wire [DATA_WIDTH-1:0] ID_r1;
@@ -219,10 +228,10 @@ module mips
     assign clk = clk_group[CLK_HZ] && ~clk_count;
     
     // pc update unit
+    assign IF_mispredict_fix_addr = ID_jmp_branch ? ID_addr_branch : (ID_pc + 4);
     assign IF_pc_next = ID_jmp_reg ? ID_addr_reg
-                : ID_jmp_imm ? ID_addr_imm
-                : ID_jmp_branch ? ID_addr_branch
-                : (IF_pc + 4);
+                : ID_misprediction ? IF_mispredict_fix_addr
+                : IF_predict_addr;
                 
     register #(
         .DATA_WIDTH(DATA_WIDTH)
@@ -234,6 +243,18 @@ module mips
         .dout(IF_pc)
     );
     
+    // @TODO: 2 bit dynamic predictor
+    assign IF_taken = 1;    // always taken
+    
+    branch_predictor #(
+        .DATA_WIDTH(DATA_WIDTH)
+    ) branch_predictor (
+        .taken(IF_taken),
+        .pc(IF_pc),
+        .ir(IF_ir),
+        .predict_addr(IF_predict_addr)
+    );
+
     // instruction memory
     imem  #(
         .DATA_WIDTH(DATA_WIDTH),
@@ -255,8 +276,10 @@ module mips
         .en(stall),
         .IF_PC(IF_pc),
         .IF_IR(IF_ir),
+        .IF_taken(IF_taken),
         .ID_PC(ID_pc),
-        .ID_IR(ID_ir)
+        .ID_IR(ID_ir),
+        .ID_taken(ID_taken)
     );
     
     ///< ID stage
@@ -316,6 +339,11 @@ module mips
         .a0_data(a0_data)
     );
     
+    // prediction handle
+    assign ID_equal_address = (ID_jmp_branch == ID_taken);
+    assign ID_success_prediction = ID_equal_address && (ID_beq || ID_bne || ID_bgtz);
+    assign ID_misprediction = ~ID_equal_address && (ID_beq || ID_bne || ID_bgtz);
+    
     // forward in ID stage
     assign ID_r1 = (ID_forwardA == 2'b10) ? MEM_result
                 : (ID_forwardA == 2'b01) ? WB_regdata
@@ -336,12 +364,17 @@ module mips
     assign ID_jmp_need_reg = ID_beq || ID_bne || ID_bgtz || ID_jr;
     
     // branch address calculation unit
-    assign ID_extshft_imm16 = {{(DATA_WIDTH-16){ID_imm16[15]}}, ID_imm16} << 2;
-    assign ID_extshft_imm26 = {{(DATA_WIDTH-26){ID_imm26[25]}}, ID_imm26} << 2;
-    
-    assign ID_addr_imm = {ID_pc[31:28], ID_extshft_imm26[27:0]};
     assign ID_addr_reg = ID_r1;
-    assign ID_addr_branch = ID_extshft_imm16 + ID_pc + 4;
+    
+    address_calculator #(
+        .DATA_WIDTH(DATA_WIDTH)
+    ) ID_address_calculator (
+        .pc(ID_pc),
+        .imm16(ID_imm16),
+        .imm26(ID_imm26),
+        .addr_imm(ID_addr_imm),
+        .addr_branch(ID_addr_branch)
+    );
     
     ///> ID stage
     
@@ -580,9 +613,8 @@ module mips
         .MEM_ramtoreg(MEM_ramtoreg),
         .MEM_RW(MEM_RW),
         .ID_jmp_need_reg(ID_jmp_need_reg),
-        .ID_jmp_imm(ID_jmp_imm),
         .ID_jmp_reg(ID_jmp_reg),
-        .ID_jmp_branch(ID_jmp_branch),
+        .ID_misprediction(ID_misprediction),
         .branch_flushD(branch_flushD),
         .branch_flushE(branch_flushE)
     );

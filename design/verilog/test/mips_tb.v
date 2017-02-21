@@ -3,7 +3,7 @@
 
 module mips_tb;
     parameter DATA_WIDTH = 32;
-    parameter CODE_FILE = "mips/benchmark.hex";
+    parameter CODE_FILE = "mips/waterfall_lamp.hex";
     parameter IM_BUS_WIDTH = 10;
     parameter DM_BUS_WIDTH = 24;
     parameter CLK_HZ = 0;
@@ -47,7 +47,7 @@ module mips_tb;
 		$dumpfile("vcd/mips_tb.vcd");
 		$dumpvars(0, mips_tb);
 
-		$display("raw_rst,\traw_en,\tled_data,\tstat_count\t$v0,\t$a0,\t$WB_ir");
+		$display("raw_rst,raw_en,\tled_data,\tstat_count\t$v0,\t$a0,\t$WB_ir");
 		$monitor("%x,\t%x,\t%x,\t%x",
             raw_rst,
             raw_en,
