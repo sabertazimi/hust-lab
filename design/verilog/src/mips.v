@@ -1,5 +1,5 @@
 module mips
-#(parameter DATA_WIDTH = 32, CODE_FILE = "~/Work/Source/architecture/design/verilog/mips/benchmark.hex", IM_BUS_WIDTH = 10, DM_BUS_WIDTH = 24)
+#(parameter DATA_WIDTH = 32, CODE_FILE = "C:\\Users\\Administrator\\Desktop\\architecture\\design\\verilog\\mips\\benchmark.hex", IM_BUS_WIDTH = 10, DM_BUS_WIDTH = 24)
 (
     input raw_clk,
     input raw_rst,
@@ -8,88 +8,25 @@ module mips
     output [7:0] cnodes
 );
 
+    ///< wire declaration
+
     /// clock divider
     wire [DATA_WIDTH-1:0] clk_group;
-    
-    tick_divider #(
-        .DATA_WIDTH(DATA_WIDTH)
-    ) clk_divider (
-        .clk_src(raw_clk),
-        .clk_group(clk_group)
-    );
-
-    ///< IF stage
 
     // clock halt unit
     wire latch_out, clk_count;
     wire clk;
-    
-    latch_counter latch_counter (
-        .clk(halt),
-        .rst(raw_rst),
-        .en(raw_en),
-        .count(latch_out)
-    );
-    
-    counter clk_counter (
-        .clk(clk),
-        .rst(raw_rst),
-        .en(latch_out),
-        .count(clk_count)
-    );
-    
-    assign clk = raw_clk && ~clk_count;
-    
+
     // pc update unit
     wire [DATA_WIDTH-1:0] IF_pc;
     wire [DATA_WIDTH-1:0] IF_pc_next;
-    
-    assign IF_pc_next = ID_jmp_reg ? ID_addr_reg
-                : ID_jmp_imm ? ID_addr_imm
-                : ID_jmp_branch ? ID_addr_branch
-                : (IF_pc + 4);
-                
-    register #(
-        .DATA_WIDTH(DATA_WIDTH)
-    ) PC (
-        .clk(clk),
-        .rst(raw_rst),
-        .en(stall),
-        .din(IF_pc_next),
-        .dout(IF_pc)
-    );
-    
+
     // instruction memory
     wire [DATA_WIDTH-1:0] IF_ir;
-    
-    imem  #(
-        .DATA_WIDTH(DATA_WIDTH),
-        .BUS_WIDTH(IM_BUS_WIDTH),
-        .CODE_FILE(CODE_FILE)
-    ) imem (
-        .addr(IF_pc[11:2]),
-        .rdata(IF_ir)
-    );
-    
-    ///> IF stage
-    
+
     /// IF/ID
     wire [DATA_WIDTH-1:0] ID_pc, ID_ir;
-    
-    IF_ID #(
-        .DATA_WIDTH(DATA_WIDTH)
-    ) IF_ID (
-        .clk(clk),
-        .rst(raw_rst || flushD),
-        .en(stall),
-        .IF_PC(IF_pc),
-        .IF_IR(IF_ir),
-        .ID_PC(ID_pc),
-        .ID_IR(ID_ir)
-    );
-    
-    ///< ID stage
-    
+
     // instruction decoder
     wire [5:0] ID_op;
     wire [4:0] ID_raw_rs;
@@ -99,19 +36,7 @@ module mips
     wire [5:0] ID_funct;
     wire [15:0] ID_imm16;
     wire [25:0] ID_imm26;
-    
-    decoder decoder (
-        .instruction(ID_ir),
-        .op(ID_op),
-        .rs(ID_raw_rs),
-        .rt(ID_rt),
-        .rd(ID_rd),
-        .sham(ID_sham),
-        .funct(ID_funct),
-        .imm16(ID_imm16),
-        .imm26(ID_imm26)
-    );
-    
+
     // control unit
     wire [3:0] ID_aluop;
     wire ID_alusrc;
@@ -131,7 +56,215 @@ module mips
     wire ID_writetolo;
     wire ID_lotoreg;
     wire ID_rambyte;
+
+    // regfile
+    wire [DATA_WIDTH-1:0] ID_raw_r1;
+    wire [DATA_WIDTH-1:0] ID_raw_r2;
+    wire [DATA_WIDTH-1:0] v0_data;
+    wire [DATA_WIDTH-1:0] a0_data;
+    wire [4:0] ID_rs;
+
+    // forward in ID stage
+    wire [DATA_WIDTH-1:0] ID_r1;
+    wire [DATA_WIDTH-1:0] ID_r2;
+
+    // branch judgement unit
+    wire ID_jmp_imm, ID_jmp_reg, ID_jmp_branch, ID_jmp_need_reg;
+    wire eq, less;
+    wire signed [DATA_WIDTH-1:0] ID_signed_r1;
+    wire signed [DATA_WIDTH-1:0] ID_signed_r2;
+
+    // branch address calculation unit
+    wire [DATA_WIDTH-1:0] ID_addr_imm;
+    wire [DATA_WIDTH-1:0] ID_addr_reg;
+    wire [DATA_WIDTH-1:0] ID_addr_branch;
+    wire [DATA_WIDTH-1:0] ID_extshft_imm16;
+    wire [DATA_WIDTH-1:0] ID_extshft_imm26;
+
+    /// ID/EX
+    wire [DATA_WIDTH-1:0] EX_pc;
+    wire [DATA_WIDTH-1:0] EX_ir;
+    wire EX_writetolo;
+    wire EX_regwe;
+    wire EX_ramtoreg;
+    wire EX_lotoreg;
+    wire EX_syscall;
+    wire EX_ramwe;
+    wire EX_rambyte;
+    wire EX_regdst;
+    wire [3:0] EX_aluop;
+    wire EX_alusrc;
+    wire EX_extop;
+    wire EX_alusham;
+    wire EX_jal;
+    wire [4:0] EX_rs;
+    wire [4:0] EX_rt;
+    wire [4:0] EX_rd;
+    wire [4:0] EX_sham;
+    wire [15:0] EX_imm16;
+    wire [DATA_WIDTH-1:0] EX_r1;
+    wire [DATA_WIDTH-1:0] EX_r2;
+
+    // EX stage
+    wire [4:0] EX_RW;
+    wire [DATA_WIDTH-1:0] EX_raw_aluX;
+    wire [DATA_WIDTH-1:0] EX_raw_aluY;
+    wire [DATA_WIDTH-1:0] EX_unsigned_imm32;
+    wire [DATA_WIDTH-1:0] EX_signed_imm32;
+    wire [DATA_WIDTH-1:0] EX_imm32;
+    wire [DATA_WIDTH-1:0] EX_sham32;
+    wire [DATA_WIDTH-1:0] EX_aluX;
+    wire [DATA_WIDTH-1:0] EX_aluY;
+    wire [DATA_WIDTH-1:0] EX_result;
+
+    /// EX_MEM
+    wire [DATA_WIDTH-1:0] MEM_pc;
+    wire [DATA_WIDTH-1:0] MEM_ir;
+    wire MEM_writetolo;
+    wire MEM_regwe;
+    wire MEM_ramtoreg;
+    wire MEM_lotoreg;
+    wire MEM_syscall;
+    wire MEM_ramwe;
+    wire MEM_rambyte;
+    wire [4:0] MEM_rt;
+    wire [DATA_WIDTH-1:0] MEM_result;
+    wire [4:0] MEM_RW;
+    wire [DATA_WIDTH-1:0] MEM_r2;
+
+    // MEM stage
+    wire [DATA_WIDTH-1:0] MEM_wdata;
+    wire [DATA_WIDTH-1:0] MEM_raw_ramdata;
+    wire [1:0] MEM_byteaddr;
+    wire [7:0] MEM_bytedata8;
+    wire [DATA_WIDTH-1:0] MEM_bytedata32;
+    wire [DATA_WIDTH-1:0] MEM_ramdata;
+
+    /// MEM/WB
+    wire [DATA_WIDTH-1:0] WB_pc;
+    wire [DATA_WIDTH-1:0] WB_ir;
+    wire WB_writetolo;
+    wire WB_regwe;
+    wire WB_ramtoreg;
+    wire WB_lotoreg;
+    wire WB_syscall;
+    wire [DATA_WIDTH-1:0] WB_ramdata;
+    wire [DATA_WIDTH-1:0] WB_result;
+    wire [4:0] WB_RW;
     
+    // WB stage
+    wire [DATA_WIDTH-1:0] WB_lodata;
+    wire [DATA_WIDTH-1:0] WB_regdata;
+
+    // forward unit
+    wire [1:0] ID_forwardA;
+    wire [1:0] ID_forwardB;
+    wire [1:0] EX_forwardA;
+    wire [1:0] EX_forwardB;
+    wire MEM_forward;
+
+    // bubble detection
+    wire load_use_hazard;
+    wire branch_flushD;
+    wire branch_flushE;
+    wire stall;
+    wire flushD;
+    wire flushE;
+
+    // syscall unit
+    wire equal_ten;
+    wire halt;
+    wire syscall_count;
+
+    // led unit
+    wire [DATA_WIDTH-1:0] led_data;
+   
+    ///> wire declaration
+
+    /// clock divider
+    tick_divider #(
+        .DATA_WIDTH(DATA_WIDTH)
+    ) clk_divider (
+        .clk_src(raw_clk),
+        .clk_group(clk_group)
+    );
+
+    ///< IF stage
+
+    // clock halt unit
+    latch_counter latch_counter (
+        .clk(halt),
+        .rst(raw_rst),
+        .en(raw_en),
+        .count(latch_out)
+    );
+    
+    counter clk_counter (
+        .clk(clk),
+        .rst(raw_rst),
+        .en(latch_out),
+        .count(clk_count)
+    );
+    
+    assign clk = raw_clk && ~clk_count;
+    
+    // pc update unit
+    assign IF_pc_next = ID_jmp_reg ? ID_addr_reg
+                : ID_jmp_imm ? ID_addr_imm
+                : ID_jmp_branch ? ID_addr_branch
+                : (IF_pc + 4);
+                
+    register #(
+        .DATA_WIDTH(DATA_WIDTH)
+    ) PC (
+        .clk(clk),
+        .rst(raw_rst),
+        .en(stall),
+        .din(IF_pc_next),
+        .dout(IF_pc)
+    );
+    
+    // instruction memory
+    imem  #(
+        .DATA_WIDTH(DATA_WIDTH),
+        .BUS_WIDTH(IM_BUS_WIDTH),
+        .CODE_FILE(CODE_FILE)
+    ) imem (
+        .addr(IF_pc[11:2]),
+        .rdata(IF_ir)
+    );
+    
+    ///> IF stage
+    
+    /// IF/ID
+    IF_ID #(
+        .DATA_WIDTH(DATA_WIDTH)
+    ) IF_ID (
+        .clk(clk),
+        .rst(raw_rst || flushD),
+        .en(stall),
+        .IF_PC(IF_pc),
+        .IF_IR(IF_ir),
+        .ID_PC(ID_pc),
+        .ID_IR(ID_ir)
+    );
+    
+    ///< ID stage
+    
+    // instruction decoder
+    decoder decoder (
+        .instruction(ID_ir),
+        .op(ID_op),
+        .rs(ID_raw_rs),
+        .rt(ID_rt),
+        .rd(ID_rd),
+        .sham(ID_sham),
+        .funct(ID_funct),
+        .imm16(ID_imm16),
+        .imm26(ID_imm26)
+    );
+    
+    // control unit
     controller controller (
         .op(ID_op),
         .funct(ID_funct),
@@ -156,12 +289,6 @@ module mips
     );
 
     // regfile
-    wire [DATA_WIDTH-1:0] ID_raw_r1;
-    wire [DATA_WIDTH-1:0] ID_raw_r2;
-    wire [DATA_WIDTH-1:0] v0_data;
-    wire [DATA_WIDTH-1:0] a0_data;
-    wire [4:0] ID_rs;
-    
     assign ID_rs = ID_alusham ? ID_rt : ID_raw_rs;
 
     regfile #(
@@ -180,9 +307,6 @@ module mips
     );
     
     // forward in ID stage
-    wire [DATA_WIDTH-1:0] ID_r1;
-    wire [DATA_WIDTH-1:0] ID_r2;
-    
     assign ID_r1 = (ID_forwardA == 2'b10) ? MEM_result
                 : (ID_forwardA == 2'b01) ? WB_regdata
                 : ID_raw_r1;
@@ -191,11 +315,6 @@ module mips
                 : ID_raw_r2;
     
     // branch judgement unit
-    wire ID_jmp_imm, ID_jmp_reg, ID_jmp_branch, ID_jmp_need_reg;
-    wire eq, less;
-    wire signed [DATA_WIDTH-1:0] ID_signed_r1;
-    wire signed [DATA_WIDTH-1:0] ID_signed_r2;
-    
     assign ID_signed_r1 = $signed(ID_r1);
     assign ID_signed_r2 = $signed(ID_r2);
     assign eq = (ID_r1 == ID_r2);
@@ -207,12 +326,6 @@ module mips
     assign ID_jmp_need_reg = ID_beq || ID_bne || ID_bgtz || ID_jr;
     
     // branch address calculation unit
-    wire [DATA_WIDTH-1:0] ID_addr_imm;
-    wire [DATA_WIDTH-1:0] ID_addr_reg;
-    wire [DATA_WIDTH-1:0] ID_addr_branch;
-    wire [DATA_WIDTH-1:0] ID_extshft_imm16;
-    wire [DATA_WIDTH-1:0] ID_extshft_imm26;
-    
     assign ID_extshft_imm16 = {{(DATA_WIDTH-16){ID_imm16[15]}}, ID_imm16} << 2;
     assign ID_extshft_imm26 = {{(DATA_WIDTH-26){ID_imm26[25]}}, ID_imm26} << 2;
     
@@ -223,29 +336,6 @@ module mips
     ///> ID stage
     
     /// ID/EX
-    wire [DATA_WIDTH-1:0] EX_pc;
-    wire [DATA_WIDTH-1:0] EX_ir;
-    wire EX_writetolo;
-    wire EX_regwe;
-    wire EX_ramtoreg;
-    wire EX_lotoreg;
-    wire EX_syscall;
-    wire EX_ramwe;
-    wire EX_rambyte;
-    wire EX_regdst;
-    wire [3:0] EX_aluop;
-    wire EX_alusrc;
-    wire EX_extop;
-    wire EX_alusham;
-    wire EX_jal;
-    wire [4:0] EX_rs;
-    wire [4:0] EX_rt;
-    wire [4:0] EX_rd;
-    wire [4:0] EX_sham;
-    wire [15:0] EX_imm16;
-    wire [DATA_WIDTH-1:0] EX_r1;
-    wire [DATA_WIDTH-1:0] EX_r2;
-    
     ID_EX #(
         .DATA_WIDTH(DATA_WIDTH)
     ) ID_EX (
@@ -300,17 +390,6 @@ module mips
     
     ///< EX stage
     
-    wire [4:0] EX_RW;
-    wire [DATA_WIDTH-1:0] EX_raw_aluX;
-    wire [DATA_WIDTH-1:0] EX_raw_aluY;
-    wire [DATA_WIDTH-1:0] EX_unsigned_imm32;
-    wire [DATA_WIDTH-1:0] EX_signed_imm32;
-    wire [DATA_WIDTH-1:0] EX_imm32;
-    wire [DATA_WIDTH-1:0] EX_sham32;
-    wire [DATA_WIDTH-1:0] EX_aluX;
-    wire [DATA_WIDTH-1:0] EX_aluY;
-    wire [DATA_WIDTH-1:0] EX_result;
-    
     assign EX_RW = EX_jal ? 5'h1f
                 : EX_regdst ? EX_rd
                 : EX_rt;
@@ -346,20 +425,6 @@ module mips
     ///> EX stage
     
     /// EX_MEM
-    wire [DATA_WIDTH-1:0] MEM_pc;
-    wire [DATA_WIDTH-1:0] MEM_ir;
-    wire MEM_writetolo;
-    wire MEM_regwe;
-    wire MEM_ramtoreg;
-    wire MEM_lotoreg;
-    wire MEM_syscall;
-    wire MEM_ramwe;
-    wire MEM_rambyte;
-    wire [4:0] MEM_rt;
-    wire [DATA_WIDTH-1:0] MEM_result;
-    wire [4:0] MEM_RW;
-    wire [DATA_WIDTH-1:0] MEM_r2;
-    
     EX_MEM #(
         .DATA_WIDTH(DATA_WIDTH)
     ) EX_MEM (
@@ -395,13 +460,7 @@ module mips
     );
 
     ///< MEM stage
-    wire [DATA_WIDTH-1:0] MEM_wdata;
-    wire [DATA_WIDTH-1:0] MEM_raw_ramdata;
-    wire [1:0] MEM_byteaddr;
-    wire [7:0] MEM_bytedata8;
-    wire [DATA_WIDTH-1:0] MEM_bytedata32;
-    wire [DATA_WIDTH-1:0] MEM_ramdata;
-    
+
     assign MEM_wdata = MEM_forward ? WB_regdata : MEM_r2;
     
     dmem #(
@@ -427,17 +486,6 @@ module mips
     ///> MEM stage
     
     /// MEM/WB
-    wire [DATA_WIDTH-1:0] WB_pc;
-    wire [DATA_WIDTH-1:0] WB_ir;
-    wire WB_writetolo;
-    wire WB_regwe;
-    wire WB_ramtoreg;
-    wire WB_lotoreg;
-    wire WB_syscall;
-    wire [DATA_WIDTH-1:0] WB_ramdata;
-    wire [DATA_WIDTH-1:0] WB_result;
-    wire [4:0] WB_RW;
-    
     MEM_WB #(
         .DATA_WIDTH(DATA_WIDTH)
     ) MEM_WB (
@@ -467,9 +515,7 @@ module mips
     );
     
     ///< WB stage
-    wire [DATA_WIDTH-1:0] WB_lodata;
-    wire [DATA_WIDTH-1:0] WB_regdata;
-    
+  
     register #(
         .DATA_WIDTH(DATA_WIDTH)
     ) LO (
@@ -487,12 +533,6 @@ module mips
     ///> WB stage
     
     // forward unit
-    wire [1:0] ID_forwardA;
-    wire [1:0] ID_forwardB;
-    wire [1:0] EX_forwardA;
-    wire [1:0] EX_forwardB;
-    wire MEM_forward;
-    
     forward_unit forward_unit (
         .ID_rs(ID_rs),
         .ID_rt(ID_rt),
@@ -512,13 +552,6 @@ module mips
     );
     
     // bubble detection
-    wire load_use_hazard;
-    wire branch_flushD;
-    wire branch_flushE;
-    wire stall;
-    wire flushD;
-    wire flushE;
-    
     load_use_detector load_use_detector (
         .ID_rs(ID_rs),
         .ID_rt(ID_rt),
@@ -547,10 +580,6 @@ module mips
     assign flushE = load_use_hazard || branch_flushE;
     
     // syscall unit
-    wire equal_ten;
-    wire halt;
-    wire syscall_count;
-    
     assign equal_ten = (v0_data == 32'ha);
     assign halt = WB_syscall && equal_ten;
     
@@ -564,9 +593,20 @@ module mips
         .dout(syscall_count)
     );
 
+    // statistic unit
+    wire [DATA_WIDTH-1:0] stat_count;
+
+    counter #(
+        .DATA_WIDTH(DATA_WIDTH),
+        .STEP(1)
+    ) stat_count (
+        .clk(clk),
+        .rst(raw_rst),
+        .en(raw_en),
+        .count(stat_count)
+    );
+
     // led unit
-    wire [DATA_WIDTH-1:0] led_data;
-    
     assign led_data = syscall_count ? a0_data : 0;
     
     led_unit #(
