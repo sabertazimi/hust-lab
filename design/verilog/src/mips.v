@@ -1,5 +1,5 @@
 module mips
-#(parameter DATA_WIDTH = 32, CODE_FILE = "C:\\Users\\Administrator\\Desktop\\architecture\\design\\verilog\\mips\\benchmark.hex", IM_BUS_WIDTH = 10, DM_BUS_WIDTH = 24)
+#(parameter DATA_WIDTH = 32, CODE_FILE = "C:\\Users\\Administrator\\Desktop\\architecture\\design\\verilog\\mips\\benchmark.hex", IM_BUS_WIDTH = 10, DM_BUS_WIDTH = 10)
 (
     input raw_clk,
     input raw_rst,
@@ -206,7 +206,7 @@ module mips
         .count(clk_count)
     );
     
-    assign clk = raw_clk && ~clk_count;
+    assign clk = clk_group[16] && ~clk_count;
     
     // pc update unit
     assign IF_pc_next = ID_jmp_reg ? ID_addr_reg
@@ -599,7 +599,7 @@ module mips
     counter #(
         .DATA_WIDTH(DATA_WIDTH),
         .STEP(1)
-    ) stat_count (
+    ) stat_counter (
         .clk(clk),
         .rst(raw_rst),
         .en(raw_en),

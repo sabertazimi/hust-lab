@@ -11,7 +11,7 @@
  * @output rdata data read out from memory
  */
 module dmem
-#(parameter DATA_WIDTH = 32, BUS_WIDTH = 24)
+#(parameter DATA_WIDTH = 32, BUS_WIDTH = 10)
 (
     input clk,
     input re,
