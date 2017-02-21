@@ -4,6 +4,7 @@ module mips
     input raw_clk,
     input raw_rst,
     input raw_en,
+    input switch_rst,
     input switch_stat,
     input switch_ram,
     input [4:0] switch_addr,
@@ -202,14 +203,14 @@ module mips
 
     // clock halt unit
     latch_counter latch_counter (
-        .clk(halt),
+        .clk(halt || switch_rst),
         .rst(raw_rst),
         .en(raw_en),
         .count(latch_out)
     );
     
     counter clk_counter (
-        .clk(clk),
+        .clk(clk || switch_rst),
         .rst(raw_rst),
         .en(latch_out),
         .count(clk_count)
@@ -226,7 +227,7 @@ module mips
     register #(
         .DATA_WIDTH(DATA_WIDTH)
     ) PC (
-        .clk(clk),
+        .clk(clk || switch_rst),
         .rst(raw_rst),
         .en(stall),
         .din(IF_pc_next),
@@ -249,8 +250,8 @@ module mips
     IF_ID #(
         .DATA_WIDTH(DATA_WIDTH)
     ) IF_ID (
-        .clk(clk),
-        .rst(raw_rst || flushD),
+        .clk(clk || switch_rst),
+        .rst(flushD || raw_rst),
         .en(stall),
         .IF_PC(IF_pc),
         .IF_IR(IF_ir),
@@ -303,7 +304,7 @@ module mips
     regfile #(
         .DATA_WIDTH(DATA_WIDTH)
     ) regfile (
-        .clk(clk),
+        .clk(clk || switch_rst),
         .we(WB_regwe),
         .raddrA(ID_rs),
         .raddrB(ID_rt),
@@ -348,8 +349,8 @@ module mips
     ID_EX #(
         .DATA_WIDTH(DATA_WIDTH)
     ) ID_EX (
-        .clk(clk),
-        .rst(raw_rst || flushE),
+        .clk(clk || switch_rst),
+        .rst(flushE || raw_rst),
         .en(raw_en),
         .ID_PC(ID_pc),
         .ID_IR(ID_ir),
@@ -437,7 +438,7 @@ module mips
     EX_MEM #(
         .DATA_WIDTH(DATA_WIDTH)
     ) EX_MEM (
-        .clk(clk),
+        .clk(clk || switch_rst),
         .rst(raw_rst),
         .en(raw_en),
         .EX_PC(EX_pc),
@@ -476,7 +477,7 @@ module mips
         .DATA_WIDTH(DATA_WIDTH),
         .BUS_WIDTH(DM_BUS_WIDTH)
     ) dmem (
-        .clk(clk),
+        .clk(clk || switch_rst),
         .re(MEM_ramtoreg),
         .we(MEM_ramwe && ~halt),
         .addr(MEM_result[25:2]),
@@ -500,7 +501,7 @@ module mips
     MEM_WB #(
         .DATA_WIDTH(DATA_WIDTH)
     ) MEM_WB (
-        .clk(clk),
+        .clk(clk || switch_rst),
         .rst(raw_rst),
         .en(raw_en),
         .MEM_PC(MEM_pc),
@@ -530,7 +531,7 @@ module mips
     register #(
         .DATA_WIDTH(DATA_WIDTH)
     ) LO (
-        .clk(clk),
+        .clk(clk || switch_rst),
         .rst(raw_rst),
         .en(WB_writetolo),
         .din(MEM_result),
@@ -597,7 +598,7 @@ module mips
     register #(
         .DATA_WIDTH(1)
     ) syscall_register (
-        .clk(clk),
+        .clk(clk || switch_rst),
         .rst(raw_rst),
         .en(~equal_ten && WB_syscall),
         .din(1),
@@ -609,7 +610,7 @@ module mips
         .DATA_WIDTH(DATA_WIDTH),
         .STEP(1)
     ) stat_counter (
-        .clk(clk),
+        .clk(clk || switch_rst),
         .rst(raw_rst),
         .en(raw_en),
         .count(stat_count)

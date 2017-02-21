@@ -41,6 +41,10 @@ set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets switch_addr[4]_IBUF]
 set_property PACKAGE_PIN U4 [get_ports switch_addr[4]]
 set_property IOSTANDARD LVCMOS33 [get_ports switch_addr[4]]
 
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets switch_rst_IBUF]
+set_property PACKAGE_PIN P4 [get_ports switch_rst]
+set_property IOSTANDARD LVCMOS33 [get_ports switch_rst]
+
 ############################
 # Output                   #
 ############################

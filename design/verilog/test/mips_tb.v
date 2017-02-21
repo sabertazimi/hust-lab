@@ -14,6 +14,7 @@ module mips_tb;
     reg raw_clk;
     reg raw_rst;
     reg raw_en;
+    reg switch_rst;
     reg switch_stat;
     reg switch_ram;
     reg [4:0] switch_addr;
@@ -30,6 +31,7 @@ module mips_tb;
         .raw_clk(raw_clk),
         .raw_rst(raw_rst),
         .raw_en(raw_en),
+        .switch_rst(switch_rst),
         .switch_stat(switch_stat),
         .switch_ram(switch_ram),
         .switch_addr(switch_addr),
@@ -45,11 +47,12 @@ module mips_tb;
 		$dumpfile("vcd/mips_tb.vcd");
 		$dumpvars(0, mips_tb);
 
-		$display("raw_rst,\traw_en,\tled_data,\t$v0,\t$a0,\t$WB_ir");
-		$monitor("%x,\t%x,\t%x",
+		$display("raw_rst,\traw_en,\tled_data,\tstat_count\t$v0,\t$a0,\t$WB_ir");
+		$monitor("%x,\t%x,\t%x,\t%x",
             raw_rst,
             raw_en,
             mips.led_data,
+            mips.stat_count
             // mips.regfile.regfile[`V0][31:0],	/* $v0 */
             // mips.regfile.regfile[`A0][31:0],	/* $a0 */
             // mips.MEM_WB.WB_IR
@@ -58,6 +61,7 @@ module mips_tb;
         raw_clk <= 1'b0;
 		raw_rst <= 1'b1;
 		raw_en <= 1'b1;
+        switch_rst <= 1'b0;
         switch_stat <= 1'b0;
         switch_ram <= 1'b0;
         switch_addr <= 5'b00000;
