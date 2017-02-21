@@ -2,44 +2,44 @@
 ##########################################
 # On-board Slide Switches/Button/Signal  #
 ##########################################
-set_property PACKAGE_PIN E3 [get_ports clk_src]
-set_property IOSTANDARD LVCMOS33 [get_ports clk_src]
+set_property PACKAGE_PIN E3 [get_ports raw_clk]
+set_property IOSTANDARD LVCMOS33 [get_ports raw_clk]
 
-set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets power_IBUF]
-set_property PACKAGE_PIN U9 [get_ports power]
-set_property IOSTANDARD LVCMOS33 [get_ports power]
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets raw_rst_IBUF]
+set_property PACKAGE_PIN U9 [get_ports raw_rst]
+set_property IOSTANDARD LVCMOS33 [get_ports raw_rst]
 
-set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets start_pause_IBUF]
-set_property PACKAGE_PIN U8 [get_ports start_pause]
-set_property IOSTANDARD LVCMOS33 [get_ports start_pause]
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets raw_en_IBUF]
+set_property PACKAGE_PIN U8 [get_ports raw_en]
+set_property IOSTANDARD LVCMOS33 [get_ports raw_en]
 
-set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets weight_ch_IBUF]
-set_property PACKAGE_PIN R7 [get_ports weight_ch]
-set_property IOSTANDARD LVCMOS33 [get_ports weight_ch]
+# set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets weight_ch_IBUF]
+# set_property PACKAGE_PIN R7 [get_ports weight_ch]
+# set_property IOSTANDARD LVCMOS33 [get_ports weight_ch]
 
-set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets mode_ch_IBUF]
-set_property PACKAGE_PIN R6 [get_ports mode_ch]
-set_property IOSTANDARD LVCMOS33 [get_ports mode_ch]
+# set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets mode_ch_IBUF]
+# set_property PACKAGE_PIN R6 [get_ports mode_ch]
+# set_property IOSTANDARD LVCMOS33 [get_ports mode_ch]
 
-#set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets switch_up_hour_IBUF]
-#set_property PACKAGE_PIN R5 [get_ports switch_up_hour]
-#set_property IOSTANDARD LVCMOS33 [get_ports switch_up_hour]
+# set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets switch_up_hour_IBUF]
+# set_property PACKAGE_PIN R5 [get_ports switch_up_hour]
+# set_property IOSTANDARD LVCMOS33 [get_ports switch_up_hour]
 
-#set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets switch_reset_IBUF]
-#set_property PACKAGE_PIN V7 [get_ports switch_reset]
-#set_property IOSTANDARD LVCMOS33 [get_ports switch_reset]
+# set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets switch_reset_IBUF]
+# set_property PACKAGE_PIN V7 [get_ports switch_reset]
+# set_property IOSTANDARD LVCMOS33 [get_ports switch_reset]
 
-#set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets switch_upen_sec_IBUF]
-#set_property PACKAGE_PIN V6 [get_ports switch_upen_sec]
-#set_property IOSTANDARD LVCMOS33 [get_ports switch_upen_sec]
+# set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets switch_upen_sec_IBUF]
+# set_property PACKAGE_PIN V6 [get_ports switch_upen_sec]
+# set_property IOSTANDARD LVCMOS33 [get_ports switch_upen_sec]
 
-#set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets switch_upen_min]
-#set_property PACKAGE_PIN V5 [get_ports switch_upen_min]
-#set_property IOSTANDARD LVCMOS33 [get_ports switch_upen_min]
+# set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets switch_upen_min]
+# set_property PACKAGE_PIN V5 [get_ports switch_upen_min]
+# set_property IOSTANDARD LVCMOS33 [get_ports switch_upen_min]
 
-#set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets switch_upen_hour]
-#set_property PACKAGE_PIN U4 [get_ports switch_upen_hour]
-#set_property IOSTANDARD LVCMOS33 [get_ports switch_upen_hour]
+# set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets switch_upen_hour]
+# set_property PACKAGE_PIN U4 [get_ports switch_upen_hour]
+# set_property IOSTANDARD LVCMOS33 [get_ports switch_upen_hour]
 
 ############################
 # Output                   #
@@ -79,44 +79,44 @@ set_property IOSTANDARD LVCMOS33 [get_ports cnodes[6]]
 set_property PACKAGE_PIN M4 [get_ports cnodes[7]]
 set_property IOSTANDARD LVCMOS33 [get_ports cnodes[7]]
 
-set_property PACKAGE_PIN P2 [get_ports power_light]
-set_property IOSTANDARD LVCMOS33 [get_ports power_light]
+# set_property PACKAGE_PIN P2 [get_ports power_light]
+# set_property IOSTANDARD LVCMOS33 [get_ports power_light]
 
-set_property PACKAGE_PIN R2 [get_ports start_pause_light]
-set_property IOSTANDARD LVCMOS33 [get_ports start_pause_light]
+# set_property PACKAGE_PIN R2 [get_ports start_pause_light]
+# set_property IOSTANDARD LVCMOS33 [get_ports start_pause_light]
 
-set_property PACKAGE_PIN U1 [get_ports state[2]]
-set_property IOSTANDARD LVCMOS33 [get_ports state[2]]
+# set_property PACKAGE_PIN U1 [get_ports state[2]]
+# set_property IOSTANDARD LVCMOS33 [get_ports state[2]]
 
-set_property PACKAGE_PIN P5 [get_ports state[1]]
-set_property IOSTANDARD LVCMOS33 [get_ports state[1]]
+# set_property PACKAGE_PIN P5 [get_ports state[1]]
+# set_property IOSTANDARD LVCMOS33 [get_ports state[1]]
 
-set_property PACKAGE_PIN R1 [get_ports state[0]]
-set_property IOSTANDARD LVCMOS33 [get_ports state[0]]
+# set_property PACKAGE_PIN R1 [get_ports state[0]]
+# set_property IOSTANDARD LVCMOS33 [get_ports state[0]]
 
-set_property PACKAGE_PIN T6 [get_ports weight_ch_light[2]]
-set_property IOSTANDARD LVCMOS33 [get_ports weight_ch_light[2]]
+# set_property PACKAGE_PIN T6 [get_ports weight_ch_light[2]]
+# set_property IOSTANDARD LVCMOS33 [get_ports weight_ch_light[2]]
 
-set_property PACKAGE_PIN R8 [get_ports weight_ch_light[1]]
-set_property IOSTANDARD LVCMOS33 [get_ports weight_ch_light[1]]
+# set_property PACKAGE_PIN R8 [get_ports weight_ch_light[1]]
+# set_property IOSTANDARD LVCMOS33 [get_ports weight_ch_light[1]]
 
-set_property PACKAGE_PIN V9 [get_ports weight_ch_light[0]]
-set_property IOSTANDARD LVCMOS33 [get_ports weight_ch_light[0]]
+# set_property PACKAGE_PIN V9 [get_ports weight_ch_light[0]]
+# set_property IOSTANDARD LVCMOS33 [get_ports weight_ch_light[0]]
 
-set_property PACKAGE_PIN V1 [get_ports water_in_light]
-set_property IOSTANDARD LVCMOS33 [get_ports water_in_light]
+# set_property PACKAGE_PIN V1 [get_ports water_in_light]
+# set_property IOSTANDARD LVCMOS33 [get_ports water_in_light]
 
-set_property PACKAGE_PIN U3 [get_ports water_out_light]
-set_property IOSTANDARD LVCMOS33 [get_ports water_out_light]
+# set_property PACKAGE_PIN U3 [get_ports water_out_light]
+# set_property IOSTANDARD LVCMOS33 [get_ports water_out_light]
 
-set_property PACKAGE_PIN U6 [get_ports washing_light]
-set_property IOSTANDARD LVCMOS33 [get_ports washing_light]
+# set_property PACKAGE_PIN U6 [get_ports washing_light]
+# set_property IOSTANDARD LVCMOS33 [get_ports washing_light]
 
-set_property PACKAGE_PIN U7 [get_ports rinsing_light]
-set_property IOSTANDARD LVCMOS33 [get_ports rinsing_light]
+# set_property PACKAGE_PIN U7 [get_ports rinsing_light]
+# set_property IOSTANDARD LVCMOS33 [get_ports rinsing_light]
 
-set_property PACKAGE_PIN T4 [get_ports dewatering_light]
-set_property IOSTANDARD LVCMOS33 [get_ports dewatering_light]
+# set_property PACKAGE_PIN T4 [get_ports dewatering_light]
+# set_property IOSTANDARD LVCMOS33 [get_ports dewatering_light]
 
-set_property PACKAGE_PIN T5 [get_ports alarm]
-set_property IOSTANDARD LVCMOS33 [get_ports alarm]
+# set_property PACKAGE_PIN T5 [get_ports alarm]
+# set_property IOSTANDARD LVCMOS33 [get_ports alarm]
