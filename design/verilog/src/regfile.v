@@ -15,6 +15,7 @@ module regfile
 #(parameter DATA_WIDTH = 32)
 (
     input clk,
+    input rst,
     input we,
     input [4:0] raddrA,
     input [4:0] raddrB,
@@ -28,10 +29,16 @@ module regfile
 
 `include "defines.vh"
 
+    reg [4:0] i;
     reg [DATA_WIDTH-1:0] regfile [0:31];    ///< three ported regfile contains 32 registers
     
     always @ (posedge clk) begin
-        if (we && waddr != 0) begin
+        if (rst) begin
+            for (i = 0; i < 31; i = i + 1)
+                begin
+                    regfile[i] <= 0;
+                end
+        end else if (we && waddr != 0) begin
             regfile[waddr] <= wdata;
         end
     end

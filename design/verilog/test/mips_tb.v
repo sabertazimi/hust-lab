@@ -7,7 +7,7 @@ module mips_tb;
     parameter IM_BUS_WIDTH = 10;
     parameter DM_BUS_WIDTH = 24;
     parameter CLK_HZ = 0;
-    parameter COUNT = 5000;
+    parameter COUNT = 10000;
     parameter DELAY = 5;
     parameter TIME = (COUNT * DELAY);
     
@@ -25,7 +25,7 @@ module mips_tb;
         .CODE_FILE(CODE_FILE),
         .IM_BUS_WIDTH(IM_BUS_WIDTH),
         .DM_BUS_WIDTH(DM_BUS_WIDTH),
-        .CLK_HZ(CLK_ZH)
+        .CLK_HZ(CLK_HZ)
     ) mips (
         .raw_clk(raw_clk),
         .raw_rst(raw_rst),
@@ -62,6 +62,10 @@ module mips_tb;
         switch_ram <= 1'b0;
         switch_addr <= 5'b00000;
         
+		@(posedge raw_clk);
+		@(posedge raw_clk);
+		@(posedge raw_clk);
+		@(posedge raw_clk);
 		@(posedge raw_clk);
 		@(posedge raw_clk);
         
