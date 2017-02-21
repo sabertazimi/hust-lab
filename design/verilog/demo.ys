@@ -1,7 +1,0 @@
-read_verilog demo.v
-hierarchy -check
-proc; opt; fsm; opt; memory; opt
-techmap; opt
-dfflibmap -liberty cmos_cells.lib
-abc -liberty cmos_cells.lib
-write_verilog -noattr demo_syn.v

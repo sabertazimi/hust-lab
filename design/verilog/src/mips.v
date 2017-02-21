@@ -1,11 +1,22 @@
 module mips
-#(parameter DATA_WIDTH = 32, CODE_FILE = "mips/benchmark.hex", IM_BUS_WIDTH = 10, DM_BUS_WIDTH = 24)
+#(parameter DATA_WIDTH = 32, CODE_FILE = "~/Work/Source/architecture/design/verilog/mips/benchmark.hex", IM_BUS_WIDTH = 10, DM_BUS_WIDTH = 24)
 (
     input raw_clk,
     input raw_rst,
     input raw_en,
-    output [DATA_WIDTH-1:0] led_data
+    output [7:0] anodes,
+    output [7:0] cnodes
 );
+
+    /// clock divider
+    wire [DATA_WIDTH-1:0] clk_group;
+    
+    tick_divider #(
+        .DATA_WIDTH(DATA_WIDTH)
+    ) clk_divider (
+        .clk_src(raw_clk),
+        .clk_group(clk_group)
+    );
 
     ///< IF stage
 
@@ -554,6 +565,17 @@ module mips
     );
 
     // led unit
+    wire [DATA_WIDTH-1:0] led_data;
+    
     assign led_data = syscall_count ? a0_data : 0;
+    
+    led_unit #(
+        .DATA_WIDTH(DATA_WIDTH)
+    ) led_unit (
+        .clk_src(clk_group[15]),
+        .led_data(led_data),
+        .anodes(anodes),
+        .cnodes(cnodes)
+    );
     
 endmodule // mips
