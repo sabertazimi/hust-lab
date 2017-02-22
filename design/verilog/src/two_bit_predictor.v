@@ -8,18 +8,15 @@ module two_bit_predictor
     output reg taken
 );
 
-    parameter STRONGLY_TAKEN = 2'b11;
-    parameter WEAKLY_TAKEN = 2'b10;
-    parameter WEAKLY_NOT_TAKEN = 2'b01;
-    parameter STRONGLY_NOT_TAKEN = 2'b00;
-    
+`include "defines.vh"
+
     reg [1:0] state;
     reg [1:0] next_state;
     
     // update state
     always @(posedge clk) begin
         if(rst) begin
-            state <= WEAKLY_TAKEN;
+            state <= `WEAKLY_TAKEN;
         end else if (en) begin
             state <= next_state;
         end else begin
@@ -35,28 +32,28 @@ module two_bit_predictor
             next_state <= next_state;
         end else begin
             case (state)
-                STRONGLY_TAKEN:
+                `STRONGLY_TAKEN:
                     case (misprediction)
-                        0: next_state <= STRONGLY_TAKEN;
-                        1: next_state <= WEAKLY_TAKEN;
+                        0: next_state <= `STRONGLY_TAKEN;
+                        1: next_state <= `WEAKLY_TAKEN;
                         default: next_state <= next_state;
                     endcase
-                WEAKLY_TAKEN:
+                `WEAKLY_TAKEN:
                     case (misprediction)
-                        0: next_state <= STRONGLY_TAKEN;
-                        1: next_state <= WEAKLY_NOT_TAKEN;
+                        0: next_state <= `STRONGLY_TAKEN;
+                        1: next_state <= `WEAKLY_NOT_TAKEN;
                         default: next_state <= next_state;
                     endcase
-                WEAKLY_NOT_TAKEN:
+                `WEAKLY_NOT_TAKEN:
                     case (misprediction)
-                        0: next_state <= STRONGLY_NOT_TAKEN;
-                        1: next_state <= WEAKLY_TAKEN;
+                        0: next_state <= `STRONGLY_NOT_TAKEN;
+                        1: next_state <= `WEAKLY_TAKEN;
                         default: next_state <= next_state;
                     endcase
-                STRONGLY_NOT_TAKEN:
+                `STRONGLY_NOT_TAKEN:
                     case (misprediction)
-                        0: next_state <= STRONGLY_NOT_TAKEN;
-                        1: next_state <= WEAKLY_NOT_TAKEN;
+                        0: next_state <= `STRONGLY_NOT_TAKEN;
+                        1: next_state <= `WEAKLY_NOT_TAKEN;
                         default: next_state <= next_state;
                     endcase
                 default: next_state <= next_state;
@@ -67,10 +64,10 @@ module two_bit_predictor
     // update taken output
     always @ (state) begin
         case (state)
-            STRONGLY_TAKEN      : taken <= 1;
-            WEAKLY_TAKEN        : taken <= 1;
-            WEAKLY_NOT_TAKEN    : taken <= 0;
-            STRONGLY_NOT_TAKEN  : taken <= 0;
+            `STRONGLY_TAKEN      : taken <= 1;
+            `WEAKLY_TAKEN        : taken <= 1;
+            `WEAKLY_NOT_TAKEN    : taken <= 0;
+            `STRONGLY_NOT_TAKEN  : taken <= 0;
         endcase
     end
     

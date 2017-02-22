@@ -72,7 +72,17 @@
 `define FP     5'd30
 `define RA     5'd31
 
-`define DEBUG_REGFILE   1
-`define DEBUG_MEM_WB    1
+`define BTB_VALID_SIZE      1 
+`define BTB_PREDICT_SIZE    2 
+`define BTB_TAG_SIZE        10
+`define BTB_DATA_SIZE       10
+`define BTB_ENTRY_SIZE      23
+`define BTB_LINE_SIZE       7 
+`define BTB_LINE_NUM        128
+
+`define STRONGLY_TAKEN      2'b11
+`define WEAKLY_TAKEN        2'b10
+`define WEAKLY_NOT_TAKEN    2'b01
+`define STRONGLY_NOT_TAKEN  2'b00
 
 // `endif

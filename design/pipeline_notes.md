@@ -345,7 +345,15 @@ Requires three thing to predicted at fetch stage:
 
 *   read at IF stage, written at ID(lower higher priority) and EX stage(higher priority)
 *   not be predicting JR instructions: just stall PC and IF/ID register and insert a bubble as before
- 
+
+#### Design
+
+*   valid bits: 1 bit
+*   prediction bits: 2 bits
+*   tag bits: 10 bits PC[11:2]
+*   data: 10 bits address => {{(DATA_WIDTH-12){1'b0}}, addr_branch[11:2], 2'b00}
+*   128 lines
+
 ### 2 bit predictor
 
 not taken(miss: should taken) -> not taken(miss: should taken) -> taken
@@ -355,6 +363,7 @@ not taken(miss: should taken) -> not taken(miss: should taken) -> taken
 
 ### Reference
 
+*   [Cache](http://beethoven.ee.ncku.edu.tw/testlab/course/VLSIdesign_course/course_96/08.cache_07.pdf)
 *   [Branch Prediction Princeton](http://www.princeton.edu/~ajavadia/ELE475.pdf)
 *   [Branch Prediction MIT 1](http://csg.csail.mit.edu/6.375/6_375_2009_www/handouts/labs/lab1.pdf)
 *   [Branch Prediction MIT 2](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-823-computer-system-architecture-fall-2005/lecture-notes/l13_brnchpred.pdf)
