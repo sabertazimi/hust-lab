@@ -225,7 +225,7 @@ module mips
     counter clk_counter (
         .clk(clk || switch_rst),
         .rst(raw_rst),
-        .en(latch_out),
+        .en(latch_out && raw_en),
         .count(clk_count)
     );
     
@@ -242,7 +242,7 @@ module mips
     ) PC (
         .clk(clk || switch_rst),
         .rst(raw_rst),
-        .en(stall),
+        .en(stall && raw_en),
         .din(IF_pc_next),
         .dout(IF_pc)
     );
@@ -277,7 +277,7 @@ module mips
     ) IF_ID (
         .clk(clk || switch_rst),
         .rst(flushD || raw_rst),
-        .en(stall),
+        .en(stall && raw_en),
         .IF_PC(IF_pc),
         .IF_IR(IF_ir),
         .IF_taken(IF_taken),
@@ -332,7 +332,7 @@ module mips
         .DATA_WIDTH(DATA_WIDTH)
     ) regfile (
         .clk(clk || switch_rst),
-        .we(WB_regwe),
+        .we(WB_regwe && raw_en),
         .raddrA(ID_rs),
         .raddrB(ID_rt),
         .waddr(WB_RW),
@@ -516,7 +516,7 @@ module mips
     ) dmem (
         .clk(clk || switch_rst),
         .re(MEM_ramtoreg),
-        .we(MEM_ramwe && ~halt),
+        .we(MEM_ramwe && ~halt && raw_en),
         .addr(MEM_result[25:2]),
         .wdata(MEM_wdata),
         .switch_addr(switch_addr),
@@ -570,7 +570,7 @@ module mips
     ) LO (
         .clk(clk || switch_rst),
         .rst(raw_rst),
-        .en(WB_writetolo),
+        .en(WB_writetolo && raw_en),
         .din(MEM_result),
         .dout(WB_lodata)
     );
@@ -636,7 +636,7 @@ module mips
     ) syscall_register (
         .clk(clk || switch_rst),
         .rst(raw_rst),
-        .en(~equal_ten && WB_syscall),
+        .en(~equal_ten && WB_syscall && raw_en),
         .din(1),
         .dout(syscall_count)
     );
@@ -658,7 +658,7 @@ module mips
     ) stat_mispredictor (
         .clk(clk || switch_rst),
         .rst(raw_rst),
-        .en(ID_misprediction),
+        .en(ID_misprediction && raw_en),
         .count(stat_misprediction)
     );
     
@@ -668,7 +668,7 @@ module mips
     ) stat_correctpredictor (
         .clk(clk || switch_rst),
         .rst(raw_rst),
-        .en(ID_success_prediction || ID_j || ID_jal),
+        .en((ID_success_prediction || ID_j || ID_jal) && raw_en),
         .count(stat_correctprediction)
     );
 

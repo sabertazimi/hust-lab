@@ -3,7 +3,7 @@
 
 module mips_tb;
     parameter DATA_WIDTH = 32;
-    parameter CODE_FILE = "mips/waterfall_lamp.hex";
+    parameter CODE_FILE = "mips/benchmark.hex";
     parameter IM_BUS_WIDTH = 10;
     parameter DM_BUS_WIDTH = 24;
     parameter CLK_HZ = 0;
@@ -51,14 +51,17 @@ module mips_tb;
 		$dumpfile("vcd/mips_tb.vcd");
 		$dumpvars(0, mips_tb);
 
-		$display("raw_rst,raw_en,\tled_data,\tstat_count,\tstat_misprediction,\tstat_correctprediction");
-		$monitor("%x,\t%x,\t%x,\t%d,\t%d,\t%d",
+		$display("raw_rst,raw_en,\tled_data,\tstat_count,\tstat_correctprediction,\tstat_misprediction");
+		$monitor("%x,\t%x,\t%x,\t%x/%d,\t%x/%d,\t%x/%d",
             raw_rst,
             raw_en,
             mips.led_data,
             mips.stat_count,
+            mips.stat_count,
+            mips.stat_correctprediction,
+            mips.stat_correctprediction,
             mips.stat_misprediction,
-            mips.stat_correctprediction
+            mips.stat_misprediction
             // mips.regfile.regfile[`V0][31:0],	/* $v0 */
             // mips.regfile.regfile[`A0][31:0],	/* $a0 */
             // mips.MEM_WB.WB_IR
@@ -70,6 +73,8 @@ module mips_tb;
         switch_rst <= 1'b0;
         switch_stat <= 1'b0;
         switch_ram <= 1'b0;
+        switch_correctprediction <= 1'b0;
+        switch_misprediction <= 1'b0;
         switch_addr <= 5'b00000;
         
 		@(posedge raw_clk);
