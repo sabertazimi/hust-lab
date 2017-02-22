@@ -28,36 +28,38 @@ module two_bit_predictor
     end
     
     // compute next state
-    always @ (branch or misprediction or state) begin
-        if (!branch) begin
+    always @ (rst or en or misprediction or state) begin
+        if (rst) begin
             next_state <= state;
+        end else if (!branch || !en) begin
+            next_state <= next_state;
         end else begin
             case (state)
                 STRONGLY_TAKEN:
                     case (misprediction)
-                        0: next_state <= state;
+                        0: next_state <= STRONGLY_TAKEN;
                         1: next_state <= WEAKLY_TAKEN;
-                        default: next_state <= state;
+                        default: next_state <= next_state;
                     endcase
                 WEAKLY_TAKEN:
                     case (misprediction)
                         0: next_state <= STRONGLY_TAKEN;
                         1: next_state <= WEAKLY_NOT_TAKEN;
-                        default: next_state <= state;
+                        default: next_state <= next_state;
                     endcase
                 WEAKLY_NOT_TAKEN:
                     case (misprediction)
                         0: next_state <= STRONGLY_NOT_TAKEN;
                         1: next_state <= WEAKLY_TAKEN;
-                        default: next_state <= state;
+                        default: next_state <= next_state;
                     endcase
                 STRONGLY_NOT_TAKEN:
                     case (misprediction)
-                        0: next_state <= state;
+                        0: next_state <= STRONGLY_NOT_TAKEN;
                         1: next_state <= WEAKLY_NOT_TAKEN;
-                        default: next_state <= state;
+                        default: next_state <= next_state;
                     endcase
-                default: next_state <= state;
+                default: next_state <= next_state;
             endcase
         end
     end

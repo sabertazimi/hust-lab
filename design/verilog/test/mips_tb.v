@@ -51,17 +51,21 @@ module mips_tb;
 		$dumpfile("vcd/mips_tb.vcd");
 		$dumpvars(0, mips_tb);
 
-		$display("raw_rst,raw_en,\tled_data,\tstat_count,\tstat_correctprediction,\tstat_misprediction");
-		$monitor("%x,\t%x,\t%x,\t%x/%d,\t%x/%d,\t%x/%d",
-            raw_rst,
-            raw_en,
+		$display("led_data,\tstat_count,\tstat_correctprediction,\tstat_misprediction\t,stat_loaduse,\tstat_branchstall");
+		$monitor("%x, %x/%4d, %x/%3d, %x/%3d, %x/%3d, %x/%3d, %x/%3d",
             mips.led_data,
             mips.stat_count,
             mips.stat_count,
             mips.stat_correctprediction,
             mips.stat_correctprediction,
             mips.stat_misprediction,
-            mips.stat_misprediction
+            mips.stat_misprediction,
+            mips.stat_flushD,
+            mips.stat_flushD,
+            mips.stat_loaduse,
+            mips.stat_loaduse,
+            mips.stat_branchstall,
+            mips.stat_branchstall
             // mips.regfile.regfile[`V0][31:0],	/* $v0 */
             // mips.regfile.regfile[`A0][31:0],	/* $a0 */
             // mips.MEM_WB.WB_IR

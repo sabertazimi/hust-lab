@@ -198,6 +198,9 @@ module mips
     wire [DATA_WIDTH-1:0] stat_count;
     wire [DATA_WIDTH-1:0] stat_misprediction;
     wire [DATA_WIDTH-1:0] stat_correctprediction;
+    wire [DATA_WIDTH-1:0] stat_flushD;
+    wire [DATA_WIDTH-1:0] stat_loaduse;
+    wire [DATA_WIDTH-1:0] stat_branchstall;
     
     // memory direct output for led display
     wire [DATA_WIDTH-1:0] ram_data;
@@ -251,7 +254,7 @@ module mips
     two_bit_predictor two_bit_predictor (
         .clk(clk || switch_rst),
         .rst(raw_rst),
-        .en(raw_en),
+        .en(stall && raw_en),
         .branch(ID_beq || ID_bne || ID_bgtz),
         .misprediction(ID_misprediction),
         .taken(IF_taken)
@@ -658,25 +661,55 @@ module mips
         .en(raw_en),
         .count(stat_count)
     );
-    
+
     counter #(
         .DATA_WIDTH(DATA_WIDTH),
         .STEP(1)
     ) stat_mispredictor (
         .clk(clk || switch_rst),
         .rst(raw_rst),
-        .en(~flushE && ID_misprediction && raw_en),
+        .en(stall && ID_misprediction && raw_en),
         .count(stat_misprediction)
     );
-    
-    counter #(
+
+   counter #(
         .DATA_WIDTH(DATA_WIDTH),
         .STEP(1)
     ) stat_correctpredictor (
         .clk(clk || switch_rst),
         .rst(raw_rst),
-        .en(~flushE &&  (ID_success_prediction || ID_j || ID_jal) && raw_en),
+        .en(stall && (ID_success_prediction || ID_j || ID_jal) && raw_en),
         .count(stat_correctprediction)
+    );
+
+    counter #(
+        .DATA_WIDTH(DATA_WIDTH),
+        .STEP(1)
+    ) stat_flushDer (
+        .clk(clk || switch_rst),
+        .rst(raw_rst),
+        .en(stall && flushD && raw_en),
+        .count(stat_flushD)
+    );
+
+    counter #(
+        .DATA_WIDTH(DATA_WIDTH),
+        .STEP(1)
+    ) stat_loaduser (
+        .clk(clk || switch_rst),
+        .rst(raw_rst),
+        .en(load_use_hazard  && raw_en),
+        .count(stat_loaduse)
+    );
+
+    counter #(
+        .DATA_WIDTH(DATA_WIDTH),
+        .STEP(1)
+    ) stat_branchstaller (
+        .clk(clk || switch_rst),
+        .rst(raw_rst),
+        .en(branch_flushE && raw_en),
+        .count(stat_branchstall)
     );
 
     // led unit

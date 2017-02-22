@@ -335,13 +335,13 @@ if detected, stall and insert bubble
 
 ### Basis
 
-Requires three things to be predicted at fetch stage:
+Requires three thing to predicted at fetch stage:
 
 *   Whether the fetched instruction is a branch
 *   (Conditional) branch direction
 *   Branch target address (if taken)
 
-### BTB
+### BTB (Branch Target Buffer)
 
 *   read at IF stage, written at ID(lower higher priority) and EX stage(higher priority)
 *   not be predicting JR instructions: just stall PC and IF/ID register and insert a bubble as before
@@ -461,6 +461,13 @@ counter.
 *   error coding style(particularly in synthesize stage)
 *   default type: unsigned ( compare )
 *   {carry, sum} = srcA + srcB, {carry, diff} = srcA - srcB;
+
+## Counting
+
+*  no prediction benchmark: 1546 + 4 + 120 (lw) + 322 (branch data hazard) + 1 (jr) + 37 (j/jal) + 276(success branch)
+*  2 bit prediction benchmark: 1546 + 4 + 120 (lw) + 322 (branch data hazard) + 1 (jr) + 40 (beq/bne/bgtz prediction failure)
+
+2307 - 273 = 2033
 
 ## Reference
 
