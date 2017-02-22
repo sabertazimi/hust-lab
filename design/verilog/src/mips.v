@@ -247,8 +247,15 @@ module mips
         .dout(IF_pc)
     );
     
-    // @TODO: 2 bit dynamic predictor
-    assign IF_taken = 1;    // always taken
+    // 2 bit dynamic predictor
+    two_bit_predictor two_bit_predictor (
+        .clk(clk || switch_rst),
+        .rst(raw_rst),
+        .en(raw_en),
+        .branch(ID_beq || ID_bne || ID_bgtz),
+        .misprediction(ID_misprediction),
+        .taken(IF_taken)
+    );
     
     branch_predictor #(
         .DATA_WIDTH(DATA_WIDTH)
@@ -658,7 +665,7 @@ module mips
     ) stat_mispredictor (
         .clk(clk || switch_rst),
         .rst(raw_rst),
-        .en(ID_misprediction && raw_en),
+        .en(~flushE && ID_misprediction && raw_en),
         .count(stat_misprediction)
     );
     
@@ -668,7 +675,7 @@ module mips
     ) stat_correctpredictor (
         .clk(clk || switch_rst),
         .rst(raw_rst),
-        .en((ID_success_prediction || ID_j || ID_jal) && raw_en),
+        .en(~flushE &&  (ID_success_prediction || ID_j || ID_jal) && raw_en),
         .count(stat_correctprediction)
     );
 

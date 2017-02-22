@@ -345,6 +345,13 @@ Requires three things to be predicted at fetch stage:
 
 *   read at IF stage, written at ID(lower higher priority) and EX stage(higher priority)
 *   not be predicting JR instructions: just stall PC and IF/ID register and insert a bubble as before
+ 
+### 2 bit predictor
+
+not taken(miss: should taken) -> not taken(miss: should taken) -> taken
+
+*   [start in weak state(01/10)](https://www.youtube.com/watch?v=AWv8DCm_UYE)
+*   对于 SPEC89 基准测试程序, 使用有 4096 个入口的转移预测缓存会获得 82%~99% 的准确率 亨尼西, 帕特森, 白跃彬译.计算机系统结构:量化研究方法, 北京: 电子工业出版社, 2007.8 P56-P57
 
 ### Reference
 
@@ -354,15 +361,6 @@ Requires three things to be predicted at fetch stage:
 *   [Branch Prediction CMU](http://www.ece.cmu.edu/~ece447/s13/lib/exe/fetch.php?media=onur-447-spring13-lecture11-branch-prediction-afterlecture.pdf)
 *   [McFarling, "Combining Branch Predictors," DEC WRL Technical Report, 1993.](http://www.hpl.hp.com/techreports/Compaq-DEC/WRL-TN-36.pdf)
 *   [Smith, "A Study of Branch Prediction Strategies," ISCA 1981.](https://courses.cs.washington.edu/courses/cse590g/04sp/Smith-1981-A-Study-of-Branch-Prediction-Strategies.pdf)
-
-### 2 bit predictor
-
-not taken(miss: should taken) -> not taken(miss: should taken) -> taken
-
-*   get true outcome: just like signal in PC update logic = (zero && beq) || (!zero && bne)
-*   Branch target register/buffer
-*   [start in weak state(01/10)](https://www.youtube.com/watch?v=AWv8DCm_UYE)
-*   对于 SPEC89 基准测试程序, 使用有 4096 个入口的转移预测缓存会获得 82%~99% 的准确率 亨尼西, 帕特森, 白跃彬译.计算机系统结构:量化研究方法, 北京: 电子工业出版社, 2007.8 P56-P57
 
 ## interrupts handler
 
