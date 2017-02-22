@@ -1,7 +1,6 @@
-# Nexys4 Pin Asswitchnments
-##########################################
-# On-board Slide Switches/Button/Signal  #
-##########################################
+### Nexys4 Pin Asswitchnments
+### On-board Slide Switches/Button/Signal
+
 set_property PACKAGE_PIN E3 [get_ports raw_clk]
 set_property IOSTANDARD LVCMOS33 [get_ports raw_clk]
 
@@ -41,13 +40,19 @@ set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets switch_addr[4]_IBUF]
 set_property PACKAGE_PIN U4 [get_ports switch_addr[4]]
 set_property IOSTANDARD LVCMOS33 [get_ports switch_addr[4]]
 
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets switch_correctprediction_IBUF]
+set_property PACKAGE_PIN P3  [get_ports switch_correctprediction]
+set_property IOSTANDARD LVCMOS33 [get_ports switch_correctprediction]
+
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets switch_misprediction_IBUF]
+set_property PACKAGE_PIN R3  [get_ports switch_misprediction]
+set_property IOSTANDARD LVCMOS33 [get_ports switch_misprediction]
+
 set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets switch_rst_IBUF]
 set_property PACKAGE_PIN P4 [get_ports switch_rst]
 set_property IOSTANDARD LVCMOS33 [get_ports switch_rst]
 
-############################
-# Output                   #
-############################
+### Output
 
 set_property PACKAGE_PIN N6 [get_ports anodes[0]]
 set_property IOSTANDARD LVCMOS33 [get_ports anodes[0]]

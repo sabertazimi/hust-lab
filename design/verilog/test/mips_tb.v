@@ -17,6 +17,8 @@ module mips_tb;
     reg switch_rst;
     reg switch_stat;
     reg switch_ram;
+    reg switch_correctprediction;
+    reg switch_misprediction;
     reg [4:0] switch_addr;
     wire [7:0] anodes;
     wire [7:0] cnodes;
@@ -34,6 +36,8 @@ module mips_tb;
         .switch_rst(switch_rst),
         .switch_stat(switch_stat),
         .switch_ram(switch_ram),
+        .switch_correctprediction(switch_correctprediction),
+        .switch_misprediction(switch_misprediction),
         .switch_addr(switch_addr),
         .anodes(anodes),
         .cnodes(cnodes)
@@ -47,12 +51,14 @@ module mips_tb;
 		$dumpfile("vcd/mips_tb.vcd");
 		$dumpvars(0, mips_tb);
 
-		$display("raw_rst,raw_en,\tled_data,\tstat_count\t$v0,\t$a0,\t$WB_ir");
-		$monitor("%x,\t%x,\t%x,\t%d",
+		$display("raw_rst,raw_en,\tled_data,\tstat_count,\tstat_misprediction,\tstat_correctprediction");
+		$monitor("%x,\t%x,\t%x,\t%d,\t%d,\t%d",
             raw_rst,
             raw_en,
             mips.led_data,
-            mips.stat_count
+            mips.stat_count,
+            mips.stat_misprediction,
+            mips.stat_correctprediction
             // mips.regfile.regfile[`V0][31:0],	/* $v0 */
             // mips.regfile.regfile[`A0][31:0],	/* $a0 */
             // mips.MEM_WB.WB_IR

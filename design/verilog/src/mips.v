@@ -7,6 +7,8 @@ module mips
     input switch_rst,
     input switch_stat,
     input switch_ram,
+    input switch_correctprediction,
+    input switch_misprediction,
     input [4:0] switch_addr,
     output [7:0] anodes,
     output [7:0] cnodes
@@ -194,6 +196,8 @@ module mips
     
     // statistic unit
     wire [DATA_WIDTH-1:0] stat_count;
+    wire [DATA_WIDTH-1:0] stat_misprediction;
+    wire [DATA_WIDTH-1:0] stat_correctprediction;
     
     // memory direct output for led display
     wire [DATA_WIDTH-1:0] ram_data;
@@ -647,10 +651,32 @@ module mips
         .en(raw_en),
         .count(stat_count)
     );
+    
+    counter #(
+        .DATA_WIDTH(DATA_WIDTH),
+        .STEP(1)
+    ) stat_mispredictor (
+        .clk(clk || switch_rst),
+        .rst(raw_rst),
+        .en(ID_misprediction),
+        .count(stat_misprediction)
+    );
+    
+    counter #(
+        .DATA_WIDTH(DATA_WIDTH),
+        .STEP(1)
+    ) stat_correctpredictor (
+        .clk(clk || switch_rst),
+        .rst(raw_rst),
+        .en(ID_success_prediction || ID_j || ID_jal),
+        .count(stat_correctprediction)
+    );
 
     // led unit
     assign led_data = switch_stat ? stat_count
                     : switch_ram ? ram_data
+                    : switch_correctprediction ? stat_correctprediction
+                    : switch_misprediction ? stat_misprediction
                     : syscall_count ? a0_data
                     : 0;
     
