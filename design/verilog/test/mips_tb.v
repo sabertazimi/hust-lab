@@ -48,7 +48,7 @@ module mips_tb;
 		$dumpvars(0, mips_tb);
 
 		$display("raw_rst,raw_en,\tled_data,\tstat_count\t$v0,\t$a0,\t$WB_ir");
-		$monitor("%x,\t%x,\t%x,\t%x",
+		$monitor("%x,\t%x,\t%x,\t%d",
             raw_rst,
             raw_en,
             mips.led_data,

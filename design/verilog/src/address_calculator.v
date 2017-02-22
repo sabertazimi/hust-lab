@@ -17,6 +17,9 @@ module address_calculator
     output [DATA_WIDTH-1:0] addr_imm,
     output [DATA_WIDTH-1:0] addr_branch
 );
+    
+    wire [DATA_WIDTH-1:0] extshft_imm16;
+    wire [DATA_WIDTH-1:0] extshft_imm26;
 
     assign extshft_imm16 = {{(DATA_WIDTH-16){imm16[15]}}, imm16} << 2;
     assign extshft_imm26 = {{(DATA_WIDTH-26){imm26[25]}}, imm26} << 2;
