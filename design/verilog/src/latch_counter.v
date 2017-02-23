@@ -7,11 +7,12 @@
  * @output count counting value
  */
 module latch_counter
+#(parameter DATA_WIDTH = 32, MAX = 1)
 (
     input clk,
     input rst,
     input en,
-    output reg count
+    output reg [DATA_WIDTH-1:0] count
 );
 
     initial begin
@@ -22,7 +23,7 @@ module latch_counter
         if (rst) begin
             count <= 0 ;
         end else if (en) begin
-            if (count != 1) begin
+            if (count != MAX) begin
                 count <= count + 1;
             end else begin
                 count <= count;

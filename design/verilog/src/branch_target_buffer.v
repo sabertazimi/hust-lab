@@ -14,6 +14,8 @@
  * @input ID_branch_pc pc addr of current branch instruction in ID stage
  * @input ID_branch_addr jmp addr of current branch instruction in ID stage
  * @output taken prediction taken or not taken
+ * @output IF_hit BTB access / miss in IF stage 
+ * @output btb_branch_addr target address read from BTB
  */
 module branch_target_buffer 
 #(parameter DATA_WIDTH = 32)

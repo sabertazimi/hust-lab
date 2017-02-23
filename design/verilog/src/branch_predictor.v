@@ -3,9 +3,12 @@
  * @module branch_predictor
  * @brief branch predictor
  * @param DATA_WIDTH data width
- * @input taken whether branch taken or not taken
  * @input pc pc
- * @output ir ir
+ * @input ir ir
+ * @input hit BTB read success or not
+ * @input btb_branch_addr target address read from BTB
+ * @output IF_branch imply current instruction is branch or not
+ * @output IF_predict_branch calculated jump addresss of branch instruction
  * @output predict_addr predict_addr
  */
 module branch_predictor

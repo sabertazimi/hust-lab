@@ -220,7 +220,10 @@ module mips
     ///< IF stage
 
     // clock halt unit
-    latch_counter latch_counter (
+    latch_counter #(
+        .DATA_WIDTH(DATA_WIDTH),
+        .MAX(1)
+    ) latch_counter (
         .clk(halt || switch_rst),
         .rst(raw_rst),
         .en(raw_en),
