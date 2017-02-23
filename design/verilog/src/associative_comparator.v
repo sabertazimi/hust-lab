@@ -10,8 +10,9 @@
  * @output hit_line imply which line hit
  */
 module associative_comparator
+#(parameter DATA_WIDTH = 32)
 (
-    input [`BTB_TAG_SIZE-1:0] src_tag,
+    input [DATA_WIDTH-1:0] src_tag,
     input valid0,
     input valid1,
     input valid2,
@@ -20,14 +21,14 @@ module associative_comparator
     input valid5,
     input valid6,
     input valid7,
-    input [`BTB_TAG_SIZE-1:0] tag0,
-    input [`BTB_TAG_SIZE-1:0] tag1,
-    input [`BTB_TAG_SIZE-1:0] tag2,
-    input [`BTB_TAG_SIZE-1:0] tag3,
-    input [`BTB_TAG_SIZE-1:0] tag4,
-    input [`BTB_TAG_SIZE-1:0] tag5,
-    input [`BTB_TAG_SIZE-1:0] tag6,
-    input [`BTB_TAG_SIZE-1:0] tag7,
+    input [DATA_WIDTH-1:0] tag0,
+    input [DATA_WIDTH-1:0] tag1,
+    input [DATA_WIDTH-1:0] tag2,
+    input [DATA_WIDTH-1:0] tag3,
+    input [DATA_WIDTH-1:0] tag4,
+    input [DATA_WIDTH-1:0] tag5,
+    input [DATA_WIDTH-1:0] tag6,
+    input [DATA_WIDTH-1:0] tag7,
     output reg hit,
     output reg [`BTB_LINE_SIZE-1:0] hit_line
 );

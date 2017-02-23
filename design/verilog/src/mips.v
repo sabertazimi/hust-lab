@@ -257,7 +257,7 @@ module mips
     wire IF_branch;
     wire [DATA_WIDTH-1:0] IF_predict_branch;
     wire [DATA_WIDTH-1:0] ID_true_branch;
-    wire [`BTB_DATA_SIZE-1:0] btb_branch_addr;
+    wire [DATA_WIDTH-1:0] btb_branch_addr;
     
     branch_target_buffer btb (
         .clk(clk || switch_rst),
@@ -408,7 +408,7 @@ module mips
         .addr_branch(ID_addr_branch)
     );
     
-    assign ID_true_branch = ID_jmp_reg ? ID_addr_branch : (ID_pc + 4);
+    assign ID_true_branch = ID_jmp_branch ? ID_addr_branch : (ID_pc + 4);
     
     ///> ID stage
     

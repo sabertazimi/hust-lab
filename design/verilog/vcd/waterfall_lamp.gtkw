@@ -1,0 +1,43 @@
+[*]
+[*] GTKWave Analyzer v3.3.66 (w)1999-2015 BSI
+[*] Thu Feb 23 04:15:43 2017
+[*]
+[dumpfile] "/home/sabertazimi/Work/Source/architecture/design/verilog/vcd/mips_tb.vcd"
+[dumpfile_mtime] "Thu Feb 23 04:13:17 2017"
+[dumpfile_size] 963969
+[savefile] "/home/sabertazimi/Work/Source/architecture/design/verilog/vcd/waterfall_lamp.gtkw"
+[timestart] 343500
+[size] 1366 707
+[pos] -35 -35
+*-15.527380 397800 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] mips_tb.
+[treeopen] mips_tb.mips.
+[treeopen] mips_tb.mips.btb.
+[sst_width] 306
+[signals_width] 198
+[sst_expanded] 1
+[sst_vpaned_height] 181
+@22
+mips_tb.mips.IF_pc[31:0]
+mips_tb.mips.ID_pc[31:0]
+mips_tb.mips.IF_ir[31:0]
+mips_tb.mips.ID_ir[31:0]
+@28
+mips_tb.mips.btb.IF_hit
+@22
+mips_tb.mips.btb.IF_branch_pc[31:0]
+mips_tb.mips.btb.IF_predict_addr[31:0]
+@28
+mips_tb.mips.btb.ID_hit
+@22
+mips_tb.mips.btb.ID_branch_pc[31:0]
+mips_tb.mips.btb.ID_branch_addr[31:0]
+@28
+mips_tb.mips.btb.IF_branch
+mips_tb.mips.btb.ID_branch
+mips_tb.mips.btb.misprediction
+mips_tb.mips.btb.taken[1:0]
+@22
+mips_tb.mips.btb.btb_branch_addr[31:0]
+[pattern_trace] 1
+[pattern_trace] 0

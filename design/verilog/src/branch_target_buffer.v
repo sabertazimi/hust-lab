@@ -30,7 +30,7 @@ module branch_target_buffer
     input [DATA_WIDTH-1:0] ID_branch_addr,
     output [`BTB_PREDICT_SIZE-1:0] taken,
     output IF_hit,
-    output [`BTB_DATA_SIZE-1:0] btb_branch_addr
+    output [DATA_WIDTH-1:0] btb_branch_addr
 );
 
     integer i;
@@ -38,8 +38,8 @@ module branch_target_buffer
     // BTB table entries
     reg valid [`BTB_LINE_NUM-1:0];
     reg [`BTB_PREDICT_SIZE-1:0] predict_bits [`BTB_LINE_NUM-1:0];
-    reg [`BTB_TAG_SIZE-1:0] branch_tags [`BTB_LINE_NUM-1:0];
-    reg [`BTB_DATA_SIZE-1:0] target_PCs [`BTB_LINE_NUM-1:0];
+    reg [DATA_WIDTH-1:0] branch_tags [`BTB_LINE_NUM-1:0];
+    reg [DATA_WIDTH-1:0] target_PCs [`BTB_LINE_NUM-1:0];
     
     // hit line
     wire [`BTB_LINE_SIZE-1:0] IF_hit_line;
@@ -53,8 +53,10 @@ module branch_target_buffer
     wire [`BTB_LINE_SIZE-1:0] IF_access_line;
     wire [`BTB_LINE_SIZE-1:0] ID_access_line;
     
-    associative_comparator IF_comparator (
-        .src_tag(IF_branch_pc[11:2]),
+    associative_comparator #(
+        .DATA_WIDTH(DATA_WIDTH)
+    ) IF_comparator (
+        .src_tag(IF_branch_pc),
         .valid0(valid[0]),
         .valid1(valid[1]),
         .valid2(valid[2]),
@@ -75,8 +77,10 @@ module branch_target_buffer
         .hit_line(IF_hit_line)
     );
     
-    associative_comparator ID_comparator (
-        .src_tag(ID_branch_pc[11:2]),
+    associative_comparator #(
+        .DATA_WIDTH(DATA_WIDTH)
+    ) ID_comparator (
+        .src_tag(ID_branch_pc),
         .valid0(valid[0]),
         .valid1(valid[1]),
         .valid2(valid[2]),
@@ -115,18 +119,18 @@ module branch_target_buffer
             if (~IF_hit && IF_branch) begin
                 valid[IF_access_line] <= 1;
                 predict_bits[IF_access_line] <=  `WEAKLY_TAKEN;
-                branch_tags[IF_access_line] <=  IF_branch_pc[11:2];
-                target_PCs[IF_access_line] <= IF_predict_addr[11:2];
+                branch_tags[IF_access_line] <=  IF_branch_pc;
+                target_PCs[IF_access_line] <= IF_predict_addr;
             end
             
             if (ID_branch) begin
                 if (~ID_hit) begin
                     valid[ID_access_line] <= 1;
                     predict_bits[ID_access_line] <=  `WEAKLY_TAKEN;
-                    branch_tags[ID_access_line] <=  ID_branch_pc[11:2];
-                    target_PCs[ID_access_line] <= ID_branch_addr[11:2];
+                    branch_tags[ID_access_line] <=  ID_branch_pc;
+                    target_PCs[ID_access_line] <= ID_branch_addr;
                 end else begin
-                    target_PCs[ID_access_line] <= ID_branch_addr[11:2];
+                    target_PCs[ID_access_line] <= ID_branch_addr;
                     case (predict_bits[ID_access_line])
                         `STRONGLY_TAKEN:
                             case (misprediction)

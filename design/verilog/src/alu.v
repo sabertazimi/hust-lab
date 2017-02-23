@@ -30,7 +30,7 @@ module alu
     always @ ( * ) begin
         case (aluop)
             4'd0: aluout <= srcA << srcB;
-            4'd1: aluout <= srcA >>> srcB;
+            4'd1: aluout <= signed_srcA >>> srcB;
             4'd2: aluout <= srcA >> srcB;
             4'd3: aluout <= srcA * srcB;
             4'd4: aluout <= srcA / srcB;

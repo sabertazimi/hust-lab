@@ -74,9 +74,6 @@
 
 `define BTB_VALID_SIZE      1
 `define BTB_PREDICT_SIZE    2
-`define BTB_TAG_SIZE        10
-`define BTB_DATA_SIZE       10
-`define BTB_ENTRY_SIZE      23
 `define BTB_LINE_SIZE       3
 `define BTB_LINE_NUM        8
 

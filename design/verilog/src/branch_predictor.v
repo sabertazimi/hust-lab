@@ -14,7 +14,7 @@ module branch_predictor
     input [DATA_WIDTH-1:0] pc,
     input [DATA_WIDTH-1:0] ir,
     input hit,
-    input [`BTB_DATA_SIZE-1:0] btb_branch_addr,
+    input [DATA_WIDTH-1:0] btb_branch_addr,
     output IF_branch,
     output [DATA_WIDTH-1:0] IF_predict_branch,
     output [DATA_WIDTH-1:0] predict_addr
@@ -84,7 +84,7 @@ module branch_predictor
     
     assign IF_branch = (beq || bne || bgtz);
     assign predict_addr = (j || jal) ? addr_imm
-                        : hit ? {{(DATA_WIDTH-12){1'b0}}, btb_branch_addr, 2'b00}
+                        : hit ? btb_branch_addr
                         : IF_branch ? IF_predict_branch
                         : (pc + 4);
     
