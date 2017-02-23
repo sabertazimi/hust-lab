@@ -32,6 +32,10 @@ module regfile
     reg [4:0] i;
     reg [DATA_WIDTH-1:0] regfile [0:31];    ///< three ported regfile contains 32 registers
     
+    initial begin
+        i <= 0;
+    end
+    
     always @ (posedge clk) begin
         if (rst) begin
             for (i = 0; i < 31; i = i + 1)

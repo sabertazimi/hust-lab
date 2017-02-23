@@ -113,7 +113,7 @@ module branch_target_buffer
                 valid[i] <= 0;
                 predict_bits[i] <= `WEAKLY_TAKEN;
                 branch_tags[i] <= 0;
-                target_PCs[i] <= 1;
+                target_PCs[i] <= 4;
 		    end
         end else if (en) begin
             if (~IF_hit && IF_branch) begin
@@ -158,7 +158,7 @@ module branch_target_buffer
         end
     end
     
-    assign taken = predict_bits[IF_access_line];
-    assign btb_branch_addr = target_PCs[IF_access_line];
+    assign taken = IF_hit ? predict_bits[IF_access_line] : `WEAKLY_TAKEN;
+    assign btb_branch_addr = IF_hit ? target_PCs[IF_access_line] : IF_predict_addr;
     
 endmodule // associative_comparator

@@ -360,6 +360,7 @@ module mips
         .DATA_WIDTH(DATA_WIDTH)
     ) regfile (
         .clk(clk || switch_rst),
+        .rst(raw_rst),
         .we(WB_regwe && raw_en),
         .raddrA(ID_rs),
         .raddrB(ID_rt),

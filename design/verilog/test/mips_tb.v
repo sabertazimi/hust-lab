@@ -51,9 +51,8 @@ module mips_tb;
 		$dumpfile("vcd/mips_tb.vcd");
 		$dumpvars(0, mips_tb);
 
-		$display("a0_data,\tled_data,\tstat_count,\tstat_correctprediction,\tstat_misprediction\t,stat_loaduse,\tstat_branchstall");
-		$monitor("%x, %x, %x/%4d, %x/%3d, %x/%3d, %x/%3d, %x/%3d, %x/%3d",
-            mips.a0_data,
+		$display("led_data,\tstat_count,\tstat_correctprediction,\tstat_misprediction\t,stat_loaduse,\tstat_branchstall");
+		$monitor("%x, %x/%4d, %x/%3d, %x/%3d, %x/%3d, %x/%3d",
             mips.led_data,
             mips.stat_count,
             mips.stat_count,
