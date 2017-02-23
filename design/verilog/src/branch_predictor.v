@@ -1,4 +1,5 @@
 `include "defines.vh"
+
 /**
  * @module branch_predictor
  * @brief branch predictor

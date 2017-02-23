@@ -47,6 +47,7 @@ module branch_target_buffer
     wire [`BTB_LINE_SIZE-1:0] IF_hit_line;
     wire ID_hit;
     wire [`BTB_LINE_SIZE-1:0] ID_hit_line;
+    wire [`BTB_LINE_SIZE-1:0] hit_line;
     
     // rewrite line
     wire [`BTB_LINE_SIZE-1:0] lru_line;
@@ -103,8 +104,20 @@ module branch_target_buffer
         .hit_line(ID_hit_line)
     );
     
-    // @TODO
-    assign lru_line = 0;
+    assign hit_line = IF_hit ? IF_hit_line
+                    : ID_hit ? ID_hit_line
+                    : lru_line;
+    
+    lru_counter #(
+        .DATA_WIDTH(DATA_WIDTH)
+    ) lru_counter (
+        .clk(clk),
+        .rst(rst),
+        .en(en),
+        .hit(IF_hit || ID_hit),
+        .hit_line(hit_line),
+        .lru_line(lru_line)
+    );
     
     assign IF_access_line = IF_hit ? IF_hit_line : lru_line;
     assign ID_access_line = ID_hit ? ID_hit_line : lru_line;

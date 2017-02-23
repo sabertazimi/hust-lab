@@ -22,7 +22,8 @@ module mips
     wire [DATA_WIDTH-1:0] clk_group;
 
     // clock halt unit
-    wire latch_out, clk_count;
+    wire [DATA_WIDTH-1:0] latch_out;
+    wire clk_count;
     wire clk;
 
     // pc update unit
