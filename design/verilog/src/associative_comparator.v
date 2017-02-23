@@ -2,12 +2,12 @@
 
 /**
  * @module associative_comparator
- * @brief brief_introduction
- * @param DATA_WIDTH data width
- * @input input1 input1_introduction
- * @input input2 input2_introduction
- * @output output1 output1_introduction
- * @output output2 output2_introduction
+ * @brief associative comparator for BTB
+ * @input src_tag tag to compare
+ * @input validx valid bit of line x in BTB
+ * @input tagx tag bits of line x in BTB
+ * @output hit flag imply hit or miss
+ * @output hit_line imply which line hit
  */
 module associative_comparator
 (
@@ -40,7 +40,6 @@ module associative_comparator
     wire hit5;
     wire hit6;
     wire hit7;
-    wire [`BTB_LINE_NUM-1:0] hits;
     
     assign hit0 = valid0 && (src_tag == tag0);
     assign hit1 = valid1 && (src_tag == tag1);
@@ -51,7 +50,7 @@ module associative_comparator
     assign hit6 = valid6 && (src_tag == tag6);
     assign hit7 = valid7 && (src_tag == tag7);
     
-    always @ ( * ) begin
+    always @ (hit0 or hit1 or hit2 or hit3 or hit4 or hit5 or hit6 or hit7) begin
         if (hit0) begin
             hit <= 1;
             hit_line <= 3'd0;

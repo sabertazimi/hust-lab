@@ -1,3 +1,12 @@
+/**
+ * @module branch_predictor
+ * @brief branch predictor
+ * @param DATA_WIDTH data width
+ * @input taken whether branch taken or not taken
+ * @input pc pc
+ * @output ir ir
+ * @output predict_addr predict_addr
+ */
 module branch_predictor
 #(parameter DATA_WIDTH = 32)
 (
@@ -73,7 +82,7 @@ module branch_predictor
     );
     
     assign pcp4 = pc + 4;
-    assign predict_branch_addr = (taken && (beq || bne || bgtz)) ? addr_branch : pcp4;
+    assign predict_branch_addr = (beq || bne || bgtz) ? addr_branch : pcp4;
     assign predict_addr = (j || jal) ? addr_imm : predict_branch_addr;
     
 endmodule // branch_predictor
