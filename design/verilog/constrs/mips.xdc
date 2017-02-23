@@ -52,6 +52,14 @@ set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets switch_rst_IBUF]
 set_property PACKAGE_PIN P4 [get_ports switch_rst]
 set_property IOSTANDARD LVCMOS33 [get_ports switch_rst]
 
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets switch_loaduse_IBUF]
+set_property PACKAGE_PIN T1 [get_ports switch_loaduse]
+set_property IOSTANDARD LVCMOS33 [get_ports switch_loaduse]
+
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets switch_branchstall_IBUF]
+set_property PACKAGE_PIN T3 [get_ports switch_branchstall]
+set_property IOSTANDARD LVCMOS33 [get_ports switch_branchstall]
+
 ### Output
 
 set_property PACKAGE_PIN N6 [get_ports anodes[0]]

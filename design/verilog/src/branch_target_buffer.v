@@ -113,12 +113,12 @@ module branch_target_buffer
     ) lru_counter (
         .clk(clk),
         .rst(rst),
-        .en(en),
+        .en(en && IF_branch && ID_branch),
         .hit(IF_hit || ID_hit),
         .hit_line(hit_line),
         .lru_line(lru_line)
     );
-    
+
     assign IF_access_line = IF_hit ? IF_hit_line : lru_line;
     assign ID_access_line = ID_hit ? ID_hit_line : lru_line;
 

@@ -3,11 +3,11 @@
 
 module mips_tb;
     parameter DATA_WIDTH = 32;
-    parameter CODE_FILE = "mips/benchmark.hex";
+    parameter CODE_FILE = "mips/benchmarkpp.hex";
     parameter IM_BUS_WIDTH = 10;
     parameter DM_BUS_WIDTH = 24;
     parameter CLK_HZ = 0;
-    parameter COUNT = 10000;
+    parameter COUNT = 100000;
     parameter DELAY = 5;
     parameter TIME = (COUNT * DELAY);
     
@@ -19,6 +19,8 @@ module mips_tb;
     reg switch_ram;
     reg switch_correctprediction;
     reg switch_misprediction;
+    reg switch_loaduse;
+    reg switch_branchstall;
     reg [4:0] switch_addr;
     wire [7:0] anodes;
     wire [7:0] cnodes;
@@ -38,6 +40,8 @@ module mips_tb;
         .switch_ram(switch_ram),
         .switch_correctprediction(switch_correctprediction),
         .switch_misprediction(switch_misprediction),
+        .switch_loaduse(switch_loaduse),
+        .switch_branchstall(switch_branchstall),
         .switch_addr(switch_addr),
         .anodes(anodes),
         .cnodes(cnodes)
@@ -52,7 +56,7 @@ module mips_tb;
 		$dumpvars(0, mips_tb);
 
 		$display("led_data,\tstat_count,\tstat_correctprediction,\tstat_misprediction\t,stat_loaduse,\tstat_branchstall");
-		$monitor("%x, %x/%4d, %x/%3d, %x/%3d, %x/%3d, %x/%3d",
+		$monitor("%x, %x/%4d, %x/%3d, %x/%3d, %x/%3d, %x/%3d, %x/%3d",
             mips.led_data,
             mips.stat_count,
             mips.stat_count,
@@ -79,6 +83,8 @@ module mips_tb;
         switch_ram <= 1'b0;
         switch_correctprediction <= 1'b0;
         switch_misprediction <= 1'b0;
+        switch_loaduse <= 1'b0;
+        switch_branchstall <= 1'b0;
         switch_addr <= 5'b00000;
         
 		@(posedge raw_clk);

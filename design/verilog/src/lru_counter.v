@@ -27,14 +27,14 @@ module lru_counter
     wire [`BTB_LINE_SIZE-1:0] cnt0, cnt1, cnt2, cnt3, cnt4, cnt5, cnt6, cnt7;
     
     assign access_line = hit ? hit_line : lru_line;
-    assign rst0 = (access_line == 0);
-    assign rst1 = (access_line == 1);
-    assign rst2 = (access_line == 2);
-    assign rst3 = (access_line == 3);
-    assign rst4 = (access_line == 4);
-    assign rst5 = (access_line == 5);
-    assign rst6 = (access_line == 6);
-    assign rst7 = (access_line == 7);
+    assign rst0 = (access_line == 3'd0);
+    assign rst1 = (access_line == 3'd1);
+    assign rst2 = (access_line == 3'd2);
+    assign rst3 = (access_line == 3'd3);
+    assign rst4 = (access_line == 3'd4);
+    assign rst5 = (access_line == 3'd5);
+    assign rst6 = (access_line == 3'd6);
+    assign rst7 = (access_line == 3'd7);
 
     latch_counter #(
         .DATA_WIDTH(`BTB_LINE_SIZE),
@@ -46,7 +46,7 @@ module lru_counter
         .count(cnt0)
     );
     
-    latch_counter #(
+    latch_counter # (
         .DATA_WIDTH(`BTB_LINE_SIZE),
         .MAX(`BTB_LINE_NUM-1)
     ) counter1 (

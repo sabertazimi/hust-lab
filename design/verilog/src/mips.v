@@ -1,5 +1,5 @@
 module mips
-#(parameter DATA_WIDTH = 32, CODE_FILE = "~/Work/Source/architecture/design/verilog/mips/benchmark.hex", IM_BUS_WIDTH = 10, DM_BUS_WIDTH = 10, CLK_HZ = 18)
+#(parameter DATA_WIDTH = 32, CODE_FILE = "~/Work/Source/architecture/design/verilog/mips/benchmarkpp.hex", IM_BUS_WIDTH = 10, DM_BUS_WIDTH = 10, CLK_HZ = 18)
 (
     input raw_clk,
     input raw_rst,
@@ -9,6 +9,8 @@ module mips
     input switch_ram,
     input switch_correctprediction,
     input switch_misprediction,
+    input switch_loaduse,
+    input switch_branchstall,
     input [4:0] switch_addr,
     output [7:0] anodes,
     output [7:0] cnodes
@@ -742,6 +744,8 @@ module mips
                     : switch_ram ? ram_data
                     : switch_correctprediction ? stat_correctprediction
                     : switch_misprediction ? stat_misprediction
+                    : switch_loaduse ? stat_loaduse
+                    : switch_branchstall ? stat_branchstall
                     : syscall_count ? a0_data
                     : 0;
     

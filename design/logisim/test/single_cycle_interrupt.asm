@@ -94,7 +94,7 @@ bne $s2, $s3, isr1or2
 
 # spec for extend instructions
 addi $s1, $zero, 0xabc
-sw $s1, 0($zero)
+sw $s1, 12($zero)
 
 addi $s1, $zero, 2              # outer loop counter
 int_loop1:
@@ -127,6 +127,13 @@ int_shift2:
 add $a0, $zero, $s0             # display $s0
 addi $v0, $zero, 1
 syscall
+nop
+nop
+nop
+nop
+nop
+nop
+nop
 sub $s2, $s2, $v0               # $v0 = 1
 addi $s4, $zero, 8              # constant: 8
 sub $s5, $s2, $s4		# $s2 - 8
