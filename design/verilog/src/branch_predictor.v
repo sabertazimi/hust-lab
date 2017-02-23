@@ -1,3 +1,4 @@
+`include "defines.vh"
 /**
  * @module branch_predictor
  * @brief branch predictor
@@ -10,9 +11,12 @@
 module branch_predictor
 #(parameter DATA_WIDTH = 32)
 (
-    input taken,
     input [DATA_WIDTH-1:0] pc,
     input [DATA_WIDTH-1:0] ir,
+    input hit,
+    input [`BTB_DATA_SIZE-1:0] btb_branch_addr,
+    output IF_branch,
+    output [DATA_WIDTH-1:0] IF_predict_branch,
     output [DATA_WIDTH-1:0] predict_addr
 );
 
@@ -22,9 +26,6 @@ module branch_predictor
     wire [25:0] imm26;
     wire beq, bne, j, jal, bgtz;
     wire [DATA_WIDTH-1:0] addr_imm;
-    wire [DATA_WIDTH-1:0] addr_branch;
-    wire [DATA_WIDTH-1:0] pcp4;
-    wire [DATA_WIDTH-1:0] predict_branch_addr;
 
     decoder decoder (
         .instruction(ir),
@@ -78,11 +79,13 @@ module branch_predictor
         .imm16(imm16),
         .imm26(imm26),
         .addr_imm(addr_imm),
-        .addr_branch(addr_branch)
+        .addr_branch(IF_predict_branch)
     );
     
-    assign pcp4 = pc + 4;
-    assign predict_branch_addr = (beq || bne || bgtz) ? addr_branch : pcp4;
-    assign predict_addr = (j || jal) ? addr_imm : predict_branch_addr;
+    assign IF_branch = (beq || bne || bgtz);
+    assign predict_addr = (j || jal) ? addr_imm
+                        : hit ? {{(DATA_WIDTH-12){1'b0}}, btb_branch_addr, 2'b00}
+                        : IF_branch ? IF_predict_branch
+                        : (pc + 4);
     
 endmodule // branch_predictor

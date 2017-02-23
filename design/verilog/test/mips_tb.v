@@ -3,7 +3,7 @@
 
 module mips_tb;
     parameter DATA_WIDTH = 32;
-    parameter CODE_FILE = "mips/benchmark.hex";
+    parameter CODE_FILE = "mips/waterfall_lamp.hex";
     parameter IM_BUS_WIDTH = 10;
     parameter DM_BUS_WIDTH = 24;
     parameter CLK_HZ = 0;

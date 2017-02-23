@@ -1,3 +1,5 @@
+`include "defines.vh"
+
 /**
  * @module branch_target_buffer
  * @brief branch target buffer for branch prediction
@@ -26,21 +28,20 @@ module branch_target_buffer
     input [DATA_WIDTH-1:0] IF_predict_addr,
     input [DATA_WIDTH-1:0] ID_branch_pc,
     input [DATA_WIDTH-1:0] ID_branch_addr,
-    output taken
+    output [`BTB_PREDICT_SIZE-1:0] taken,
+    output IF_hit,
+    output [`BTB_DATA_SIZE-1:0] btb_branch_addr
 );
-
-`include "defines.vh"
 
     integer i;
 
     // BTB table entries
     reg valid [`BTB_LINE_NUM-1:0];
     reg [`BTB_PREDICT_SIZE-1:0] predict_bits [`BTB_LINE_NUM-1:0];
-    reg [`BTB_TAGE_SIZE-1:0] branch_tags [`BTB_LINE_NUM-1:0];
+    reg [`BTB_TAG_SIZE-1:0] branch_tags [`BTB_LINE_NUM-1:0];
     reg [`BTB_DATA_SIZE-1:0] target_PCs [`BTB_LINE_NUM-1:0];
     
     // hit line
-    wire IF_hit;
     wire [`BTB_LINE_SIZE-1:0] IF_hit_line;
     wire ID_hit;
     wire [`BTB_LINE_SIZE-1:0] ID_hit_line;
@@ -112,49 +113,48 @@ module branch_target_buffer
 		    end
         end else if (en) begin
             if (~IF_hit && IF_branch) begin
+                valid[IF_access_line] <= 1;
                 predict_bits[IF_access_line] <=  `WEAKLY_TAKEN;
                 branch_tags[IF_access_line] <=  IF_branch_pc[11:2];
-                target_PCs[IF_acess_line] <= IF_predict_addr[11:2];
+                target_PCs[IF_access_line] <= IF_predict_addr[11:2];
             end
             
             if (ID_branch) begin
                 if (~ID_hit) begin
+                    valid[ID_access_line] <= 1;
                     predict_bits[ID_access_line] <=  `WEAKLY_TAKEN;
                     branch_tags[ID_access_line] <=  ID_branch_pc[11:2];
-                    target_PCs[ID_acess_line] <= ID_branch_addr[11:2];
+                    target_PCs[ID_access_line] <= ID_branch_addr[11:2];
                 end else begin
+                    target_PCs[ID_access_line] <= ID_branch_addr[11:2];
                     case (predict_bits[ID_access_line])
                         `STRONGLY_TAKEN:
                             case (misprediction)
-                                0: predict_bits[ID_access_line] <= `STRONGLY_TAKEN;
+                                0:predict_bits[ID_access_line] <= `STRONGLY_TAKEN;
                                 1: predict_bits[ID_access_line] <= `WEAKLY_TAKEN;
-                                default: predict_bits[ID_access_line] <= predict_bits[ID_access_line];
                             endcase
                         `WEAKLY_TAKEN:
                             case (misprediction)
                                 0: predict_bits[ID_access_line] <= `STRONGLY_TAKEN;
                                 1: predict_bits[ID_access_line] <= `WEAKLY_NOT_TAKEN;
-                                default: predict_bits[ID_access_line] <= predict_bits[ID_access_line];
                             endcase
                         `WEAKLY_NOT_TAKEN:
                             case (misprediction)
                                 0: predict_bits[ID_access_line] <= `STRONGLY_NOT_TAKEN;
                                 1: predict_bits[ID_access_line] <= `WEAKLY_TAKEN;
-                                default: predict_bits[ID_access_line] <= predict_bits[ID_access_line];
                             endcase
                         `STRONGLY_NOT_TAKEN:
                             case (misprediction)
                                 0: predict_bits[ID_access_line] <= `STRONGLY_NOT_TAKEN;
                                 1: predict_bits[ID_access_line] <= `WEAKLY_NOT_TAKEN;
-                                default: predict_bits[ID_access_line] <= predict_bits[ID_access_line];
                             endcase
-                        default: predict_bits[ID_access_line] <= predict_bits[ID_access_line];
                     endcase
                 end
             end
         end
     end
     
-    assign taken <= predict_bits[IF_access_line];
+    assign taken = predict_bits[IF_access_line];
+    assign btb_branch_addr = target_PCs[IF_access_line];
     
 endmodule // associative_comparator

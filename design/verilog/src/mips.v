@@ -14,6 +14,8 @@ module mips
     output [7:0] cnodes
 );
 
+`include "defines.vh"
+
     ///< wire declaration
 
     /// clock divider
@@ -28,7 +30,7 @@ module mips
     wire [DATA_WIDTH-1:0] IF_pc_next;
     wire [DATA_WIDTH-1:0] IF_predict_addr;
     wire [DATA_WIDTH-1:0] IF_mispredict_fix_addr;
-    wire IF_taken;
+    wire [`BTB_PREDICT_SIZE-1:0] IF_taken;
 
     // instruction memory
     wire [DATA_WIDTH-1:0] IF_ir;
@@ -250,22 +252,38 @@ module mips
         .dout(IF_pc)
     );
     
-    // 2 bit dynamic predictor
-    two_bit_predictor two_bit_predictor (
+    // btb 
+    wire IF_hit;
+    wire IF_branch;
+    wire [DATA_WIDTH-1:0] IF_predict_branch;
+    wire [DATA_WIDTH-1:0] ID_true_branch;
+    wire [`BTB_DATA_SIZE-1:0] btb_branch_addr;
+    
+    branch_target_buffer btb (
         .clk(clk || switch_rst),
         .rst(raw_rst),
         .en(stall && raw_en),
-        .branch(ID_beq || ID_bne || ID_bgtz),
+        .IF_branch(IF_branch),
+        .ID_branch(ID_beq || ID_bne || ID_bgtz),
         .misprediction(ID_misprediction),
-        .taken(IF_taken)
+        .IF_branch_pc(IF_pc),
+        .IF_predict_addr(IF_predict_branch),
+        .ID_branch_pc(ID_pc),
+        .ID_branch_addr(ID_true_branch),
+        .taken(IF_taken),
+        .IF_hit(IF_hit),
+        .btb_branch_addr(btb_branch_addr)
     );
     
     branch_predictor #(
         .DATA_WIDTH(DATA_WIDTH)
     ) branch_predictor (
-        .taken(IF_taken),
         .pc(IF_pc),
         .ir(IF_ir),
+        .hit(IF_hit),
+        .btb_branch_addr(btb_branch_addr),
+        .IF_branch(IF_branch),
+        .IF_predict_branch(IF_predict_branch),
         .predict_addr(IF_predict_addr)
     );
 
@@ -290,7 +308,7 @@ module mips
         .en(stall && raw_en),
         .IF_PC(IF_pc),
         .IF_IR(IF_ir),
-        .IF_taken(IF_taken),
+        .IF_taken(IF_taken[1]),
         .ID_PC(ID_pc),
         .ID_IR(ID_ir),
         .ID_taken(ID_taken)
@@ -389,6 +407,8 @@ module mips
         .addr_imm(ID_addr_imm),
         .addr_branch(ID_addr_branch)
     );
+    
+    assign ID_true_branch = ID_jmp_reg ? ID_addr_branch : (ID_pc + 4);
     
     ///> ID stage
     

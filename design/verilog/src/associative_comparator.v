@@ -28,8 +28,8 @@ module associative_comparator
     input [`BTB_TAG_SIZE-1:0] tag5,
     input [`BTB_TAG_SIZE-1:0] tag6,
     input [`BTB_TAG_SIZE-1:0] tag7,
-    output hit,
-    output [`BTB_LINE_SIZE-1:0] hit_line
+    output reg hit,
+    output reg [`BTB_LINE_SIZE-1:0] hit_line
 );
 
     wire hit0;
@@ -77,7 +77,7 @@ module associative_comparator
             hit_line <= 3'd7;
         end else begin
             hit <= 0;           // miss
-            hit_line <= 3'd8;
+            hit_line <= 3'd0;
         end
     end
 
