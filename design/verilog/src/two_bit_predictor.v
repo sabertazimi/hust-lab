@@ -12,7 +12,7 @@ module two_bit_predictor
 
     reg [1:0] state;
     reg [1:0] next_state;
-    
+
     // update state
     always @(posedge clk) begin
         if(rst) begin
@@ -23,7 +23,7 @@ module two_bit_predictor
             state <= state;
         end
     end
-    
+
     // compute next state
     always @ (rst or en or misprediction or state) begin
         if (rst) begin
@@ -60,7 +60,7 @@ module two_bit_predictor
             endcase
         end
     end
-    
+
     // update taken output
     always @ (state) begin
         case (state)
@@ -70,5 +70,5 @@ module two_bit_predictor
             `STRONGLY_NOT_TAKEN  : taken <= 0;
         endcase
     end
-    
+
 endmodule // two_bit_predictor
