@@ -176,18 +176,13 @@ endmodule
 *   ALUSrc(EX)
 *   ExtOp(EX)
 *   ALUSham(EX)
-*   Beq(EX)
-*   Bne(EX)
-*   Bgtz(EX)
-*   Jmp(EX)
 *   Jal(EX)
-*   Jr(EX)
 
+*   rs(EX)
 *   rt(EX)
 *   rd(EX)
 *   sham(EX)
 *   imm16(EX)
-*   imm26(EX)
 *   R1(EX)
 *   R2(EX/MEM)
 
@@ -204,8 +199,9 @@ endmodule
 *   RAMWe(MEM)
 *   RAMByte(MEM)
  
+ *  rt(MEM)
 *   Result(MEM/WB)
-*   RW# (WB)
+*   RW# (MEM/WB)
 *   R2(MEM)
 
 ### MEM/WB
