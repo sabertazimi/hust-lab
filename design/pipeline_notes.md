@@ -190,8 +190,6 @@ endmodule
 *   imm26(EX)
 *   R1(EX)
 *   R2(EX/MEM)
-*   $v0(WB)
-*   $a0(WB)
 
 ### EX/MEM
 
@@ -209,8 +207,6 @@ endmodule
 *   Result(MEM/WB)
 *   RW# (WB)
 *   R2(MEM)
-*   $v0(WB)
-*   $a0(WB)
 
 ### MEM/WB
 
@@ -226,8 +222,6 @@ endmodule
 *   RAMData(WB)
 *   Result(WB)
 *   RW# (WB)
-*   $v0(WB)
-*   $a0(WB)
 
 ## hazard
 
