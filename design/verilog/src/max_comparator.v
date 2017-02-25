@@ -2,6 +2,8 @@
 
 /**
  * @module max_comparator
+ * @author sabertazimi
+ * @email sabertazimi@gmail.com
  * @brief find line that has max reference count
  * @input cntX reference count of lineX
  * @output lru_line line that has max reference count(lru line)

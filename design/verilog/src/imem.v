@@ -1,5 +1,7 @@
 /**
  * @module imem
+ * @author sabertazimi
+ * @email sabertazimi@gmail.com
  * @brief instruction cache memory (ROM)
  * @param DATA_WIDTH data width
  * @param BUS_WIDTH bus width

@@ -1,10 +1,12 @@
 /**
  * @module alu
+ * @author sabertazimi
+ * @email sabertazimi@gmail.com
  * @param DATA_WIDTH data width
  * @input srcA A port data
  * @input srcB B port data
  * @input aluop operation code
- * @ouput aluout calculation result
+ * @output aluout calculation result
  * @output zero equal flag
  * @output of signed overflow flag
  * @output uof unsigned overflow flag

@@ -1,6 +1,8 @@
 
 /**
  * @module decoder
+ * @author sabertazimi
+ * @email sabertazimi@gmail.com
  * @brief decode intruction to rs/rt/rd, sham/imm16/imm26, op/functy
  * @param DATA_WIDTH data width
  * @input instruction input instruction code

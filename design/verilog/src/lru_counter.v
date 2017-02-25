@@ -2,6 +2,8 @@
 
 /**
  * @module lru_counter
+ * @author sabertazimi
+ * @email sabertazimi@gmail.com
  * @brief least recent use algorithm hardware implementation (counter implementation)
  * @param DATA_WIDTH data width
  * @input clk clock signal

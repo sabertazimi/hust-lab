@@ -2,6 +2,8 @@
 
 /**
  * @module associative_comparator
+ * @author sabertazimi
+ * @email sabertazimi@gmail.com
  * @brief associative comparator for BTB
  * @input src_tag tag to compare
  * @input validx valid bit of line x in BTB

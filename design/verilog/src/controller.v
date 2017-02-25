@@ -1,5 +1,7 @@
 /**
  * @module controller
+ * @author sabertazimi
+ * @email sabertazimi@gmail.com
  * @brief control signals generator
  * @input op op code
  * @input funct functy code

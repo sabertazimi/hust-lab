@@ -1,5 +1,7 @@
 /**
  * @module forward_unit
+ * @author sabertazimi
+ * @email sabertazimi@gmail.com
  * @brief data hazards detection and forward signals generation
  * @input ID_rs rs value in ID stage
  * @input ID_rt rt value in ID stage

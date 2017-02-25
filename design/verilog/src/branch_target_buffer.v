@@ -2,6 +2,8 @@
 
 /**
  * @module branch_target_buffer
+ * @author sabertazimi
+ * @email sabertazimi@gmail.com
  * @brief branch target buffer for branch prediction
  * @param DATA_WIDTH data width
  * @input clk clock signal

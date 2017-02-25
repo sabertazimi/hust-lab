@@ -1,5 +1,7 @@
 /**
  * @module ID_EX
+ * @author sabertazimi
+ * @email sabertazimi@gmail.com
  * @brief ID_EX pipeline register
  * @input clk clock signal
  * @input rst reset signal

@@ -1,5 +1,7 @@
 /**
  * @module latch_counter
+ * @author sabertazimi
+ * @email sabertazimi@gmail.com
  * @brief latch counter (latching when reaching max vlaue)
  * @input clk clock signal
  * @input rst reset signal

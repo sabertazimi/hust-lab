@@ -1,3 +1,14 @@
+/**
+ * @module led_unit
+ * @author sabertazimi
+ * @email sabertazimi@gmail.com
+ * @brief led display module (bind to anodes and cnodes in FPGA)
+ * @param DATA_WIDTH data width
+ * @input clk_src clock signal (light different led on in round turn)
+ * @input led_data raw decimal data
+ * @output anodes determine which led light on at now
+ * @output cnodes determine how led light on (number)
+ */
 module led_unit
 #(parameter DATA_WIDTH = 32)
 (

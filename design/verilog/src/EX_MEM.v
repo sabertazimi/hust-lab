@@ -1,5 +1,7 @@
 /**
  * @module EX_MEM
+ * @author sabertazimi
+ * @email sabertazimi@gmail.com
  * @brief EX_MEM pipeline register
  * @input clk clock signal
  * @input rst reset signal

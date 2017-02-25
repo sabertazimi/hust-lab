@@ -1,3 +1,12 @@
+/**
+ * @module data_to_segment
+ * @author sabertazimi
+ * @email sabertazimi@gmail.com
+ * @brief raw data to segment encoder
+ * @param DATA_WIDTH data width
+ * @input data raw decimal data
+ * @output seg_data bit data for cnodes
+ */
 module data_to_segment
 #(parameter DATA_WIDTH = 32)
 (

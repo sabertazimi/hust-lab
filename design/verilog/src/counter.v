@@ -1,5 +1,7 @@
 /**
  * @module counter
+ * @author sabertazimi
+ * @email sabertazimi@gmail.com
  * @brief up counter 
  * @param DATA_WIDTH data width
  * @param STEP counting step

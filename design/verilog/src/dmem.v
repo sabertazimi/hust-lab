@@ -1,5 +1,7 @@
 /**
  * @module dmem
+ * @author sabertazimi
+ * @email sabertazimi@gmail.com
  * @brief data cache memory (RAM)
  * @param DATA_WIDTH data width
  * @param BUS_WIDTH bus width

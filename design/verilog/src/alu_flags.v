@@ -1,5 +1,7 @@
 /**
  * @module alu_flags
+ * @author sabertazimi
+ * @email sabertazimi@gmail.com
  * @brief get flags after alu calculation
  * @param DATA_WIDTH data width
  * @input srcA A port data

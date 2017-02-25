@@ -1,5 +1,7 @@
 /**
  * @module load_use_detector
+ * @author sabertazimi
+ * @email sabertazimi@gmail.com
  * @brief load use data hazard detection
  * @input ID_rs rs value in ID stage
  * @input ID_rt rt value in ID stage

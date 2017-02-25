@@ -1,5 +1,7 @@
 /**
  * @module instruction_typer
+ * @author sabertazimi
+ * @email sabertazimi@gmail.com
  * @brief instruction typer
  * @input op op code
  * @input funct funct code

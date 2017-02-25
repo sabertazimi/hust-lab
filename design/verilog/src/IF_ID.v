@@ -1,5 +1,7 @@
 /**
  * @module IF_ID
+ * @author sabertazimi
+ * @email sabertazimi@gmail.com
  * @brief IF_ID pipeline register
  * @input clk clock signal
  * @input rst reset signal

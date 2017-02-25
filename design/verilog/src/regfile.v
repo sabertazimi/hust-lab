@@ -1,5 +1,7 @@
 /**
  * @module regfile
+ * @author sabertazimi
+ * @email sabertazimi@gmail.com
  * @brief register files for MIPS CPU, contains 32 D flip-flop registers
  * @param DATA_WIDTH data width
  * @input clk clock signal

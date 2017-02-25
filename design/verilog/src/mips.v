@@ -1,3 +1,17 @@
+/**
+ * @module mips
+ * @author sabertazimi
+ * @email sabertazimi@gmail.com
+ * @param DATA_WIDTH data width
+ * @param CODE_FILE rom code static path
+ * @param IM_BUS_WIDTH instrution rom address width
+ * @param DM_BUS_WIDTH data ram address width
+ * @param CLK_HZ cpu hz
+ * @input raw_X input of control signal
+ * @input switch_X switch to change led data display
+ * @output anodes anodes binding
+ * @output cnodes cnodes binding
+ */
 module mips
 #(parameter DATA_WIDTH = 32, CODE_FILE = "~/Work/Source/architecture/design/verilog/mips/benchmarkpp.hex", IM_BUS_WIDTH = 10, DM_BUS_WIDTH = 10, CLK_HZ = 18)
 (

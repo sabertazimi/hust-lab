@@ -1,5 +1,7 @@
 /**
  * @module MEM_WB
+ * @author sabertazimi
+ * @email sabertazimi@gmail.com
  * @brief MEM_WB pipeline register
  * @input clk clock signal
  * @input rst reset signal

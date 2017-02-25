@@ -1,3 +1,8 @@
+/**
+ * @author sabertazimi
+ * @email sabertazimi@gmail.com
+ */
+
 // `ifndef DEFINES_INCLUDED
 // `define DEFINES_INCLUDED
 

@@ -1,5 +1,7 @@
 /**
  * @module address_calculator
+ * @author sabertazimi
+ * @email sabertazimi@gmail.com
  * @brief address calculation
  * @param DATA_WIDTH data width
  * @input pc pc value

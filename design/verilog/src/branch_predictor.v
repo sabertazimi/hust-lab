@@ -2,6 +2,8 @@
 
 /**
  * @module branch_predictor
+ * @author sabertazimi
+ * @email sabertazimi@gmail.com
  * @brief branch predictor
  * @param DATA_WIDTH data width
  * @input pc pc
