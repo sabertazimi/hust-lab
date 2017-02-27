@@ -1,0 +1,33 @@
+/*
+ * Tab.css
+ * Copyright (C) 2017 sabertazimi
+ *
+ * Distributed under terms of the MIT license.
+ */
+ 
+* {
+	 box-sizing: border-box;
+	 margin: 0;
+	 padding: 0;
+}
+
+.container {
+	list-style-type: none;
+	background-color: #1b6ec2;
+	display: flex;
+	justify-content: space-around;
+    line-height: 8vh;
+}
+
+.container .text {
+	min-height: 8vh;
+	min-width: 8vw;
+    color: white;
+
+	border-bottom: 2px solid transparent;
+	transition: border-bottom 0.3s linear;
+}
+
+.container .text:hover {
+	border-bottom: 2px solid #fa5252;
+}
