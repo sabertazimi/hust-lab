@@ -1,0 +1,10 @@
+#! /bin/sh
+#
+# ipcrm.sh
+# Copyright (C) 2016 sabertazimi <sabertazimi@gmail.com>
+#
+# Distributed under terms of the MIT license.
+#
+
+ipcrm --all=sem
+ipcs -m | awk '$4==666 && $5==2 {print $2}' | xargs -I {} ipcrm -m {}
