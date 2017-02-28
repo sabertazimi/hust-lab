@@ -13,6 +13,10 @@ QMainWindow &CPUWindow::setText(const char *txt) {
     return (*this);
 }
 
+const char* CPUWindow::getCPU(void) {
+    return NULL;
+}
+
 CPUWindow::~CPUWindow(void)
 {
     delete label;

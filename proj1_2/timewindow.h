@@ -14,7 +14,7 @@ class TimeWindow : public QMainWindow
 public:
     explicit TimeWindow(QWidget *parent = 0);
     ~TimeWindow(void);
-    QMainWindow &setTime(const char *txt);
+    QMainWindow &setText(const char *txt);
     const char* getTime(void);
 
 private:

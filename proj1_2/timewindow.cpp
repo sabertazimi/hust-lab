@@ -12,7 +12,7 @@ TimeWindow::TimeWindow(QWidget *parent) : QMainWindow(parent)
     label->setText("Time = now");
 }
 
-QMainWindow &TimeWindow::setTime(const char *txt) {
+QMainWindow &TimeWindow::setText(const char *txt) {
     QString str(txt);
     cout << str.toLatin1().data() << endl;
     label->setText(str);

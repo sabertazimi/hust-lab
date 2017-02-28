@@ -15,9 +15,13 @@ public:
     explicit SumWindow(QWidget *parent = 0);
     ~SumWindow(void);
     QMainWindow &setText(const char *txt);
+    const char *getSum(void);
 
 private:
     QLabel *label;
+    int sum;
+    int cnt;
+    char *sumTxt;
 };
 
 #endif // SUMWINDOW_H
