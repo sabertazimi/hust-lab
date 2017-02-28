@@ -1,6 +1,5 @@
 #include <QString>
 #include "timewindow.h"
-#include "ui_timewindow.h"
 
 TimeWindow::TimeWindow(QWidget *parent) : QMainWindow(parent)
 {

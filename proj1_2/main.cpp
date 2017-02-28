@@ -1,4 +1,6 @@
 #include "timewindow.h"
+#include "cpuwindow.h"
+#include "sumwindow.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
@@ -7,6 +9,10 @@ int main(int argc, char *argv[])
 
     TimeWindow tw;
     tw.show();
+    CPUWindow cw;
+    cw.show();
+    SumWindow sw;
+    sw.show();
 
     return a.exec();
 }

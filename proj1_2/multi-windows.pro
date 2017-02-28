@@ -14,6 +14,10 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        timewindow.cpp
+        timewindow.cpp \
+    cpuwindow.cpp \
+    sumwindow.cpp
 
-HEADERS  += timewindow.h
+HEADERS  += timewindow.h \
+    cpuwindow.h \
+    sumwindow.h
