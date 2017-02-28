@@ -2,11 +2,8 @@
 #include "timewindow.h"
 #include "ui_timewindow.h"
 
-TimeWindow::TimeWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::TimeWindow)
+TimeWindow::TimeWindow(QWidget *parent) : QMainWindow(parent)
 {
-    ui->setupUi(this);
     label = new QLabel(this);
     label->setText("Time = now");
 }
@@ -19,5 +16,4 @@ QMainWindow &TimeWindow::setText(const char *txt) {
 TimeWindow::~TimeWindow()
 {
     delete label;
-    delete ui;
 }

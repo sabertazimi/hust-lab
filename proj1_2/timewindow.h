@@ -7,10 +7,6 @@
 
 using namespace std;
 
-namespace Ui {
-class TimeWindow;
-}
-
 class TimeWindow : public QMainWindow
 {
     Q_OBJECT
@@ -22,7 +18,6 @@ public:
 
 private:
     QLabel *label;
-    Ui::TimeWindow *ui;
 };
 
 #endif // TIMEWINDOW_H

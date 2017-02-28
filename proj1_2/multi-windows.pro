@@ -4,7 +4,8 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+# QT       += core gui
+QT       += core
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -16,5 +17,3 @@ SOURCES += main.cpp\
         timewindow.cpp
 
 HEADERS  += timewindow.h
-
-FORMS    += timewindow.ui
