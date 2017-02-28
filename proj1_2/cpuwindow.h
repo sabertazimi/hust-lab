@@ -11,13 +11,15 @@ class CPUWindow : public QMainWindow
 public:
     explicit CPUWindow(QWidget *parent = 0);
     ~CPUWindow(void);
-    QMainWindow &setText(const char *txt);
-    const char* getCPU(void);
 
 private:
     QLabel *label;
-    FILE *proc_stat;
     char *cpuTxt;
+    QMainWindow &setText(const char *txt);
+    const char* getCPU(void);
+
+private slots:
+    void updateCPU(void);
 };
 
 #endif // CPUWINDOW_H

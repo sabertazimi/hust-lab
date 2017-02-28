@@ -1,4 +1,5 @@
 #include <QString>
+#include <QTimer>
 #include <cstdio>
 #include <unistd.h>
 #include "cpuwindow.h"
@@ -12,26 +13,33 @@ CPUWindow::CPUWindow(QWidget *parent) : QMainWindow(parent)
     label->setText("CPU Usage = 0%");
     label->setFixedSize(220,50);
     cpuTxt = new char[10];
-    
+
+    // using slots to implement update
+    QTimer *timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(updateCPU()));
+    timer->start(2000);
+}
+
+CPUWindow::~CPUWindow(void)
+{
+    delete label;
+    delete cpuTxt;
+}
+
+const char* CPUWindow::getCPU(void) {
+    FILE *proc_stat = NULL;
+    char buf[50];
+    int total = 0, idle = 0;
+
     // open /proc/stat
     proc_stat = fopen("/proc/stat","r");
     if (proc_stat == NULL) {
         exit(0);
     }
-}
 
-QMainWindow &CPUWindow::setText(const char *txt) {
-    label->setText(QString(txt));
-    return (*this);
-}
-
-const char* CPUWindow::getCPU(void) {
-    char buf[50];
-    int total = 0, idle = 0;
-    
     fscanf(proc_stat, "%s", buf);
     
-    for(int i = 0; i < 9; i++) {
+    for(int i = 0; i < 10; i++) {
         fscanf(proc_stat, "%s", buf);
         total += atoi(buf);
         
@@ -45,7 +53,7 @@ const char* CPUWindow::getCPU(void) {
     sleep(1);   // update cpu stat
     fscanf(proc_stat, "%s", buf);
     
-    for (int i = 0; i < 9; i++) {
+    for (int i = 0; i < 10; i++) {
         fscanf(proc_stat, "%s", buf);
         total -= atoi(buf);
         
@@ -55,14 +63,13 @@ const char* CPUWindow::getCPU(void) {
         }    
     }
     
-    sprintf(cpuTxt, "CPU Usage = %.2f%%\n", 100.0*((float)(total-idle)) / ((float)(total)));
-    
+    fclose(proc_stat);
+
+    sprintf(cpuTxt, "CPU Usage = %.2f%%\n", 100.0*((float)(idle-total)) / ((float)(-total)));
+
     return cpuTxt;
 }
 
-CPUWindow::~CPUWindow(void)
-{
-    delete label;
-    delete cpuTxt;
-    fclose(proc_stat);
+void CPUWindow::updateCPU(void) {
+    label->setText(QString(getCPU()));
 }
