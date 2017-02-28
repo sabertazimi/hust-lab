@@ -3,9 +3,6 @@
 
 #include <QMainWindow>
 #include <QLabel>
-#include <string>
-
-using namespace std;
 
 class CPUWindow : public QMainWindow
 {
@@ -19,6 +16,8 @@ public:
 
 private:
     QLabel *label;
+    FILE *proc_stat;
+    char *cpuTxt;
 };
 
 #endif // CPUWINDOW_H

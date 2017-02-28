@@ -1,5 +1,5 @@
 #include <QString>
-#include <time.h>
+#include <ctime>
 #include "timewindow.h"
 #include <iostream>
 
@@ -9,13 +9,12 @@ TimeWindow::TimeWindow(QWidget *parent) : QMainWindow(parent)
 {
     move(QPoint(400, 300));
     label = new QLabel(this);
+    label->setFixedSize(220,50);
     label->setText("Time = now");
 }
 
 QMainWindow &TimeWindow::setText(const char *txt) {
-    QString str(txt);
-    cout << str.toLatin1().data() << endl;
-    label->setText(str);
+    label->setText(QString(txt));
     return (*this);
 }
 

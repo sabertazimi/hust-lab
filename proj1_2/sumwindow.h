@@ -3,9 +3,6 @@
 
 #include <QMainWindow>
 #include <QLabel>
-#include <string>
-
-using namespace std;
 
 class SumWindow : public QMainWindow
 {
