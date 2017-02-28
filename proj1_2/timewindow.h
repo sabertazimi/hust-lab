@@ -2,6 +2,10 @@
 #define TIMEWINDOW_H
 
 #include <QMainWindow>
+#include <QLabel>
+#include <string>
+
+using namespace std;
 
 namespace Ui {
 class TimeWindow;
@@ -14,8 +18,10 @@ class TimeWindow : public QMainWindow
 public:
     explicit TimeWindow(QWidget *parent = 0);
     ~TimeWindow();
+    QMainWindow &setText(const char *txt);
 
 private:
+    QLabel *label;
     Ui::TimeWindow *ui;
 };
 

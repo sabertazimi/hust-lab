@@ -4,8 +4,9 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    TimeWindow w;
-    w.show();
+
+    TimeWindow tw;
+    tw.show();
 
     return a.exec();
 }

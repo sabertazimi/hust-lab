@@ -13,14 +13,8 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        timewindow.cpp \
-    cpuwindow.cpp \
-    sumwindow.cpp
+        timewindow.cpp
 
-HEADERS  += timewindow.h \
-    cpuwindow.h \
-    sumwindow.h
+HEADERS  += timewindow.h
 
-FORMS    += timewindow.ui \
-    cpuwindow.ui \
-    sumwindow.ui
+FORMS    += timewindow.ui
