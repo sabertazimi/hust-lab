@@ -65,7 +65,13 @@ $ cat /etc/redhat_release # centos 6.6
 $ uname -a                # kernel-2.6.32
 ```
 
-2. follow centos wiki
+2. from kernel.org
+
+```sh
+$ wget https://www.kernel.org/pub/linux/kernel/v2.6/linux-2.6.32.27.tar.gz
+```
+
+3. follow centos wiki
 
 ```sh
 $ rpm -i http://vault.centos.org/6.6/updates/Source/SPackages/kernel-2.6.32-504.30.3.el6.src.rpm 2>&1 | grep -v exist
@@ -73,6 +79,43 @@ $ mkdir -p ~/rpmbuild/{BUILD,BUILDROOT,RPMS,SOURCES,SPECS,SRPMS}
 $ echo '%_topdir %(echo $HOME)/rpmbuild' > ~/.rpmmacros
 $ cd ~/rpmbuild/SPECS
 $ rpmbuild -bp --target=$(uname -m) kernel.spec
+```
+
+### add syscall
+
+*   kernel/sys.c
+*   arch/x86/kernel/syscall_table_32.S
+*   arch/x86/include/asm/unistd_32.h
+
+### build and install kernel
+
+```sh
+# make mrproper  // 清理以前的编译痕迹
+# make clean
+# cp /boot/config-`uname -r` .config  // 设置内核编译选项
+# make menuconfig  // 执行该命令需要ncurses库
+# make bzImage  // 编辑内核压缩镜像
+# make modules  // 编辑内核模块
+# make modules_install  // 安装内核模块
+# make install  // 安装内核
+# reboot
+```
+
+### test
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    syscall(338, 1);
+    return 0;
+}
+```
+
+```sh
+$ gcc -o syscall_test syscall_test.c
+$ ./syscall_test
+$ dmesg -c
 ```
 
 ### kernel config
