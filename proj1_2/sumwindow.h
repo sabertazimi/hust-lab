@@ -13,7 +13,7 @@ class SumWindow : public QMainWindow
 
 public:
     explicit SumWindow(QWidget *parent = 0);
-    ~SumWindow();
+    ~SumWindow(void);
     QMainWindow &setText(const char *txt);
 
 private:

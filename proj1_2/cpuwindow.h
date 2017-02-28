@@ -13,7 +13,7 @@ class CPUWindow : public QMainWindow
 
 public:
     explicit CPUWindow(QWidget *parent = 0);
-    ~CPUWindow();
+    ~CPUWindow(void);
     QMainWindow &setText(const char *txt);
 
 private:

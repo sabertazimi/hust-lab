@@ -13,7 +13,7 @@ QMainWindow &SumWindow::setText(const char *txt) {
     return (*this);
 }
 
-SumWindow::~SumWindow()
+SumWindow::~SumWindow(void)
 {
     delete label;
 }
