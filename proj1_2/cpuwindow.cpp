@@ -3,6 +3,7 @@
 
 CPUWindow::CPUWindow(QWidget *parent) : QMainWindow(parent)
 {
+    move(QPoint(600, 300));
     label = new QLabel(this);
     label->setText("CPU Usage = 0%");
 }

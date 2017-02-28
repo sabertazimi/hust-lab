@@ -3,6 +3,7 @@
 
 TimeWindow::TimeWindow(QWidget *parent) : QMainWindow(parent)
 {
+    move(QPoint(400, 300));
     label = new QLabel(this);
     label->setText("Time = now");
 }

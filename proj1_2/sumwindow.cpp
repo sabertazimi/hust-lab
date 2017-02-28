@@ -3,6 +3,7 @@
 
 SumWindow::SumWindow(QWidget *parent) : QMainWindow(parent)
 {
+    move(QPoint(800, 300));
     label = new QLabel(this);
     label->setText("Sum = 0");
 }
