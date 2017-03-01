@@ -81,6 +81,8 @@ $ cd ~/rpmbuild/SPECS
 $ rpmbuild -bp --target=$(uname -m) kernel.spec
 ```
 
+4. follow ppt , Ubuntu 14.04 on VirtualBox
+
 ### add syscall
 
 *   kernel/sys.c
@@ -154,6 +156,7 @@ $ su
 
 *   Linux Kernel in a Nutshell
 *   [Centos Wiki](https://wiki.centos.org/zh/HowTos/Custom_Kernel)
+*   [Ubuntu Wiki](https://wiki.ubuntu.com/Kernel/BuildYourOwnKernel)
  
 ## Proj3 - Device Driver
 
