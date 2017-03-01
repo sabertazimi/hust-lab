@@ -13,7 +13,7 @@
 # tar -zxvf linux-4.4.31.tar.gz
 # cd linux-4.4.31/
 
-apt-get install libncurses5-dev
+apt-get install libncurses5-dev libssl-dev
 make mrproper           # 清除旧的编译内容
 make menuconfig         # 编译新内核的配置文件
 make bzImage            # 生成新的内核镜像
