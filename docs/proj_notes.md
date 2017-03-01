@@ -83,13 +83,61 @@ $ rpmbuild -bp --target=$(uname -m) kernel.spec
 
 4. follow ppt , Ubuntu 14.04 on VirtualBox
 
-owing to above failure, current proceeding got speed up by writing kernel make shell script - kernel.sh
+*   owing to above failure, current proceeding got speed up by writing kernel make shell script - kernel.sh
 
 ### add syscall
+
+#### 2.x
 
 *   kernel/sys.c
 *   arch/x86/kernel/syscall_table_32.S
 *   arch/x86/include/asm/unistd_32.h
+
+#### 4.x
+
+*   linux-4.x/arch/x86/entry/syscalls/syscall_64.tbl
+*   linux-4.x/include/linux/syscalls.h
+
+```sh
+$ sudo mkdir linux-4.x/dragoncopy
+$ sudo vi dragoncopy/dragoncopy.c
+$ sudo vi dragoncopy/Makefile
+```
+
+```c
+#include <linux/kernel.h>   // printk
+#include <linux/syscalls.h>
+
+asmlinkage long sys_dragoncopy(const char *src, const char *dst) {
+    // copy file
+    printk("Dragon copy file success.\n");
+
+    // 0 for success
+    return 0;
+}
+```
+
+```makefile
+obj-y := dragoncopy.o
+```
+
+```sh
+$ sudo vi linux-4.x/Makefile
+```
+
+```makefile
+core-y := usr/ dragoncopy/
+```
+
+```c
+// test for dragoncopy
+#include <unistd.h>
+
+int main(void) {
+    syscall(syscall_number, arg0, arg1, ...);
+    return 0;
+}
+```
 
 ### build and install kernel
 
@@ -159,6 +207,7 @@ $ su
 *   Linux Kernel in a Nutshell
 *   [Centos Wiki](https://wiki.centos.org/zh/HowTos/Custom_Kernel)
 *   [Ubuntu Wiki](https://wiki.ubuntu.com/Kernel/BuildYourOwnKernel)
+*   [3.8.x Syscall Video](https://www.youtube.com/watch?v=5rr_VoQCOgE)
  
 ## Proj3 - Device Driver
 
