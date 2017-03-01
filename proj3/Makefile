@@ -3,19 +3,29 @@
 # sabertazimi, 2017-03-01 08:45
 #
 
-DEVICE_NAME=dragondevice
+DEVICE_NAME=dragondev
 
 ifneq ($(KERNELRELEASE),)
 	obj-m := $(DEVICE_NAME).o
 else
-	KERNELDIR ?= /lib/modules/$(shell uname -r)/buildMAKE
+	KERNELDIR ?= /lib/modules/$(shell uname -r)/build
 	PWD := $(shell pwd)
-
 default:
+	sudo cp -fr $(DEVICE_NAME).c /usr/src/linux-headers-$(shell uname -r)/drivers/misc
 	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules
+endif
+
+obj-m += $(DEVICE_NAME).o
 
 install:
-	sudo insmod $(DEVICE_NAME).o
+	sudo insmod $(DEVICE_NAME).ko
+
+
+showdev:
+	cat /proc/devices | grep $(DEVICE_NAME)
+
+# mknod:
+# mknod /dev/$(DEVICE_NAME) c $(DEVICE_NUM) 0
 
 uninstall:
 	sudo rmmod $(DEVICE_NAME)
