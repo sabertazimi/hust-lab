@@ -83,6 +83,8 @@ $ rpmbuild -bp --target=$(uname -m) kernel.spec
 
 4. follow ppt , Ubuntu 14.04 on VirtualBox
 
+owing to above failure, current proceeding got speed up by writing kernel make shell script - kernel.sh
+
 ### add syscall
 
 *   kernel/sys.c
