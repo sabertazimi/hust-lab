@@ -8,7 +8,9 @@
  * \license MIT
  */
 
+#define _GNU_SOURCE
 #include <unistd.h>
+#include <sys/syscall.h>
 
 int main(void) {
     syscall(546, "dragoncopy.c", "dragoncopy.cc");
