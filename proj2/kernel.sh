@@ -15,7 +15,10 @@
 # cd linux-4.4.31/
 
 apt-get install libncurses5-dev libssl-dev
-make mrproper           # 清除旧的编译内容
+
+make mrproper
+make clean
+
 make menuconfig         # 编译新内核的配置文件
 make bzImage -j 4 && make modules -j 4 && make modules_install -j 4 && make install -j 4
 

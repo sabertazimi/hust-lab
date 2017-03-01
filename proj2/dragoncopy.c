@@ -17,7 +17,7 @@
 asmlinkage long sys_dragoncopy (char *src, char *dst) {
     struct file *srcp;
     struct file *dstp;
-    int read_pos = 0, write_pos = 0;
+    loff_t read_pos = 0, write_pos = 0;
     int num = 0;
     char buf[50];
 
@@ -30,7 +30,7 @@ asmlinkage long sys_dragoncopy (char *src, char *dst) {
         return -1;
     }
 
-    dstp = file_open(dst, O_CREAT | O_RDWR, S_IRWXU | S_IRWXG | S_IRWXO);
+    dstp = filp_open(dst, O_CREAT | O_RDWR, S_IRWXU | S_IRWXG | S_IRWXO);
 
     num = vfs_read(srcp, buf, 40, &read_pos);
     while (num != 0) {
