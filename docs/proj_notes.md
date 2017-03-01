@@ -96,7 +96,15 @@ $ rpmbuild -bp --target=$(uname -m) kernel.spec
 #### 4.x
 
 *   linux-4.x/arch/x86/entry/syscalls/syscall_64.tbl
+
+```c
+546 common dragoncopy sys_dragoncopy
+```
 *   linux-4.x/include/linux/syscalls.h
+
+```c
+asmlinkage long sys_dragoncopy(const char *src, const char *dst);
+```
 
 ```sh
 $ sudo mkdir linux-4.x/dragoncopy

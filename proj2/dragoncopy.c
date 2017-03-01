@@ -14,7 +14,7 @@
 #include <asm/segment.h>
 #include <asm/uaccess.h>
 
-asmlinkage long sys_dragoncopy (char *src, char *dst) {
+asmlinkage long sys_dragoncopy (const char *src, const char *dst) {
     struct file *srcp;
     struct file *dstp;
     loff_t read_pos = 0, write_pos = 0;
