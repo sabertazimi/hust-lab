@@ -161,4 +161,13 @@ $ su
 *   module_init/module_exit
 *   insnod/rmnod
 *   mknod
- 
+
+### Makefile
+
+```sh
+$ make
+$ make install
+$ make showdev
+$ sudo mknod /dev/$(DEVICE_NAME) c $(DEVICE_NUM) 0
+```
+

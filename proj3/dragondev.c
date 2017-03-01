@@ -19,22 +19,22 @@
 #endif
 
 static int dragondev_open(struct inode *inode, struct file *filp) {
-    printk("Device open success.\n");
+    printk("Dragon device open success.\n");
     return 0;
 }
 
 static int dragondev_release (struct inode *inode, struct file *filp) {
-    printk("Device release success.\n");
+    printk("Dragon devicDragon devicease success.\n");
     return 0;
 }
 
 static ssize_t dragondev_read (struct file *filp, char __user *target , size_t tsize, loff_t *offset) {
-    printk("Device read success.\n");
+    printk("Dragon device read success.\n");
     return -1;
 }
 
 static ssize_t dragondev_write (struct file *filp,const char __user *target , size_t tsize, loff_t *offset) {
-    printk("Device write success.\n");
+    printk("Dragon device write success.\n");
     return -1;
 }
 
@@ -49,10 +49,10 @@ static const struct file_operations dragondev_fops = {
 int devnum = 0;
 
 int init_module(void) {
-    if ((devnum = register_chrdev(0,"dragondev", &dragondev_fops))) {
-        printk("Device register failed.\n");
+    if ((devnum = register_chrdev(0, "dragondev", &dragondev_fops)) < 0) {
+        printk("Dragon device register failed.\n");
     } else {
-        printk("Device register success.\n");
+        printk("Dragon device register success.\n");
     }
 
     return 0;
@@ -60,7 +60,7 @@ int init_module(void) {
 
 void cleanup_module(void) {
     unregister_chrdev(devnum, "dragondev");
-    printk("Device unregister success.\n");
+    printk("Dragon device unregister success.\n");
 }
 
 MODULE_AUTHOR("sabertazimi");

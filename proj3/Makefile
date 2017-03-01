@@ -20,9 +20,9 @@ obj-m += $(DEVICE_NAME).o
 install:
 	sudo insmod $(DEVICE_NAME).ko
 
-
 showdev:
 	cat /proc/devices | grep $(DEVICE_NAME)
+	ls -alh /dev/$(DEVICE_NAME)
 
 # mknod:
 # mknod /dev/$(DEVICE_NAME) c $(DEVICE_NUM) 0
@@ -31,7 +31,12 @@ uninstall:
 	sudo rmmod $(DEVICE_NAME)
 
 clean:
-	rm -fr *.o *.ko .*.cmd *.mod.c .tmp_versions
+	rm -fr *.o *.ko .*.cmd *.mod.c .tmp_versions modules.order Module.symvers
+	sudo rm -fr /dev/$(DEVICE_NAME)
+
+test:
+	gcc -Wall -Wextra -o $(DEVICE_NAME)_test $(DEVICE_NAME)_test.c
+	sudo ./$(DEVICE_NAME)_test
 
 # vim:ft=make
 #
