@@ -155,3 +155,10 @@ $ su
 *   Linux Kernel in a Nutshell
 *   [Centos Wiki](https://wiki.centos.org/zh/HowTos/Custom_Kernel)
  
+## Proj3 - Device Driver
+
+*   file_operatons - open, release, read, write
+*   module_init/module_exit
+*   insnod/rmnod
+*   mknod
+ 
