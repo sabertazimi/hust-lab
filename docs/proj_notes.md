@@ -129,6 +129,11 @@ $ sudo vi linux-4.x/Makefile
 core-y := usr/ dragoncopy/
 ```
 
+```sh
+$ (sudo) make bzImage -j 4 && make modules -j 4 && make modules_install -j 4 && make install -j 4 && update-grub
+$ (sudo) reboot
+```
+
 ```c
 // test for dragoncopy
 #include <unistd.h>
@@ -208,6 +213,8 @@ $ su
 *   [Centos Wiki](https://wiki.centos.org/zh/HowTos/Custom_Kernel)
 *   [Ubuntu Wiki](https://wiki.ubuntu.com/Kernel/BuildYourOwnKernel)
 *   [3.8.x Syscall Video](https://www.youtube.com/watch?v=5rr_VoQCOgE)
+*   [Build Kernel](https://medium.freecodecamp.com/building-and-installing-the-latest-linux-kernel-from-source-6d8df5345980#.785wm13ax)
+*   [Add Syscall](https://medium.com/@ssreehari/implementing-a-system-call-in-linux-kernel-4-7-1-6f98250a8c38#.adur4b62w)
  
 ## Proj3 - Device Driver
 
