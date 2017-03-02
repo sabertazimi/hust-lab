@@ -19,7 +19,13 @@ ul.process-list {
 
 ul.process-list li {
 	min-height: 5vh;
-    flex: auto;
+    /*min-width: 30%;*/
+    /*max-width: 35%;*/
+    flex: 1;
+}
+
+ul.process-list li:last-child {
+    text-align: right;
 }
 
 ul.process-list:nth-child(2n) {
