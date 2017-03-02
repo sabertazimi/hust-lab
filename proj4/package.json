@@ -14,9 +14,7 @@
   "author": "sabertazimi",
   "license": "MIT",
   "devDependencies": {
-    "electron-prebuilt": "^1.4.13"
+    "electron": "^1.6.1"
   },
-  "dependencies": {
-    "sleep": "^5.1.0"
-  }
+  "dependencies": {}
 }

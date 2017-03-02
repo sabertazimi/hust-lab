@@ -8,14 +8,6 @@
 const fs = require('fs');
 const path = require('path');
 
-const memTotal = 0;
-const memFree = 1;
-const memAvail = 2;
-const memCached = 4;
-const memKB = 0;
-const memMB = 1;
-const memGB = 2;
-
 const readMemoryUsage = (memKind, memUnit) => {
     const data = fs.readFileSync('/proc/meminfo', 'utf8');
     const stat = String.prototype.split.call(data, '\n');
@@ -29,17 +21,8 @@ const readMemoryUsage = (memKind, memUnit) => {
     if (memUnit == memGB) {
         memData /= 1024;
     }
+    
+    return memData;
 };
 
-readMemoryUsage(memTotal, memKB);
-readMemoryUsage(memTotal, memMB);
-readMemoryUsage(memTotal, memGB);
-readMemoryUsage(memFree, memKB);
-readMemoryUsage(memFree, memMB);
-readMemoryUsage(memFree, memGB);
-readMemoryUsage(memAvail, memKB);
-readMemoryUsage(memAvail, memMB);
-readMemoryUsage(memAvail, memGB); readMemoryUsage(memCached, memKB);
-readMemoryUsage(memCached, memMB);
-readMemoryUsage(memCached, memGB);
-
+module.exports = readMemoryUsage;

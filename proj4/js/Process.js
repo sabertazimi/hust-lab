@@ -42,8 +42,8 @@ readProcessDir('/proc', (err, res) => {
     return console.log(err);
   } else {
     res.forEach((dir) => {
-      // readProcessStat(dir);
-      // readProcessStatm(dir);
+      readProcessStat(dir);
+      readProcessStatm(dir);
       readProcessIO(dir);
    });
   }
@@ -65,13 +65,13 @@ const readProcessStat = (dir) => {
 
     fs.readFile(file, 'utf-8', (err, data) => {
       const stat = data.split(' ');
-      console.log(`${stat[comm]} pid: ${stat[pid]}`);
-      console.log(`${stat[comm]} ttyid: ${stat[tty]}`);
-      console.log(`${stat[comm]} priority: ${stat[priority]}`);
-      console.log(`${stat[comm]} utime: ${stat[utime]}`);
-      console.log(`${stat[comm]} stime: ${stat[stime]}`);
-      console.log(`${stat[comm]} virtual memory size: ${stat[vsize]}`);
-      console.log(`${stat[comm]} resident set size: ${stat[rss]}`);
+    //   console.log(`${stat[comm]} pid: ${stat[pid]}`);
+    //   console.log(`${stat[comm]} ttyid: ${stat[tty]}`);
+    //   console.log(`${stat[comm]} priority: ${stat[priority]}`);
+    //   console.log(`${stat[comm]} utime: ${stat[utime]}`);
+    //   console.log(`${stat[comm]} stime: ${stat[stime]}`);
+    //   console.log(`${stat[comm]} virtual memory size: ${stat[vsize]}`);
+    //   console.log(`${stat[comm]} resident set size: ${stat[rss]}`);
     });
 }
 
@@ -85,7 +85,7 @@ const readProcessStatm = (dir) => {
 
     fs.readFile(file, 'utf-8', (err, data) => {
       const statm = data.split(' ');
-      console.log(`memory usage : ${statm[memUse]}`);
+    //   console.log(`memory usage : ${statm[memUse]}`);
     });
 }
 
@@ -98,8 +98,8 @@ const readProcessIO = (dir) => {
         const io = data.split('\n');
         const writeBytes = io[5].split(' ')[1];
         const cancelledWriteBytes = io[6].split(' ')[1];
-        console.log(`write bytes: ${writeBytes}`);
-        console.log(`cancelled write bytes: ${cancelledWriteBytes}`);
+        // console.log(`write bytes: ${writeBytes}`);
+        // console.log(`cancelled write bytes: ${cancelledWriteBytes}`);
       } else {
         // @TODO
       }

@@ -7,15 +7,8 @@
 
 const fs = require('fs');
 const path = require('path');
-const sleep = require('sleep');
 
-const coreTotal = 0;
-const core0 = 1;
-const core1 = 2;
-const core2 = 3;
-const core3 = 4;
-
-const readCPUUsage = (coreNumber, sleepTime) => {
+const readCPUUsage = (coreNumber, sleepTime = 100) => {
     let total = 0;
     let idle = 0;
     let usage = 0.0;
@@ -36,7 +29,12 @@ const readCPUUsage = (coreNumber, sleepTime) => {
         }
     }
     
-    sleep.msleep(sleepTime);
+    // sleep
+    const date = new Date();
+    let curDate = null;
+    do {
+        curDate = new Date();
+    } while (curDate - date < sleepTime);    
     
     data = fs.readFileSync('/proc/stat', 'utf8');
     stat = String.prototype.split.call(data, '\n');
@@ -53,11 +51,8 @@ const readCPUUsage = (coreNumber, sleepTime) => {
     
     usage = 100.0 * (idle*1.0 - total*1.0) / (-total*1.0);
     // console.log(`${coreNumber} usage ${usage}`);
+    
+    return usage;
 };
 
-readCPUUsage(coreTotal, 100);
-readCPUUsage(core0, 100);
-readCPUUsage(core1, 100);
-readCPUUsage(core2, 100);
-readCPUUsage(core3, 100);
-
+module.exports = readCPUUsage;
