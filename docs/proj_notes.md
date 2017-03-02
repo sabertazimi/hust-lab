@@ -98,7 +98,7 @@ $ rpmbuild -bp --target=$(uname -m) kernel.spec
 *   linux-4.x/arch/x86/entry/syscalls/syscall_64.tbl
 
 ```c
-546 common dragoncopy sys_dragoncopy
+546     common  dragoncopy		sys_dragoncopy
 ```
 *   linux-4.x/include/linux/syscalls.h
 
