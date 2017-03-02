@@ -8,6 +8,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const sleep = require('sleep');
 
 const coreTotal = 0;
 const core0 = 1;
@@ -24,40 +25,84 @@ const cpuUsage = {
 };
 
 const readCPUUsage = (coreNumber) => {
-    const total = 0;
-    const idle = 0;
-    const usage = 0.0;
+    let total = 0;
+    let idle = 0;
+    let usage = 0.0;
+    let data = '';
+    let stat = '';
+    let cpustat = '';
     
-    fs.readFile('proc/stat', 'utf-8', (err, data) => {
-        const stat = data.split('\n');
-        const cpustat = stat[coreNumber].split(' ');
-
-        for (let i = 1; i < 10; i++) {
-            total += parseInt(cpustat[i], 10);
+    data = fs.readFileSync('/proc/stat', 'utf8');
+    stat = String.prototype.split.call(data, '\n');
+    cpustat = String.prototype.split.call(stat[coreNumber], ' ');
+    console.log(cpustat);
+    
+    for (let i = 1; i < 10; i++) {
+        if (isNaN(parseInt(cpustat[1], 10))) {
+            i++;
+        }
         
-            // column 4: idle spare time
+        total += parseInt(cpustat[i], 10);
+        
+        // column 4: idle spare time
+        if (isNaN(parseInt(cpustat[1], 10))) {
+            if (i == 5) {
+                idle = parseInt(cpustat[i], 10);
+            }
+        } else {
             if (i == 4) {
                 idle = parseInt(cpustat[i], 10);
             }
+            
         }
-    });
-    
-    setTimeout(() => {
-        const stat = data.split('\n');
-        const cpustat = stat[coreNumber].split(' ');
-
-        for (let i = 1; i < 10; i++) {
-            total -= parseInt(cpustat[i], 10);
         
-            // column 4: idle spare time
+        if (isNaN(parseInt(cpustat[1], 10))) {
+            i--;
+        }
+    }
+    
+    sleep.msleep(1);
+    
+    data = fs.readFileSync('/proc/stat', 'utf8');
+    stat = String.prototype.split.call(data, '\n');
+    cpustat = String.prototype.split.call(stat[coreNumber], ' ');
+    console.log(cpustat);
+    
+    for (let i = 1; i < 10; i++) {
+        if (isNaN(parseInt(cpustat[1], 10))) {
+            i++;
+        }
+        
+        total -= parseInt(cpustat[i], 10);
+        console.log(`${coreNumber} total ${total}`);
+        
+        // column 4: idle spare time
+        if (isNaN(parseInt(cpustat[1], 10))) {
+            if (i == 5) {
+                idle -= parseInt(cpustat[i], 10);
+            }
+        } else {
             if (i == 4) {
                 idle -= parseInt(cpustat[i], 10);
             }
         }
-    }, 1);
     
+        if (isNaN(parseInt(cpustat[1], 10))) {
+            i--;
+        }
+    }
+    
+    console.log(`${coreNumber} total ${total}`);
+    console.log(`${coreNumber} idle ${idle}`);
     usage = 100.0 * (idle*1.0 - total*1.0) / (-total*1.0);
+    console.log(`${coreNumber} usage ${usage}`);
     cpuUsage[coreNumber] = usage;
-    console.log(cpuUsage[coreNumber])
+    // console.log(cpuUsage[coreNumber]);
 };
+
+readCPUUsage(coreTotal);
+readCPUUsage(core0);
+readCPUUsage(core1);
+readCPUUsage(core2);
+readCPUUsage(core3);
 

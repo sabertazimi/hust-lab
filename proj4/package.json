@@ -15,5 +15,8 @@
   "license": "MIT",
   "devDependencies": {
     "electron-prebuilt": "^1.4.13"
+  },
+  "dependencies": {
+    "sleep": "^5.1.0"
   }
 }
