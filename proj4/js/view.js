@@ -6,7 +6,8 @@
  */
  
 const readCPUUsage = require('./js/CPU.js');
-const readMemUsage = require('./js/Memory.js')
+const readMemUsage = require('./js/Memory.js');
+const getProcessItems = require('./js/Process.js');
 
 const coreTotal = 0;
 const core0 = 1;
@@ -22,7 +23,14 @@ const memKB = 0;
 const memMB = 1;
 const memGB = 2;
 
+const P_TOTAL = 0;
+const P_CPU = 1;
+const P_CPUUsage = 2;
+const P_PID = 3;
+const P_NAME = 4;
+
 const systemUpdateInterval = 2000;
+const processUpdateInterval = 3000;
 
 const updateSystemInfo = () => {
     const CPUUsagePara = document.querySelector('div#System p#cpu-usage');
@@ -32,7 +40,28 @@ const updateSystemInfo = () => {
 };
 
 const updateProcessInfo = () => {
+    const processTable = document.querySelector('div#Process div.process-table');
+    const processTableHeader = '<ul class="process-list">   \
+                                    <li>Name</li>           \
+                                    <li>PID</li>            \
+                                    <li>CPU</li>            \
+                                </ul>';
+                                
+                                    // <li>Memory</li>         \
+                                    // <li>Disk</li>           \
+                                    // <li>Network</li>        \
+    const processItems = getProcessItems();
     
+    processTable.innerHTML = processTableHeader;
+    for (let key of processItems.keys()) {
+        const processData = processItems.get(key);
+        console.log(processData);
+        processTable.innerHTML += `<ul class="process-list">                 \
+                                        <li>${processData[P_NAME]}</li>         \
+                                        <li>${processData[P_PID]}</li>          \
+                                        <li>${processData[P_CPUUsage].toFixed(2)}</li>     \
+                                    </ul>`;
+    }
 };
 
 const openTab = (evt, id) => {
@@ -47,6 +76,7 @@ const openTab = (evt, id) => {
 
 const updateUI = () => {
     setInterval(updateSystemInfo, systemUpdateInterval);
+    setInterval(updateProcessInfo, processUpdateInterval);
 }
 
 updateUI();

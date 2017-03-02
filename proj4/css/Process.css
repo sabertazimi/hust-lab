@@ -13,11 +13,13 @@ div.process-table {
 ul.process-list {
 	list-style-type: none;
 	display: flex;
+	flex-direction: raw;
 	justify-content: space-between;
 }
 
 ul.process-list li {
 	min-height: 5vh;
+    flex: auto;
 }
 
 ul.process-list:nth-child(2n) {

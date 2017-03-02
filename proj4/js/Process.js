@@ -34,18 +34,42 @@ const readProcessDir = (dir) => {
     return results;
 };
 
-// readProcessDir('/proc', (err, res) => {
-//   if (err) {
-//     return console.log(err);
-//   } else {
-//     res.forEach((dir) => {
-//       readProcessStat(dir);
-//       readProcessStatm(dir);
-//       readProcessIO(dir);
-//    });
-//   }
-// });
-// 
+const getTotalCPU = () => {
+    let cpuData = fs.readFileSync('/proc/stat', 'utf8');
+    let cpuStat = String.prototype.split.call(cpuData, '\n');
+    let cpuUsage = String.prototype.split.call(cpuStat[0], /\s+/);
+    
+    let total = 0;
+    
+    for (let i = 1; i < 10; i++) {
+        total += parseInt(cpuUsage[i], 10);
+    }
+    
+    return total;
+};
+
+const readProcessStats = () => {
+    let processRawData = new Map();
+    const processDirs = readProcessDir('/proc');
+    processDirs.forEach((dir) => {
+        // important file: /proc/*/stat => status info of process
+        const file = path.resolve(dir, 'stat');
+        const data = fs.readFileSync(file, 'utf8');
+        const stat = String.prototype.split.call(data, /\s+/);
+        
+        // important file: /proc/*/statm => memory info of process
+        const filem = path.resolve(dir, 'statm');
+        const datam = fs.readFileSync(filem, 'utf8');
+        const statm = String.prototype.split.call(datam, /\s+/);
+        
+        const rawData = [stat, statm];
+        
+        processRawData.set(stat[pid], rawData);
+    });
+    
+    return processRawData;
+};
+
 // enum for stat[XXX]
 const pid = 0;
 const comm = 1;
@@ -55,50 +79,93 @@ const stime = 14;
 const priority = 18;
 const vsize = 22;
 const rss = 23;
-
-const readProcessStat = (dir) => {
-    // important file: /proc/*/stat => status info of process
-    const file = path.resolve(dir, 'stat');
-    
-    fs.readFile(file, 'utf-8', (err, data) => {
-        const stat = data.split(' ');
-        //   console.log(`${stat[comm]} pid: ${stat[pid]}`);
-        //   console.log(`${stat[comm]} ttyid: ${stat[tty]}`);
-        //   console.log(`${stat[comm]} priority: ${stat[priority]}`);
-        //   console.log(`${stat[comm]} utime: ${stat[utime]}`);
-        //   console.log(`${stat[comm]} stime: ${stat[stime]}`);
-        //   console.log(`${stat[comm]} virtual memory size: ${stat[vsize]}`);
-        //   console.log(`${stat[comm]} resident set size: ${stat[rss]}`);
-    });
-}
+const sleepTime = 1000;
 
 // enum for statm
 const pagesize = 4096;  // getconf PAGE_SIZE
 const memUse = 1;
 
-const readProcessStatm = (dir) => {
-    // important file: /proc/*/statm => memory info of process
-    const file = path.resolve(dir, 'statm');
-    
-    fs.readFile(file, 'utf-8', (err, data) => {
-        const statm = data.split(' ');
-        //   console.log(`memory usage : ${statm[memUse]}`);
-    });
-}
+const stat = 0;
+const statm = 1;
 
-const readProcessIO = (dir) => {
-    // important file: /proc/*/io => io info of process
-    const file = path.resolve(dir, 'io');
+const P_TOTAL = 0;
+const P_CPU = 1;
+const P_CPUUsage = 2;
+const P_PID = 3;
+const P_NAME = 4;
+
+const getProcessItems = () => {
+    let processItems = new Map();
+    let processRawData = readProcessStats();
     
-    fs.readFile(file, 'utf-8', (err, data) => {
-        if (data) {
-            const io = data.split('\n');
-            const writeBytes = io[5].split(' ')[1];
-            const cancelledWriteBytes = io[6].split(' ')[1];
-            // console.log(`write bytes: ${writeBytes}`);
-            // console.log(`cancelled write bytes: ${cancelledWriteBytes}`);
+    for (let key of processRawData.keys()) {
+        const rawData = processRawData.get(key);
+        const totalCPU = getTotalCPU();
+        const processCPU = parseInt(rawData[stat][utime]) + parseInt(rawData[stat][stime]);
+        const processName = rawData[stat][comm].replace('(', '').replace(')', '');
+        const processData = [totalCPU, processCPU, 0, key, processName];
+        processItems.set(key, processData);
+    }
+    
+    const date = new Date();
+    let curDate = null;
+    do {
+        curDate = new Date();
+    } while (curDate - date < sleepTime);    
+    
+    processRawData = readProcessStats();
+    
+    for (let key of processRawData.keys()) {
+        if (processItems.has(key)) {
+            // update information
+            // calculate cpu usage
+            const rawData = processRawData.get(key);
+            const totalCPU2 = getTotalCPU();
+            const processCPU2 = parseInt(rawData[stat][utime]) + parseInt(rawData[stat][stime]);
+            const processData = processItems.get(key);
+            const totalCPU1 = processData[P_TOTAL];
+            const processCPU1 = processData[P_CPU];
+            const cpuUsage = 100 * (processCPU2 * 1.0 - processCPU1 * 1.0) / (totalCPU2 * 1.0 - totalCPU1 * 1.0);
+            const processName = rawData[stat][comm].replace('(', '').replace(')', '');
+            const newProcessData = [totalCPU2, processCPU2, cpuUsage, key, processName];
+            processItems.set(key, newProcessData);
         } else {
-            // @TODO
+            // add new process
+            const rawData = processRawData.get(key);
+            const totalCPU = getTotalCPU();
+            const processCPU = parseInt(rawData[stat][utime]) + parseInt(rawData[stat][stime]);
+            const processName = rawData[stat][comm].replace('(', '').replace(')', '');
+            const processData = [totalCPU, processCPU, 0, key, processName];
+            processItems.set(key, processData);
         }
-    });
-}
+    }
+    
+    // remove missing process
+    for (let key of processItems.keys()) {
+        if (!processRawData.has(key)) {
+            processItems.delete(key);
+        }
+    }
+    
+    //   console.log(`${stat[comm]} pid: ${stat[pid]}`);
+    //   console.log(`${stat[comm]} ttyid: ${stat[tty]}`);
+    //   console.log(`${stat[comm]} priority: ${stat[priority]}`);
+    //   console.log(`${stat[comm]} utime: ${stat[utime]}`);
+    //   console.log(`${stat[comm]} stime: ${stat[stime]}`);
+    //   console.log(`${stat[comm]} virtual memory size: ${stat[vsize]}`);
+    //   console.log(`${stat[comm]} resident set size: ${stat[rss]}`);
+    //   console.log(`memory usage : ${statm[memUse]}`);
+    
+    return processItems;
+};
+
+module.exports = getProcessItems;
+
+// const processItems = getProcessItems();
+// for (let value of processItems.values()) {
+//     console.log(`${value[P_PID]} => ${value[P_CPUUsage]}`);
+// }
+// 
+// console.log(processItems.size);
+
+// console.log(processItems);
