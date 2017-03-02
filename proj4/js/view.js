@@ -31,6 +31,10 @@ const updateSystemInfo = () => {
     MemUsagePara.innerHTML = `Memory Free: ${readMemUsage(memAvail, memGB).toFixed(2)} GB`;
 };
 
+const updateProcessInfo = () => {
+    
+};
+
 const openTab = (evt, id) => {
   const tabcontent = document.getElementsByClassName('tabcontent');
 
