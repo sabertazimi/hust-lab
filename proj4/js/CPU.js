@@ -33,29 +33,14 @@ const readCPUUsage = (coreNumber, sleepTime) => {
     
     data = fs.readFileSync('/proc/stat', 'utf8');
     stat = String.prototype.split.call(data, '\n');
-    cpustat = String.prototype.split.call(stat[coreNumber], ' ');
+    cpustat = String.prototype.split.call(stat[coreNumber], /\s+/);
     
     for (let i = 1; i < 10; i++) {
-        if (isNaN(parseInt(cpustat[1], 10))) {
-            i++;
-        }
-        
         total += parseInt(cpustat[i], 10);
         
         // column 4: idle spare time
-        if (isNaN(parseInt(cpustat[1], 10))) {
-            if (i == 5) {
-                idle = parseInt(cpustat[i], 10);
-            }
-        } else {
-            if (i == 4) {
-                idle = parseInt(cpustat[i], 10);
-            }
-            
-        }
-        
-        if (isNaN(parseInt(cpustat[1], 10))) {
-            i--;
+        if (i == 4) {
+            idle = parseInt(cpustat[i], 10);
         }
     }
     
@@ -63,34 +48,20 @@ const readCPUUsage = (coreNumber, sleepTime) => {
     
     data = fs.readFileSync('/proc/stat', 'utf8');
     stat = String.prototype.split.call(data, '\n');
-    cpustat = String.prototype.split.call(stat[coreNumber], ' ');
+    cpustat = String.prototype.split.call(stat[coreNumber], /\s+/);
     
     for (let i = 1; i < 10; i++) {
-        if (isNaN(parseInt(cpustat[1], 10))) {
-            i++;
-        }
-        
         total -= parseInt(cpustat[i], 10);
         
         // column 4: idle spare time
-        if (isNaN(parseInt(cpustat[1], 10))) {
-            if (i == 5) {
-                idle -= parseInt(cpustat[i], 10);
-            }
-        } else {
-            if (i == 4) {
-                idle -= parseInt(cpustat[i], 10);
-            }
-        }
-    
-        if (isNaN(parseInt(cpustat[1], 10))) {
-            i--;
+        if (i == 4) {
+            idle -= parseInt(cpustat[i], 10);
         }
     }
     
     usage = 100.0 * (idle*1.0 - total*1.0) / (-total*1.0);
     cpuUsage[coreNumber] = usage;
-    // console.log(`${coreNumber} usage ${cpuUsage[coreNumber]}`);
+    console.log(`${coreNumber} usage ${cpuUsage[coreNumber]}`);
 };
 
 readCPUUsage(coreTotal, 100);
