@@ -15,14 +15,6 @@ const core1 = 2;
 const core2 = 3;
 const core3 = 4;
 
-const cpuUsage = {
-    coreTotal: 0,
-    core0: 0,
-    core1: 0,
-    core2: 0,
-    core3: 0
-};
-
 const readCPUUsage = (coreNumber, sleepTime) => {
     let total = 0;
     let idle = 0;
@@ -60,8 +52,7 @@ const readCPUUsage = (coreNumber, sleepTime) => {
     }
     
     usage = 100.0 * (idle*1.0 - total*1.0) / (-total*1.0);
-    cpuUsage[coreNumber] = usage;
-    console.log(`${coreNumber} usage ${cpuUsage[coreNumber]}`);
+    // console.log(`${coreNumber} usage ${usage}`);
 };
 
 readCPUUsage(coreTotal, 100);
