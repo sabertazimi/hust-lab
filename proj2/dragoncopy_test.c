@@ -13,7 +13,7 @@
 #include <sys/syscall.h>
 
 int main(void) {
-    syscall(546, "dragoncopy.c", "dragoncopy.copy");
+    syscall(548, "dragoncopy.c", "dragoncopy.copy");
     return 0;
 }
 

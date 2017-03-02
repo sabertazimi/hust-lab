@@ -5,7 +5,6 @@
 * Distributed under terms of the MIT license.
 */
 
-
 const fs = require('fs');
 const path = require('path');
 const sleep = require('sleep');
@@ -24,7 +23,7 @@ const cpuUsage = {
     core3: 0
 };
 
-const readCPUUsage = (coreNumber) => {
+const readCPUUsage = (coreNumber, sleepTime) => {
     let total = 0;
     let idle = 0;
     let usage = 0.0;
@@ -35,7 +34,6 @@ const readCPUUsage = (coreNumber) => {
     data = fs.readFileSync('/proc/stat', 'utf8');
     stat = String.prototype.split.call(data, '\n');
     cpustat = String.prototype.split.call(stat[coreNumber], ' ');
-    console.log(cpustat);
     
     for (let i = 1; i < 10; i++) {
         if (isNaN(parseInt(cpustat[1], 10))) {
@@ -61,12 +59,11 @@ const readCPUUsage = (coreNumber) => {
         }
     }
     
-    sleep.msleep(1);
+    sleep.msleep(sleepTime);
     
     data = fs.readFileSync('/proc/stat', 'utf8');
     stat = String.prototype.split.call(data, '\n');
     cpustat = String.prototype.split.call(stat[coreNumber], ' ');
-    console.log(cpustat);
     
     for (let i = 1; i < 10; i++) {
         if (isNaN(parseInt(cpustat[1], 10))) {
@@ -74,7 +71,6 @@ const readCPUUsage = (coreNumber) => {
         }
         
         total -= parseInt(cpustat[i], 10);
-        console.log(`${coreNumber} total ${total}`);
         
         // column 4: idle spare time
         if (isNaN(parseInt(cpustat[1], 10))) {
@@ -92,17 +88,14 @@ const readCPUUsage = (coreNumber) => {
         }
     }
     
-    console.log(`${coreNumber} total ${total}`);
-    console.log(`${coreNumber} idle ${idle}`);
     usage = 100.0 * (idle*1.0 - total*1.0) / (-total*1.0);
-    console.log(`${coreNumber} usage ${usage}`);
     cpuUsage[coreNumber] = usage;
-    // console.log(cpuUsage[coreNumber]);
+    // console.log(`${coreNumber} usage ${cpuUsage[coreNumber]}`);
 };
 
-readCPUUsage(coreTotal);
-readCPUUsage(core0);
-readCPUUsage(core1);
-readCPUUsage(core2);
-readCPUUsage(core3);
+readCPUUsage(coreTotal, 100);
+readCPUUsage(core0, 100);
+readCPUUsage(core1, 100);
+readCPUUsage(core2, 100);
+readCPUUsage(core3, 100);
 
