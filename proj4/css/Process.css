@@ -1,0 +1,25 @@
+/*
+ * Process.css
+ * Copyright (C) 2017 sabertazimi
+ *
+ * Distributed under terms of the MIT license.
+ */
+
+div.process-table {
+	display: flex;
+	flex-direction: column;
+}
+
+ul.process-list {
+	list-style-type: none;
+	display: flex;
+	justify-content: space-between;
+}
+
+ul.process-list li {
+	min-height: 5vh;
+}
+
+ul.process-list:nth-child(2n) {
+	background-color: #f2f2f2;
+}

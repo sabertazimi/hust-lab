@@ -1,0 +1,21 @@
+/*
+ * About.css
+ * Copyright (C) 2017 sabertazimi
+ *
+ * Distributed under terms of the MIT license.
+ */
+
+.about {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.about h3 {
+	padding-top: 5vh;
+	flex: 0 0 20vh;
+}
+
+.about p {
+	flex: 1 0 auto;
+}

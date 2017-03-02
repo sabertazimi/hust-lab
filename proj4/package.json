@@ -1,0 +1,19 @@
+{
+  "name": "electron-taskmanager",
+  "version": "1.0.0",
+  "description": "A task manager based on Electron",
+  "main": "./js/main.js",
+  "scripts": {
+    "start": "./node_modules/.bin/electron ."
+  },
+  "repository": "https://github.com/sabertazimi/hust-os-2017",
+  "keywords": [
+    "Electron",
+    "Task Manager"
+  ],
+  "author": "sabertazimi",
+  "license": "MIT",
+  "devDependencies": {
+    "electron-prebuilt": "^1.4.13"
+  }
+}

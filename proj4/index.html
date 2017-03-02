@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Task Manager</title>
+  <link rel="stylesheet" type="text/css" href="./css/Tab.css">
+  <link rel="stylesheet" type="text/css" href="./css/Process.css">
+  <link rel="stylesheet" type="text/css" href="./css/About.css">
+</head>
+
+<body>
+  <ul class="tab">
+    <li><a href="javascript:void(0)" onclick="openTab(event, 'Process')">Process</a></li>
+    <li><a href="javascript:void(0)" onclick="openTab(event, 'System')">System</a></li>
+    <li><a href="javascript:void(0)" onclick="openTab(event, 'About')">About</a></li>
+  </ul>
+
+  <div id="Process" class="tabcontent active">
+    <div class="process-table">
+      <ul class="process-list">
+        <li>Name</li>
+        <li>PID</li>
+        <li>CPU</li>
+        <li>Memory</li>
+        <li>Disk</li>
+        <li>Network</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="System" class="tabcontent">
+    <h3>System</h3>
+    <p>CPU</p>
+    <p>Memory</p>
+  </div>
+
+  <div id="About" class="tabcontent">
+    <section class="about">
+      <h3>About</h3>
+      <p>author: sabertazimi</p>
+      <p>email: sabertazimi@gmail.com</p>
+    </section>
+  </div>
+
+  <script src="./js/Tab.js"></script>
+  <script src="./js/Process.js"></script>
+</body>
+</html>
