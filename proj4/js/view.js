@@ -28,6 +28,7 @@ const P_CPU = 1;
 const P_CPUUsage = 2;
 const P_PID = 3;
 const P_NAME = 4;
+const P_MemUsage = 5;
 
 const systemUpdateInterval = 2000;
 const processUpdateInterval = 3000;
@@ -59,9 +60,9 @@ const updateProcessInfo = () => {
     <li>Name</li>           \
     <li>PID</li>            \
     <li>CPU</li>            \
+    <li>Memory</li>         \
     </ul>';
 
-    // <li>Memory</li>         \
     // <li>Disk</li>           \
     // <li>Network</li>        \
     const processItems = getProcessItems();
@@ -74,6 +75,7 @@ const updateProcessInfo = () => {
         <li>${processData[P_NAME]}</li>         \
         <li>${processData[P_PID]}</li>          \
         <li>${processData[P_CPUUsage].toFixed(2)}</li>     \
+        <li>${processData[P_MemUsage].toFixed(2)} MB</li>     \
         </ul>`;
     }
 };

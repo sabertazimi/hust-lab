@@ -99,9 +99,6 @@ const status = 2;
 
 const P_TOTAL = 0;
 const P_CPU = 1;
-const P_CPUUsage = 2;
-const P_PID = 3;
-const P_NAME = 4;
 
 const getProcessData = (key, rawData) => {
     const totalCPU = getTotalCPU();
@@ -111,6 +108,7 @@ const getProcessData = (key, rawData) => {
     let processMem = String.prototype.split.call(rawData[status][VmRSS], /\s+/);
     if (processMem[0] === 'VmRSS:') {
         processMem = parseInt(processMem[1]);
+        processMem /= 1024;
     } else {
         processMem = 0;
     }
