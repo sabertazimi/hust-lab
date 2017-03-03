@@ -11,8 +11,8 @@ else
 	KERNELDIR ?= /lib/modules/$(shell uname -r)/build
 	PWD := $(shell pwd)
 default:
-	sudo rm -fr /usr/src/linux-headers-$(shell uname -r)/drivers/misc/$(DEVICE_NAME).c
-	sudo cp -fr $(DEVICE_NAME).c /usr/src/linux-headers-$(shell uname -r)/drivers/misc
+	sudo rm -fr /usr/src/linux-4.10/drivers/misc/$(DEVICE_NAME).c
+	sudo cp -fr $(DEVICE_NAME).c /usr/src/linux-4.10/drivers/misc
 	$(MAKE) -C $(KERNELDIR) M=$(PWD) modules
 endif
 

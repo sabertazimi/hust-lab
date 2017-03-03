@@ -59,6 +59,7 @@ readbuf: $(SRC_PATH)/readbuf.o $(OBJS)
 .PHONY = clean release run spec debug ipc proc
 
 clean:
+	$(RM) $(BIN_PATH)/*
 	$(RM) $(OBJ_PATH) $(OBJS)
 	$(RM) $(TEST_PATH)/*.dist
 	$(RM) core

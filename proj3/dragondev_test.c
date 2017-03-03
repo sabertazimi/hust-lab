@@ -17,34 +17,34 @@
 
 int main(void) {
     int dragondev;
-    char buf[1];
-    
+    char buf[11];
+
     dragondev = open("/dev/dragondev", O_RDWR);
     if (dragondev == -1) {
         perror("Test failed.\n");
         exit(0);
     }
-    
+
     for (int i = 1; i <= 127; i++) {
         buf[0] = i;
         printf("write_size = %d\t", (int)write(dragondev, buf, 1));
     }
-    
+
     close(dragondev);
     printf("\n\n");
-    
+
     dragondev = open("/dev/dragondev", O_RDWR);
     if (dragondev == -1) {
         perror("Test failed.\n");
         exit(0);
     }
-    
-    for (int i = 1; i <= 127; i++) {
-        printf("read_size = %d, ", (int)read(dragondev, buf, 1));
-        printf("%c\n", buf[0]);
+
+    for (int i = 1; i <= 12; i++) {
+        printf("read_size = %d, ", (int)read(dragondev, buf, 10));
+        printf("%s\n", buf);
     }
-    
+
     close(dragondev);
-    
+
     return 0;
 }
