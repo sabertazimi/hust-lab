@@ -36,7 +36,8 @@ const updateSystemInfo = () => {
     const SystemDiv = document.querySelector('div#System');
 
     if (SystemDiv.className === 'tabcontent') {
-
+        // non-active
+        return;
     }
 
     const CPUUsagePara = document.querySelector('div#System p#cpu-usage');
@@ -46,6 +47,13 @@ const updateSystemInfo = () => {
 };
 
 const updateProcessInfo = () => {
+    const ProcessDiv = document.querySelector('div#Process');
+
+    if (ProcessDiv.className === 'tabcontent') {
+        // non-active
+        return;
+    }
+
     const processTable = document.querySelector('div#Process div.process-table');
     const processTableHeader = '<ul class="process-list">   \
     <li>Name</li>           \
@@ -75,9 +83,11 @@ const openTab = (evt, id) => {
 
     for (let i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = 'none';
+        tabcontent.className = 'tabcontent';
     }
 
     document.getElementById(id).style.display = 'block';
+    document.getElementById(id).className += ' active';
 };
 
 const updateUI = () => {
