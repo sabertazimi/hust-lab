@@ -1,10 +1,10 @@
 /*
- * view.js
- * Copyright (C) 2017 sabertazimi <sabertazimi@gmail.com>
- *
- * Distributed under terms of the MIT license.
- */
- 
+* view.js
+* Copyright (C) 2017 sabertazimi <sabertazimi@gmail.com>
+*
+* Distributed under terms of the MIT license.
+*/
+
 const readCPUUsage = require('./js/CPU.js');
 const readMemUsage = require('./js/Memory.js');
 const getProcessItems = require('./js/Process.js');
@@ -33,6 +33,12 @@ const systemUpdateInterval = 2000;
 const processUpdateInterval = 3000;
 
 const updateSystemInfo = () => {
+    const SystemDiv = document.querySelector('div#System');
+
+    if (SystemDiv.className === 'tabcontent') {
+
+    }
+
     const CPUUsagePara = document.querySelector('div#System p#cpu-usage');
     const MemUsagePara = document.querySelector('div#System p#mem-usage');
     CPUUsagePara.innerHTML = `CPU Usage: ${readCPUUsage(coreTotal).toFixed(2)} %`;
@@ -42,42 +48,42 @@ const updateSystemInfo = () => {
 const updateProcessInfo = () => {
     const processTable = document.querySelector('div#Process div.process-table');
     const processTableHeader = '<ul class="process-list">   \
-                                    <li>Name</li>           \
-                                    <li>PID</li>            \
-                                    <li>CPU</li>            \
-                                </ul>';
-                                
-                                    // <li>Memory</li>         \
-                                    // <li>Disk</li>           \
-                                    // <li>Network</li>        \
+    <li>Name</li>           \
+    <li>PID</li>            \
+    <li>CPU</li>            \
+    </ul>';
+
+    // <li>Memory</li>         \
+    // <li>Disk</li>           \
+    // <li>Network</li>        \
     const processItems = getProcessItems();
-    
+
     processTable.innerHTML = processTableHeader;
     for (let key of processItems.keys()) {
         const processData = processItems.get(key);
-        console.log(processData);
+        // console.log(processData);
         processTable.innerHTML += `<ul class="process-list">                 \
-                                        <li>${processData[P_NAME]}</li>         \
-                                        <li>${processData[P_PID]}</li>          \
-                                        <li>${processData[P_CPUUsage].toFixed(2)}</li>     \
-                                    </ul>`;
+        <li>${processData[P_NAME]}</li>         \
+        <li>${processData[P_PID]}</li>          \
+        <li>${processData[P_CPUUsage].toFixed(2)}</li>     \
+        </ul>`;
     }
 };
 
 const openTab = (evt, id) => {
-  const tabcontent = document.getElementsByClassName('tabcontent');
+    const tabcontent = document.getElementsByClassName('tabcontent');
 
-  for (let i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = 'none';
-  }
+    for (let i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = 'none';
+    }
 
-  document.getElementById(id).style.display = 'block';
+    document.getElementById(id).style.display = 'block';
 };
 
 const updateUI = () => {
     setInterval(updateSystemInfo, systemUpdateInterval);
     setInterval(updateProcessInfo, processUpdateInterval);
-}
+};
 
 updateUI();
 

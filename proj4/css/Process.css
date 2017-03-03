@@ -13,7 +13,6 @@ div.process-table {
 ul.process-list {
 	list-style-type: none;
 	display: flex;
-	flex-direction: raw;
 	justify-content: space-between;
 }
 
