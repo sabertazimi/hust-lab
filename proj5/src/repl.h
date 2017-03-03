@@ -13,8 +13,10 @@
 
 typedef struct option option_t;
 
-struct option {
+struct Option {
     int color_scheme;
+    Option(int cs);
+    ~Option(void);
 };
 
 #define REPL_COLOREND       \033[0m

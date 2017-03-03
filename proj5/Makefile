@@ -25,11 +25,11 @@ TOOLS_PATH=tools
 INCLUDE_PATH=src
 
 # objects
-SRCS=$(shell find $(SRC_PATH) -name "*.c" -print)
-OBJS=$(patsubst %.c, %.o, $(SRCS))
+SRCS=$(shell find $(SRC_PATH) -name "*.cc" -print)
+OBJS=$(patsubst %.cc, %.o, $(SRCS))
 
 # rules
-%.o: %.c
+%.o: %.cc
 	@echo '***' Compiling Source Files $< ... '***'
 	$(CC) -o $@ $(CFLAGS) -c $<
 	$(MKDIR) $(OBJ_PATH)

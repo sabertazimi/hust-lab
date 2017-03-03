@@ -13,9 +13,6 @@
 
 #include <stdint.h>
 
-#define true    1
-#define false   0
-
 #define FS_FILE        0x01 ///< file
 #define FS_DIRECTORY   0x02 ///< directory
 #define FS_CHARDEVICE  0x03 ///< character device
@@ -24,16 +21,13 @@
 #define FS_SYMLINK     0x06 ///< symbol link
 #define FS_MOUNTPOINT  0x08 ///< Is the file an active mountpoint?
 
-typedef struct inode inode_t;
-typedef struct dirent dirent_t;
-
 // file operations interfaces
-typedef uint32_t (*read_type_t)(inode_t*, uint32_t, uint32_t, uint8_t*);
-typedef uint32_t (*write_type_t)(inode_t*, uint32_t, uint32_t, uint8_t*);
-typedef void (*open_type_t)(inode_t*);
-typedef void (*close_type_t)(inode_t*);
-typedef dirent_t * (*readdir_type_t)(inode_t*, uint32_t);
-typedef inode_t * (*finddir_type_t)(inode_t*, char *name);
+typedef uint32_t (*read_type_t)(inode*, uint32_t, uint32_t, uint8_t*);
+typedef uint32_t (*write_type_t)(inode*, uint32_t, uint32_t, uint8_t*);
+typedef void (*open_type_t)(inode*);
+typedef void (*close_type_t)(inode*);
+typedef dirent* (*readdir_type_t)(inode*, uint32_t);
+typedef inode * (*finddir_type_t)(inode*, char *name);
 
 /// \brief file inode
 //@TODO mask for user permissons
@@ -59,10 +53,10 @@ struct dirent {
 };
 
 /// \brief check inode whether is directory or not
-bool is_dir(inode_t * inode);
+bool is_dir(inode *inode);
 
 /// \brief check inode whether is file or not
-bool is_file(inode_t * inode);
+bool is_file(inode *inode);
 
 /// @TODO operations on inode
 /// @TODO imalloc
@@ -72,7 +66,7 @@ bool is_file(inode_t * inode);
 /// @TODO imap
 /// @TODO idup
 
-// extern inode_t *fs_root; // root of the filesystem
+// extern inode *fs_root; // root of the filesystem
 
 
 #endif /* !INODE_H */
