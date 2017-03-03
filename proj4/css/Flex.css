@@ -5,17 +5,17 @@
  * Distributed under terms of the MIT license.
  */
 
-.about {
+.flex-container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
 
-.about h3 {
+.flex-container h3 {
 	padding-top: 5vh;
 	flex: 0 0 20vh;
 }
 
-.about p {
+.flex-container p {
 	flex: 1 0 auto;
 }

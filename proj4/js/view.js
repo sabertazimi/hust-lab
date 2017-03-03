@@ -45,6 +45,8 @@ const updateSystemInfo = () => {
     const MemUsagePara = document.querySelector('div#System p#mem-usage');
     CPUUsagePara.innerHTML = `CPU Usage: ${readCPUUsage(coreTotal).toFixed(2)} %`;
     MemUsagePara.innerHTML = `Memory Free: ${readMemUsage(memAvail, memGB).toFixed(2)} GB`;
+    console.log(CPUUsagePara);
+    console.log(MemUsagePara);
 };
 
 const updateProcessInfo = () => {
