@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include "inode.h"
+#include "repl.h"
 
 #undef NDEBUG
 
@@ -27,6 +28,12 @@ int main(int argc, char **argv) {
     node->readdir = 0;
     dir = is_dir(node);
     assert(dir == false);
+
+    option_t *opt = (option_t *)malloc(sizeof(option_t));
+    if (argc > 1) {
+        opt->color_scheme = atoi(argv[1]);
+    }
+    repl(opt);
 
     return 0;
 }
