@@ -7,7 +7,7 @@
 PROG=dfs
 
 # tools and their flags
-CC=gcc
+CC=g++
 CFLAGS=-pedantic -Wall -Wextra -g $(addprefix -I, $(INCLUDE_PATH))
 GDB=gdb
 GFLAGS= -q -x tools/gdbinit
@@ -30,7 +30,7 @@ OBJS=$(patsubst %.c, %.o, $(SRCS))
 
 # rules
 %.o: %.c
-	@echo '***' Compiling C Source Files $< ... '***'
+	@echo '***' Compiling Source Files $< ... '***'
 	$(CC) -o $@ $(CFLAGS) -c $<
 	$(MKDIR) $(OBJ_PATH)
 	$(MV) $@ $(OBJ_PATH)/$(notdir $@)
@@ -48,6 +48,8 @@ $(PROG): $(OBJS)
 
 .PHONY = clean release run test debug
 
+COLOR_SCHEME=1
+
 clean:
 	$(RM) $(OBJ_PATH) $(OBJS)
 	$(RM) core
@@ -59,7 +61,7 @@ release:
 	$(MV) $(SRC_PATH)/$(PROG) $(BIN_PATH)/$(PROG)
 
 run:
-	./$(BIN_PATH)/$(PROG)
+	./$(BIN_PATH)/$(PROG) $(COLOR_SCHEME)
 
 test:
 

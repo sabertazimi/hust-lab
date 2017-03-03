@@ -20,8 +20,8 @@ int main(int argc, char **argv) {
     bool dir = false;
     inode_t *node = (inode_t *)malloc(sizeof(inode_t));
 
-    node->readdir = 0x1000;
-    node->finddir = 0x2000;
+    node->readdir = (readdir_type_t)0x1000;
+    node->finddir = (finddir_type_t)0x2000;
     dir = is_dir(node);
     assert(dir == true);
 

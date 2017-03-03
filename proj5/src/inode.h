@@ -24,7 +24,6 @@
 #define FS_SYMLINK     0x06 ///< symbol link
 #define FS_MOUNTPOINT  0x08 ///< Is the file an active mountpoint?
 
-typedef unsigned char bool;
 typedef struct inode inode_t;
 typedef struct dirent dirent_t;
 
