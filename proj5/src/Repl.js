@@ -37,7 +37,7 @@ class Repl {
                     break;
                 case 'ls':
                     if (paths.length === 0) {
-                        this.cmd_ls(pathstr);
+                        this.cmd_ls(this.imfs.cwd);
                     } else {
                         paths.forEach((pathstr) => {
                             this.cmd_ls(pathstr);
