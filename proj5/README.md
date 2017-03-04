@@ -39,21 +39,24 @@ dir[subdir][''] === true
 
 ```js
 // file
-!dir['']
-/* /a/b/c/imfs.js => */
-/* { */
-/*     "": true, */
-/*     "a": { */
-/*         "": true, */
-/*         "b": { */
-/*             "": true, */
-/*             "c": { */
-/*                 "":true, */
-/*                 "imfs.js": content */
-/*             } */
-/*         } */
-/*     } */
-/* } */
+dir[''] === false
+/a/b/c/imfs.js =>
+{
+     '': true,
+     'a': {
+         '': true,
+         'b': {
+             '': true,
+             'c': {
+                 '': true,
+                 'imfs.js': {
+                    '': false,
+                    'content': '...'
+                 }
+             }
+         }
+     }
+ }
 ```
 
 ### Robust

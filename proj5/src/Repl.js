@@ -132,11 +132,20 @@ class Repl {
     }
 
     cmd_cat(_path) {
-
+        try {
+            console.log(this.imfs.readFile(_path));
+        } catch (err) {
+            console.log(err.message);
+            console.log(err);
+        }
     }
 
     cmd_write(_path, content) {
-
+        try {
+            this.imfs.writeFile(_path, content);
+        } catch (err) {
+            console.log(err.message);
+        }
     }
 
     cmd_clear() {
