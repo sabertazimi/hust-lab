@@ -96,7 +96,7 @@ class Imfs {
         if (this.isExist(formatPath)) {
             this.cwd = formatPath;
         } else {
-            throw new Error(`Error: path '${formatPath}' not exists.`);
+            throw new Error(`Error: directory '${formatPath}' not exists.`);
         }
     }
     
@@ -138,6 +138,30 @@ class Imfs {
     * @return {array}       string array of file/subdir name
     */
     readdir(_path) {
+        const formatPath = this.resolvePath(_path);
+        const patharr = this.path2arr(formatPath);
+        
+        // root directory
+        if (patharr.length === 0) {
+            return Object.keys(this.data).filter(Boolean);
+        }
+        
+		let cache = this.data;
+		let i = 0;
+        
+		for(; i < patharr.length - 1; i++) {
+			if(!this.isDir(cache[patharr[i]])) {
+                throw new Error(`Error: directory '${formatPath}' not exists.`);
+            }
+            
+			cache = cache[patharr[i]];
+		}
+        
+		if (!this.isDir(cache[patharr[i]])) {
+            throw new Error(`Error: directory '${formatPath}' not exists.`);
+		}
+        
+		return Object.keys(cache[patharr[i]]).filter(Boolean);
     }
     
     /**

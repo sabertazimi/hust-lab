@@ -31,7 +31,7 @@ class Repl {
                     this.cmd_cd(pathstr);
                     break;
                 case 'ls':
-                    this.cmd_ls();
+                    this.cmd_ls(pathstr);
                     break;
                 case 'pwd':
                     this.cmd_pwd();
@@ -72,8 +72,13 @@ class Repl {
         }
     }
 
-    cmd_ls() {
-
+    cmd_ls(_path) {
+        try {
+            _path = _path || '/';
+            console.log(this.imfs.readdir(_path));
+        } catch (err) {
+            console.log(err.message);
+        }
     }
 
     cmd_pwd() {
