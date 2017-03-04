@@ -18,13 +18,13 @@ class Repl {
         console.log('Log in to in-memory file system ...');
         console.log('Done.');
         console.log('');
-        
+
         while (!this.exit) {
             const prompt = ((this.imfs.cwd === '/') ? '/' : path.basename(this.imfs.cwd));
             let command = readline.question(`${prompt} $ `);
 
             command = command.split(/\s+/);
-            
+
             switch (command[0]) {
                 case 'cd':
                     const pathstr = command[1];
@@ -51,11 +51,11 @@ class Repl {
                 case 'write':
                     console.log('write');
                     break;
+                case 'clear':
+                    this.cmd_clear();
+                    break;
                 case 'exit':
-                    console.log('');
-                    console.log('Log out from in-memory file system ...');
                     this.cmd_exit();
-                    console.log('Done.');
                     break;
                 default:
                     console.log('Unkown command');
@@ -65,12 +65,17 @@ class Repl {
     }
 
     cmd_cd(_path) {
+        try {
+            this.imfs.chdir(_path);
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     cmd_ls() {
 
     }
-    
+
     cmd_pwd() {
         console.log(this.imfs.cwd);
     }
@@ -95,8 +100,15 @@ class Repl {
 
     }
 
+    cmd_clear() {
+
+    }
+
     cmd_exit() {
+        console.log('');
+        console.log('Log out from in-memory file system ...');
         this.exit = true;
+        console.log('Done.');
     }
 }
 

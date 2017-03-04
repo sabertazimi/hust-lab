@@ -62,6 +62,15 @@ class Imfs {
     */
     chdir(_path) {
         const formatPath = this.resolvePath(_path);
+        
+        if (this.isExist(formatPath)) {
+            console.log(formatPath);
+            console.log(this.cwd);
+            this.cwd = formatPath;
+            console.log(this.cwd);
+        } else {
+            throw new Error('Error: path not exist.');
+        }
     }
     
     /**
@@ -72,6 +81,7 @@ class Imfs {
     * @return {Boolean}       true stand for existance
     */
     isExist(_path) {
+        return true;
     }
     
     /**
