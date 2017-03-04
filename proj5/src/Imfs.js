@@ -119,8 +119,8 @@ class Imfs {
 		let cache = this.data;
 		let i = 0;
         
-		for(; i < patharr.length - 1; i++) {
-			if(!this.isDir(cache[patharr[i]])) {
+		for (; i < patharr.length - 1; i++) {
+			if (!this.isDir(cache[patharr[i]])) {
 				return false;
             }
             
@@ -149,8 +149,8 @@ class Imfs {
 		let cache = this.data;
 		let i = 0;
         
-		for(; i < patharr.length - 1; i++) {
-			if(!this.isDir(cache[patharr[i]])) {
+		for (; i < patharr.length - 1; i++) {
+			if (!this.isDir(cache[patharr[i]])) {
                 throw new Error(`Error: directory '${formatPath}' not exists.`);
             }
             
@@ -183,10 +183,10 @@ class Imfs {
         let cache = this.data;
         let i = 0;
         
-        for(; i < patharr.length - 1; i++) {
-            if(this.isFile(cache[patharr[i]])) {
+        for (; i < patharr.length - 1; i++) {
+            if (this.isFile(cache[patharr[i]])) {
                 throw new Error(`Error: homonymous file '${patharr[i]}' exists.`);
-            } else if(!this.isDir(cache[patharr[i]])) {
+            } else if (!this.isDir(cache[patharr[i]])) {
                 // create new directory when non-exist
                 cache[patharr[i]] = {"":true};
             }
@@ -213,6 +213,26 @@ class Imfs {
     * @return {object}      reference to imfs (this)
     */
     rmdir(_path) {
+        const formatPath = this.resolvePath(_path);
+        const patharr = this.path2arr(formatPath);
+        
+		if (patharr.length === 0) {
+			throw new Error(`Error: can't remove '/' directory`);
+		}
+        
+		let cache = this.data;
+		let i = 0;
+        
+		for (; i < patharr.length - 1; i++) {
+			if (!this.isDir(cache[patharr[i]])) {
+                throw new Error(`Error: directory '${patharr[i]}' not exists.`);
+            }
+            
+			cache = cache[patharr[i]];
+		}
+        
+		delete cache[patharr[i]];
+        
         return this;
     }
     

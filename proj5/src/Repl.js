@@ -96,7 +96,11 @@ class Repl {
     }
 
     cmd_rm(_path) {
-
+        try {
+            this.imfs.rmdir(_path);
+        } catch (err) {
+            console.log(err.message);
+        }
     }
 
     cmd_touch(_path) {
