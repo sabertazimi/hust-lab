@@ -8,7 +8,9 @@
 'use strict';
 
 const Imfs = require('./Imfs.js');
+const Repl = require('./Repl.js');
 
 let imfs = new Imfs();
+let repl = new Repl();
 
-console.log(imfs);
+repl.start();

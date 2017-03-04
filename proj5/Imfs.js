@@ -47,7 +47,7 @@ class Imfs {
 
 
     /**
-    * make new directory/file
+    * make new directory
     *
     * @method mkdir
     * @param  {string} _path path string for target
