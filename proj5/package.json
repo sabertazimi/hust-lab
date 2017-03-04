@@ -2,9 +2,9 @@
   "name": "imfs",
   "version": "1.0.0",
   "description": "A simple in memory file system",
-  "main": "imfs.js",
+  "main": "main.js",
   "scripts": {
-    "test": "node test.js"
+    "start": "node main.js"
   },
   "repository": {
     "type": "git",
