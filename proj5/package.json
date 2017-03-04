@@ -4,7 +4,8 @@
   "description": "A simple in memory file system",
   "main": "main.js",
   "scripts": {
-    "start": "node main.js"
+    "start": "node ./src/main.js",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -21,5 +22,9 @@
   "homepage": "https://github.com/sabertazimi/hust-os-2017#readme",
   "dependencies": {
     "readline-sync": "^1.4.6"
+  },
+  "devDependencies": {
+    "mocha": "^3.2.0",
+    "should": "^11.2.0"
   }
 }

@@ -6,7 +6,22 @@ hold all datas in js objects
 [![stable](https://img.shields.io/badge/stability-stable-brightgreen.svg)](https://github.com/sabertazimi/hust-os-2017)
 [![mit](https://img.shields.io/badge/license-mit-brightgreen.svg)](https://raw.githubusercontent.com/sabertazimi/hust-os-2017/master/LICENSE)
 
-## Directory
+## Set up and Run
+
+```sh
+$ sudo apt-get install nodejs npm
+$ npm install
+$ npm start
+```
+## Testing
+
+```sh
+$ npm test
+```
+
+## Design
+
+### Directory
 
 ```js
 // dir
@@ -20,7 +35,7 @@ dir[subdir][''] === true
 // { '': true, subdir: {'' : true} }
 ```
 
-## File
+### File
 
 ```js
 // file
@@ -41,9 +56,10 @@ dir[subdir][''] === true
 /* } */
 ```
 
-## Robust
+### Robust
 
-use Error and try/catch to handle exception
+*   use Error and try/catch to handle exception
+*   behavior test with should and mocha
 
 ## License
 
