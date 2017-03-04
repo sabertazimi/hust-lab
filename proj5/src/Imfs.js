@@ -45,7 +45,7 @@ class Imfs {
     path2arr(formatPath) {
         let patharr = fromatPath.substr(1).split("/");
         
-        // remove tail '/'
+        // remove tail '/' when from relative path
         if (!patharr[patharr.length - 1]) {
             patharr.pop();
         }
