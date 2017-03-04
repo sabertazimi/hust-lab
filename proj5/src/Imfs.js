@@ -24,10 +24,10 @@ class Imfs {
      * @return {Boolean}      true stand for is directory
      */     
     isDir(node) {
-        if (typeof node !== "object") {
+        if (typeof node !== 'object') {
             return false;
         } else {
-            return node[""] === true;
+            return node[''] === true;
         }
     }
     
@@ -39,10 +39,10 @@ class Imfs {
      * @return {Boolean}      true stand for is file
      */     
     isFile(node) {
-        if (typeof node !== "object") {
+        if (typeof node !== 'object') {
             return false;
         } else {
-            return !node[""];
+            return !node[''];
         }
     }
     
@@ -73,7 +73,7 @@ class Imfs {
     * @return {array}            path array
     */     
     path2arr(formatPath) {
-        let patharr = formatPath.substr(1).split("/");
+        let patharr = formatPath.substr(1).split('/');
         
         // remove tail '/' when from relative path
         if (!patharr[patharr.length - 1]) {
@@ -165,13 +165,14 @@ class Imfs {
     }
     
     /**
-    * make new directory
+    * make new directory/file
     *
-    * @method mkdir
+    * @method mkNode
     * @param  {string} _path path string for target
+    * @param  {Boolean} type 0 for directory, 1 for file
     * @return {object}      reference to imfs (this)
     */
-    mkdir(_path) {
+    mkNode(_path, type) {
         const formatPath = this.resolvePath(_path);
         const patharr = this.path2arr(formatPath);
         
@@ -188,7 +189,7 @@ class Imfs {
                 throw new Error(`Error: homonymous file '${patharr[i]}' exists.`);
             } else if (!this.isDir(cache[patharr[i]])) {
                 // create new directory when non-exist
-                cache[patharr[i]] = {"":true};
+                cache[patharr[i]] = {'':true};
             }
             
             cache = cache[patharr[i]];
@@ -197,10 +198,15 @@ class Imfs {
         if (this.isDir(cache[patharr[i]])) {
             throw new Error(`Error: directory '${patharr[i]}' exists.`);
         } else {
-            cache[patharr[i]] = {"":true};
+            if (type) {
+                cache[patharr[i]] = '';
+                console.log(`Success: create file '${formatPath}'.`);
+            } else {
+                cache[patharr[i]] = {'':true};
+                console.log(`Success: create directory '${formatPath}'.`);
+            }
         }
         
-        console.log(`Success: mkdir '${formatPath}'.`);
         
         return this;
     }
@@ -208,11 +214,11 @@ class Imfs {
     /**
     * delete directory/file
     *
-    * @method rmdir
+    * @method rmNode
     * @param  {string} _path path string for target
     * @return {object}      reference to imfs (this)
     */
-    rmdir(_path) {
+    rmNode(_path) {
         const formatPath = this.resolvePath(_path);
         const patharr = this.path2arr(formatPath);
         

@@ -109,7 +109,7 @@ class Repl {
 
     cmd_mkdir(_path) {
         try {
-            this.imfs.mkdir(_path);
+            this.imfs.mkNode(_path, 0);
         } catch (err) {
             console.log(err.message);
         }
@@ -117,14 +117,18 @@ class Repl {
 
     cmd_rm(_path) {
         try {
-            this.imfs.rmdir(_path);
+            this.imfs.rmNode(_path);
         } catch (err) {
             console.log(err.message);
         }
     }
 
     cmd_touch(_path) {
-
+        try {
+            this.imfs.mkNode(_path, 1);
+        } catch (err) {
+            console.log(err.message);
+        }
     }
 
     cmd_cat(_path) {
