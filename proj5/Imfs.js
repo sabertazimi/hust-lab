@@ -7,6 +7,8 @@
 
 'use strict';
 
+const path = require('path');   // utils for resolve path
+
 class Imfs {
     constructor(data) {
         this.data = data || {};
@@ -21,7 +23,17 @@ class Imfs {
     * @return {array}       path array
     */
     resolvePath(_path) {
-        return [];
+        if ()
+    }
+    
+    /**
+    * change current working directory
+    *
+    * @method chdir
+    * @param  {string}  _path path string for target
+    * @return {object}      reference to imfs (this)
+    */
+    chdir(_path) {
     }
 
     /**
@@ -33,7 +45,6 @@ class Imfs {
     */
     isExist(_path) {
     }
-
 
     /**
     * read content of directory

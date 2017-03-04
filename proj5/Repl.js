@@ -5,12 +5,13 @@
 * Distributed under terms of the MIT license.
 */
 
+const path = require('path');
 const readline = require('readline-sync');
 
 class Repl {
-    constructor() {
+    constructor(imfs) {
+        this.imfs = imfs;
         this.exit = false;
-        this.cwd = '/';
     }
 
     start() {
@@ -19,16 +20,21 @@ class Repl {
         console.log('');
         
         while (!this.exit) {
-            let command = readline.question(`${this.cwd} $ `);
+            const prompt = ((this.imfs.cwd === '/') ? '/' : path.basename(this.imfs.cwd));
+            let command = readline.question(`${prompt} $ `);
 
             command = command.split(/\s+/);
             
             switch (command[0]) {
                 case 'cd':
-                    console.log('cd');
+                    const pathstr = command[1];
+                    this.cmd_cd(pathstr);
                     break;
                 case 'ls':
                     console.log('ls');
+                    break;
+                case 'pwd':
+                    this.cmd_pwd();
                     break;
                 case 'mkdir':
                     console.log('mkdir');
@@ -59,11 +65,14 @@ class Repl {
     }
 
     cmd_cd(_path) {
-
     }
 
     cmd_ls() {
 
+    }
+    
+    cmd_pwd() {
+        console.log(this.imfs.cwd);
     }
 
     cmd_mkdir(_path) {

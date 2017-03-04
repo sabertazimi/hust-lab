@@ -11,6 +11,6 @@ const Imfs = require('./Imfs.js');
 const Repl = require('./Repl.js');
 
 let imfs = new Imfs();
-let repl = new Repl();
+let repl = new Repl(imfs);
 
 repl.start();
