@@ -12,7 +12,7 @@ describe('Imfs', () => {
     describe("resolvePath", () => {
         it("should get normalized absolute path", () => {
             const imfs = new Imfs();
-            
+
             // absolute path testing
             imfs.resolvePath("/a/b/c").should.be.eql("/a/b/c");
             imfs.resolvePath("/./a/d///..////b/c").should.be.eql("/a/b/c");
@@ -21,10 +21,10 @@ describe('Imfs', () => {
             imfs.resolvePath("/a/b/c/.git").should.be.eql("/a/b/c/.git");
             imfs.resolvePath("/a/b/c/..git").should.be.eql("/a/b/c/..git");
             imfs.resolvePath("/a/b/c/../..").should.be.eql("/a");
-            
-            
+
+
             imfs.cwd = '/a/b/c';
-            
+
             // relative path testing
             imfs.resolvePath(".////..////").should.be.eql("/a/b/");
             imfs.resolvePath("./").should.be.eql("/a/b/c/");

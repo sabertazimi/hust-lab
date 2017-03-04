@@ -15,6 +15,37 @@ class Imfs {
         this.cwd = '/';
     }
     
+    
+    /**    
+     * judge whether current node is directory or not
+     *      
+     * @method isDir
+     * @param  {object} node current node
+     * @return {Boolean}      true stand for is directory
+     */     
+    isDir(node) {
+        if (typeof node !== "object") {
+            return false;
+        } else {
+            return node[""] === true;
+        }
+    }
+    
+    /**    
+     * judge whether current node is file or not
+     *      
+     * @method isFile
+     * @param  {object} node current node
+     * @return {Boolean}      true stand for is file
+     */     
+    isFile(node) {
+        if (typeof node !== "object") {
+            return false;
+        } else {
+            return !node[""];
+        }
+    }
+    
     /**
     * change path string to path array
     *
@@ -35,15 +66,14 @@ class Imfs {
         return formatPath;
     }
     
-    
     /**    
-     * change normalized absolute path to array
-     *      
-     * @param  {string} formatPath normalized absolute path
-     * @return {array}            path array
-     */     
+    * change normalized absolute path to array
+    *      
+    * @param  {string} formatPath normalized absolute path
+    * @return {array}            path array
+    */     
     path2arr(formatPath) {
-        let patharr = fromatPath.substr(1).split("/");
+        let patharr = formatPath.substr(1).split("/");
         
         // remove tail '/' when from relative path
         if (!patharr[patharr.length - 1]) {
@@ -64,12 +94,9 @@ class Imfs {
         const formatPath = this.resolvePath(_path);
         
         if (this.isExist(formatPath)) {
-            console.log(formatPath);
-            console.log(this.cwd);
             this.cwd = formatPath;
-            console.log(this.cwd);
         } else {
-            throw new Error('Error: path not exist.');
+            throw new Error(`Error: path '${formatPath}' not exists.`);
         }
     }
     
@@ -81,7 +108,26 @@ class Imfs {
     * @return {Boolean}       true stand for existance
     */
     isExist(_path) {
-        return true;
+        const formatPath = this.resolvePath(_path);
+        const patharr = this.path2arr(formatPath);
+        
+        // root directory
+        if (patharr.length === 0) {
+            return true;
+        }
+        
+		let cache = this.data;
+		let i = 0;
+        
+		for(; i < patharr.length - 1; i++) {
+			if(!this.isDir(cache[patharr[i]])) {
+				return false;
+            }
+            
+			cache = cache[patharr[i]];
+		}
+        
+		return !!cache[patharr[i]];
     }
     
     /**
@@ -94,7 +140,6 @@ class Imfs {
     readdir(_path) {
     }
     
-    
     /**
     * make new directory
     *
@@ -103,6 +148,36 @@ class Imfs {
     * @return {object}      reference to imfs (this)
     */
     mkdir(_path) {
+        const formatPath = this.resolvePath(_path);
+        const patharr = this.path2arr(formatPath);
+        
+        // root directory
+        if (patharr.length === 0) {
+            return this;
+        }
+        
+        let cache = this.data;
+        let i = 0;
+        
+        for(; i < patharr.length - 1; i++) {
+            if(this.isFile(cache[patharr[i]])) {
+                throw new Error(`Error: homonymous file '${patharr[i]}' exists.`);
+            } else if(!this.isDir(cache[patharr[i]])) {
+                // create new directory when non-exist
+                cache[patharr[i]] = {"":true};
+            }
+            
+            cache = cache[patharr[i]];
+        }
+        
+        if (this.isDir(cache[patharr[i]])) {
+            throw new Error(`Error: directory '${patharr[i]}' exists.`);
+        } else {
+            cache[patharr[i]] = {"":true};
+        }
+        
+        console.log(`Success: mkdir '${formatPath}'.`);
+        
         return this;
     }
     

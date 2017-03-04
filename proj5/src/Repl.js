@@ -21,35 +21,35 @@ class Repl {
 
         while (!this.exit) {
             const prompt = ((this.imfs.cwd === '/') ? '/' : path.basename(this.imfs.cwd));
-            let command = readline.question(`${prompt} $ `);
+            const command = readline.question(`${prompt} $ `).split(/\s+/);
+            const cmd = command[0];
+            const pathstr = command[1];
+            const content = command[2];
 
-            command = command.split(/\s+/);
-
-            switch (command[0]) {
+            switch (cmd) {
                 case 'cd':
-                    const pathstr = command[1];
                     this.cmd_cd(pathstr);
                     break;
                 case 'ls':
-                    console.log('ls');
+                    this.cmd_ls();
                     break;
                 case 'pwd':
                     this.cmd_pwd();
                     break;
                 case 'mkdir':
-                    console.log('mkdir');
+                    this.cmd_mkdir(pathstr);
                     break;
                 case 'rm':
-                    console.log('rm');
+                    this.cmd_rm(pathstr);
                     break;
                 case 'touch':
-                    console.log('touch');
+                    this.cmd_touch(pathstr);
                     break;
                 case 'cat':
-                    console.log('cat');
+                    this.cmd_cat(pathstr);
                     break;
                 case 'write':
-                    console.log('write');
+                    this.cmd_write(pathstr, content);
                     break;
                 case 'clear':
                     this.cmd_clear();
@@ -68,7 +68,7 @@ class Repl {
         try {
             this.imfs.chdir(_path);
         } catch (err) {
-            console.log(err);
+            console.log(err.message);
         }
     }
 
@@ -81,7 +81,11 @@ class Repl {
     }
 
     cmd_mkdir(_path) {
-
+        try {
+            this.imfs.mkdir(_path);
+        } catch (err) {
+            console.log(err.message);
+        }
     }
 
     cmd_rm(_path) {
