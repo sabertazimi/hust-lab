@@ -35,9 +35,13 @@ class Repl {
                     this.cmd_cd(pathstr);
                     break;
                 case 'ls':
-                    paths.forEach((pathstr) => {
+                    if (paths.length === 0) {
                         this.cmd_ls(pathstr);
-                    });
+                    } else {
+                        paths.forEach((pathstr) => {
+                            this.cmd_ls(pathstr);
+                        });
+                    }
                     break;
                 case 'pwd':
                     this.cmd_pwd();
