@@ -5,6 +5,8 @@
 * Distributed under terms of the MIT license.
 */
 
+'use strict';
+
 const path = require('path');
 const readline = require('readline-sync');
 
@@ -110,7 +112,7 @@ class Repl {
     }
 
     cmd_clear() {
-
+        console.log('\x1Bc'); // \033c
     }
 
     cmd_exit() {
