@@ -20,6 +20,7 @@ class Repl {
     start() {
         console.log('Log in to in-memory file system ...');
         console.log('Done.');
+        console.log(`Enter 'help' to get more helpful information.`);
         console.log('');
 
         while (!this.exit) {
@@ -74,6 +75,9 @@ class Repl {
                     break;
                 case 'exit':
                     this.cmd_exit();
+                    break;
+                case 'help':
+                    this.cmd_help();
                     break;
                 default:
                     console.log(`Error: unkown command '${cmd}'.`);
@@ -157,6 +161,20 @@ class Repl {
         console.log('Log out from in-memory file system ...');
         this.exit = true;
         console.log('Done.');
+    }
+
+    cmd_help() {
+        console.log('Welcome to in-memory file system');
+        console.log('\tcd    <path>           : change current working directory.');
+        console.log('\tls    <directory ...>  : list content of directory.');
+        console.log('\tpwd                    : print current working directory.');
+        console.log('\tmkdir <directory ...>  : create new directory.');
+        console.log('\trm    <target ...>     : remove file or directory.');
+        console.log('\ttouch <file ...>       : create new file.');
+        console.log('\tcat   <file ...>       : print content of file.');
+        console.log('\twrite <file> <content> : write content to file.');
+        console.log('\tclear                  : clear screen.');
+        console.log('\texit                   : log out from in-memory file system.');
     }
 }
 
