@@ -1,0 +1,22 @@
+{
+  "name": "imfs",
+  "version": "1.0.0",
+  "description": "A simple in memory file system",
+  "main": "imfs.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sabertazimi/hust-os-2017.git"
+  },
+  "keywords": [
+    "file system"
+  ],
+  "author": "sabertazimi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sabertazimi/hust-os-2017/issues"
+  },
+  "homepage": "https://github.com/sabertazimi/hust-os-2017#readme"
+}
