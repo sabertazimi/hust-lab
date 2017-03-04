@@ -8,6 +8,7 @@
 'use strict';
 
 const path = require('path');
+const process = require('process');
 const readline = require('readline-sync');
 
 class Repl {
@@ -27,28 +28,39 @@ class Repl {
             const cmd = command[0];
             const pathstr = command[1];
             const content = command[2];
+            const paths = command.slice(1);
 
             switch (cmd) {
                 case 'cd':
                     this.cmd_cd(pathstr);
                     break;
                 case 'ls':
-                    this.cmd_ls(pathstr);
+                    paths.forEach((pathstr) => {
+                        this.cmd_ls(pathstr);
+                    });
                     break;
                 case 'pwd':
                     this.cmd_pwd();
                     break;
                 case 'mkdir':
-                    this.cmd_mkdir(pathstr);
+                    paths.forEach((pathstr) => {
+                        this.cmd_mkdir(pathstr);
+                    });
                     break;
                 case 'rm':
-                    this.cmd_rm(pathstr);
+                    paths.forEach((pathstr) => {
+                        this.cmd_rm(pathstr);
+                    });
                     break;
                 case 'touch':
-                    this.cmd_touch(pathstr);
+                    paths.forEach((pathstr) => {
+                        this.cmd_touch(pathstr);
+                    });
                     break;
                 case 'cat':
-                    this.cmd_cat(pathstr);
+                    paths.forEach((pathstr) => {
+                        this.cmd_cat(pathstr);
+                    });
                     break;
                 case 'write':
                     this.cmd_write(pathstr, content);
@@ -60,7 +72,7 @@ class Repl {
                     this.cmd_exit();
                     break;
                 default:
-                    console.log('Unkown command');
+                    console.log(`Error: unkown command '${cmd}'.`);
                     break;
             }
         }
@@ -77,7 +89,11 @@ class Repl {
     cmd_ls(_path) {
         try {
             _path = _path || '/';
-            console.log(this.imfs.readdir(_path));
+            const nodes = this.imfs.readdir(_path);
+            nodes.forEach((node) => {
+                process.stdout.write(`${node}\t`);
+            });
+            console.log('');
         } catch (err) {
             console.log(err.message);
         }
