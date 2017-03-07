@@ -1,5 +1,5 @@
 /*
-* imfs.js
+* Imfs.js
 * Copyright (C) 2017 sabertazimi <sabertazimi@gmail.com>
 *
 * Distributed under terms of the MIT license.
@@ -14,15 +14,15 @@ class Imfs {
         this.data = data || {};
         this.cwd = '/';
     }
-    
-    
-    /**    
+
+
+    /**
     * judge whether current node is directory or not
-    *      
+    *
     * @method isDir
     * @param  {object} node current node
     * @return {Boolean}      true stand for is directory
-    */     
+    */
     isDir(node) {
         if (typeof node !== 'object') {
             return false;
@@ -30,14 +30,14 @@ class Imfs {
             return node[''] === true;
         }
     }
-    
-    /**    
+
+    /**
     * judge whether current node is file or not
-    *      
+    *
     * @method isFile
     * @param  {object} node current node
     * @return {Boolean}      true stand for is file
-    */     
+    */
     isFile(node) {
         if (typeof node !== 'object') {
             return false;
@@ -45,7 +45,7 @@ class Imfs {
             return node[''] === false;
         }
     }
-    
+
     /**
     * change path string to path array
     *
@@ -55,34 +55,34 @@ class Imfs {
     */
     resolvePath(_path) {
         let formatPath = _path;
-        
+
         // combine path to absolute path
         if (!path.isAbsolute(formatPath)) {
             formatPath = path.join(this.cwd, formatPath);
         }
-        
+
         formatPath = path.normalize(formatPath);
-        
+
         return formatPath;
     }
-    
-    /**    
+
+    /**
     * change normalized absolute path to array
-    *      
+    *
     * @param  {string} formatPath normalized absolute path
     * @return {array}            path array
-    */     
+    */
     path2arr(formatPath) {
         let patharr = formatPath.substr(1).split('/');
-        
+
         // remove tail '/' when from relative path
         if (!patharr[patharr.length - 1]) {
             patharr.pop();
         }
-        
+
         return patharr;
     }
-    
+
     /**
     * change current working directory
     *
@@ -92,14 +92,14 @@ class Imfs {
     */
     chdir(_path) {
         const formatPath = this.resolvePath(_path);
-        
+
         if (this.isExist(formatPath)) {
             this.cwd = formatPath;
         } else {
             throw new Error(`Error: directory '${formatPath}' not exists.`);
         }
     }
-    
+
     /**
     * judge a dir/file whether exists or not
     *
@@ -110,26 +110,26 @@ class Imfs {
     isExist(_path) {
         const formatPath = this.resolvePath(_path);
         const patharr = this.path2arr(formatPath);
-        
+
         // root directory
         if (patharr.length === 0) {
             return true;
         }
-        
+
         let cache = this.data;
         let i = 0;
-        
+
         for (; i < patharr.length - 1; i++) {
             if (!this.isDir(cache[patharr[i]])) {
                 return false;
             }
-            
+
             cache = cache[patharr[i]];
         }
-        
+
         return !!cache[patharr[i]];
     }
-    
+
     /**
     * read content of directory
     *
@@ -140,30 +140,30 @@ class Imfs {
     readdir(_path) {
         const formatPath = this.resolvePath(_path);
         const patharr = this.path2arr(formatPath);
-        
+
         // root directory
         if (patharr.length === 0) {
             return Object.keys(this.data).filter(Boolean);
         }
-        
+
         let cache = this.data;
         let i = 0;
-        
+
         for (; i < patharr.length - 1; i++) {
             if (!this.isDir(cache[patharr[i]])) {
                 throw new Error(`Error: directory '${formatPath}' not exists.`);
             }
-            
+
             cache = cache[patharr[i]];
         }
-        
+
         if (!this.isDir(cache[patharr[i]])) {
             throw new Error(`Error: directory '${formatPath}' not exists.`);
         }
-        
+
         return Object.keys(cache[patharr[i]]).filter(Boolean);
     }
-    
+
     /**
     * make new directory/file
     *
@@ -175,15 +175,15 @@ class Imfs {
     mkNode(_path, type) {
         const formatPath = this.resolvePath(_path);
         const patharr = this.path2arr(formatPath);
-        
+
         // root directory
         if (patharr.length === 0) {
             return this;
         }
-        
+
         let cache = this.data;
         let i = 0;
-        
+
         for (; i < patharr.length - 1; i++) {
             if (this.isFile(cache[patharr[i]])) {
                 throw new Error(`Error: homonymous file '${patharr[i]}' exists.`);
@@ -191,13 +191,13 @@ class Imfs {
                 // create new directory when non-exist
                 cache[patharr[i]] = {'': true};
             }
-            
+
             cache = cache[patharr[i]];
         }
-        
+
         if (this.isDir(cache[patharr[i]])) {
             throw new Error(`Error: directory '${patharr[i]}' exists.`);
-        } 
+        }
         if (type) {
             cache[patharr[i]] = {'': false, 'content': ''};
             console.log(`Success: create file '${formatPath}'.`);
@@ -205,10 +205,10 @@ class Imfs {
             cache[patharr[i]] = {'': true};
             console.log(`Success: create directory '${formatPath}'.`);
         }
-        
+
         return this;
     }
-    
+
     /**
     * delete directory/file
     *
@@ -219,27 +219,27 @@ class Imfs {
     rmNode(_path) {
         const formatPath = this.resolvePath(_path);
         const patharr = this.path2arr(formatPath);
-        
+
         if (patharr.length === 0) {
             throw new Error(`Error: can't remove '/' directory`);
         }
-        
+
         let cache = this.data;
         let i = 0;
-        
+
         for (; i < patharr.length - 1; i++) {
             if (!this.isDir(cache[patharr[i]])) {
                 throw new Error(`Error: directory '${patharr[i]}' not exists.`);
             }
-            
+
             cache = cache[patharr[i]];
         }
-        
+
         delete cache[patharr[i]];
-        
+
         return this;
     }
-    
+
     /**
     * read content of file
     *
@@ -250,26 +250,26 @@ class Imfs {
     readFile(_path) {
         const formatPath = this.resolvePath(_path);
         const patharr = this.path2arr(formatPath);
-        
-        
+
+
         let cache = this.data;
         let i = 0
-        
+
         for (; i < patharr.length - 1; i++) {
             if (!this.isDir(cache[patharr[i]])) {
                 throw new Error(`Error: directory '${patharr[i]}' not exists.`);
             }
-            
+
             cache = cache[patharr[i]];
         }
-        
+
         if (!this.isFile(cache[patharr[i]])) {
             throw new Error(`Error: file '${patharr[i]}' not exists.`);
         }
-        
+
         return cache[patharr[i]]['content'].toString();
     }
-    
+
     /**
     * write content to file
     *
@@ -282,31 +282,31 @@ class Imfs {
         if (!content) {
             throw new Error(`Error: no content.`);
         }
-        
+
         const formatPath = this.resolvePath(_path);
         const patharr = this.path2arr(formatPath);
-        
+
         if (patharr.length === 0) {
             throw new Error(`Error: file '${formatPath}' not exists.`);
         }
-        
+
         let cache = this.data;
         let i = 0
-        
+
         for (; i < patharr.length - 1; i++) {
             if (!this.isDir(cache[patharr[i]])) {
                 throw new Error(`Error: directory '${patharr[i]}' not exists.`);
             }
-            
+
             cache = cache[patharr[i]];
         }
-        
+
         if (this.isDir(cache[patharr[i]])) {
             throw new Error(`Error: file '${formatPath}' not exists.`);
-        } 
-        
+        }
+
         cache[patharr[i]]['content'] = content;
-        
+
         return this;
     }
 }

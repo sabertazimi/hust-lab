@@ -4,13 +4,14 @@
  *
  * Distributed under terms of the MIT license.
  */
- 
+
 'use strict';
 
 const Imfs = require('./Imfs.js');
 const Repl = require('./Repl.js');
 
-let imfs = new Imfs();
-let repl = new Repl(imfs);
+const imfs = new Imfs();
+const repl = new Repl(imfs);
 
 repl.start();
+

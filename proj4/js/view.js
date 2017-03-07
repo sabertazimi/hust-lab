@@ -8,6 +8,7 @@
 const readCPUUsage = require('./js/CPU.js');
 const readMemUsage = require('./js/Memory.js');
 const getProcessItems = require('./js/Process.js');
+const getSystemInfo = require('./js/System.js');
 
 const coreTotal = 0;
 const core0 = 1;
@@ -23,12 +24,18 @@ const memKB = 0;
 const memMB = 1;
 const memGB = 2;
 
+const S_modelName = 0;
+const S_cpuMHz = 1;
+const S_cacheSize = 2;
+const S_addrSize = 3;
+
 const P_TOTAL = 0;
 const P_CPU = 1;
 const P_CPUUsage = 2;
 const P_PID = 3;
 const P_NAME = 4;
 const P_MemUsage = 5;
+const P_State = 6;
 
 const systemUpdateInterval = 2000;
 const processUpdateInterval = 3000;
@@ -43,10 +50,21 @@ const updateSystemInfo = () => {
 
     const CPUUsagePara = document.querySelector('div#System p#cpu-usage');
     const MemUsagePara = document.querySelector('div#System p#mem-usage');
+    const modelNamePara = document.querySelector('div#System p#model-name');
+    const CPUMHzPara = document.querySelector('div#System p#cpu-mhz');
+    const cacheSizePara = document.querySelector('div#System p#cache-size');
+    const addrSizePara = document.querySelector('div#System p#addr-size');
+    const [modelName, CPUMHz, cacheSize, addrSize] = getSystemInfo();
+                
     CPUUsagePara.innerHTML = `CPU Usage: ${readCPUUsage(coreTotal).toFixed(2)} %`;
     MemUsagePara.innerHTML = `Memory Free: ${readMemUsage(memAvail, memGB).toFixed(2)} GB`;
-    console.log(CPUUsagePara);
-    console.log(MemUsagePara);
+    modelNamePara.innerHTML = `Model Name: ${modelName}`;
+    CPUMHzPara.innerHTML = `CPU MHz: ${CPUMHz}`;
+    cacheSizePara.innerHTML = `Cache Size: ${cacheSize}`;
+    addrSizePara.innerHTML = `Address Size: ${addrSize}`;
+    
+    // console.log(CPUUsagePara);
+    // console.log(MemUsagePara);
 };
 
 const updateProcessInfo = () => {
@@ -61,6 +79,7 @@ const updateProcessInfo = () => {
     const processTableHeader = '<ul class="process-list">   \
     <li>Name</li>           \
     <li>PID</li>            \
+    <li>State</li>          \
     <li>CPU</li>            \
     <li>Memory</li>         \
     </ul>';
@@ -76,6 +95,7 @@ const updateProcessInfo = () => {
         processTable.innerHTML += `<ul class="process-list">                 \
         <li>${processData[P_NAME]}</li>         \
         <li>${processData[P_PID]}</li>          \
+        <li>${processData[P_State]}</li>          \
         <li>${processData[P_CPUUsage].toFixed(2)}</li>     \
         <li>${processData[P_MemUsage].toFixed(2)} MB</li>     \
         </ul>`;

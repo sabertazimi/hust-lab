@@ -48,7 +48,7 @@ const getTotalCPU = () => {
     return total;
 };
 
-const readProcessStats = () => {
+const readProcessRawData = () => {
     let processRawData = new Map();
     const processDirs = readProcessDir('/proc');
     processDirs.forEach((dir) => {
@@ -92,6 +92,7 @@ const memUse = 1;
 
 // enum for status
 const VmRSS = 21;
+const state = 2;
 
 const stat = 0;
 const statm = 1;
@@ -104,7 +105,7 @@ const getProcessData = (key, rawData) => {
     const totalCPU = getTotalCPU();
     const processCPU = parseInt(rawData[stat][utime]) + parseInt(rawData[stat][stime]);
     const processName = rawData[stat][comm].replace('(', '').replace(')', '');
-
+    const processState = String.prototype.split.call(rawData[status][state], /\s+/)[2].replace('(', '').replace(')', '');
     let processMem = String.prototype.split.call(rawData[status][VmRSS], /\s+/);
     if (processMem[0] === 'VmRSS:') {
         processMem = parseInt(processMem[1]);
@@ -113,19 +114,19 @@ const getProcessData = (key, rawData) => {
         processMem = 0;
     }
 
-    const processData = [totalCPU, processCPU, 0, key, processName, processMem];
+    const processData = [totalCPU, processCPU, 0, key, processName, processMem, processState];
 
     return processData;
 }
 
 const getProcessItems = () => {
     let processItems = new Map();
-    let processRawData = readProcessStats();
+    let processRawData = readProcessRawData();
 
     for (let key of processRawData.keys()) {
         const rawData = processRawData.get(key);
-        const [totalCPU, processCPU, cpuUsage, proceesID, processName, processMem] = getProcessData(key, rawData);
-        const processItem = [totalCPU, processCPU, cpuUsage, processName, processName, processMem];
+        const [totalCPU, processCPU, cpuUsage, proceesID, processName, processMem, processState] = getProcessData(key, rawData);
+        const processItem = [totalCPU, processCPU, cpuUsage, processName, processName, processMem, processState];
         processItems.set(key, processItem);
     }
 
@@ -135,13 +136,13 @@ const getProcessItems = () => {
         curDate = new Date();
     } while (curDate - date < sleepTime);
 
-    processRawData = readProcessStats();
+    processRawData = readProcessRawData();
 
     for (let key of processRawData.keys()) {
         if (processItems.has(key)) {
             // update information
             const rawData = processRawData.get(key);
-            let [totalCPU2, processCPU2, cpuUsage, processID, processName, processMem] = getProcessData(key, rawData);
+            let [totalCPU2, processCPU2, cpuUsage, processID, processName, processMem, processState] = getProcessData(key, rawData);
 
             // calculate cpu usage
             // update cpu usage
@@ -150,13 +151,13 @@ const getProcessItems = () => {
             const processCPU1 = processItem[P_CPU];
             cpuUsage = 100 * (processCPU2 * 1.0 - processCPU1 * 1.0) / (totalCPU2 * 1.0 - totalCPU1 * 1.0);
 
-            const newProcessItem = [totalCPU2, processCPU2, cpuUsage, processID, processName, processMem];
+            const newProcessItem = [totalCPU2, processCPU2, cpuUsage, processID, processName, processMem, processState];
             processItems.set(key, newProcessItem);
         } else {
             // add new process
             const rawData = processRawData.get(key);
-            const [totalCPU, processCPU, cpuUsage, proceesID, processName, processMem] = getProcessData(key, rawData);
-            const processItem = [totalCPU, processCPU, cpuUsage, processID, processName, processMem];
+            const [totalCPU, processCPU, cpuUsage, processID, processName, processMem, processState] = getProcessData(key, rawData);
+            const processItem = [totalCPU, processCPU, cpuUsage, processID, processName, processMem, processState];
             processItems.set(key, processItem);
         }
     }
