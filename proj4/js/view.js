@@ -5,6 +5,7 @@
 * Distributed under terms of the MIT license.
 */
 
+const execSync = require('child_process').execSync;
 const readCPUUsage = require('./js/CPU.js');
 const readMemUsage = require('./js/Memory.js');
 const getProcessItems = require('./js/Process.js');
@@ -55,14 +56,14 @@ const updateSystemInfo = () => {
     const cacheSizePara = document.querySelector('div#System p#cache-size');
     const addrSizePara = document.querySelector('div#System p#addr-size');
     const [modelName, CPUMHz, cacheSize, addrSize] = getSystemInfo();
-                
+
     CPUUsagePara.innerHTML = `CPU Usage: ${readCPUUsage(coreTotal).toFixed(2)} %`;
     MemUsagePara.innerHTML = `Memory Free: ${readMemUsage(memAvail, memGB).toFixed(2)} GB`;
     modelNamePara.innerHTML = `Model Name: ${modelName}`;
     CPUMHzPara.innerHTML = `CPU MHz: ${CPUMHz}`;
     cacheSizePara.innerHTML = `Cache Size: ${cacheSize}`;
     addrSizePara.innerHTML = `Address Size: ${addrSize}`;
-    
+
     // console.log(CPUUsagePara);
     // console.log(MemUsagePara);
 };
@@ -112,6 +113,14 @@ const openTab = (evt, id) => {
 
     document.getElementById(id).style.display = 'block';
     document.getElementById(id).className += ' active';
+};
+
+const killProcess = () => {
+    const pidText = document.getElementById('kill-pid');
+
+    if (pidText.value && /^[0-9]*$/.test(pidText.value)) {
+        execSync(`kill ${pidText.value}`);
+    }
 };
 
 const updateUI = () => {

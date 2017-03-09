@@ -84,7 +84,7 @@ const stime = 14;
 const priority = 18;
 const vsize = 22;
 const rss = 23;
-const sleepTime = 1000;
+const sleepTime = 10;
 
 // enum for statm
 const pagesize = 4096;  // getconf PAGE_SIZE
@@ -183,7 +183,6 @@ const getProcessItems = () => {
 
 module.exports = getProcessItems;
 
-const processItems = getProcessItems();
 // for (let value of processItems.values()) {
 //     console.log(`${value[P_PID]} => ${value[P_CPUUsage]}`);
 // }
