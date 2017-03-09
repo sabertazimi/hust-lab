@@ -1,12 +1,13 @@
 /*
-* Repl.js
-* Copyright (C) 2017 sabertazimi <sabertazimi@gmail.com>
-*
-* Distributed under terms of the MIT license.
-*/
+ * Repl.js
+ * Copyright (C) 2017 sabertazimi <sabertazimi@gmail.com>
+ *
+ * Distributed under terms of the MIT license.
+ */
 
 'use strict';
 
+const fs = require('fs');
 const path = require('path');
 const process = require('process');
 const readline = require('readline-sync');
@@ -20,16 +21,32 @@ class Repl {
     start() {
         console.log('Log in to in-memory file system ...');
         console.log('Done.');
+        console.log('Restore config file ...');
+
+        const jsonFile = fs.openSync('imfs.json', 'a+');
+        const jsonData = fs.readFileSync(jsonFile, 'utf8');
+
+        if (jsonData) {
+            this.imfs.data = JSON.parse(jsonData);
+        }
+
+        fs.closeSync(jsonFile);
+
+        console.log('Done.');
         console.log(`Enter 'help' to get more helpful information.`);
         console.log('');
 
+        this.repl();
+    }
+
+    repl() {
         while (!this.exit) {
             const prompt = ((this.imfs.cwd === '/') ? '/' : path.basename(this.imfs.cwd));
             const command = readline.question(`${prompt} $ `).split(/\s+/);
             const cmd = command[0];
             const pathstr = command[1];
-            const content = command[2];
             const paths = command.slice(1);
+            const content = command.slice(2).join(' ');
 
             switch (cmd) {
                 case 'cd':
@@ -140,7 +157,6 @@ class Repl {
             console.log(this.imfs.readFile(_path));
         } catch (err) {
             console.log(err.message);
-            console.log(err);
         }
     }
 
@@ -158,8 +174,18 @@ class Repl {
 
     cmd_exit() {
         console.log('');
-        console.log('Log out from in-memory file system ...');
+        console.log('Store config file ...');
+
+        const data = JSON.stringify(this.imfs.data);
+
+        if (data) {
+            fs.writeFileSync('imfs.json', data, 'utf8');
+        }
+
         this.exit = true;
+
+        console.log('Done.');
+        console.log('Log out from in-memory file system ...');
         console.log('Done.');
     }
 
