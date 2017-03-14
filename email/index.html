@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Task Manager</title>
+    <link rel="stylesheet" type="text/css" href="./src/css/main.css">
+    <link rel="stylesheet" type="text/css" href="./node_modules/mdui/dist/css/mdui.min.css">
+</head>
+
+<body>
+    <div class="mdui-appbar">
+        <div class="mdui-toolbar mdui-color-indigo">
+            <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#left-drawer'}"><i class="mdui-icon material-icons">&#xe5d2;</i></a>
+            <a href="javascript:;" class="mdui-typo-headline">Dragon</a>
+            <a href="javascript:;" class="mdui-typo-title">Email</a>
+            <div class="mdui-toolbar-spacer"></div>
+            <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">&#xe8b6;</i></a>
+            <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">&#xe5d5;</i></a>
+            <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">&#xe5d4;</i></a>
+        </div>
+    </div>
+    
+    <div class="mdui-drawer" id="left-drawer">
+        <button class="mdui-btn" mdui-drawer-close>
+            <i class="mdui-icon material-icons">&#xe5cd;</i>
+        </button>
+    </div>
+    
+    <div class="mdui-fab-wrapper" mdui-fab="{trigger: 'hover'} id="floatFab">
+        <button class="mdui-fab mdui-ripple mdui-color-blue-grey-600">
+            <!-- 默认显示的图标 -->
+            <i class="mdui-icon material-icons">&#xe145;</i>
+            
+            <!-- 在拨号菜单开始打开时，平滑切换到该图标，若不需要切换图标，则可以省略该元素 -->
+            <i class="mdui-icon mdui-fab-opened material-icons">&#xe254;</i>
+        </button>
+        <div class="mdui-fab-dial">
+            <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-pink"><i class="mdui-icon material-icons">&#xe864;</i></button>
+            <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-red"><i class="mdui-icon material-icons">&#xe866;</i></button>
+            <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-orange"><i class="mdui-icon material-icons">&#xe191;</i></button>
+            <button class="mdui-fab mdui-fab-mini mdui-ripple mdui-color-blue"><i class="mdui-icon material-icons">&#xe913;</i></button>
+        </div>
+    </div>
+    <script src="./node_modules/mdui/dist/js/mdui.min.js"></script>
+    <script src="./src/js/view.js"></script>
+</body>
+</html>
