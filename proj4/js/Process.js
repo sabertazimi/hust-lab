@@ -105,7 +105,7 @@ const getProcessData = (key, rawData) => {
     const totalCPU = getTotalCPU();
     const processCPU = parseInt(rawData[stat][utime]) + parseInt(rawData[stat][stime]);
     const processName = rawData[stat][comm].replace('(', '').replace(')', '');
-    const processState = String.prototype.split.call(rawData[status][state], /\s+/)[2].replace('(', '').replace(')', '');
+    const processState = String.prototype.split.call(rawData[status][state], /\s+/)[2];//.replace('(', '').replace(')', '');
     let processMem = String.prototype.split.call(rawData[status][VmRSS], /\s+/);
     if (processMem[0] === 'VmRSS:') {
         processMem = parseInt(processMem[1]);
