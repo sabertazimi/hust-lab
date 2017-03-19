@@ -57,17 +57,12 @@ const readProcessRawData = () => {
         const data = fs.readFileSync(file, 'utf8');
         const stat = String.prototype.split.call(data, /\s+/);
 
-        // important file: /proc/*/statm => memory info of process
-        const filem = path.resolve(dir, 'statm');
-        const datam = fs.readFileSync(filem, 'utf8');
-        const statm = String.prototype.split.call(datam, /\s+/);
-
-        // important file: /proc/*/statm => memory info of process
+        // important file: /proc/*/status => memory info of process
         const files = path.resolve(dir, 'status');
         const datas = fs.readFileSync(files, 'utf8');
         const status = String.prototype.split.call(datas, '\n');
 
-        const rawData = [stat, statm, status];
+        const rawData = [stat, status];
 
         processRawData.set(stat[pid], rawData);
     });
@@ -86,17 +81,12 @@ const vsize = 22;
 const rss = 23;
 const sleepTime = 10;
 
-// enum for statm
-const pagesize = 4096;  // getconf PAGE_SIZE
-const memUse = 1;
-
 // enum for status
 const VmRSS = 21;
 const state = 2;
 
 const stat = 0;
-const statm = 1;
-const status = 2;
+const status = 1;
 
 const P_TOTAL = 0;
 const P_CPU = 1;
@@ -169,24 +159,7 @@ const getProcessItems = () => {
         }
     }
 
-    //   console.log(`${stat[comm]} pid: ${stat[pid]}`);
-    //   console.log(`${stat[comm]} ttyid: ${stat[tty]}`);
-    //   console.log(`${stat[comm]} priority: ${stat[priority]}`);
-    //   console.log(`${stat[comm]} utime: ${stat[utime]}`);
-    //   console.log(`${stat[comm]} stime: ${stat[stime]}`);
-    //   console.log(`${stat[comm]} virtual memory size: ${stat[vsize]}`);
-    //   console.log(`${stat[comm]} resident set size: ${stat[rss]}`);
-    //   console.log(`memory usage : ${statm[memUse]}`);
-
     return processItems;
 };
 
 module.exports = getProcessItems;
-
-// for (let value of processItems.values()) {
-//     console.log(`${value[P_PID]} => ${value[P_CPUUsage]}`);
-// }
-//
-// console.log(processItems.size);
-
-// console.log(processItems);
