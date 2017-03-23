@@ -1,5 +1,5 @@
 /*!
-* \file dragondevice.c
+* \file dragondev.c
 * \brief
 *
 * \author sabertazimi, <sabertazimi@gmail.com>
@@ -23,7 +23,7 @@
 char buf[BUF_SIZE];     ///< device charaters buffer
 int dev_num = 0;        ///< device number
 int buf_size = 0;       ///< buffer current size containing characters
-int seek_pos = 0;       ///< current 
+int seek_pos = 0;       ///< current
 
 static int dragondev_open(struct inode *inode, struct file *filp) {
     seek_pos = 0;
@@ -40,7 +40,7 @@ static int dragondev_release (struct inode *inode, struct file *filp) {
 static ssize_t dragondev_read (struct file *filp, char __user *target , size_t tsize, loff_t *offset) {
     size_t read_size = buf_size - seek_pos;
     read_size = read_size < tsize ? read_size : tsize;
-    
+
     if (!copy_to_user((char *)target, buf+seek_pos, read_size)) {
         seek_pos += read_size;
         printk("Dragon device read success.\n");
@@ -54,7 +54,7 @@ static ssize_t dragondev_read (struct file *filp, char __user *target , size_t t
 static ssize_t dragondev_write (struct file *filp,const char __user *target , size_t tsize, loff_t *offset) {
     size_t write_size = BUF_SIZE - seek_pos;
     write_size = write_size < tsize ? write_size : tsize;
-    
+
     if(!copy_from_user((char *)buf+seek_pos, target, write_size)) {
         seek_pos += write_size;
         buf_size += write_size;
@@ -81,7 +81,7 @@ int init_module(void) {
     } else {
         printk("Dragon device register success.\n");
     }
-    
+
     return 0;
 }
 

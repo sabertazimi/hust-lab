@@ -13,7 +13,7 @@ const createWindow = () => {
     height: 600
   });
 
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 
   mainWindow.loadURL(url.format({
     pathname: path.join(__dirname, '../index.html'),
@@ -41,5 +41,5 @@ app.on('activate', function () {
 });
 
 app.on('browser-window-created', (e, window) => {
-  // window.setMenu(null);
+  window.setMenu(null);
 });
