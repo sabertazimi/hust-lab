@@ -46,6 +46,10 @@ struct in_addr {
 *   原来的SOCKET继续等待其他的连接请求。而新生成的SOCKET才是与客户端通信的实际SOCKET
 *   一般将参数中的SOCKET称作“监听”SOCKET，它只负责接受连接，不负责通话；而对于函数返回的SOCKET，把它称作“会话”SOCKET，它负责与客户端通话
 
+## Reference
+
+*   [Thread](https://john.nachtimwald.com/2015/05/02/effective-threading-using-qt/)
+
 ## License
 
 MIT License Copyright (c) 2017 [sabertazimi](https://github.com/sabertazimi)

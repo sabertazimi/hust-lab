@@ -1,4 +1,5 @@
 #include <QMainWindow>
+#include <QMessageBox>
 #include <QString>
 #include <QTimer>
 #include <QLabel>
@@ -7,6 +8,10 @@
 
 using namespace std;
 
+///
+/// \brief ServerWindow::ServerWindow
+/// \param parent
+///
 ServerWindow::ServerWindow(QWidget *parent) : QMainWindow(parent) {
     QDesktopWidget dw;
     this->setFixedSize(dw.width(), dw.height());
@@ -19,17 +24,28 @@ ServerWindow::ServerWindow(QWidget *parent) : QMainWindow(parent) {
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(updateServer()));
     timer->start(2000);
+    // QMessageBox::critical(this, "Error", "Restart to fix unkown error!");
 }
 
+///
+/// \brief ServerWindow::~ServerWindow
+///
 ServerWindow::~ServerWindow(void) {
     delete label;
     delete timer;
 }
 
+///
+/// \brief ServerWindow::getServer
+/// \return
+///
 QString ServerWindow::getServer(void) {
     return QString("Web Server");
 }
 
+///
+/// \brief ServerWindow::updateServer
+///
 void ServerWindow::updateServer(void) {
     label->setText(getServer());
 }

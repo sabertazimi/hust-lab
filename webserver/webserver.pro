@@ -24,8 +24,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-        serverwindow.cpp
+        serverwindow.cpp \
+    dragonwebserver.cpp
 
-HEADERS  += serverwindow.h
+HEADERS  += serverwindow.h \
+    dragonwebserver.h
 
 LIBS += -lws2_32

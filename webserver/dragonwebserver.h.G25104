@@ -1,0 +1,35 @@
+#ifndef DRAGONWEBSERVER_H
+#define DRAGONWEBSERVER_H
+
+#include <QObject>
+#include <QString>
+#include <winsock2.h>
+#include <list>
+
+#define MAXCONN 5
+#define BUFLEN 5000
+#define SERVER_PORT 80
+
+typedef std::list<SOCKET> ListCONN;
+typedef std::list<SOCKET> ListConErr;
+typedef struct dwsOptions {
+    int ip;
+    int port;
+    QString filePath;
+} dwsOptions;
+
+class DragonWebServer : public QObject {
+    Q_OBJECT
+public:
+    explicit DragonWebServer(QObject *parent = 0);
+    ~DragonWebServer(void);
+
+public slots:
+    int runServer(dwsOptions dwsopt);
+
+signals:
+    void rcvReq(QString);
+    void sndRes();
+};
+
+#endif // DRAGONWEBSERVER_H
