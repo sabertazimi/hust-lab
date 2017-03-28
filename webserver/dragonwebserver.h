@@ -69,7 +69,7 @@ public slots:
     /// \param dwsopt
     /// \return
     ///
-    int runServer(dwsOptions dwsopt);
+    int runServer(void);
 
 signals:
     ///
@@ -80,6 +80,10 @@ signals:
     /// \brief sndRes
     ///
     void sndRes(QString);
+    ///
+    /// \brief finished
+    ///
+    void finished();
 
 private:
     ///

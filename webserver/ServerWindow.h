@@ -5,6 +5,7 @@
 #include <QString>
 #include <QTimer>
 #include <QLabel>
+#include <list>
 
 ///
 /// \brief The ServerWindow class
@@ -21,6 +22,9 @@ public:
     explicit ServerWindow(QWidget *parent = 0);
     ~ServerWindow(void);
 
+public slots:
+    void logReq(QString req);
+
 private:
     ///
     /// \brief label
@@ -31,6 +35,10 @@ private:
     ///
     QTimer *timer;
     ///
+    /// \brief reqlogs
+    ///
+    std::list <QString> reqlogs;
+    ///
     /// \brief getServer
     /// \return
     ///
@@ -40,7 +48,7 @@ private:
     /// \param txt
     /// \return
     ///
-    QMainWindow &setText(const char *txt);
+    QMainWindow &setText(QString msg);
 
 private slots:
     ///

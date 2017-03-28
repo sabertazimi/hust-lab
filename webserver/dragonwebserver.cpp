@@ -1,8 +1,9 @@
+#include <QString>
+#include <algorithm>
+#include <list>
 #include <stdio.h>
 #include <string.h>
 #include <winsock2.h>
-#include <algorithm>
-#include <list>
 #include "dragonwebserver.h"
 
 using namespace std;
@@ -11,9 +12,12 @@ using namespace std;
 /// \brief DragonWebServer::DragonWebServer
 /// \param parent
 ///
-DragonWebServer::DragonWebServer(QObject *parent) : QObject(parent)
-{
+DragonWebServer::DragonWebServer(QObject *parent) : QObject(parent) {
+    this->setPort(80);
+    this->setPath(QString("C:\\dws\\index.html"));
+}
 
+DragonWebServer::~DragonWebServer(void) {
 }
 
 ///
@@ -35,6 +39,7 @@ DragonWebServer &DragonWebServer::setOptions(dwsOptions dwsopt) {
 ///
 DragonWebServer &DragonWebServer::setIP(QString ip) {
     this->dwsopt.ip = ip;
+    return *this;
 }
 
 ///
@@ -44,6 +49,7 @@ DragonWebServer &DragonWebServer::setIP(QString ip) {
 ///
 DragonWebServer &DragonWebServer::setPort(int port) {
     this->dwsopt.port = port;
+    return *this;
 }
 
 ///
@@ -53,6 +59,7 @@ DragonWebServer &DragonWebServer::setPort(int port) {
 ///
 DragonWebServer &DragonWebServer::setPath(QString filePath) {
     this->dwsopt.filePath = filePath;
+    return *this;
 }
 
 ///
@@ -60,7 +67,7 @@ DragonWebServer &DragonWebServer::setPath(QString filePath) {
 /// \param dwsopt
 /// \return
 ///
-int DragonWebServer::runServer(dwsOptions dwsopt) {
+int DragonWebServer::runServer(void) {
     WSADATA wsaData;
     int nRC;
 
@@ -218,6 +225,7 @@ int DragonWebServer::runServer(dwsOptions dwsopt) {
                             recvBuf[nRC - 1] = '\0';
                             sprintf(sendBuf, "\n%s\n", recvBuf);
                             printf("%s", sendBuf);
+                            emit rcvReq(QString(sendBuf));
                             sprintf(sendBuf, "HTTP/1.1 200 OK\nConnection: keep-alive\nServer: Dragon Web Server\nContent-Type: text/html\n\n \
                                     <!DOCTYPE html>\n\
                                     <html lang = \"en\">\n\
@@ -255,6 +263,7 @@ int DragonWebServer::runServer(dwsOptions dwsopt) {
 
     closesocket(srvSock);
     WSACleanup();
+    emit finished();
 
     return 0;
 }
