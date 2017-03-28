@@ -9,7 +9,7 @@
 #include <string.h>
 
 #define MAXCONN 5
-#define BUFLEN 255
+#define BUFLEN 5000
 #define SERVER_PORT 80
 
 using namespace std;
@@ -35,6 +35,7 @@ int main(int argc, char **argv) {
 	ListConErr conErrList;	// 保存所有失效的会话SOCKET
 	ListConErr::iterator itor1;
 
+	// for select (non-block)
 	FD_SET rfds;
 	FD_SET wfds;
 	u_long uNonBlock;
@@ -91,6 +92,7 @@ int main(int argc, char **argv) {
 	// 将srvSock设为非阻塞模式以监听客户连接请求
 	uNonBlock = 1;
 	ioctlsocket(srvSock, FIONBIO, &uNonBlock);
+	int httpSocket = 0;
 
 	while (true) {
 		// 从conList中删除已经产生错误的会话SOCKET
@@ -122,6 +124,8 @@ int main(int argc, char **argv) {
 		if (FD_ISSET(srvSock, &rfds)) {
 			nTotal--;
 			// 产生会话SOCKET
+			httpSocket++;
+			printf("Http Socket Num: %d\n", httpSocket);
 			SOCKET connSock = accept(srvSock, (LPSOCKADDR)&clientAddr, &nAddrLen);
 			if (connSock == INVALID_SOCKET) {
 				printf("Server accept connection request error!\n");
@@ -130,34 +134,31 @@ int main(int argc, char **argv) {
 				return -1;
 			}
 
-			sprintf(sendBuf, "来自%s的游客进入聊天室!\n", inet_ntoa(clientAddr.sin_addr));
-			printf("%s", sendBuf);
-
 			// 将产生的会话SOCKET保存在conList中
 			conList.insert(conList.end(), connSock);
 		}
-		
+
 		if (nTotal > 0) {
 			// 检查所有有效的会话SOCKET是否有数据到来
 			// 或是否可以发送数据
 			for (itor = conList.begin(); itor != conList.end(); itor++) {
 				// 如果会话SOCKET可以发送数据，
 				// 则向客户发送消息
-				if (FD_ISSET(*itor, &wfds)) {
-					// 如果发送缓冲区有内容，则发送
-					if (strlen(sendBuf) > 0) {
-						nRC = send(*itor, sendBuf, strlen(sendBuf), 0);
-						if (nRC == SOCKET_ERROR) {
-							// 发送数据错误，
-							// 记录下产生错误的会话SOCKET
-							conErrList.insert(conErrList.end(), *itor);
-						}
-						else {
-							// 发送数据成功，清空发送缓冲区
-							memset(sendBuf, '\0', BUFLEN);
-						}
-					}
-				}
+				//if (FD_ISSET(*itor, &wfds)) {
+				//	// 如果发送缓冲区有内容，则发送
+				//	if (strlen(sendBuf) > 0) {
+				//		nRC = send(*itor, sendBuf, strlen(sendBuf), 0);
+				//		if (nRC == SOCKET_ERROR) {
+				//			// 发送数据错误，
+				//			// 记录下产生错误的会话SOCKET
+				//			conErrList.insert(conErrList.end(), *itor);
+				//		}
+				//		else {
+				//			// 发送数据成功，清空发送缓冲区
+				//			memset(sendBuf, '\0', BUFLEN);
+				//		}
+				//	}
+				//}
 
 				// 如果会话SOCKET有数据到来，则接受客户的数据
 				if (FD_ISSET(*itor, &rfds)) {
@@ -167,11 +168,41 @@ int main(int argc, char **argv) {
 						// 记录下产生错误的会话SOCKET
 						conErrList.insert(conErrList.end(), *itor);
 					} else {
-						// 接收数据成功，保存在发送缓冲区中，
-						// 以发送到所有客户去
-						recvBuf[nRC] = '\0';
-						sprintf(sendBuf, "\n游客说:%s\n", recvBuf);
-						printf("%s", sendBuf);
+						if (nRC > 0) {
+							// 接收数据成功，保存在发送缓冲区中，
+							// 以发送到所有客户去
+							recvBuf[nRC - 1] = '\0';
+							sprintf(sendBuf, "\n%s\n", recvBuf);
+							printf("%s", sendBuf);
+							sprintf(sendBuf, "HTTP/1.1 200 OK\nConnection: keep-alive\nServer: Dragon Web Server\nContent-Type: text/html\n\n \
+								<!DOCTYPE html>\n\
+								<html lang = \"en\">\n\
+								<head>\n\
+								<meta charset = \"utf-8\">\n\
+								</head>\n\
+								<body>\n\
+								<h1>Hello, Dragon Web Server!</h1>\n\
+								</body> \
+								</html>");
+							nRC = send(*itor, sendBuf, strlen(sendBuf), 0);
+							if (nRC == SOCKET_ERROR) {
+								// 发送数据错误，
+								// 记录下产生错误的会话SOCKET
+								conErrList.insert(conErrList.end(), *itor);
+							} else {
+								// 发送数据成功，清空发送缓冲区
+								memset(sendBuf, '\0', BUFLEN);
+							}
+
+						} else {
+							// @TODO: 设定一个定时器
+							// time out
+							// 再无数据接收, 关闭连接
+							closesocket(*itor);
+							FD_CLR(*itor, &wfds);
+							FD_CLR(*itor, &rfds);
+							if (itor != conList.end()) itor = conList.erase(itor);
+						}
 					}
 				}
 			}
