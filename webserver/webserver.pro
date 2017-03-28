@@ -27,3 +27,5 @@ SOURCES += main.cpp\
         serverwindow.cpp
 
 HEADERS  += serverwindow.h
+
+LIBS += -lws2_32

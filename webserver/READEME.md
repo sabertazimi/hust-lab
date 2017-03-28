@@ -12,6 +12,9 @@ A simple web server based on Qt
 *   CMake
 *   Qt 5.8 Tool Chain
 
+*   .pro: `LIBS += -lws2_32`
+*   对于服务器和客户端工程，都必须打开工程设置（Project->Settings…），然后选中Link选项卡，在Object/library modules栏目中添加ws2_32.lib
+
 ## Window Socket API
 
 ### bind (P12)
