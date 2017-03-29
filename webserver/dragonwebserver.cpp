@@ -1,9 +1,11 @@
 #include <QString>
+#include <QThread>
 #include <algorithm>
 #include <list>
 #include <stdio.h>
 #include <string.h>
 #include <winsock2.h>
+#include "responseserver.h"
 #include "dragonwebserver.h"
 
 using namespace std;

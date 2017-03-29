@@ -63,14 +63,6 @@ public:
     ///
     DragonWebServer &setPath(QString filePath);
 
-public slots:
-    ///
-    /// \brief runServer
-    /// \param dwsopt
-    /// \return
-    ///
-    int runServer(void);
-
 signals:
     ///
     /// \brief rcvReq
@@ -84,6 +76,14 @@ signals:
     /// \brief finished
     ///
     void finished();
+
+public slots:
+    ///
+    /// \brief runServer
+    /// \param dwsopt
+    /// \return
+    ///
+    int runServer(void);
 
 private:
     ///

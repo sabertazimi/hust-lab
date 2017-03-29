@@ -7,6 +7,8 @@
 #include <QLabel>
 #include <list>
 
+using namespace std;
+
 ///
 /// \brief The ServerWindow class
 ///
@@ -37,7 +39,15 @@ private:
     ///
     /// \brief reqlogs
     ///
-    std::list <QString> reqlogs;
+    list <QString> reqlogs;
+    ///
+    /// \brief dwsThread
+    ///
+    QThread     *dwsThread;
+    ///
+    /// \brief dws
+    ///
+    DragonWebServer *dws;
     ///
     /// \brief getServer
     /// \return

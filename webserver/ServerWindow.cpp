@@ -16,25 +16,23 @@ using namespace std;
 /// \param parent
 ///
 ServerWindow::ServerWindow(QWidget *parent) : QMainWindow(parent) {
-    QThread     *dwsThread;
-    DragonWebServer *dws;
     QDesktopWidget dw;
 
     this->setFixedSize(dw.width(), dw.height());
 
-    label = new QLabel(this);
-    label->setText("Welcome to Dragon Web Server");
-    label->setFixedSize(dw.width(), dw.height());
+    this->label = new QLabel(this);
+    this->label->setText("Welcome to Dragon Web Server");
+    this->label->setFixedSize(dw.width(), dw.height());
 
-    dwsThread = new QThread;
-    dws = new DragonWebServer();
-    dws->moveToThread(dwsThread);
-    connect(dwsThread, SIGNAL(started()), dws, SLOT(runServer()));
-    connect(dwsThread, SIGNAL(finished()), dwsThread, SLOT(deleteLater()));
-    connect(dws, SIGNAL(finished()), dwsThread, SLOT(quit()));
-    connect(dws, SIGNAL(finished()), dws, SLOT(deleteLater()));
-    connect(dws, SIGNAL(rcvReq(QString)), this, SLOT(logReq(QString)));
-    dwsThread->start();
+    this->dwsThread = new QThread;
+    this->dws = new DragonWebServer();
+    this->dws->moveToThread(this->dwsThread);
+    connect(this->dwsThread, SIGNAL(started()), this->dws, SLOT(runServer()));
+    connect(this->dwsThread, SIGNAL(finished()), this->dwsThread, SLOT(deleteLater()));
+    connect(this->dws, SIGNAL(finished()), this->dwsThread, SLOT(quit()));
+    connect(this->dws, SIGNAL(finished()), this->dws, SLOT(deleteLater()));
+    connect(this->dws, SIGNAL(rcvReq(QString)), this, SLOT(logReq(QString)));
+    this->dwsThread->start();
 
     // using slots to implement update
     // timer = new QTimer(this);
@@ -47,8 +45,8 @@ ServerWindow::ServerWindow(QWidget *parent) : QMainWindow(parent) {
 /// \brief ServerWindow::~ServerWindow
 ///
 ServerWindow::~ServerWindow(void) {
-    delete label;
-    delete timer;
+    delete this->label;
+    delete this->timer;
 }
 
 ///
@@ -76,5 +74,5 @@ void ServerWindow::logReq(QString req) {
 /// \brief ServerWindow::updateServer
 ///
 void ServerWindow::updateServer(void) {
-    label->setText(getServer());
+    this->label->setText(getServer());
 }
