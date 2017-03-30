@@ -144,9 +144,9 @@ string ResponseServer::getContentType(void) {
         contentType = "image/x-icon";
     } else if (this->reqFileType == "jpg" || this->reqFileType == "jpeg"
                || this->reqFileType == "gif" || this->reqFileType == "tiff") {
-        contentType = "image/jpg; image/jpeg";
+        contentType = "image";
     } else if (this->reqFileType == "mp4") {
-        contentType = "video/mpeg4";
+        contentType = "video/mp4";
     } else if (this->reqFileType == "mp3") {
         contentType = "audio/mp3";
     } else {
