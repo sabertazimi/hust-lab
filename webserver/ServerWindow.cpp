@@ -3,9 +3,8 @@
 #include <QLayout>
 #include <QMessageBox>
 #include <QPushButton>
+#include <QTableWidget>
 #include <QString>
-#include <QTimer>
-#include <QLabel>
 #include <QDesktopWidget>
 #include <QThread>
 #include <iostream>
@@ -35,42 +34,55 @@ ServerWindow::ServerWindow(QWidget *parent) : QMainWindow(parent) {
     topLayout->addWidget(this->stopBtn);
     topLayout->addStretch();
 
+
+    QHBoxLayout *midLayout = new QHBoxLayout;
+    this->startBtn = new QPushButton(QWidget::tr("Start"), this->mainWindow);
+    this->stopBtn = new QPushButton(QWidget::tr("Stop"), this->mainWindow);
+    connect(this->startBtn, SIGNAL(released()), this, SLOT(startBtnHandle()));
+    connect(this->stopBtn, SIGNAL(released()), this, SLOT(stopBtnHandle()));
+    midLayout->addStretch();
+    midLayout->addWidget(this->startBtn);
+    midLayout->addStretch();
+    midLayout->addWidget(this->stopBtn);
+    midLayout->addStretch();
+
     QHBoxLayout *bomLayout = new QHBoxLayout;
-    this->reqLabel = new QLabel(this->mainWindow);
-    this->reqLabel->setText("Welcome to Dragon Web Server");
-    this->reqLabel->setFixedSize(dw.width() * 0.5, dw.height() * 0.7);
-    this->resLabel = new QLabel(this->mainWindow);
-    this->resLabel->setText("Welcome to Dragon Web Server");
-    this->resLabel->setFixedSize(dw.width() * 0.5, dw.height() * 0.7);
+    this->reqTab = new QTableWidget(1, 1);
+    this->reqTab->setWindowTitle("Req Logs");
+    this->reqTab->resize(this->reqTab->maximumWidth(), this->reqTab->maximumHeight());
+    this->reqTab->setItem(0, 0, new QTableWidgetItem("Welcome to Dragon Web Server"));
+    this->reqTab->resizeColumnsToContents();
+    this->reqTab->resizeRowsToContents();
+    this->resTab = new QTableWidget(1, 1);
+    this->resTab->setWindowTitle("Res Logs");
+    this->resTab->resize(this->resTab->maximumWidth(), this->resTab->maximumHeight());
+    this->resTab->setItem(0, 0, new QTableWidgetItem("Welcome to Dragon Web Server"));
+    this->resTab->resizeColumnsToContents();
+    this->resTab->resizeRowsToContents();
     bomLayout->addStretch();
-    bomLayout->addWidget(this->reqLabel);
+    bomLayout->addWidget(this->reqTab);
     bomLayout->addStretch();
-    bomLayout->addWidget(this->resLabel);
+    bomLayout->addWidget(this->resTab);
     bomLayout->addStretch();
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
     mainLayout->addLayout(topLayout);
+    mainLayout->addLayout(midLayout);
     mainLayout->addLayout(bomLayout);
 
     this->mainWindow->setLayout(mainLayout);
     this->setCentralWidget(this->mainWindow);
-    this->setFixedSize(dw.width(), dw.height());
+    this->resize(dw.width(), dw.height());
 
     this->running = false;
-
-    // using slots to implement update
-    // timer = new QTimer(this);
-    // connect(timer, SIGNAL(timeout()), this, SLOT(updateServer()));
-    // timer->start(2000);
-    // QMessageBox::critical(this, "Error", "Restart to fix unkown error!");
 }
 
 ///
 /// \brief ServerWindow::~ServerWindow
 ///
 ServerWindow::~ServerWindow(void) {
-    delete this->reqLabel;
-    delete this->resLabel;
+    delete this->reqTab;
+    delete this->resTab;
     delete this->startBtn;
     delete this->stopBtn;
     delete this->mainWindow;
@@ -101,34 +113,18 @@ void ServerWindow::stopBtnHandle(void) {
 
 void ServerWindow::logReq(const QString &req) {
     this->reqlogs.insert(reqlogs.end(), req);
-    this->reqLabel->setText(this->getReqLogs());
+    int cnt = this->reqTab->rowCount();
+    this->reqTab->insertRow(cnt);
+    this->reqTab->setItem(cnt,0,new QTableWidgetItem(this->reqlogs.back()));
+    this->reqTab->resizeColumnsToContents();
+    this->reqTab->resizeRowsToContents();
 }
 
 void ServerWindow::logRes(const QString &res) {
     this->reslogs.insert(reslogs.end(), res);
-    this->resLabel->setText(this->getResLogs());
-}
-
-QString ServerWindow::getReqLogs(void) {
-    QString ret;
-    list<QString>::iterator itor;
-
-    for (itor = this->reqlogs.begin(); itor != this->reqlogs.end(); itor++) {
-        ret.append(*itor);
-        ret.append("\n");
-    }
-
-    return ret;
-}
-
-QString ServerWindow::getResLogs(void) {
-    QString ret;
-    list<QString>::iterator itor;
-
-    for (itor = this->reslogs.begin(); itor != this->reslogs.end(); itor++) {
-        ret.append(*itor);
-        ret.append("\n");
-    }
-
-    return ret;
+    int cnt = this->resTab->rowCount();
+    this->resTab->insertRow(cnt);
+    this->resTab->setItem(cnt,0,new QTableWidgetItem(this->reslogs.back()));
+    this->resTab->resizeColumnsToContents();
+    this->resTab->resizeRowsToContents();
 }

@@ -85,7 +85,6 @@ void ResponseServer::parseRequest(string req) {
         this->reqFileType = "html";
     }
     this->reqFileType = fileType[fileType.size() <= 0 ? 0 : (fileType.size() - 1)];
-    cout << reqFileType << endl;
 }
 
 void ResponseServer::setResVersion(string version) {
@@ -109,7 +108,7 @@ bool ResponseServer::setResBody(string url) {
     string contentType = this->getContentType();
     ifstream *responseData;
 
-    if (contentType.find("text") == string::npos) {
+    if (contentType.find("text") == string::npos && contentType.find("javascript") == string::npos) {
         responseData = new ifstream(fullPath, ios::binary);
     } else {
         responseData = new ifstream(fullPath, ios::in);
@@ -140,6 +139,10 @@ string ResponseServer::getContentType(void) {
 
     if (this->reqFileType == "html" || this->reqFileType == "htx") {
         contentType = "text/html";
+    } else if (this->reqFileType == "css") {
+        contentType = "text/css";
+    } else if (this->reqFileType == "js") {
+        contentType = "application/x-javascript";
     } else if (this->reqFileType == "ico") {
         contentType = "image/x-icon";
     } else if (this->reqFileType == "jpg" || this->reqFileType == "jpeg"
@@ -208,7 +211,7 @@ void ResponseServer::resFail(string resStatus, string resBody) {
     this->appendResField("Server", "Dragon Web Server");
     this->appendResField("Content-Type", "text/html");
 
-    this->resBody = "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"></head><body><div class=\"error\" style=\"margin-top: 30vh; text-align: center\"><h1>" + resStatus + "</h1></div><br /><br /><div class=\"info\" style=\"text-align: center\">" + resBody + "</div><h1></body></html>";
+    this->resBody = "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"></head><body style=\"background-color: #228ae6\"><div class=\"error\" style=\"color: white; margin-top: 30vh; text-align: center\"><h1>" + resStatus + "</h1></div><br /><br /><div class=\"info\" style=\"color: white; text-align: center\">" + resBody + "</div></body></html>";
 
     string resData = this->getResData();
 

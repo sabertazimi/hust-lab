@@ -3,9 +3,8 @@
 
 #include <QMainWindow>
 #include <QWidget>
+#include <QTableWidget>
 #include <QString>
-#include <QTimer>
-#include <QLabel>
 #include <QPushButton>
 #include <list>
 #include "dragonwebserver.h"
@@ -36,8 +35,8 @@ private:
     /// \brief mainWindow
     ///
     QWidget *mainWindow;
-    QLabel *reqLabel;
-    QLabel *resLabel;
+    QTableWidget *reqTab;
+    QTableWidget *resTab;
     ///
     /// \brief startBtn
     ///
@@ -46,10 +45,6 @@ private:
     /// \brief stopBtn
     ///
     QPushButton *stopBtn;
-    ///
-    /// \brief timer
-    ///
-    QTimer *timer;
     ///
     /// \brief reqlogs
     ///
@@ -73,8 +68,6 @@ private slots:
     ///
     void logReq(const QString &req);
     void logRes(const QString &res);
-    QString getReqLogs(void);
-    QString getResLogs(void);
     void startBtnHandle(void);
     void stopBtnHandle(void);
 };
