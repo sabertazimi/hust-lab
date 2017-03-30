@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QWidget>
+#include <QLineEdit>
 #include <QTableWidget>
 #include <QString>
 #include <QPushButton>
@@ -35,6 +36,9 @@ private:
     /// \brief mainWindow
     ///
     QWidget *mainWindow;
+    QLineEdit *inputIP;
+    QLineEdit *inputPort;
+    QLineEdit *inputPath;
     QTableWidget *reqTab;
     QTableWidget *resTab;
     ///

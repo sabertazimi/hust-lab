@@ -1,6 +1,8 @@
 #include <QMainWindow>
-#include <QWidget>
 #include <QLayout>
+#include <QWidget>
+#include <QLabel>
+#include <QLineEdit>
 #include <QMessageBox>
 #include <QPushButton>
 #include <QTableWidget>
@@ -24,16 +26,25 @@ ServerWindow::ServerWindow(QWidget *parent) : QMainWindow(parent) {
     this->mainWindow = new QWidget();
 
     QHBoxLayout *topLayout = new QHBoxLayout;
-    this->startBtn = new QPushButton(QWidget::tr("Start"), this->mainWindow);
-    this->stopBtn = new QPushButton(QWidget::tr("Stop"), this->mainWindow);
-    connect(this->startBtn, SIGNAL(released()), this, SLOT(startBtnHandle()));
-    connect(this->stopBtn, SIGNAL(released()), this, SLOT(stopBtnHandle()));
+    QLabel *labelIP = new QLabel(QWidget::tr("&IP:"), mainWindow);
+    this->inputIP = new QLineEdit(mainWindow);
+    labelIP->setBuddy(this->inputIP);
+    QLabel *labelPort = new QLabel(QWidget::tr("&Port:"), mainWindow);
+    this->inputPort = new QLineEdit(mainWindow);
+    labelPort->setBuddy(this->inputPort);
+    QLabel *labelPath = new QLabel(QWidget::tr("&Path:"), mainWindow);
+    this->inputPath = new QLineEdit(mainWindow);
+    labelPath->setBuddy(this->inputPath);
     topLayout->addStretch();
-    topLayout->addWidget(this->startBtn);
+    topLayout->addWidget(labelIP);
+    topLayout->addWidget(this->inputIP);
     topLayout->addStretch();
-    topLayout->addWidget(this->stopBtn);
+    topLayout->addWidget(labelPort);
+    topLayout->addWidget(this->inputPort);
     topLayout->addStretch();
-
+    topLayout->addWidget(labelPath);
+    topLayout->addWidget(this->inputPath);
+    topLayout->addStretch();
 
     QHBoxLayout *midLayout = new QHBoxLayout;
     this->startBtn = new QPushButton(QWidget::tr("Start"), this->mainWindow);
@@ -85,6 +96,9 @@ ServerWindow::~ServerWindow(void) {
     delete this->resTab;
     delete this->startBtn;
     delete this->stopBtn;
+    delete this->inputIP;
+    delete this->inputPort;
+    delete this->inputPath;
     delete this->mainWindow;
 }
 
@@ -94,6 +108,9 @@ void ServerWindow::startBtnHandle(void) {
 
         this->dwsThread = new QThread;
         this->dws = new DragonWebServer(this);
+        this->dws->setIP(this->inputIP->text().toLocal8Bit().constData());
+        this->dws->setPort(this->inputPort->text().toLocal8Bit().constData());
+        this->dws->setPath(this->inputPath->text().toLocal8Bit().constData());
         this->dws->moveToThread(this->dwsThread);
         connect(this->dwsThread, SIGNAL(started()), this->dws, SLOT(runServer()));
         connect(this->dwsThread, SIGNAL(finished()), this->dwsThread, SLOT(deleteLater()));

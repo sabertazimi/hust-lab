@@ -2,20 +2,15 @@
 #define DRAGONWEBSERVER_H
 
 #include <QObject>
-#include <QString>
+#include <string>
 #include <winsock2.h>
 #include <list>
 
+using namespace std;
+
 #define MAXCONN 5
-#define SERVER_PORT 80
 
 class ServerWindow;
-
-typedef struct dwsOptions {
-    QString ip;
-    int port;
-    QString filePath;
-} dwsOptions;
 
 ///
 /// \brief The DragonWebServer class
@@ -30,29 +25,23 @@ public:
     explicit DragonWebServer(ServerWindow *ui, QObject *parent = 0);
     ~DragonWebServer(void);
     ///
-    /// \brief setOptions
-    /// \param dwsopt
-    /// \return
-    ///
-    DragonWebServer &setOptions(dwsOptions dwsopt);
-    ///
     /// \brief setIP
     /// \param ip
     /// \return
     ///
-    DragonWebServer &setIP(QString ip);
+    DragonWebServer &setIP(string ip);
     ///
     /// \brief setPort
     /// \param port
     /// \return
     ///
-    DragonWebServer &setPort(int port);
+    DragonWebServer &setPort(string port);
     ///
     /// \brief setPath
     /// \param filePath
     /// \return
     ///
-    DragonWebServer &setPath(QString filePath);
+    DragonWebServer &setPath(string filePath);
 
 signals:
     ///
@@ -78,7 +67,9 @@ private:
     ///
     /// \brief dwsopt
     ///
-    dwsOptions dwsopt;
+    string ip;
+    int port;
+    string filePath;
 };
 
 #endif // DRAGONWEBSERVER_H

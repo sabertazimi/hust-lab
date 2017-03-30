@@ -19,23 +19,11 @@ using namespace std;
 DragonWebServer::DragonWebServer(ServerWindow *ui, QObject *parent) : QObject(parent) {
     this->ui = ui;
     // this->setIP("191.168.191.1");
-    this->setPort(SERVER_PORT);
-    this->setPath(QString("C:\\dws"));
+    this->setPort("80");
+    this->setPath("C:\\dws");
 }
 
 DragonWebServer::~DragonWebServer(void) {
-}
-
-///
-/// \brief DragonWebServer::setOptions
-/// \param dwsopt
-/// \return
-///
-DragonWebServer &DragonWebServer::setOptions(dwsOptions dwsopt) {
-    this->setIP(dwsopt.ip);
-    this->setPort(dwsopt.port);
-    this->setPath(dwsopt.filePath);
-    return *this;
 }
 
 ///
@@ -43,8 +31,11 @@ DragonWebServer &DragonWebServer::setOptions(dwsOptions dwsopt) {
 /// \param ip
 /// \return
 ///
-DragonWebServer &DragonWebServer::setIP(QString ip) {
-    this->dwsopt.ip = ip;
+DragonWebServer &DragonWebServer::setIP(string ip) {
+    if (ip != "") {
+        this->ip = ip;
+    }
+
     return *this;
 }
 
@@ -53,8 +44,15 @@ DragonWebServer &DragonWebServer::setIP(QString ip) {
 /// \param port
 /// \return
 ///
-DragonWebServer &DragonWebServer::setPort(int port) {
-    this->dwsopt.port = port;
+DragonWebServer &DragonWebServer::setPort(string port) {
+    if (port != "") {
+        stringstream ss;
+        int portNum;
+        ss << port;
+        ss >> portNum;
+        this->port = portNum;
+    }
+
     return *this;
 }
 
@@ -63,14 +61,16 @@ DragonWebServer &DragonWebServer::setPort(int port) {
 /// \param filePath
 /// \return
 ///
-DragonWebServer &DragonWebServer::setPath(QString filePath) {
-    this->dwsopt.filePath = filePath;
+DragonWebServer &DragonWebServer::setPath(string filePath) {
+    if (filePath != "") {
+        this->filePath = filePath;
+    }
+
     return *this;
 }
 
 ///
 /// \brief DragonWebServer::runServer
-/// \param dwsopt
 /// \return
 ///
 int DragonWebServer::runServer(void) {
@@ -105,7 +105,7 @@ int DragonWebServer::runServer(void) {
 
     // 绑定 socket to Server's IP and port 80
     srvAddr.sin_family = AF_INET;
-    srvAddr.sin_port = htons(SERVER_PORT);
+    srvAddr.sin_port = htons(this->port);
     srvAddr.sin_addr.S_un.S_addr = INADDR_ANY;
     nRC = bind(this->srvSock, (LPSOCKADDR)&srvAddr, sizeof(srvAddr));
     if (nRC == SOCKET_ERROR) {
@@ -151,7 +151,7 @@ int DragonWebServer::runServer(void) {
             }
 
             QThread *rsThread = new QThread;
-            ResponseServer *rs = new ResponseServer(connSock, (this->dwsopt.filePath).toLocal8Bit().constData());
+            ResponseServer *rs = new ResponseServer(connSock, this->filePath);
             rs->moveToThread(rsThread);
             connect(rsThread, SIGNAL(started()), rs, SLOT(resolve()));
             connect(rsThread, SIGNAL(finished()), rsThread, SLOT(deleteLater()));
