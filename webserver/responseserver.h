@@ -9,10 +9,6 @@
 
 using namespace std;
 
-#define RES_BAD_REQUEST 			400
-#define RES_NOT_FOUND   			404
-#define RES_METHOD_NOT_IMPLEMENTED  501
-
 class ResponseServer : public QObject
 {
     Q_OBJECT
@@ -65,6 +61,7 @@ private:
     string getResData(void);
 
     void resSuccess(void);
+    void resFail(string resStatus, string resBody);
     void resBadRequest(void);
     void resNotFound(void);
     void resUnimplemented(void);

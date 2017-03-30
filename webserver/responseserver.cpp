@@ -72,13 +72,19 @@ void ResponseServer::setResVersion(string version) {
 void ResponseServer::setResStatus(string statusCode) {
     if (statusCode == "200") {
         this->resStatus = "200 OK";
+    } else if (statusCode == "404") {
+        this->resStatus = "404 Not Found";
+    } else if (statusCode == "501") {
+        this->resStatus = "501 Not Implemented";
+    } else {
+        this->resStatus = "400 Bad Request";
     }
 }
 
 bool ResponseServer::setResBody(string url) {
-    // response body
     string fullPath = this->filePath + url;
     ifstream responseHTML(fullPath, ios::in);
+
     if (!responseHTML.is_open()) {
         return false;
     }
@@ -86,7 +92,6 @@ bool ResponseServer::setResBody(string url) {
     ostringstream oss;
     oss << responseHTML.rdbuf();
     this->resBody = oss.str();
-    cout << this->resBody << endl;
     return true;
 }
 
@@ -129,47 +134,69 @@ void ResponseServer::resSuccess(void) {
     string resData = this->getResData();
 
     nRC = send(this->sock, resData.c_str(), resData.length(), 0);
-    if (nRC == SOCKET_ERROR) {
-        // 发送数据错误，
-        // 记录下产生错误的会话SOCKET
-        closesocket(this->sock);
-        emit finished();
-        return ;
-    } else {
+    if (nRC != SOCKET_ERROR) {
         // 发送数据成功，清空发送缓冲区
         emit rsSndRes(QString(resData.c_str()));
         this->clearResHeader();
         this->resBody = "";
-
-        // @TODO
-        closesocket(this->sock);
-        emit finished();
-        return ;
     }
+
+    // @TODO timer
+    closesocket(this->sock);
+    emit finished();
+}
+
+void ResponseServer::resFail(string resStatus, string resBody) {
+    int nRC;
+
+    this->clearResHeader();
+    this->resBody = "";
+
+    // response header
+    this->setResVersion(this->reqVersion);
+    this->setResStatus("resStatus");
+    this->appendResField("Connection", "keep-alive");
+    this->appendResField("Server", "Dragon Web Server");
+
+    // @TODO: multiple-type files
+    this->appendResField("Content-Type", "text/html");
+
+    this->resBody = "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"></head><body><h1>" + resBody + "</h1></body></html>";
+
+    string resData = this->getResData();
+
+    nRC = send(this->sock, resData.c_str(), resData.length(), 0);
+    if (nRC != SOCKET_ERROR) {
+        // 发送数据成功，清空发送缓冲区
+        emit rsSndRes(QString(resData.c_str()));
+        this->clearResHeader();
+        this->resBody = "";
+    }
+
+    // @TODO timer
+    closesocket(this->sock);
+    emit finished();
 }
 
 ///
 /// \brief ResponseServer::resBadRequest
 ///
 void ResponseServer::resBadRequest(void) {
-    this->clearResHeader();
-        this->resBody = "";
+    this->resFail("400", "Bad Request");
 }
 
 ///
 /// \brief ResponseServer::resNotFound
 ///
 void ResponseServer::resNotFound(void) {
-    this->clearResHeader();
-        this->resBody = "";
+    this->resFail("404", "Not Found");
 }
 
 ///
 /// \brief ResponseServer::resUnimplemented
 ///
 void ResponseServer::resUnimplemented(void) {
-    this->clearResHeader();
-        this->resBody = "";
+    this->resFail("501", "Method Not Implemented");
 }
 
 string ResponseServer::getReqData(void) {
