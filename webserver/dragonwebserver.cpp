@@ -76,30 +76,27 @@ int DragonWebServer::runServer(void) {
 
     sockaddr_in srvAddr;
     sockaddr_in clientAddr;
-    SOCKET srvSock;
 
     int nAddrLen = sizeof(sockaddr);
-
-    // for select (non-block)
-    FD_SET rfds;
-    FD_SET wfds;
-    u_long uNonBlock;
 
     // 初始化 winsock
     nRC = WSAStartup(0x0101, &wsaData);
     if (nRC) {
+        emit finished();
         return -1;
     }
 
     if (wsaData.wVersion != 0x0101) {
         WSACleanup();
+        emit finished();
         return -1;
     }
 
     // 创建 TCP socket
-    srvSock = socket(AF_INET, SOCK_STREAM, 0);
-    if (srvSock == INVALID_SOCKET) {
+    this->srvSock = socket(AF_INET, SOCK_STREAM, 0);
+    if (this->srvSock == INVALID_SOCKET) {
         WSACleanup();
+        emit finished();
         return -1;
     }
 
@@ -107,18 +104,16 @@ int DragonWebServer::runServer(void) {
     srvAddr.sin_family = AF_INET;
     srvAddr.sin_port = htons(SERVER_PORT);
     srvAddr.sin_addr.S_un.S_addr = INADDR_ANY;
-    nRC = bind(srvSock, (LPSOCKADDR)&srvAddr, sizeof(srvAddr));
+    nRC = bind(this->srvSock, (LPSOCKADDR)&srvAddr, sizeof(srvAddr));
     if (nRC == SOCKET_ERROR) {
-        closesocket(srvSock);
-        WSACleanup();
+        this->stopServer();
         return -1;
     }
 
     // 开始监听过程，等待客户的连接
-    nRC = listen(srvSock, MAXCONN);
+    nRC = listen(this->srvSock, MAXCONN);
     if (nRC == SOCKET_ERROR) {
-        closesocket(srvSock);
-        WSACleanup();
+        this->stopServer();
         return -1;
     }
 
@@ -126,11 +121,11 @@ int DragonWebServer::runServer(void) {
 
     while (true) {
         // 产生会话SOCKET
-        SOCKET connSock = accept(srvSock, (LPSOCKADDR)&clientAddr, &nAddrLen);
+        SOCKET connSock = accept(this->srvSock, (LPSOCKADDR)&clientAddr, &nAddrLen);
 
         if (connSock == INVALID_SOCKET) {
             break;
-            // closesocket(srvSock);
+            // closesocket(this->srvSock);
             // WSACleanup();
             // return -1;
         }
@@ -154,13 +149,16 @@ int DragonWebServer::runServer(void) {
         rsThread->start();
     }
 
-    closesocket(srvSock);
-    WSACleanup();
-    emit finished();
+    this->stopServer();
 
     return 0;
 }
 
+void DragonWebServer::stopServer(void) {
+    closesocket(this->srvSock);
+    WSACleanup();
+    emit this->finished();
+}
 
 void DragonWebServer::dwsLogReq(QString req) {
     emit rcvReq(req);

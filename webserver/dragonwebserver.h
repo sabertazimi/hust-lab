@@ -84,10 +84,12 @@ public slots:
     /// \return
     ///
     int runServer(void);
+    void stopServer(void);
     void dwsLogReq(QString req);
     void dwsLogRes(QString res);
 
 private:
+    SOCKET srvSock;
     ///
     /// \brief dwsopt
     ///

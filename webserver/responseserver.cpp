@@ -184,5 +184,4 @@ void ResponseServer::resolve(void) {
             }
         }
     }
-
 }

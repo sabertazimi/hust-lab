@@ -1,10 +1,14 @@
 #include <QMainWindow>
+#include <QWidget>
+#include <QLayout>
 #include <QMessageBox>
+#include <QPushButton>
 #include <QString>
 #include <QTimer>
 #include <QLabel>
 #include <QDesktopWidget>
 #include <QThread>
+#include <iostream>
 #include <list>
 #include "dragonwebserver.h"
 #include "serverwindow.h"
@@ -18,22 +22,32 @@ using namespace std;
 ServerWindow::ServerWindow(QWidget *parent) : QMainWindow(parent) {
     QDesktopWidget dw;
 
-    this->setFixedSize(dw.width(), dw.height());
+    this->mainWindow = new QWidget();
 
-    this->label = new QLabel(this);
+    QHBoxLayout *topLayout = new QHBoxLayout;
+    this->startBtn = new QPushButton(QWidget::tr("Start"), this->mainWindow);
+    this->stopBtn = new QPushButton(QWidget::tr("Stop"), this->mainWindow);
+    connect(this->startBtn, SIGNAL(released()), this, SLOT(startBtnHandle()));
+    connect(this->stopBtn, SIGNAL(released()), this, SLOT(stopBtnHandle()));
+    topLayout->addStretch();
+    topLayout->addWidget(this->startBtn);
+    topLayout->addStretch();
+    topLayout->addWidget(this->stopBtn);
+    topLayout->addStretch();
+
+    QHBoxLayout *bomLayout = new QHBoxLayout;
+    this->label = new QLabel(this->mainWindow);
     this->label->setText("Welcome to Dragon Web Server");
-    this->label->setFixedSize(dw.width(), dw.height());
+    bomLayout->addWidget(this->label);
 
-    this->dwsThread = new QThread;
-    this->dws = new DragonWebServer();
-    this->dws->moveToThread(this->dwsThread);
-    connect(this->dwsThread, SIGNAL(started()), this->dws, SLOT(runServer()));
-    connect(this->dwsThread, SIGNAL(finished()), this->dwsThread, SLOT(deleteLater()));
-    connect(this->dws, SIGNAL(finished()), this->dwsThread, SLOT(quit()));
-    connect(this->dws, SIGNAL(finished()), this->dws, SLOT(deleteLater()));
-    connect(this->dws, SIGNAL(rcvReq(QString)), this, SLOT(logReq(QString)));
-    connect(this->dws, SIGNAL(sndRes(QString)), this, SLOT(logRes(QString)));
-    this->dwsThread->start();
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    mainLayout->addLayout(topLayout);
+    mainLayout->addLayout(bomLayout);
+
+    this->mainWindow->setLayout(mainLayout);
+    this->setCentralWidget(this->mainWindow);
+
+    this->running = false;
 
     // using slots to implement update
     // timer = new QTimer(this);
@@ -47,7 +61,9 @@ ServerWindow::ServerWindow(QWidget *parent) : QMainWindow(parent) {
 ///
 ServerWindow::~ServerWindow(void) {
     delete this->label;
-    delete this->timer;
+    delete this->startBtn;
+    delete this->stopBtn;
+    delete this->mainWindow;
 }
 
 ///
@@ -69,6 +85,32 @@ QString ServerWindow::getServer(void) {
     }
 
     return ret;
+}
+
+void ServerWindow::startBtnHandle(void) {
+    if (this->running == false) {
+        this->running = true;
+        cout << "start" << endl;
+
+        this->dwsThread = new QThread;
+        this->dws = new DragonWebServer();
+        this->dws->moveToThread(this->dwsThread);
+        connect(this->dwsThread, SIGNAL(started()), this->dws, SLOT(runServer()));
+        connect(this->dwsThread, SIGNAL(finished()), this->dwsThread, SLOT(deleteLater()));
+        connect(this->dws, SIGNAL(finished()), this->dwsThread, SLOT(quit()));
+        connect(this->dws, SIGNAL(finished()), this->dws, SLOT(deleteLater()));
+        connect(this->dws, SIGNAL(rcvReq(QString)), this, SLOT(logReq(QString)));
+        connect(this->dws, SIGNAL(sndRes(QString)), this, SLOT(logRes(QString)));
+
+        this->dwsThread->start();
+    }
+}
+
+void ServerWindow::stopBtnHandle(void) {
+    if (this->running == true) {
+        this->running = false;
+        this->dws->stopServer();
+    }
 }
 
 void ServerWindow::logReq(QString req) {

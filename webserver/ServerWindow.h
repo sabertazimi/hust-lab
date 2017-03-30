@@ -2,9 +2,11 @@
 #define SERVERWINDOW_H
 
 #include <QMainWindow>
+#include <QWidget>
 #include <QString>
 #include <QTimer>
 #include <QLabel>
+#include <QPushButton>
 #include <list>
 #include "dragonwebserver.h"
 
@@ -25,15 +27,27 @@ public:
     explicit ServerWindow(QWidget *parent = 0);
     ~ServerWindow(void);
 
-public slots:
-    void logReq(QString req);
-    void logRes(QString res);
-
 private:
+    ///
+    /// \brief running
+    ///
+    bool running;
+    ///
+    /// \brief mainWindow
+    ///
+    QWidget *mainWindow;
     ///
     /// \brief label
     ///
     QLabel *label;
+    ///
+    /// \brief startBtn
+    ///
+    QPushButton *startBtn;
+    ///
+    /// \brief stopBtn
+    ///
+    QPushButton *stopBtn;
     ///
     /// \brief timer
     ///
@@ -42,6 +56,9 @@ private:
     /// \brief reqlogs
     ///
     list <QString> reqlogs;
+    ///
+    /// \brief reslogs
+    ///
     list <QString> reslogs;
     ///
     /// \brief dwsThread
@@ -68,6 +85,10 @@ private slots:
     /// \brief updateServer
     ///
     void updateServer(void);
+    void logReq(QString req);
+    void logRes(QString res);
+    void startBtnHandle(void);
+    void stopBtnHandle(void);
 };
 
 #endif // SERVERWINDOW_H
