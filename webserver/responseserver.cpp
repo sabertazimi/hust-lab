@@ -81,7 +81,7 @@ string ResponseServer::getResData(void) {
     string resData = this->resVersion + " " + this->resStatus + "\n";
 
     for (int i = 0, size = (this->resHeaderFields).size(); i < size; i++) {
-        resData += (this->resHeaderFields)[i];
+        resData += ((this->resHeaderFields)[i] + "\n");
     }
 
     resData += "\n" + this->resBody;
@@ -119,7 +119,7 @@ void ResponseServer::resolve(void) {
     int nRC;
 
     while (true) {
-
+        emit rsRcvReq(QString("http request"));
         nRC = recv(this->sock, recvBuf, BUFLEN, 0);
         if (nRC == SOCKET_ERROR) {
             // 接受数据错误，
@@ -132,7 +132,7 @@ void ResponseServer::resolve(void) {
                 // 接收数据成功，保存在发送缓冲区中，
                 // 以发送到所有客户去
                 recvBuf[nRC - 1] = '\0';
-                emit rcvReq(QString(recvBuf));
+                emit rsRcvReq(QString(recvBuf));
 
                 this->clearResData();
 
@@ -144,7 +144,7 @@ void ResponseServer::resolve(void) {
                 this->appendResField("Content-Type", "text/html");
 
                 // response body
-                ifstream responseHTML("./index.html", ios::in);
+                ifstream responseHTML("C:\\Users\\sabertazimi\\Work\\Source\\hust-network-lab\\index.html", ios::in);
                 if (!responseHTML.is_open()) {
                     this->resNotFound();
                     continue;
@@ -154,18 +154,8 @@ void ResponseServer::resolve(void) {
                 oss << responseHTML.rdbuf();
                 this->resBody = oss.str();
 
-                //                sprintf(sendBuf, "HTTP/1.1 200 OK\nConnection: keep-alive\nServer: Dragon Web Server\nContent-Type: text/html\n\n \
-                //                        <!DOCTYPE html>\n\
-                //                        <html lang = \"en\">\n\
-                //                                <head>\n\
-                //                                <meta charset = \"utf-8\">\n\
-                //                                </head>\n\
-                //                                <body>\n\
-                //                                <h1>Hello, Dragon Web Server!</h1>\n\
-                //                        </body> \
-                //                        </html>");
-
                 string resData = this->getResData();
+                emit rsSndRes(QString(resData.c_str()));
                 nRC = send(this->sock, resData.c_str(), resData.length(), 0);
                 if (nRC == SOCKET_ERROR) {
                     // 发送数据错误，
@@ -175,8 +165,13 @@ void ResponseServer::resolve(void) {
                         return ;
                 } else {
                     // 发送数据成功，清空发送缓冲区
-                    emit sndRes(QString(resData.c_str()));
+                    emit rsSndRes(QString(resData.c_str()));
                     this->clearResData();
+
+                    // @TODO
+                    closesocket(this->sock);
+                    emit finished();
+                    return ;
                 }
 
             } else {

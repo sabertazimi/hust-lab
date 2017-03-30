@@ -2,6 +2,7 @@
 #define RESPONSESERVER_H
 
 #include <QObject>
+#include <QString>
 #include <vector>
 #include <winsock2.h>
 #include <string>
@@ -23,11 +24,11 @@ signals:
     ///
     /// \brief rcvReq
     ///
-    void rcvReq(QString);
+    void rsRcvReq(QString);
     ///
     /// \brief sndRes
     ///
-    void sndRes(QString);
+    void rsSndRes(QString);
     ///
     /// \brief finished
     ///

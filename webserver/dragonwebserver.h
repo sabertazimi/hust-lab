@@ -84,8 +84,8 @@ public slots:
     /// \return
     ///
     int runServer(void);
-    void logReq(QString req);
-    void logRes(QString res);
+    void dwsLogReq(QString req);
+    void dwsLogRes(QString res);
 
 private:
     ///
