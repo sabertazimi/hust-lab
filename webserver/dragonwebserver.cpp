@@ -6,6 +6,7 @@
 #include <iostream>
 #include <string>
 #include <list>
+#include "serverwindow.h"
 #include "responseserver.h"
 #include "dragonwebserver.h"
 
@@ -15,7 +16,9 @@ using namespace std;
 /// \brief DragonWebServer::DragonWebServer
 /// \param parent
 ///
-DragonWebServer::DragonWebServer(QObject *parent) : QObject(parent) {
+DragonWebServer::DragonWebServer(ServerWindow *ui, QObject *parent) : QObject(parent) {
+    this->ui = ui;
+    // this->setIP("191.168.191.1");
     this->setPort(SERVER_PORT);
     this->setPath(QString("C:\\dws"));
 }
@@ -117,36 +120,47 @@ int DragonWebServer::runServer(void) {
         return -1;
     }
 
-    int httpSocket = 0;
+    FD_SET rfds;
+    FD_SET wfds;
+    u_long uNonBlock = 1;
+
+    ioctlsocket(srvSock, FIONBIO, &uNonBlock);
 
     while (true) {
-        // 产生会话SOCKET
-        SOCKET connSock = accept(this->srvSock, (LPSOCKADDR)&clientAddr, &nAddrLen);
+        //清空read,write套接字集合
+        FD_ZERO(&rfds);
+        FD_ZERO(&wfds);
 
-        if (connSock == INVALID_SOCKET) {
-            break;
-            // closesocket(this->srvSock);
-            // WSACleanup();
-            // return -1;
+        //设置等待客户连接请求
+        FD_SET(srvSock,&rfds);
+
+
+        //开始等待
+        select(0, &rfds, &wfds, NULL, NULL);
+
+        //如果srvSock收到连接请求，接受客户连接请求
+        if (FD_ISSET(srvSock,&rfds)) {
+            // 产生会话SOCKET
+            SOCKET connSock = accept(this->srvSock, (LPSOCKADDR)&clientAddr, &nAddrLen);
+
+            if (connSock == INVALID_SOCKET) {
+                break;
+                // closesocket(this->srvSock);
+                // WSACleanup();
+                // return -1;
+            }
+
+            QThread *rsThread = new QThread;
+            ResponseServer *rs = new ResponseServer(connSock);
+            rs->moveToThread(rsThread);
+            connect(rsThread, SIGNAL(started()), rs, SLOT(resolve()));
+            connect(rsThread, SIGNAL(finished()), rsThread, SLOT(deleteLater()));
+            connect(rs, SIGNAL(finished()), rsThread, SLOT(quit()));
+            connect(rs, SIGNAL(finished()), rs, SLOT(deleteLater()));
+            connect(rs, SIGNAL(rsRcvReq(const QString &)), this->ui, SLOT(logReq(const QString &)));
+            connect(rs, SIGNAL(rsSndRes(const QString &)), this->ui, SLOT(logRes(const QString &)));
+            rsThread->start();
         }
-
-        httpSocket++;
-        stringstream ss;
-        string s;
-        ss << httpSocket;
-        ss >> s;
-        ss.flush();
-
-        QThread *rsThread = new QThread;
-        ResponseServer *rs = new ResponseServer(connSock);
-        rs->moveToThread(rsThread);
-        connect(rsThread, SIGNAL(started()), rs, SLOT(resolve()));
-        connect(rsThread, SIGNAL(finished()), rsThread, SLOT(deleteLater()));
-        connect(rs, SIGNAL(finished()), rsThread, SLOT(quit()));
-        connect(rs, SIGNAL(finished()), rs, SLOT(deleteLater()));
-        connect(rs, SIGNAL(rsRcvReq(QString)), this, SLOT(dwsLogReq(QString)));
-        connect(rs, SIGNAL(rsSndRes(QString)), this, SLOT(dwsLogRes(QString)));
-        rsThread->start();
     }
 
     this->stopServer();
@@ -160,12 +174,14 @@ void DragonWebServer::stopServer(void) {
     emit this->finished();
 }
 
-void DragonWebServer::dwsLogReq(QString req) {
+void DragonWebServer::dwsLogReq(const QString &req) {
     emit rcvReq(req);
-    // cout << "DragonWebServer: " << req.toLocal8Bit().constData() << endl;
+    this->runServer();
+    cout << "DragonWebServer: " << req.toLocal8Bit().constData() << endl;
 }
 
-void DragonWebServer::dwsLogRes(QString res) {
+void DragonWebServer::dwsLogRes(const QString &res) {
     emit sndRes(res);
-    // cout << "DragonWebServer: " << res.toLocal8Bit().constData() << endl;
+    this->runServer();
+    cout << "DragonWebServer: " << res.toLocal8Bit().constData() << endl;
 }

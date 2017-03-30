@@ -85,8 +85,8 @@ private slots:
     /// \brief updateServer
     ///
     void updateServer(void);
-    void logReq(QString req);
-    void logRes(QString res);
+    void logReq(const QString &req);
+    void logRes(const QString &res);
     void startBtnHandle(void);
     void stopBtnHandle(void);
 };

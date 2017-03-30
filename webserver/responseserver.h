@@ -24,11 +24,11 @@ signals:
     ///
     /// \brief rcvReq
     ///
-    void rsRcvReq(QString);
+    void rsRcvReq(const QString &);
     ///
     /// \brief sndRes
     ///
-    void rsSndRes(QString);
+    void rsSndRes(const QString &);
     ///
     /// \brief finished
     ///

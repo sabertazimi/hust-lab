@@ -38,6 +38,7 @@ ServerWindow::ServerWindow(QWidget *parent) : QMainWindow(parent) {
     QHBoxLayout *bomLayout = new QHBoxLayout;
     this->label = new QLabel(this->mainWindow);
     this->label->setText("Welcome to Dragon Web Server");
+    this->label->setFixedSize(dw.width() * 0.7, dw.height() * 0.7);
     bomLayout->addWidget(this->label);
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
@@ -46,6 +47,7 @@ ServerWindow::ServerWindow(QWidget *parent) : QMainWindow(parent) {
 
     this->mainWindow->setLayout(mainLayout);
     this->setCentralWidget(this->mainWindow);
+    this->setFixedSize(dw.width(), dw.height());
 
     this->running = false;
 
@@ -90,17 +92,16 @@ QString ServerWindow::getServer(void) {
 void ServerWindow::startBtnHandle(void) {
     if (this->running == false) {
         this->running = true;
-        cout << "start" << endl;
 
         this->dwsThread = new QThread;
-        this->dws = new DragonWebServer();
+        this->dws = new DragonWebServer(this);
         this->dws->moveToThread(this->dwsThread);
         connect(this->dwsThread, SIGNAL(started()), this->dws, SLOT(runServer()));
         connect(this->dwsThread, SIGNAL(finished()), this->dwsThread, SLOT(deleteLater()));
         connect(this->dws, SIGNAL(finished()), this->dwsThread, SLOT(quit()));
         connect(this->dws, SIGNAL(finished()), this->dws, SLOT(deleteLater()));
-        connect(this->dws, SIGNAL(rcvReq(QString)), this, SLOT(logReq(QString)));
-        connect(this->dws, SIGNAL(sndRes(QString)), this, SLOT(logRes(QString)));
+        connect(this->dws, SIGNAL(rcvReq(const QString &)), this, SLOT(logReq(const QString &)));
+        connect(this->dws, SIGNAL(sndRes(const QString &)), this, SLOT(logRes(const QString &)));
 
         this->dwsThread->start();
     }
@@ -113,12 +114,12 @@ void ServerWindow::stopBtnHandle(void) {
     }
 }
 
-void ServerWindow::logReq(QString req) {
+void ServerWindow::logReq(const QString &req) {
     this->reqlogs.insert(reqlogs.end(), req);
     this->updateServer();
 }
 
-void ServerWindow::logRes(QString res) {
+void ServerWindow::logRes(const QString &res) {
     this->reslogs.insert(reslogs.end(), res);
     this->updateServer();
 }

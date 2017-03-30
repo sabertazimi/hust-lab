@@ -7,18 +7,9 @@
 #include <list>
 
 #define MAXCONN 5
-#define BUFLEN 5000
 #define SERVER_PORT 80
 
-///
-/// \brief ListCONN
-///
-typedef std::list<SOCKET> ListCONN;
-
-///
-/// \brief ListConErr
-///
-typedef std::list<SOCKET> ListConErr;
+class ServerWindow;
 
 typedef struct dwsOptions {
     QString ip;
@@ -36,7 +27,7 @@ public:
     /// \brief DragonWebServer
     /// \param parent
     ///
-    explicit DragonWebServer(QObject *parent = 0);
+    explicit DragonWebServer(ServerWindow *ui, QObject *parent = 0);
     ~DragonWebServer(void);
     ///
     /// \brief setOptions
@@ -67,11 +58,11 @@ signals:
     ///
     /// \brief rcvReq
     ///
-    void rcvReq(QString);
+    void rcvReq(const QString &);
     ///
     /// \brief sndRes
     ///
-    void sndRes(QString);
+    void sndRes(const QString &);
     ///
     /// \brief finished
     ///
@@ -85,10 +76,14 @@ public slots:
     ///
     int runServer(void);
     void stopServer(void);
-    void dwsLogReq(QString req);
-    void dwsLogRes(QString res);
+    void dwsLogReq(const QString &req);
+    void dwsLogRes(const QString &res);
 
 private:
+    ServerWindow *ui;
+    ///
+    /// \brief srvSock
+    ///
     SOCKET srvSock;
     ///
     /// \brief dwsopt

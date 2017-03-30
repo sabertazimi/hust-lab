@@ -119,7 +119,6 @@ void ResponseServer::resolve(void) {
     int nRC;
 
     while (true) {
-        emit rsRcvReq(QString("http request"));
         nRC = recv(this->sock, recvBuf, BUFLEN, 0);
         if (nRC == SOCKET_ERROR) {
             // 接受数据错误，
@@ -133,6 +132,7 @@ void ResponseServer::resolve(void) {
                 // 以发送到所有客户去
                 recvBuf[nRC - 1] = '\0';
                 emit rsRcvReq(QString(recvBuf));
+                cout << "rsRcvReq" << endl;
 
                 this->clearResData();
 
@@ -155,7 +155,6 @@ void ResponseServer::resolve(void) {
                 this->resBody = oss.str();
 
                 string resData = this->getResData();
-                emit rsSndRes(QString(resData.c_str()));
                 nRC = send(this->sock, resData.c_str(), resData.length(), 0);
                 if (nRC == SOCKET_ERROR) {
                     // 发送数据错误，
@@ -166,6 +165,7 @@ void ResponseServer::resolve(void) {
                 } else {
                     // 发送数据成功，清空发送缓冲区
                     emit rsSndRes(QString(resData.c_str()));
+                    cout << "rsSndRes" << endl;
                     this->clearResData();
 
                     // @TODO
