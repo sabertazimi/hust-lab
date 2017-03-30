@@ -36,10 +36,8 @@ private:
     /// \brief mainWindow
     ///
     QWidget *mainWindow;
-    ///
-    /// \brief label
-    ///
-    QLabel *label;
+    QLabel *reqLabel;
+    QLabel *resLabel;
     ///
     /// \brief startBtn
     ///
@@ -68,25 +66,15 @@ private:
     /// \brief dws
     ///
     DragonWebServer *dws;
-    ///
-    /// \brief getServer
-    /// \return
-    ///
-    QString getServer(void);
-    ///
-    /// \brief setText
-    /// \param txt
-    /// \return
-    ///
-    QMainWindow &setText(QString msg);
 
 private slots:
     ///
     /// \brief updateServer
     ///
-    void updateServer(void);
     void logReq(const QString &req);
     void logRes(const QString &res);
+    QString getReqLogs(void);
+    QString getResLogs(void);
     void startBtnHandle(void);
     void stopBtnHandle(void);
 };

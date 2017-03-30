@@ -56,14 +56,6 @@ public:
 
 signals:
     ///
-    /// \brief rcvReq
-    ///
-    void rcvReq(const QString &);
-    ///
-    /// \brief sndRes
-    ///
-    void sndRes(const QString &);
-    ///
     /// \brief finished
     ///
     void finished();
@@ -76,8 +68,6 @@ public slots:
     ///
     int runServer(void);
     void stopServer(void);
-    void dwsLogReq(const QString &req);
-    void dwsLogRes(const QString &res);
 
 private:
     ServerWindow *ui;

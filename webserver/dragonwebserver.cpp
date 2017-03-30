@@ -151,7 +151,7 @@ int DragonWebServer::runServer(void) {
             }
 
             QThread *rsThread = new QThread;
-            ResponseServer *rs = new ResponseServer(connSock);
+            ResponseServer *rs = new ResponseServer(connSock, (this->dwsopt.filePath).toLocal8Bit().constData());
             rs->moveToThread(rsThread);
             connect(rsThread, SIGNAL(started()), rs, SLOT(resolve()));
             connect(rsThread, SIGNAL(finished()), rsThread, SLOT(deleteLater()));
@@ -172,16 +172,4 @@ void DragonWebServer::stopServer(void) {
     closesocket(this->srvSock);
     WSACleanup();
     emit this->finished();
-}
-
-void DragonWebServer::dwsLogReq(const QString &req) {
-    emit rcvReq(req);
-    this->runServer();
-    cout << "DragonWebServer: " << req.toLocal8Bit().constData() << endl;
-}
-
-void DragonWebServer::dwsLogRes(const QString &res) {
-    emit sndRes(res);
-    this->runServer();
-    cout << "DragonWebServer: " << res.toLocal8Bit().constData() << endl;
 }

@@ -17,7 +17,7 @@ class ResponseServer : public QObject
 {
     Q_OBJECT
 public:
-    explicit ResponseServer(SOCKET sock, QObject *parent = 0);
+    explicit ResponseServer(SOCKET sock, string path, QObject *parent = 0);
     ~ResponseServer(void);
 
 signals:
@@ -39,6 +39,14 @@ public slots:
 
 private:
     SOCKET sock;
+    string filePath;
+
+    string reqVersion;
+    string reqMethod;
+    string reqURL;
+    string reqIP;
+    string reqFileType;
+
     string resVersion;
     string resStatus;
     vector<string> resHeaderFields;
@@ -46,14 +54,17 @@ private:
 
 private:
     vector<string> split(const string &s, char delim);
-    string parseURL(string url);
+    void parseRequest(string req);
 
+    string getReqData(void);
     void setResVersion(string version);
     void setResStatus(string statusCode);
+    bool setResBody(string url);
     void appendResField(string key, string value);
-    void clearResData(void);
+    void clearResHeader(void);
     string getResData(void);
 
+    void resSuccess(void);
     void resBadRequest(void);
     void resNotFound(void);
     void resUnimplemented(void);

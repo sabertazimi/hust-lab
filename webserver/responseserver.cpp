@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
 #include "responseserver.h"
 
 using namespace std;
@@ -14,9 +15,11 @@ using namespace std;
 /// \param sock
 /// \param parent
 ///
-ResponseServer::ResponseServer(SOCKET sock, QObject *parent) : QObject(parent) {
+ResponseServer::ResponseServer(SOCKET sock, string path, QObject *parent) : QObject(parent) {
     this->sock = sock;
-    this->clearResData();
+    this->filePath = path;
+    this->clearResHeader();
+    this->resBody = "";
 }
 
 ///
@@ -49,15 +52,21 @@ vector<string> ResponseServer::split(const std::string &s, char delim) {
 /// \param url
 /// \return
 ///
-string ResponseServer::parseURL(string url) {
-    vector<string> splitURL = this->split(url, '/');
-    return splitURL[splitURL.size()-1];
+void ResponseServer::parseRequest(string req) {
+    vector<string> lines = this->split(req, '\n');
+    vector<string> firstLine = this->split(lines[0], ' ');
+    string hostLine = lines[1];
+    string normalizedURL = firstLine[1];
+    replace(normalizedURL.begin(), normalizedURL.end(), '/', '\\');
+
+    this->reqMethod = firstLine[0];
+    this->reqURL = (normalizedURL == "\\") ? "\\index.html" : normalizedURL;
+    this->reqVersion = firstLine[2];
+    this->reqIP = hostLine;
 }
 
 void ResponseServer::setResVersion(string version) {
-    if (version == "1.1") {
-        this->resVersion = "HTTP/1.1";
-    }
+    this->resVersion = version;
 }
 
 void ResponseServer::setResStatus(string statusCode) {
@@ -66,15 +75,29 @@ void ResponseServer::setResStatus(string statusCode) {
     }
 }
 
+bool ResponseServer::setResBody(string url) {
+    // response body
+    string fullPath = this->filePath + url;
+    ifstream responseHTML(fullPath, ios::in);
+    if (!responseHTML.is_open()) {
+        return false;
+    }
+
+    ostringstream oss;
+    oss << responseHTML.rdbuf();
+    this->resBody = oss.str();
+    cout << this->resBody << endl;
+    return true;
+}
+
 void ResponseServer::appendResField(string key, string value) {
     (this->resHeaderFields).push_back(key + string(": ") + value);
 }
 
-void ResponseServer::clearResData(void) {
+void ResponseServer::clearResHeader(void) {
     this->resVersion = "";
     this->resStatus = "";
     this->resHeaderFields.clear();
-    this->resBody = "";
 }
 
 string ResponseServer::getResData(void) {
@@ -89,25 +112,71 @@ string ResponseServer::getResData(void) {
     return resData;
 }
 
+void ResponseServer::resSuccess(void) {
+    int nRC;
+
+    this->clearResHeader();
+
+    // response header
+    this->setResVersion(this->reqVersion);
+    this->setResStatus("200");
+    this->appendResField("Connection", "keep-alive");
+    this->appendResField("Server", "Dragon Web Server");
+
+    // @TODO: multiple-type files
+    this->appendResField("Content-Type", "text/html");
+
+    string resData = this->getResData();
+
+    nRC = send(this->sock, resData.c_str(), resData.length(), 0);
+    if (nRC == SOCKET_ERROR) {
+        // 发送数据错误，
+        // 记录下产生错误的会话SOCKET
+        closesocket(this->sock);
+        emit finished();
+        return ;
+    } else {
+        // 发送数据成功，清空发送缓冲区
+        emit rsSndRes(QString(resData.c_str()));
+        this->clearResHeader();
+        this->resBody = "";
+
+        // @TODO
+        closesocket(this->sock);
+        emit finished();
+        return ;
+    }
+}
+
 ///
 /// \brief ResponseServer::resBadRequest
 ///
 void ResponseServer::resBadRequest(void) {
-    this->clearResData();
+    this->clearResHeader();
+        this->resBody = "";
 }
 
 ///
 /// \brief ResponseServer::resNotFound
 ///
 void ResponseServer::resNotFound(void) {
-    this->clearResData();
+    this->clearResHeader();
+        this->resBody = "";
 }
 
 ///
 /// \brief ResponseServer::resUnimplemented
 ///
 void ResponseServer::resUnimplemented(void) {
-    this->clearResData();
+    this->clearResHeader();
+        this->resBody = "";
+}
+
+string ResponseServer::getReqData(void) {
+    string reqData;
+    reqData = this->reqMethod + " " + this->reqURL + " " + this->reqVersion;
+    reqData = reqData + "\n" + this->reqIP;
+    return reqData;
 }
 
 ///
@@ -128,52 +197,22 @@ void ResponseServer::resolve(void) {
             return ;
         } else {
             if (nRC > 0) {
-                // 接收数据成功，保存在发送缓冲区中，
-                // 以发送到所有客户去
                 recvBuf[nRC - 1] = '\0';
-                emit rsRcvReq(QString(recvBuf));
-                cout << "rsRcvReq" << endl;
+                this->parseRequest(string(recvBuf));
+                emit rsRcvReq(QString(this->getReqData().c_str()));
 
-                this->clearResData();
-
-                // response header
-                this->setResVersion("1.1");
-                this->setResStatus("200");
-                this->appendResField("Connection", "keep-alive");
-                this->appendResField("Server", "Dragon Web Server");
-                this->appendResField("Content-Type", "text/html");
-
-                // response body
-                ifstream responseHTML("C:\\Users\\sabertazimi\\Work\\Source\\hust-network-lab\\index.html", ios::in);
-                if (!responseHTML.is_open()) {
-                    this->resNotFound();
+                if (this->reqMethod != "GET") {
+                    this->resUnimplemented();
                     continue;
                 }
 
-                ostringstream oss;
-                oss << responseHTML.rdbuf();
-                this->resBody = oss.str();
+                bool success = this->setResBody(this->reqURL);
 
-                string resData = this->getResData();
-                nRC = send(this->sock, resData.c_str(), resData.length(), 0);
-                if (nRC == SOCKET_ERROR) {
-                    // 发送数据错误，
-                    // 记录下产生错误的会话SOCKET
-                        closesocket(this->sock);
-                        emit finished();
-                        return ;
+                if (!success) {
+                    this->resNotFound();
                 } else {
-                    // 发送数据成功，清空发送缓冲区
-                    emit rsSndRes(QString(resData.c_str()));
-                    cout << "rsSndRes" << endl;
-                    this->clearResData();
-
-                    // @TODO
-                    closesocket(this->sock);
-                    emit finished();
-                    return ;
+                    this->resSuccess();
                 }
-
             } else {
                 // @TODO: 设定一个定时器
                 // time out

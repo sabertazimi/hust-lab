@@ -36,10 +36,17 @@ ServerWindow::ServerWindow(QWidget *parent) : QMainWindow(parent) {
     topLayout->addStretch();
 
     QHBoxLayout *bomLayout = new QHBoxLayout;
-    this->label = new QLabel(this->mainWindow);
-    this->label->setText("Welcome to Dragon Web Server");
-    this->label->setFixedSize(dw.width() * 0.7, dw.height() * 0.7);
-    bomLayout->addWidget(this->label);
+    this->reqLabel = new QLabel(this->mainWindow);
+    this->reqLabel->setText("Welcome to Dragon Web Server");
+    this->reqLabel->setFixedSize(dw.width() * 0.5, dw.height() * 0.7);
+    this->resLabel = new QLabel(this->mainWindow);
+    this->resLabel->setText("Welcome to Dragon Web Server");
+    this->resLabel->setFixedSize(dw.width() * 0.5, dw.height() * 0.7);
+    bomLayout->addStretch();
+    bomLayout->addWidget(this->reqLabel);
+    bomLayout->addStretch();
+    bomLayout->addWidget(this->resLabel);
+    bomLayout->addStretch();
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
     mainLayout->addLayout(topLayout);
@@ -62,31 +69,11 @@ ServerWindow::ServerWindow(QWidget *parent) : QMainWindow(parent) {
 /// \brief ServerWindow::~ServerWindow
 ///
 ServerWindow::~ServerWindow(void) {
-    delete this->label;
+    delete this->reqLabel;
+    delete this->resLabel;
     delete this->startBtn;
     delete this->stopBtn;
     delete this->mainWindow;
-}
-
-///
-/// \brief ServerWindow::getServer
-/// \return
-///
-QString ServerWindow::getServer(void) {
-    QString ret;
-    list<QString>::iterator itor;
-
-    for (itor = this->reqlogs.begin(); itor != this->reqlogs.end(); itor++) {
-        ret.append(*itor);
-        ret.append("\n");
-    }
-
-    for (itor = this->reslogs.begin(); itor != this->reslogs.end(); itor++) {
-        ret.append(*itor);
-        ret.append("\n");
-    }
-
-    return ret;
 }
 
 void ServerWindow::startBtnHandle(void) {
@@ -100,8 +87,6 @@ void ServerWindow::startBtnHandle(void) {
         connect(this->dwsThread, SIGNAL(finished()), this->dwsThread, SLOT(deleteLater()));
         connect(this->dws, SIGNAL(finished()), this->dwsThread, SLOT(quit()));
         connect(this->dws, SIGNAL(finished()), this->dws, SLOT(deleteLater()));
-        connect(this->dws, SIGNAL(rcvReq(const QString &)), this, SLOT(logReq(const QString &)));
-        connect(this->dws, SIGNAL(sndRes(const QString &)), this, SLOT(logRes(const QString &)));
 
         this->dwsThread->start();
     }
@@ -116,17 +101,34 @@ void ServerWindow::stopBtnHandle(void) {
 
 void ServerWindow::logReq(const QString &req) {
     this->reqlogs.insert(reqlogs.end(), req);
-    this->updateServer();
+    this->reqLabel->setText(this->getReqLogs());
 }
 
 void ServerWindow::logRes(const QString &res) {
     this->reslogs.insert(reslogs.end(), res);
-    this->updateServer();
+    this->resLabel->setText(this->getResLogs());
 }
 
-///
-/// \brief ServerWindow::updateServer
-///
-void ServerWindow::updateServer(void) {
-    this->label->setText(getServer());
+QString ServerWindow::getReqLogs(void) {
+    QString ret;
+    list<QString>::iterator itor;
+
+    for (itor = this->reqlogs.begin(); itor != this->reqlogs.end(); itor++) {
+        ret.append(*itor);
+        ret.append("\n");
+    }
+
+    return ret;
+}
+
+QString ServerWindow::getResLogs(void) {
+    QString ret;
+    list<QString>::iterator itor;
+
+    for (itor = this->reslogs.begin(); itor != this->reslogs.end(); itor++) {
+        ret.append(*itor);
+        ret.append("\n");
+    }
+
+    return ret;
 }
