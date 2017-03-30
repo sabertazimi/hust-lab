@@ -32,6 +32,7 @@ ServerWindow::ServerWindow(QWidget *parent) : QMainWindow(parent) {
     connect(this->dws, SIGNAL(finished()), this->dwsThread, SLOT(quit()));
     connect(this->dws, SIGNAL(finished()), this->dws, SLOT(deleteLater()));
     connect(this->dws, SIGNAL(rcvReq(QString)), this, SLOT(logReq(QString)));
+    connect(this->dws, SIGNAL(sndRes(QString)), this, SLOT(logRes(QString)));
     this->dwsThread->start();
 
     // using slots to implement update
@@ -62,11 +63,21 @@ QString ServerWindow::getServer(void) {
         ret.append("\n");
     }
 
+    for (itor = this->reslogs.begin(); itor != this->reslogs.end(); itor++) {
+        ret.append(*itor);
+        ret.append("\n");
+    }
+
     return ret;
 }
 
 void ServerWindow::logReq(QString req) {
     this->reqlogs.insert(reqlogs.end(), req);
+    this->updateServer();
+}
+
+void ServerWindow::logRes(QString res) {
+    this->reslogs.insert(reslogs.end(), res);
     this->updateServer();
 }
 

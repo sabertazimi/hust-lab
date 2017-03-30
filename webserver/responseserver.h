@@ -2,6 +2,7 @@
 #define RESPONSESERVER_H
 
 #include <QObject>
+#include <vector>
 #include <winsock2.h>
 #include <string>
 
@@ -19,20 +20,39 @@ public:
     ~ResponseServer(void);
 
 signals:
+    ///
+    /// \brief rcvReq
+    ///
+    void rcvReq(QString);
+    ///
+    /// \brief sndRes
+    ///
+    void sndRes(QString);
+    ///
+    /// \brief finished
+    ///
+    void finished();
 
 public slots:
     void resolve(void);
 
 private:
     SOCKET sock;
-    list<string> resHeaders;
+    string resVersion;
+    string resStatus;
+    vector<string> resHeaderFields;
     string resBody;
 
 private:
-    list<string> split(const string &s, char delim);
+    vector<string> split(const string &s, char delim);
     string parseURL(string url);
-    void appendField(string key, string value);
-    void clearResponse(void);
+
+    void setResVersion(string version);
+    void setResStatus(string statusCode);
+    void appendResField(string key, string value);
+    void clearResData(void);
+    string getResData(void);
+
     void resBadRequest(void);
     void resNotFound(void);
     void resUnimplemented(void);

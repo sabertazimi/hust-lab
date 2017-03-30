@@ -6,6 +6,7 @@
 #include <QTimer>
 #include <QLabel>
 #include <list>
+#include "dragonwebserver.h"
 
 using namespace std;
 
@@ -26,6 +27,7 @@ public:
 
 public slots:
     void logReq(QString req);
+    void logRes(QString res);
 
 private:
     ///
@@ -40,6 +42,7 @@ private:
     /// \brief reqlogs
     ///
     list <QString> reqlogs;
+    list <QString> reslogs;
     ///
     /// \brief dwsThread
     ///
