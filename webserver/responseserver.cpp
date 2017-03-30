@@ -47,6 +47,18 @@ vector<string> ResponseServer::split(const std::string &s, char delim) {
     return elems;
 }
 
+string ResponseServer::normalize(string path) {
+    string normalizedPath = path;
+
+    replace(normalizedPath.begin(), normalizedPath.end(), '/', '\\');
+
+    if (normalizedPath[normalizedPath.length() - 1] == '\\') {
+        normalizedPath += "index.html";
+    }
+
+    return normalizedPath;
+}
+
 ///
 /// \brief ResponseServer::parseURL
 /// \param url
@@ -56,13 +68,24 @@ void ResponseServer::parseRequest(string req) {
     vector<string> lines = this->split(req, '\n');
     vector<string> firstLine = this->split(lines[0], ' ');
     string hostLine = lines[1];
-    string normalizedURL = firstLine[1];
-    replace(normalizedURL.begin(), normalizedURL.end(), '/', '\\');
 
     this->reqMethod = firstLine[0];
-    this->reqURL = (normalizedURL == "\\") ? "\\index.html" : normalizedURL;
     this->reqVersion = firstLine[2];
     this->reqIP = hostLine;
+
+    // parse file type and url
+    string normalizedURL = firstLine[1];
+    normalizedURL = this->normalize(normalizedURL);
+    this->reqURL = normalizedURL;
+
+    vector<string> fileType = this->split(normalizedURL, '.');
+    if (fileType.size() > 0) {
+        this->reqFileType = fileType[fileType.size() - 1];
+    } else {
+        this->reqFileType = "html";
+    }
+    this->reqFileType = fileType[fileType.size() <= 0 ? 0 : (fileType.size() - 1)];
+    cout << reqFileType << endl;
 }
 
 void ResponseServer::setResVersion(string version) {
@@ -83,14 +106,21 @@ void ResponseServer::setResStatus(string statusCode) {
 
 bool ResponseServer::setResBody(string url) {
     string fullPath = this->filePath + url;
-    ifstream responseHTML(fullPath, ios::in);
+    string contentType = this->getContentType();
+    ifstream *responseData;
 
-    if (!responseHTML.is_open()) {
+    if (contentType.find("text") == string::npos) {
+        responseData = new ifstream(fullPath, ios::binary);
+    } else {
+        responseData = new ifstream(fullPath, ios::in);
+    }
+
+    if (!responseData->is_open()) {
         return false;
     }
 
     ostringstream oss;
-    oss << responseHTML.rdbuf();
+    oss << responseData->rdbuf();
     this->resBody = oss.str();
     return true;
 }
@@ -103,6 +133,27 @@ void ResponseServer::clearResHeader(void) {
     this->resVersion = "";
     this->resStatus = "";
     this->resHeaderFields.clear();
+}
+
+string ResponseServer::getContentType(void) {
+    string contentType;
+
+    if (this->reqFileType == "html" || this->reqFileType == "htx") {
+        contentType = "text/html";
+    } else if (this->reqFileType == "ico") {
+        contentType = "image/x-icon";
+    } else if (this->reqFileType == "jpg" || this->reqFileType == "jpeg"
+               || this->reqFileType == "gif" || this->reqFileType == "tiff") {
+        contentType = "image/jpg; image/jpeg";
+    } else if (this->reqFileType == "mp4") {
+        contentType = "video/mpeg4";
+    } else if (this->reqFileType == "mp3") {
+        contentType = "audio/mp3";
+    } else {
+        contentType = "text/plain";
+    }
+
+    return contentType;
 }
 
 string ResponseServer::getResData(void) {
@@ -127,9 +178,7 @@ void ResponseServer::resSuccess(void) {
     this->setResStatus("200");
     this->appendResField("Connection", "keep-alive");
     this->appendResField("Server", "Dragon Web Server");
-
-    // @TODO: multiple-type files
-    this->appendResField("Content-Type", "text/html");
+    this->appendResField("Content-Type", this->getContentType());
 
     string resData = this->getResData();
 
@@ -157,11 +206,9 @@ void ResponseServer::resFail(string resStatus, string resBody) {
     this->setResStatus("resStatus");
     this->appendResField("Connection", "keep-alive");
     this->appendResField("Server", "Dragon Web Server");
-
-    // @TODO: multiple-type files
     this->appendResField("Content-Type", "text/html");
 
-    this->resBody = "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"></head><body><h1>" + resBody + "</h1></body></html>";
+    this->resBody = "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"utf-8\"></head><body><div class=\"error\" style=\"margin-top: 30vh; text-align: center\"><h1>" + resStatus + "</h1></div><br /><br /><div class=\"info\" style=\"text-align: center\">" + resBody + "</div><h1></body></html>";
 
     string resData = this->getResData();
 

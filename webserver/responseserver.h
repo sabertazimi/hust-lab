@@ -50,15 +50,18 @@ private:
 
 private:
     vector<string> split(const string &s, char delim);
+    string normalize(string path);
     void parseRequest(string req);
 
+    string getContentType(void);
     string getReqData(void);
+    string getResData(void);
+
     void setResVersion(string version);
     void setResStatus(string statusCode);
     bool setResBody(string url);
     void appendResField(string key, string value);
     void clearResHeader(void);
-    string getResData(void);
 
     void resSuccess(void);
     void resFail(string resStatus, string resBody);
