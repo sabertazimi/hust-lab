@@ -1,3 +1,4 @@
+#include <QMessageBox>
 #include <QString>
 #include <QThread>
 #include <winsock2.h>
@@ -18,12 +19,19 @@ using namespace std;
 ///
 DragonWebServer::DragonWebServer(ServerWindow *ui, QObject *parent) : QObject(parent) {
     this->ui = ui;
-    // this->setIP("191.168.191.1");
+    // this->setIP();
     this->setPort("80");
     this->setPath("C:\\dws");
 }
 
 DragonWebServer::~DragonWebServer(void) {
+}
+
+DragonWebServer &DragonWebServer::setConfigFromUI(void) {
+    this->setIP(this->ui->inputIP->text().toLocal8Bit().constData());
+    this->setPort(this->ui->inputPort->text().toLocal8Bit().constData());
+    this->setPath(this->ui->inputPath->text().toLocal8Bit().constData());
+    return *this;
 }
 
 ///
@@ -32,9 +40,11 @@ DragonWebServer::~DragonWebServer(void) {
 /// \return
 ///
 DragonWebServer &DragonWebServer::setIP(string ip) {
-    if (ip != "") {
-        this->ip = ip;
+    if (ip == "") {
+        QMessageBox::critical(NULL, "Error", "IP error!");
     }
+
+    this->ip = ip;
 
     return *this;
 }
@@ -45,13 +55,23 @@ DragonWebServer &DragonWebServer::setIP(string ip) {
 /// \return
 ///
 DragonWebServer &DragonWebServer::setPort(string port) {
-    if (port != "") {
-        stringstream ss;
-        int portNum;
-        ss << port;
-        ss >> portNum;
-        this->port = portNum;
+    if (port == "") {
+        QMessageBox::critical(NULL, "Error", "Port can't be empty!");
+        return *this;
     }
+
+    stringstream ss;
+    int portNum;
+    ss << port;
+    ss >> portNum;
+
+    // input port is NaN
+    if (portNum == 0) {
+        QMessageBox::critical(NULL, "Error", "Port can't be NaN!");
+        portNum = 80;
+    }
+
+    this->port = portNum;
 
     return *this;
 }
@@ -62,9 +82,12 @@ DragonWebServer &DragonWebServer::setPort(string port) {
 /// \return
 ///
 DragonWebServer &DragonWebServer::setPath(string filePath) {
-    if (filePath != "") {
-        this->filePath = filePath;
+    if (filePath == "") {
+        QMessageBox::critical(NULL, "Error", "File path can't be empty!");
+        return *this;
     }
+
+    this->filePath = filePath;
 
     return *this;
 }
@@ -74,6 +97,8 @@ DragonWebServer &DragonWebServer::setPath(string filePath) {
 /// \return
 ///
 int DragonWebServer::runServer(void) {
+    this->setConfigFromUI();
+
     WSADATA wsaData;
     int nRC;
 

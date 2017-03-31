@@ -3,7 +3,6 @@
 #include <QWidget>
 #include <QLabel>
 #include <QLineEdit>
-#include <QMessageBox>
 #include <QPushButton>
 #include <QTableWidget>
 #include <QString>
@@ -28,12 +27,17 @@ ServerWindow::ServerWindow(QWidget *parent) : QMainWindow(parent) {
     QHBoxLayout *topLayout = new QHBoxLayout;
     QLabel *labelIP = new QLabel(QWidget::tr("&IP:"), mainWindow);
     this->inputIP = new QLineEdit(mainWindow);
+    this->inputIP->setText(QString("192.168.191.1"));
+    // @TODO
+    this->inputIP->setEnabled(false);
     labelIP->setBuddy(this->inputIP);
     QLabel *labelPort = new QLabel(QWidget::tr("&Port:"), mainWindow);
     this->inputPort = new QLineEdit(mainWindow);
+    this->inputPort->setText(QString("80"));
     labelPort->setBuddy(this->inputPort);
     QLabel *labelPath = new QLabel(QWidget::tr("&Path:"), mainWindow);
     this->inputPath = new QLineEdit(mainWindow);
+    this->inputPath->setText(QString("C:\\dws"));
     labelPath->setBuddy(this->inputPath);
     topLayout->addStretch();
     topLayout->addWidget(labelIP);
@@ -106,11 +110,14 @@ void ServerWindow::startBtnHandle(void) {
     if (this->running == false) {
         this->running = true;
 
+        this->inputIP->setEnabled(false);
+        this->inputPort->setEnabled(false);
+        this->inputPath->setEnabled(false);
+        this->startBtn->setEnabled(false);
+        this->stopBtn->setEnabled(true);
+
         this->dwsThread = new QThread;
         this->dws = new DragonWebServer(this);
-        this->dws->setIP(this->inputIP->text().toLocal8Bit().constData());
-        this->dws->setPort(this->inputPort->text().toLocal8Bit().constData());
-        this->dws->setPath(this->inputPath->text().toLocal8Bit().constData());
         this->dws->moveToThread(this->dwsThread);
         connect(this->dwsThread, SIGNAL(started()), this->dws, SLOT(runServer()));
         connect(this->dwsThread, SIGNAL(finished()), this->dwsThread, SLOT(deleteLater()));
@@ -124,6 +131,14 @@ void ServerWindow::startBtnHandle(void) {
 void ServerWindow::stopBtnHandle(void) {
     if (this->running == true) {
         this->running = false;
+
+        // @TODO
+        this->inputIP->setEnabled(false);
+        this->inputPort->setEnabled(true);
+        this->inputPath->setEnabled(true);
+        this->startBtn->setEnabled(true);
+        this->stopBtn->setEnabled(false);
+
         this->dws->stopServer();
     }
 }

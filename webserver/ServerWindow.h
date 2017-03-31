@@ -27,6 +27,11 @@ public:
     explicit ServerWindow(QWidget *parent = 0);
     ~ServerWindow(void);
 
+public:
+    QLineEdit *inputIP;
+    QLineEdit *inputPort;
+    QLineEdit *inputPath;
+
 private:
     ///
     /// \brief running
@@ -36,9 +41,6 @@ private:
     /// \brief mainWindow
     ///
     QWidget *mainWindow;
-    QLineEdit *inputIP;
-    QLineEdit *inputPort;
-    QLineEdit *inputPath;
     QTableWidget *reqTab;
     QTableWidget *resTab;
     ///

@@ -24,6 +24,7 @@ public:
     ///
     explicit DragonWebServer(ServerWindow *ui, QObject *parent = 0);
     ~DragonWebServer(void);
+    DragonWebServer &setConfigFromUI(void);
     ///
     /// \brief setIP
     /// \param ip
