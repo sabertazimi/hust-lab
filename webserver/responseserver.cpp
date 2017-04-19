@@ -206,7 +206,7 @@ void ResponseServer::resFail(string resStatus, string resBody) {
 
     // response header
     this->setResVersion(this->reqVersion);
-    this->setResStatus("resStatus");
+    this->setResStatus(resStatus);
     this->appendResField("Connection", "keep-alive");
     this->appendResField("Server", "Dragon Web Server");
     this->appendResField("Content-Type", "text/html");

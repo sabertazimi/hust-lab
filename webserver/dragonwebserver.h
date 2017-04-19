@@ -27,10 +27,9 @@ public:
     DragonWebServer &setConfigFromUI(void);
     ///
     /// \brief setIP
-    /// \param ip
     /// \return
     ///
-    DragonWebServer &setIP(string ip);
+    DragonWebServer &setIP(void);
     ///
     /// \brief setPort
     /// \param port
@@ -68,7 +67,7 @@ private:
     ///
     /// \brief dwsopt
     ///
-    string ip;
+    int ip;
     int port;
     string filePath;
 };

@@ -7,6 +7,7 @@
 #include <iostream>
 #include <string>
 #include <list>
+#include <cstdio>
 #include "serverwindow.h"
 #include "responseserver.h"
 #include "dragonwebserver.h"
@@ -19,18 +20,15 @@ using namespace std;
 ///
 DragonWebServer::DragonWebServer(ServerWindow *ui, QObject *parent) : QObject(parent) {
     this->ui = ui;
-    // this->setIP();
-    this->setPort("80");
-    this->setPath("C:\\dws");
 }
 
 DragonWebServer::~DragonWebServer(void) {
 }
 
 DragonWebServer &DragonWebServer::setConfigFromUI(void) {
-    this->setIP(this->ui->inputIP->text().toLocal8Bit().constData());
-    this->setPort(this->ui->inputPort->text().toLocal8Bit().constData());
-    this->setPath(this->ui->inputPath->text().toLocal8Bit().constData());
+    this->setIP()
+        .setPort(this->ui->inputPort->text().toLocal8Bit().constData())
+        .setPath(this->ui->inputPath->text().toLocal8Bit().constData());
     return *this;
 }
 
@@ -39,13 +37,12 @@ DragonWebServer &DragonWebServer::setConfigFromUI(void) {
 /// \param ip
 /// \return
 ///
-DragonWebServer &DragonWebServer::setIP(string ip) {
-    if (ip == "") {
-        QMessageBox::critical(NULL, "Error", "IP error!");
-    }
-
-    this->ip = ip;
-
+DragonWebServer &DragonWebServer::setIP(void) {
+    int ip3 = atoi(this->ui->inputIP3->text().toLocal8Bit().constData());
+    int ip2 = atoi(this->ui->inputIP2->text().toLocal8Bit().constData());
+    int ip1 = atoi(this->ui->inputIP1->text().toLocal8Bit().constData());
+    int ip0 = atoi(this->ui->inputIP0->text().toLocal8Bit().constData());
+    this->ip = (ip3 << 24) | (ip2 << 16) | (ip1 << 8) | ip0;
     return *this;
 }
 
@@ -55,24 +52,11 @@ DragonWebServer &DragonWebServer::setIP(string ip) {
 /// \return
 ///
 DragonWebServer &DragonWebServer::setPort(string port) {
-    if (port == "") {
-        QMessageBox::critical(NULL, "Error", "Port can't be empty!");
-        return *this;
-    }
-
     stringstream ss;
     int portNum;
     ss << port;
     ss >> portNum;
-
-    // input port is NaN
-    if (portNum == 0) {
-        QMessageBox::critical(NULL, "Error", "Port can't be NaN!");
-        portNum = 80;
-    }
-
     this->port = portNum;
-
     return *this;
 }
 
@@ -82,13 +66,7 @@ DragonWebServer &DragonWebServer::setPort(string port) {
 /// \return
 ///
 DragonWebServer &DragonWebServer::setPath(string filePath) {
-    if (filePath == "") {
-        QMessageBox::critical(NULL, "Error", "File path can't be empty!");
-        return *this;
-    }
-
     this->filePath = filePath;
-
     return *this;
 }
 
@@ -110,12 +88,14 @@ int DragonWebServer::runServer(void) {
     // 初始化 winsock
     nRC = WSAStartup(0x0101, &wsaData);
     if (nRC) {
+        this->ui->running = false;
         emit finished();
         return -1;
     }
 
     if (wsaData.wVersion != 0x0101) {
         WSACleanup();
+        this->ui->running = false;
         emit finished();
         return -1;
     }
@@ -124,6 +104,7 @@ int DragonWebServer::runServer(void) {
     this->srvSock = socket(AF_INET, SOCK_STREAM, 0);
     if (this->srvSock == INVALID_SOCKET) {
         WSACleanup();
+        this->ui->running = false;
         emit finished();
         return -1;
     }
@@ -131,7 +112,7 @@ int DragonWebServer::runServer(void) {
     // 绑定 socket to Server's IP and port 80
     srvAddr.sin_family = AF_INET;
     srvAddr.sin_port = htons(this->port);
-    srvAddr.sin_addr.S_un.S_addr = INADDR_ANY;
+    srvAddr.sin_addr.S_un.S_addr = htonl(this->ip);
     nRC = bind(this->srvSock, (LPSOCKADDR)&srvAddr, sizeof(srvAddr));
     if (nRC == SOCKET_ERROR) {
         this->stopServer();
@@ -196,5 +177,6 @@ int DragonWebServer::runServer(void) {
 void DragonWebServer::stopServer(void) {
     closesocket(this->srvSock);
     WSACleanup();
+    this->ui->running = false;
     emit this->finished();
 }

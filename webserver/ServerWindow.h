@@ -28,21 +28,13 @@ public:
     ~ServerWindow(void);
 
 public:
-    QLineEdit *inputIP;
+    QLineEdit *inputIP3;
+    QLineEdit *inputIP2;
+    QLineEdit *inputIP1;
+    QLineEdit *inputIP0;
     QLineEdit *inputPort;
     QLineEdit *inputPath;
-
-private:
-    ///
-    /// \brief running
-    ///
-    bool running;
-    ///
-    /// \brief mainWindow
-    ///
-    QWidget *mainWindow;
-    QTableWidget *reqTab;
-    QTableWidget *resTab;
+    QPushButton *fileBtn;
     ///
     /// \brief startBtn
     ///
@@ -51,6 +43,19 @@ private:
     /// \brief stopBtn
     ///
     QPushButton *stopBtn;
+    ///
+    /// \brief running
+    ///
+    bool running;
+
+private:
+    ///
+    /// \brief mainWindow
+    ///
+    QWidget *mainWindow;
+    QTableWidget *reqTab;
+    QTableWidget *resTab;
+    bool checkInput(void);
     ///
     /// \brief reqlogs
     ///
@@ -68,6 +73,10 @@ private:
     ///
     DragonWebServer *dws;
 
+public slots:
+    void enableInput(void);
+    void disableInput(void);
+
 private slots:
     ///
     /// \brief updateServer
@@ -76,6 +85,7 @@ private slots:
     void logRes(const QString &res);
     void startBtnHandle(void);
     void stopBtnHandle(void);
+    void fileBtnHandle(void);
 };
 
 #endif // SERVERWINDOW_H
