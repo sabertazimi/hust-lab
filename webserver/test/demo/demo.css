@@ -1,0 +1,24 @@
+/*
+* @Author: sabertazimi
+* @Date:   2017-04-20 06:21:50
+* @Last Modified by:   sabertazimi
+* @Last Modified time: 2017-04-20 06:49:02
+*/
+
+body {
+    background-image: url("./demo.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+audio, video {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+* + * {
+    margin-top: 20vh;
+}
