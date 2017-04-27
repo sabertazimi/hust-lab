@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<process-config>
+<processNodes>
+<OperateNode id="0">
+<node-bounds x="5488" y="5174"/>
+</OperateNode>
+<OperateNode id="1">
+<node-bounds x="5687" y="5175"/>
+</OperateNode>
+<OperateNode id="2">
+<node-bounds x="5842" y="5180"/>
+</OperateNode>
+<OperateNode id="3">
+<node-bounds x="5838" y="5333"/>
+</OperateNode>
+<OperateNode id="4">
+<node-bounds x="6010" y="5179"/>
+</OperateNode>
+</processNodes>
+<nodeLines>
+<nodeLine id="0">
+<startNode id="0"/>
+<endNode id="1"/>
+<link-propertys Capacity="100.0" LinkType="0" PropagationDelay="10" QueueSize="50" QueueType1="0" QueueType2="0"/>
+<error-Model n0-n2="0" n2-n0="0" randomVarString1="Uniform" randomVarString2="Uniform" rate1="-1.0" rate2="-1.0" unit1="0" unit2="0"/>
+<queueType1 Type="DropTail"/>
+<queueType2 Type="DropTail"/>
+</nodeLine>
+<nodeLine id="1">
+<startNode id="1"/>
+<endNode id="2"/>
+<link-propertys Capacity="100.0" LinkType="0" PropagationDelay="10" QueueSize="50" QueueType1="0" QueueType2="0"/>
+<error-Model n0-n2="0" n2-n0="0" randomVarString1="Uniform" randomVarString2="Uniform" rate1="-1.0" rate2="-1.0" unit1="0" unit2="0"/>
+<queueType1 Type="DropTail"/>
+<queueType2 Type="DropTail"/>
+</nodeLine>
+<nodeLine id="2">
+<startNode id="3"/>
+<endNode id="2"/>
+<link-propertys Capacity="100.0" LinkType="0" PropagationDelay="10" QueueSize="50" QueueType1="0" QueueType2="0"/>
+<error-Model n0-n2="0" n2-n0="0" randomVarString1="Uniform" randomVarString2="Uniform" rate1="-1.0" rate2="-1.0" unit1="0" unit2="0"/>
+<queueType1 Type="DropTail"/>
+<queueType2 Type="DropTail"/>
+</nodeLine>
+<nodeLine id="3">
+<startNode id="2"/>
+<endNode id="4"/>
+<link-propertys Capacity="100.0" LinkType="0" PropagationDelay="10" QueueSize="50" QueueType1="0" QueueType2="0"/>
+<error-Model n0-n2="0" n2-n0="0" randomVarString1="Uniform" randomVarString2="Uniform" rate1="-1.0" rate2="-1.0" unit1="0" unit2="0"/>
+<queueType1 Type="DropTail"/>
+<queueType2 Type="DropTail"/>
+</nodeLine>
+</nodeLines>
+<agents/>
+<apps/>
+</process-config>
