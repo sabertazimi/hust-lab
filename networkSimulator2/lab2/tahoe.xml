@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<process-config>
+<processNodes>
+<OperateNode id="0">
+<node-bounds x="5550" y="5101"/>
+</OperateNode>
+<OperateNode id="1">
+<node-bounds x="5540" y="5301"/>
+</OperateNode>
+<OperateNode id="2">
+<node-bounds x="5671" y="5203"/>
+</OperateNode>
+<OperateNode id="3">
+<node-bounds x="5853" y="5200"/>
+</OperateNode>
+</processNodes>
+<nodeLines>
+<nodeLine id="0">
+<startNode id="2"/>
+<endNode id="3"/>
+<link-propertys Capacity="1.0" LinkType="0" PropagationDelay="20" QueueSize="50" QueueType1="0" QueueType2="0"/>
+<error-Model n0-n2="0" n2-n0="0" randomVarString1="Uniform" randomVarString2="Uniform" rate1="-1.0" rate2="-1.0" unit1="0" unit2="0"/>
+<queueType1 Type="DropTail"/>
+<queueType2 Type="DropTail"/>
+</nodeLine>
+<nodeLine id="1">
+<startNode id="0"/>
+<endNode id="2"/>
+<link-propertys Capacity="6.0" LinkType="0" PropagationDelay="10" QueueSize="50" QueueType1="0" QueueType2="0"/>
+<error-Model n0-n2="0" n2-n0="0" randomVarString1="Uniform" randomVarString2="Uniform" rate1="-1.0" rate2="-1.0" unit1="0" unit2="0"/>
+<queueType1 Type="DropTail"/>
+<queueType2 Type="DropTail"/>
+</nodeLine>
+<nodeLine id="2">
+<startNode id="1"/>
+<endNode id="2"/>
+<link-propertys Capacity="6.0" LinkType="0" PropagationDelay="10" QueueSize="50" QueueType1="0" QueueType2="0"/>
+<error-Model n0-n2="0" n2-n0="0" randomVarString1="Uniform" randomVarString2="Uniform" rate1="-1.0" rate2="-1.0" unit1="0" unit2="0"/>
+<queueType1 Type="DropTail"/>
+<queueType2 Type="DropTail"/>
+</nodeLine>
+</nodeLines>
+<agents>
+<agent AgentType="1" id="4" x="5852" y="5118">
+<AttachedNode id="3"/>
+<RemoteAgent id="6"/>
+<AgentAttribute MaxSackBlocks="-1.0" PacketSize="1500.0"/>
+</agent>
+<agent AgentType="1" id="5" x="5852" y="5277">
+<AttachedNode id="3"/>
+<RemoteAgent id="7"/>
+<AgentAttribute MaxSackBlocks="-1.0" PacketSize="1500.0"/>
+</agent>
+<agent AgentType="4" id="6" x="5550" y="5020">
+<AttachedNode id="0"/>
+<RemoteAgent id="4"/>
+<AgentAttribute Ack="-1.0" AgentAddress="-1.0" AgentPort="-1.0" Awnd="-1.0" Backoff="-1.0" Bugfix="true" CWND="-1.0" DEFTTL="-1.0" DesPort="-1.0" DestAddr="-1.0" DestinatonAddr="-1.0" Dupacks="-1.0" ECN="-1.0" Fid="-1.0" Flags="-1.0" MAXRTO="-1.0" MWS="-1.0" MaxSeq="-1.0" Maxburst="-1.0" Maxcwnd="-1.0" NodeAddr="-1.0" Overhead="-1.0" PacketSize="1500.0" Prio="-1.0" RTT="-1.0" RTTVAR="-1.0" SRTT="-1.0" Seqno="-1.0" Size="-1.0" TTL="-1.0" T_Seqno="-1.0" TcpTick="-1.0" Type="-1.0" WinConst="-1.0" WinInit="-1.0" WinOption="-1.0" WinThresh="-1.0" Window="-1.0" ssrestart="true" ssthresh="-1.0"/>
+</agent>
+<agent AgentType="4" id="7" x="5537" y="5408">
+<AttachedNode id="1"/>
+<RemoteAgent id="5"/>
+<AgentAttribute Ack="-1.0" AgentAddress="-1.0" AgentPort="-1.0" Awnd="-1.0" Backoff="-1.0" Bugfix="true" CWND="-1.0" DEFTTL="-1.0" DesPort="-1.0" DestAddr="-1.0" DestinatonAddr="-1.0" Dupacks="-1.0" ECN="-1.0" Fid="-1.0" Flags="-1.0" MAXRTO="-1.0" MWS="-1.0" MaxSeq="-1.0" Maxburst="-1.0" Maxcwnd="-1.0" NodeAddr="-1.0" Overhead="-1.0" PacketSize="1500.0" Prio="-1.0" RTT="-1.0" RTTVAR="-1.0" SRTT="-1.0" Seqno="-1.0" Size="-1.0" TTL="-1.0" T_Seqno="-1.0" TcpTick="-1.0" Type="-1.0" WinConst="-1.0" WinInit="-1.0" WinOption="-1.0" WinThresh="-1.0" Window="-1.0" ssrestart="true" ssthresh="-1.0"/>
+</agent>
+</agents>
+<apps>
+<app StartTime="1.0" StopTime="2.0" id="2" x="5549" y="4933">
+<attachedAgent id="6"/>
+<AppAttribute AgentType="FTP"/>
+</app>
+<app StartTime="1.0" StopTime="2.0" id="3" x="5534" y="5483">
+<attachedAgent id="7"/>
+<AppAttribute AgentType="FTP"/>
+</app>
+</apps>
+</process-config>
