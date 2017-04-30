@@ -10,22 +10,22 @@ DROP TABLE IF EXISTS BIG_SPJ;
 
 CREATE TABLE `S` (
 	`SNO` VARCHAR(5) PRIMARY KEY,
-    `SNAME` VARCHAR(10) NOT NULL,
+    `SNAME` VARCHAR(30) NOT NULL,
     `STATUS` INT,
-    `CITY` VARCHAR(10)
+    `CITY` VARCHAR(30)
 );
 
 CREATE TABLE `P` (
 	`PNO` VARCHAR(5) PRIMARY KEY,
-    `PNAME` VARCHAR(10) NOT NULL,
-    `COLOR` VARCHAR(5),
+    `PNAME` VARCHAR(30) NOT NULL,
+    `COLOR` VARCHAR(10),
     `WEIGHT` INT DEFAULT 10
 );
 
 CREATE TABLE `J` (
 	`JNO` VARCHAR(5) PRIMARY KEY,
-    `JNAME` VARCHAR(10) NOT NULL,
-    `CITY` VARCHAR(10)
+    `JNAME` VARCHAR(30) NOT NULL,
+    `CITY` VARCHAR(30)
 );
 
 CREATE TABLE `SPJ` (
@@ -101,8 +101,103 @@ SELECT *
 FROM `SPJ`
 WHERE `SPJ`.`QTY` > 400;
 
+/* integrity violation insertion */
+INSERT INTO `S` VALUES('S1', '华科重工', 30, '武汉');	/* error: primary key */
+INSERT INTO `S` VALUES(NULL, '华科重工', 30, '武汉');	/* error: entity integrity */
+INSERT INTO `SPJ` VALUES('S233', 'P233', 'J233', 233);	/* error: referential integrity */
+INSERT INTO `S` VALUES('S6', NULL, 30, '武汉');			/* error: user-defined integrity */
+INSERT INTO `SPJ` VALUES('S1', 'P1', 'J7', 23333);		/* error: user-defined integrity */
+INSERT INTO `J` VALUES('J8', '阿姆斯特朗对撞超级计算机中心', '武汉', '2017-07-01', '2016-12-25');	/* error: user-defined integrity */
+
+/*
 SELECT * FROM `S`;
 SELECT * FROM `P`;
 SELECT * FROM `J`;
 SELECT * FROM `SPJ`;
 SELECT * FROM `BIG_SPJ`;
+*/
+
+/* 2-6 */
+
+SELECT DISTINCT `SNO`
+FROM `SPJ`
+WHERE `JNO` = 'J1';
+
+SELECT DISTINCT `SNO`
+FROM `SPJ`
+WHERE `PNO` = 'P1' AND `JNO` = 'J1';
+
+SELECT DISTINCT `SNO`
+FROM `P`, `SPJ`
+WHERE `P`.`PNO` = `SPJ`.`PNO`
+	AND `JNO` = 'J1'
+    AND `COLOR` = '红';
+    
+SELECT  DISTINCT `JNO`
+FROM `SPJ`
+WHERE `JNO` NOT IN (
+	SELECT `JNO`
+    FROM `S`, `P`, `SPJ`
+    WHERE `S`.`SNO` = `SPJ`.`SNO`
+		AND `P`.`PNO` = `SPJ`.`PNO`
+        AND `CITY` ='天津'
+        AND `COLOR` = '红'
+);
+    
+SELECT DISTINCT `JNO`
+FROM `SPJ` `SPJX`
+WHERE NOT EXISTS (
+	SELECT *
+    FROM `SPJ` `SPJY`
+    WHERE `SPJY`.`SNO` = 'S1'
+		AND NOT EXISTS (
+			SELECT *
+			FROM `SPJ` `SPJZ`
+			WHERE `SPJX`.`JNO` = `SPJZ`.`JNO`
+				AND `SPJY`.`PNO` = `SPJZ`.`PNO`
+		)
+);
+
+/* 2-6 */
+
+/* 3-5 */
+
+SELECT `SNAME`, `CITY`
+FROM `S`;
+
+SELECT `PNAME`, `COLOR`, `WEIGHT`
+FROM `P`;
+
+SELECT DISTINCT `JNO`
+FROM `SPJ`
+WHERE `SNO` = 'S1';
+
+/* 3-5 */
+
+/* DELIMITER $$
+
+DROP TRIGGER IF EXISTS `SPJ_CHECK1`$$
+CREATE TRIGGER `SPJ_CHECK1`
+    BEFORE UPDATE ON `SPJ`
+    FOR EACH ROW
+    BEGIN
+        -- condition to check
+        IF NEW.QTY < 1 OR NEW.QTY > 10000 THEN
+            -- hack to solve absence of SIGNAL/prepared statements in triggers
+            UPDATE `Error: invalid QTY value` SET x = 1;
+        END IF;
+    END$$
+    
+DROP TRIGGER IF EXISTS `SPJ_CHECK2`$$
+CREATE TRIGGER `SPJ_CHECK2`
+    BEFORE INSERT ON `SPJ`
+    FOR EACH ROW
+    BEGIN
+        -- condition to check
+        IF NEW.QTY < 1 OR NEW.QTY > 10000 THEN
+            -- hack to solve absence of SIGNAL/prepared statements in triggers
+            UPDATE `Error: invalid QTY value` SET x = 1;
+        END IF;
+    END$$
+
+DELIMITER ; */
