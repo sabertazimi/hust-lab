@@ -106,8 +106,8 @@ INSERT INTO `S` VALUES('S1', '华科重工', 30, '武汉');	/* error: primary ke
 INSERT INTO `S` VALUES(NULL, '华科重工', 30, '武汉');	/* error: entity integrity */
 INSERT INTO `SPJ` VALUES('S233', 'P233', 'J233', 233);	/* error: referential integrity */
 INSERT INTO `S` VALUES('S6', NULL, 30, '武汉');			/* error: user-defined integrity */
-INSERT INTO `SPJ` VALUES('S1', 'P1', 'J7', 23333);		/* error: user-defined integrity */
-INSERT INTO `J` VALUES('J8', '阿姆斯特朗对撞超级计算机中心', '武汉', '2017-07-01', '2016-12-25');	/* error: user-defined integrity */
+-- INSERT INTO `SPJ` VALUES('S1', 'P1', 'J7', 23333);		/* error: user-defined integrity */
+-- INSERT INTO `J` VALUES('J8', '阿姆斯特朗对撞超级计算机中心', '武汉', '2017-07-01', '2016-12-25');	/* error: user-defined integrity */
 
 /*
 SELECT * FROM `S`;
@@ -160,7 +160,8 @@ WHERE NOT EXISTS (
 
 /* 2-6 */
 
-/* 3-5 */
+
+/* 3-5 part1 */
 
 SELECT `SNAME`, `CITY`
 FROM `S`;
@@ -172,7 +173,118 @@ SELECT DISTINCT `JNO`
 FROM `SPJ`
 WHERE `SNO` = 'S1';
 
-/* 3-5 */
+SELECT `PNAME`, `QTY`
+FROM `P`, `SPJ`
+WHERE `P`.`PNO` = `SPJ`.`PNO`
+	AND `JNO` = 'J2';
+    
+SELECT DISTINCT `PNO`
+FROM `S`, `SPJ`
+WHERE `S`.`SNO` = `SPJ`.`SNO`
+	AND `CITY` = '上海';
+    
+SELECT DISTINCT `JNAME`
+FROM `S`, `J`, `SPJ`
+WHERE `S`.`SNO` = `SPJ`.`SNO`
+	AND `J`.`JNO` = `SPJ`.`JNO`
+    AND `S`.`CITY` = '上海';
+    
+SELECT DISTINCT `JNO`
+FROM `SPJ`
+WHERE `JNO` NOT IN (
+	SELECT DISTINCT `JNO`
+    FROM `S`, `SPJ`
+    WHERE `S`.`SNO` = `SPJ`.`SNO`
+		AND `CITY`= '天津'
+);
+
+/* 3-5 part1 */
+
+/* additional SQL */
+
+SELECT DISTINCT `P`.`PNO`, `PNAME`, `JNAME`
+FROM `P`, `J`, `SPJ`
+WHERE `P`.`PNO` = `SPJ`.`PNO`
+	AND `J`.`JNO` = `SPJ`.`JNO`
+    AND `JNAME` LIKE '%厂'
+ORDER BY `JNAME`, `PNO`, `PNAME`;
+
+SELECT DISTINCT `JNO`, SUM(`PRICE`) AS `JPRICE`
+FROM `P`, `SPJ`
+WHERE `P`.`PNO` = `SPJ`.`PNO`
+GROUP BY `JNO`
+ORDER BY `JPRICE` DESC;
+
+SELECT DISTINCT `SNO`, SUM(`QTY`) AS `SQTY`
+FROM `SPJ`
+GROUP BY `SNO`;
+
+SELECT DISTINCT `JNO`, DATEDIFF(`JEND`, `JSTART`) AS `JDAY`
+FROM `J`
+WHERE DATEDIFF(`JEND`, `JSTART`) <= 365;
+
+SELECT DISTINCT `JNO`
+FROM `SPJ`
+WHERE `JNO` NOT IN (
+	SELECT `J`.`JNO`
+    FROM `S`, `J`, `SPJ`
+    WHERE `S`.`SNO` = `SPJ`.`SNO`
+		AND `J`.`JNO` = `SPJ`.`JNO`
+        AND `S`.`CITY` = `J`.`CITY`
+);
+
+/* additional SQL */
+
+
+/* 3-9 */
+
+/* multiple-table view: can't get updated */
+CREATE VIEW `SANJIAN_SPJ`(`SNO`, `PNO`, `QTY`)
+AS
+SELECT `SNO`, `PNO`, `QTY`
+FROM `J`, `SPJ`
+WHERE `J`.`JNO` = `SPJ`.`JNO`
+	AND `JNAME` = '三建'
+WITH CHECK OPTION;
+    
+SELECT `PNO`, `QTY` FROM `SANJIAN_SPJ`;
+SELECT * FROM `SANJIAN_SPJ` WHERE `SNO` = 'S1';
+
+CREATE VIEW `TIANJING_S`
+AS
+SELECT `SNO`, `SNAME`, `STATUS`
+FROM `S`
+WHERE `CITY` = '天津';
+-- WITH CHECK OPTION;
+
+INSERT INTO `TIANJING_S` VALUES('S23', '华科重工', 30);
+SELECT * FROM `S`;
+
+/* 3-9 */
+
+
+/* 3-5 part2 */
+
+UPDATE `P`
+SET `COLOR` = '蓝'
+WHERE `COLOR` = '红';
+SELECT * FROM `P`;
+
+UPDATE `SPJ`
+SET `SNO` = 'S3'
+WHERE `SNO` = 'S5'
+	AND `PNO` = 'P6'
+	AND `JNO` = 'J4';
+SELECT * FROM `SPJ`;
+
+INSERT INTO `SPJ` VALUES('S2', 'P4', 'J6', 200);
+SELECT * FROM `SPJ`;
+
+DELETE FROM `S` WHERE `SNO` = 'S2';		/* cascade */
+SELECT * FROM `S`;
+SELECT * FROM `SPJ`;
+
+/* 3-5 part2 */
 
 /* DELIMITER $$
 
