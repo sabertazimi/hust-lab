@@ -65,7 +65,7 @@ CREATE TABLE [phoneMFee] (
 	[mfee1] INT,
 	[mfee2] INT,
 	[mfee3] INT,
-	[mtotal] INT,
+	[mtotal] AS ([mfee1] + [mfee2] + [mfee3]),
 	FOREIGN KEY ([pnumber])
 		REFERENCES [cellUser]([pnumber])
 		ON DELETE CASCADE
@@ -234,18 +234,18 @@ EXEC sp_addrolemember N'roleu', N'user1'
 GO
 
 SETUSER 'manager';
-GO
-CREATE TRIGGER phoneMFee_AfterInsert_TRG 
-ON [phoneMFee]
-AFTER INSERT
-AS
-BEGIN
-  UPDATE [phoneMFee]
-  SET [phoneMFee].[mtotal] = [phoneMFee].[mfee1] + [phoneMFee].[mfee2] + [phoneMFee].[mfee3]
-  FROM Inserted AS i
-  WHERE [phoneMFee].[pnumber] = i.[pnumber];
-END
-GO
+--GO
+--CREATE TRIGGER phoneMFee_AfterInsert_TRG 
+--ON [phoneMFee]
+--AFTER INSERT
+--AS
+--BEGIN
+--  UPDATE [phoneMFee]
+--  SET [phoneMFee].[mtotal] = [phoneMFee].[mfee1] + [phoneMFee].[mfee2] + [phoneMFee].[mfee3]
+--  FROM Inserted AS i
+--  WHERE [phoneMFee].[pnumber] = i.[pnumber];
+--END
+--GO
 
 GO
 CREATE TRIGGER phoneFeeHistory_AfterInsertphoneMFee_TRG 
