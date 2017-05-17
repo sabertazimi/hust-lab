@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="material">
+        <file>material.qss</file>
+    </qresource>
+</RCC>
