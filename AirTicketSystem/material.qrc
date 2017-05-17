@@ -1,5 +1,12 @@
 <RCC>
-    <qresource prefix="material">
-        <file>material.qss</file>
-    </qresource>
+  <qresource prefix="material_icons">
+    <file>rc/check.svg</file>
+    <file>rc/hamburger.svg</file>
+    <file>rc/person.svg</file>
+    <file>rc/search.svg</file>
+    <file>rc/settings.svg</file>
+  </qresource>
+  <qresource prefix="material">
+    <file>material.qss</file>
+  </qresource>
 </RCC>

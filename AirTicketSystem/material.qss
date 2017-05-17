@@ -1,3 +1,74 @@
+QLabel,
+QLabel:hover,
+QLabel:focus,
+QLabel:hover:focus {
+    border: 2px solid #00695c;
+    border-radius: 3px;
+}
+
+QLineEdit {
+    border: none;
+    padding-bottom: 2px;
+    border-bottom: 1px solid #dddddd;
+    color: #111111;
+    background-color:rgba(0,0,0,0);
+}
+
+QLineEdit:editable {
+    border: none;
+    padding-bottom: 2px;
+    border-bottom: 2px solid #b2dfdb;
+    font-size: 20px;
+}
+
+QLineEdit:disabled {
+    border: 0px solid white;
+    padding-bottom: 2px;
+    border-bottom: 2px solid #eeeeee;
+}
+
+QLineEdit:focus {
+    border: 0px solid white;
+    padding-bottom: 2px;
+    border-bottom: 2px solid #00695c;
+    color: #111111;
+}
+
+QLineEdit:pressed {
+    border: none;
+    padding-bottom: 2px;
+    border-bottom: 2px solid #00695c;
+}
+
 QPushButton {
-  color: blue;
+  background-color: #00695c;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+}
+
+QPushButton:focus,
+QPushButton:focus {
+  background-color: #00695c;
+  border: none;
+  color: white;
+}
+
+QPushButton:hover,
+QPushButton:hover:focus {
+  background-color: #2196f3;
+  border-color: #ffffff;
+}
+
+QPushButton:pressed,
+QPushButton:pressed:focus {
+  background-color: #f50057;
+  border: none;
+  color: white;
+}
+
+QPushButton:disabled {
+    color: #cccccc;
+    background-color: #cccccc
+    border: none
 }
