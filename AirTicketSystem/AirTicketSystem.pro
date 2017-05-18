@@ -24,14 +24,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    visitor.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    visitor.h
 
 RESOURCES += \
-    qdarkstyle.qrc \
     material.qrc
 
 DISTFILES += \
-    qdarkstyle.qss \
     material.qss

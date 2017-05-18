@@ -7,7 +7,6 @@ int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
 
     // load qt style sheet
-    // QFile file(":qdarkstyle/qdarkstyle.qss");
     QFile file(":material/material.qss");
     if (!file.exists()) {
         printf("Unable to set stylesheet, file not found\n");

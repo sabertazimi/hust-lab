@@ -1,10 +1,14 @@
 <RCC>
-  <qresource prefix="material_icons">
-    <file>rc/check.svg</file>
-    <file>rc/hamburger.svg</file>
-    <file>rc/person.svg</file>
-    <file>rc/search.svg</file>
-    <file>rc/settings.svg</file>
+  <qresource prefix="at">
+    <file>assets/admin_seat.svg</file>
+    <file>assets/ticket_billing.svg</file>
+    <file>assets/ticket_cancel.svg</file>
+    <file>assets/ticket_data.svg</file>
+    <file>assets/ticket_fetch_time.svg</file>
+    <file>assets/ticket_information.svg</file>
+    <file>assets/ticket_purchase.svg</file>
+    <file>assets/ticket_remind.svg</file>
+    <file>assets/warning.png</file>
   </qresource>
   <qresource prefix="material">
     <file>material.qss</file>

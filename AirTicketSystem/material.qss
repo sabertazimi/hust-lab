@@ -1,74 +1,79 @@
-QLabel,
-QLabel:hover,
-QLabel:focus,
-QLabel:hover:focus {
+QPushButton {
     border: 2px solid #00695c;
     border-radius: 3px;
+    padding: 10px 20px;
+    color: black;
+}
+
+QPushButton:hover {
+    background-color: #00695c;
+    color: white;
+}
+
+QPushButton:disabled {
+    border: 2px solid #bbbbbb;
+    background-color: #bbbbbb;
+    color: #dddddd;
 }
 
 QLineEdit {
     border: none;
-    padding-bottom: 2px;
+    padding: 8px 20px;
     border-bottom: 1px solid #dddddd;
+    background-color: transparent;
     color: #111111;
-    background-color:rgba(0,0,0,0);
 }
 
 QLineEdit:editable {
-    border: none;
-    padding-bottom: 2px;
     border-bottom: 2px solid #b2dfdb;
     font-size: 20px;
 }
 
 QLineEdit:disabled {
-    border: 0px solid white;
-    padding-bottom: 2px;
-    border-bottom: 2px solid #eeeeee;
+    border-bottom: 2px solid #bbbbbb;
+    background-color: #bbbbbb;
+    color: #dddddd;
 }
 
 QLineEdit:focus {
     border: 0px solid white;
-    padding-bottom: 2px;
     border-bottom: 2px solid #00695c;
-    color: #111111;
 }
 
 QLineEdit:pressed {
-    border: none;
-    padding-bottom: 2px;
     border-bottom: 2px solid #00695c;
 }
 
-QPushButton {
-  background-color: #00695c;
-  border: none;
-  color: white;
-  padding: 10px 20px;
+QLabel {
+    background-color: #00695c;
+    border: none;
+    padding: 8px 20px;
+    color: white;
 }
 
-QPushButton:focus,
-QPushButton:focus {
-  background-color: #00695c;
-  border: none;
-  color: white;
+QLabel:disabled {
+    background-color: #bbbbbb;
+    color: #dddddd;
 }
 
-QPushButton:hover,
-QPushButton:hover:focus {
-  background-color: #2196f3;
-  border-color: #ffffff;
+QTabWidget::pane {
+    border: 0;
 }
 
-QPushButton:pressed,
-QPushButton:pressed:focus {
-  background-color: #f50057;
-  border: none;
-  color: white;
+QTabBar::tab {
+    padding: 7px 16px;
+    border: 2px solid transparent;
 }
 
-QPushButton:disabled {
-    color: #cccccc;
-    background-color: #cccccc
-    border: none
+QTabBar::tab:hover {
+    border-bottom: 2px solid #00695c;
+}
+
+QTabBar::tab:disabled {
+    background-color: #bbbbbb;
+    color: #dddddd;
+}
+
+QTabBar::tab:selected {
+    border: 2px solid #00695c;
 }
