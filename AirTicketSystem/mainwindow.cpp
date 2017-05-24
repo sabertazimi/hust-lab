@@ -13,6 +13,7 @@
 #include <QRegExp>
 #include <QRegExpValidator>
 #include <QMessageBox>
+#include <QDebug>
 #include "visitor.h"
 #include "mainwindow.h"
 
@@ -163,24 +164,21 @@ void MainWindow::onLoginVisitorButton(void) {
     QRegExpValidator idRegExp(QRegExp("[0-9]{14}[0-9X]{4}"));
     QRegExpValidator nameRegExp(QRegExp("[A-Za-z0-9_]{6,30}"));
 
-    if (id == "" || !idRegExp.regExp().exactMatch(id)) {
-        QMessageBox errorMsg;
-        errorMsg.setIconPixmap(QPixmap(":/at/assets/wrong.png"));
-        errorMsg.setWindowTitle("Error");
-        errorMsg.setText("Error ID Format: must be 18 digits (can including 'X' in last 4 digits)!");
-        errorMsg.exec();
+    if (id == "") {
+    // @TODO
+    // if (id == "" || !idRegExp.regExp().exactMatch(id)) {
+        showMsgBox(":/at/assets/warning.png", "Error",
+            "Error ID Format: must be 18 digits (can including 'X' in last 4 digits)!");
         return ;
     }
 
-    if (name == "" || !nameRegExp.regExp().exactMatch(name)) {
-        QMessageBox errorMsg;
-        errorMsg.setIconPixmap(QPixmap(":/at/assets/wrong.png"));
-        errorMsg.setWindowTitle("Error");
-        errorMsg.setText("Error Name Format: must be only including alphabet, digital number and underline (6 ~ 30 characters)!");
-        errorMsg.exec();
+    if (name == "") {
+    // @TODO
+    // if (name == "" || !nameRegExp.regExp().exactMatch(name)) {
+        showMsgBox(":/at/assets/warning.png", "Error",
+            "Error Name Format: must be only including alphabet, digital number and underline (6 ~ 30 characters)!");
         return ;
     }
-
 
     if (this->visitor != nullptr) {
         delete this->visitor;
@@ -189,8 +187,15 @@ void MainWindow::onLoginVisitorButton(void) {
 
     this->visitor = new Visitor(id, name);
 
-    this->createVisitorView();
-    this->setCentralWidget(this->visitorTab);
+    if (this->visitor->state == Visitor::VISITOR) {
+        showMsgBox(":/at/assets/right.png", "Success",
+            "Welcome to Air Ticket System");
+        this->createVisitorView();
+        this->setCentralWidget(this->visitorTab);
+    } else {
+        showMsgBox(":/at/assets/warning.png", "Error",
+            "Error: database connenction failure!");
+    }
 }
 
 void MainWindow::onVisPurchaseButton(void) {

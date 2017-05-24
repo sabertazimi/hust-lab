@@ -10,6 +10,7 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QTabWidget>
+#include <QMessageBox>
 #include <visitor.h>
 
 class MainWindow : public QMainWindow {
@@ -66,6 +67,14 @@ private:
     MainWindow *createVisCancelWindow(void);
     MainWindow *createVisBillingWindow(void);
     MainWindow *createVisQueryWindow(void);
+
+    inline void showMsgBox(const QString &icon, const QString &title = "Error", const QString &text = "Error") const {
+        QMessageBox errorMsg;
+        errorMsg.setIconPixmap(QPixmap(icon).scaled(20, 20));
+        errorMsg.setWindowTitle(title);
+        errorMsg.setText(text);
+        errorMsg.exec();
+    }
 
 private slots:
     void onLoginVisitorButton(void);
