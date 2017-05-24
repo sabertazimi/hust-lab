@@ -11,6 +11,7 @@
 #include <QPushButton>
 #include <QTabWidget>
 #include <QMessageBox>
+#include <QTableWidget>
 #include <visitor.h>
 
 class MainWindow : public QMainWindow {
@@ -43,6 +44,7 @@ private:
     QLineEdit *visPurchaseEndEdit;
     QLabel *visPurchaseStartLabel;
     QLabel *visPurchaseEndLabel;
+    QTableWidget *visPurchaseTable;
     QPushButton *visPurchaseButton;
     QHBoxLayout *visPurchaseTopLayout;
     QHBoxLayout *visPurchaseBottomLayout;

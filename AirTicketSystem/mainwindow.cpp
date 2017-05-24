@@ -13,6 +13,7 @@
 #include <QRegExp>
 #include <QRegExpValidator>
 #include <QMessageBox>
+#include <QTableWidget>
 #include <QDebug>
 #include "visitor.h"
 #include "mainwindow.h"
@@ -28,8 +29,6 @@ MainWindow::MainWindow(QWidget *parent)
 }
 
 MainWindow::~MainWindow() {
-    // myTable->setAlternatingRowColors(true);
-    // myTable->setStyleSheet("alternate-background-color: yellow;background-color: red;");
 }
 
 void MainWindow::createLoginView(void) {
@@ -123,8 +122,18 @@ MainWindow *MainWindow::createVisPurchaseWindow(void) {
     this->visPurchaseTopLayout->addStretch();
 
     this->visPurchaseBottomLayout = new QHBoxLayout();
-    QLabel *tmpLabel = new QLabel(QWidget::tr("&For Tickets Table"), this->visPurchaseWindow);
-    this->visPurchaseBottomLayout->addWidget(tmpLabel);
+    this->visPurchaseTable = new QTableWidget(2, 5);
+    this->visPurchaseTable->setWindowTitle("Flight");
+    this->visPurchaseTable->resize(this->visPurchaseTable->maximumWidth(), this->visPurchaseTable->maximumHeight());
+    this->visPurchaseTable->setItem(0, 0, new QTableWidgetItem("Welcome to Air Ticket System"));
+    this->visPurchaseTable->setItem(1, 0, new QTableWidgetItem("Welcome to Air Ticket System"));
+    this->visPurchaseTable->setAlternatingRowColors(true);
+    // @TODO 1: disable editor
+    // @TODO 2: change alternate font color to white
+    this->visPurchaseTable->setStyleSheet("alternate-color: white; alternate-background-color: #00695c;");
+    // this->visPurchaseTable->resizeColumnsToContents();
+    this->visPurchaseTable->resizeRowsToContents();
+    this->visPurchaseBottomLayout->addWidget(this->visPurchaseTable);
 
     this->visPurchaseMainLayout = new QVBoxLayout();
     this->visPurchaseMainLayout->addStretch();
