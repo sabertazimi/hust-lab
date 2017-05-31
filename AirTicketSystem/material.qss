@@ -44,6 +44,34 @@ QLineEdit:pressed {
     border-bottom: 2px solid #00695c;
 }
 
+QDateTimeEdit {
+    border: none;
+    padding: 8px 20px;
+    border-bottom: 1px solid #dddddd;
+    background-color: transparent;
+    color: #111111;
+}
+
+QDateTimeEdit:editable {
+    border-bottom: 2px solid #b2dfdb;
+    font-size: 20px;
+}
+
+QDateTimeEdit:disabled {
+    border-bottom: 2px solid #bbbbbb;
+    background-color: #bbbbbb;
+    color: #dddddd;
+}
+
+QDateTimeEdit:focus {
+    border: 0px solid white;
+    border-bottom: 2px solid #00695c;
+}
+
+QDateTimeEdit:pressed {
+    border-bottom: 2px solid #00695c;
+}
+
 QLabel {
     background-color: #00695c;
     border: none;

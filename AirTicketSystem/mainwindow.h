@@ -12,6 +12,8 @@
 #include <QTabWidget>
 #include <QMessageBox>
 #include <QTableWidget>
+#include <QDateTimeEdit>
+#include <QComboBox>
 #include <visitor.h>
 
 class MainWindow : public QMainWindow {
@@ -35,10 +37,41 @@ private:
     QPushButton *loginAdminButton;
 
     QTabWidget *adminTab;
-    QPushButton *adminFlightButton;
-    QPushButton *adminSeatButton;
+
+    QWidget *adminFlightWindow;
+    QLineEdit *adminFlightNoEdit;
+    QLineEdit *adminFlightStartEdit;
+    QLineEdit *adminFlightEndEdit;
+    QDateTimeEdit *adminFlightTimeEdit;
+    QLabel *adminFlightNoLabel;
+    QLabel *adminFlightStartLabel;
+    QLabel *adminFlightEndLabel;
+    QLabel *adminFlightTimeLabel;
+    QPushButton *adminFlightAddButton;
+    QPushButton *adminFlightDelButton;
+    QTableWidget *adminFlightTable;
+    QHBoxLayout *adminFlightTopLayout;
+    QHBoxLayout *adminFlightBottomLayout;
+    QVBoxLayout *adminFlightMainLayout;
+
+    QWidget *adminSeatWindow;
+    QLineEdit *adminSeatFnoEdit;
+    QLineEdit *adminSeatSnoEdit;
+    QComboBox *adminSeatTypeEdit;
+    QLineEdit *adminSeatPriceEdit;
+    QLabel *adminSeatFnoLabel;
+    QLabel *adminSeatSnoLabel;
+    QLabel *adminSeatTypeLabel;
+    QLabel *adminSeatPriceLabel;
+    QPushButton *adminSeatAddButton;
+    QPushButton *adminSeatDelButton;
+    QTableWidget *adminSeatTable;
+    QHBoxLayout *adminSeatTopLayout;
+    QHBoxLayout *adminSeatBottomLayout;
+    QVBoxLayout *adminSeatMainLayout;
 
     QTabWidget *visitorTab;
+
     QWidget *visPurchaseWindow;
     QLineEdit *visPurchaseStartEdit;
     QLineEdit *visPurchaseEndEdit;
@@ -49,11 +82,15 @@ private:
     QHBoxLayout *visPurchaseTopLayout;
     QHBoxLayout *visPurchaseBottomLayout;
     QVBoxLayout *visPurchaseMainLayout;
+
     QWidget *visFetchWindow;
     QPushButton *visFetchButton;
+
     QWidget *visCancelWindow;
     QPushButton *visCancelButton;
+
     QWidget *visBillingWindow;
+
     QWidget *visQueryWindow;
     QPushButton *visQueryButton;
 
@@ -62,6 +99,8 @@ private:
     void createLoginView(void);
 
     MainWindow *createAdminView(void);
+    MainWindow *createAdminFlightWindow(void);
+    MainWindow *createAdminSeatWindow(void);
 
     MainWindow *createVisitorView(void);
     MainWindow *createVisPurchaseWindow(void);
@@ -69,6 +108,9 @@ private:
     MainWindow *createVisCancelWindow(void);
     MainWindow *createVisBillingWindow(void);
     MainWindow *createVisQueryWindow(void);
+
+    void adminRenderFlightTable(void);
+    void adminRenderSeatTable(void);
 
     inline void showMsgBox(const QString &icon, const QString &title = "Error", const QString &text = "Error") const {
         QMessageBox errorMsg;
@@ -81,6 +123,13 @@ private:
 private slots:
     void onLoginVisitorButton(void);
     void onLoginAdminButton(void);
+
+    void onAdminFlightAddButton(void);
+    void onAdminFlightDelButton(void);
+
+    void onAdminSeatAddButton(void);
+    void onAdminSeatDelButton(void);
+
     void onVisPurchaseButton(void);
 };
 

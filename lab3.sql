@@ -62,6 +62,11 @@ CREATE TABLE [Bill] (
 		ON UPDATE CASCADE
 );
 
+INSERT INTO [Flight] VALUES('BJSH1', 'Beijing', 'Shanghai', '2017-5-31 8:00:00');
+INSERT INTO [Flight] VALUES('BJGZ1', 'Beijing', 'Guangzhou', '2017-5-31 12:00:00');
+INSERT INTO [Flight] VALUES('BJSZ1', 'Beijing', 'Shenzhen', '2017-5-31 16:00:00');
+INSERT INTO [Flight] VALUES('BJWH1', 'Beijing', 'Wuhan', '2017-5-31 20:00:00');
+
 --GO
 --CREATE TRIGGER phoneFeeHistory_AfterInsertphoneMFee_TRG 
 --ON [phoneMFee]
