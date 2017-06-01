@@ -75,10 +75,13 @@ private:
     QWidget *visPurchaseWindow;
     QLineEdit *visPurchaseStartEdit;
     QLineEdit *visPurchaseEndEdit;
+    QLineEdit *visPurchaseNoEdit;
     QLabel *visPurchaseStartLabel;
     QLabel *visPurchaseEndLabel;
+    QLabel *visPurchaseNoLabel;
+    QPushButton *visPurchaseQueryButton;
+    QPushButton *visPurchaseBookButton;
     QTableWidget *visPurchaseTable;
-    QPushButton *visPurchaseButton;
     QHBoxLayout *visPurchaseTopLayout;
     QHBoxLayout *visPurchaseBottomLayout;
     QVBoxLayout *visPurchaseMainLayout;
@@ -130,7 +133,8 @@ private slots:
     void onAdminSeatAddButton(void);
     void onAdminSeatDelButton(void);
 
-    void onVisPurchaseButton(void);
+    void onVisPurchaseQueryButton(void);
+    void onVisPurchaseBookButton(void);
 };
 
 #endif // MAINWINDOW_H

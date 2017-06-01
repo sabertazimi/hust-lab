@@ -258,7 +258,7 @@ MainWindow *MainWindow::createAdminSeatWindow(void) {
     this->adminSeatTopLayout->addStretch();
 
     this->adminSeatBottomLayout = new QHBoxLayout();
-    this->adminSeatTable = new QTableWidget(0, 4);
+    this->adminSeatTable = new QTableWidget(0, 5);
     this->adminSeatTable->setWindowTitle("Seat");
     this->adminSeatTable->resize(this->adminSeatTable->maximumWidth(), this->adminSeatTable->maximumHeight());
     this->adminFlightTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -366,12 +366,17 @@ MainWindow *MainWindow::createVisPurchaseWindow(void) {
 
     this->visPurchaseStartEdit = new QLineEdit(this->visPurchaseWindow);
     this->visPurchaseEndEdit = new QLineEdit(this->visPurchaseWindow);
+    this->visPurchaseNoEdit = new QLineEdit(this->visPurchaseWindow);
     this->visPurchaseStartLabel = new QLabel(QWidget::tr("&Start"), this->visPurchaseWindow);
     this->visPurchaseEndLabel = new QLabel(QWidget::tr("&End"), this->visPurchaseWindow);
+    this->visPurchaseNoLabel = new QLabel(QWidget::tr("&No"), this->visPurchaseWindow);
     this->visPurchaseStartLabel->setBuddy(this->visPurchaseStartEdit);
     this->visPurchaseEndLabel->setBuddy(this->visPurchaseEndEdit);
-    this->visPurchaseButton = new QPushButton(QWidget::tr("Purchase"), this->visPurchaseWindow);
-    connect(this->visPurchaseButton, SIGNAL(released()), this, SLOT(onVisPurchaseButton()));
+    this->visPurchaseNoLabel->setBuddy(this->visPurchaseNoEdit);
+    this->visPurchaseQueryButton = new QPushButton(QWidget::tr("Query"), this->visPurchaseWindow);
+    this->visPurchaseBookButton = new QPushButton(QWidget::tr("Purchase"), this->visPurchaseWindow);
+    connect(this->visPurchaseQueryButton, SIGNAL(released()), this, SLOT(onVisPurchaseQueryButton()));
+    connect(this->visPurchaseBookButton, SIGNAL(released()), this, SLOT(onVisPurchaseBookButton()));
     this->visPurchaseTopLayout = new QHBoxLayout();
     this->visPurchaseTopLayout->addStretch();
     this->visPurchaseTopLayout->addStretch();
@@ -382,17 +387,23 @@ MainWindow *MainWindow::createVisPurchaseWindow(void) {
     this->visPurchaseTopLayout->addWidget(this->visPurchaseEndLabel);
     this->visPurchaseTopLayout->addWidget(this->visPurchaseEndEdit);
     this->visPurchaseTopLayout->addStretch();
-    this->visPurchaseTopLayout->addWidget(this->visPurchaseButton);
+    this->visPurchaseTopLayout->addWidget(this->visPurchaseQueryButton);
+    this->visPurchaseTopLayout->addStretch();
+    this->visPurchaseTopLayout->addWidget(this->visPurchaseNoLabel);
+    this->visPurchaseTopLayout->addWidget(this->visPurchaseNoEdit);
+    this->visPurchaseTopLayout->addStretch();
+    this->visPurchaseTopLayout->addWidget(this->visPurchaseBookButton);
     this->visPurchaseTopLayout->addStretch();
     this->visPurchaseTopLayout->addStretch();
     this->visPurchaseTopLayout->addStretch();
 
     this->visPurchaseBottomLayout = new QHBoxLayout();
-    this->visPurchaseTable = new QTableWidget(2, 5);
+    this->visPurchaseTable = new QTableWidget(0, 4);
     this->visPurchaseTable->setWindowTitle("Flight");
     this->visPurchaseTable->resize(this->visPurchaseTable->maximumWidth(), this->visPurchaseTable->maximumHeight());
+    this->visPurchaseTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
     this->visPurchaseTable->setAlternatingRowColors(true);
-    this->visPurchaseTable->setStyleSheet("alternate-background-color: #00695c;");
+    this->visPurchaseTable->setStyleSheet("alternate-background-color: #aaa;");
     this->visPurchaseTable->resizeRowsToContents();
     this->visPurchaseBottomLayout->addWidget(this->visPurchaseTable);
 
@@ -406,6 +417,51 @@ MainWindow *MainWindow::createVisPurchaseWindow(void) {
     this->visPurchaseWindow->setLayout(this->visPurchaseMainLayout);
 
     return this;
+}
+
+void MainWindow::onVisPurchaseQueryButton(void) {
+    QString fstart = this->visPurchaseStartEdit->text();
+    QString fend = this->visPurchaseEndEdit->text();
+
+    if (fstart == "" || fend == "") {
+        showMsgBox(":/at/assets/warning.png", "Error",
+            "Query Flight Failure!");
+    }
+
+    int cnt = this->visPurchaseTable->rowCount();
+
+    for (int i = 0; i < cnt; i++) {
+        this->visPurchaseTable->removeRow(0);
+    }
+
+    QSqlQuery query(this->visitor->db);
+    query.prepare("SELECT * FROM [Flight]"
+                  "WHERE [Start] = :start AND [End] = :end");
+    query.bindValue(":start", fstart);
+    query.bindValue(":end", fend);
+    if (!query.exec()) {
+        showMsgBox(":/at/assets/warning.png", "Error",
+            "Query Flight Failure!");
+    }
+
+    while (query.next()) {
+        cnt = this->visPurchaseTable->rowCount();
+        QString no = query.value(0).toString();
+        QString start = query.value(1).toString();
+        QString end = query.value(2).toString();
+        QDateTime time = query.value(3).toDateTime();
+        this->visPurchaseTable->insertRow(cnt);
+        this->visPurchaseTable->setItem(cnt, 0, new QTableWidgetItem(no));
+        this->visPurchaseTable->setItem(cnt, 1, new QTableWidgetItem(start));
+        this->visPurchaseTable->setItem(cnt, 2, new QTableWidgetItem(end));
+        this->visPurchaseTable->setItem(cnt, 3, new QTableWidgetItem(time.toString()));
+    }
+
+    this->visPurchaseTable->resizeColumnsToContents();
+    this->visPurchaseTable->resizeRowsToContents();
+}
+
+void MainWindow::onVisPurchaseBookButton(void) {
 }
 
 MainWindow *MainWindow::createVisFetchWindow(void) {
@@ -465,33 +521,34 @@ void MainWindow::onLoginAdminButton(void) {
 }
 
 void MainWindow::onLoginVisitorButton(void) {
+    // @TODO
     QString id = this->loginIDEdit->text();
     QString name = this->loginNameEdit->text();
     QRegExpValidator idRegExp(QRegExp("[0-9]{14}[0-9X]{4}"));
     QRegExpValidator nameRegExp(QRegExp("[A-Za-z0-9_]{6,30}"));
 
-    if (id == "") {
     // @TODO
     // if (id == "" || !idRegExp.regExp().exactMatch(id)) {
-        showMsgBox(":/at/assets/warning.png", "Error",
-            "Error ID Format: must be 18 digits (can including 'X' in last 4 digits)!");
-        return ;
-    }
+    //     showMsgBox(":/at/assets/warning.png", "Error",
+    //         "Error ID Format: must be 18 digits (can including 'X' in last 4 digits)!");
+    //     return ;
+    // }
 
-    if (name == "") {
     // @TODO
     // if (name == "" || !nameRegExp.regExp().exactMatch(name)) {
-        showMsgBox(":/at/assets/warning.png", "Error",
-            "Error Name Format: must be only including alphabet, digital number and underline (6 ~ 30 characters)!");
-        return ;
-    }
+    //     showMsgBox(":/at/assets/warning.png", "Error",
+    //         "Error Name Format: must be only including alphabet, digital number and underline (6 ~ 30 characters)!");
+    //     return ;
+    // }
 
     if (this->visitor != nullptr) {
         delete this->visitor;
         this->visitor = nullptr;
     }
 
-    this->visitor = new Visitor(id, name);
+    // @TODO
+    // this->visitor = new Visitor(id, name);
+    this->visitor = new Visitor("270640199501012811", "sabertazimi");
 
     if (this->visitor->state == Visitor::SUCCESS) {
         showMsgBox(":/at/assets/right.png", "Success",
@@ -504,7 +561,4 @@ void MainWindow::onLoginVisitorButton(void) {
     }
 }
 
-void MainWindow::onVisPurchaseButton(void) {
-    // this->createLoginView();
-    // this->setCentralWidget(this->loginMainWindow);
-}
+
