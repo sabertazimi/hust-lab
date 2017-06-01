@@ -16,7 +16,9 @@ QPushButton:disabled {
     color: #dddddd;
 }
 
-QLineEdit {
+QLineEdit,
+QDateTimeEdit,
+QComboBox {
     border: none;
     padding: 8px 20px;
     border-bottom: 1px solid #dddddd;
@@ -24,51 +26,31 @@ QLineEdit {
     color: #111111;
 }
 
-QLineEdit:editable {
+QLineEdit:editable,
+QDateTimeEdit:editable,
+QComboBox:editable {
     border-bottom: 2px solid #b2dfdb;
     font-size: 20px;
 }
 
-QLineEdit:disabled {
+QLineEdit:disabled,
+QDateTimeEdit:disabled,
+QComboBox:disabled {
     border-bottom: 2px solid #bbbbbb;
     background-color: #bbbbbb;
     color: #dddddd;
 }
 
-QLineEdit:focus {
+QLineEdit:focus,
+QDateTimeEdit:focus,
+QComboBox:focus {
     border: 0px solid white;
     border-bottom: 2px solid #00695c;
 }
 
-QLineEdit:pressed {
-    border-bottom: 2px solid #00695c;
-}
-
-QDateTimeEdit {
-    border: none;
-    padding: 8px 20px;
-    border-bottom: 1px solid #dddddd;
-    background-color: transparent;
-    color: #111111;
-}
-
-QDateTimeEdit:editable {
-    border-bottom: 2px solid #b2dfdb;
-    font-size: 20px;
-}
-
-QDateTimeEdit:disabled {
-    border-bottom: 2px solid #bbbbbb;
-    background-color: #bbbbbb;
-    color: #dddddd;
-}
-
-QDateTimeEdit:focus {
-    border: 0px solid white;
-    border-bottom: 2px solid #00695c;
-}
-
-QDateTimeEdit:pressed {
+QLineEdit:pressed,
+QDateTimeEdit:pressed,
+QComboBox:pressed {
     border-bottom: 2px solid #00695c;
 }
 

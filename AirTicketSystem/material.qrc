@@ -8,6 +8,7 @@
     <file>assets/ticket_information.svg</file>
     <file>assets/ticket_purchase.svg</file>
     <file>assets/ticket_remind.svg</file>
+    <file>assets/arrow.png</file>
     <file>assets/right.png</file>
     <file>assets/warning.png</file>
   </qresource>

@@ -138,8 +138,9 @@ MainWindow *MainWindow::createAdminFlightWindow(void) {
     this->adminFlightTable = new QTableWidget(0, 4);
     this->adminFlightTable->setWindowTitle("Flight");
     this->adminFlightTable->resize(this->adminFlightTable->maximumWidth(), this->adminFlightTable->maximumHeight());
+    this->adminFlightTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
     this->adminFlightTable->setAlternatingRowColors(true);
-    this->adminFlightTable->setStyleSheet("alternate-background-color: #ddd;");
+    this->adminFlightTable->setStyleSheet("alternate-background-color: #aaa;");
     this->adminFlightTable->resizeRowsToContents();
     this->adminRenderFlightTable();
     this->adminFlightBottomLayout->addStretch();
@@ -216,6 +217,10 @@ MainWindow *MainWindow::createAdminSeatWindow(void) {
     this->adminSeatFnoEdit = new QLineEdit(this->adminSeatWindow);
     this->adminSeatSnoEdit = new QLineEdit(this->adminSeatWindow);
     this->adminSeatTypeEdit = new QComboBox(this->adminSeatWindow);
+    this->adminSeatTypeEdit->setEditable(true);
+    this->adminSeatTypeEdit->insertItem(0, "一等座");
+    this->adminSeatTypeEdit->insertItem(1, "二等座");
+    this->adminSeatTypeEdit->insertItem(2, "三等座");
     this->adminSeatPriceEdit = new QLineEdit(this->adminSeatWindow);
     this->adminSeatFnoLabel = new QLabel(QWidget::tr("&Flight No"), this->adminSeatWindow);
     this->adminSeatSnoLabel = new QLabel(QWidget::tr("&Seat No"), this->adminSeatWindow);
@@ -256,8 +261,9 @@ MainWindow *MainWindow::createAdminSeatWindow(void) {
     this->adminSeatTable = new QTableWidget(0, 4);
     this->adminSeatTable->setWindowTitle("Seat");
     this->adminSeatTable->resize(this->adminSeatTable->maximumWidth(), this->adminSeatTable->maximumHeight());
+    this->adminFlightTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
     this->adminSeatTable->setAlternatingRowColors(true);
-    this->adminSeatTable->setStyleSheet("alternate-background-color: #ddd;");
+    this->adminSeatTable->setStyleSheet("alternate-background-color: #aaa;");
     this->adminSeatTable->resizeRowsToContents();
     this->adminRenderSeatTable();
     this->adminSeatBottomLayout->addStretch();
@@ -293,12 +299,12 @@ void MainWindow::adminRenderSeatTable(void) {
         QString type = query.value(2).toString();
         int price = query.value(3).toInt();
         bool state = query.value(4).toBool();
-        QString stateStr = state ? "已售" : "未售";
+        QString stateStr = (state ? "已售" : "未售");
         this->adminSeatTable->insertRow(cnt);
         this->adminSeatTable->setItem(cnt, 0, new QTableWidgetItem(fno));
-        this->adminSeatTable->setItem(cnt, 1, new QTableWidgetItem(sno));
+        this->adminSeatTable->setItem(cnt, 1, new QTableWidgetItem(QString::number(sno)));
         this->adminSeatTable->setItem(cnt, 2, new QTableWidgetItem(type));
-        this->adminSeatTable->setItem(cnt, 3, new QTableWidgetItem(price));
+        this->adminSeatTable->setItem(cnt, 3, new QTableWidgetItem(QString::number(price)));
         this->adminSeatTable->setItem(cnt, 4, new QTableWidgetItem(stateStr));
     }
 
@@ -331,7 +337,7 @@ void MainWindow::onAdminSeatDelButton(void) {
 
     if (fno == "" || sno == ""
             || !numberRegExp.regExp().exactMatch(sno)
-            || !this->visitor->addSeat(fno, sno.toInt()) {
+            || !this->visitor->delSeat(fno, sno.toInt())) {
         showMsgBox(":/at/assets/warning.png", "Error",
             "Delete Seat Failure!");
     }
