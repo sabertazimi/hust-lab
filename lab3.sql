@@ -67,58 +67,15 @@ INSERT INTO [Flight] VALUES('BJGZ1', 'Beijing', 'Guangzhou', '2017-5-31 12:00:00
 INSERT INTO [Flight] VALUES('BJSZ1', 'Beijing', 'Shenzhen', '2017-5-31 16:00:00');
 INSERT INTO [Flight] VALUES('BJWH1', 'Beijing', 'Wuhan', '2017-5-31 20:00:00');
 
---GO
---CREATE TRIGGER phoneFeeHistory_AfterInsertphoneMFee_TRG 
---ON [phoneMFee]
---AFTER INSERT
---AS
---BEGIN
---  IF EXISTS (SELECT i.[pnumber] FROM [phoneFeeHistory], Inserted AS i)
---  BEGIN
---    INSERT INTO [phoneFeeHistory]
---	SELECT TOP 1 [pnumber], [pmonth], [fee], [type], [pbalance]
---	FROM (
---	  SELECT i.[pnumber] AS [pnumber], [phoneFeeHistory].[pmonth] AS [oldMonth], i.[mdate] AS [pmonth], (i.[mfee1] + i.[mfee2] + i.[mfee3]) AS [fee], 0 AS [type], ([phoneFeeHistory].[pbalance] - i.[mfee1]- i.[mfee2] - i.[mfee3]) AS [pbalance]
---	  FROM [phoneFeeHistory], Inserted AS i
---	  WHERE [phoneFeeHistory].[pnumber] = i.[pnumber]
---    ) AS [newHistory]
---    ORDER BY [pmonth] DESC, [oldMonth] DESC;
---  END ELSE
---  BEGIN
---	INSERT INTO [phoneFeeHistory]
---	SELECT *
---	FROM (
---	  SELECT i.[pnumber] AS [pnumber], i.[mdate] AS [pmonth], (i.[mfee1] + i.[mfee2] + i.[mfee3]) AS [fee], 0 AS [type], (-i.[mfee1] - i.[mfee2] - i.[mfee3]) AS [pbalance]
---	  FROM Inserted AS i
---    ) AS [newHistory]
---  END
---END
---GO
+SELECT * FROM Flight;
+SELECT * FROM Seat;
+SELECT * FROM Ticket;
+SELECT * FROM Ring;
+SELECT * FROM Bill;
 
---GO
---CREATE TRIGGER phoneFeeHistory_AfterInsertphonePaid_TRG 
---ON [phonePaid]
---AFTER INSERT
---AS
---BEGIN
---  IF EXISTS (SELECT i.[pnumber] FROM [phoneFeeHistory], inserted AS i)
---  BEGIN
---    INSERT INTO [phoneFeeHistory]
---	SELECT TOP 1 [pnumber], [pmonth], [fee], [type], [pbalance]
---	FROM (
---	  SELECT i.[pnumber] AS [pnumber], [phoneFeeHistory].[pmonth] AS [oldMonth], i.[pdate] AS [pmonth], i.[paid] AS [fee], 1 AS [type], ([phoneFeeHistory].[pbalance] + i.[paid]) AS [pbalance]
---	  FROM [phoneFeeHistory], Inserted AS i
---	  WHERE [phoneFeeHistory].[pnumber] = i.[pnumber]
---    ) AS [newHistory]
---    ORDER BY [pmonth] DESC, [oldMonth] DESC;
---  END ELSE
---  BEGIN
---	INSERT INTO [phoneFeeHistory]
---	SELECT *
---	FROM (
---	  SELECT i.[pnumber] AS [pnumber], i.[pdate] AS [pmonth], i.[paid] AS [fee], 1 AS [type], i.[paid] AS [pbalance]
---	  FROM Inserted AS i
---    ) AS [newHistory]
---  END
---END
---GO
+--DELETE FROM [Ticket];
+--DELETE FROM [Ring];
+--DELETE FROM [Bill];
+--UPDATE [Seat]
+--SET [Sstate] = 0
+--WHERE [Fno] = 'BJGZ1' AND [Stype] = 'Ò»µÈ×ù' AND [Sstate] = 1;

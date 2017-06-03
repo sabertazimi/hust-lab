@@ -14,6 +14,7 @@
 #include <QRegExpValidator>
 #include <QMessageBox>
 #include <QTableWidget>
+#include <QHeaderView>
 #include <QDateTime>
 #include <QDateTimeEdit>
 #include <QComboBox>
@@ -142,10 +143,13 @@ MainWindow *MainWindow::createAdminFlightWindow(void) {
     this->adminFlightTable->setAlternatingRowColors(true);
     this->adminFlightTable->setStyleSheet("alternate-background-color: #aaa;");
     this->adminFlightTable->resizeRowsToContents();
+    this->adminFlightTable->setHorizontalHeaderItem(0, new QTableWidgetItem("No"));
+    this->adminFlightTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Start"));
+    this->adminFlightTable->setHorizontalHeaderItem(2, new QTableWidgetItem("End"));
+    this->adminFlightTable->setHorizontalHeaderItem(3, new QTableWidgetItem("Time"));
+    this->adminFlightTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     this->adminRenderFlightTable();
-    this->adminFlightBottomLayout->addStretch();
     this->adminFlightBottomLayout->addWidget(this->adminFlightTable);
-    this->adminFlightBottomLayout->addStretch();
 
     this->adminFlightMainLayout = new QVBoxLayout();
     this->adminFlightMainLayout->addStretch();
@@ -167,7 +171,7 @@ void MainWindow::adminRenderFlightTable(void) {
     }
 
     QSqlQuery query(this->visitor->db);
-    query.exec("SELECT * FROM [Flight]");
+    query.exec("SELECT * FROM [Flight];");
 
     while (query.next()) {
         cnt = this->adminFlightTable->rowCount();
@@ -181,9 +185,6 @@ void MainWindow::adminRenderFlightTable(void) {
         this->adminFlightTable->setItem(cnt, 2, new QTableWidgetItem(end));
         this->adminFlightTable->setItem(cnt, 3, new QTableWidgetItem(time.toString()));
     }
-
-    this->adminFlightTable->resizeColumnsToContents();
-    this->adminFlightTable->resizeRowsToContents();
 }
 
 void MainWindow::onAdminFlightAddButton(void) {
@@ -195,6 +196,7 @@ void MainWindow::onAdminFlightAddButton(void) {
     if (no == "" || start == "" || end == "" || !this->visitor->addFlight(no, start, end, time)) {
         showMsgBox(":/at/assets/warning.png", "Error",
             "Add Flight Failure!");
+        return ;
     }
 
     this->adminRenderFlightTable();
@@ -206,6 +208,7 @@ void MainWindow::onAdminFlightDelButton(void) {
     if (no == "" || !this->visitor->delFlight(no)) {
         showMsgBox(":/at/assets/warning.png", "Error",
             "Delete Flight Failure!");
+        return ;
     }
 
     this->adminRenderFlightTable();
@@ -261,14 +264,18 @@ MainWindow *MainWindow::createAdminSeatWindow(void) {
     this->adminSeatTable = new QTableWidget(0, 5);
     this->adminSeatTable->setWindowTitle("Seat");
     this->adminSeatTable->resize(this->adminSeatTable->maximumWidth(), this->adminSeatTable->maximumHeight());
-    this->adminFlightTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    this->adminSeatTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
     this->adminSeatTable->setAlternatingRowColors(true);
     this->adminSeatTable->setStyleSheet("alternate-background-color: #aaa;");
     this->adminSeatTable->resizeRowsToContents();
+    this->adminSeatTable->setHorizontalHeaderItem(0, new QTableWidgetItem("Fno"));
+    this->adminSeatTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Sno"));
+    this->adminSeatTable->setHorizontalHeaderItem(2, new QTableWidgetItem("Type"));
+    this->adminSeatTable->setHorizontalHeaderItem(3, new QTableWidgetItem("Price"));
+    this->adminSeatTable->setHorizontalHeaderItem(4, new QTableWidgetItem("State"));
+    this->adminSeatTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     this->adminRenderSeatTable();
-    this->adminSeatBottomLayout->addStretch();
     this->adminSeatBottomLayout->addWidget(this->adminSeatTable);
-    this->adminSeatBottomLayout->addStretch();
 
     this->adminSeatMainLayout = new QVBoxLayout();
     this->adminSeatMainLayout->addStretch();
@@ -290,7 +297,7 @@ void MainWindow::adminRenderSeatTable(void) {
     }
 
     QSqlQuery query(this->visitor->db);
-    query.exec("SELECT * FROM [Seat]");
+    query.exec("SELECT * FROM [Seat];");
 
     while (query.next()) {
         cnt = this->adminSeatTable->rowCount();
@@ -307,9 +314,6 @@ void MainWindow::adminRenderSeatTable(void) {
         this->adminSeatTable->setItem(cnt, 3, new QTableWidgetItem(QString::number(price)));
         this->adminSeatTable->setItem(cnt, 4, new QTableWidgetItem(stateStr));
     }
-
-    this->adminSeatTable->resizeColumnsToContents();
-    this->adminSeatTable->resizeRowsToContents();
 }
 
 void MainWindow::onAdminSeatAddButton(void) {
@@ -325,6 +329,7 @@ void MainWindow::onAdminSeatAddButton(void) {
             || !this->visitor->addSeat(fno, sno.toInt(), type, price.toInt(), false)) {
         showMsgBox(":/at/assets/warning.png", "Error",
             "Add Seat Failure!");
+        return ;
     }
 
     this->adminRenderSeatTable();
@@ -340,6 +345,7 @@ void MainWindow::onAdminSeatDelButton(void) {
             || !this->visitor->delSeat(fno, sno.toInt())) {
         showMsgBox(":/at/assets/warning.png", "Error",
             "Delete Seat Failure!");
+        return ;
     }
 
     this->adminRenderSeatTable();
@@ -357,7 +363,8 @@ MainWindow *MainWindow::createVisitorView(void) {
     this->visitorTab->addTab(this->visFetchWindow, QIcon(":/at/assets/ticket_remind.svg"), "Fetch Ticket");
     this->visitorTab->addTab(this->visCancelWindow, QIcon(":/at/assets/ticket_cancel.svg"), "Cancel Ticket");
     this->visitorTab->addTab(this->visBillingWindow, QIcon(":/at/assets/ticket_billing.svg"), "Billing");
-    this->visitorTab->addTab(this->visQueryWindow, QIcon(":/at/assets/ticket_data.svg"), "Query");
+    // @TODO
+    // this->visitorTab->addTab(this->visQueryWindow, QIcon(":/at/assets/ticket_data.svg"), "Query");
     return this;
 }
 
@@ -365,14 +372,25 @@ MainWindow *MainWindow::createVisPurchaseWindow(void) {
     this->visPurchaseWindow = new QWidget();
 
     this->visPurchaseStartEdit = new QLineEdit(this->visPurchaseWindow);
+    // @TODO: for debug
+    this->visPurchaseStartEdit->setText("Beijing");
     this->visPurchaseEndEdit = new QLineEdit(this->visPurchaseWindow);
+    // @TODO: for debug
+    this->visPurchaseEndEdit->setText("Guangzhou");
     this->visPurchaseNoEdit = new QLineEdit(this->visPurchaseWindow);
+    this->visPurchaseTypeEdit = new QComboBox(this->visPurchaseWindow);
+    this->visPurchaseTypeEdit->setEditable(true);
+    this->visPurchaseTypeEdit->insertItem(0, "一等座");
+    this->visPurchaseTypeEdit->insertItem(1, "二等座");
+    this->visPurchaseTypeEdit->insertItem(2, "三等座");
     this->visPurchaseStartLabel = new QLabel(QWidget::tr("&Start"), this->visPurchaseWindow);
     this->visPurchaseEndLabel = new QLabel(QWidget::tr("&End"), this->visPurchaseWindow);
     this->visPurchaseNoLabel = new QLabel(QWidget::tr("&No"), this->visPurchaseWindow);
+    this->visPurchaseTypeLabel = new QLabel(QWidget::tr("&Type"), this->visPurchaseWindow);
     this->visPurchaseStartLabel->setBuddy(this->visPurchaseStartEdit);
     this->visPurchaseEndLabel->setBuddy(this->visPurchaseEndEdit);
     this->visPurchaseNoLabel->setBuddy(this->visPurchaseNoEdit);
+    this->visPurchaseTypeLabel->setBuddy(this->visPurchaseTypeEdit);
     this->visPurchaseQueryButton = new QPushButton(QWidget::tr("Query"), this->visPurchaseWindow);
     this->visPurchaseBookButton = new QPushButton(QWidget::tr("Purchase"), this->visPurchaseWindow);
     connect(this->visPurchaseQueryButton, SIGNAL(released()), this, SLOT(onVisPurchaseQueryButton()));
@@ -392,19 +410,30 @@ MainWindow *MainWindow::createVisPurchaseWindow(void) {
     this->visPurchaseTopLayout->addWidget(this->visPurchaseNoLabel);
     this->visPurchaseTopLayout->addWidget(this->visPurchaseNoEdit);
     this->visPurchaseTopLayout->addStretch();
+    this->visPurchaseTopLayout->addWidget(this->visPurchaseTypeLabel);
+    this->visPurchaseTopLayout->addWidget(this->visPurchaseTypeEdit);
+    this->visPurchaseTopLayout->addStretch();
     this->visPurchaseTopLayout->addWidget(this->visPurchaseBookButton);
     this->visPurchaseTopLayout->addStretch();
     this->visPurchaseTopLayout->addStretch();
     this->visPurchaseTopLayout->addStretch();
 
     this->visPurchaseBottomLayout = new QHBoxLayout();
-    this->visPurchaseTable = new QTableWidget(0, 4);
+    this->visPurchaseTable = new QTableWidget(0, 7);
     this->visPurchaseTable->setWindowTitle("Flight");
     this->visPurchaseTable->resize(this->visPurchaseTable->maximumWidth(), this->visPurchaseTable->maximumHeight());
     this->visPurchaseTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
     this->visPurchaseTable->setAlternatingRowColors(true);
     this->visPurchaseTable->setStyleSheet("alternate-background-color: #aaa;");
     this->visPurchaseTable->resizeRowsToContents();
+    this->visPurchaseTable->setHorizontalHeaderItem(0, new QTableWidgetItem("No"));
+    this->visPurchaseTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Start"));
+    this->visPurchaseTable->setHorizontalHeaderItem(2, new QTableWidgetItem("End"));
+    this->visPurchaseTable->setHorizontalHeaderItem(3, new QTableWidgetItem("Time"));
+    this->visPurchaseTable->setHorizontalHeaderItem(4, new QTableWidgetItem("Type"));
+    this->visPurchaseTable->setHorizontalHeaderItem(5, new QTableWidgetItem("Price"));
+    this->visPurchaseTable->setHorizontalHeaderItem(6, new QTableWidgetItem("Rate"));
+    this->visPurchaseTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     this->visPurchaseBottomLayout->addWidget(this->visPurchaseTable);
 
     this->visPurchaseMainLayout = new QVBoxLayout();
@@ -419,13 +448,12 @@ MainWindow *MainWindow::createVisPurchaseWindow(void) {
     return this;
 }
 
-void MainWindow::onVisPurchaseQueryButton(void) {
+void MainWindow::visRenderPurchaseTable(void) {
     QString fstart = this->visPurchaseStartEdit->text();
     QString fend = this->visPurchaseEndEdit->text();
 
     if (fstart == "" || fend == "") {
-        showMsgBox(":/at/assets/warning.png", "Error",
-            "Query Flight Failure!");
+        return ;
     }
 
     int cnt = this->visPurchaseTable->rowCount();
@@ -434,49 +462,325 @@ void MainWindow::onVisPurchaseQueryButton(void) {
         this->visPurchaseTable->removeRow(0);
     }
 
-    QSqlQuery query(this->visitor->db);
-    query.prepare("SELECT * FROM [Flight]"
-                  "WHERE [Start] = :start AND [End] = :end");
-    query.bindValue(":start", fstart);
-    query.bindValue(":end", fend);
-    if (!query.exec()) {
-        showMsgBox(":/at/assets/warning.png", "Error",
-            "Query Flight Failure!");
+    QSqlQuery query1(this->visitor->db);
+    QSqlQuery query2(this->visitor->db);
+    // query flights with empty seats
+    query1.prepare("SELECT [Flight].[Fno], [Start], [End], [Ftime], [Stype], AVG([Sprice]) AS [Price], COUNT(*) AS [Space]"
+                  "FROM [Flight], [Seat]"
+                  "WHERE [Flight].[Fno] = [Seat].[Fno] AND [Sstate] = 0"
+                  "AND [Start] = :start AND [End] = :end GROUP BY [Flight].[Fno], [Start], [End], [Ftime], [Stype];");
+    query1.bindValue(":start", fstart);
+    query1.bindValue(":end", fend);
+    query2.prepare("SELECT COUNT(*) AS [Sum]"
+                  "FROM [Flight], [Seat]"
+                  "WHERE [Flight].[Fno] = [Seat].[Fno]"
+                  "AND [Start] = :start AND [End] = :end GROUP BY [Flight].[Fno], [Stype];");
+    query2.bindValue(":start", fstart);
+    query2.bindValue(":end", fend);
+    if (!query1.exec() || !query2.exec()) {
+        return ;
     }
 
-    while (query.next()) {
+    while (query1.next() && query2.next()) {
+        QString no = query1.value(0).toString();
+        QString start = query1.value(1).toString();
+        QString end = query1.value(2).toString();
+        QDateTime time = query1.value(3).toDateTime();
+        QString type = query1.value(4).toString();
+        int price = query1.value(5).toInt();
+        int space = query1.value(6).toInt();
+        int sum = query2.value(0).toInt();
+        double rate = (1 - (space * 1.0 / sum)) * 100;
+
         cnt = this->visPurchaseTable->rowCount();
-        QString no = query.value(0).toString();
-        QString start = query.value(1).toString();
-        QString end = query.value(2).toString();
-        QDateTime time = query.value(3).toDateTime();
         this->visPurchaseTable->insertRow(cnt);
         this->visPurchaseTable->setItem(cnt, 0, new QTableWidgetItem(no));
         this->visPurchaseTable->setItem(cnt, 1, new QTableWidgetItem(start));
         this->visPurchaseTable->setItem(cnt, 2, new QTableWidgetItem(end));
         this->visPurchaseTable->setItem(cnt, 3, new QTableWidgetItem(time.toString()));
+        this->visPurchaseTable->setItem(cnt, 4, new QTableWidgetItem(type));
+        this->visPurchaseTable->setItem(cnt, 5, new QTableWidgetItem(QString::number(price)));
+        this->visPurchaseTable->setItem(cnt, 6, new QTableWidgetItem(QString::number(rate) + " %"));
     }
+}
 
-    this->visPurchaseTable->resizeColumnsToContents();
-    this->visPurchaseTable->resizeRowsToContents();
+void MainWindow::onVisPurchaseQueryButton(void) {
+    this->visRenderPurchaseTable();
 }
 
 void MainWindow::onVisPurchaseBookButton(void) {
+    QString no = this->visPurchaseNoEdit->text();
+    QString type = this->visPurchaseTypeEdit->currentText();
+
+    if (no == "" || !this->visitor->addTicket(no, type)) {
+        showMsgBox(":/at/assets/warning.png", "Sorry",
+            "All tickets sold out!");
+        return ;
+    } else {
+        showMsgBox(":/at/assets/right.png", "Success",
+            "Book ticket success!");
+    }
+
+    this->visRenderPurchaseTable();
+    this->visRenderFetchTable();
+    this->visRenderCancelTable();
 }
 
 MainWindow *MainWindow::createVisFetchWindow(void) {
     this->visFetchWindow = new QWidget();
+
+    this->visFetchNoEdit = new QLineEdit(this->visFetchWindow);
+    this->visFetchNoLabel = new QLabel(QWidget::tr("&No"), this->visFetchWindow);
+    this->visFetchNoLabel->setBuddy(this->visFetchNoEdit);
+    this->visFetchButton = new QPushButton(QWidget::tr("Fetch"), this->visFetchWindow);
+    connect(this->visFetchButton, SIGNAL(released()), this, SLOT(onVisFetchButton()));
+    this->visFetchTopLayout = new QHBoxLayout();
+    this->visFetchTopLayout->addStretch();
+    this->visFetchTopLayout->addWidget(this->visFetchNoLabel);
+    this->visFetchTopLayout->addWidget(this->visFetchNoEdit);
+    this->visFetchTopLayout->addWidget(this->visFetchButton);
+    this->visFetchTopLayout->addStretch();
+
+    this->visFetchBottomLayout = new QHBoxLayout();
+    this->visFetchTable = new QTableWidget(0, 2);
+    this->visFetchTable->setWindowTitle("Ring");
+    this->visFetchTable->resize(this->visFetchTable->maximumWidth(), this->visFetchTable->maximumHeight());
+    this->visFetchTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    this->visFetchTable->setAlternatingRowColors(true);
+    this->visFetchTable->setStyleSheet("alternate-background-color: #aaa;");
+    this->visFetchTable->resizeRowsToContents();
+    this->visFetchTable->setHorizontalHeaderItem(0, new QTableWidgetItem("No"));
+    this->visFetchTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Time"));
+    this->visFetchTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    this->visRenderFetchTable();
+    this->visFetchBottomLayout->addWidget(this->visFetchTable);
+
+    this->visFetchMainLayout = new QVBoxLayout();
+    this->visFetchMainLayout->addStretch();
+    this->visFetchMainLayout->addLayout(this->visFetchTopLayout);
+    this->visFetchMainLayout->addStretch();
+    this->visFetchMainLayout->addLayout(this->visFetchBottomLayout);
+    this->visFetchMainLayout->addStretch();
+    this->visFetchMainLayout->addStretch();
+    this->visFetchWindow->setLayout(this->visFetchMainLayout);
+
+
     return this;
 }
+
+void MainWindow::visRenderFetchTable(void) {
+    int cnt = this->visFetchTable->rowCount();
+
+    for (int i = 0; i < cnt; i++) {
+        this->visFetchTable->removeRow(0);
+    }
+
+    QSqlQuery query(this->visitor->db);
+    query.prepare("SELECT [Ring].[Tno], [Rtime] FROM [Ticket], [Ring]"
+                  "WHERE [Ticket].[Tno] = [Ring].[Tno] AND [Vid] = :vid;");
+    query.bindValue(":vid", this->visitor->id);
+    if (!query.exec()) {
+        return ;
+    }
+
+    while (query.next()) {
+        QString tno = query.value(0).toString();
+        QDateTime rtime = query.value(1).toDateTime();
+        cnt = this->visFetchTable->rowCount();
+        this->visFetchTable->insertRow(cnt);
+        this->visFetchTable->setItem(cnt, 0, new QTableWidgetItem(tno));
+        this->visFetchTable->setItem(cnt, 1, new QTableWidgetItem(rtime.toString()));
+    }
+}
+
+void MainWindow::onVisFetchButton(void) {
+    QString tno = this->visFetchNoEdit->text();
+
+    if (tno == "" || !this->visitor->fetchTicket(tno)) {
+        showMsgBox(":/at/assets/warning.png", "Error",
+            "Fetch Ticket Failure!");
+        return ;
+    }
+
+    this->visRenderPurchaseTable();
+    this->visRenderFetchTable();
+    this->visRenderCancelTable();
+}
+
 
 MainWindow *MainWindow::createVisCancelWindow(void) {
     this->visCancelWindow = new QWidget();
+
+    this->visCancelNoEdit = new QLineEdit(this->visCancelWindow);
+    this->visCancelNoLabel = new QLabel(QWidget::tr("&Tno"), this->visCancelWindow);
+    this->visCancelNoLabel->setBuddy(this->visCancelNoEdit);
+    this->visCancelButton = new QPushButton(QWidget::tr("Cancel"), this->visCancelWindow);
+    connect(this->visCancelButton, SIGNAL(released()), this, SLOT(onVisCancelButton()));
+    this->visCancelTopLayout = new QHBoxLayout();
+    this->visCancelTopLayout->addStretch();
+    this->visCancelTopLayout->addWidget(this->visCancelNoLabel);
+    this->visCancelTopLayout->addWidget(this->visCancelNoEdit);
+    this->visCancelTopLayout->addWidget(this->visCancelButton);
+    this->visCancelTopLayout->addStretch();
+
+    this->visCancelBottomLayout = new QHBoxLayout();
+    this->visCancelTable = new QTableWidget(0, 8);
+    this->visCancelTable->setWindowTitle("Ticket");
+    this->visCancelTable->resize(this->visCancelTable->maximumWidth(), this->visCancelTable->maximumHeight());
+    this->visCancelTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    this->visCancelTable->setAlternatingRowColors(true);
+    this->visCancelTable->setStyleSheet("alternate-background-color: #aaa;");
+    this->visCancelTable->resizeRowsToContents();
+    this->visCancelTable->setHorizontalHeaderItem(0, new QTableWidgetItem("Tno"));
+    this->visCancelTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Fno"));
+    this->visCancelTable->setHorizontalHeaderItem(2, new QTableWidgetItem("Sno"));
+    this->visCancelTable->setHorizontalHeaderItem(3, new QTableWidgetItem("Start"));
+    this->visCancelTable->setHorizontalHeaderItem(4, new QTableWidgetItem("End"));
+    this->visCancelTable->setHorizontalHeaderItem(5, new QTableWidgetItem("Time"));
+    this->visCancelTable->setHorizontalHeaderItem(6, new QTableWidgetItem("Type"));
+    this->visCancelTable->setHorizontalHeaderItem(7, new QTableWidgetItem("Price"));
+    this->visCancelTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    this->visRenderCancelTable();
+    this->visCancelBottomLayout->addWidget(this->visCancelTable);
+
+    this->visCancelMainLayout = new QVBoxLayout();
+    this->visCancelMainLayout->addStretch();
+    this->visCancelMainLayout->addLayout(this->visCancelTopLayout);
+    this->visCancelMainLayout->addStretch();
+    this->visCancelMainLayout->addLayout(this->visCancelBottomLayout);
+    this->visCancelMainLayout->addStretch();
+    this->visCancelMainLayout->addStretch();
+    this->visCancelWindow->setLayout(this->visCancelMainLayout);
+
+
     return this;
 }
 
+void MainWindow::visRenderCancelTable(void) {
+    int cnt = this->visCancelTable->rowCount();
+
+    for (int i = 0; i < cnt; i++) {
+        this->visCancelTable->removeRow(0);
+    }
+
+    QSqlQuery query(this->visitor->db);
+    query.prepare("SELECT [Tno], [Flight].[Fno], [Seat].[Sno], [Start], [End], [Ftime], [Stype], [Sprice]"
+                  "FROM [Flight], [Seat], [Ticket]"
+                  "WHERE [Ticket].[Fno] = [Flight].[Fno] AND [Ticket].[Fno] = [Seat].[Fno]"
+                  "AND [Ticket].[Sno] = [Seat].[Sno] AND [Tstate] = :tstate AND [Vid] = :vid;");
+    // only unfetched tickets can be cancelled
+    query.bindValue(":tstate", Visitor::UNFETCHED);
+    query.bindValue(":vid", this->visitor->id);
+    if (!query.exec()) {
+        return ;
+    }
+
+    while (query.next()) {
+        QString tno = query.value(0).toString();
+        QString fno = query.value(1).toString();
+        QString sno = query.value(2).toString();
+        QString start = query.value(3).toString();
+        QString end = query.value(4).toString();
+        QDateTime ftime = query.value(5).toDateTime();
+        QString type = query.value(6).toString();
+        int price = query.value(7).toInt();
+
+        cnt = this->visCancelTable->rowCount();
+        this->visCancelTable->insertRow(cnt);
+        this->visCancelTable->setItem(cnt, 0, new QTableWidgetItem(tno));
+        this->visCancelTable->setItem(cnt, 1, new QTableWidgetItem(fno));
+        this->visCancelTable->setItem(cnt, 2, new QTableWidgetItem(sno));
+        this->visCancelTable->setItem(cnt, 3, new QTableWidgetItem(start));
+        this->visCancelTable->setItem(cnt, 4, new QTableWidgetItem(end));
+        this->visCancelTable->setItem(cnt, 5, new QTableWidgetItem(ftime.toString()));
+        this->visCancelTable->setItem(cnt, 6, new QTableWidgetItem(type));
+        this->visCancelTable->setItem(cnt, 7, new QTableWidgetItem(QString::number(price)));
+    }
+}
+
+void MainWindow::onVisCancelButton(void) {
+    QString tno = this->visCancelNoEdit->text();
+
+    if (tno == "" || !this->visitor->cancelTicket(tno)) {
+        showMsgBox(":/at/assets/warning.png", "Error",
+            "Cancel Ticket Failure!");
+        return ;
+    }
+
+    this->visRenderPurchaseTable();
+    this->visRenderFetchTable();
+    this->visRenderCancelTable();
+}
+
+
 MainWindow *MainWindow::createVisBillingWindow(void) {
     this->visBillingWindow = new QWidget();
+
+    this->visBillingTopLayout = new QHBoxLayout();
+    this->visBillingTopLayout->addStretch();
+
+    this->visBillingBottomLayout = new QHBoxLayout();
+    this->visBillingTable = new QTableWidget(0, 5);
+    this->visBillingTable->setWindowTitle("Billing");
+    this->visBillingTable->resize(this->visBillingTable->maximumWidth(), this->visBillingTable->maximumHeight());
+    this->visBillingTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    this->visBillingTable->setAlternatingRowColors(true);
+    this->visBillingTable->setStyleSheet("alternate-background-color: #aaa;");
+    this->visBillingTable->resizeRowsToContents();
+    this->visBillingTable->setHorizontalHeaderItem(0, new QTableWidgetItem("Bno"));
+    this->visBillingTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Btype"));
+    this->visBillingTable->setHorizontalHeaderItem(2, new QTableWidgetItem("Tno"));
+    this->visBillingTable->setHorizontalHeaderItem(3, new QTableWidgetItem("Price"));
+    this->visBillingTable->setHorizontalHeaderItem(4, new QTableWidgetItem("Time"));
+    this->visBillingTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    this->visRenderBillingTable();
+    this->visBillingBottomLayout->addWidget(this->visBillingTable);
+
+    this->visBillingMainLayout = new QVBoxLayout();
+    this->visBillingMainLayout->addStretch();
+    this->visBillingMainLayout->addLayout(this->visBillingTopLayout);
+    this->visBillingMainLayout->addStretch();
+    this->visBillingMainLayout->addLayout(this->visBillingBottomLayout);
+    this->visBillingMainLayout->addStretch();
+    this->visBillingMainLayout->addStretch();
+    this->visBillingWindow->setLayout(this->visBillingMainLayout);
+
     return this;
+}
+
+void MainWindow::visRenderBillingTable(void) {
+    int cnt = this->visBillingTable->rowCount();
+
+    for (int i = 0; i < cnt; i++) {
+        this->visBillingTable->removeRow(0);
+    }
+
+    QSqlQuery query(this->visitor->db);
+    query.prepare("SELECT [Bno], [Btype], [Bill].[Tno], [Sprice], [Btime]"
+                  "FROM [Seat], [Ticket], [Bill]"
+                  "WHERE [Bill].[Tno] = [Ticket].[Tno] AND [Ticket].[Fno] = [Seat].[Fno]"
+                  "AND [Ticket].[Sno] = [Seat].[Sno] AND [Vid] = :vid;");
+    query.bindValue(":vid", this->visitor->id);
+    if (!query.exec()) {
+        return ;
+    }
+
+    while (query.next()) {
+        QString bno = query.value(0).toString();
+        int type = query.value(1).toInt();
+        QString typeStr = (type == Visitor::PAY ? "付款" : "退款");
+        QString tno = query.value(2).toString();
+        int price = query.value(3).toInt();
+        QDateTime btime = query.value(4).toDateTime();
+
+        cnt = this->visBillingTable->rowCount();
+        this->visBillingTable->insertRow(cnt);
+        this->visBillingTable->setItem(cnt, 0, new QTableWidgetItem(bno));
+        this->visBillingTable->setItem(cnt, 1, new QTableWidgetItem(typeStr));
+        this->visBillingTable->setItem(cnt, 2, new QTableWidgetItem(tno));
+        this->visBillingTable->setItem(cnt, 3, new QTableWidgetItem(QString::number(price)));
+        this->visBillingTable->setItem(cnt, 4, new QTableWidgetItem(btime.toString()));
+    }
 }
 
 MainWindow *MainWindow::createVisQueryWindow(void) {

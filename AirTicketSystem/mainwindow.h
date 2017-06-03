@@ -76,9 +76,11 @@ private:
     QLineEdit *visPurchaseStartEdit;
     QLineEdit *visPurchaseEndEdit;
     QLineEdit *visPurchaseNoEdit;
+    QComboBox *visPurchaseTypeEdit;
     QLabel *visPurchaseStartLabel;
     QLabel *visPurchaseEndLabel;
     QLabel *visPurchaseNoLabel;
+    QLabel *visPurchaseTypeLabel;
     QPushButton *visPurchaseQueryButton;
     QPushButton *visPurchaseBookButton;
     QTableWidget *visPurchaseTable;
@@ -87,12 +89,28 @@ private:
     QVBoxLayout *visPurchaseMainLayout;
 
     QWidget *visFetchWindow;
+    QLineEdit *visFetchNoEdit;
+    QLabel *visFetchNoLabel;
     QPushButton *visFetchButton;
+    QTableWidget *visFetchTable;
+    QHBoxLayout *visFetchTopLayout;
+    QHBoxLayout *visFetchBottomLayout;
+    QVBoxLayout *visFetchMainLayout;
 
     QWidget *visCancelWindow;
+    QLineEdit *visCancelNoEdit;
+    QLabel *visCancelNoLabel;
     QPushButton *visCancelButton;
+    QTableWidget *visCancelTable;
+    QHBoxLayout *visCancelTopLayout;
+    QHBoxLayout *visCancelBottomLayout;
+    QVBoxLayout *visCancelMainLayout;
 
     QWidget *visBillingWindow;
+    QTableWidget *visBillingTable;
+    QHBoxLayout *visBillingTopLayout;
+    QHBoxLayout *visBillingBottomLayout;
+    QVBoxLayout *visBillingMainLayout;
 
     QWidget *visQueryWindow;
     QPushButton *visQueryButton;
@@ -114,6 +132,10 @@ private:
 
     void adminRenderFlightTable(void);
     void adminRenderSeatTable(void);
+    void visRenderPurchaseTable(void);
+    void visRenderFetchTable(void);
+    void visRenderCancelTable(void);
+    void visRenderBillingTable(void);
 
     inline void showMsgBox(const QString &icon, const QString &title = "Error", const QString &text = "Error") const {
         QMessageBox errorMsg;
@@ -135,6 +157,10 @@ private slots:
 
     void onVisPurchaseQueryButton(void);
     void onVisPurchaseBookButton(void);
+
+    void onVisFetchButton(void);
+
+    void onVisCancelButton(void);
 };
 
 #endif // MAINWINDOW_H
