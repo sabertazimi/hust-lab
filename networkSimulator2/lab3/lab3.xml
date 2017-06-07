@@ -218,9 +218,9 @@
 <nodeLine id="17">
 <startNode id="5"/>
 <endNode id="16"/>
-<link-propertys Capacity="1.0" LinkType="0" PropagationDelay="10" QueueSize="5" QueueType1="5" QueueType2="0"/>
+<link-propertys Capacity="1.0" LinkType="0" PropagationDelay="10" QueueSize="5" QueueType1="0" QueueType2="0"/>
 <error-Model n0-n2="0" n2-n0="0" randomVarString1="Uniform" randomVarString2="Uniform" rate1="-1.0" rate2="-1.0" unit1="0" unit2="0"/>
-<queueType1 Type="CBQ"/>
+<queueType1 Type="DropTail"/>
 <queueType2 Type="DropTail"/>
 </nodeLine>
 <nodeLine id="18">

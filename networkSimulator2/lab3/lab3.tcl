@@ -94,6 +94,12 @@ $ns queue-limit $n11 $n12 50
 $ns duplex-link $n1 $n12 1.0Mb 10ms DRR
 $ns queue-limit $n1 $n12 5
 
+	#Configuration for Queue
+	set n1TOn12 [[$ns link $n1 $n12] queue]
+	
+	#Configuration for Queue
+	set n12TOn1 [[$ns link $n12 $n1] queue]
+	
 
 $ns duplex-link $n12 $n13 100.0Mb 10ms DropTail
 $ns queue-limit $n12 $n13 50
@@ -101,6 +107,14 @@ $ns queue-limit $n12 $n13 50
 
 $ns duplex-link $n2 $n13 1.0Mb 10ms RED
 $ns queue-limit $n2 $n13 5
+
+	#Configuration for Queue
+	set n2TOn13 [[$ns link $n2 $n13] queue]
+	$n2TOn13 set setDropTail false
+	
+	#Configuration for Queue
+	set n13TOn2 [[$ns link $n13 $n2] queue]
+	$n13TOn2 set setDropTail false
 
 
 $ns duplex-link $n13 $n14 100.0Mb 10ms DropTail
@@ -138,12 +152,24 @@ $ns queue-limit $n20 $n21 50
 $ns duplex-link $n3 $n14 1.0Mb 10ms FQ
 $ns queue-limit $n3 $n14 5
 
+	#Configuration for Queue
+	set n3TOn14 [[$ns link $n3 $n14] queue]
+	
+	#Configuration for Queue
+	set n14TOn3 [[$ns link $n14 $n3] queue]
+	
 
 $ns duplex-link $n4 $n15 1.0Mb 10ms SFQ
 $ns queue-limit $n4 $n15 5
 
+	#Configuration for Queue
+	set n4TOn15 [[$ns link $n4 $n15] queue]
+	
+	#Configuration for Queue
+	set n15TOn4 [[$ns link $n15 $n4] queue]
+	
 
-$ns duplex-link $n5 $n16 1.0Mb 10ms CBQ
+$ns duplex-link $n5 $n16 1.0Mb 10ms DropTail
 $ns queue-limit $n5 $n16 5
 
 
