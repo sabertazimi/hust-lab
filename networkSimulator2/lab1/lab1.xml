@@ -417,47 +417,47 @@
 </agent>
 </agents>
 <apps>
-<app StartTime="1.0" StopTime="2.0" id="0" x="5300" y="5016">
+<app StartTime="1.0" StopTime="5.0" id="0" x="5300" y="5016">
 <attachedAgent id="0"/>
 <AppAttribute AgentType="FTP"/>
 </app>
-<app StartTime="1.0" StopTime="2.0" id="1" x="5400" y="5012">
+<app StartTime="1.0" StopTime="5.0" id="1" x="5400" y="5012">
 <attachedAgent id="1"/>
 <AppAttribute AgentType="FTP"/>
 </app>
-<app StartTime="1.0" StopTime="2.0" id="2" x="5502" y="5011">
+<app StartTime="1.0" StopTime="5.0" id="2" x="5502" y="5011">
 <attachedAgent id="2"/>
 <AppAttribute AgentType="FTP"/>
 </app>
-<app StartTime="1.0" StopTime="2.0" id="3" x="5599" y="5020">
+<app StartTime="1.0" StopTime="5.0" id="3" x="5599" y="5020">
 <attachedAgent id="3"/>
 <AppAttribute AgentType="FTP"/>
 </app>
-<app StartTime="1.0" StopTime="2.0" id="4" x="5704" y="5022">
+<app StartTime="1.0" StopTime="5.0" id="4" x="5704" y="5022">
 <attachedAgent id="4"/>
 <AppAttribute AgentType="FTP"/>
 </app>
-<app StartTime="1.0" StopTime="2.0" id="5" x="5796" y="5018">
+<app StartTime="1.0" StopTime="5.0" id="5" x="5796" y="5018">
 <attachedAgent id="5"/>
 <AppAttribute AgentType="FTP"/>
 </app>
-<app StartTime="1.0" StopTime="2.0" id="6" x="5897" y="5013">
+<app StartTime="2.0" StopTime="6.0" id="6" x="5897" y="5013">
 <attachedAgent id="6"/>
-<AppAttribute AgentType="CBR" Interval="0.005" Maxpkts="5.0" PacketSize="1000" Random="false" Rate="1.0"/>
+<AppAttribute AgentType="CBR" Interval="0.005" Maxpkts="5.0" PacketSize="30000" Random="false" Rate="1.0"/>
 </app>
-<app StartTime="1.0" StopTime="2.0" id="7" x="6003" y="5022">
+<app StartTime="2.0" StopTime="6.0" id="7" x="6003" y="5022">
 <attachedAgent id="7"/>
 <AppAttribute AgentType="CBR" Interval="0.005" Maxpkts="5.0" PacketSize="1000" Random="false" Rate="1.0"/>
 </app>
-<app StartTime="1.0" StopTime="2.0" id="8" x="6104" y="5015">
+<app StartTime="2.0" StopTime="6.0" id="8" x="6104" y="5015">
 <attachedAgent id="8"/>
 <AppAttribute AgentType="CBR" Interval="0.005" Maxpkts="5.0" PacketSize="1000" Random="false" Rate="1.0"/>
 </app>
-<app StartTime="1.0" StopTime="2.0" id="9" x="6203" y="5024">
+<app StartTime="2.0" StopTime="6.0" id="9" x="6203" y="5024">
 <attachedAgent id="9"/>
 <AppAttribute AgentType="CBR" Interval="0.005" Maxpkts="5.0" PacketSize="1000" Random="false" Rate="1.0"/>
 </app>
-<app StartTime="1.0" StopTime="2.0" id="10" x="6300" y="5017">
+<app StartTime="2.0" StopTime="6.0" id="10" x="6300" y="5017">
 <attachedAgent id="10"/>
 <AppAttribute AgentType="CBR" Interval="0.005" Maxpkts="5.0" PacketSize="1000" Random="false" Rate="1.0"/>
 </app>

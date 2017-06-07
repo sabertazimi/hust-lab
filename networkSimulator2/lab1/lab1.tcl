@@ -305,92 +305,82 @@ $ns connect $udp10 $null19
 set ftp0 [new Application/FTP]
 $ftp0 attach-agent $tcp0
 $ns at 1.0 "$ftp0 start"
-$ns at 2.0 "$ftp0 stop"
+$ns at 5.0 "$ftp0 stop"
 
 #Setup a FTP Application over TCP connection
 set ftp1 [new Application/FTP]
 $ftp1 attach-agent $tcp1
 $ns at 1.0 "$ftp1 start"
-$ns at 2.0 "$ftp1 stop"
+$ns at 5.0 "$ftp1 stop"
 
 #Setup a FTP Application over TCP connection
 set ftp2 [new Application/FTP]
 $ftp2 attach-agent $tcp2
 $ns at 1.0 "$ftp2 start"
-$ns at 2.0 "$ftp2 stop"
+$ns at 5.0 "$ftp2 stop"
 
 #Setup a FTP Application over TCP connection
 set ftp3 [new Application/FTP]
 $ftp3 attach-agent $tcp3
 $ns at 1.0 "$ftp3 start"
-$ns at 2.0 "$ftp3 stop"
+$ns at 5.0 "$ftp3 stop"
 
 #Setup a FTP Application over TCP connection
 set ftp4 [new Application/FTP]
 $ftp4 attach-agent $tcp4
 $ns at 1.0 "$ftp4 start"
-$ns at 2.0 "$ftp4 stop"
+$ns at 5.0 "$ftp4 stop"
 
 #Setup a FTP Application over TCP connection
 set ftp5 [new Application/FTP]
 $ftp5 attach-agent $tcp5
 $ns at 1.0 "$ftp5 start"
-$ns at 2.0 "$ftp5 stop"
+$ns at 5.0 "$ftp5 stop"
 
 #Setup a CBR Application over UDP connection
 set cbr6 [new Application/Traffic/CBR]
 $cbr6 attach-agent $udp6
-	$cbr6 set packetSize_ 1000
+	$cbr6 set packetSize_ 30000
 	$cbr6 set rate_ 1.0Mb
-	$cbr6 set interval_ 0.005ms
-	$cbr6 set maxpkts_ 5.0
 	$cbr6 set random_ false
-$ns at 1.0 "$cbr6 start"
-$ns at 2.0 "$cbr6 stop"
+$ns at 2.0 "$cbr6 start"
+$ns at 6.0 "$cbr6 stop"
 
 #Setup a CBR Application over UDP connection
 set cbr7 [new Application/Traffic/CBR]
 $cbr7 attach-agent $udp7
 	$cbr7 set packetSize_ 1000
 	$cbr7 set rate_ 1.0Mb
-	$cbr7 set interval_ 0.005ms
-	$cbr7 set maxpkts_ 5.0
 	$cbr7 set random_ false
-$ns at 1.0 "$cbr7 start"
-$ns at 2.0 "$cbr7 stop"
+$ns at 2.0 "$cbr7 start"
+$ns at 6.0 "$cbr7 stop"
 
 #Setup a CBR Application over UDP connection
 set cbr8 [new Application/Traffic/CBR]
 $cbr8 attach-agent $udp8
 	$cbr8 set packetSize_ 1000
 	$cbr8 set rate_ 1.0Mb
-	$cbr8 set interval_ 0.005ms
-	$cbr8 set maxpkts_ 5.0
 	$cbr8 set random_ false
-$ns at 1.0 "$cbr8 start"
-$ns at 2.0 "$cbr8 stop"
+$ns at 2.0 "$cbr8 start"
+$ns at 6.0 "$cbr8 stop"
 
 #Setup a CBR Application over UDP connection
 set cbr9 [new Application/Traffic/CBR]
 $cbr9 attach-agent $udp9
 	$cbr9 set packetSize_ 1000
 	$cbr9 set rate_ 1.0Mb
-	$cbr9 set interval_ 0.005ms
-	$cbr9 set maxpkts_ 5.0
 	$cbr9 set random_ false
-$ns at 1.0 "$cbr9 start"
-$ns at 2.0 "$cbr9 stop"
+$ns at 2.0 "$cbr9 start"
+$ns at 6.0 "$cbr9 stop"
 
 #Setup a CBR Application over UDP connection
 set cbr10 [new Application/Traffic/CBR]
 $cbr10 attach-agent $udp10
 	$cbr10 set packetSize_ 1000
 	$cbr10 set rate_ 1.0Mb
-	$cbr10 set interval_ 0.005ms
-	$cbr10 set maxpkts_ 5.0
 	$cbr10 set random_ false
-$ns at 1.0 "$cbr10 start"
-$ns at 2.0 "$cbr10 stop"
+$ns at 2.0 "$cbr10 start"
+$ns at 6.0 "$cbr10 stop"
 
 
 #===================================
