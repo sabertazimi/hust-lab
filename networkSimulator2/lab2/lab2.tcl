@@ -18,10 +18,22 @@ $ns color 3 Yellow  ;#3为黄色
 $ns color 4 Pink  ;#4为紫色
 #Open the NS trace file
 set tracefile [open lab2.tr w]
+
 #拥塞窗口文件
-set Cwinfile [open CwinFile w]
+set Cwinfile0 [open CWinFile0 w]
+set Cwinfile1 [open CWinFile1 w]
+set Cwinfile2 [open CWinFile2 w]
+set Cwinfile3 [open CWinFile3 w]
+set Cwinfile4 [open CWinFile4 w]
+set Cwinfile5 [open CWinFile5 w]
 #通告窗口文件
-set winfile [open WinFile w]
+set winfile0 [open WinFile0 w]
+set winfile1 [open WinFile1 w]
+set winfile2 [open WinFile2 w]
+set winfile3 [open WinFile3 w]
+set winfile4 [open WinFile4 w]
+set winfile5 [open WinFile5 w]
+
 $ns trace-all $tracefile
 
 #Open the NAM trace file
@@ -67,8 +79,8 @@ set n30 [$ns node]
 #Createlinks between nodes
 
 
-$ns duplex-link $n0 $n11 100.0Mb 10ms DropTail
-$ns queue-limit $n0 $n11 50
+$ns duplex-link $n0 $n11 1.0Mb 10ms DropTail
+$ns queue-limit $n0 $n11 5
 
 
 $ns duplex-link $n11 $n22 100.0Mb 10ms DropTail
@@ -79,16 +91,16 @@ $ns duplex-link $n11 $n12 100.0Mb 10ms DropTail
 $ns queue-limit $n11 $n12 50
 
 
-$ns duplex-link $n1 $n12 100.0Mb 10ms DropTail
-$ns queue-limit $n1 $n12 50
+$ns duplex-link $n1 $n12 1.0Mb 10ms DropTail
+$ns queue-limit $n1 $n12 5
 
 
 $ns duplex-link $n12 $n13 100.0Mb 10ms DropTail
 $ns queue-limit $n12 $n13 50
 
 
-$ns duplex-link $n2 $n13 100.0Mb 10ms DropTail
-$ns queue-limit $n2 $n13 50
+$ns duplex-link $n2 $n13 1.0Mb 10ms DropTail
+$ns queue-limit $n2 $n13 5
 
 
 $ns duplex-link $n13 $n14 100.0Mb 10ms DropTail
@@ -123,16 +135,16 @@ $ns duplex-link $n20 $n21 100.0Mb 10ms DropTail
 $ns queue-limit $n20 $n21 50
 
 
-$ns duplex-link $n3 $n14 100.0Mb 10ms DropTail
-$ns queue-limit $n3 $n14 50
+$ns duplex-link $n3 $n14 1.0Mb 10ms DropTail
+$ns queue-limit $n3 $n14 5
 
 
-$ns duplex-link $n4 $n15 100.0Mb 10ms DropTail
-$ns queue-limit $n4 $n15 50
+$ns duplex-link $n4 $n15 1.0Mb 10ms DropTail
+$ns queue-limit $n4 $n15 5
 
 
-$ns duplex-link $n5 $n16 100.0Mb 10ms DropTail
-$ns queue-limit $n5 $n16 50
+$ns duplex-link $n5 $n16 1.0Mb 10ms DropTail
+$ns queue-limit $n5 $n16 5
 
 
 $ns duplex-link $n6 $n17 100.0Mb 10ms DropTail
@@ -190,7 +202,7 @@ $ns duplex-link-op $n17 $n18 orient right
 $ns duplex-link-op $n18 $n19 orient right
 $ns duplex-link-op $n19 $n20 orient right
 $ns duplex-link-op $n20 $n21 orient right
-$ns duplex-link-op $n3 $n14 orient left-down
+$ns duplex-link-op $n3 $n14 orient right-down
 $ns duplex-link-op $n4 $n15 orient left-down
 $ns duplex-link-op $n5 $n16 orient left-down
 $ns duplex-link-op $n6 $n17 orient left-down
@@ -310,8 +322,6 @@ set cbr6 [new Application/Traffic/CBR]
 $cbr6 attach-agent $udp6
 	$cbr6 set packetSize_ 1000
 	$cbr6 set rate_ 1.0Mb
-	$cbr6 set interval_ 0.005ms
-	$cbr6 set maxpkts_ 5.0
 	$cbr6 set random_ false
 $ns at 1.0 "$cbr6 start"
 $ns at 2.0 "$cbr6 stop"
@@ -321,8 +331,6 @@ set cbr7 [new Application/Traffic/CBR]
 $cbr7 attach-agent $udp7
 	$cbr7 set packetSize_ 1000
 	$cbr7 set rate_ 1.0Mb
-	$cbr7 set interval_ 0.005ms
-	$cbr7 set maxpkts_ 5.0
 	$cbr7 set random_ false
 $ns at 1.0 "$cbr7 start"
 $ns at 2.0 "$cbr7 stop"
@@ -332,8 +340,6 @@ set cbr8 [new Application/Traffic/CBR]
 $cbr8 attach-agent $udp8
 	$cbr8 set packetSize_ 1000
 	$cbr8 set rate_ 1.0Mb
-	$cbr8 set interval_ 0.005ms
-	$cbr8 set maxpkts_ 5.0
 	$cbr8 set random_ false
 $ns at 1.0 "$cbr8 start"
 $ns at 2.0 "$cbr8 stop"
@@ -343,8 +349,6 @@ set cbr9 [new Application/Traffic/CBR]
 $cbr9 attach-agent $udp9
 	$cbr9 set packetSize_ 1000
 	$cbr9 set rate_ 1.0Mb
-	$cbr9 set interval_ 0.005ms
-	$cbr9 set maxpkts_ 5.0
 	$cbr9 set random_ false
 $ns at 1.0 "$cbr9 start"
 $ns at 2.0 "$cbr9 stop"
@@ -354,47 +358,45 @@ set cbr10 [new Application/Traffic/CBR]
 $cbr10 attach-agent $udp10
 	$cbr10 set packetSize_ 1000
 	$cbr10 set rate_ 1.0Mb
-	$cbr10 set interval_ 0.005ms
-	$cbr10 set maxpkts_ 5.0
 	$cbr10 set random_ false
 $ns at 1.0 "$cbr10 start"
 $ns at 2.0 "$cbr10 stop"
-
-#Setup a FTP Application over TCP connection
-set ftp11 [new Application/FTP]
-$ftp11 attach-agent $tahoe22
-$ns at 1.0 "$ftp11 start"
-$ns at 2.0 "$ftp11 stop"
-
-#Setup a FTP Application over TCP/Reno connection
-set ftp12 [new Application/FTP]
-$ftp12 attach-agent $reno23
-$ns at 1.0 "$ftp12 start"
-$ns at 2.0 "$ftp12 stop"
-
-#Setup a FTP Application over TCP/Newreno connection
-set ftp13 [new Application/FTP]
-$ftp13 attach-agent $newReno24
-$ns at 1.0 "$ftp13 start"
-$ns at 2.0 "$ftp13 stop"
 
 #Setup a FTP Application over TCP/Vegas connection
 set ftp14 [new Application/FTP]
 $ftp14 attach-agent $vegas25
 $ns at 1.0 "$ftp14 start"
-$ns at 2.0 "$ftp14 stop"
+$ns at 5.0 "$ftp14 stop"
 
 #Setup a FTP Application over TCP/Sack1 connection
 set ftp15 [new Application/FTP]
 $ftp15 attach-agent $sack26
 $ns at 1.0 "$ftp15 start"
-$ns at 2.0 "$ftp15 stop"
+$ns at 5.0 "$ftp15 stop"
 
 #Setup a FTP Application over TCP/Fack connection
 set ftp16 [new Application/FTP]
 $ftp16 attach-agent $fack27
 $ns at 1.0 "$ftp16 start"
-$ns at 2.0 "$ftp16 stop"
+$ns at 5.0 "$ftp16 stop"
+
+#Setup a FTP Application over TCP connection
+set ftp11 [new Application/FTP]
+$ftp11 attach-agent $tahoe22
+$ns at 1.0 "$ftp11 start"
+$ns at 5.0 "$ftp11 stop"
+
+#Setup a FTP Application over TCP/Reno connection
+set ftp12 [new Application/FTP]
+$ftp12 attach-agent $reno23
+$ns at 1.0 "$ftp12 start"
+$ns at 5.0 "$ftp12 stop"
+
+#Setup a FTP Application over TCP/Newreno connection
+set ftp13 [new Application/FTP]
+$ftp13 attach-agent $newReno24
+$ns at 1.0 "$ftp13 start"
+$ns at 5.0 "$ftp13 stop"
 
 
 #===================================
@@ -426,19 +428,18 @@ proc plotWindow {tcpSource file_Cwnd file_wnd} {
   #把当前时间数据和cwnd的数据记录到file_Cwnd所指向的文件中
   puts $file_Cwnd "$now $cwnd"
   #把当前时间数据和wnd的数据记录到file_wnd所指向的文件中
-  puts $file_wnd "now $wnd"
+  puts $file_wnd "$now $wnd"
   #这是一个递归过程，在过了0.1秒后继续调用本函数，并记录时间数据和cwnd数据
   $ns at [expr $now+$time] "plotWindow $tcpSource $file_Cwnd $file_wnd"
 }
 ####################################################
 
-#调用函数捕获tcp的窗口数据
-$ns at 0.1 "plotWindow $tahoe22 $Cwinfile $winfile"
-$ns at 0.1 "plotWindow $reno23 $Cwinfile $winfile"
-$ns at 0.1 "plotWindow $newReno24 $Cwinfile $winfile"
-$ns at 0.1 "plotWindow $vegas25 $Cwinfile $winfile"
-$ns at 0.1 "plotWindow $sack26 $Cwinfile $winfile"
-$ns at 0.1 "plotWindow $fack27 $Cwinfile $winfile"
+$ns at 0.1 "plotWindow $tahoe22 $Cwinfile0 $winfile0"
+$ns at 0.1 "plotWindow $reno23 $Cwinfile1 $winfile1"
+$ns at 0.1 "plotWindow $newReno24 $Cwinfile2 $winfile2"
+$ns at 0.1 "plotWindow $vegas25 $Cwinfile3 $winfile3"
+$ns at 0.1 "plotWindow $sack26 $Cwinfile4 $winfile4"
+$ns at 0.1 "plotWindow $fack27 $Cwinfile5 $winfile5"
 
 $ns at $val(stop) "$ns nam-end-wireless $val(stop)"
 $ns at $val(stop) "finish"
