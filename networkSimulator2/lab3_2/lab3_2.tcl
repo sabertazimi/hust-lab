@@ -17,27 +17,21 @@ $ns color 2 Red  ;#2为红色
 $ns color 3 Yellow  ;#3为黄色
 $ns color 4 Pink  ;#4为紫色
 #Open the NS trace file
-set tracefile [open lab3.tr w]
+set tracefile [open lab3_2.tr w]
 
 #拥塞窗口文件
-set Cwinfile0 [open CWinFile0 w]
-set Cwinfile1 [open CWinFile1 w]
 set Cwinfile2 [open CWinFile2 w]
 set Cwinfile3 [open CWinFile3 w]
 set Cwinfile4 [open CWinFile4 w]
-set Cwinfile5 [open CWinFile5 w]
 #通告窗口文件
-set winfile0 [open WinFile0 w]
-set winfile1 [open WinFile1 w]
 set winfile2 [open WinFile2 w]
 set winfile3 [open WinFile3 w]
 set winfile4 [open WinFile4 w]
-set winfile5 [open WinFile5 w]
 
 $ns trace-all $tracefile
 
 #Open the NAM trace file
-set namfile [open lab3.nam w]
+set namfile [open lab3_2.nam w]
 $ns namtrace-all $namfile
 
 #===================================
@@ -149,24 +143,28 @@ $ns duplex-link $n20 $n21 100.0Mb 10ms DropTail
 $ns queue-limit $n20 $n21 50
 
 
-$ns duplex-link $n3 $n14 1.0Mb 10ms FQ
+$ns duplex-link $n3 $n14 1.0Mb 10ms RED
 $ns queue-limit $n3 $n14 5
 
 	#Configuration for Queue
 	set n3TOn14 [[$ns link $n3 $n14] queue]
-	
+	$n3TOn14 set setDropTail false
+
 	#Configuration for Queue
 	set n14TOn3 [[$ns link $n14 $n3] queue]
+	$n14TOn3 set setDropTail false
 	
 
-$ns duplex-link $n4 $n15 1.0Mb 10ms SFQ
+$ns duplex-link $n4 $n15 1.0Mb 10ms RED
 $ns queue-limit $n4 $n15 5
 
 	#Configuration for Queue
 	set n4TOn15 [[$ns link $n4 $n15] queue]
+	$n4TOn15 set setDropTail false
 	
 	#Configuration for Queue
 	set n15TOn4 [[$ns link $n15 $n4] queue]
+	$n15TOn4 set setDropTail false
 	
 
 $ns duplex-link $n5 $n16 1.0Mb 10ms DropTail
@@ -269,7 +267,7 @@ $ns attach-agent $n2 $tcp2
 set sink23 [new Agent/TCPSink]
 $ns attach-agent $n24 $sink23
 $ns connect $tcp2 $sink23
-	$tcp2 set packetSize_ 1500.0
+	$tcp2 set packetSize_ 200.0
 	$sink23 set packetSize_ 1500.0
 
 #Setup a TCP connection
@@ -278,7 +276,7 @@ $ns attach-agent $n3 $tcp3
 set sink13 [new Agent/TCPSink]
 $ns attach-agent $n24 $sink13
 $ns connect $tcp3 $sink13
-	$tcp3 set packetSize_ 1500.0
+	$tcp3 set packetSize_ 2000.0
 	$sink13 set packetSize_ 1500.0
 
 #Setup a TCP connection
@@ -287,7 +285,7 @@ $ns attach-agent $n4 $tcp4
 set sink24 [new Agent/TCPSink]
 $ns attach-agent $n24 $sink24
 $ns connect $tcp4 $sink24
-	$tcp4 set packetSize_ 1500.0
+	$tcp4 set packetSize_ 20000.0
 	$sink24 set packetSize_ 1500.0
 
 #Setup a TCP connection
@@ -434,7 +432,7 @@ proc finish {} {
     $ns flush-trace
     close $tracefile
     close $namfile
-    exec nam lab3.nam &
+    exec nam lab3_2.nam &
     exit 0
 }
 
@@ -460,12 +458,9 @@ proc plotWindow {tcpSource file_Cwnd file_wnd} {
 }
 ####################################################
 
-$ns at 0.1 "plotWindow $tcp0 $Cwinfile0 $winfile0"
-$ns at 0.1 "plotWindow $tcp1 $Cwinfile1 $winfile1"
 $ns at 0.1 "plotWindow $tcp2 $Cwinfile2 $winfile2"
 $ns at 0.1 "plotWindow $tcp3 $Cwinfile3 $winfile3"
 $ns at 0.1 "plotWindow $tcp4 $Cwinfile4 $winfile4"
-$ns at 0.1 "plotWindow $tcp5 $Cwinfile5 $winfile5"
 
 $ns at $val(stop) "$ns nam-end-wireless $val(stop)"
 $ns at $val(stop) "finish"
