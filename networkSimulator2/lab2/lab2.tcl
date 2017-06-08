@@ -265,7 +265,7 @@ $ns attach-agent $n0 $tahoe22
 set sink11 [new Agent/TCPSink]
 $ns attach-agent $n22 $sink11
 $ns connect $tahoe22 $sink11
-	$tahoe22 set packetSize_ 1500.0
+	$tahoe22 set packetSize_ 15000.0
 	$sink11 set packetSize_ 1500.0
 
 #Setup a TCP/Reno connection
@@ -274,7 +274,7 @@ $ns attach-agent $n1 $reno23
 set sink20 [new Agent/TCPSink]
 $ns attach-agent $n22 $sink20
 $ns connect $reno23 $sink20
-	$reno23 set packetSize_ 1500.0
+	$reno23 set packetSize_ 15000.0
 	$sink20 set packetSize_ 1500.0
 
 #Setup a TCP/Newreno connection
@@ -283,7 +283,7 @@ $ns attach-agent $n2 $newReno24
 set sink23 [new Agent/TCPSink]
 $ns attach-agent $n24 $sink23
 $ns connect $newReno24 $sink23
-	$newReno24 set packetSize_ 1500.0
+	$newReno24 set packetSize_ 15000.0
 	$sink23 set packetSize_ 1500.0
 
 #Setup a TCP/Vegas connection
@@ -292,7 +292,7 @@ $ns attach-agent $n3 $vegas25
 set sink13 [new Agent/TCPSink]
 $ns attach-agent $n24 $sink13
 $ns connect $vegas25 $sink13
-	$vegas25 set packetSize_ 1500.0
+	$vegas25 set packetSize_ 15000.0
 	$sink13 set packetSize_ 1500.0
 
 #Setup a TCP/Sack1 connection
@@ -301,7 +301,7 @@ $ns attach-agent $n4 $sack26
 set sink24 [new Agent/TCPSink]
 $ns attach-agent $n24 $sink24
 $ns connect $sack26 $sink24
-	$sack26 set packetSize_ 1500.0
+	$sack26 set packetSize_ 15000.0
 	$sink24 set packetSize_ 1500.0
 
 #Setup a TCP/Fack connection
@@ -310,7 +310,7 @@ $ns attach-agent $n5 $fack27
 set sink15 [new Agent/TCPSink]
 $ns attach-agent $n26 $sink15
 $ns connect $fack27 $sink15
-	$fack27 set packetSize_ 1500.0
+	$fack27 set packetSize_ 15000.0
 	$sink15 set packetSize_ 1500.0
 
 

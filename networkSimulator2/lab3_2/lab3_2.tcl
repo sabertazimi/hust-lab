@@ -267,7 +267,7 @@ $ns attach-agent $n2 $tcp2
 set sink23 [new Agent/TCPSink]
 $ns attach-agent $n24 $sink23
 $ns connect $tcp2 $sink23
-	$tcp2 set packetSize_ 200.0
+	$tcp2 set packetSize_ 20000.0
 	$sink23 set packetSize_ 1500.0
 
 #Setup a TCP connection

@@ -263,7 +263,7 @@ $ns attach-agent $n6 $udp6
 set null22 [new Agent/Null]
 $ns attach-agent $n26 $null22
 $ns connect $udp6 $null22
-	$udp6 set packetSize_ 1500.0
+	$udp6 set packetSize_ 30000.0
 
 #Setup a UDP connection
 set udp7 [new Agent/UDP]
@@ -341,7 +341,7 @@ $ns at 5.0 "$ftp5 stop"
 set cbr6 [new Application/Traffic/CBR]
 $cbr6 attach-agent $udp6
 	$cbr6 set packetSize_ 30000
-	$cbr6 set rate_ 1.0Mb
+	$cbr6 set rate_ 1000.0Mb
 	$cbr6 set random_ false
 $ns at 2.0 "$cbr6 start"
 $ns at 6.0 "$cbr6 stop"
