@@ -33,6 +33,7 @@ MainWindow::MainWindow(QWidget *parent)
 }
 
 MainWindow::~MainWindow() {
+    // 不存在的
 }
 
 void MainWindow::createLoginView(void) {
@@ -42,9 +43,9 @@ void MainWindow::createLoginView(void) {
     this->loginNameEdit = new QLineEdit(this->loginMainWindow);
     this->loginPasswordEdit = new QLineEdit(this->loginMainWindow);
     this->loginPasswordEdit->setEchoMode(QLineEdit::Password);
-    this->loginIDLabel = new QLabel(QWidget::tr("&ID"), this->loginMainWindow);
-    this->loginNameLabel = new QLabel(QWidget::tr("&Name"), this->loginMainWindow);
-    this->loginPasswordLabel = new QLabel(QWidget::tr("&Password"), this->loginMainWindow);
+    this->loginIDLabel = new QLabel(QWidget::tr("&旅客身份证号"), this->loginMainWindow);
+    this->loginNameLabel = new QLabel(QWidget::tr("&姓名"), this->loginMainWindow);
+    this->loginPasswordLabel = new QLabel(QWidget::tr("&管理员密码"), this->loginMainWindow);
     this->loginIDLabel->setBuddy(this->loginIDEdit);
     this->loginNameLabel->setBuddy(this->loginNameEdit);
     this->loginPasswordLabel->setBuddy(this->loginPasswordEdit);
@@ -56,8 +57,8 @@ void MainWindow::createLoginView(void) {
     this->loginTopLayout->addWidget(this->loginPasswordLabel, 2, 0);
     this->loginTopLayout->addWidget(this->loginPasswordEdit, 2, 1);
 
-    this->loginVisitorButton = new QPushButton(QWidget::tr("Login as Visitor"), this->loginMainWindow);
-    this->loginAdminButton = new QPushButton(QWidget::tr("Login as Administrator"), this->loginMainWindow);
+    this->loginVisitorButton = new QPushButton(QWidget::tr("旅客登录"), this->loginMainWindow);
+    this->loginAdminButton = new QPushButton(QWidget::tr("管理员登录"), this->loginMainWindow);
     connect(this->loginVisitorButton, SIGNAL(released()), this, SLOT(onLoginVisitorButton()));
     connect(this->loginAdminButton, SIGNAL(released()), this, SLOT(onLoginAdminButton()));
     this->loginBottomLayout = new QHBoxLayout();
@@ -71,6 +72,7 @@ void MainWindow::createLoginView(void) {
     this->loginBottomLayout->addStretch();
     this->loginBottomLayout->addStretch();
 
+    // 双行式布局
     this->loginMainLayout = new QVBoxLayout();
     this->loginMainLayout->addStretch();
     this->loginMainLayout->addLayout(this->loginTopLayout);
@@ -83,33 +85,32 @@ void MainWindow::createLoginView(void) {
     this->setCentralWidget(this->loginMainWindow);
 }
 
-MainWindow *MainWindow::createAdminView(void) {
+void MainWindow::createAdminView(void) {
     this->adminTab = new QTabWidget();
     this->createAdminFlightWindow();
     this->createAdminSeatWindow();
 
-    this->adminTab->addTab(this->adminFlightWindow, QIcon(":/at/assets/ticket_purchase.svg"), "Flight");
-    this->adminTab->addTab(this->adminSeatWindow, QIcon(":/at/assets/ticket_data.svg"), "Seat");
-    return this;
+    this->adminTab->addTab(this->adminFlightWindow, QIcon(":/at/assets/ticket_purchase.svg"), "航班信息");
+    this->adminTab->addTab(this->adminSeatWindow, QIcon(":/at/assets/ticket_data.svg"), "座位信息");
 }
 
-MainWindow *MainWindow::createAdminFlightWindow(void) {
+void MainWindow::createAdminFlightWindow(void) {
     this->adminFlightWindow = new QWidget();
 
     this->adminFlightNoEdit = new QLineEdit(this->adminFlightWindow);
     this->adminFlightStartEdit = new QLineEdit(this->adminFlightWindow);
     this->adminFlightEndEdit = new QLineEdit(this->adminFlightWindow);
     this->adminFlightTimeEdit = new QDateTimeEdit(QDateTime::currentDateTime(), this->adminFlightWindow);
-    this->adminFlightNoLabel = new QLabel(QWidget::tr("&No"), this->adminFlightWindow);
-    this->adminFlightStartLabel = new QLabel(QWidget::tr("&Start"), this->adminFlightWindow);
-    this->adminFlightEndLabel = new QLabel(QWidget::tr("&End"), this->adminFlightWindow);
-    this->adminFlightTimeLabel = new QLabel(QWidget::tr("&Time"), this->adminFlightWindow);
+    this->adminFlightNoLabel = new QLabel(QWidget::tr("&航班号"), this->adminFlightWindow);
+    this->adminFlightStartLabel = new QLabel(QWidget::tr("&起点"), this->adminFlightWindow);
+    this->adminFlightEndLabel = new QLabel(QWidget::tr("&终点"), this->adminFlightWindow);
+    this->adminFlightTimeLabel = new QLabel(QWidget::tr("&起飞时间"), this->adminFlightWindow);
     this->adminFlightNoLabel->setBuddy(this->adminFlightNoEdit);
     this->adminFlightStartLabel->setBuddy(this->adminFlightStartEdit);
     this->adminFlightEndLabel->setBuddy(this->adminFlightEndEdit);
     this->adminFlightTimeLabel->setBuddy(this->adminFlightTimeEdit);
-    this->adminFlightAddButton = new QPushButton(QWidget::tr("Add"), this->adminFlightWindow);
-    this->adminFlightDelButton = new QPushButton(QWidget::tr("Delete"), this->adminFlightWindow);
+    this->adminFlightAddButton = new QPushButton(QWidget::tr("添加"), this->adminFlightWindow);
+    this->adminFlightDelButton = new QPushButton(QWidget::tr("删除"), this->adminFlightWindow);
     connect(this->adminFlightAddButton, SIGNAL(released()), this, SLOT(onAdminFlightAddButton()));
     connect(this->adminFlightDelButton, SIGNAL(released()), this, SLOT(onAdminFlightDelButton()));
     this->adminFlightTopLayout = new QHBoxLayout();
@@ -137,16 +138,16 @@ MainWindow *MainWindow::createAdminFlightWindow(void) {
 
     this->adminFlightBottomLayout = new QHBoxLayout();
     this->adminFlightTable = new QTableWidget(0, 4);
-    this->adminFlightTable->setWindowTitle("Flight");
+    this->adminFlightTable->setWindowTitle("航班信息");
     this->adminFlightTable->resize(this->adminFlightTable->maximumWidth(), this->adminFlightTable->maximumHeight());
     this->adminFlightTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
     this->adminFlightTable->setAlternatingRowColors(true);
     this->adminFlightTable->setStyleSheet("alternate-background-color: #aaa;");
     this->adminFlightTable->resizeRowsToContents();
-    this->adminFlightTable->setHorizontalHeaderItem(0, new QTableWidgetItem("No"));
-    this->adminFlightTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Start"));
-    this->adminFlightTable->setHorizontalHeaderItem(2, new QTableWidgetItem("End"));
-    this->adminFlightTable->setHorizontalHeaderItem(3, new QTableWidgetItem("Time"));
+    this->adminFlightTable->setHorizontalHeaderItem(0, new QTableWidgetItem("航班号"));
+    this->adminFlightTable->setHorizontalHeaderItem(1, new QTableWidgetItem("起点"));
+    this->adminFlightTable->setHorizontalHeaderItem(2, new QTableWidgetItem("终点"));
+    this->adminFlightTable->setHorizontalHeaderItem(3, new QTableWidgetItem("起飞时间"));
     this->adminFlightTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     this->adminRenderFlightTable();
     this->adminFlightBottomLayout->addWidget(this->adminFlightTable);
@@ -159,8 +160,6 @@ MainWindow *MainWindow::createAdminFlightWindow(void) {
     this->adminFlightMainLayout->addStretch();
     this->adminFlightMainLayout->addStretch();
     this->adminFlightWindow->setLayout(this->adminFlightMainLayout);
-
-    return this;
 }
 
 void MainWindow::adminRenderFlightTable(void) {
@@ -194,8 +193,8 @@ void MainWindow::onAdminFlightAddButton(void) {
     QDateTime time = this->adminFlightTimeEdit->dateTime();
 
     if (no == "" || start == "" || end == "" || !this->visitor->addFlight(no, start, end, time)) {
-        showMsgBox(":/at/assets/warning.png", "Error",
-            "Add Flight Failure!");
+        showMsgBox(":/at/assets/warning.png", "错误",
+            "添加航班失败!");
         return ;
     }
 
@@ -206,15 +205,15 @@ void MainWindow::onAdminFlightDelButton(void) {
     QString no = this->adminFlightNoEdit->text();
 
     if (no == "" || !this->visitor->delFlight(no)) {
-        showMsgBox(":/at/assets/warning.png", "Error",
-            "Delete Flight Failure!");
+        showMsgBox(":/at/assets/warning.png", "错误",
+            "删除航班失败!");
         return ;
     }
 
     this->adminRenderFlightTable();
 }
 
-MainWindow *MainWindow::createAdminSeatWindow(void) {
+void MainWindow::createAdminSeatWindow(void) {
     this->adminSeatWindow = new QWidget();
 
     this->adminSeatFnoEdit = new QLineEdit(this->adminSeatWindow);
@@ -225,16 +224,16 @@ MainWindow *MainWindow::createAdminSeatWindow(void) {
     this->adminSeatTypeEdit->insertItem(1, "二等座");
     this->adminSeatTypeEdit->insertItem(2, "三等座");
     this->adminSeatPriceEdit = new QLineEdit(this->adminSeatWindow);
-    this->adminSeatFnoLabel = new QLabel(QWidget::tr("&Flight No"), this->adminSeatWindow);
-    this->adminSeatSnoLabel = new QLabel(QWidget::tr("&Seat No"), this->adminSeatWindow);
-    this->adminSeatTypeLabel = new QLabel(QWidget::tr("&Type"), this->adminSeatWindow);
-    this->adminSeatPriceLabel = new QLabel(QWidget::tr("&Price"), this->adminSeatWindow);
+    this->adminSeatFnoLabel = new QLabel(QWidget::tr("&航班号"), this->adminSeatWindow);
+    this->adminSeatSnoLabel = new QLabel(QWidget::tr("&座位号"), this->adminSeatWindow);
+    this->adminSeatTypeLabel = new QLabel(QWidget::tr("&座位类型"), this->adminSeatWindow);
+    this->adminSeatPriceLabel = new QLabel(QWidget::tr("&座位价格"), this->adminSeatWindow);
     this->adminSeatFnoLabel->setBuddy(this->adminSeatFnoEdit);
     this->adminSeatSnoLabel->setBuddy(this->adminSeatSnoEdit);
     this->adminSeatTypeLabel->setBuddy(this->adminSeatTypeEdit);
     this->adminSeatPriceLabel->setBuddy(this->adminSeatPriceEdit);
-    this->adminSeatAddButton = new QPushButton(QWidget::tr("Add"), this->adminSeatWindow);
-    this->adminSeatDelButton = new QPushButton(QWidget::tr("Delete"), this->adminSeatWindow);
+    this->adminSeatAddButton = new QPushButton(QWidget::tr("添加"), this->adminSeatWindow);
+    this->adminSeatDelButton = new QPushButton(QWidget::tr("删除"), this->adminSeatWindow);
     connect(this->adminSeatAddButton, SIGNAL(released()), this, SLOT(onAdminSeatAddButton()));
     connect(this->adminSeatDelButton, SIGNAL(released()), this, SLOT(onAdminSeatDelButton()));
     this->adminSeatTopLayout = new QHBoxLayout();
@@ -262,17 +261,17 @@ MainWindow *MainWindow::createAdminSeatWindow(void) {
 
     this->adminSeatBottomLayout = new QHBoxLayout();
     this->adminSeatTable = new QTableWidget(0, 5);
-    this->adminSeatTable->setWindowTitle("Seat");
+    this->adminSeatTable->setWindowTitle("座位信息");
     this->adminSeatTable->resize(this->adminSeatTable->maximumWidth(), this->adminSeatTable->maximumHeight());
     this->adminSeatTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
     this->adminSeatTable->setAlternatingRowColors(true);
     this->adminSeatTable->setStyleSheet("alternate-background-color: #aaa;");
     this->adminSeatTable->resizeRowsToContents();
-    this->adminSeatTable->setHorizontalHeaderItem(0, new QTableWidgetItem("Fno"));
-    this->adminSeatTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Sno"));
-    this->adminSeatTable->setHorizontalHeaderItem(2, new QTableWidgetItem("Type"));
-    this->adminSeatTable->setHorizontalHeaderItem(3, new QTableWidgetItem("Price"));
-    this->adminSeatTable->setHorizontalHeaderItem(4, new QTableWidgetItem("State"));
+    this->adminSeatTable->setHorizontalHeaderItem(0, new QTableWidgetItem("航班号"));
+    this->adminSeatTable->setHorizontalHeaderItem(1, new QTableWidgetItem("座位号"));
+    this->adminSeatTable->setHorizontalHeaderItem(2, new QTableWidgetItem("座位类型"));
+    this->adminSeatTable->setHorizontalHeaderItem(3, new QTableWidgetItem("座位价格"));
+    this->adminSeatTable->setHorizontalHeaderItem(4, new QTableWidgetItem("座位状态"));
     this->adminSeatTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     this->adminRenderSeatTable();
     this->adminSeatBottomLayout->addWidget(this->adminSeatTable);
@@ -285,8 +284,6 @@ MainWindow *MainWindow::createAdminSeatWindow(void) {
     this->adminSeatMainLayout->addStretch();
     this->adminSeatMainLayout->addStretch();
     this->adminSeatWindow->setLayout(this->adminSeatMainLayout);
-
-    return this;
 }
 
 void MainWindow::adminRenderSeatTable(void) {
@@ -327,8 +324,8 @@ void MainWindow::onAdminSeatAddButton(void) {
             || !numberRegExp.regExp().exactMatch(sno)
             || !numberRegExp.regExp().exactMatch(price)
             || !this->visitor->addSeat(fno, sno.toInt(), type, price.toInt(), false)) {
-        showMsgBox(":/at/assets/warning.png", "Error",
-            "Add Seat Failure!");
+        showMsgBox(":/at/assets/warning.png", "错误",
+            "添加座位失败!");
         return ;
     }
 
@@ -343,39 +340,33 @@ void MainWindow::onAdminSeatDelButton(void) {
     if (fno == "" || sno == ""
             || !numberRegExp.regExp().exactMatch(sno)
             || !this->visitor->delSeat(fno, sno.toInt())) {
-        showMsgBox(":/at/assets/warning.png", "Error",
-            "Delete Seat Failure!");
+        showMsgBox(":/at/assets/warning.png", "错误",
+            "删除座位失败!");
         return ;
     }
 
     this->adminRenderSeatTable();
 }
 
-MainWindow *MainWindow::createVisitorView(void) {
+void MainWindow::createVisitorView(void) {
     this->visitorTab = new QTabWidget();
     this->createVisPurchaseWindow();
     this->createVisFetchWindow();
     this->createVisCancelWindow();
     this->createVisBillingWindow();
-    this->createVisQueryWindow();
 
-    this->visitorTab->addTab(this->visPurchaseWindow, QIcon(":/at/assets/ticket_purchase.svg"), "Purchase Ticket");
-    this->visitorTab->addTab(this->visFetchWindow, QIcon(":/at/assets/ticket_remind.svg"), "Fetch Ticket");
-    this->visitorTab->addTab(this->visCancelWindow, QIcon(":/at/assets/ticket_cancel.svg"), "Cancel Ticket");
-    this->visitorTab->addTab(this->visBillingWindow, QIcon(":/at/assets/ticket_billing.svg"), "Billing");
-    // @TODO
-    // this->visitorTab->addTab(this->visQueryWindow, QIcon(":/at/assets/ticket_data.svg"), "Query");
-    return this;
+    this->visitorTab->addTab(this->visPurchaseWindow, QIcon(":/at/assets/ticket_purchase.svg"), "订票");
+    this->visitorTab->addTab(this->visFetchWindow, QIcon(":/at/assets/ticket_remind.svg"), "取票");
+    this->visitorTab->addTab(this->visCancelWindow, QIcon(":/at/assets/ticket_cancel.svg"), "退票");
+    this->visitorTab->addTab(this->visBillingWindow, QIcon(":/at/assets/ticket_billing.svg"), "账单");
 }
 
-MainWindow *MainWindow::createVisPurchaseWindow(void) {
+void MainWindow::createVisPurchaseWindow(void) {
     this->visPurchaseWindow = new QWidget();
 
     this->visPurchaseStartEdit = new QLineEdit(this->visPurchaseWindow);
-    // @TODO: for debug
     this->visPurchaseStartEdit->setText("Beijing");
     this->visPurchaseEndEdit = new QLineEdit(this->visPurchaseWindow);
-    // @TODO: for debug
     this->visPurchaseEndEdit->setText("Guangzhou");
     this->visPurchaseNoEdit = new QLineEdit(this->visPurchaseWindow);
     this->visPurchaseTypeEdit = new QComboBox(this->visPurchaseWindow);
@@ -383,16 +374,16 @@ MainWindow *MainWindow::createVisPurchaseWindow(void) {
     this->visPurchaseTypeEdit->insertItem(0, "一等座");
     this->visPurchaseTypeEdit->insertItem(1, "二等座");
     this->visPurchaseTypeEdit->insertItem(2, "三等座");
-    this->visPurchaseStartLabel = new QLabel(QWidget::tr("&Start"), this->visPurchaseWindow);
-    this->visPurchaseEndLabel = new QLabel(QWidget::tr("&End"), this->visPurchaseWindow);
-    this->visPurchaseNoLabel = new QLabel(QWidget::tr("&No"), this->visPurchaseWindow);
-    this->visPurchaseTypeLabel = new QLabel(QWidget::tr("&Type"), this->visPurchaseWindow);
+    this->visPurchaseStartLabel = new QLabel(QWidget::tr("&起点"), this->visPurchaseWindow);
+    this->visPurchaseEndLabel = new QLabel(QWidget::tr("&终点"), this->visPurchaseWindow);
+    this->visPurchaseNoLabel = new QLabel(QWidget::tr("&航班号"), this->visPurchaseWindow);
+    this->visPurchaseTypeLabel = new QLabel(QWidget::tr("&座位类型"), this->visPurchaseWindow);
     this->visPurchaseStartLabel->setBuddy(this->visPurchaseStartEdit);
     this->visPurchaseEndLabel->setBuddy(this->visPurchaseEndEdit);
     this->visPurchaseNoLabel->setBuddy(this->visPurchaseNoEdit);
     this->visPurchaseTypeLabel->setBuddy(this->visPurchaseTypeEdit);
-    this->visPurchaseQueryButton = new QPushButton(QWidget::tr("Query"), this->visPurchaseWindow);
-    this->visPurchaseBookButton = new QPushButton(QWidget::tr("Purchase"), this->visPurchaseWindow);
+    this->visPurchaseQueryButton = new QPushButton(QWidget::tr("查询"), this->visPurchaseWindow);
+    this->visPurchaseBookButton = new QPushButton(QWidget::tr("订票"), this->visPurchaseWindow);
     connect(this->visPurchaseQueryButton, SIGNAL(released()), this, SLOT(onVisPurchaseQueryButton()));
     connect(this->visPurchaseBookButton, SIGNAL(released()), this, SLOT(onVisPurchaseBookButton()));
     this->visPurchaseTopLayout = new QHBoxLayout();
@@ -420,19 +411,19 @@ MainWindow *MainWindow::createVisPurchaseWindow(void) {
 
     this->visPurchaseBottomLayout = new QHBoxLayout();
     this->visPurchaseTable = new QTableWidget(0, 7);
-    this->visPurchaseTable->setWindowTitle("Flight");
+    this->visPurchaseTable->setWindowTitle("航班信息");
     this->visPurchaseTable->resize(this->visPurchaseTable->maximumWidth(), this->visPurchaseTable->maximumHeight());
     this->visPurchaseTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
     this->visPurchaseTable->setAlternatingRowColors(true);
     this->visPurchaseTable->setStyleSheet("alternate-background-color: #aaa;");
     this->visPurchaseTable->resizeRowsToContents();
-    this->visPurchaseTable->setHorizontalHeaderItem(0, new QTableWidgetItem("No"));
-    this->visPurchaseTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Start"));
-    this->visPurchaseTable->setHorizontalHeaderItem(2, new QTableWidgetItem("End"));
-    this->visPurchaseTable->setHorizontalHeaderItem(3, new QTableWidgetItem("Time"));
-    this->visPurchaseTable->setHorizontalHeaderItem(4, new QTableWidgetItem("Type"));
-    this->visPurchaseTable->setHorizontalHeaderItem(5, new QTableWidgetItem("Price"));
-    this->visPurchaseTable->setHorizontalHeaderItem(6, new QTableWidgetItem("Rate"));
+    this->visPurchaseTable->setHorizontalHeaderItem(0, new QTableWidgetItem("航班号"));
+    this->visPurchaseTable->setHorizontalHeaderItem(1, new QTableWidgetItem("起点"));
+    this->visPurchaseTable->setHorizontalHeaderItem(2, new QTableWidgetItem("终点"));
+    this->visPurchaseTable->setHorizontalHeaderItem(3, new QTableWidgetItem("起飞时间"));
+    this->visPurchaseTable->setHorizontalHeaderItem(4, new QTableWidgetItem("座位类型"));
+    this->visPurchaseTable->setHorizontalHeaderItem(5, new QTableWidgetItem("座位均价"));
+    this->visPurchaseTable->setHorizontalHeaderItem(6, new QTableWidgetItem("满座率"));
     this->visPurchaseTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     this->visPurchaseBottomLayout->addWidget(this->visPurchaseTable);
 
@@ -444,8 +435,6 @@ MainWindow *MainWindow::createVisPurchaseWindow(void) {
     this->visPurchaseMainLayout->addStretch();
     this->visPurchaseMainLayout->addStretch();
     this->visPurchaseWindow->setLayout(this->visPurchaseMainLayout);
-
-    return this;
 }
 
 void MainWindow::visRenderPurchaseTable(void) {
@@ -513,26 +502,27 @@ void MainWindow::onVisPurchaseBookButton(void) {
     QString type = this->visPurchaseTypeEdit->currentText();
 
     if (no == "" || !this->visitor->addTicket(no, type)) {
-        showMsgBox(":/at/assets/warning.png", "Sorry",
-            "All tickets sold out!");
+        showMsgBox(":/at/assets/warning.png", "抱歉",
+            "已无余票!");
         return ;
     } else {
-        showMsgBox(":/at/assets/right.png", "Success",
-            "Book ticket success!");
+        showMsgBox(":/at/assets/right.png", "成功",
+            "订票成功!");
     }
 
     this->visRenderPurchaseTable();
     this->visRenderFetchTable();
     this->visRenderCancelTable();
+    this->visRenderBillingTable();
 }
 
-MainWindow *MainWindow::createVisFetchWindow(void) {
+void MainWindow::createVisFetchWindow(void) {
     this->visFetchWindow = new QWidget();
 
     this->visFetchNoEdit = new QLineEdit(this->visFetchWindow);
-    this->visFetchNoLabel = new QLabel(QWidget::tr("&No"), this->visFetchWindow);
+    this->visFetchNoLabel = new QLabel(QWidget::tr("&机票号"), this->visFetchWindow);
     this->visFetchNoLabel->setBuddy(this->visFetchNoEdit);
-    this->visFetchButton = new QPushButton(QWidget::tr("Fetch"), this->visFetchWindow);
+    this->visFetchButton = new QPushButton(QWidget::tr("取票"), this->visFetchWindow);
     connect(this->visFetchButton, SIGNAL(released()), this, SLOT(onVisFetchButton()));
     this->visFetchTopLayout = new QHBoxLayout();
     this->visFetchTopLayout->addStretch();
@@ -543,14 +533,14 @@ MainWindow *MainWindow::createVisFetchWindow(void) {
 
     this->visFetchBottomLayout = new QHBoxLayout();
     this->visFetchTable = new QTableWidget(0, 2);
-    this->visFetchTable->setWindowTitle("Ring");
+    this->visFetchTable->setWindowTitle("取票提醒");
     this->visFetchTable->resize(this->visFetchTable->maximumWidth(), this->visFetchTable->maximumHeight());
     this->visFetchTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
     this->visFetchTable->setAlternatingRowColors(true);
     this->visFetchTable->setStyleSheet("alternate-background-color: #aaa;");
     this->visFetchTable->resizeRowsToContents();
-    this->visFetchTable->setHorizontalHeaderItem(0, new QTableWidgetItem("No"));
-    this->visFetchTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Time"));
+    this->visFetchTable->setHorizontalHeaderItem(0, new QTableWidgetItem("机票号"));
+    this->visFetchTable->setHorizontalHeaderItem(1, new QTableWidgetItem("取票截止时间"));
     this->visFetchTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     this->visRenderFetchTable();
     this->visFetchBottomLayout->addWidget(this->visFetchTable);
@@ -563,9 +553,6 @@ MainWindow *MainWindow::createVisFetchWindow(void) {
     this->visFetchMainLayout->addStretch();
     this->visFetchMainLayout->addStretch();
     this->visFetchWindow->setLayout(this->visFetchMainLayout);
-
-
-    return this;
 }
 
 void MainWindow::visRenderFetchTable(void) {
@@ -597,8 +584,8 @@ void MainWindow::onVisFetchButton(void) {
     QString tno = this->visFetchNoEdit->text();
 
     if (tno == "" || !this->visitor->fetchTicket(tno)) {
-        showMsgBox(":/at/assets/warning.png", "Error",
-            "Fetch Ticket Failure!");
+        showMsgBox(":/at/assets/warning.png", "错误",
+            "取票失败!");
         return ;
     }
 
@@ -607,14 +594,13 @@ void MainWindow::onVisFetchButton(void) {
     this->visRenderCancelTable();
 }
 
-
-MainWindow *MainWindow::createVisCancelWindow(void) {
+void MainWindow::createVisCancelWindow(void) {
     this->visCancelWindow = new QWidget();
 
     this->visCancelNoEdit = new QLineEdit(this->visCancelWindow);
-    this->visCancelNoLabel = new QLabel(QWidget::tr("&Tno"), this->visCancelWindow);
+    this->visCancelNoLabel = new QLabel(QWidget::tr("&机票号"), this->visCancelWindow);
     this->visCancelNoLabel->setBuddy(this->visCancelNoEdit);
-    this->visCancelButton = new QPushButton(QWidget::tr("Cancel"), this->visCancelWindow);
+    this->visCancelButton = new QPushButton(QWidget::tr("退票"), this->visCancelWindow);
     connect(this->visCancelButton, SIGNAL(released()), this, SLOT(onVisCancelButton()));
     this->visCancelTopLayout = new QHBoxLayout();
     this->visCancelTopLayout->addStretch();
@@ -625,20 +611,20 @@ MainWindow *MainWindow::createVisCancelWindow(void) {
 
     this->visCancelBottomLayout = new QHBoxLayout();
     this->visCancelTable = new QTableWidget(0, 8);
-    this->visCancelTable->setWindowTitle("Ticket");
+    this->visCancelTable->setWindowTitle("机票信息");
     this->visCancelTable->resize(this->visCancelTable->maximumWidth(), this->visCancelTable->maximumHeight());
     this->visCancelTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
     this->visCancelTable->setAlternatingRowColors(true);
     this->visCancelTable->setStyleSheet("alternate-background-color: #aaa;");
     this->visCancelTable->resizeRowsToContents();
-    this->visCancelTable->setHorizontalHeaderItem(0, new QTableWidgetItem("Tno"));
-    this->visCancelTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Fno"));
-    this->visCancelTable->setHorizontalHeaderItem(2, new QTableWidgetItem("Sno"));
-    this->visCancelTable->setHorizontalHeaderItem(3, new QTableWidgetItem("Start"));
-    this->visCancelTable->setHorizontalHeaderItem(4, new QTableWidgetItem("End"));
-    this->visCancelTable->setHorizontalHeaderItem(5, new QTableWidgetItem("Time"));
-    this->visCancelTable->setHorizontalHeaderItem(6, new QTableWidgetItem("Type"));
-    this->visCancelTable->setHorizontalHeaderItem(7, new QTableWidgetItem("Price"));
+    this->visCancelTable->setHorizontalHeaderItem(0, new QTableWidgetItem("机票号"));
+    this->visCancelTable->setHorizontalHeaderItem(1, new QTableWidgetItem("航班号"));
+    this->visCancelTable->setHorizontalHeaderItem(2, new QTableWidgetItem("座位号"));
+    this->visCancelTable->setHorizontalHeaderItem(3, new QTableWidgetItem("起点"));
+    this->visCancelTable->setHorizontalHeaderItem(4, new QTableWidgetItem("终点"));
+    this->visCancelTable->setHorizontalHeaderItem(5, new QTableWidgetItem("起飞时间"));
+    this->visCancelTable->setHorizontalHeaderItem(6, new QTableWidgetItem("座位类型"));
+    this->visCancelTable->setHorizontalHeaderItem(7, new QTableWidgetItem("座位价格"));
     this->visCancelTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     this->visRenderCancelTable();
     this->visCancelBottomLayout->addWidget(this->visCancelTable);
@@ -651,9 +637,6 @@ MainWindow *MainWindow::createVisCancelWindow(void) {
     this->visCancelMainLayout->addStretch();
     this->visCancelMainLayout->addStretch();
     this->visCancelWindow->setLayout(this->visCancelMainLayout);
-
-
-    return this;
 }
 
 void MainWindow::visRenderCancelTable(void) {
@@ -702,18 +685,18 @@ void MainWindow::onVisCancelButton(void) {
     QString tno = this->visCancelNoEdit->text();
 
     if (tno == "" || !this->visitor->cancelTicket(tno)) {
-        showMsgBox(":/at/assets/warning.png", "Error",
-            "Cancel Ticket Failure!");
+        showMsgBox(":/at/assets/warning.png", "错误",
+            "退票失败!");
         return ;
     }
 
     this->visRenderPurchaseTable();
     this->visRenderFetchTable();
     this->visRenderCancelTable();
+    this->visRenderBillingTable();
 }
 
-
-MainWindow *MainWindow::createVisBillingWindow(void) {
+void MainWindow::createVisBillingWindow(void) {
     this->visBillingWindow = new QWidget();
 
     this->visBillingTopLayout = new QHBoxLayout();
@@ -721,17 +704,17 @@ MainWindow *MainWindow::createVisBillingWindow(void) {
 
     this->visBillingBottomLayout = new QHBoxLayout();
     this->visBillingTable = new QTableWidget(0, 5);
-    this->visBillingTable->setWindowTitle("Billing");
+    this->visBillingTable->setWindowTitle("账单");
     this->visBillingTable->resize(this->visBillingTable->maximumWidth(), this->visBillingTable->maximumHeight());
     this->visBillingTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
     this->visBillingTable->setAlternatingRowColors(true);
     this->visBillingTable->setStyleSheet("alternate-background-color: #aaa;");
     this->visBillingTable->resizeRowsToContents();
-    this->visBillingTable->setHorizontalHeaderItem(0, new QTableWidgetItem("Bno"));
-    this->visBillingTable->setHorizontalHeaderItem(1, new QTableWidgetItem("Btype"));
-    this->visBillingTable->setHorizontalHeaderItem(2, new QTableWidgetItem("Tno"));
-    this->visBillingTable->setHorizontalHeaderItem(3, new QTableWidgetItem("Price"));
-    this->visBillingTable->setHorizontalHeaderItem(4, new QTableWidgetItem("Time"));
+    this->visBillingTable->setHorizontalHeaderItem(0, new QTableWidgetItem("账单号"));
+    this->visBillingTable->setHorizontalHeaderItem(1, new QTableWidgetItem("账单类型"));
+    this->visBillingTable->setHorizontalHeaderItem(2, new QTableWidgetItem("机票号"));
+    this->visBillingTable->setHorizontalHeaderItem(3, new QTableWidgetItem("价格"));
+    this->visBillingTable->setHorizontalHeaderItem(4, new QTableWidgetItem("账单时间"));
     this->visBillingTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     this->visRenderBillingTable();
     this->visBillingBottomLayout->addWidget(this->visBillingTable);
@@ -744,8 +727,6 @@ MainWindow *MainWindow::createVisBillingWindow(void) {
     this->visBillingMainLayout->addStretch();
     this->visBillingMainLayout->addStretch();
     this->visBillingWindow->setLayout(this->visBillingMainLayout);
-
-    return this;
 }
 
 void MainWindow::visRenderBillingTable(void) {
@@ -759,7 +740,7 @@ void MainWindow::visRenderBillingTable(void) {
     query.prepare("SELECT [Bno], [Btype], [Bill].[Tno], [Sprice], [Btime]"
                   "FROM [Seat], [Ticket], [Bill]"
                   "WHERE [Bill].[Tno] = [Ticket].[Tno] AND [Ticket].[Fno] = [Seat].[Fno]"
-                  "AND [Ticket].[Sno] = [Seat].[Sno] AND [Vid] = :vid;");
+                  "AND [Ticket].[Sno] = [Seat].[Sno] AND [Vid] = :vid ORDER BY [Btime];");
     query.bindValue(":vid", this->visitor->id);
     if (!query.exec()) {
         return ;
@@ -783,11 +764,6 @@ void MainWindow::visRenderBillingTable(void) {
     }
 }
 
-MainWindow *MainWindow::createVisQueryWindow(void) {
-    this->visQueryWindow = new QWidget();
-    return this;
-}
-
 void MainWindow::onLoginAdminButton(void) {
     QString name = this->loginNameEdit->text();
     QString pwd = this->loginPasswordEdit->text();
@@ -795,14 +771,14 @@ void MainWindow::onLoginAdminButton(void) {
     QRegExpValidator pwdRegExp(QRegExp("123456798"));
 
     if (name == "" || !nameRegExp.regExp().exactMatch(name)) {
-        showMsgBox(":/at/assets/warning.png", "Error",
-            "Error Name : must be 'admin'!");
+        showMsgBox(":/at/assets/warning.png", "错误",
+            "登录名或密码错误!");
         return ;
     }
 
     if (pwd == "" || !pwdRegExp.regExp().exactMatch(pwd)) {
-        showMsgBox(":/at/assets/warning.png", "Error",
-            "Unmatched Password!");
+        showMsgBox(":/at/assets/warning.png", "错误",
+            "登录名或密码错误!");
         return ;
     }
 
@@ -814,55 +790,48 @@ void MainWindow::onLoginAdminButton(void) {
     this->visitor = new Visitor("233", name);
 
     if (this->visitor->state == Visitor::SUCCESS) {
-        showMsgBox(":/at/assets/right.png", "Success",
-            "Welcome to Air Ticket System");
+        showMsgBox(":/at/assets/right.png", "成功",
+            "欢迎来到机票管理系统");
         this->createAdminView();
         this->setCentralWidget(this->adminTab);
     } else {
-        showMsgBox(":/at/assets/warning.png", "Error",
-            "Error: database connenction failure!");
+        showMsgBox(":/at/assets/warning.png", "错误",
+            "数据库连接失败!");
     }
 }
 
 void MainWindow::onLoginVisitorButton(void) {
-    // @TODO
     QString id = this->loginIDEdit->text();
     QString name = this->loginNameEdit->text();
     QRegExpValidator idRegExp(QRegExp("[0-9]{14}[0-9X]{4}"));
     QRegExpValidator nameRegExp(QRegExp("[A-Za-z0-9_]{6,30}"));
 
-    // @TODO
-    // if (id == "" || !idRegExp.regExp().exactMatch(id)) {
-    //     showMsgBox(":/at/assets/warning.png", "Error",
-    //         "Error ID Format: must be 18 digits (can including 'X' in last 4 digits)!");
-    //     return ;
-    // }
+    if (id == "" || !idRegExp.regExp().exactMatch(id)) {
+        showMsgBox(":/at/assets/warning.png", "错误",
+            "无效的身份证号!");
+            return ;
+    }
 
-    // @TODO
-    // if (name == "" || !nameRegExp.regExp().exactMatch(name)) {
-    //     showMsgBox(":/at/assets/warning.png", "Error",
-    //         "Error Name Format: must be only including alphabet, digital number and underline (6 ~ 30 characters)!");
-    //     return ;
-    // }
+    if (name == "" || !nameRegExp.regExp().exactMatch(name)) {
+        showMsgBox(":/at/assets/warning.png", "错误",
+            "无效(或过短)的用户名(只可含有字母)!");
+            return ;
+    }
 
     if (this->visitor != nullptr) {
         delete this->visitor;
         this->visitor = nullptr;
     }
 
-    // @TODO
-    // this->visitor = new Visitor(id, name);
-    this->visitor = new Visitor("270640199501012811", "sabertazimi");
+    this->visitor = new Visitor(id, name);
 
     if (this->visitor->state == Visitor::SUCCESS) {
-        showMsgBox(":/at/assets/right.png", "Success",
-            "Welcome to Air Ticket System");
+        showMsgBox(":/at/assets/right.png", "成功",
+            "欢饮来到机票管理系统!");
         this->createVisitorView();
         this->setCentralWidget(this->visitorTab);
     } else {
-        showMsgBox(":/at/assets/warning.png", "Error",
-            "Error: database connenction failure!");
+        showMsgBox(":/at/assets/warning.png", "错误",
+            "数据库连接失败!");
     }
 }
-
-
