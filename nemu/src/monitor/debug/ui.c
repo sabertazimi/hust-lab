@@ -100,18 +100,14 @@ static int cmd_help(char *args) {
 }
 
 static int cmd_si(char *args) {
-  int steps;
+  int steps = 0;
 
   if (NULL == args) {
     cpu_exec(1);
   } else {
     sscanf(args, "%d", &steps);
-
-    if (steps > 1) {
-      cpu_exec(steps);
-    } else {
-      cpu_exec(1);
-    }
+    steps = (steps > 1) ? steps : 1;
+    cpu_exec(steps);
   }
 
   return 0;
@@ -136,6 +132,36 @@ static int cmd_p(char *args) {
 }
 
 static int cmd_x(char *args) {
+  if (NULL == args) {
+    printf("Missing required parameters\n");
+    return 0;
+  }
+
+  int len = 0;
+  int addr = 0;
+  char *lenStr = strtok(args, " ");
+  char *addrStr = strtok(NULL, " ");
+
+  if (NULL == lenStr || NULL == addrStr) {
+    printf("Missing required parameters\n");
+    return 0;
+  }
+
+  sscanf(lenStr, "%d", &len);
+  addr = strtol(addrStr, NULL, 16);
+
+  len = (len > 1) ? len : 1;
+  addr = (addr > 0) ? addr : 0;
+
+  for (int i = 0; i < len * 4; ++i) {
+    uint32_t num = vaddr_read(addr + i, 1);
+    printf("%d\t", num);
+
+    if (0 == i % 4) {
+      printf("\n");
+    }
+  }
+
   return 0;
 }
 
