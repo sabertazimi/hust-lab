@@ -162,8 +162,6 @@ static int cmd_x(char *args) {
     }
   }
 
-  printf("\n");
-
   return 0;
 }
 
