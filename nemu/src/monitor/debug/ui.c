@@ -50,17 +50,17 @@ static struct {
   char *description;
   int (*handler) (char *);
 } cmd_table [] = {
-  { "help", "Display informations about all supported commands", cmd_help },
-  { "c", "Continue the execution of the program", cmd_c },
-  { "q", "Exit NEMU", cmd_q },
+  { "help    ", "Display informations about all supported commands", cmd_help },
+  { "c       ", "Continue the execution of the program", cmd_c },
+  { "q       ", "Exit NEMU", cmd_q },
 
   /* TODO: Add more commands */
-  { "si [N]", "Step N instructions exactly", cmd_si },
+  { "si [N]  ", "Step N instructions exactly", cmd_si },
   { "info r/w", "List of regsiters or watchpoints", cmd_info },
-  { "p EXPR", "Print value of expression EXPR", cmd_p },
+  { "p EXPR  ", "Print value of expression EXPR", cmd_p },
   { "x N EXPR", "Examine memory: x/FMT ADDRESS(EXPR)", cmd_x },
-  { "w EXPR", "Set a watchpoint for an expression", cmd_w },
-  { "d N", "Delete some breakpoints or auto-display expressions", cmd_d }
+  { "w EXPR  ", "Set a watchpoint for an expression", cmd_w },
+  { "d N     ", "Delete some breakpoints or auto-display expressions", cmd_d }
 };
 
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
