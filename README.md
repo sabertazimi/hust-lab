@@ -35,7 +35,7 @@ sudo apt-get install libreadline-dev    # a library to use compile the project l
 sudo apt-get install libsdl2-dev        # a library to use compile the project later
 sudo apt-get install qemu-system-x86    # QEMU
 sudo apt-get install vim zsh curl
-sudo apt-get install bsdmainutils
+sudo apt-get install bsdmainutils       # fix hexdump not found error
 ```
 
 ### zsh vim
