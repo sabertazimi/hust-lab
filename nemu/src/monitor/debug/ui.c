@@ -37,13 +37,24 @@ static int cmd_q(char *args) {
 }
 
 static int cmd_help(char *args);
-
 static int cmd_si(char *args);
 static int cmd_info(char *args);
 static int cmd_p(char *args);
 static int cmd_x(char *args);
 static int cmd_w(char *args);
 static int cmd_d(char *args);
+
+static void print_registers(void) {
+  printf("eax\t\t0x%08x\t%d\n", cpu.eax, cpu.eax);
+  printf("eax\t\t0x%08x\t%d\n", cpu.ecx, cpu.ecx);
+  printf("eax\t\t0x%08x\t%d\n", cpu.edx, cpu.edx);
+  printf("eax\t\t0x%08x\t%d\n", cpu.ebx, cpu.ebx);
+  printf("eax\t\t0x%08x\t%d\n", cpu.esp, cpu.esp);
+  printf("eax\t\t0x%08x\t%d\n", cpu.ebp, cpu.ebp);
+  printf("eax\t\t0x%08x\t%d\n", cpu.esi, cpu.esi);
+  printf("eax\t\t0x%08x\t%d\n", cpu.edi, cpu.edi);
+  printf("eax\t\t0x%08x\t%d\n", cpu.eip, cpu.eip);
+}
 
 static struct {
   char *name;
@@ -107,6 +118,16 @@ static int cmd_si(char *args) {
 }
 
 static int cmd_info(char *args) {
+  if (NULL == args) {
+    printf("Missing required parameters\n");
+  } else if (0 == strcmp(args, "r")) {
+    print_registers();
+  } else if (0 == strcmp(args, "w")) {
+    /* TODO */
+  } else {
+    printf("Unkown command '%s'\n", args);
+  }
+
   return 0;
 }
 
