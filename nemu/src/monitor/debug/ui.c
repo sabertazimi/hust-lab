@@ -38,6 +38,13 @@ static int cmd_q(char *args) {
 
 static int cmd_help(char *args);
 
+static int cmd_si(char *args);
+static int cmd_info(char *args);
+static int cmd_p(char *args);
+static int cmd_x(char *args);
+static int cmd_w(char *args);
+static int cmd_d(char *args);
+
 static struct {
   char *name;
   char *description;
@@ -48,7 +55,12 @@ static struct {
   { "q", "Exit NEMU", cmd_q },
 
   /* TODO: Add more commands */
-
+  { "si [N]", "Step N instructions exactly", cmd_si },
+  { "info r/w", "List of regsiters or watchpoints", cmd_info },
+  { "p EXPR", "Print value of expression EXPR", cmd_p },
+  { "x N EXPR", "Examine memory: x/FMT ADDRESS(EXPR)", cmd_x },
+  { "w EXPR", "Set a watchpoint for an expression", cmd_w },
+  { "d N", "Delete some breakpoints or auto-display expressions", cmd_d }
 };
 
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
@@ -73,6 +85,30 @@ static int cmd_help(char *args) {
     }
     printf("Unknown command '%s'\n", arg);
   }
+  return 0;
+}
+
+static int cmd_si(char *args) {
+  return 0;
+}
+
+static int cmd_info(char *args) {
+  return 0;
+}
+
+static int cmd_p(char *args) {
+  return 0;
+}
+
+static int cmd_x(char *args) {
+  return 0;
+}
+
+static int cmd_w(char *args) {
+  return 0;
+}
+
+static int cmd_d(char *args) {
   return 0;
 }
 
