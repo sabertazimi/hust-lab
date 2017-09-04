@@ -89,6 +89,20 @@ static int cmd_help(char *args) {
 }
 
 static int cmd_si(char *args) {
+  int steps;
+
+  if (NULL == args) {
+    cpu_exec(1);
+  } else {
+    sscanf(args, "%d", &steps);
+
+    if (steps > 1) {
+      cpu_exec(steps);
+    } else {
+      cpu_exec(1);
+    }
+  }
+
   return 0;
 }
 
