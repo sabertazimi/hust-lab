@@ -157,7 +157,7 @@ static int cmd_x(char *args) {
     uint32_t num = vaddr_read(addr + i, 1);
     printf("%d\t", num);
 
-    if (0 == i % 4) {
+    if (3 == i % 4) {
       printf("\n");
     }
   }
