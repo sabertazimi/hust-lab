@@ -239,8 +239,6 @@ static int eval(int p, int q, bool *success) {
     int val1 = eval(p, op - 1, success);
     int val2 = eval(op + 1, q, success);
 
-    Log("val1 = %d, val2 = %d", val1, val2);
-
     switch (tokens[op].type) {
       case '+':
         return val1 + val2;
