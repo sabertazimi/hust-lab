@@ -37,7 +37,7 @@ static struct rule {
   {"==", TK_EQ},        // equal
   {"!=", TK_NEQ},       // not equal
   {"&&", TK_AND},       // logical and
-  {"||", TK_OR},        // logical or
+  {"\\|\\|", TK_OR},    // logical or
   {"\\(", '('},         // left parenthesis
   {"\\)", ')'},         // right parenthesis
   {",", ','},           // comma
@@ -289,8 +289,6 @@ static int eval(int p, int q, bool *success) {
     int val1 = eval(p, op - 1, success);
     int val2 = eval(op + 1, q, success);
 
-    Log("val1 = %d, val2 = %d", val1, val2);
-
     switch (tokens[op].type) {
       case TK_EQ:
         return val1 == val2;
@@ -307,13 +305,7 @@ static int eval(int p, int q, bool *success) {
       case '*':
         return val1 * val2;
       case '/':
-        if (val2 == 0) {
-          return 0;
-        } else {
-          Log("divide start");
-          return val1 / val2;
-          Log("divide end");
-        }
+        return (val2 == 0) ? 0 : (val1 / val2);
       default:
         return 0;
     }
