@@ -1,6 +1,4 @@
 #include "nemu.h"
-#include "monitor/expr.h"
-#include "monitor/watchpoint.h"
 #include "monitor/monitor.h"
 
 /* The assembly code of instructions executed is only output to the screen
@@ -9,6 +7,8 @@
  * You can modify this value as you want.
  */
 #define MAX_INSTR_TO_PRINT 10
+
+extern bool check_watchpoints(void);
 
 int nemu_state = NEMU_STOP;
 
@@ -31,25 +31,9 @@ void cpu_exec(uint64_t n) {
 
 #ifdef DEBUG
     /* TODO: check watchpoints here. */
-    bool isChanged = false;
-
-    for (WP *trav = get_watchpoints(); trav != NULL; trav = trav->next) {
-      bool success = true;
-      int newval = expr(trav->exprStr, &success);
-
-      // checking watchpoint
-      if (newval != trav->oldval) {
-        Info("Watchpoint No.%d: %s", trav->NO, trav->exprStr);
-        Info("Old value = %d (0x%x)", trav->oldval, trav->oldval);
-        Info("New value = %d (0x%x)\n", newval, newval);
-
-        trav->oldval = newval;
-        isChanged = true;
-      }
-    }
 
     // stop nemu
-    if (isChanged == true) {
+    if (check_watchpoints() == true) {
       nemu_state = NEMU_STOP;
       Warn("Nemu stoped");
     }

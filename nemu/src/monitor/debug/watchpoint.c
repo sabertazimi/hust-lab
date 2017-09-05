@@ -78,10 +78,6 @@ bool free_wp(int NO) {
   return false;
 }
 
-WP *get_watchpoints(void) {
-  return head;
-}
-
 void print_watchpoints(void) {
   if (head == NULL) {
     Info("No watchpoints");
@@ -94,3 +90,25 @@ void print_watchpoints(void) {
       Info("%d\t%s", trav->NO, trav->exprStr);
   }
 }
+
+bool check_watchpoints(void) {
+  bool is_changed = false;
+
+  for (WP *trav = head; trav != NULL; trav = trav->next) {
+    bool success = true;
+    int newval = expr(trav->exprStr, &success);
+
+    // checking watchpoint
+    if (newval != trav->oldval) {
+      Info("Watchpoint No.%d: %s", trav->NO, trav->exprStr);
+      Info("Old value = %d (0x%x)", trav->oldval, trav->oldval);
+      Info("New value = %d (0x%x)\n", newval, newval);
+
+      trav->oldval = newval;
+      is_changed = true;
+    }
+  }
+
+  return is_changed;
+}
+
