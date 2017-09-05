@@ -40,7 +40,7 @@ void cpu_exec(uint64_t n) {
         Info("Watchpoint No.%d: %s", trav->NO, trav->exprStr);
         Info("Old value = %d", trav->oldval);
         Info("New value = %d", newval);
-        Info("%s at %s:%d", __func__, __FILE__, __LINE__);
+        Info("%s () at %s:%d", __func__, __FILE__, __LINE__);
         trav->oldval = newval;
       }
     }
