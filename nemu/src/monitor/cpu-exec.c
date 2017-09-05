@@ -1,4 +1,6 @@
 #include "nemu.h"
+#include "monitor/expr.h"
+#include "monitor/watchpoint.h"
 #include "monitor/monitor.h"
 
 /* The assembly code of instructions executed is only output to the screen
@@ -29,7 +31,11 @@ void cpu_exec(uint64_t n) {
 
 #ifdef DEBUG
     /* TODO: check watchpoints here. */
-
+    for (WP *trav = get_watchpoints(); trav != NULL; trav = trav->next) {
+      bool success = true;
+      int newval = expr(trav->exprStr, &success);
+      printf("%d", newval);
+    }
 #endif
 
 #ifdef HAS_IOE

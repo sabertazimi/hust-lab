@@ -81,6 +81,10 @@ bool free_wp(int NO) {
   return false;
 }
 
+WP *get_watchpoints(void) {
+  return head;
+}
+
 void print_watchpoints(void) {
   if (head == NULL) {
     Info("No watchpoints");

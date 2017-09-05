@@ -201,7 +201,7 @@ static int cmd_w(char *args) {
   WP *wp = new_wp(args);
 
   if (wp == NULL) {
-    Warn("No more space for a new watchpoint");
+    Warn("No more space or bad expression");
   } else {
     Info("Watchpoint No.%d: %s", wp->NO, wp->exprStr);
   }
