@@ -137,10 +137,11 @@ static int cmd_x(char *args) {
     return 0;
   }
 
-  int len = 0;
-  int addr = 0;
+  uint32_t len = 0;
+  uint32_t addr = 0;
   char *lenStr = strtok(args, " ");
   char *addrStr = strtok(NULL, " ");
+  bool success;
 
   if (NULL == lenStr || NULL == addrStr) {
     printf("Missing required parameters\n");
@@ -148,10 +149,12 @@ static int cmd_x(char *args) {
   }
 
   sscanf(lenStr, "%d", &len);
-  addr = strtol(addrStr, NULL, 16);
+  addr = expr(addrStr, &success);
 
-  len = (len > 1) ? len : 1;
-  addr = (addr > 0) ? addr : 0;
+  if (success == false) {
+    printf("Bad expression\n");
+    return 0;
+  }
 
   for (int i = 0; i < len * 4; ++i) {
     if (0 == i % 4) {

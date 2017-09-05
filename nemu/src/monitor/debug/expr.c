@@ -45,6 +45,9 @@ static struct rule {
 
 static regex_t re[NR_REGEX];
 
+static bool check_parenthesis(int p, int q);
+static int eval(int p, int q, bool *success);
+
 /* Rules are used for many times.
  * Therefore we compile them only once before any usage.
  */
@@ -160,16 +163,14 @@ uint32_t expr(char *e, bool *success) {
 
   /* TODO: Insert codes to evaluate the expression. */
 
-  TODO();
-
-  return 0;
+  return eval(0, nr_token - 1, success);
 }
 
-bool check_parenthesis(int p, int q) {
+static bool check_parenthesis(int p, int q) {
   return false;
 }
 
-int eval(int p, int q, bool *success) {
+static int eval(int p, int q, bool *success) {
   if (*success == false) {
     return 0;
   }
