@@ -160,7 +160,7 @@ static bool make_token(char *e) {
     }
 
     if (i == NR_REGEX) {
-      printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
+      Warn("no match at position %d\n%s\n%*.s^", position, e, position, "");
       return false;
     }
   }
@@ -249,7 +249,7 @@ static int get_regval(char *reg_name, bool *success) {
     regval = cpu.eip;
   } else {
     *success = false;
-    printf("Unknown register\n");
+    Warn("Unknown register");
   }
 
   return regval;
@@ -281,7 +281,7 @@ static int eval(int p, int q, bool *success) {
   } else {
     // bad parenthesis
     if (*success == false) {
-      printf("Bad expression\n");
+      Warn("Unmatching parenthesis");
       return 0;
     }
 
@@ -290,7 +290,7 @@ static int eval(int p, int q, bool *success) {
     // bad dominant position
     if (op == -1) {
       *success = false;
-      printf("Bad expression\n");
+      Warn("Error dominant position");
       return 0;
     }
 
@@ -316,7 +316,7 @@ static int eval(int p, int q, bool *success) {
       case '/':
         if (val2 == 0) {
           *success = false;
-          printf("Divisor can't be 0");
+          Warn("Divisor can't be 0");
         } else {
           return val1 / val2;
         }
