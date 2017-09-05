@@ -47,7 +47,7 @@ static struct rule {
 
 static regex_t re[NR_REGEX];
 
-static bool check_parenthesis(int p, int q);
+static bool check_parenthesis(int p, int q, bool *success);
 static int eval(int p, int q, bool *success);
 
 /* Rules are used for many times.
@@ -100,48 +100,19 @@ static bool make_token(char *e) {
 
         switch (rules[i].token_type) {
           case '+':
-            tokens[nr_token].type = '+';
-            ++nr_token;
-            break;
           case '-':
-            tokens[nr_token].type = '-';
-            ++nr_token;
-            break;
           case '*':
-            tokens[nr_token].type = '*';
-            ++nr_token;
-            break;
           case '/':
-            tokens[nr_token].type = '/';
-            ++nr_token;
-            break;
           case TK_EQ:
-            tokens[nr_token].type = TK_EQ;
-            ++nr_token;
-            break;
           case TK_NEQ:
-            tokens[nr_token].type = TK_NEQ;
-            ++nr_token;
-            break;
           case TK_LPAREN:
-            tokens[nr_token].type = TK_LPAREN;
-            ++nr_token;
-            break;
           case TK_RPAREN:
-            tokens[nr_token].type = TK_RPAREN;
-            ++nr_token;
-            break;
           case TK_COMMA:
-            tokens[nr_token].type = TK_COMMA;
-            ++nr_token;
+            tokens[nr_token].type = rules[i].token_type;
             break;
           case TK_HEX:
-            tokens[nr_token].type = TK_HEX;
-            strncpy(tokens[nr_token].str, substr_start, substr_len);
-            ++nr_token;
-            break;
           case TK_DEC:
-            tokens[nr_token].type = TK_DEC;
+            tokens[nr_token].type = rules[i].token_type;
             strncpy(tokens[nr_token].str, substr_start, substr_len);
             ++nr_token;
             break;
@@ -173,8 +144,32 @@ uint32_t expr(char *e, bool *success) {
   return eval(0, nr_token - 1, success);
 }
 
-static bool check_parenthesis(int p, int q) {
-  return false;
+static bool check_parenthesis(int p, int q, bool *success) {
+  bool ret = true;
+
+  if (tokens[p].type != '(' || tokens[q].type != ')') {
+    ret = false;
+  }
+
+  int stk[nr_token];
+  int stk_top = 0;
+
+  for (int i = 0; i <= q; ++i) {
+    if (tokens[i].type == ')' && stk_top && stk[stk_top - 1] == '(') {
+      --stk_top;
+      stk[stk_top] = 0;
+    } else {
+      stk[stk_top] = tokens[i].type;
+      ++stk_top;
+    }
+  }
+
+  if (stk_top != 0) {
+    *success = false;
+    ret = false;
+  }
+
+  return ret;
 }
 
 static int eval(int p, int q, bool *success) {
@@ -195,9 +190,16 @@ static int eval(int p, int q, bool *success) {
         *success = false;
         return 0;
     }
-  } else if (check_parenthesis(p, q) == true) {
+  } else if (check_parenthesis(p, q, success) == true) {
+    Log("Good Parenthesis");
     return eval(p + 1, q - 1, success);
   } else {
+    // bad parenthesis
+    if (*success == false) {
+      Log("Bad parenthesis");
+      return 0;
+    }
+
     return 0;
   }
 }
