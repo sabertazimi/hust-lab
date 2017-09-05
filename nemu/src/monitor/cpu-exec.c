@@ -35,6 +35,7 @@ void cpu_exec(uint64_t n) {
     // stop nemu
     if (check_watchpoints() == true) {
       nemu_state = NEMU_STOP;
+      Log("Stop");
       Warn("Nemu stoped");
     }
 #endif
