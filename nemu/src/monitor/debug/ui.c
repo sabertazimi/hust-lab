@@ -141,7 +141,7 @@ static int cmd_x(char *args) {
   uint32_t addr = 0;
   char *lenStr = strtok(args, " ");
   char *addrStr = strtok(NULL, " ");
-  bool success;
+  bool success = true;
 
   if (NULL == lenStr || NULL == addrStr) {
     printf("Missing required parameters\n");
@@ -152,7 +152,7 @@ static int cmd_x(char *args) {
   addr = expr(addrStr, &success);
 
   if (success == false) {
-    Log("Bad expression\n");
+    printf("Bad expression\n");
     return 0;
   }
 
