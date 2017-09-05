@@ -281,6 +281,7 @@ static int eval(int p, int q, bool *success) {
   } else {
     // bad parenthesis
     if (*success == false) {
+      Log("check_parenthesis false");
       printf("Bad expression\n");
       return 0;
     }
