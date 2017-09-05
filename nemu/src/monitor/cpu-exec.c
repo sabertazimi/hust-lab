@@ -10,12 +10,6 @@
  */
 #define MAX_INSTR_TO_PRINT 10
 
-// refer to "monitor/monitor.c"
-extern int is_batch_mode;
-
-// refer to "monitor/debug/ui.c"
-extern void ui_mainloop(int is_batch_mode);
-
 int nemu_state = NEMU_STOP;
 
 void exec_wrapper(bool);
@@ -58,7 +52,6 @@ void cpu_exec(uint64_t n) {
     if (isChanged == true) {
       nemu_state = NEMU_STOP;
       Warn("Nemu stoped");
-      ui_mainloop(is_batch_mode);
     }
 #endif
 
