@@ -370,6 +370,7 @@ static void do_operator_check(void) {
 uint32_t expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
+    Log("make token false");
     return 0;
   }
 
