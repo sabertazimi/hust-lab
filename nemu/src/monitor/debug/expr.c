@@ -281,7 +281,6 @@ static int eval(int p, int q, bool *success) {
   } else {
     // bad parenthesis
     if (*success == false) {
-      Log("check_parenthesis false");
       printf("Bad expression\n");
       return 0;
     }
@@ -291,7 +290,6 @@ static int eval(int p, int q, bool *success) {
     // bad dominant position
     if (op == -1) {
       *success = false;
-      Log("dominant false");
       printf("Bad expression\n");
       return 0;
     }
