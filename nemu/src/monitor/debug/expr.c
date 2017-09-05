@@ -155,7 +155,7 @@ static bool check_parenthesis(int p, int q, bool *success) {
     Log("check false");
   }
 
-  int stk[nr_token];
+  int stk[nr_token+2];
   int stk_top = 0;
 
   for (int i = 0; i <= q; ++i) {
@@ -170,6 +170,7 @@ static bool check_parenthesis(int p, int q, bool *success) {
 
   if (stk_top != 0) {
     *success = false;
+    Log("check success false");
     ret = false;
   }
 
