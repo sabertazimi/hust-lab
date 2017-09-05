@@ -32,7 +32,7 @@ void cpu_exec(uint64_t n) {
 #ifdef DEBUG
     /* TODO: check watchpoints here. */
 
-    // stop nemu
+    // stop nemu when running and encoutering a watchpoint
     if (nemu_state == NEMU_RUNNING && check_watchpoints() == true) {
       nemu_state = NEMU_STOP;
       Warn("Nemu stoped");
