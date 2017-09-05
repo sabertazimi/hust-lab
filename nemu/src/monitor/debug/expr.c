@@ -16,7 +16,8 @@ enum {
   TK_LPAREN,
   TK_RPAREN,
   TK_COMMA,
-  TK_DEC
+  TK_DEC,
+  TK_HEX
 };
 
 static struct rule {
@@ -38,7 +39,8 @@ static struct rule {
   {"\\(", TK_LPAREN},   // left parenthesis
   {"\\)", TK_RPAREN},   // right parenthesis
   {",", TK_COMMA},      // comma
-  {"[0-9]+", TK_DEC}          // integer
+  {"[0-9]+", TK_DEC},   // decimal integer
+  {"(0x|0X)[0-9a-fA-F]+", TK_HEX},   // hexdecimal integer
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -138,6 +140,11 @@ static bool make_token(char *e) {
             strncpy(tokens[nr_token].str, substr_start, substr_len);
             ++nr_token;
             break;
+          case TK_HEX:
+            tokens[nr_token].type = TK_HEX;
+            strncpy(tokens[nr_token].str, substr_start, substr_len);
+            ++nr_token;
+            break;
           default:
             break;
         }
@@ -182,6 +189,8 @@ static int eval(int p, int q, bool *success) {
     switch (tokens[p].type) {
       case TK_DEC:
         return strtol(tokens[p].str, NULL, 10);
+      case TK_HEX:
+        return strtol(tokens[p].str, NULL, 16);
       default:
         *success = false;
         return 0;
