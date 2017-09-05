@@ -45,15 +45,15 @@ static int cmd_w(char *args);
 static int cmd_d(char *args);
 
 static void print_registers(void) {
-  Warn("eax\t\t0x%08x\t%d\n", cpu.eax, cpu.eax);
-  printf("ecx\t\t0x%08x\t%d\n", cpu.ecx, cpu.ecx);
-  printf("edx\t\t0x%08x\t%d\n", cpu.edx, cpu.edx);
-  printf("ebx\t\t0x%08x\t%d\n", cpu.ebx, cpu.ebx);
-  printf("esp\t\t0x%08x\t%d\n", cpu.esp, cpu.esp);
-  printf("ebp\t\t0x%08x\t%d\n", cpu.ebp, cpu.ebp);
-  printf("esi\t\t0x%08x\t%d\n", cpu.esi, cpu.esi);
-  printf("edi\t\t0x%08x\t%d\n", cpu.edi, cpu.edi);
-  printf("eip\t\t0x%08x\t%d\n", cpu.eip, cpu.eip);
+  Info("eax\t\t0x%08x\t%d", cpu.eax, cpu.eax);
+  Info("ecx\t\t0x%08x\t%d", cpu.ecx, cpu.ecx);
+  Info("edx\t\t0x%08x\t%d", cpu.edx, cpu.edx);
+  Info("ebx\t\t0x%08x\t%d", cpu.ebx, cpu.ebx);
+  Info("esp\t\t0x%08x\t%d", cpu.esp, cpu.esp);
+  Info("ebp\t\t0x%08x\t%d", cpu.ebp, cpu.ebp);
+  Info("esi\t\t0x%08x\t%d", cpu.esi, cpu.esi);
+  Info("edi\t\t0x%08x\t%d", cpu.edi, cpu.edi);
+  Info("eip\t\t0x%08x\t%d", cpu.eip, cpu.eip);
 }
 
 static struct {
@@ -84,17 +84,17 @@ static int cmd_help(char *args) {
   if (arg == NULL) {
     /* no argument given */
     for (i = 0; i < NR_CMD; i ++) {
-      printf("%s - %s\n", cmd_table[i].name, cmd_table[i].description);
+      Info("%s - %s", cmd_table[i].name, cmd_table[i].description);
     }
   }
   else {
     for (i = 0; i < NR_CMD; i ++) {
       if (strcmp(arg, cmd_table[i].name) == 0) {
-        printf("%s - %s\n", cmd_table[i].name, cmd_table[i].description);
+        Info("%s - %s", cmd_table[i].name, cmd_table[i].description);
         return 0;
       }
     }
-    printf("Unknown command '%s'\n", arg);
+    Warn("Unknown command '%s'", arg);
   }
   return 0;
 }
@@ -115,13 +115,13 @@ static int cmd_si(char *args) {
 
 static int cmd_info(char *args) {
   if (args == NULL) {
-    printf("Missing required parameters\n");
+    Warn("Missing required parameters");
   } else if (strcmp(args, "r") == 0) {
     print_registers();
   } else if (strcmp(args, "w") == 0) {
     /* TODO */
   } else {
-    printf("Unkown command '%s'\n", args);
+    Warn("Unkown command '%s'", args);
   }
 
   return 0;
@@ -133,7 +133,7 @@ static int cmd_p(char *args) {
 
 static int cmd_x(char *args) {
   if (args == NULL) {
-    printf("Missing required parameters\n");
+    Warn("Missing required parameters");
     return 0;
   }
 
@@ -144,7 +144,7 @@ static int cmd_x(char *args) {
   bool success = true;
 
   if (lenStr == NULL || addrStr == NULL) {
-    printf("Missing required parameters\n");
+    Warn("Missing required parameters");
     return 0;
   }
 
@@ -152,7 +152,7 @@ static int cmd_x(char *args) {
   addr = expr(addrStr, &success);
 
   if (success == false) {
-    printf("Bad expression\n");
+    Warn("Bad expression");
     return 0;
   }
 
@@ -215,6 +215,6 @@ void ui_mainloop(int is_batch_mode) {
       }
     }
 
-    if (i == NR_CMD) { printf("Unknown command '%s'\n", cmd); }
+    if (i == NR_CMD) { Warn("Unknown command '%s'", cmd); }
   }
 }

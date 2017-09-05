@@ -26,6 +26,13 @@ extern FILE* log_fp;
         __FILE__, __LINE__, __func__, ## __VA_ARGS__); \
   } while (0)
 
+#define Info(format, ...) \
+  do { \
+    fprintf(stdout, "\33[1;33m" format "\33[0m\n", \
+        ## __VA_ARGS__); \
+    fflush(stdout); \
+  } while (0)
+
 #define Warn(format, ...) \
   do { \
     fprintf(stdout, "\33[1;31m" format "\33[0m\n", \
