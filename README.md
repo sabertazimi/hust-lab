@@ -81,3 +81,13 @@ git config --global http.postbuffer 524288000
 git config --global alias.cm "commit -v --allow-empty"
 git config --list
 ```
+
+## PA1
+
+### Expression
+
+```
+Token rule -> make_token ->
+eval -> check_parenthesis
+-> Token priority -> get_donimant__ops
+```
