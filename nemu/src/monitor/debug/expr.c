@@ -5,12 +5,18 @@
  */
 #include <sys/types.h>
 #include <regex.h>
+#include <stdlib.h>
 
 enum {
-  TK_NOTYPE = 256, TK_EQ
+  TK_NOTYPE = 256, TK_EQ,
 
   /* TODO: Add more token types */
 
+  TK_NEQ,
+  TK_LPAREN,
+  TK_RPAREN,
+  TK_COMMA,
+  TK_DEC
 };
 
 static struct rule {
@@ -24,7 +30,15 @@ static struct rule {
 
   {" +", TK_NOTYPE},    // spaces
   {"\\+", '+'},         // plus
-  {"==", TK_EQ}         // equal
+  {"-", '-'},           // substract
+  {"\\*", '*'},         // mutiple/reference
+  {"/", '/'},           // divide
+  {"==", TK_EQ},        // equal
+  {"!=", TK_NEQ},       // not equal
+  {"\\(", TK_LPAREN},   // left parenthesis
+  {"\\)", TK_RPAREN},   // right parenthesis
+  {",", TK_COMMA},      // comma
+  {"[0-9]+", TK_DEC}          // integer
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -80,7 +94,49 @@ static bool make_token(char *e) {
          */
 
         switch (rules[i].token_type) {
-          default: TODO();
+          case '+':
+            tokens[nr_token].type = '+';
+            ++nr_token;
+            break;
+          case '-':
+            tokens[nr_token].type = '-';
+            ++nr_token;
+            break;
+          case '*':
+            tokens[nr_token].type = '*';
+            ++nr_token;
+            break;
+          case '/':
+            tokens[nr_token].type = '/';
+            ++nr_token;
+            break;
+          case TK_EQ:
+            tokens[nr_token].type = TK_EQ;
+            ++nr_token;
+            break;
+          case TK_NEQ:
+            tokens[nr_token].type = TK_NEQ;
+            ++nr_token;
+            break;
+          case TK_LPAREN:
+            tokens[nr_token].type = TK_LPAREN;
+            ++nr_token;
+            break;
+          case TK_RPAREN:
+            tokens[nr_token].type = TK_RPAREN;
+            ++nr_token;
+            break;
+          case TK_COMMA:
+            tokens[nr_token].type = TK_COMMA;
+            ++nr_token;
+            break;
+          case TK_DEC:
+            tokens[nr_token].type = TK_DEC;
+            strncpy(tokens[nr_token].str, substr_start, substr_len);
+            ++nr_token;
+            break;
+          default:
+            break;
         }
 
         break;
@@ -103,7 +159,35 @@ uint32_t expr(char *e, bool *success) {
   }
 
   /* TODO: Insert codes to evaluate the expression. */
+
   TODO();
 
   return 0;
+}
+
+bool check_parenthesis(int p, int q) {
+  return false;
+}
+
+int eval(int p, int q, bool *success) {
+  if (*success == false) {
+    return 0;
+  }
+
+  if (p > q) {
+    *success = false;
+    return 0;
+  } else if (p == q) {
+    switch (tokens[p].type) {
+      case TK_DEC:
+        return strtol(tokens[p].str, NULL, 10);
+      default:
+        *success = false;
+        return 0;
+    }
+  } else if (check_parenthesis(p, q) == true) {
+    return eval(p + 1, q - 1, success);
+  } else {
+    return 0;
+  }
 }
