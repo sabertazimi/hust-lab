@@ -28,11 +28,9 @@ extern FILE* log_fp;
 
 #define Warn(format, ...) \
   do { \
-    fprintf(stdout, "\33[1;31m[%s,%d,%s] " format "\33[0m\n", \
+    fprintf(stdout, "\33[1;34m" format "\33[0m\n", \
         ## __VA_ARGS__); \
     fflush(stdout); \
-    Log_write("[%s,%d,%s] " format "\n", \
-        ## __VA_ARGS__); \
   } while (0)
 
 #define Assert(cond, ...) \

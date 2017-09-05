@@ -45,7 +45,7 @@ static int cmd_w(char *args);
 static int cmd_d(char *args);
 
 static void print_registers(void) {
-  printf("eax\t\t0x%08x\t%d\n", cpu.eax, cpu.eax);
+  Warn("eax\t\t0x%08x\t%d\n", cpu.eax, cpu.eax);
   printf("ecx\t\t0x%08x\t%d\n", cpu.ecx, cpu.ecx);
   printf("edx\t\t0x%08x\t%d\n", cpu.edx, cpu.edx);
   printf("ebx\t\t0x%08x\t%d\n", cpu.ebx, cpu.ebx);
