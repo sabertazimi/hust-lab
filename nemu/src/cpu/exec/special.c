@@ -39,8 +39,6 @@ make_EHelper(nemu_trap) {
       (cpu.eax == 0 ? "GOOD" : "BAD"), cpu.eip);
   nemu_state = NEMU_END;
 
-  Log("nemu_state == NEMU_END");
-
 #ifdef DIFF_TEST
   extern void diff_test_skip_qemu();
   diff_test_skip_qemu();
