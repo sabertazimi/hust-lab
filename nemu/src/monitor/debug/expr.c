@@ -305,7 +305,12 @@ static int eval(int p, int q, bool *success) {
       case '*':
         return val1 * val2;
       case '/':
-        return (val2 == 0) ? 0 : (val1 / val2);
+        if (val2 == 0) {
+          *success = false;
+          printf("Divisor can't be 0");
+        } else {
+          return val1 / val2;
+        }
       default:
         return 0;
     }
