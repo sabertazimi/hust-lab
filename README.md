@@ -93,3 +93,8 @@ Token rule -> make_token ->
 eval -> check_parenthesis
 -> Token priority -> get_donimant__ops
 ```
+
+### Watch Point
+
+*   watch point pool management (busy/free)
+*   watch point implement
