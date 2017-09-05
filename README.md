@@ -86,6 +86,8 @@ git config --list
 
 ### Expression
 
+regexp chars: `+ * | ( ) ^ $`
+
 ```
 Token rule -> make_token ->
 eval -> check_parenthesis
