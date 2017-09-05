@@ -294,7 +294,7 @@ static int eval(int p, int q, bool *success) {
       return 0;
     }
 
-    Log("op = %d, val = %c", op, tokens[op].type);
+    Log("op = %d, val = %d", op, tokens[op].type);
 
     int val1 = 0;
     int val2 = 0;
@@ -372,7 +372,6 @@ static void do_operator_check(void) {
 uint32_t expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
-    Log("make token false");
     return 0;
   }
 
