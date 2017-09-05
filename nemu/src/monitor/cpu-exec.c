@@ -18,7 +18,6 @@ void exec_wrapper(bool);
 void cpu_exec(uint64_t n) {
   if (nemu_state == NEMU_END) {
     printf("Program execution has ended. To restart the program, exit NEMU and run again.\n");
-    Log("cpu_exec NEMU_END");
     return;
   }
   nemu_state = NEMU_RUNNING;
@@ -34,7 +33,7 @@ void cpu_exec(uint64_t n) {
     /* TODO: check watchpoints here. */
 
     // stop nemu
-    if (check_watchpoints() == true) {
+    if (nemu_state == NEMU_RUNNING && check_watchpoints() == true) {
       nemu_state = NEMU_STOP;
       Log("Stop");
       Warn("Nemu stoped");
