@@ -31,6 +31,7 @@ void cpu_exec(uint64_t n) {
 
 #ifdef DEBUG
     /* TODO: check watchpoints here. */
+
     for (WP *trav = get_watchpoints(); trav != NULL; trav = trav->next) {
       bool success = true;
       int newval = expr(trav->exprStr, &success);
