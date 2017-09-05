@@ -45,6 +45,7 @@ static int cmd_w(char *args);
 static int cmd_d(char *args);
 
 static void print_registers(void) {
+  Info("Reg\t\tHex\t\tDec");
   Info("eax\t\t0x%08x\t%d", cpu.eax, cpu.eax);
   Info("ecx\t\t0x%08x\t%d", cpu.ecx, cpu.ecx);
   Info("edx\t\t0x%08x\t%d", cpu.edx, cpu.edx);
