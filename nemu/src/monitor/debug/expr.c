@@ -157,6 +157,8 @@ static bool check_parenthesis(int p, int q, bool *success) {
   int stk[nr_token + 2];
   int stk_top = 0;
 
+  Log("p = %d, q = %d", p, q);
+
   for (int i = p; i <= q; ++i) {
     if (tokens[i].type == ')' && stk_top && stk[stk_top - 1] == '(') {
       --stk_top;
@@ -194,10 +196,8 @@ static int eval(int p, int q, bool *success) {
         return 0;
     }
   } else if (check_parenthesis(p, q, success) == true) {
-    Log("Good Parenthesis");
     return eval(p + 1, q - 1, success);
   } else {
-    Log("Bad Parenthesis");
     // bad parenthesis
     if (*success == false) {
       return 0;
