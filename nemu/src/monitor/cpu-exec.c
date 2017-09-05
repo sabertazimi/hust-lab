@@ -47,8 +47,7 @@ void cpu_exec(uint64_t n) {
       if (newval != trav->oldval) {
         Info("Watchpoint No.%d: %s", trav->NO, trav->exprStr);
         Info("Old value = %d", trav->oldval);
-        Info("New value = %d", newval);
-        Info("");
+        Info("New value = %d\n", newval);
 
         trav->oldval = newval;
         isChanged = true;
@@ -58,6 +57,7 @@ void cpu_exec(uint64_t n) {
     // stop nemu
     if (isChanged == true) {
       nemu_state = NEMU_STOP;
+      Warn("Nemu stoped");
       ui_mainloop(is_batch_mode);
     }
 #endif
