@@ -13,6 +13,8 @@ enum {
   /* TODO: Add more token types */
 
   TK_NEQ,
+  TK_AND,
+  TK_OR,
   TK_HEX,
   TK_DEC,
   TK_REG
@@ -34,6 +36,8 @@ static struct rule {
   {"/", '/'},           // divide
   {"==", TK_EQ},        // equal
   {"!=", TK_NEQ},       // not equal
+  {"&&", TK_AND},       // logical and
+  {"||", TK_OR},        // logical or
   {"\\(", '('},         // left parenthesis
   {"\\)", ')'},         // right parenthesis
   {",", ','},           // comma
@@ -56,9 +60,11 @@ static int get_regval(char *reg_name, bool *success);
 static int eval(int p, int q, bool *success);
 
 static void set_priority(void) {
-  tokens_priority[TK_EQ] = tokens_priority[TK_NEQ] = 1;
-  tokens_priority['+'] = tokens_priority['-'] = 2;
-  tokens_priority['*'] = tokens_priority['/'] = 3;
+  tokens_priority[TK_OR] = 1;
+  tokens_priority[TK_AND] = 2;
+  tokens_priority[TK_EQ] = tokens_priority[TK_NEQ] = 3;
+  tokens_priority['+'] = tokens_priority['-'] = 4;
+  tokens_priority['*'] = tokens_priority['/'] = 5;
 
   // set priority of non-operator to 0
   tokens_priority['('] = tokens_priority[')'] = tokens_priority[','] = 0;
@@ -122,6 +128,8 @@ static bool make_token(char *e) {
           case '/':
           case TK_EQ:
           case TK_NEQ:
+          case TK_AND:
+          case TK_OR:
           case '(':
           case ')':
           case ',':
@@ -282,6 +290,14 @@ static int eval(int p, int q, bool *success) {
     int val2 = eval(op + 1, q, success);
 
     switch (tokens[op].type) {
+      case TK_EQ:
+        return val1 == val2;
+      case TK_NEQ:
+        return val1 != val2;
+      case TK_AND:
+        return val1 && val2;
+      case TK_OR:
+        return val1 || val2;
       case '+':
         return val1 + val2;
       case '-':
@@ -289,11 +305,7 @@ static int eval(int p, int q, bool *success) {
       case '*':
         return val1 * val2;
       case '/':
-        if (val2 == 0) {
-          return 0;
-        } else {
-          return val1 / val2;
-        }
+        return (val2 == 0) ? 0 : (val1 / val2);
       default:
         return 0;
     }
