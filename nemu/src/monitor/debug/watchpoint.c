@@ -25,7 +25,7 @@ void init_wp_pool() {
 
 WP* new_wp(char *exprStr) {
   if (free_ == NULL) {
-    assert(0);
+    return NULL;
   }
 
   bool success = true;
@@ -82,7 +82,9 @@ bool free_wp(int NO) {
 }
 
 void print_watchpoints(void) {
+  Info("Num\tWhat");
+
   for (WP *trav = head; trav != NULL; trav = trav->next) {
-      Info("wp no= %d, wp expr = %s, wp oldval = %d", trav->NO, trav->exprStr, trav->oldval);
+      Info("%d\t%s", trav->NO, trav->exprStr);
   }
 }

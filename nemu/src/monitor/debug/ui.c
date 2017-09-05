@@ -197,7 +197,14 @@ static int cmd_w(char *args) {
     return 0;
   }
 
-  new_wp(args);
+  WP *wp = new_wp(args);
+
+  if (wp == NULL) {
+    Warn("No more space for a new watchpoint");
+  } else {
+    Info("Watchpoint No.%d: %s", wp->NO, wp->exprStr);
+  }
+
   return 0;
 }
 
