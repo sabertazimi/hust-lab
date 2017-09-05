@@ -171,7 +171,7 @@ static int cmd_x(char *args) {
   }
 
 
-  printf("\33[1;31m");
+  printf("\33[1;33m");
 
   for (int i = 0; i < len * 4; ++i) {
     if (i % 4 == 0) {
