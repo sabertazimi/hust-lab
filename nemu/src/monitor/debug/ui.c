@@ -128,6 +128,20 @@ static int cmd_info(char *args) {
 }
 
 static int cmd_p(char *args) {
+  if (args == NULL) {
+    Warn("Missing required parameters");
+    return 0;
+  }
+
+  bool success = true;
+  int val = expr(args, &success);
+
+  if (success == false) {
+    Warn("Bad Expression");
+  } else {
+    Info("%d", val);
+  }
+
   return 0;
 }
 
@@ -137,11 +151,11 @@ static int cmd_x(char *args) {
     return 0;
   }
 
-  uint32_t len = 0;
-  uint32_t addr = 0;
   char *lenStr = strtok(args, " ");
   char *addrStr = strtok(NULL, " ");
   bool success = true;
+  uint32_t len = 0;
+  uint32_t addr = 0;
 
   if (lenStr == NULL || addrStr == NULL) {
     Warn("Missing required parameters");
