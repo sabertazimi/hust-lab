@@ -102,7 +102,7 @@ static int cmd_help(char *args) {
 static int cmd_si(char *args) {
   int steps = 0;
 
-  if (NULL == args) {
+  if (args == NULL) {
     cpu_exec(1);
   } else {
     sscanf(args, "%d", &steps);
@@ -114,11 +114,11 @@ static int cmd_si(char *args) {
 }
 
 static int cmd_info(char *args) {
-  if (NULL == args) {
+  if (args == NULL) {
     printf("Missing required parameters\n");
-  } else if (0 == strcmp(args, "r")) {
+  } else if (strcmp(args, "r") == 0) {
     print_registers();
-  } else if (0 == strcmp(args, "w")) {
+  } else if (strcmp(args, "w") == 0) {
     /* TODO */
   } else {
     printf("Unkown command '%s'\n", args);
@@ -132,7 +132,7 @@ static int cmd_p(char *args) {
 }
 
 static int cmd_x(char *args) {
-  if (NULL == args) {
+  if (args == NULL) {
     printf("Missing required parameters\n");
     return 0;
   }
@@ -143,7 +143,7 @@ static int cmd_x(char *args) {
   char *addrStr = strtok(NULL, " ");
   bool success = true;
 
-  if (NULL == lenStr || NULL == addrStr) {
+  if (lenStr == NULL || addrStr == NULL) {
     printf("Missing required parameters\n");
     return 0;
   }
@@ -157,14 +157,14 @@ static int cmd_x(char *args) {
   }
 
   for (int i = 0; i < len * 4; ++i) {
-    if (0 == i % 4) {
+    if (i % 4 == 0) {
       printf("0x%08x: ", addr + i);
     }
 
     uint32_t num = vaddr_read(addr + i, 1);
     printf("0x%08x\t", num);
 
-    if (3 == i % 4) {
+    if (i % 4 == 3) {
       printf("\n");
     }
   }

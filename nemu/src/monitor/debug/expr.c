@@ -47,6 +47,7 @@ static regex_t re[NR_REGEX];
 static int tokens_priority[256];
 
 static void set_priority(void);
+static bool is_parenthesis_match(int p, int q);
 static bool check_parenthesis(int p, int q, bool *success);
 static int get_dominant_pos(int p, int q);
 static int eval(int p, int q, bool *success);
@@ -147,17 +148,10 @@ static bool make_token(char *e) {
   return true;
 }
 
-static bool check_parenthesis(int p, int q, bool *success) {
-  bool ret = true;
-
-  if (tokens[p].type != '(' || tokens[q].type != ')') {
-    ret = false;
-  }
-
+static bool is_parenthesis_match(int p, int q) {
   int stk[nr_token + 2];
   int stk_top = 0;
 
-  // stack matching
   for (int i = p; i <= q; ++i) {
     if (tokens[i].type == ')' && stk_top && stk[stk_top - 1] == '(') {
       --stk_top;
@@ -168,8 +162,21 @@ static bool check_parenthesis(int p, int q, bool *success) {
     }
   }
 
-  if (stk_top != 0) {
+  return stk_top == 0;
+}
+
+static bool check_parenthesis(int p, int q, bool *success) {
+  bool ret = true;
+
+  if (is_parenthesis_match(p, q) == false) {
+    // bad parenthesis matching
     *success = false;
+    ret = false;
+  } else if (tokens[p].type != '(' || tokens[q].type != ')') {
+    // not start && end with parenthesis
+    ret = false;
+  } else if (is_parenthesis_match(p + 1, q - 1) == false) {
+    // **futher checking**
     ret = false;
   }
 
