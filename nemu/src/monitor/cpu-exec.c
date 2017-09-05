@@ -10,6 +10,12 @@
  */
 #define MAX_INSTR_TO_PRINT 10
 
+// refer to "monitor/monitor.c"
+extern int is_batch_mode;
+
+// refer to "monitor/debug/ui.c"
+extern void ui_mainloop(int is_batch_mode);
+
 int nemu_state = NEMU_STOP;
 
 void exec_wrapper(bool);
@@ -31,17 +37,28 @@ void cpu_exec(uint64_t n) {
 
 #ifdef DEBUG
     /* TODO: check watchpoints here. */
+    bool isChanged = false;
 
     for (WP *trav = get_watchpoints(); trav != NULL; trav = trav->next) {
       bool success = true;
       int newval = expr(trav->exprStr, &success);
 
+      // checking watchpoint
       if (newval != trav->oldval) {
         Info("Watchpoint No.%d: %s", trav->NO, trav->exprStr);
         Info("Old value = %d", trav->oldval);
         Info("New value = %d", newval);
+        Info("");
+
         trav->oldval = newval;
+        isChanged = true;
       }
+    }
+
+    // stop nemu
+    if (isChanged == true) {
+      nemu_state = NEMU_STOP;
+      ui_mainloop(is_batch_mode);
     }
 #endif
 
