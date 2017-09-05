@@ -172,8 +172,6 @@ static bool check_parenthesis(int p, int q, bool *success) {
     ret = false;
   }
 
-    Log("check success false");
-
   return ret;
 }
 
@@ -199,6 +197,7 @@ static int eval(int p, int q, bool *success) {
     Log("Good Parenthesis");
     return eval(p + 1, q - 1, success);
   } else {
+    Log("Bad Parenthesis");
     // bad parenthesis
     if (*success == false) {
       return 0;
