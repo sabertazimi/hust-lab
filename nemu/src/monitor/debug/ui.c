@@ -192,6 +192,11 @@ static int cmd_x(char *args) {
 }
 
 static int cmd_w(char *args) {
+  if (args == NULL) {
+    Warn("Missing required parameters");
+    return 0;
+  }
+
   return 0;
 }
 
