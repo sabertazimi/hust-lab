@@ -168,6 +168,7 @@ static bool check_parenthesis(int p, int q, bool *success) {
   }
 
   if (stk_top != 0) {
+    Log("check success false");
     *success = false;
     ret = false;
   }
