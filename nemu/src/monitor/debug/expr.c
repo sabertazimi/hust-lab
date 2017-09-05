@@ -7,17 +7,23 @@
 #include <regex.h>
 #include <stdlib.h>
 
+// 16 type token
 enum {
   TK_NOTYPE = 256, TK_EQ = 1,
 
   /* TODO: Add more token types */
 
+  // binary
   TK_NEQ,
   TK_AND,
   TK_OR,
   TK_HEX,
   TK_DEC,
-  TK_REG
+  TK_REG,
+
+  // unary
+  TK_MINUS,
+  TK_DEREF
 };
 
 static struct rule {
@@ -31,16 +37,16 @@ static struct rule {
 
   {" +", TK_NOTYPE},    // spaces
   {"\\+", '+'},         // plus
-  {"-", '-'},           // substract
-  {"\\*", '*'},         // mutiple
+  {"-", '-'},           // substract or TK_MINUS
+  {"\\*", '*'},         // mutiple or TK_DEREF
   {"/", '/'},           // divide
   {"==", TK_EQ},        // equal
   {"!=", TK_NEQ},       // not equal
   {"&&", TK_AND},       // logical and
   {"\\|\\|", TK_OR},    // logical or
+  {"!", '!'},           // logical not
   {"\\(", '('},         // left parenthesis
   {"\\)", ')'},         // right parenthesis
-  {",", ','},           // comma
   {"(0x|0X)[0-9a-fA-F]+", TK_HEX},   // hexdecimal integer
   {"[0-9]+", TK_DEC},   // decimal integer
   {"\\$[a-z]+", TK_REG} // register
@@ -65,9 +71,10 @@ static void set_priority(void) {
   tokens_priority[TK_EQ] = tokens_priority[TK_NEQ] = 3;
   tokens_priority['+'] = tokens_priority['-'] = 4;
   tokens_priority['*'] = tokens_priority['/'] = 5;
+  tokens_priority[TK_MINUS] = tokens_priority[TK_DEREF] = tokens_priority['!'] = 6;
 
   // set priority of non-operator to 0
-  tokens_priority['('] = tokens_priority[')'] = tokens_priority[','] = 0;
+  tokens_priority['('] = tokens_priority[')'] = 0;
   tokens_priority[TK_HEX] = tokens_priority[TK_DEC] = tokens_priority[TK_REG] = 0;
 }
 
@@ -130,9 +137,9 @@ static bool make_token(char *e) {
           case TK_NEQ:
           case TK_AND:
           case TK_OR:
+          case '!':
           case '(':
           case ')':
-          case ',':
             tokens[nr_token].type = rules[i].token_type;
             ++nr_token;
             break;
@@ -326,6 +333,29 @@ uint32_t expr(char *e, bool *success) {
   }
 
   /* TODO: Insert codes to evaluate the expression. */
+
+  // judge '-' and '*'
+  for (int i = 0; i < nr_token; ++i) {
+    if (i == 0 || tokens[i - 1].type == '+'
+          || tokens[i - 1].type == '-'
+          || tokens[i - 1].type == '*'
+          || tokens[i - 1].type == '/'
+          || tokens[i - 1].type == TK_EQ
+          || tokens[i - 1].type == TK_NEQ
+          || tokens[i - 1].type == TK_AND
+          || tokens[i - 1].type == TK_OR
+          || tokens[i - 1].type == '!'
+          || tokens[i - 1].type == '('
+          || tokens[i - 1].type == TK_MINUS
+          || tokens[i - 1].type == TK_DEREF) {
+      // not binary operator
+      if (tokens[i].type == '-') {
+        tokens[i].type = TK_MINUS;
+      } else if (tokens[i].type == '*') {
+        tokens[i].type = TK_DEREF;
+      }
+    }
+  }
 
   return eval(0, nr_token - 1, success);
 }
