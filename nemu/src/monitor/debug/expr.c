@@ -262,7 +262,6 @@ static int eval(int p, int q, bool *success) {
 
   if (p > q) {
     *success = false;
-    Log("p > q false");
     return 0;
   } else if (p == q) {
     switch (tokens[p].type) {
@@ -294,6 +293,8 @@ static int eval(int p, int q, bool *success) {
       printf("Bad expression\n");
       return 0;
     }
+
+    Log("op = %d, val = %c", op, tokens[op].type);
 
     int val1 = 0;
     int val2 = 0;
