@@ -236,6 +236,8 @@ static int get_regval(char *reg_name, bool *success) {
     printf("Unknown register\n");
   }
 
+  Log("reg val = %x", regval);
+
   return regval;
 }
 
