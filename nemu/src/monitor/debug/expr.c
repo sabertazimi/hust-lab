@@ -109,6 +109,7 @@ static bool make_token(char *e) {
           case TK_RPAREN:
           case TK_COMMA:
             tokens[nr_token].type = rules[i].token_type;
+            ++nr_token;
             break;
           case TK_HEX:
           case TK_DEC:
