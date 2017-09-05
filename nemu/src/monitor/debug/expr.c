@@ -293,18 +293,19 @@ static int eval(int p, int q, bool *success) {
       return 0;
     }
 
-    int val1 = eval(p, op - 1, success);
-    int val2 = eval(op + 1, q, success);
+    int val1 = 0;
+    int val2 = 0;
+
+    // only eval val1 for binary operator
+    if (tokens[op].type != TK_MINUS
+        || tokens[op].type != TK_DEREF
+        || tokens[op].type != '!') {
+      val1 = eval(p, op - 1, success);
+    }
+
+    val2 = eval(op + 1, q, success);
 
     switch (tokens[op].type) {
-      case TK_EQ:
-        return val1 == val2;
-      case TK_NEQ:
-        return val1 != val2;
-      case TK_AND:
-        return val1 && val2;
-      case TK_OR:
-        return val1 || val2;
       case '+':
         return val1 + val2;
       case '-':
@@ -318,6 +319,20 @@ static int eval(int p, int q, bool *success) {
         } else {
           return val1 / val2;
         }
+      case TK_EQ:
+        return val1 == val2;
+      case TK_NEQ:
+        return val1 != val2;
+      case TK_AND:
+        return val1 && val2;
+      case TK_OR:
+        return val1 || val2;
+      case '!':
+        return !val2;
+      case TK_MINUS:
+        return -val2;
+      case TK_DEREF:
+        return vaddr_read(val2, 4);
       default:
         return 0;
     }
