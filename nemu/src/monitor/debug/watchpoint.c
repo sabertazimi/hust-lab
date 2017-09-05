@@ -82,11 +82,11 @@ bool free_wp(int NO) {
 }
 
 void print_watchpoints(void) {
-  Info("Num\tWhat");
-
   if (head == NULL) {
     Info("No watchpoints");
   }
+
+  Info("Num\tWhat");
 
   for (WP *trav = head; trav != NULL; trav = trav->next) {
       Info("%d\t%s", trav->NO, trav->exprStr);
