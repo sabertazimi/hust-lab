@@ -294,15 +294,13 @@ static int eval(int p, int q, bool *success) {
       return 0;
     }
 
-    Log("op = %d, val = %d", op, tokens[op].type);
-
     int val1 = 0;
     int val2 = 0;
 
     // only eval val1 for binary operator
     if (tokens[op].type != TK_MINUS
-        || tokens[op].type != TK_DEREF
-        || tokens[op].type != '!') {
+        && tokens[op].type != TK_DEREF
+        && tokens[op].type != '!') {
       val1 = eval(p, op - 1, success);
     }
 
