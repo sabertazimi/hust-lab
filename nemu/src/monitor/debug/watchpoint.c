@@ -11,6 +11,9 @@ void init_wp_pool() {
   for (i = 0; i < NR_WP; i ++) {
     wp_pool[i].NO = i;
     wp_pool[i].next = &wp_pool[i + 1];
+    wp_pool[i].free = true;
+    wp_pool[i].exprStr[0] = '\0';
+    wp_pool[i].oldval = 0;
   }
   wp_pool[NR_WP - 1].next = NULL;
 
@@ -18,17 +21,31 @@ void init_wp_pool() {
   free_ = wp_pool;
 }
 
-WP* new_wp(char *expr) {
+/* TODO: Implement the functionality of watchpoint */
+
+WP* new_wp(char *exprStr) {
   if (free_ == NULL) {
     assert(0);
   }
 
-  Log("%s", expr);
+  bool success = true;
+  uint32_t val = expr(exprStr, &success);
+
+  if (success == false) {
+    Warn("Bad expression");
+    return NULL;
+  }
 
   WP* next = free_->next;
   free_->next = head;
   head = free_;
   free_ = next;
+
+  // initlize
+  head->free = false;
+  strncpy(head->exprStr, exprStr, strlen(exprStr));
+  head->oldval = val;
+
   return head;
 }
 
@@ -48,6 +65,12 @@ bool free_wp(int NO) {
 
       cur->next = free_;
       free_ = cur;
+
+      // reset
+      free_->free = true;
+      free_->exprStr[0] = '\0';
+      free_->oldval = 0;
+
       return true;
     }
 
@@ -58,6 +81,10 @@ bool free_wp(int NO) {
   return false;
 }
 
-/* TODO: Implement the functionality of watchpoint */
+WP *get_head_list(void) {
+  return head;
+}
 
-
+WP *get_free_list(void) {
+  return free_;
+}

@@ -9,7 +9,14 @@ typedef struct watchpoint {
 
   /* TODO: Add more members if necessary */
 
-
+  bool free;
+  char exprStr[256];
+  uint32_t oldval;
 } WP;
+
+WP* new_wp(char *expr);
+bool free_wp(int NO);
+WP *get_head_list(void);
+WP *get_free_list(void);
 
 #endif

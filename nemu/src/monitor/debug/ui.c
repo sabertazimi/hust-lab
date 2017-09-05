@@ -197,10 +197,26 @@ static int cmd_w(char *args) {
     return 0;
   }
 
+  WP *wp = new_wp(args);
+  Info("wp no= %d, wp expr = %s, wp oldval = %d", wp->NO, wp->exprStr, wp->oldval);
   return 0;
 }
 
 static int cmd_d(char *args) {
+  if (args == NULL) {
+    Warn("Missing required parameters");
+    return 0;
+  }
+
+  int NO = strtol(args, NULL, 10);
+  bool deleted = free_wp(NO);
+
+  if (deleted == true) {
+    Info("Deleted watchpoint No.%d", NO);
+  } else {
+    Warn("Delete watchpoint No.%d fail", NO);
+  }
+
   return 0;
 }
 
