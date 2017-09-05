@@ -152,7 +152,7 @@ static int cmd_x(char *args) {
   addr = expr(addrStr, &success);
 
   if (success == false) {
-    printf("Bad expression\n");
+    Log("Bad expression\n");
     return 0;
   }
 
