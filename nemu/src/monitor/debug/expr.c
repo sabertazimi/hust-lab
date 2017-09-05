@@ -172,6 +172,12 @@ static bool check_parenthesis(int p, int q, bool *success) {
 }
 
 static int get_dominant_pos(int p, int q) {
+  // int parens = 0;
+  // int op = -1;
+
+  for (int i = p; i <=q; ++i) {
+    // if ()
+  }
   return 0;
 }
 
