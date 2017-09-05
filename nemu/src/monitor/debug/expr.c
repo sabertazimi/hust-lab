@@ -158,7 +158,7 @@ static bool check_parenthesis(int p, int q, bool *success) {
   int stk[nr_token+2];
   int stk_top = 0;
 
-  for (int i = 0; i <= q; ++i) {
+  for (int i = p; i <= q; ++i) {
     if (tokens[i].type == ')' && stk_top && stk[stk_top - 1] == '(') {
       --stk_top;
       stk[stk_top] = 0;
