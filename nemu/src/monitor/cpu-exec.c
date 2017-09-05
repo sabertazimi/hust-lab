@@ -35,7 +35,14 @@ void cpu_exec(uint64_t n) {
     for (WP *trav = get_watchpoints(); trav != NULL; trav = trav->next) {
       bool success = true;
       int newval = expr(trav->exprStr, &success);
-      printf("%d", newval);
+
+      if (newval != trav->oldval) {
+        Info("Watchpoint No.%d: %s", trav->NO, trav->exprStr);
+        Info("Old value = %d", trav->oldval);
+        Info("New value = %d", newval);
+        Info("%s at %s:%d", __func__, __FILE__, __LINE__);
+        trav->oldval = newval;
+      }
     }
 #endif
 
