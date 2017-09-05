@@ -64,6 +64,7 @@ static bool check_parenthesis(int p, int q, bool *success);
 static int get_dominant_pos(int p, int q);
 static int get_regval(char *reg_name, bool *success);
 static int eval(int p, int q, bool *success);
+static void do_operator_check(void);
 
 static void set_priority(void) {
   tokens_priority[TK_OR] = 1;
@@ -341,14 +342,7 @@ static int eval(int p, int q, bool *success) {
   }
 }
 
-uint32_t expr(char *e, bool *success) {
-  if (!make_token(e)) {
-    *success = false;
-    return 0;
-  }
-
-  /* TODO: Insert codes to evaluate the expression. */
-
+static void do_operator_check(void) {
   // judge '-' and '*'
   for (int i = 0; i < nr_token; ++i) {
     if (i == 0 || tokens[i - 1].type == '+'
@@ -371,6 +365,17 @@ uint32_t expr(char *e, bool *success) {
       }
     }
   }
+}
+
+uint32_t expr(char *e, bool *success) {
+  if (!make_token(e)) {
+    *success = false;
+    return 0;
+  }
+
+  /* TODO: Insert codes to evaluate the expression. */
+
+  do_operator_check();
 
   return eval(0, nr_token - 1, success);
 }
