@@ -81,10 +81,8 @@ bool free_wp(int NO) {
   return false;
 }
 
-WP *get_head_list(void) {
-  return head;
-}
-
-WP *get_free_list(void) {
-  return free_;
+void print_watchpoints(void) {
+  for (WP *trav = head; trav != NULL; trav = trav->next) {
+      Info("wp no= %d, wp expr = %s, wp oldval = %d", trav->NO, trav->exprStr, trav->oldval);
+  }
 }

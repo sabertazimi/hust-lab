@@ -119,7 +119,7 @@ static int cmd_info(char *args) {
   } else if (strcmp(args, "r") == 0) {
     print_registers();
   } else if (strcmp(args, "w") == 0) {
-    /* TODO */
+    print_watchpoints();
   } else {
     Warn("Unkown command '%s'", args);
   }
@@ -197,8 +197,7 @@ static int cmd_w(char *args) {
     return 0;
   }
 
-  WP *wp = new_wp(args);
-  Info("wp no= %d, wp expr = %s, wp oldval = %d", wp->NO, wp->exprStr, wp->oldval);
+  new_wp(args);
   return 0;
 }
 
