@@ -15,7 +15,7 @@ bool gdb_memcpy_to_qemu(uint32_t, void *, int);
 FILE *log_fp = NULL;
 static char *log_file = NULL;
 static char *img_file = NULL;
-static int is_batch_mode = false;
+int is_batch_mode = false;
 
 static inline void init_log() {
 #ifdef DEBUG
