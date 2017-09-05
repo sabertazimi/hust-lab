@@ -170,6 +170,9 @@ static int cmd_x(char *args) {
     return 0;
   }
 
+
+  printf("\33[1;31m");
+
   for (int i = 0; i < len * 4; ++i) {
     if (i % 4 == 0) {
       printf("0x%08x: ", addr + i);
@@ -182,6 +185,8 @@ static int cmd_x(char *args) {
       printf("\n");
     }
   }
+
+  printf("\33[0m");
 
   return 0;
 }
