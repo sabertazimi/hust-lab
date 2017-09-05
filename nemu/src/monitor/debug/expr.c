@@ -139,8 +139,6 @@ uint32_t expr(char *e, bool *success) {
 
   /* TODO: Insert codes to evaluate the expression. */
 
-  Log("nr_token = %d", nr_token);
-
   return eval(0, nr_token - 1, success);
 }
 
