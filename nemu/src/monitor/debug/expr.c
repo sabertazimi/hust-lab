@@ -152,6 +152,7 @@ static bool check_parenthesis(int p, int q, bool *success) {
 
   if (tokens[p].type != '(' || tokens[q].type != ')') {
     ret = false;
+    Log("check false");
   }
 
   int stk[nr_token];
