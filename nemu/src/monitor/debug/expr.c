@@ -29,7 +29,7 @@ static struct rule {
   {" +", TK_NOTYPE},    // spaces
   {"\\+", '+'},         // plus
   {"-", '-'},           // substract
-  {"\\*", '*'},         // mutiple/reference
+  {"\\*", '*'},         // mutiple
   {"/", '/'},           // divide
   {"==", TK_EQ},        // equal
   {"!=", TK_NEQ},       // not equal
@@ -45,6 +45,7 @@ static struct rule {
 static regex_t re[NR_REGEX];
 
 static bool check_parenthesis(int p, int q, bool *success);
+static int get_dominant_pos(int p, int q);
 static int eval(int p, int q, bool *success);
 
 /* Rules are used for many times.
@@ -170,6 +171,10 @@ static bool check_parenthesis(int p, int q, bool *success) {
   return ret;
 }
 
+static int get_dominant_pos(int p, int q) {
+  return 0;
+}
+
 static int eval(int p, int q, bool *success) {
   if (*success == false) {
     return 0;
@@ -195,7 +200,8 @@ static int eval(int p, int q, bool *success) {
     if (*success == false) {
       return 0;
     }
+    int op = get_dominant_pos(p, q);
 
-    return 0;
+    return op;
   }
 }
