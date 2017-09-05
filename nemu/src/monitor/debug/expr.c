@@ -157,6 +157,7 @@ static bool check_parenthesis(int p, int q, bool *success) {
   int stk[nr_token + 2];
   int stk_top = 0;
 
+  // stack matching
   for (int i = p; i <= q; ++i) {
     if (tokens[i].type == ')' && stk_top && stk[stk_top - 1] == '(') {
       --stk_top;
@@ -222,7 +223,8 @@ static int eval(int p, int q, bool *success) {
   } else {
     // bad parenthesis
     if (*success == false) {
-      printf("Bad expression");
+      Log("bad parenthesis");
+      printf("Bad expression\n");
       return 0;
     }
 
@@ -230,7 +232,8 @@ static int eval(int p, int q, bool *success) {
 
     if (op == -1) {
       *success = false;
-      printf("Bad expression");
+      Log("bad dominant pos");
+      printf("Bad expression\n");
       return 0;
     }
 
