@@ -44,6 +44,7 @@ static struct rule {
 
 static regex_t re[NR_REGEX];
 
+static void set_priority(void);
 static bool check_parenthesis(int p, int q, bool *success);
 static int get_dominant_pos(int p, int q);
 static int eval(int p, int q, bool *success);
@@ -72,6 +73,18 @@ typedef struct token {
 
 Token tokens[32];
 int nr_token;
+
+static int tokens_priority[256];
+
+static void set_priority(void) {
+  tokens_priority[TK_EQ] = tokens_priority[TK_NEQ] = 1;
+  tokens_priority['+'] = tokens_priority['-'] = 2;
+  tokens_priority['*'] = tokens_priority['/'] = 3;
+
+  // set priority of non-operator to 0
+  tokens_priority['('] = tokens_priority[')'] = tokens_priority[','] = 0;
+  tokens_priority[TK_HEX] = tokens_priority[TK_DEC] = 0;
+}
 
 static bool make_token(char *e) {
   int position = 0;
@@ -133,6 +146,8 @@ static bool make_token(char *e) {
 }
 
 uint32_t expr(char *e, bool *success) {
+  set_priority();
+
   if (!make_token(e)) {
     *success = false;
     return 0;
@@ -173,11 +188,13 @@ static bool check_parenthesis(int p, int q, bool *success) {
 
 static int get_dominant_pos(int p, int q) {
   // int parens = 0;
-  // int op = -1;
+  // int op = 0;
+  // int priority = 0;
 
   for (int i = p; i <=q; ++i) {
     // if ()
   }
+
   return 0;
 }
 
