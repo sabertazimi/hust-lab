@@ -139,7 +139,7 @@ static int cmd_p(char *args) {
   int val = expr(args, &success);
 
   if (success == true) {
-    Info("%d", val);
+    Info("%d (%x)", val, val);
   }
 
   return 0;

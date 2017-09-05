@@ -40,8 +40,8 @@ void cpu_exec(uint64_t n) {
       // checking watchpoint
       if (newval != trav->oldval) {
         Info("Watchpoint No.%d: %s", trav->NO, trav->exprStr);
-        Info("Old value = %d", trav->oldval);
-        Info("New value = %d\n", newval);
+        Info("Old value = %d (%x)", trav->oldval, trav->oldval);
+        Info("New value = %d (%x)\n", newval, newval);
 
         trav->oldval = newval;
         isChanged = true;
