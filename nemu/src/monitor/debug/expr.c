@@ -213,30 +213,28 @@ static int get_dominant_pos(int p, int q) {
 static int get_regval(char *reg_name, bool *success) {
   int regval = 0;
 
-  if (strcmp(reg_name, "$eax")) {
+  if (strcmp(reg_name, "$eax") == 0) {
     regval = cpu.eax;
-  } else if (strcmp(reg_name, "$ecx")) {
+  } else if (strcmp(reg_name, "$ecx") == 0) {
     regval = cpu.ecx;
-  } else if (strcmp(reg_name, "$edx")) {
+  } else if (strcmp(reg_name, "$edx") == 0) {
     regval = cpu.edx;
-  } else if (strcmp(reg_name, "$ebx")) {
+  } else if (strcmp(reg_name, "$ebx") == 0) {
     regval = cpu.ebx;
-  } else if (strcmp(reg_name, "$esp")) {
+  } else if (strcmp(reg_name, "$esp") == 0) {
     regval = cpu.esp;
-  } else if (strcmp(reg_name, "$ebp")) {
+  } else if (strcmp(reg_name, "$ebp") == 0) {
     regval = cpu.ebp;
-  } else if (strcmp(reg_name, "$esi")) {
+  } else if (strcmp(reg_name, "$esi") == 0) {
     regval = cpu.esi;
-  } else if (strcmp(reg_name, "$edi")) {
+  } else if (strcmp(reg_name, "$edi") == 0) {
     regval = cpu.edi;
-  } else if (strcmp(reg_name, "$eip")) {
+  } else if (strcmp(reg_name, "$eip") == 0) {
     regval = cpu.eip;
   } else {
     *success = false;
     printf("Unknown register\n");
   }
-
-  Log("reg name = %s, reg val = %x", reg_name, regval);
 
   return regval;
 }
