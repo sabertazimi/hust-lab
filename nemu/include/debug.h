@@ -28,7 +28,7 @@ extern FILE* log_fp;
 
 #define Warn(format, ...) \
   do { \
-    fprintf(stdout, "\33[1;34m" format "\33[0m\n", \
+    fprintf(stdout, "\33[1;31m" format "\33[0m\n", \
         ## __VA_ARGS__); \
     fflush(stdout); \
   } while (0)
