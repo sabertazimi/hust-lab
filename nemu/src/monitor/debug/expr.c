@@ -8,7 +8,7 @@
 #include <stdlib.h>
 
 enum {
-  TK_NOTYPE = 256, TK_EQ,
+  TK_NOTYPE = 256, TK_EQ = 1,
 
   /* TODO: Add more token types */
 
@@ -43,6 +43,8 @@ static struct rule {
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
 
 static regex_t re[NR_REGEX];
+
+static int tokens_priority[256];
 
 static void set_priority(void);
 static bool check_parenthesis(int p, int q, bool *success);
@@ -85,8 +87,6 @@ typedef struct token {
 
 Token tokens[32];
 int nr_token;
-
-static int tokens_priority[256];
 
 static bool make_token(char *e) {
   int position = 0;
@@ -187,15 +187,25 @@ static bool check_parenthesis(int p, int q, bool *success) {
 }
 
 static int get_dominant_pos(int p, int q) {
-  // int parens = 0;
-  // int op = 0;
-  // int priority = 0;
+  int parens = 0;
+  int op = -1;
+  int priority = 255;
 
   for (int i = p; i <=q; ++i) {
-    // if ()
+    if (tokens[i].type == '(') {
+      ++parens;
+    } else if (tokens[i].type == ')') {
+      --parens;
+    }
+
+    if (tokens_priority[tokens[i].type] != 0
+        && tokens_priority[tokens[i].type] < priority) {
+      op = i;
+      priority = tokens_priority[tokens[i].type];
+    }
   }
 
-  return 0;
+  return op;
 }
 
 static int eval(int p, int q, bool *success) {
