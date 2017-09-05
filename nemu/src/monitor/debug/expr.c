@@ -308,7 +308,9 @@ static int eval(int p, int q, bool *success) {
         if (val2 == 0) {
           return 0;
         } else {
+          Log("divide start");
           return val1 / val2;
+          Log("divide end");
         }
       default:
         return 0;
