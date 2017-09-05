@@ -187,7 +187,8 @@ static int get_dominant_pos(int p, int q) {
       --parens;
     }
 
-    if (tokens_priority[tokens[i].type] != 0
+    if (parens == 0  // not in parenthesis
+        && tokens_priority[tokens[i].type] != 0 // not non-operator
         && tokens_priority[tokens[i].type] < priority) {
       op = i;
       priority = tokens_priority[tokens[i].type];
@@ -212,6 +213,7 @@ static int eval(int p, int q, bool *success) {
       case TK_DEC:
         return strtol(tokens[p].str, NULL, 10);
       default:
+        // non-number
         *success = false;
         return 0;
     }
@@ -220,9 +222,18 @@ static int eval(int p, int q, bool *success) {
   } else {
     // bad parenthesis
     if (*success == false) {
+      printf("Bad expression");
       return 0;
     }
+
     int op = get_dominant_pos(p, q);
+
+    if (op == -1) {
+      *success = false;
+      printf("Bad expression");
+      return 0;
+    }
+
     int val1 = eval(p, op - 1, success);
     int val2 = eval(op + 1, q, success);
 
