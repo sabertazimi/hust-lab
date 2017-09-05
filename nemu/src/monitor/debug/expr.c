@@ -228,6 +228,8 @@ static int eval(int p, int q, bool *success) {
 
     int op = get_dominant_pos(p, q);
 
+    Log("op = %d, type = %c", op, tokens[op].type);
+
     if (op == -1) {
       *success = false;
       printf("Bad expression");
