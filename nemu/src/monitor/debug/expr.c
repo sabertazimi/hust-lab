@@ -152,7 +152,6 @@ static bool check_parenthesis(int p, int q, bool *success) {
 
   if (tokens[p].type != '(' || tokens[q].type != ')') {
     ret = false;
-    Log("check false");
   }
 
   int stk[nr_token + 2];
@@ -170,7 +169,6 @@ static bool check_parenthesis(int p, int q, bool *success) {
 
   if (stk_top != 0) {
     *success = false;
-    Log("check success false");
     ret = false;
   }
 
@@ -201,7 +199,6 @@ static int eval(int p, int q, bool *success) {
   } else {
     // bad parenthesis
     if (*success == false) {
-      Log("Bad parenthesis");
       return 0;
     }
 
