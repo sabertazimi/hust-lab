@@ -156,15 +156,11 @@ static bool check_parenthesis(int p, int q, bool *success) {
     if (tokens[i].type == ')' && stk_top && stk[stk_top - 1] == '(') {
       --stk_top;
       stk[stk_top] = 0;
-      Log("--");
     } else if (tokens[i].type == '(' || tokens[i].type == ')') {
       stk[stk_top] = tokens[i].type;
       ++stk_top;
-      Log("++");
     }
   }
-
-  Log("stk_top = %d", stk_top);
 
   if (stk_top != 0) {
     *success = false;
