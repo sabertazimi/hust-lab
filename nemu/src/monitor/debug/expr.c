@@ -13,9 +13,6 @@ enum {
   /* TODO: Add more token types */
 
   TK_NEQ,
-  TK_LPAREN,
-  TK_RPAREN,
-  TK_COMMA,
   TK_HEX,
   TK_DEC
 };
@@ -36,9 +33,9 @@ static struct rule {
   {"/", '/'},           // divide
   {"==", TK_EQ},        // equal
   {"!=", TK_NEQ},       // not equal
-  {"\\(", TK_LPAREN},   // left parenthesis
-  {"\\)", TK_RPAREN},   // right parenthesis
-  {",", TK_COMMA},      // comma
+  {"\\(", '('},         // left parenthesis
+  {"\\)", ')'},         // right parenthesis
+  {",", ','},           // comma
   {"(0x|0X)[0-9a-fA-F]+", TK_HEX},   // hexdecimal integer
   {"[0-9]+", TK_DEC}    // decimal integer
 };
@@ -105,9 +102,9 @@ static bool make_token(char *e) {
           case '/':
           case TK_EQ:
           case TK_NEQ:
-          case TK_LPAREN:
-          case TK_RPAREN:
-          case TK_COMMA:
+          case '(':
+          case ')':
+          case ',':
             tokens[nr_token].type = rules[i].token_type;
             ++nr_token;
             break;
