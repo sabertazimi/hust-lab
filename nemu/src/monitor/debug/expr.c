@@ -14,7 +14,8 @@ enum {
 
   TK_NEQ,
   TK_HEX,
-  TK_DEC
+  TK_DEC,
+  TK_REG
 };
 
 static struct rule {
@@ -37,7 +38,8 @@ static struct rule {
   {"\\)", ')'},         // right parenthesis
   {",", ','},           // comma
   {"(0x|0X)[0-9a-fA-F]+", TK_HEX},   // hexdecimal integer
-  {"[0-9]+", TK_DEC}    // decimal integer
+  {"[0-9]+", TK_DEC},   // decimal integer
+  {"\\$[a-z]+", TK_REG} // register
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -50,6 +52,7 @@ static void set_priority(void);
 static bool is_parenthesis_match(int p, int q);
 static bool check_parenthesis(int p, int q, bool *success);
 static int get_dominant_pos(int p, int q);
+static int get_regval(char *reg_name, bool *success);
 static int eval(int p, int q, bool *success);
 
 static void set_priority(void) {
@@ -59,7 +62,7 @@ static void set_priority(void) {
 
   // set priority of non-operator to 0
   tokens_priority['('] = tokens_priority[')'] = tokens_priority[','] = 0;
-  tokens_priority[TK_HEX] = tokens_priority[TK_DEC] = 0;
+  tokens_priority[TK_HEX] = tokens_priority[TK_DEC] = tokens_priority[TK_REG] = 0;
 }
 
 /* Rules are used for many times.
@@ -127,6 +130,7 @@ static bool make_token(char *e) {
             break;
           case TK_HEX:
           case TK_DEC:
+          case TK_REG:
             tokens[nr_token].type = rules[i].token_type;
             strncpy(tokens[nr_token].str, substr_start, substr_len);
             ++nr_token;
@@ -206,6 +210,35 @@ static int get_dominant_pos(int p, int q) {
   return op;
 }
 
+static int get_regval(char *reg_name, bool *success) {
+  int regval = 0;
+
+  if (strcmp(reg_name, "$eax")) {
+    regval = cpu.eax;
+  } else if (strcmp(reg_name, "$ecx")) {
+    regval = cpu.ecx;
+  } else if (strcmp(reg_name, "$edx")) {
+    regval = cpu.edx;
+  } else if (strcmp(reg_name, "$ebx")) {
+    regval = cpu.ebx;
+  } else if (strcmp(reg_name, "$esp")) {
+    regval = cpu.esp;
+  } else if (strcmp(reg_name, "$ebp")) {
+    regval = cpu.ebp;
+  } else if (strcmp(reg_name, "$esi")) {
+    regval = cpu.esi;
+  } else if (strcmp(reg_name, "$edi")) {
+    regval = cpu.edi;
+  } else if (strcmp(reg_name, "$eip")) {
+    regval = cpu.eip;
+  } else {
+    *success = false;
+    printf("Unknown register\n");
+  }
+
+  return regval;
+}
+
 static int eval(int p, int q, bool *success) {
   if (*success == false) {
     return 0;
@@ -220,6 +253,8 @@ static int eval(int p, int q, bool *success) {
         return strtol(tokens[p].str, NULL, 16);
       case TK_DEC:
         return strtol(tokens[p].str, NULL, 10);
+      case TK_REG:
+        return get_regval(tokens[p].str, success);
       default:
         // non-number
         *success = false;
@@ -230,13 +265,13 @@ static int eval(int p, int q, bool *success) {
   } else {
     // bad parenthesis
     if (*success == false) {
-      Log("bad parenthesis");
       printf("Bad expression\n");
       return 0;
     }
 
     int op = get_dominant_pos(p, q);
 
+    // bad dominant position
     if (op == -1) {
       *success = false;
       printf("Bad expression\n");
@@ -254,7 +289,11 @@ static int eval(int p, int q, bool *success) {
       case '*':
         return val1 * val2;
       case '/':
-        return val1 / val2;
+        if (val2 == 0) {
+          return 0;
+        } else {
+          return val1 / val2;
+        }
       default:
         return 0;
     }
