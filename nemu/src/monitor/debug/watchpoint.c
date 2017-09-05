@@ -25,6 +25,7 @@ void init_wp_pool() {
 
 WP* new_wp(char *exprStr) {
   if (free_ == NULL) {
+    Warn("No more space for a new watchpoint");
     return NULL;
   }
 
@@ -32,7 +33,6 @@ WP* new_wp(char *exprStr) {
   uint32_t val = expr(exprStr, &success);
 
   if (success == false) {
-    Warn("Bad expression");
     return NULL;
   }
 

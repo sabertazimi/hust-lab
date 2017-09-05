@@ -137,9 +137,7 @@ static int cmd_p(char *args) {
   bool success = true;
   int val = expr(args, &success);
 
-  if (success == false) {
-    Warn("Bad Expression");
-  } else {
+  if (success == true) {
     Info("%d", val);
   }
 
@@ -167,7 +165,6 @@ static int cmd_x(char *args) {
   addr = expr(addrStr, &success);
 
   if (success == false) {
-    Warn("Bad expression");
     return 0;
   }
 
@@ -200,9 +197,7 @@ static int cmd_w(char *args) {
 
   WP *wp = new_wp(args);
 
-  if (wp == NULL) {
-    Warn("No more space or bad expression");
-  } else {
+  if (wp != NULL) {
     Info("Watchpoint No.%d: %s", wp->NO, wp->exprStr);
   }
 

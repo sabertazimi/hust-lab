@@ -262,6 +262,7 @@ static int eval(int p, int q, bool *success) {
 
   if (p > q) {
     *success = false;
+    Warn("Bad expression");
     return 0;
   } else if (p == q) {
     switch (tokens[p].type) {
@@ -274,6 +275,7 @@ static int eval(int p, int q, bool *success) {
       default:
         // non-number
         *success = false;
+        Warn("Missing valid value");
         return 0;
     }
   } else if (check_parenthesis(p, q, success) == true) {
@@ -370,6 +372,7 @@ static void do_operator_check(void) {
 uint32_t expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
+    Warn("Parsing token error");
     return 0;
   }
 
