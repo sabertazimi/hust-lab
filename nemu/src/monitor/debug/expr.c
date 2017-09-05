@@ -290,6 +290,7 @@ static int eval(int p, int q, bool *success) {
     // bad dominant position
     if (op == -1) {
       *success = false;
+      Log("dominant false");
       printf("Bad expression\n");
       return 0;
     }
