@@ -158,11 +158,11 @@ static int cmd_x(char *args) {
 
   for (int i = 0; i < len * 4; ++i) {
     if (0 == i % 4) {
-      printf("%08x: ", addr + i);
+      printf("0x%08x: ", addr + i);
     }
 
     uint32_t num = vaddr_read(addr + i, 1);
-    printf("%08x\t", num);
+    printf("0x%08x\t", num);
 
     if (3 == i % 4) {
       printf("\n");
