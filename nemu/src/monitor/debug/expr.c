@@ -201,7 +201,22 @@ static int eval(int p, int q, bool *success) {
       return 0;
     }
     int op = get_dominant_pos(p, q);
+    int val1 = eval(p, op - 1, success);
+    int val2 = eval(op + 1, q, success);
 
-    return op;
+    switch (tokens[op].type) {
+      case '+':
+        return val1 + val2;
+      case '-':
+        return val1 - val2;
+      case '*':
+        return val1 * val2;
+      case '/':
+        return val1 / val2;
+      default:
+        return 0;
+    }
+
+    return 0;
   }
 }
