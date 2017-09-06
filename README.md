@@ -182,6 +182,10 @@ sudo apt-get install libc6-dev libc6-dev-i386
 
 *   `read_ModR_M`(src/cpu/decode/modrm.c include/cpu/decode.h)
 
+#### eflags
+
+eflags = 0x2h
+
 #### call (Page 275)
 
 ```c
@@ -207,4 +211,11 @@ make_DHelper(G), make_EHelper(pop), rtl_pop
 
 make_DHelper(r), make_EHelper(pop), rtl_pop
 0x5d (pop %ebp)
+```
+
+#### sub (Page 404)
+
+```c
+make_DHelper(SI2E), make_EHelper(sub), rtl_set_eflags, rtl_sub
+0x83
 ```
