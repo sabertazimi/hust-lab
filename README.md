@@ -156,3 +156,10 @@ if (num = 0) {
 *   Table 17-3 (ModR/M field)
 *   instruction set page (opcode table/Operation/Description/Flags Affected)
 *   appendix A
+
+### Benchmarks
+
+```sh
+sudo apt-get install libc6-dev libc6-dev-i386
+```
+
