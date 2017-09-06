@@ -63,6 +63,11 @@ search:
 
 ARCH?=x86-nemu
 ALL=dummy
+ASM_FILE=$(ALL)-$(ARCH).txt
 
 test:
 	cd ../nexus-am/tests/cputest && make ARCH=$(ARCH) ALL=$(ALL) run
+
+asm:
+	less ../nexus-am/tests/cputest/build/$(ASM_FILE)
+
