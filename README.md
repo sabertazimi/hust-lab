@@ -165,6 +165,11 @@ sudo apt-get install libc6-dev libc6-dev-i386
 
 ### Flow
 
+*   write make_DHelper
+*   write make_EHelper and rtl_xx
+*   write opcode_table
+*   write all-instr.h
+
 #### 0x66
 
 `exec_wrapper` -> `exec_real` -> `exec_operand_size`
