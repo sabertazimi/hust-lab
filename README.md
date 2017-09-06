@@ -198,3 +198,13 @@ make_DHelper(G), make_EHelper(push), rtl_push
 make_DHelper(r), make_EHelper(push), rtl_push
 0x55 (push %ebp)
 ```
+
+#### pop (Page 361)
+
+```c
+make_DHelper(G), make_EHelper(pop), rtl_pop
+0x58
+
+make_DHelper(r), make_EHelper(pop), rtl_pop
+0x5d (pop %ebp)
+```
