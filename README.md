@@ -234,3 +234,10 @@ make_DHelper(SI2E), make_EHelper(sub), rtl_set_eflags, rtl_sub
 0x31
 G2E, xor, rtl_xor, eflags
 ```
+
+### ret (Page 378)
+
+```c
+0x31
+NULL, ret, rtl_pop
+```
