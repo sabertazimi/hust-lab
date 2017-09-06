@@ -174,3 +174,5 @@ sudo apt-get install libc6-dev libc6-dev-i386
 #### decode
 
 *   `read_ModR_M`(src/cpu/decode/modrm.c include/cpu/decode.h)
+
+#### call (Page 275)
