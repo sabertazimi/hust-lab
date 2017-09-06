@@ -28,7 +28,55 @@ typedef struct {
    * in PA2 able to directly access these registers.
    */
     struct {
-      rtlreg_t eax, ecx, edx, ebx, esp, ebp, esi, edi;
+      union {
+        rtlreg_t eax;
+        uint16_t ax;
+        union {
+          uint8_t al;
+          uint8_t ah;
+        };
+      };
+      union {
+        rtlreg_t ecx;
+        uint16_t cx;
+        union {
+          uint8_t cl;
+          uint8_t ch;
+        };
+      };
+      union {
+        rtlreg_t edx;
+        uint16_t dx;
+        union {
+          uint8_t dl;
+          uint8_t dh;
+        };
+      };
+      union {
+        rtlreg_t ebx;
+        uint16_t bx;
+        union {
+          uint8_t bl;
+          uint8_t bh;
+        };
+      };
+      union {
+        rtlreg_t esp;
+        uint16_t sp;
+      };
+      union {
+        rtlreg_t ebp;
+        uint16_t bp;
+      };
+      union {
+        rtlreg_t esi;
+        uint16_t si;
+      };
+      union {
+        rtlreg_t edi;
+        uint16_t di;
+      };
+      // rtlreg_t eax, ecx, edx, ebx, esp, ebp, esi, edi;
     };
   };
 
