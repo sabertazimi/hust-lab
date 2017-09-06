@@ -144,8 +144,6 @@ static inline void rtl_push(const rtlreg_t* src1) {
   // M[esp] <- src1
   reg_l(R_ESP) -= 4;
   rtl_sm(&reg_l(R_ESP), 4, src1);
-
-  Log("push 0x%08x", *src1);
 }
 
 static inline void rtl_pop(rtlreg_t* dest) {
