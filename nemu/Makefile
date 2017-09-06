@@ -55,3 +55,8 @@ clean:
 
 count: 
 	find . -name "*.[ch]" | xargs cat| grep -v ^$$ | wc -l
+
+ics=make_EHelper(real)
+
+search:
+	find . -name "*.[ch]" | xargs grep $ics
