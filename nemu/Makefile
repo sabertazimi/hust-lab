@@ -59,4 +59,4 @@ count:
 ics=make_EHelper(real)
 
 search:
-	find . -name "*.[ch]" | xargs grep $ics
+	find . -name "*.[ch]" | xargs grep "$(ics)"
