@@ -183,3 +183,18 @@ sudo apt-get install libc6-dev libc6-dev-i386
 *   `read_ModR_M`(src/cpu/decode/modrm.c include/cpu/decode.h)
 
 #### call (Page 275)
+
+```c
+make_DHelper(J), make_EHeleper(call), rtl_push
+0xe8
+```
+
+#### push (Page 367)
+
+```c
+make_DHelper(G), make_EHelper(push), rtl_push
+0x50
+
+make_DHelper(r), make_EHelper(push), rtl_push
+0x55 (push %ebp)
+```
