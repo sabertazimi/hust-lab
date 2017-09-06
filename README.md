@@ -163,3 +163,14 @@ if (num = 0) {
 sudo apt-get install libc6-dev libc6-dev-i386
 ```
 
+
+### Flow
+
+#### 0x66
+
+`exec_wrapper` -> `exec_real` -> `exec_operand_size`
+-> `exec_real`
+
+#### decode
+
+*   `read_ModR_M`(src/cpu/decode/modrm.c include/cpu/decode.h)

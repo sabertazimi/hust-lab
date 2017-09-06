@@ -226,28 +226,24 @@ static int get_dominant_pos(int p, int q) {
   return op;
 }
 
-static int get_regval(char *reg_name, bool *success) {
+static int get_regval(char *regname, bool *success) {
   int regval = 0;
+  bool match = false;
 
-  if (strcmp(reg_name, "$eax") == 0) {
-    regval = cpu.eax;
-  } else if (strcmp(reg_name, "$ecx") == 0) {
-    regval = cpu.ecx;
-  } else if (strcmp(reg_name, "$edx") == 0) {
-    regval = cpu.edx;
-  } else if (strcmp(reg_name, "$ebx") == 0) {
-    regval = cpu.ebx;
-  } else if (strcmp(reg_name, "$esp") == 0) {
-    regval = cpu.esp;
-  } else if (strcmp(reg_name, "$ebp") == 0) {
-    regval = cpu.ebp;
-  } else if (strcmp(reg_name, "$esi") == 0) {
-    regval = cpu.esi;
-  } else if (strcmp(reg_name, "$edi") == 0) {
-    regval = cpu.edi;
-  } else if (strcmp(reg_name, "$eip") == 0) {
+  for (int i = R_EAX; i <= R_EDI; ++i) {
+    if (strcmp(regname, reg_name(i, 4)) == 0) {
+      regval = reg_l(i);
+      match = true;
+      break;
+    }
+  }
+
+  if (match == false && strcmp(regname, "eip") == 0) {
     regval = cpu.eip;
-  } else {
+    match = true;
+  }
+
+  if (match == false) {
     *success = false;
     Warn("Unknown register");
   }
@@ -271,7 +267,7 @@ static int eval(int p, int q, bool *success) {
       case TK_DEC:
         return strtol(tokens[p].str, NULL, 10);
       case TK_REG:
-        return get_regval(tokens[p].str, success);
+        return get_regval(tokens[p].str+1, success);
       default:
         // non-number
         *success = false;

@@ -47,14 +47,11 @@ static int cmd_d(char *args);
 
 static void print_registers(void) {
   Info("Reg\t\tHex\t\tDec");
-  Info("eax\t\t0x%08x\t%d", cpu.eax, cpu.eax);
-  Info("ecx\t\t0x%08x\t%d", cpu.ecx, cpu.ecx);
-  Info("edx\t\t0x%08x\t%d", cpu.edx, cpu.edx);
-  Info("ebx\t\t0x%08x\t%d", cpu.ebx, cpu.ebx);
-  Info("esp\t\t0x%08x\t%d", cpu.esp, cpu.esp);
-  Info("ebp\t\t0x%08x\t%d", cpu.ebp, cpu.ebp);
-  Info("esi\t\t0x%08x\t%d", cpu.esi, cpu.esi);
-  Info("edi\t\t0x%08x\t%d", cpu.edi, cpu.edi);
+
+  for (int i = R_EAX; i <= R_EDI; ++i) {
+    Info("%s\t\t0x%08x\t%d", reg_name(i, 4), reg_l(i), reg_l(i));
+  }
+
   Info("eip\t\t0x%08x\t%d", cpu.eip, cpu.eip);
 }
 
