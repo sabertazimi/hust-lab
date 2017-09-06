@@ -194,10 +194,6 @@ make_DHelper(gp7_E) {
   decode_op_rm(eip, id_dest, false, NULL, false);
 }
 
-make_DHelper(G) {
-  decode_op_rm(eip, NULL, false, id_dest, true);
-}
-
 /* used by test in group3 */
 make_DHelper(test_I) {
   decode_op_I(eip, id_src, true);
