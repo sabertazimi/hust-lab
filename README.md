@@ -163,13 +163,15 @@ if (num = 0) {
 sudo apt-get install libc6-dev libc6-dev-i386
 ```
 
-
 ### Flow
 
 #### 0x66
 
 `exec_wrapper` -> `exec_real` -> `exec_operand_size`
 -> `exec_real`
+
+*   `decode_xx -> decode_op_xx` `decode.c`
+*   `exec_xx -> rtl_xx` `exec/*.c`  `rtl.h`
 
 #### decode
 
