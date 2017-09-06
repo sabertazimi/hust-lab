@@ -61,7 +61,7 @@ ics=make_EHelper(real)
 search:
 	find . -name "*.[ch]" | xargs grep "$(ics)"
 
-ARCH=x86-nemu
+ARCH?=x86-nemu
 ALL=dummy
 
 test:
