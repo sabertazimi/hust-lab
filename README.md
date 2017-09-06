@@ -216,6 +216,17 @@ make_DHelper(r), make_EHelper(pop), rtl_pop
 #### sub (Page 404)
 
 ```c
+idex(decode_I2E/SI2E..., exec_gp1)
+exec_gp1 -> idex(exec_sub) no decode again
+```
+
+```c
+0x80/0x81/0x83 /5
 make_DHelper(SI2E), make_EHelper(sub), rtl_set_eflags, rtl_sub
-0x83
+```
+
+### xor (Page 411)
+
+```c
+0x31
 ```
