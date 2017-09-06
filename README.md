@@ -132,7 +132,7 @@ find . -name "*.[ch]" | xargs cat | grep -v ^$ | wc -l
 sudo apt-get install man-db
 ```
 
-*   开启大部分警告选项
+*   �/�启大部分警告选项
 *   将警告强制转为错误
 
 使得所有隐藏的逻辑错误都可以在编译阶段得到修正
@@ -144,3 +144,15 @@ if (num = 0) {
     printf("num != 0\n");
 }
 ```
+
+## PA2
+
+### Macro
+
+*   Use macro to define struct(`EX/EXW/EMPTY/IDEX/IDEXW`) or function(`make_EHelper/make__DopHelper/make_DHelper`)
+
+### Reading
+
+*   Table 17-3 (ModR/M field)
+*   instruction set page (opcode table/Operation/Description/Flags Affected)
+*   appendix A

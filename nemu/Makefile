@@ -4,6 +4,10 @@ BUILD_DIR ?= ./build
 OBJ_DIR ?= $(BUILD_DIR)/obj
 BINARY ?= $(BUILD_DIR)/$(NAME)
 
+# for pa2 benchmarks
+ARCH=x86-nemu
+ALL=dummy
+
 include Makefile.git
 
 .DEFAULT_GOAL = app
