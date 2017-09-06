@@ -181,6 +181,9 @@ sudo apt-get install libc6-dev libc6-dev-i386
 #### decode
 
 *   `read_ModR_M`(src/cpu/decode/modrm.c include/cpu/decode.h)
+*    + rb/rw/rd -> r
+*    ib -> I (width = 1)
+*    /r -> G2E E2G
 
 #### eflags
 
@@ -196,7 +199,7 @@ make_DHelper(J), make_EHeleper(call), rtl_push
 #### push (Page 367)
 
 ```c
-make_DHelper(G), make_EHelper(push), rtl_push
+make_DHelper(r), make_EHelper(push), rtl_push
 0x50
 
 make_DHelper(r), make_EHelper(push), rtl_push
@@ -206,7 +209,7 @@ make_DHelper(r), make_EHelper(push), rtl_push
 #### pop (Page 361)
 
 ```c
-make_DHelper(G), make_EHelper(pop), rtl_pop
+make_DHelper(r), make_EHelper(pop), rtl_pop
 0x58
 
 make_DHelper(r), make_EHelper(pop), rtl_pop
@@ -229,4 +232,5 @@ make_DHelper(SI2E), make_EHelper(sub), rtl_set_eflags, rtl_sub
 
 ```c
 0x31
+G2E, xor, rtl_xor, eflags
 ```
