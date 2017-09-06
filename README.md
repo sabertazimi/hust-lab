@@ -241,3 +241,11 @@ G2E, xor, rtl_xor, eflags
 0x31
 NULL, ret, rtl_pop
 ```
+
+### lea
+
+
+```c
+0x8d
+M2G, lea, rtl_li
+```
