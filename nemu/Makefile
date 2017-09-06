@@ -56,10 +56,11 @@ clean:
 count: 
 	find . -name "*.[ch]" | xargs cat| grep -v ^$$ | wc -l
 
-ics=make_EHelper(real)
+sp=.
+ss=TODO\(\)
 
 search:
-	find . -name "*.[ch]" | xargs grep "$(ics)"
+	find $(sp) -name "*.[ch]" | xargs grep "$(ss)"
 
 ARCH?=x86-nemu
 ALL=dummy
