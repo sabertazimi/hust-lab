@@ -182,7 +182,7 @@ static int cmd_x(char *args) {
     }
   }
 
-  printf("\33[0m");
+  printf("\n\33[0m");
 
   return 0;
 }
