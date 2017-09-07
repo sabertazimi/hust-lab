@@ -267,7 +267,7 @@ static int eval(int p, int q, bool *success) {
       case TK_DEC:
         return strtol(tokens[p].str, NULL, 10);
       case TK_REG:
-        return get_regval(tokens[p].str+1, success);
+        return get_regval(tokens[p].str + 1, success);
       default:
         // non-number
         *success = false;
