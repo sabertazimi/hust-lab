@@ -231,7 +231,7 @@ static int get_regval(char *regname, bool *success) {
   int regval = 0;
   bool match = false;
 
-  for (int i = R_EAX; i <= R_EDI; ++i) {
+  for (int i = 0; i < 8; ++i) {
     if (strcmp(regname, reg_name(i, 4)) == 0) {
       regval = reg_l(i);
       match = true;
