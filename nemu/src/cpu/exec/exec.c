@@ -41,7 +41,7 @@ static make_EHelper(name) { \
 
 /* 0x80, 0x81, 0x83 */
 make_group(gp1,
-    EMPTY, EMPTY, EMPTY, EMPTY,
+    EXW(add, 1), EMPTY, EMPTY, EMPTY,
     EXW(and, 1), EXW(sub, 1), EMPTY, EMPTY)
 
   /* 0xc0, 0xc1, 0xd0, 0xd1, 0xd2, 0xd3 */
@@ -72,7 +72,7 @@ make_group(gp7,
 /* TODO: Add more instructions!!! */
 
 opcode_entry opcode_table [512] = {
-  /* 0x00 */	EMPTY, EMPTY, EMPTY, EMPTY,
+  /* 0x00 */	EMPTY, EMPTY, EMPTY, IDEX(E2G, add),
   /* 0x04 */	EMPTY, EMPTY, EMPTY, EMPTY,
   /* 0x08 */	EMPTY, EMPTY, EMPTY, EMPTY,
   /* 0x0c */	EMPTY, EMPTY, EMPTY, EX(2byte_esc),

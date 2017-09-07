@@ -194,8 +194,8 @@ include/cpu/rtl.h
 
 *   `read_ModR_M`(src/cpu/decode/modrm.c include/cpu/decode.h)
 *    + rb/rw/rd -> r
-*    ib -> I (width = 1)
-*    /r -> G2E E2G
+*    ib/iw/id -> SI/I (width = 1/2/4)
+*    /r -> G2E/E2G
 
 #### eflags
 
@@ -212,7 +212,7 @@ IDEX(J, call)
 ### push (Page 367)
 
 ```c
-0x50 - 0x 57
+0x50 - 0x 57 +r
 r, push, rtl_push
 IDEX(r, push)
 
@@ -224,7 +224,7 @@ IDEX(E, gp5) -> EX(push)
 ### pop (Page 361)
 
 ```c
-0x58 - 0x5f
+0x58 - 0x5f +r
 r, pop, rtl_pop
 IDEX(r, pop)
 ```
@@ -237,7 +237,7 @@ exec_gp1 -> idex(exec_sub) no decode again
 ```
 
 ```c
-0x83 /5
+0x83 /5 ib
 SI2E, sub, rtl_sub, eflags
 IDEX(SI2E, gp1) -> EXW(sub, 1)
 ```
@@ -269,7 +269,7 @@ IDEX(lea_M2G, lea)
 ### and (Page 262)
 
 ```c
-0x83 /4
+0x83 /4 ib
 SI2E, and, rtl_and, eflags
 IDEX(SI2E, gp1) -> EXW(and, 1)
 ```
@@ -277,6 +277,14 @@ IDEX(SI2E, gp1) -> EXW(and, 1)
 ### xchg (Page 409)
 
 ```c
-0x66 0x90 (operand_size = 16)
+0x66 0x90 (operand_size = 16) +r
 r2a(new)/a2r, xchg(new), rtl_sext
+```
+
+### add (Page 261)
+
+```c
+0x03 /r
+E2G, add, rtl_add, eflags
+IDEX(E2G, add)
 ```
