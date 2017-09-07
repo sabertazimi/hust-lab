@@ -170,6 +170,18 @@ sudo apt-get install libc6-dev libc6-dev-i386
 *   write opcode_table
 *   write all-instr.h
 
+```c
+include/cpu/decode.h
+src/cpu/decode/decode.c
+(src/cpu/decode/modrm.c)
+
+src/cpu/exec/xx.c
+src/cpu/exec/exec.c
+src/cpu/exec/all-instr.h
+
+include/cpu/rtl.h
+```
+
 #### 0x66
 
 `exec_wrapper` -> `exec_real` -> `exec_operand_size`
@@ -189,7 +201,7 @@ sudo apt-get install libc6-dev libc6-dev-i386
 
 eflags = 0x2h
 
-#### call (Page 275)
+### call (Page 275)
 
 ```c
 0xe8
@@ -197,7 +209,7 @@ J, call, rtl_push
 IDEX(J, call)
 ```
 
-#### push (Page 367)
+### push (Page 367)
 
 ```c
 0x50 - 0x 57
@@ -209,7 +221,7 @@ E, push, rtl_push
 IDEX(E, gp5) -> EX(push)
 ```
 
-#### pop (Page 361)
+### pop (Page 361)
 
 ```c
 0x58 - 0x5f
@@ -217,7 +229,7 @@ r, pop, rtl_pop
 IDEX(r, pop)
 ```
 
-#### sub (Page 404)
+### sub (Page 404)
 
 ```c
 idex(decode_I2E/SI2E..., exec_gp1)
@@ -266,5 +278,5 @@ IDEX(SI2E, gp1) -> EXW(and, 1)
 
 ```c
 0x66 0x90 (operand_size = 16)
-
+r2a(new)/a2r, xchg(new), rtl_sext
 ```
