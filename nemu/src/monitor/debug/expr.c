@@ -246,6 +246,7 @@ static int get_regval(char *regname, bool *success) {
   if (match == false) {
     *success = false;
     Warn("Unknown register");
+    Log("%s", regname);
   }
 
   return regval;
