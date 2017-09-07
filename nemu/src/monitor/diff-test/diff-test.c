@@ -156,17 +156,17 @@ void difftest_step(uint32_t eip) {
     || r.esi != cpu.esi || r.edi != cpu.edi
     || r.eip != cpu.eip) {
     diff = true;
-    Warn("    \tNemu\t\t\t\tQemu");
-    Warn("$eax\t%d(0x%08x)\t\t%d(0x%08x)", cpu.eax, cpu.eax, r.eax, r.eax);
-    Warn("$ecx\t%d(0x%08x)\t\t%d(0x%08x)", cpu.ecx, cpu.ecx, r.ecx, r.ecx);
-    Warn("$edx\t%d(0x%08x)\t\t%d(0x%08x)", cpu.edx, cpu.edx, r.edx, r.edx);
-    Warn("$ebx\t%d(0x%08x)\t\t%d(0x%08x)", cpu.ebx, cpu.ebx, r.ebx, r.ebx);
-    Warn("$esp\t%d(0x%08x)\t\t%d(0x%08x)", cpu.esp, cpu.esp, r.esp, r.esp);
-    Warn("$ebp\t%d(0x%08x)\t\t%d(0x%08x)", cpu.ebp, cpu.ebp, r.ebp, r.ebp);
-    Warn("$esi\t%d(0x%08x)\t\t%d(0x%08x)", cpu.esi, cpu.esi, r.esi, r.esi);
-    Warn("$edi\t%d(0x%08x)\t\t%d(0x%08x)", cpu.edi, cpu.edi, r.edi, r.edi);
-    Warn("$eip\t%d(0x%08x)\t\t%d(0x%08x)", cpu.eip, cpu.eip, r.eip, r.eip);
-    Warn("$eflags\t%d(0x%08x)\t\t%d(0x%08x)", cpu.eflags.val, cpu.eflags.val, r.eflags, r.eflags);
+    Warn("    \tNemu\t\t\t\t\tQemu");
+    Warn("$eax\t%d(0x%08x)\t\t\t%d(0x%08x)", cpu.eax, cpu.eax, r.eax, r.eax);
+    Warn("$ecx\t%d(0x%08x)\t\t\t%d(0x%08x)", cpu.ecx, cpu.ecx, r.ecx, r.ecx);
+    Warn("$edx\t%d(0x%08x)\t\t\t%d(0x%08x)", cpu.edx, cpu.edx, r.edx, r.edx);
+    Warn("$ebx\t%d(0x%08x)\t\t\t%d(0x%08x)", cpu.ebx, cpu.ebx, r.ebx, r.ebx);
+    Warn("$esp\t%d(0x%08x)\t\t\t%d(0x%08x)", cpu.esp, cpu.esp, r.esp, r.esp);
+    Warn("$ebp\t%d(0x%08x)\t\t\t%d(0x%08x)", cpu.ebp, cpu.ebp, r.ebp, r.ebp);
+    Warn("$esi\t%d(0x%08x)\t\t\t%d(0x%08x)", cpu.esi, cpu.esi, r.esi, r.esi);
+    Warn("$edi\t%d(0x%08x)\t\t\t%d(0x%08x)", cpu.edi, cpu.edi, r.edi, r.edi);
+    Warn("$eip\t%d(0x%08x)\t\t\t%d(0x%08x)", cpu.eip, cpu.eip, r.eip, r.eip);
+    Warn("$eflags\t%d(0x%08x)\t\t\t%d(0x%08x)", cpu.eflags.val, cpu.eflags.val, r.eflags, r.eflags);
   }
 
   if (diff) {
