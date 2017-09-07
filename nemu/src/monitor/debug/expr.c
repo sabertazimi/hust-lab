@@ -237,6 +237,18 @@ static int get_regval(char *regname, bool *success) {
       match = true;
       break;
     }
+
+    if (strcmp(regname, reg_name(i, 2)) == 0) {
+      regval = reg_w(i);
+      match = true;
+      break;
+    }
+
+    if (strcmp(regname, reg_name(i, 1)) == 0) {
+      regval = reg_b(i);
+      match = true;
+      break;
+    }
   }
 
   if (match == false && strcmp(regname, "eip") == 0) {
