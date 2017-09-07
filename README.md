@@ -319,3 +319,11 @@ E, setcc, rtl_get_ZF, rtl_li
 IDEXW(E, setcc, 1) to 2 byte_opcode_table
 ```
 
+### movzx/movzbl ()
+
+```c
+0x0f 0xb6 /r
+E2G, movzx, rtl_li
+IDEXW(E2G, movzx, 1)
+```
+
