@@ -174,6 +174,21 @@ static inline void rtl_msb(rtlreg_t* dest, const rtlreg_t* src1, int width) {
   TODO();
 }
 
+static inline void rtl_update_CF(const rtlreg_t* result, const rtlreg_t* left, const rtlreg_t* right, int width) {
+  // only check 'add'
+  cpu.eflags.CF = result < left;
+}
+
+static inline void rtl_update_OF(const rtlreg_t* result, const rtlreg_t* left, const rtlreg_t* right, int width) {
+  // only check 'add'
+  bool is_left_neg = !!(*left & (0x1 << ((width << 3) - 1)));
+  bool is_right_neg = !!(*right & (0x1 << ((width << 3) - 1)));
+  bool is_result_neg = !!(*result & (0x1 << ((width << 3) - 1)));
+  bool neg_over = is_left_neg && is_right_neg && !is_result_neg;
+  bool pos_over = !is_left_neg && !is_right_neg && is_result_neg;
+  cpu.eflags.OF = neg_over || pos_over;
+}
+
 static inline void rtl_update_ZF(const rtlreg_t* result, int width) {
   // eflags.ZF <- is_zero(result[width * 8 - 1 .. 0])
   cpu.eflags.ZF = !((*result) & (~0u >> ((4 - width) << 3)));
@@ -182,6 +197,11 @@ static inline void rtl_update_ZF(const rtlreg_t* result, int width) {
 static inline void rtl_update_SF(const rtlreg_t* result, int width) {
   // eflags.SF <- is_sign(result[width * 8 - 1 .. 0])
   cpu.eflags.SF = !!((*result) & (0x1 << ((width << 3) - 1)));
+}
+
+static inline void rtl_update_CFOF(const rtlreg_t* result, const rtlreg_t* left, const rtlreg_t* right, int width) {
+  rtl_update_CF(result, left, right, width);
+  rtl_update_OF(result, left, right, width);
 }
 
 static inline void rtl_update_ZFSF(const rtlreg_t* result, int width) {

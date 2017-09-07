@@ -1,16 +1,27 @@
 #include "cpu/exec.h"
 
 make_EHelper(add) {
+  rtlreg_t old_dest = id_dest->val;
+
   rtl_add(&id_dest->val, &id_dest->val, &id_src->val);
   operand_write(id_dest, &id_dest->val);
+
+  rtl_update_CFOF(&id_dest->val, &old_dest, &id_src->val, id_dest->width);
   rtl_update_ZFSF(&id_dest->val, id_dest->width);
+
   print_asm_template2(add);
 }
 
 make_EHelper(sub) {
+  rtlreg_t old_dest = id_dest->val;
+  rtlreg_t neg_src = -((int32_t)id_src->val);
+
   rtl_sub(&id_dest->val, &id_dest->val, &id_src->val);
   operand_write(id_dest, &id_dest->val);
+
+  rtl_update_CFOF(&id_dest->val, &old_dest, &neg_src, id_dest->width);
   rtl_update_ZFSF(&id_dest->val, id_dest->width);
+
   print_asm_template2(sub);
 }
 
