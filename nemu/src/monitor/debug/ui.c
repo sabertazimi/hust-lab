@@ -169,7 +169,7 @@ static int cmd_x(char *args) {
 
   printf("\33[1;33m");
 
-  for (int i = 0; i < len; i += 4) {
+  for (int i = 0; i < len * 4; i += 4) {
     if (i % 4 == 0) {
       printf("0x%08x: ", addr + i);
     }
