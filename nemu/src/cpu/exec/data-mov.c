@@ -76,3 +76,12 @@ make_EHelper(lea) {
   operand_write(id_dest, &t2);
   print_asm_template2(lea);
 }
+
+make_EHelper(xchg) {
+  id_dest->width = id_src->width = decoding.is_operand_size_16 ? 2 : 4;
+  rtl_sext(&t0, &id_src->val, id_src->width);
+  rtl_sext(&t1, &id_dest->val, id_dest->width);
+  operand_write(id_dest, &t0);
+  operand_write(id_src, &t1);
+  print_asm_template2(xchg);
+}
