@@ -247,7 +247,6 @@ static int get_regval(char *regname, bool *success) {
   if (match == false) {
     *success = false;
     Warn("Unknown register");
-    Log("%s", regname);
   }
 
   return regval;
@@ -373,7 +372,6 @@ uint32_t expr(char *e, bool *success) {
     Warn("Parsing token error");
     return 0;
   }
-    Log("make token for %s", e);
 
   /* TODO: Insert codes to evaluate the expression. */
 
