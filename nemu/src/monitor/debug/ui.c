@@ -170,14 +170,14 @@ static int cmd_x(char *args) {
   printf("\33[1;33m");
 
   for (int i = 0; i < len * 4; i += 4) {
-    if (i % 4 == 0) {
+    if (i % 16 == 0) {
       printf("0x%08x: ", addr + i);
     }
 
     uint32_t num = vaddr_read(addr + i, 4);
     printf("0x%08x\t", num);
 
-    if (i % 4 == 3) {
+    if (i % 16 == 15) {
       printf("\n");
     }
   }
