@@ -304,3 +304,18 @@ IDEX(E2G, adc)
 G2E, or, rtl_or, eflags
 IDEX(G2E, or)
 ```
+
+### setcc (Page 389)
+
+```c
+exec_2byte_esc:
+
+opcode = opcode | 0x100
+```
+
+```c
+(0x0f 2byte_esc) 0x94
+E, setcc, rtl_get/set_eflags
+IDEXW(E, setcc, 1) to 2 byte_opcode_table
+```
+
