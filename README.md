@@ -261,3 +261,10 @@ IDEX(lea_M2G, lea)
 SI2E, and, rtl_and, eflags
 IDEX(SI2E, gp1) -> EXW(and, 1)
 ```
+
+### xchg (Page 409)
+
+```c
+0x66 0x90 (operand_size = 16)
+
+```
