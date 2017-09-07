@@ -166,6 +166,7 @@ void difftest_step(uint32_t eip) {
     Warn("$esi\t%d(0x%08x)\t\t%d(0x%08x)", cpu.esi, cpu.esi, r.esi, r.esi);
     Warn("$edi\t%d(0x%08x)\t\t%d(0x%08x)", cpu.edi, cpu.edi, r.edi, r.edi);
     Warn("$eip\t%d(0x%08x)\t\t%d(0x%08x)", cpu.eip, cpu.eip, r.eip, r.eip);
+    Warn("$eflags\t%d(0x%08x)\t\t%d(0x%08x)", cpu.eflags.val, cpu.eflags.val, r.eflags, r.eflags);
   }
 
   if (diff) {

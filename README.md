@@ -244,8 +244,14 @@ NULL, ret, rtl_pop
 
 ### lea
 
-
 ```c
 0x8d
 M2G, lea, rtl_li
+```
+
+### and (Page 262)
+
+```c
+0x83
+SI2E, and, rtl_and
 ```
