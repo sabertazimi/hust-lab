@@ -319,7 +319,7 @@ E, setcc, rtl_get_ZF, rtl_li
 IDEXW(E, setcc, 1) to 2 byte_opcode_table
 ```
 
-### movzx/movzbl ()
+### movzx/movzbl (Page 351)
 
 ```c
 0x0f 0xb6 /r
