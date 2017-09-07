@@ -314,8 +314,8 @@ opcode = opcode | 0x100
 ```
 
 ```c
-(0x0f 2byte_esc) 0x94
-E, setcc, rtl_get/set_eflags
+(0x0f 2byte_esc) 0x94 -> 0x04 -> case CC_E
+E, setcc, rtl_get_ZF, rtl_li
 IDEXW(E, setcc, 1) to 2 byte_opcode_table
 ```
 
