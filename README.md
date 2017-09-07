@@ -192,28 +192,29 @@ eflags = 0x2h
 #### call (Page 275)
 
 ```c
-make_DHelper(J), make_EHeleper(call), rtl_push
 0xe8
+J, call, rtl_push
+IDEX(J, call)
 ```
 
 #### push (Page 367)
 
 ```c
-make_DHelper(r), make_EHelper(push), rtl_push
-0x50
+0x50 - 0x 57
+r, push, rtl_push
+IDEX(r, push)
 
-make_DHelper(r), make_EHelper(push), rtl_push
-0x55 (push %ebp)
+0xff /6
+E, push, rtl_push
+IDEX(E, gp5) -> EX(push)
 ```
 
 #### pop (Page 361)
 
 ```c
-make_DHelper(r), make_EHelper(pop), rtl_pop
-0x58
-
-make_DHelper(r), make_EHelper(pop), rtl_pop
-0x5d (pop %ebp)
+0x58 - 0x5f
+r, pop, rtl_pop
+IDEX(r, pop)
 ```
 
 #### sub (Page 404)
@@ -224,8 +225,9 @@ exec_gp1 -> idex(exec_sub) no decode again
 ```
 
 ```c
-0x80/0x81/0x83 /5
-make_DHelper(SI2E), make_EHelper(sub), rtl_set_eflags, rtl_sub
+0x83 /5
+SI2E, sub, rtl_sub, eflags
+IDEX(SI2E, gp1) -> EXW(sub, 1)
 ```
 
 ### xor (Page 411)
@@ -233,6 +235,7 @@ make_DHelper(SI2E), make_EHelper(sub), rtl_set_eflags, rtl_sub
 ```c
 0x31
 G2E, xor, rtl_xor, eflags
+IDEX(G2E, xor)
 ```
 
 ### ret (Page 378)
@@ -240,18 +243,21 @@ G2E, xor, rtl_xor, eflags
 ```c
 0x31
 NULL, ret, rtl_pop
+EX(ret)
 ```
 
 ### lea
 
 ```c
 0x8d
-M2G, lea, rtl_li
+lea_M2G, lea, rtl_li
+IDEX(lea_M2G, lea)
 ```
 
 ### and (Page 262)
 
 ```c
-0x83
-SI2E, and, rtl_and
+0x83 /4
+SI2E, and, rtl_and, eflags
+IDEX(SI2E, gp1) -> EXW(and, 1)
 ```
