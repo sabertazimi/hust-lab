@@ -2,7 +2,6 @@
 
 make_EHelper(mov);
 make_EHelper(lea);
-make_EHelper(xchg);
 
 make_EHelper(operand_size);
 
@@ -21,3 +20,4 @@ make_EHelper(adc);
 make_EHelper(xor);
 make_EHelper(and);
 
+make_EHelper(nop);
