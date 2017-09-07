@@ -177,7 +177,7 @@ static int cmd_x(char *args) {
     uint32_t num = vaddr_read(addr + i, 4);
     printf("0x%08x\t", num);
 
-    if (i % 16 == 15) {
+    if (i % 16 == 12) {
       printf("\n");
     }
   }
