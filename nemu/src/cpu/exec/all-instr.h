@@ -22,3 +22,5 @@ make_EHelper(and);
 make_EHelper(or);
 
 make_EHelper(nop);
+
+make_EHelper(setcc);
