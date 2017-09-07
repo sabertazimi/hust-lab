@@ -368,6 +368,7 @@ static void do_operator_check(void) {
 
 uint32_t expr(char *e, bool *success) {
   if (!make_token(e)) {
+    Log("make token for %s", e);
     *success = false;
     Warn("Parsing token error");
     return 0;
