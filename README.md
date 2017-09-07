@@ -274,11 +274,11 @@ SI2E, and, rtl_and, eflags
 IDEX(SI2E, gp1) -> EXW(and, 1)
 ```
 
-### xchg (Page 409)
+### nop (Page 355)
 
 ```c
-0x66 0x90 (operand_size = 16) +r
-r2a(new)/a2r, xchg(new), rtl_sext
+0x66 0x90 (operand_size = 16)
+0x90
 ```
 
 ### add (Page 261)
@@ -287,4 +287,20 @@ r2a(new)/a2r, xchg(new), rtl_sext
 0x03 /r
 E2G, add, rtl_add, eflags
 IDEX(E2G, add)
+```
+
+### adc (Page 260)
+
+```c
+0x13 /r
+E2G, adc, rtl_add, eflags
+IDEX(E2G, adc)
+```
+
+### or (Page 357)
+
+```c
+0x09 /r
+G2E, or, rtl_or, eflags
+IDEX(G2E, or)
 ```
