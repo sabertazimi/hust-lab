@@ -7,6 +7,7 @@ make_EHelper(cltd);
 make_EHelper(lea);
 make_EHelper(push);
 make_EHelper(pop);
+make_EHelper(leave);
 
 make_EHelper(operand_size);
 
