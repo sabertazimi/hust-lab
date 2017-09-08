@@ -143,8 +143,11 @@ static inline void rtl_sext(rtlreg_t* dest, const rtlreg_t* src1, int width) {
   // dest <- signext(src1[(width * 8 - 1) .. 0])
   rtlreg_t is_neg = 0;
   rtl_msb(&is_neg, src1, width);
-  *dest = *src1 | (is_neg ? (~0 << (width << 3)) : 0);
-  Log("is_neg = 0x%08x, src1 = 0x%08x, dest = 0x%08x", is_neg, *src1, *dest);
+  if (width < 4) {
+    *dest = *src1 | (is_neg ? (~0 << (width << 3)) : 0);
+  } else {
+    *dest = *src1;
+  }
 }
 
 static inline void rtl_push(const rtlreg_t* src1) {
