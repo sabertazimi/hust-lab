@@ -351,6 +351,8 @@ IDEXW(E, setcc, 1) to 2 byte_opcode_table
 
 ### movzx/movzbl (Page 351)
 
+in `exec_movzx`: change `id_dest->width`  again
+
 ```c
 0x0f 0xb6 /r
 E2G, movzx, rtl_li
@@ -494,4 +496,14 @@ IDEX(E, gp3) -> EX(idiv)
 ```c
 0x99
 EX(cltd), rtl_msb
+```
+
+### movsx (Page 350)
+
+in `exec_movsx`: change `id_dest->width`  aggin
+
+```c
+0x0f 0xbf /r
+mov_E2G, movsx, rtl_sext
+IDEXW(mov_E2G, movsx, 2)
 ```
