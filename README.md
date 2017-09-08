@@ -490,9 +490,14 @@ IDEXW(J, jmp, 1)
 ### imul (Page 300)
 
 ```c
+0xf7 /5
+E, imul1, rtl_imul
+IDEX(E, gp3) -> EX(imul1)
+
+
 0x0f 0xaf /r
-E2G, imul, rtl_imul
-IDEX(E2G, imul)
+E2G, imul2, rtl_imul
+IDEX(E2G, imul2)
 ```
 
 ### idiv (Page 298)
