@@ -219,6 +219,10 @@ IDEX(r, push)
 0xff /6
 E, push, rtl_push
 IDEX(E, gp5) -> EX(push)
+
+0x6a
+I, push, rtl_push
+IDEXW(I, push, 1)
 ```
 
 ### pop (Page 361)
