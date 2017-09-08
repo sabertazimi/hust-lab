@@ -502,6 +502,10 @@ IDEX(E, gp5) -> EX(inc)
 ### jmp (Page 319)
 
 ```c
+0xe9
+J, jmp
+IDEX(J, jmp)
+
 0xeb
 J, jmp
 IDEXW(J, jmp, 1)
