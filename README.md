@@ -302,6 +302,10 @@ IDEXW(E2G, and, 1)
 ### add (Page 261)
 
 ```c
+0x01 /r
+G2E, add, rtl_add, eflags
+IDEX(G2E, add)
+
 0x03 /r
 E2G, add, rtl_add, eflags
 IDEX(E2G, add)
