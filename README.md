@@ -254,6 +254,10 @@ exec_gp1 -> idex(exec_sub) no decode again
 0x83 /5 ib
 SI2E, sub, rtl_sub, eflags
 IDEX(SI2E, gp1) -> EXW(sub, 1)
+
+0x29 /r
+G2E, sub, rtl_sub ,eflags
+IDEX(G2E, sub)
 ```
 
 ### xor (Page 411)
