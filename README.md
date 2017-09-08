@@ -182,13 +182,23 @@ src/cpu/exec/all-instr.h
 include/cpu/rtl.h
 ```
 
-#### 0x66
+#### 0x66 operand_size
 
 `exec_wrapper` -> `exec_real` -> `exec_operand_size`
--> `exec_real`
+-> `exec_real` -> `exec_xx`
 
 *   `decode_xx -> decode_op_xx` `decode.c`
 *   `exec_xx -> rtl_xx` `exec/*.c`  `rtl.h`
+
+#### 2 byte opcode
+
+0x0f:
+
+`exec_wrapper -> exec_real -> exec_2byte -> exec__xx`
+
+#### gpx
+
+`exec_wrapper -> exec_real -> exec_gpx -> exec_xx`
 
 #### decode
 
@@ -334,6 +344,10 @@ IDEXW(E2G, movzx, 1)
 ### test (Page 405)
 
 ```c
+0x84 /r 
+G2E, test, rtl_and, eflags
+IDEXW(G2E, test, 1)
+
 0x85 /r
 G2E, test, rtl_and, rtl_set_CF, rtl_set_OF, rtl_update_ZFSF
 IDEX(G2E, test)
