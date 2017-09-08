@@ -368,5 +368,9 @@ IDEX(J, jcc)
 0x83 /7 ib
 SI2E, cmp, rtl_sub, eflags
 IDEX(SI2E, gp1) -> EXW(cmp, 1)
+
+0x3b /r
+E2G, cmp, rtl_sub, eflags
+IDEX(E2G, cmp)
 ```
 
