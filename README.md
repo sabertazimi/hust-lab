@@ -463,3 +463,11 @@ IDEX(r, inc)
 J, jmp
 IDEXW(J, jmp, 1)
 ```
+
+### imul (Page 300)
+
+```c
+0x0f 0xaf /r
+E2G, imul, rtl_imul
+IDEX(E2G, imul)
+```
