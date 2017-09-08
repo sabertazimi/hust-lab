@@ -402,7 +402,11 @@ IDEXW(J, jcc, 1)
 
 ```c
 je:
-0x0f 0x84 cw/cd je
+0x0f 0x84 cw/cd
+J, jcc, rtl_setcc
+IDEX(J, jcc)
+
+0x0f 0x85 cw/cd
 J, jcc, rtl_setcc
 IDEX(J, jcc)
 ```
