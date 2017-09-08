@@ -320,7 +320,7 @@ IDEX(G2E, or)
 
 0x0a /r
 E2G, or, rtl_or, eflags
-IDEX(E2G, or)
+IDEXW(E2G, or)
 ```
 
 ### setcc (Page 389)
