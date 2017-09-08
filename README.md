@@ -165,10 +165,10 @@ sudo apt-get install libc6-dev libc6-dev-i386
 
 ### Flow
 
-*   write make_DHelper
-*   write make_EHelper and rtl_xx
-*   write opcode_table
-*   write all-instr.h
+*   write opcode_table (src/cpu/exec/exec.c)
+*   write all-instr.h (src/cpu/exec/all-instr.h)
+*   write make_EHelper(xx) (src/cpu/exec/xx.c)
+*   write rtl_xx (include/cpu/rtl.h)
 
 ```c
 include/cpu/decode.h
@@ -375,7 +375,6 @@ IDEXW(I2E, gp3, 1) -> EXW(test, 1)
 
 ### jcc (Page 316)
 
-
 ```c
 je:
 0x74 cb
@@ -474,4 +473,11 @@ IDEXW(J, jmp, 1)
 0x0f 0xaf /r
 E2G, imul, rtl_imul
 IDEX(E2G, imul)
+```
+
+### cltd/cdq (Page 290)
+
+```c
+0x99
+EX(cltd), rtl_msb
 ```
