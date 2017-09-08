@@ -264,8 +264,12 @@ SI2E, sub, rtl_sub, eflags
 IDEX(SI2E, gp1) -> EXW(sub, 1)
 
 0x29 /r
-G2E, sub, rtl_sub ,eflags
+G2E, sub, rtl_sub, eflags
 IDEX(G2E, sub)
+
+0x2b /r
+E2G, sub, rtl_sub, eflags
+IDEX(E2G, sub)
 ```
 
 ### xor (Page 411)
