@@ -442,13 +442,9 @@ IDEX(J, jcc)
 SI2E, cmp, rtl_sub, eflags
 IDEX(SI2E, gp1) -> EXW(cmp, 1)
 
-0x3c ib
-I2a, cmp, rtl_sub, eflags
-IDEXW(I2a, cmp, 1)
-
-0x3d id/iw
-I2a, cmp, rtl_sub, eflags
-IDEX(I2a, cmp)
+0x38 /r
+G2E, cmp, rtl_sub, eflags
+IDEXW(G2E, cmp, 1)
 
 0x39 /r
 G2E, cmp, rtl_sub, eflags
@@ -457,6 +453,14 @@ IDEX(G2E, cmp)
 0x3b /r
 E2G, cmp, rtl_sub, eflags
 IDEX(E2G, cmp)
+
+0x3c ib
+I2a, cmp, rtl_sub, eflags
+IDEXW(I2a, cmp, 1)
+
+0x3d id/iw
+I2a, cmp, rtl_sub, eflags
+IDEX(I2a, cmp)
 ```
 
 ### dec (Page 293)
