@@ -63,11 +63,14 @@ search:
 	find $(sp) -name "*.[ch]" | xargs grep "$(ss)"
 
 ARCH?=x86-nemu
-ALL=add
+ALL=bit
 ASM_FILE=$(ALL)-$(ARCH).txt
 
 test:
 	cd ../nexus-am/tests/cputest && make ARCH=$(ARCH) ALL=$(ALL) run
+
+testcase:
+	ls ../nexus-am/tests/cputest/tests
 
 asm:
 	less ../nexus-am/tests/cputest/build/$(ASM_FILE)
