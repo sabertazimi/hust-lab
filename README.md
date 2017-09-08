@@ -359,6 +359,8 @@ IDEXW(E2G, movzx, 1)
 
 ### test (Page 405)
 
+**gp3**: IDEXW -> IDEXW, decode twice
+
 ```c
 0x84 /r 
 G2E, test, rtl_and, eflags
@@ -370,7 +372,7 @@ IDEX(G2E, test)
 
 0xf6 /0 ib
 I2E, test, rtl_and, eflags
-IDEXW(I2E, gp3, 1) -> EXW(test, 1)
+IDEXW(E, gp3, 1) -> IDEXW(test_I, test, 1)
 ```
 
 ### jcc (Page 316)
@@ -473,6 +475,14 @@ IDEXW(J, jmp, 1)
 0x0f 0xaf /r
 E2G, imul, rtl_imul
 IDEX(E2G, imul)
+```
+
+### idiv (Page 298)
+
+```c
+0xf7 /7
+E, idiv, rtl_idiv
+IDEX(E, gp3) -> EX(idiv)
 ```
 
 ### cltd/cdq (Page 290)
