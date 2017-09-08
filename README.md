@@ -418,6 +418,10 @@ IDEX(J, jcc)
 SI2E, cmp, rtl_sub, eflags
 IDEX(SI2E, gp1) -> EXW(cmp, 1)
 
+0x3c ib
+I2a, cmp, rtl_sub, eflags
+IDEXW(I2a, cmp, 1)
+
 0x3d id/iw
 I2a, cmp, rtl_sub, eflags
 IDEX(I2a, cmp)
