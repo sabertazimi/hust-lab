@@ -536,6 +536,14 @@ E, idiv, rtl_idiv
 IDEX(E, gp3) -> EX(idiv)
 ```
 
+### div (Page 294)
+
+```c
+0xf7 /6
+E, div, rtl_div
+IDEX(E, gp3) -> EX(div)
+```
+
 ### cltd/cdq (Page 290)
 
 ```c
