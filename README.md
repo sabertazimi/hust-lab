@@ -272,6 +272,14 @@ E2G, sub, rtl_sub, eflags
 IDEX(E2G, sub)
 ```
 
+### sbb (Page 386)
+
+```c
+0x1b /r
+E2G, sbb, rtl_sub, eflags
+IDEX(E2G, sbb)
+```
+
 ### xor (Page 411)
 
 ```c
