@@ -38,10 +38,12 @@ make_EHelper(leave) {
 
 make_EHelper(cltd) {
   if (decoding.is_operand_size_16) {
-    TODO();
+    rtl_msb(&t0, (rtlreg_t *)(&reg_w(R_AX)), 2);
+    reg_w(R_DX) = t0 ? 0xffff : 0x0000;
   }
   else {
-    TODO();
+    rtl_msb(&t0, &reg_l(R_EAX), 4);
+    reg_l(R_EDX) = t0 ? 0xffffffff : 0x00000000;
   }
 
   print_asm(decoding.is_operand_size_16 ? "cwtl" : "cltd");
