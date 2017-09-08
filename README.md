@@ -385,3 +385,11 @@ IDEX(E2G, cmp)
 gp2_Ib2E, sar, rtl_sar
 IDEX(gp2_Ib2E, gp2) -> EXW(sar, 1)
 ```
+
+### shl
+
+```c
+0xd3 /4
+gp2_cl2E, shl, rtl_shl
+IDEX(gp2_cl2E, gp2) -> EX(shl)
+```
