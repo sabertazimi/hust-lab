@@ -15,6 +15,8 @@ enum {
 
   // binary
   TK_NEQ,
+  TK_LE,
+  TK_GE,
   TK_AND,
   TK_OR,
   TK_HEX,
@@ -42,6 +44,10 @@ static struct rule {
   {"/", '/'},           // divide
   {"==", TK_EQ},        // equal
   {"!=", TK_NEQ},       // not equal
+  {"<=", TK_LE},        // less equal
+  {">=", TK_GE},        // greater equal
+  {"<", '<'},           // less than
+  {">", '>'},           // greater than
   {"&&", TK_AND},       // logical and
   {"\\|\\|", TK_OR},    // logical or
   {"!", '!'},           // logical not
@@ -70,9 +76,11 @@ static void set_priority(void) {
   tokens_priority[TK_OR] = 1;
   tokens_priority[TK_AND] = 2;
   tokens_priority[TK_EQ] = tokens_priority[TK_NEQ] = 3;
-  tokens_priority['+'] = tokens_priority['-'] = 4;
-  tokens_priority['*'] = tokens_priority['/'] = 5;
-  tokens_priority[TK_MINUS] = tokens_priority[TK_DEREF] = tokens_priority['!'] = 6;
+  tokens_priority[TK_LE] = tokens_priority[TK_GE] = 4;
+  tokens_priority['<'] = tokens_priority['>'] = 4;
+  tokens_priority['+'] = tokens_priority['-'] = 5;
+  tokens_priority['*'] = tokens_priority['/'] = 6;
+  tokens_priority[TK_MINUS] = tokens_priority[TK_DEREF] = tokens_priority['!'] = 7;
 
   // set priority of non-operator to 0
   tokens_priority['('] = tokens_priority[')'] = 0;
@@ -335,6 +343,14 @@ static int eval(int p, int q, bool *success) {
         return val1 == val2;
       case TK_NEQ:
         return val1 != val2;
+      case TK_LE:
+        return val1 <= val2;
+      case TK_GE:
+        return val1 >= val2;
+      case '<':
+        return val1 < val2;
+      case '>':
+        return val1 > val2;
       case TK_AND:
         return val1 && val2;
       case TK_OR:
