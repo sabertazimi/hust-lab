@@ -63,7 +63,7 @@ search:
 	find $(sp) -name "*.[ch]" | xargs grep "$(ss)"
 
 ARCH?=x86-nemu
-ALL=matrix-mul
+ALL=max
 ASM_FILE=$(ALL)-$(ARCH).txt
 
 test:
