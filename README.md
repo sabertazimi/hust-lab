@@ -230,6 +230,10 @@ IDEX(r, push)
 E, push, rtl_push
 IDEX(E, gp5) -> EX(push)
 
+0x68
+I, push, rtl_push
+IDEX(I, push)
+
 0x6a
 I, push, rtl_push
 IDEXW(I, push, 1)
