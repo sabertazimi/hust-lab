@@ -317,6 +317,10 @@ IDEX(E2G, adc)
 0x09 /r
 G2E, or, rtl_or, eflags
 IDEX(G2E, or)
+
+0x0a /r
+E2G, or, rtl_or, eflags
+IDEX(E2G, or)
 ```
 
 ### setcc (Page 389)
