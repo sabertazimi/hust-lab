@@ -25,6 +25,8 @@ make_EHelper(and);
 make_EHelper(or);
 make_EHelper(test);
 
+make_EHelper(sar);
+
 make_EHelper(nop);
 
 make_EHelper(setcc);
