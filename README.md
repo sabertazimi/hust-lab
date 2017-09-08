@@ -599,3 +599,11 @@ IDEX(gp2_cl2E, gp2) -> EX(shl)
 gp2_Ib2E, shr, rtl_shr, eflags
 IDEX(gp2_Ib2E, gp2) -> EXW(shr, 1)
 ```
+
+### neg (Page 354)
+
+```c
+0xf7 /3
+E, neg, rtl_neg
+IDEX(E, gp3) -> EX(neg)
+```
