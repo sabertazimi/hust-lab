@@ -371,30 +371,30 @@ IDEX(G2E, test)
 
 ### jcc (Page 316)
 
-je:
 
 ```c
+je:
 0x74 cb
 J, jcc, rtl_setcc
 IDEXW(J, jcc, 1)
-```
 
 jne:
-
-```c
 0x75 cb
+J, jcc, rtl_setcc
+IDEXW(J, jcc, 1)
+
+jle:
+0x7e cb
 J, jcc, rtl_setcc
 IDEXW(J, jcc, 1)
 ```
 
-jcc CC_E:
-
 ```c
+je:
 0x0f 0x84 cw/cd je
 J, jcc, rtl_setcc
 IDEX(J, jcc)
 ```
-
 
 ### cmp (Page 287)
 
