@@ -470,6 +470,10 @@ IDEX(gp2_cl2E, gp2) -> EX(shl)
 E, dec, rtl_dec, eflags
 IDEXW(E, gp4, 1) -> EXW(dec, 1)
 
+0xff /1
+E, dec, rtl_dec, eflags
+IDEX(E, gp5) -> EX(dec)
+
 0x48-0x4f +r
 r, dec, rtl_sub ,eflags
 IDEX(r, dec)
@@ -489,6 +493,10 @@ IDEX(E, gp3) -> EX(not)
 0x40-0x47 +r
 r, inc, rtl_add, eflags
 IDEX(r, inc)
+
+0xff /0 (i386 manual error /6)
+E, inc, rtl_add, eflags
+IDEX(E, gp5) -> EX(inc)
 ```
 
 ### jmp (Page 319)
