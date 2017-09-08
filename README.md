@@ -428,7 +428,7 @@ gp2_cl2E, shl, rtl_shl, eflags
 IDEX(gp2_cl2E, gp2) -> EX(shl)
 ```
 
-### dec
+### dec (Page 293)
 
 ```c
 0xfe /1
@@ -443,3 +443,12 @@ IDEXW(E, gp4, 1) -> EXW(dec, 1)
 E, not, rtl_not
 IDEX(E, gp3) -> EX(not)
 ```
+
+### inc (Page 303)
+
+```c
+0x40-0x47 +r
+r, inc, rtl_add, eflags
+IDEX(r, inc)
+```
+
