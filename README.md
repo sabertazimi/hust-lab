@@ -428,3 +428,10 @@ E, dec, rtl_dec, eflags
 IDEXW(E, gp4, 1) -> EXW(dec, 1)
 ```
 
+### not
+
+```c
+0xf7 /2
+E, not, rtl_not
+IDEX(E, gp3) -> EX(not)
+```
