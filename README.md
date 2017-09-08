@@ -367,6 +367,10 @@ IDEXW(G2E, test, 1)
 0x85 /r
 G2E, test, rtl_and, rtl_set_CF, rtl_set_OF, rtl_update_ZFSF
 IDEX(G2E, test)
+
+0xf6 /0 ib
+I2E, test, rtl_and, eflags
+IDEXW(I2E, gp3, 1) -> EXW(test, 1)
 ```
 
 ### jcc (Page 316)
