@@ -447,22 +447,6 @@ E2G, cmp, rtl_sub, eflags
 IDEX(E2G, cmp)
 ```
 
-### sar
-
-```c
-0xc1 /7 ib
-gp2_Ib2E, sar, rtl_sar eflags
-IDEX(gp2_Ib2E, gp2) -> EXW(sar, 1)
-```
-
-### shl
-
-```c
-0xd3 /4
-gp2_cl2E, shl, rtl_shl, eflags
-IDEX(gp2_cl2E, gp2) -> EX(shl)
-```
-
 ### dec (Page 293)
 
 ```c
@@ -556,3 +540,26 @@ IDEXW(mov_E2G, movsx, 2)
 EX(leave), rtl_lr, rtl_sr, rtl_pop
 ```
 
+### sar
+
+```c
+0xc1 /7 ib
+gp2_Ib2E, sar, rtl_sar, eflags
+IDEX(gp2_Ib2E, gp2) -> EXW(sar, 1)
+```
+
+### shl
+
+```c
+0xd3 /4
+gp2_cl2E, shl, rtl_shl, eflags
+IDEX(gp2_cl2E, gp2) -> EX(shl)
+```
+
+### shr (Page 383)
+
+```c
+0xc1 /5 ib
+gp2_Ib2E, shr, rtl_shr, eflags
+IDEX(gp2_Ib2E, gp2) -> EXW(shr, 1)
+```
