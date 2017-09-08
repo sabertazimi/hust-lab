@@ -515,3 +515,11 @@ in `exec_movsx`: change `id_dest->width`  aggin
 mov_E2G, movsx, rtl_sext
 IDEXW(mov_E2G, movsx, 2)
 ```
+
+### leave (Page 329)
+
+```c
+0xc9
+EX(leave), rtl_lr, rtl_sr, rtl_pop
+```
+
