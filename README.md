@@ -378,3 +378,10 @@ E2G, cmp, rtl_sub, eflags
 IDEX(E2G, cmp)
 ```
 
+### sar
+
+```c
+0xc1 /7 ib
+gp2_Ib2E, sar, rtl_sar
+IDEX(gp2_Ib2E, gp2) -> EXW(sar, 1)
+```
