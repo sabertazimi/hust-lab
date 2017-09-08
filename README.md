@@ -342,7 +342,15 @@ je:
 ```c
 0x74 cb
 J, jcc, rtl_setcc
-IDEX(J, jcc)
+IDEXW(J, jcc, 1)
+```
+
+jne:
+
+```c
+0x75 cb
+J, jcc, rtl_setcc
+IDEXW(J, jcc, 1)
 ```
 
 jcc CC_E:
@@ -350,7 +358,7 @@ jcc CC_E:
 ```c
 0x0f 0x84 cw/cd je
 J, jcc, rtl_setcc
-IDEXW(J, jcc, 1)
+IDEX(J, jcc)
 ```
 
 
