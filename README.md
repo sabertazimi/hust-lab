@@ -325,10 +325,18 @@ IDEX(G2E, or)
 exec_2byte_esc:
 
 opcode = opcode | 0x100
+subcode &= 0xf
+invert = subcode & 0x1
 ```
 
 ```c
+sete:
 (0x0f 2byte_esc) 0x94 -> 0x04 -> case CC_E
+E, setcc, rtl_get_ZF, rtl_li
+IDEXW(E, setcc, 1) to 2 byte_opcode_table
+
+setne:
+0x0f 0x95 -> case CC_E + invert
 E, setcc, rtl_get_ZF, rtl_li
 IDEXW(E, setcc, 1) to 2 byte_opcode_table
 ```
