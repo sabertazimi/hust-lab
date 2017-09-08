@@ -214,6 +214,10 @@ eflags = 0x2h
 ### call (Page 275)
 
 ```c
+0xff /2
+E, call, rtl_push
+IDEX(E, gp5) -> EX(call_rm)
+
 0xe8
 J, call, rtl_push
 IDEX(J, call)
