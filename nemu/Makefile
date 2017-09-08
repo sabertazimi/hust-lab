@@ -69,6 +69,9 @@ ASM_FILE=$(ALL)-$(ARCH).txt
 test:
 	cd ../nexus-am/tests/cputest && make ARCH=$(ARCH) ALL=$(ALL) run
 
+testall:
+	bash runall.sh
+
 testcase:
 	ls ../nexus-am/tests/cputest/tests
 
