@@ -327,3 +327,18 @@ E2G, movzx, rtl_li
 IDEXW(E2G, movzx, 1)
 ```
 
+### test (Page 405)
+
+```c
+0x85 /r
+G2E, test, rtl_and, rtl_set_CF, rtl_set_OF, rtl_update_ZFSF
+IDEX(G2E, test)
+```
+
+### jcc (Page 316)
+
+```c
+0x0f 0x84 cw/cd je
+J, jcc, rtl_setcc
+IDEX(J, jcc)
+```
