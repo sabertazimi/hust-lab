@@ -396,12 +396,16 @@ IDEX(J, jcc)
 ```
 
 
-### cmp
+### cmp (Page 287)
 
 ```c
 0x83 /7 ib
 SI2E, cmp, rtl_sub, eflags
 IDEX(SI2E, gp1) -> EXW(cmp, 1)
+
+0x39 /r
+G2E, cmp, rtl_sub, eflags
+IDEX(G2E, cmp)
 
 0x3b /r
 E2G, cmp, rtl_sub, eflags
