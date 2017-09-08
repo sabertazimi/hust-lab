@@ -505,6 +505,10 @@ IDEX(E, gp5) -> EX(inc)
 0xeb
 J, jmp
 IDEXW(J, jmp, 1)
+
+0xff /4
+E, jmp
+IDEX(E, gp5) -> EX(jmp_rm)
 ```
 
 ### imul (Page 300)
