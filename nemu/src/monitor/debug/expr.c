@@ -144,6 +144,10 @@ static bool make_token(char *e) {
           case '/':
           case TK_EQ:
           case TK_NEQ:
+          case TK_LE:
+          case TK_GE:
+          case '<':
+          case '>':
           case TK_AND:
           case TK_OR:
           case '!':
@@ -215,9 +219,9 @@ static bool check_parenthesis(int p, int q, bool *success) {
 static int get_dominant_pos(int p, int q) {
   int parens = 0;
   int op = -1;
-  int priority = 255;
+  int priority = 65535;
 
-  for (int i = p; i <=q; ++i) {
+  for (int i = p; i <= q; ++i) {
     if (tokens[i].type == '(') {
       ++parens;
     } else if (tokens[i].type == ')') {
