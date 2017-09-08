@@ -337,8 +337,28 @@ IDEX(G2E, test)
 
 ### jcc (Page 316)
 
+je:
+
 ```c
-0x0f 0x84 cw/cd je
+0x74 cb
 J, jcc, rtl_setcc
 IDEX(J, jcc)
 ```
+
+jcc CC_E:
+
+```c
+0x0f 0x84 cw/cd je
+J, jcc, rtl_setcc
+IDEXW(J, jcc, 1)
+```
+
+
+### cmp
+
+```c
+0x83 /7 ib
+SI2E, cmp, rtl_sub, eflags
+IDEX(SI2E, gp1) -> EXW(cmp, 1)
+```
+
