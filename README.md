@@ -434,6 +434,10 @@ IDEX(gp2_cl2E, gp2) -> EX(shl)
 0xfe /1
 E, dec, rtl_dec, eflags
 IDEXW(E, gp4, 1) -> EXW(dec, 1)
+
+0x48-0x4f +r
+r, dec, rtl_sub ,eflags
+IDEX(r, dec)
 ```
 
 ### not
