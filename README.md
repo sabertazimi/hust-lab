@@ -286,6 +286,10 @@ IDEX(lea_M2G, lea)
 0x83 /4 ib
 SI2E, and, rtl_and, eflags
 IDEX(SI2E, gp1) -> EXW(and, 1)
+
+0x22 /r
+E2G, and, rtl_and, eflags
+IDEXW(E2G, and, 1)
 ```
 
 ### nop (Page 355)
