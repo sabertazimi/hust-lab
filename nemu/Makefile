@@ -75,3 +75,6 @@ testcase:
 asm:
 	less ../nexus-am/tests/cputest/build/$(ASM_FILE)
 
+log:
+	less ../nexus-am/tests/cputest/build/nemu-log.txt
+
