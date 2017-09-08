@@ -404,7 +404,7 @@ IDEX(E2G, cmp)
 
 ```c
 0xc1 /7 ib
-gp2_Ib2E, sar, rtl_sar
+gp2_Ib2E, sar, rtl_sar eflags
 IDEX(gp2_Ib2E, gp2) -> EXW(sar, 1)
 ```
 
@@ -412,6 +412,15 @@ IDEX(gp2_Ib2E, gp2) -> EXW(sar, 1)
 
 ```c
 0xd3 /4
-gp2_cl2E, shl, rtl_shl
+gp2_cl2E, shl, rtl_shl, eflags
 IDEX(gp2_cl2E, gp2) -> EX(shl)
 ```
+
+### dec
+
+```c
+0xfe /1
+E, dec, rtl_dec, eflags
+IDEXW(E, gp4, 1) -> EXW(dec, 1)
+```
+
