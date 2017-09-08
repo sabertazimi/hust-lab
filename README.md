@@ -528,6 +528,14 @@ E2G, imul2, rtl_imul
 IDEX(E2G, imul2)
 ```
 
+### mul (Page 352)
+
+```c
+0xf7 /4
+E, mul, rtl_mul
+IDEX(E, gp3) -> EX(mul)
+```
+
 ### idiv (Page 298)
 
 ```c
