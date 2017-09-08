@@ -456,3 +456,10 @@ r, inc, rtl_add, eflags
 IDEX(r, inc)
 ```
 
+### jmp (Page 319)
+
+```c
+0xeb
+J, jmp
+IDEXW(J, jmp, 1)
+```
