@@ -263,9 +263,17 @@ exec_gp1 -> idex(exec_sub) no decode again
 SI2E, sub, rtl_sub, eflags
 IDEX(SI2E, gp1) -> EXW(sub, 1)
 
+0x28 /r
+G2E, sub, rtl_sub, eflags
+IDEXW(G2E, sub, 1)
+
 0x29 /r
 G2E, sub, rtl_sub, eflags
 IDEX(G2E, sub)
+
+0x2a /r
+E2G, sub, rtl_sub, eflags
+IDEXW(E2G, sub, 1)
 
 0x2b /r
 E2G, sub, rtl_sub, eflags
@@ -275,6 +283,18 @@ IDEX(E2G, sub)
 ### sbb (Page 386)
 
 ```c
+0x18 /r
+G2E, sbb, rtl_sub, eflags
+IDEXW(G2E, sbb, 1)
+
+0x19 /r
+G2E, sbb, rtl_sub, eflags
+IDEX(G2E, sbb)
+
+0x1a /r
+E2G, sbb, rtl_sub, eflags
+IDEXW(E2G, sbb, 1)
+
 0x1b /r
 E2G, sbb, rtl_sub, eflags
 IDEX(E2G, sbb)
@@ -287,9 +307,21 @@ IDEX(SI2E, gp1) -> EXW(sbb, 1)
 ### xor (Page 411)
 
 ```c
-0x31
+0x30 /r
+G2E, xor, rtl_xor, eflags
+IDEXW(G2E, xor, 1)
+
+0x31 /r
 G2E, xor, rtl_xor, eflags
 IDEX(G2E, xor)
+
+0x32 /r
+E2G, xor, rtl_xor, eflags
+IDEXW(E2G, xor, 1)
+
+0x33 /r
+E2G, xor, rtl_xor, eflags
+IDEX(E2G, xor)
 
 0x83 /6 ib
 SI2E, xor, rtl_xor, eflags
@@ -319,9 +351,21 @@ IDEX(lea_M2G, lea)
 SI2E, and, rtl_and, eflags
 IDEX(SI2E, gp1) -> EXW(and, 1)
 
+0x20 /r
+G2E, and, rtl_and, eflags
+IDEXW(G2E, and, 1)
+
+0x21 /r
+G2E, and, rtl_and, eflags
+IDEX(G2E, and)
+
 0x22 /r
 E2G, and, rtl_and, eflags
 IDEXW(E2G, and, 1)
+
+0x23 /r
+E2G, and, rtl_and, eflags
+IDEX(E2G, and)
 ```
 
 ### nop (Page 355)
@@ -334,9 +378,17 @@ IDEXW(E2G, and, 1)
 ### add (Page 261)
 
 ```c
+0x00 /r
+G2E, add, rtl_add, eflags
+IDEXW(G2E, add, 1)
+
 0x01 /r
 G2E, add, rtl_add, eflags
 IDEX(G2E, add)
+
+0x02 /r
+E2G, add, rtl_add, eflags
+IDEXW(E2G, add, 1)
 
 0x03 /r
 E2G, add, rtl_add, eflags
@@ -350,6 +402,18 @@ IDEX(SI2E, gp1) -> EXW(add, 1)
 ### adc (Page 260)
 
 ```c
+0x10 /r
+E2G, adc, rtl_add, eflags
+IDEXW(E2G, adc, 1)
+
+0x11 /r
+E2G, adc, rtl_add, eflags
+IDEX(E2G, adc)
+
+0x12 /r
+E2G, adc, rtl_add, eflags
+IDEXW(E2G, adc, 1)
+
 0x13 /r
 E2G, adc, rtl_add, eflags
 IDEX(E2G, adc)
@@ -362,13 +426,21 @@ IDEX(SI2E, gp1) -> EXW(adc, 1)
 ### or (Page 357)
 
 ```c
+0x08 /r
+G2E, or, rtl_or, eflags
+IDEXW(G2E, or, 1)
+
 0x09 /r
 G2E, or, rtl_or, eflags
 IDEX(G2E, or)
 
 0x0a /r
 E2G, or, rtl_or, eflags
-IDEXW(E2G, or)
+IDEXW(E2G, or, 1)
+
+0x0b /r
+E2G, or, rtl_or, eflags
+IDEX(E2G, or)
 
 0x83 /1 ib
 SI2E, or, rtl_or, eflags
@@ -473,6 +545,10 @@ IDEXW(G2E, cmp, 1)
 0x39 /r
 G2E, cmp, rtl_sub, eflags
 IDEX(G2E, cmp)
+
+0x3b /r
+E2G, cmp, rtl_sub, eflags
+IDEXW(E2G, cmp, 1)
 
 0x3b /r
 E2G, cmp, rtl_sub, eflags
