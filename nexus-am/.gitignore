@@ -11,3 +11,4 @@
 tags
 cscope.*
 build/
+!*/klib-x86-nemu.a
