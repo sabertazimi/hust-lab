@@ -29,8 +29,12 @@ extern void* memcpy(void *, const void *, int);
 #define SCREEN_INDEX(x, y) ((y) * _screen.width + (x))
 
 void _draw_rect(const uint32_t *pixels, int x, int y, int w, int h) {
-  for (int i = SCREEN_INDEX(x, y); i < SCREEN_INDEX(x + w, y + h) && i < _screen.width * _screen.height; ++i) {
-    fb[i] = i;
+  int pixel_start = 0;
+
+  for (int j = y; j < y + h; ++j) {
+    for (int i = x; i < x + w; ++i, ++pixel_start) {
+      memcpy(fb + SCREEN_INDEX(i, j), pixels + pixel_start, sizeof(uint32_t));
+    }
   }
 }
 
