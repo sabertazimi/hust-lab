@@ -743,6 +743,13 @@ IDEXW(mov_E2G, movsx, 2)
 EX(leave), rtl_lr, rtl_sr, rtl_pop
 ```
 
+### rol
+
+```c
+0xd3 /0
+gp2_cl2E, rol, eflags
+IDEX(gp2_cl2E, gp2) -> EX(rol)
+```
 ### sar
 
 ```c
@@ -758,6 +765,7 @@ IDEX(gp2_Ib2E, gp2) -> EXW(sar, 1)
 gp2_cl2E, shl, rtl_shl, eflags
 IDEX(gp2_cl2E, gp2) -> EX(shl)
 ```
+
 
 ### shr (Page 383)
 
