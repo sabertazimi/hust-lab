@@ -48,3 +48,5 @@ make_EHelper(test);
 make_EHelper(nop);
 
 make_EHelper(setcc);
+
+make_EHelper(out);
