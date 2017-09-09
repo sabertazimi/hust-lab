@@ -278,6 +278,10 @@ IDEX(E2G, sub)
 0x1b /r
 E2G, sbb, rtl_sub, eflags
 IDEX(E2G, sbb)
+
+0x83 /3 ib
+SI2E, sbb, rtl_sub, eflags
+IDEX(SI2E, gp1) -> EXW(sbb, 1)
 ```
 
 ### xor (Page 411)
@@ -286,6 +290,10 @@ IDEX(E2G, sbb)
 0x31
 G2E, xor, rtl_xor, eflags
 IDEX(G2E, xor)
+
+0x83 /6 ib
+SI2E, xor, rtl_xor, eflags
+IDEX(SI2E, gp1) -> EXW(xor, 1)
 ```
 
 ### ret (Page 378)
@@ -341,6 +349,10 @@ IDEX(E2G, add)
 0x13 /r
 E2G, adc, rtl_add, eflags
 IDEX(E2G, adc)
+
+0x83 /2 ib
+SI2E, adc, rtl_add, eflags
+IDEX(SI2E, gp1) -> EXW(adc, 1)
 ```
 
 ### or (Page 357)
@@ -353,6 +365,10 @@ IDEX(G2E, or)
 0x0a /r
 E2G, or, rtl_or, eflags
 IDEXW(E2G, or)
+
+0x83 /1 ib
+SI2E, or, rtl_or, eflags
+IDEX(SI2E, gp1) -> EXW(or, 1)
 ```
 
 ### setcc (Page 389)
