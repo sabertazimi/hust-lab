@@ -60,7 +60,6 @@ sp=.
 ss=TODO\(\)
 ARCH?=x86-nemu
 ALL=hello-str
-ASM_FILE=$(ALL)-$(ARCH).txt
 APP=hello
 
 search:
@@ -75,12 +74,18 @@ testall:
 testcase:
 	ls ../nexus-am/tests/cputest/tests
 
-runapp:
-	cd ../nexus-am/apps/$(APP) && make run
-
 asm:
-	less ../nexus-am/tests/cputest/build/$(ASM_FILE)
+	less ../nexus-am/tests/cputest/build/$(ALL)-$(ARCH).txt
 
 log:
 	less ../nexus-am/tests/cputest/build/nemu-log.txt
+
+runapp:
+	cd ../nexus-am/apps/$(APP) && make run
+
+asm2:
+	less ../nexus-am/apps/$(APP)/build/$(APP)-$(ARCH).txt
+
+log2:
+	less ../nexus-am/apps/$(APP)/build/nemu-log.txt
 
