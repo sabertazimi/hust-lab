@@ -42,7 +42,8 @@ static inline const char* get_cc_name(int subcode) {
 #define suffix_char(width) ((width) == 4 ? 'l' : ((width) == 1 ? 'b' : ((width) == 2 ? 'w' : '?')))
 
 #define print_asm_template1(instr) \
-  print_asm(str(instr) "%c %s", suffix_char(id_dest->width), id_dest->str)
+  print_asm(str(instr) "%c %s", suffix_char(id_dest->width), id_dest->str) \
+  printf("fxxk");
 
 #define print_asm_template2(instr) \
   print_asm(str(instr) "%c %s,%s", suffix_char(id_dest->width), id_src->str, id_dest->str)
