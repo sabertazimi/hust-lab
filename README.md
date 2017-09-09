@@ -259,10 +259,6 @@ exec_gp1 -> idex(exec_sub) no decode again
 ```
 
 ```c
-0x83 /5 ib
-SI2E, sub, rtl_sub, eflags
-IDEX(SI2E, gp1) -> EXW(sub, 1)
-
 0x28 /r
 G2E, sub, rtl_sub, eflags
 IDEXW(G2E, sub, 1)
@@ -278,6 +274,18 @@ IDEXW(E2G, sub, 1)
 0x2b /r
 E2G, sub, rtl_sub, eflags
 IDEX(E2G, sub)
+
+0x2c ib
+I2a, sub, rtl_sub, eflags
+IDEXW(I2a, sub, 1)
+
+0x2d iw/id
+I2a, sub, rtl_sub, eflags
+IDEX(I2a, sub)
+
+0x83 /5 ib
+SI2E, sub, rtl_sub, eflags
+IDEX(SI2E, gp1) -> EXW(sub, 1)
 ```
 
 ### sbb (Page 386)
@@ -298,6 +306,14 @@ IDEXW(E2G, sbb, 1)
 0x1b /r
 E2G, sbb, rtl_sub, eflags
 IDEX(E2G, sbb)
+
+0x1c ib
+I2a, sbb, rtl_sub, eflags
+IDEXW(I2a, sbb, 1)
+
+0x1d iw/id
+I2a, sbb, rtl_sub, eflags
+IDEX(I2a, sbb)
 
 0x83 /3 ib
 SI2E, sbb, rtl_sub, eflags
@@ -322,6 +338,14 @@ IDEXW(E2G, xor, 1)
 0x33 /r
 E2G, xor, rtl_xor, eflags
 IDEX(E2G, xor)
+
+0x34 ib
+I2a, xor, rtl_xor, eflags
+IDEXW(I2a, xor, 1)
+
+0x35 iw/id
+I2a, xor, rtl_xor, eflags
+IDEX(I2a, xor)
 
 0x83 /6 ib
 SI2E, xor, rtl_xor, eflags
@@ -366,6 +390,14 @@ IDEXW(E2G, and, 1)
 0x23 /r
 E2G, and, rtl_and, eflags
 IDEX(E2G, and)
+
+0x24 ib
+I2a, and, rtl_and, eflags
+IDEXW(I2a, and, 1)
+
+0x25 iw/id
+I2a, and, rtl_and, eflags
+IDEX(I2a, and)
 ```
 
 ### nop (Page 355)
@@ -397,6 +429,14 @@ IDEX(E2G, add)
 0x83 /0 ib
 SI2E, add, rtl_add, eflags
 IDEX(SI2E, gp1) -> EXW(add, 1)
+
+0x04 ib
+I2a, add, rtl_add, eflags
+IDEXW(I2a, add, 1)
+
+0x05 iw/id
+I2a, add, rtl_add, eflags
+IDEX(I2a, add)
 ```
 
 ### adc (Page 260)
@@ -417,6 +457,14 @@ IDEXW(E2G, adc, 1)
 0x13 /r
 E2G, adc, rtl_add, eflags
 IDEX(E2G, adc)
+
+0x14 ib
+I2a, adc, rtl_add, eflags
+IDEXW(I2a, adc, 1)
+
+0x15 iw/id
+I2a, adc, rtl_add, eflags
+IDEX(I2a, adc)
 
 0x83 /2 ib
 SI2E, adc, rtl_add, eflags
@@ -441,6 +489,14 @@ IDEXW(E2G, or, 1)
 0x0b /r
 E2G, or, rtl_or, eflags
 IDEX(E2G, or)
+
+0x0c ib
+I2a, or, rtl_or, eflags
+IDEXW(I2a, or, 1)
+
+0x0d iw/id
+I2a, or, rtl_or, eflags
+IDEX(I2a, or)
 
 0x83 /1 ib
 SI2E, or, rtl_or, eflags
@@ -546,7 +602,7 @@ IDEXW(G2E, cmp, 1)
 G2E, cmp, rtl_sub, eflags
 IDEX(G2E, cmp)
 
-0x3b /r
+0x3a /r
 E2G, cmp, rtl_sub, eflags
 IDEXW(E2G, cmp, 1)
 
@@ -558,7 +614,7 @@ IDEX(E2G, cmp)
 I2a, cmp, rtl_sub, eflags
 IDEXW(I2a, cmp, 1)
 
-0x3d id/iw
+0x3d iw/id
 I2a, cmp, rtl_sub, eflags
 IDEX(I2a, cmp)
 ```
