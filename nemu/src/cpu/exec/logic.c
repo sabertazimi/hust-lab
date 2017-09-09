@@ -5,6 +5,7 @@ make_EHelper(test) {
   rtl_set_CF(&tzero);
   rtl_set_OF(&tzero);
   rtl_update_ZFSF(&id_dest->val, id_dest->width);
+
   print_asm_template2(test);
 }
 
@@ -14,6 +15,7 @@ make_EHelper(and) {
   rtl_set_CF(&tzero);
   rtl_set_OF(&tzero);
   rtl_update_ZFSF(&id_dest->val, id_dest->width);
+
   print_asm_template2(and);
 }
 
