@@ -815,6 +815,13 @@ IDEX(out_a2dx, out)
 
 ### port io
 
+flow:
+
+```c
+cpu-exec.c: device_update() -> update_screen() -> sdl_event(key down/up)
+device.c: timer interval for time_sig_handler
+```
+
 ```c
 pio_read:
 callback -> read
@@ -833,3 +840,11 @@ pio_read(0x48):
 -> return time data (len = 4)
 ```
 
+### vga
+
+flow:
+
+```c
+*40000 = xx; in source code
+-> asm code -> cpu-exec -> IDEX() -> data-mov.c -> rtl.h -> memory.h (vaddr_read/write -> paddr_read/write -> mmio_read/write)
+```

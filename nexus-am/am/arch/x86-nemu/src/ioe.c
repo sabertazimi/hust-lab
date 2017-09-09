@@ -26,9 +26,10 @@ _Screen _screen = {
 
 extern void* memcpy(void *, const void *, int);
 
+#define SCREEN_INDEX(x, y) ((y) * _screen.width + (x))
+
 void _draw_rect(const uint32_t *pixels, int x, int y, int w, int h) {
-  int i;
-  for (i = 0; i < _screen.width * _screen.height; i++) {
+  for (int i = SCREEN_INDEX(x, y); i < SCREEN_INDEX(x + w, y + h) && i < _screen.width * _screen.height; ++i) {
     fb[i] = i;
   }
 }
@@ -37,5 +38,7 @@ void _draw_sync() {
 }
 
 int _read_key() {
-  return ((inb(I8042_STATUS_PORT) & I8042_STATUS_HASKEY_MASK) ? inl(I8042_DATA_PORT) : _KEY_NONE);
+  return ((inb(I8042_STATUS_PORT) & I8042_STATUS_HASKEY_MASK)
+      ? inl(I8042_DATA_PORT)
+      : _KEY_NONE);
 }
