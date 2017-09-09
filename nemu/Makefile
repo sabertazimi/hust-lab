@@ -91,7 +91,9 @@ asm2:
 log2:
 	less ../nexus-am/apps/$(APP)/build/nemu-log.txt
 
-testimer:
-	cd ../nexus-am/tests/timetest && make run
+IO=key
+
+iotest:
+	cd ../nexus-am/tests/$(IO)test && make run
 
 #################### append rules
