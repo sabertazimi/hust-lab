@@ -58,13 +58,13 @@ count:
 
 sp=.
 ss=TODO\(\)
+ARCH?=x86-nemu
+ALL=hello-str
+ASM_FILE=$(ALL)-$(ARCH).txt
+APP=hello
 
 search:
 	find $(sp) -name "*.[ch]" | xargs grep "$(ss)"
-
-ARCH?=x86-nemu
-ALL=p2test
-ASM_FILE=$(ALL)-$(ARCH).txt
 
 test:
 	cd ../nexus-am/tests/cputest && make ARCH=$(ARCH) ALL=$(ALL) run
@@ -74,6 +74,9 @@ testall:
 
 testcase:
 	ls ../nexus-am/tests/cputest/tests
+
+runapp:
+	cd ../nexus-am/apps/$(APP) && make run
 
 asm:
 	less ../nexus-am/tests/cputest/build/$(ASM_FILE)
