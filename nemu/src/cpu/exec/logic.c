@@ -55,6 +55,18 @@ make_EHelper(shl) {
   print_asm_template2(shl);
 }
 
+make_EHelper(rol) {
+  int32_t mask = ~0 << id_src->val;
+  int32_t _32_minus_n = (id_dest->width << 3) - id_src->val;
+  rtlreg_t result = (id_dest->val << id_src->val & mask) | (id_dest->val >> _32_minus_n & ~mask);
+  id_dest->val = result;
+  operand_write(id_dest, &id_dest->val);
+  rtl_update_ZFSF(&id_dest->val, id_dest->width);
+  // unnecessary to update CF and OF in NEMU
+
+  print_asm_template2(shl);
+}
+
 make_EHelper(shr) {
   rtl_shr(&id_dest->val, &id_dest->val, &id_src->val);
   operand_write(id_dest, &id_dest->val);
