@@ -53,6 +53,8 @@ gdb: $(BINARY)
 clean: 
 	rm -rf $(BUILD_DIR)
 
+#################### append rules
+
 count: 
 	find . -name "*.[ch]" | xargs cat| grep -v ^$$ | wc -l
 
@@ -89,3 +91,4 @@ asm2:
 log2:
 	less ../nexus-am/apps/$(APP)/build/nemu-log.txt
 
+#################### append rules

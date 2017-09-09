@@ -607,3 +607,12 @@ IDEX(gp2_Ib2E, gp2) -> EXW(shr, 1)
 E, neg, rtl_neg
 IDEX(E, gp3) -> EX(neg)
 ```
+
+### in (Page 302)
+
+*   `HAS_IOE`
+*   `HAS_SERIAL`
+
+```c
+
+```
