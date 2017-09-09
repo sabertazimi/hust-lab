@@ -614,7 +614,13 @@ IDEX(E, gp3) -> EX(neg)
 *   `HAS_SERIAL`
 
 ```c
+0xec
+port(DX) to AL
+IDEXW(in_dx2a, in, 1)
 
+0xed
+port(DX) to AX/EAX
+IDEX(in_dx2a, in)
 ```
 
 ### out (Page 358)
