@@ -642,3 +642,23 @@ AX/EAX to port(DX)
 IDEX(out_a2dx, out)
 ```
 
+### port io
+
+```c
+pio_read:
+callback -> read
+```
+
+```c
+pio_write
+write -> callback
+```
+
+### timer
+
+```c
+pio_read(0x48):
+-> callback(update_time, store in pio_space + 0x48)
+-> return time data (len = 4)
+```
+
