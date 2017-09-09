@@ -91,7 +91,7 @@ asm2:
 log2:
 	less ../nexus-am/apps/$(APP)/build/nemu-log.txt
 
-IO=video
+IO=time
 
 testio:
 	cd ../nexus-am/tests/$(IO)test && make run
