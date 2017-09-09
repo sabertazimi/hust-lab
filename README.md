@@ -719,6 +719,13 @@ IDEX(E, gp3) -> EX(div)
 EX(cltd), rtl_msb
 ```
 
+### cwtl/cwd (Page 290)
+
+```c
+0x98
+EX(cwtl), rtl_msb
+```
+
 ### movsx (Page 350)
 
 in `exec_movsx`: change `id_dest->width`  aggin
