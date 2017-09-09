@@ -341,6 +341,10 @@ IDEX(G2E, add)
 0x03 /r
 E2G, add, rtl_add, eflags
 IDEX(E2G, add)
+
+0x83 /0 ib
+SI2E, add, rtl_add, eflags
+IDEX(SI2E, gp1) -> EXW(add, 1)
 ```
 
 ### adc (Page 260)
@@ -487,11 +491,11 @@ IDEX(I2a, cmp)
 
 ```c
 0xfe /1
-E, dec, rtl_dec, eflags
+E, dec, rtl_sub, eflags
 IDEXW(E, gp4, 1) -> EXW(dec, 1)
 
 0xff /1
-E, dec, rtl_dec, eflags
+E, dec, rtl_sub, eflags
 IDEX(E, gp5) -> EX(dec)
 
 0x48-0x4f +r
@@ -513,6 +517,10 @@ IDEX(E, gp3) -> EX(not)
 0x40-0x47 +r
 r, inc, rtl_add, eflags
 IDEX(r, inc)
+
+0xfe /0
+E, inc, rtl_add, eflags
+IDEXW(E, gp4, 1) -> EXW(inc, 1)
 
 0xff /0 (i386 manual error /6)
 E, inc, rtl_add, eflags
