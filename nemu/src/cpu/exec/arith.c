@@ -94,7 +94,11 @@ make_EHelper(dec) {
 }
 
 make_EHelper(neg) {
-  TODO();
+  rtlreg_t notzero = !!((id_dest->val) & (~0u >> ((4 - id_dest->width) << 3)));
+  rtl_set_CF(&notzero);
+  id_dest->val = -id_dest->val;
+  operand_write(id_dest, &id_dest->val);
+  rtl_update_ZFSF(&id_dest->val, id_dest->width);
 
   print_asm_template1(neg);
 }
