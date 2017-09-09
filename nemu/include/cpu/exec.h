@@ -35,6 +35,7 @@ static inline const char* get_cc_name(int subcode) {
 
 #ifdef DEBUG
 #define print_asm(...) Assert(snprintf(decoding.assembly, 80, __VA_ARGS__) < 80, "buffer overflow!")
+printf("debug");
 #else
 #define print_asm(...)
 #endif
