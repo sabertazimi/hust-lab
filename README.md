@@ -400,6 +400,10 @@ IDEXW(G2E, test, 1)
 G2E, test, rtl_and, rtl_set_CF, rtl_set_OF, rtl_update_ZFSF
 IDEX(G2E, test)
 
+0xa8 ib
+I2a, test, rtl_and, eflags
+IDEXW(I2a, test, 1)
+
 0xf6 /0 ib
 I2E, test, rtl_and, eflags
 IDEXW(E, gp3, 1) -> IDEXW(test_I, test, 1)
