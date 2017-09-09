@@ -55,7 +55,8 @@ make_EHelper(in) {
 }
 
 make_EHelper(out) {
-  TODO();
+  Log("out: 0x%08x, %d, 0x%08x", id_dest->val, id_src->width, id_src->val);
+  pio_write(id_dest->val, id_src->width, id_src->val);
 
   print_asm_template2(out);
 
