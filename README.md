@@ -616,3 +616,19 @@ IDEX(E, gp3) -> EX(neg)
 ```c
 
 ```
+
+### out (Page 358)
+
+*   `HAS_IOE`
+*   `HAS_SERIAL`
+
+```c
+0xee
+AL to port(DX)
+IDEXW(out_a2dx, out, 1)
+
+0xef
+AX/EAX to port(DX)
+IDEX(out_a2dx, out)
+```
+
