@@ -5,6 +5,8 @@ void diff_test_skip_nemu();
 
 make_EHelper(lidt) {
   TODO();
+  rtl_li(&t0, id_dest->addr);
+  // cpu.idtr.limit = t0;
 
   print_asm_template1(lidt);
 }
