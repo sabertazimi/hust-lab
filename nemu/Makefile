@@ -62,7 +62,7 @@ sp=.
 ss=TODO\(\)
 ARCH?=x86-nemu
 ALL=hello-str
-APP=microbench
+APP=typing
 
 search:
 	find $(sp) -name "*.[ch]" | xargs grep "$(ss)"
@@ -83,7 +83,7 @@ log:
 	less ../nexus-am/tests/cputest/build/nemu-log.txt
 
 runapp:
-	cd ../nexus-am/apps/$(APP) && make INPUT=TEST  run
+	cd ../nexus-am/apps/$(APP) && make run
 
 asm2:
 	less ../nexus-am/apps/$(APP)/build/$(APP)-$(ARCH).txt
