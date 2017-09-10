@@ -13,7 +13,6 @@ void raise_intr(uint8_t NO, vaddr_t ret_addr) {
   rtl_push(&ret_addr);
 
   // load idt descriptor
-  Log("cpu.idtr.base = 0x%08x, No = %d", cpu.idtr.base, NO);
   uint32_t gate_low = vaddr_read(cpu.idtr.base + NO * 8, 4);
   uint32_t gate_high = vaddr_read(cpu.idtr.base + NO * 8 + 4, 4);
 
