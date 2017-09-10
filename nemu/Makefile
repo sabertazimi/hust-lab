@@ -62,7 +62,7 @@ sp=.
 ss=TODO\(\)
 ARCH?=x86-nemu
 ALL=hello-str
-APP=typing
+APP=dhrystone
 
 search:
 	find $(sp) -name "*.[ch]" | xargs grep "$(ss)"
