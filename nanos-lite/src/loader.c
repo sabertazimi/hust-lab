@@ -7,10 +7,8 @@ extern void ramdisk_read(void *buf, off_t offset, size_t len);
 
 uintptr_t loader(_Protect *as, const char *filename) {
   size_t ramdisk_size = get_ramdisk_size();
-  // char* buf = kalloc((ramdisk_size + 3) * sizeof(char));
-  char buf[30000];
+  char buf[ramdisk_size + 3];
   ramdisk_read(buf, 0, ramdisk_size);
   memcpy(DEFAULT_ENTRY, buf, ramdisk_size);
-  // kfree(buf);
   return (uintptr_t)DEFAULT_ENTRY;
 }
