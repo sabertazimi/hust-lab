@@ -44,8 +44,13 @@ ss=TODO\(\)
 search:
 	find $(sp) -name "*.[ch]" | xargs grep "$(ss)"
 
+NAVY_TEST=dummy
+NAVY_TEST_PATH=../navy-apps/tests/$(NAVY_TEST)
 NAVY_APP=dummy
-NAVY_APP_PATH=../navy-apps/tests/$(NAVY_APP)
+NAVY_APP_PATH=../navy-apps/apps/$(NAVY_APP)
+
+runtest:
+	cd $(NAVY_TEST_PATH) && make && cd ../../../nanos-lite && make update && make run
 
 runapp:
 	cd $(NAVY_APP_PATH) && make && cd ../../../nanos-lite && make update && make run

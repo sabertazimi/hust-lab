@@ -886,6 +886,14 @@ nemu.main -> nemu.ui_loop -> nemu.cpu-exec
 -> nanos.main -> nanos.init_xx -> nanos.loader(0x4000000) first client app
 ```
 
+#### 'lidt' instruction
+
+```c
+0x0f 0x01 /3
+gp7_E(addr), lidt
+IDEX(gp7_E, gp7) -> EX(lidt)
+```
+
 #### 'int' instruction
 
 ```c
@@ -893,3 +901,4 @@ nemu.main -> nemu.ui_loop -> nemu.cpu-exec
 I, int
 IDEXW(I, int, 1)
 ```
+
