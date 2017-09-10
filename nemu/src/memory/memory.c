@@ -4,7 +4,7 @@
 #define PMEM_SIZE (128 * 1024 * 1024)
 
 #define pmem_rw(addr, type) *(type *)({\
-    Assert(addr < PMEM_SIZE, "physical address(0x%08x) is out of bound", addr); \
+    Assert(addr < PMEM_SIZE, "physical address(0x%08x) is out of bound, eip 0x%08x", addr, cpu.eip); \
     guest_to_host(addr); \
     })
 
@@ -16,7 +16,6 @@ uint32_t paddr_read(paddr_t addr, int len) {
   int map_NO = is_mmio(addr);
 
   if (map_NO == -1) {
-    printf("eip 0x%08x", cpu.eip);
     return pmem_rw(addr, uint32_t) & (~0u >> ((4 - len) << 3));
   } else {
     return mmio_read(addr, len, map_NO);
