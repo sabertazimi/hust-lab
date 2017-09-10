@@ -7,6 +7,20 @@
   printk("\33[1;35m[%s,%d,%s] " format "\33[0m\n", \
       __FILE__, __LINE__, __func__, ## __VA_ARGS__)
 
+#define Info(format, ...) \
+  do { \
+    fprintf(stdout, "\33[1;33m" format "\33[0m\n", \
+        ## __VA_ARGS__); \
+    fflush(stdout); \
+  } while (0)
+
+#define Warn(format, ...) \
+  do { \
+    fprintf(stdout, "\33[1;31m" format "\33[0m\n", \
+        ## __VA_ARGS__); \
+    fflush(stdout); \
+  } while (0)
+
 #define panic(format, ...) \
   do { \
     Log("\33[1;31msystem panic: " format, ## __VA_ARGS__); \
