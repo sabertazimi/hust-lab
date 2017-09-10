@@ -930,7 +930,7 @@ popa, rtl_pop
 EX(popa)
 ```
 
-### irq
+#### irq
 
 ```c
 nexus-am/am/am.h -> _Event
@@ -951,5 +951,13 @@ error_code -> irq
 ```c
 nanos.main -> nanos.init_irq -> nexus-am._asyte_init(do_event)
 -> nexus-am->set_idt
+```
+
+#### 'iret' instruction
+
+```c
+0xcf
+iret, rtl_pop
+EX(iret)
 ```
 

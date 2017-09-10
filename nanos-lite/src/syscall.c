@@ -9,6 +9,7 @@ _RegSet* do_syscall_none(_RegSet *r) {
 _RegSet* do_syscall(_RegSet *r) {
   uintptr_t a[4];
   a[0] = SYSCALL_ARG1(r);
+  Log("syscall");
 
   switch (a[0]) {
     case SYS_none:
