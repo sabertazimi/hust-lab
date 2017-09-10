@@ -100,8 +100,9 @@ typedef struct {
       uint32_t base;
   } idtr;
 
+  uint16_t padding;
   uint16_t cs;
-
+  uint16_t padding1;
 
 } CPU_state;
 
