@@ -888,6 +888,9 @@ nemu.main -> nemu.ui_loop -> nemu.cpu-exec
 
 #### 'lidt' instruction
 
+cs: Page 31
+IDTR: Page 156
+
 ```c
 0x0f 0x01 /3
 gp7_E(addr), lidt
