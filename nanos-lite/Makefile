@@ -34,7 +34,24 @@ src/syscall.h: $(NAVY_HOME)/libs/libos/src/syscall.h
 update: update-ramdisk-objcopy src/syscall.h
 	@touch src/initrd.S
 
+
+count: 
+	find . -name "*.[ch]" | xargs cat| grep -v ^$$ | wc -l
+
+sp=.
+ss=TODO\(\)
+
+search:
+	find $(sp) -name "*.[ch]" | xargs grep "$(ss)"
+
 NAVY_APP=dummy
+NAVY_APP_PATH=../navy-apps/tests/$(NAVY_APP)
 
 runapp:
-	cd ../navy-apps/tests/$(NAVY_APP) && make
+	cd $(NAVY_APP_PATH) && make && cd ../../../nanos-lite && make update && make run
+
+asm:
+	less ./build/nanos-lite-x86-nemu.txt
+
+log:
+	less ./build/nemu-log.txt
