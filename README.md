@@ -900,8 +900,21 @@ IDEX(gp7_E, gp7) -> EX(lidt)
 #### 'int' instruction
 
 ```c
+push eflags, cs, eip
+load idt
+seek gate descriptor
+jump
+```
+
+```c
 0xcd
 I, int
 IDEXW(I, int, 1)
+```
+
+```c
+address access error in 0x4001f59 (int instruction)
+-> cpu.idtr.base error
+-> lidt implementation error
 ```
 
