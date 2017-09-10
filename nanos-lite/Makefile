@@ -33,3 +33,8 @@ src/syscall.h: $(NAVY_HOME)/libs/libos/src/syscall.h
 
 update: update-ramdisk-objcopy src/syscall.h
 	@touch src/initrd.S
+
+NAVY_APP=dummy
+
+runapp:
+	cd ../navy-apps/tests/$(NAVY_APP) && make

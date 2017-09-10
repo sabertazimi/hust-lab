@@ -4,7 +4,7 @@
 #include "common.h"
 
 #ifndef PGSIZE
-#define PGSIZE 4096
+#define PGSIZE 4096 // 2^12
 #endif
 
 #define PG_ALIGN __attribute((aligned(PGSIZE)))

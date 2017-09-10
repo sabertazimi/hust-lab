@@ -848,3 +848,38 @@ flow:
 *40000 = xx; in source code
 -> asm code -> cpu-exec -> IDEX() -> data-mov.c -> rtl.h -> memory.h (vaddr_read/write -> paddr_read/write -> mmio_read/write)
 ```
+
+## pa3
+
+```c
+pal -> nanos-lite -> am -> nemu -> host x86/docker x86
+```
+
+### navy-apps
+
+compile client apps to 0x4000000
+
+### nanos-lite
+
+```c
+make update
+```
+
+initrd.S:
+
+```c
+client app locate in 0x0 of ramdisk (ramdisk_start)
+```
+
+### pa3.1
+
+```c
+implement loader.c -> loader()
+```
+
+read content in 0x0 ramdisk to 0x4000000
+
+```c
+nemu.main -> nemu.ui_loop -> nemu.cpu-exec
+-> nanos.main -> nanos.init_xx -> nanos.loader(0x4000000) first client app
+```
