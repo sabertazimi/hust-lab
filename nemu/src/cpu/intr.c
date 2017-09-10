@@ -13,11 +13,9 @@ void raise_intr(uint8_t NO, vaddr_t ret_addr) {
   rtl_push(&ret_addr);
 
   // load idt descriptor
-  Log("addr1");
+  Log("cpu.idtr.base = 0x%08x, No = %d", cpu.idtr.base, NO);
   uint32_t gate_low = vaddr_read(cpu.idtr.base + NO * 8, 4);
-  Log("addr2");
   uint32_t gate_high = vaddr_read(cpu.idtr.base + NO * 8 + 4, 4);
-  Log("addr3");
 
   // seek gate descriptor, get handler address
   uint32_t handler_address = (gate_high & 0xffff0000) | (gate_low & 0x0000ffff);
