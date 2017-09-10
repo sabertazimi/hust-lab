@@ -33,12 +33,11 @@ void cpu_exec(uint64_t n) {
     /* TODO: check watchpoints here. */
 
     // stop nemu when running and encoutering a watchpoint
-#endif
-
     if (nemu_state == NEMU_RUNNING && check_watchpoints() == true) {
       nemu_state = NEMU_STOP;
       Warn("Nemu stoped");
     }
+#endif
 
 #ifdef HAS_IOE
     extern void device_update();
