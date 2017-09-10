@@ -19,7 +19,6 @@ void raise_intr(uint8_t NO, vaddr_t ret_addr) {
   // seek gate descriptor, get handler address
   uint32_t handler_address = (gate_high & 0xffff0000) | (gate_low & 0x0000ffff);
   decoding.jmp_eip = handler_address;
-  Log("int address = 0x%08x", handler_address);
   decoding.is_jmp = 1;
 }
 
