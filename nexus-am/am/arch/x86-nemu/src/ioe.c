@@ -31,10 +31,8 @@ extern void* memcpy(void *, const void *, int);
 void _draw_rect(const uint32_t *pixels, int x, int y, int w, int h) {
   int pixel_start = 0;
 
-  for (int j = y; j < y + h; ++j) {
-    for (int i = x; i < x + w; ++i, ++pixel_start) {
-      memcpy(fb + SCREEN_INDEX(i, j), pixels + pixel_start, sizeof(uint32_t));
-    }
+  for (int j = y; j < y + h; ++j, pixel_start += w) {
+    memcpy(fb + SCREEN_INDEX(x, j), pixels + pixel_start, sizeof(uint32_t) * w);
   }
 }
 
