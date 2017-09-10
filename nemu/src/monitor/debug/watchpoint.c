@@ -42,6 +42,7 @@ WP* new_wp(char *exprStr) {
 
   // initlize
   strncpy(head->exprStr, exprStr, strlen(exprStr));
+  head->exprStr[strlen(exprStr)] = '\0';
   head->oldval = val;
 
   return head;
