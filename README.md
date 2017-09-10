@@ -930,4 +930,17 @@ popa, rtl_pop
 EX(popa)
 ```
 
+### irq
+
+```c
+nexus-am/am/am.h -> _Event
+nexus-am/am/arch/x86-nemu/include/arch.h -> _Reg_Set (Trap Frame)
+```
+
+```c
+nanos.main -> nanos.init_irq -> nexus-am._asyte_init(do_event)
+-> nexus-am->set_idt
+
+int 0x80 -> nexus-am.asm_trap -> nexus-am.irq_handle -> nanos.do_event (next = H(ev, tf))
+```
 
