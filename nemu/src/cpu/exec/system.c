@@ -39,7 +39,9 @@ make_EHelper(int) {
 }
 
 make_EHelper(iret) {
-  rtl_pop(eip);
+  rtl_pop(&t0);
+  decoding.jmp_eip = t0;
+  decoding.is_jmp = 1;
   rtl_pop((rtlreg_t *)(&cpu.cs));
   rtl_pop(&cpu.eflags.val);
 
