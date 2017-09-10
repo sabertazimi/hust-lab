@@ -61,7 +61,7 @@ count:
 sp=.
 ss=TODO\(\)
 ARCH?=x86-nemu
-ALL=hello-str
+ALL=mov-c
 IO=video
 APP=litenes
 
