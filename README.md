@@ -873,6 +873,8 @@ client app locate in 0x0 of ramdisk (ramdisk_start)
 
 ### pa3.1
 
+#### loader
+
 ```c
 implement loader.c -> loader()
 ```
@@ -882,4 +884,12 @@ read content in 0x0 ramdisk to 0x4000000
 ```c
 nemu.main -> nemu.ui_loop -> nemu.cpu-exec
 -> nanos.main -> nanos.init_xx -> nanos.loader(0x4000000) first client app
+```
+
+#### 'int' instruction
+
+```c
+0xcd
+I, int
+IDEXW(I, int, 1)
 ```
