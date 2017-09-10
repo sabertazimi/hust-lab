@@ -62,6 +62,7 @@ sp=.
 ss=TODO\(\)
 ARCH?=x86-nemu
 ALL=hello-str
+IO=video
 APP=typing
 
 search:
@@ -90,8 +91,6 @@ asm2:
 
 log2:
 	less ../nexus-am/apps/$(APP)/build/nemu-log.txt
-
-IO=time
 
 testio:
 	cd ../nexus-am/tests/$(IO)test && make run
