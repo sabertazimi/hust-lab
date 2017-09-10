@@ -893,7 +893,7 @@ IDTR: Page 156
 
 ```c
 0x0f 0x01 /3
-gp7_E(addr), lidt
+gp7_E(addr), lidt, vaddr_read
 IDEX(gp7_E, gp7) -> EX(lidt)
 ```
 
@@ -908,7 +908,7 @@ jump
 
 ```c
 0xcd
-I, int
+I, int, rtl_push, jmp
 IDEXW(I, int, 1)
 ```
 
@@ -917,4 +917,17 @@ address access error in 0x4001f59 (int instruction)
 -> cpu.idtr.base error
 -> lidt implementation error
 ```
+
+#### 'pusha' / 'popa' instruction
+
+```c
+pusha:
+pusha, rtl_push
+EX(pusha)
+
+popa:
+popa, rtl_pop
+EX(popa)
+```
+
 
