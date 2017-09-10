@@ -16,6 +16,7 @@ uint32_t paddr_read(paddr_t addr, int len) {
   int map_NO = is_mmio(addr);
 
   if (map_NO == -1) {
+    printf("eip 0x%08x", cpu.eip);
     return pmem_rw(addr, uint32_t) & (~0u >> ((4 - len) << 3));
   } else {
     return mmio_read(addr, len, map_NO);
