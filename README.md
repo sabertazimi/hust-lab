@@ -970,3 +970,9 @@ printf -> vprintf -> out_string -> putc/puts ->
 _putc/_puts -> __sputc/__svwrite
 -> write -> _write -> do_syscall -> do_syscall_write -> fs_write -> ramdisk_write
 ```
+
+#### dispinfo and fb
+
+```c
+navy-apps/libs/libndl/src/ndl.c -> get_display_info()
+```

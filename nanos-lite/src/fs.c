@@ -13,7 +13,7 @@ enum {FD_STDIN, FD_STDOUT, FD_STDERR, FD_FB, FD_EVENTS, FD_DISPINFO, FD_NORMAL};
 extern void ramdisk_read(void *buf, off_t offset, size_t len);
 extern void ramdisk_write(const void *buf, off_t offset, size_t len);
 extern void dispinfo_read(void *buf, off_t offset, size_t len);
-extern fb_write(const void *buf, off_t offset, size_t len);
+extern void fb_write(const void *buf, off_t offset, size_t len);
 extern size_t strlen_dispinfo(void);
 
 /* This is the information about all files in disk. */
