@@ -64,9 +64,21 @@ void fb_write(const void *buf, off_t offset, size_t len) {
 
   _point start_pt = get_pixel_pos(offset);
   _point end_pt = get_pixel_pos(offset + len);
+  uint32_t *pixels = (uint32_t *)buf;
+  uint32_t nr_pixel = 0;
 
-  for (int i = start_pt.x, j = start_pt.y; j <= end_pt.y; i = 0, ++j) {
-    _draw_rect(buf, i, j, _screen.width - i, 1);
+  if (start_pt.y < end_pt.y) {
+    // first line
+    _draw_rect(pixels + nr_pixel, start_pt.x, start_pt.y, nr_pixel, 1);
+    nr_pixel = _screen.width - start_pt.x;
+
+    _draw_rect(pixels + nr_pixel, 0, start_pt.y + 1, _screen.width, end_pt.y - start_pt.y - 1);
+    nr_pixel += _screen.width * (end_pt.y - start_pt.y - 1);
+
+    // last line
+    _draw_rect(pixels + nr_pixel, 0, end_pt.y, end_pt.x, 1);
+  } else {
+    _draw_rect(pixels, start_pt.x, start_pt.y, end_pt.x - start_pt.x, 1);
   }
 }
 

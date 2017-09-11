@@ -138,9 +138,6 @@ static void get_display_info() {
     if (strcmp(key, "HEIGHT") == 0) sscanf(value, "%d", &screen_h);
   }
 
-  // fprintf(stdout, "bmp width = %d\n", screen_w);
-  // fprintf(stdout, "bmp height = %d\n", screen_h);
-
   fclose(dispinfo);
   assert(screen_w > 0 && screen_h > 0);
 }

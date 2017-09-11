@@ -8,7 +8,6 @@ typedef struct {
 } Finfo;
 
 enum {FD_STDIN, FD_STDOUT, FD_STDERR, FD_FB, FD_EVENTS, FD_DISPINFO, FD_NORMAL};
-// enum {SEEK_SET, SEEK_CUR, SEEK_END};
 
 extern void ramdisk_read(void *buf, off_t offset, size_t len);
 extern void ramdisk_write(const void *buf, off_t offset, size_t len);
@@ -163,7 +162,7 @@ off_t fs_lseek(int fd, off_t offset, int whence) {
     return result_offset;
   }
 
-  if (fd > FD_DISPINFO && fd < NR_FILES) {
+  if (fd > FD_STDERR && fd < NR_FILES) {
     Finfo *finfo = &file_table[fd];
 
     switch (whence) {
