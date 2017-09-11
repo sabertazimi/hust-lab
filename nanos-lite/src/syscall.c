@@ -1,5 +1,6 @@
 #include "common.h"
 #include "syscall.h"
+#include "fs.h"
 
 #define SYSCALL_RET SYSCALL_ARG1(r)
 
@@ -10,29 +11,33 @@ _RegSet* do_syscall_none(uintptr_t *args, _RegSet *r) {
   return r;
 }
 
+_RegSet* do_syscall_open(uintptr_t *args, _RegSet *r) {
+  return r;
+}
+
+_RegSet* do_syscall_read(uintptr_t *args, _RegSet *r) {
+  return r;
+
+}
+
 _RegSet* do_syscall_write(uintptr_t *args, _RegSet *r) {
   int fd = args[1];
   char* buf = (char *)args[2];
-  int nr_buf = args[3];
-  int nr_out = -1;
-
-  if (fd == FD_STDOUT || fd == FD_STDERR) {
-    nr_out = 0;
-
-    while (nr_buf > 0) {
-      _putc(buf[nr_out]);
-      --nr_buf;
-      ++nr_out;
-    }
-  }
-
-  SYSCALL_RET = nr_out;
-
+  int len = args[3];
+  SYSCALL_RET = fs_write(fd, buf, len);
   return r;
 }
 
 _RegSet* do_syscall_exit(uintptr_t *args, _RegSet *r) {
   _halt(args[1]);
+  return r;
+}
+
+_RegSet* do_syscall_close(uintptr_t *args, _RegSet *r) {
+  return r;
+}
+
+_RegSet* do_syscall_lseek(uintptr_t *args, _RegSet *r) {
   return r;
 }
 
@@ -52,11 +57,9 @@ _RegSet* do_syscall(_RegSet *r) {
     case SYS_none:
       return do_syscall_none(a, r);
     case SYS_open:
-      TODO();
-      break;
+      return do_syscall_open(a, r);
     case SYS_read:
-      TODO();
-      break;
+      return do_syscall_read(a, r);
     case SYS_write:
       return do_syscall_write(a, r);
     case SYS_exit:
@@ -68,11 +71,9 @@ _RegSet* do_syscall(_RegSet *r) {
       TODO();
       break;
     case SYS_close:
-      TODO();
-      break;
+      return do_syscall_close(a, r);
     case SYS_lseek:
-      TODO();
-      break;
+      return do_syscall_lseek(a, r);
     case SYS_brk:
       return do_syscall_brk(a, r);
     case SYS_fstat:
