@@ -30,7 +30,7 @@ int main() {
 
   init_fs();
 
-  uint32_t entry = loader(NULL, "/bin/bmptest");
+  uint32_t entry = loader(NULL, "/bin/events");
   ((void (*)(void))entry)();
 
   panic("Should not reach here");
