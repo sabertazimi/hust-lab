@@ -11,34 +11,26 @@ static const char *keyname[256] __attribute__((used)) = {
 static char event_buf[80];
 
 size_t events_read(void *buf, size_t len) {
-  size_t nr_read = 0;
+  int key = _read_key();
+  bool down = false;
+  char *_buf = buf;
 
-  while (nr_read <= len) {
-    int key = _read_key();
-    bool down = false;
-
-    if (key & 0x8000) {
-      key ^= 0x8000;
-      down = true;
-    }
-
-    if (key != _KEY_NONE) {
-      sprintf(event_buf, "k%c %s\n", down ? 'd' : 'u', keyname[key]);
-    } else {
-      sprintf(event_buf, "t %ld", _uptime());
-    }
-
-    int event_len = strlen(event_buf);
-
-    if (nr_read + event_len > len) {
-      break;
-    } else {
-      strncpy(((char *)buf) + nr_read, event_buf, event_len);
-      nr_read += event_len;
-    }
+  if (key & 0x8000) {
+    key ^= 0x8000;
+    down = true;
   }
 
-  return nr_read;
+  if (key != _KEY_NONE) {
+    sprintf(event_buf, "k%c %s\n", down ? 'd' : 'u', keyname[key]);
+  } else {
+    sprintf(event_buf, "t %d\n", _uptime());
+  }
+
+  int event_len = strlen(event_buf);
+  event_len = (event_len < len) ? event_len : len;
+  strncpy(_buf, event_buf, event_len);
+  _buf[event_len] = '\0';
+  return event_len;
 }
 
 static char dispinfo[128] __attribute__((used));

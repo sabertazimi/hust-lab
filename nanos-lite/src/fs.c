@@ -13,6 +13,7 @@ extern void ramdisk_read(void *buf, off_t offset, size_t len);
 extern void ramdisk_write(const void *buf, off_t offset, size_t len);
 extern void dispinfo_read(void *buf, off_t offset, size_t len);
 extern void fb_write(const void *buf, off_t offset, size_t len);
+extern size_t events_read(void *buf, size_t len);
 extern size_t strlen_dispinfo(void);
 
 /* This is the information about all files in disk. */
@@ -55,6 +56,7 @@ int fs_open(const char *pathname, int flags, int mode) {
 
   if (fd != -1) {
     file_table[fd].open_offset = 0;
+    Log("open fd = %d", fd);
   }
 
   return fd;
@@ -72,9 +74,13 @@ ssize_t fs_read(int fd, void *buf, size_t len) {
     case FD_STDOUT:
     case FD_STDERR:
     case FD_FB:
-    case FD_EVENTS:
     {
       nr_read = 0;
+      break;
+    }
+    case FD_EVENTS:
+    {
+      nr_read = events_read(buf, len);
       break;
     }
     case FD_DISPINFO:
