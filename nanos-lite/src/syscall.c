@@ -1,9 +1,9 @@
 #include "common.h"
 #include "syscall.h"
 
-#define _STDOUT 1
-#define _STDERR 2
 #define SYSCALL_RET SYSCALL_ARG1(r)
+
+enum {FD_STDIN, FD_STDOUT, FD_STDERR, FD_FB, FD_EVENTS, FD_DISPINFO, FD_NORMAL};
 
 _RegSet* do_syscall_none(uintptr_t *args, _RegSet *r) {
   SYSCALL_RET = 1;
@@ -16,7 +16,7 @@ _RegSet* do_syscall_write(uintptr_t *args, _RegSet *r) {
   int nr_buf = args[3];
   int nr_out = -1;
 
-  if (fd == _STDOUT || fd == _STDERR) {
+  if (fd == FD_STDOUT || fd == FD_STDERR) {
     nr_out = 0;
 
     while (nr_buf > 0) {

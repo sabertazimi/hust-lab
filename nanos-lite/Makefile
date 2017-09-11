@@ -6,8 +6,6 @@ include $(AM_HOME)/Makefile.app
 FSIMG_PATH = $(NAVY_HOME)/fsimg
 RAMDISK_FILE = build/ramdisk.img
 
-NAVY_TEST=hello
-NAVY_TEST_PATH=../navy-apps/tests/$(NAVY_TEST)
 NAVY_APP=hello
 NAVY_APP_PATH=../navy-apps/apps/$(NAVY_APP)
 
@@ -39,7 +37,6 @@ src/syscall.h: $(NAVY_HOME)/libs/libos/src/syscall.h
 update: update-ramdisk-fsimg src/syscall.h
 	@touch src/initrd.S
 
-
 count: 
 	find . -name "*.[ch]" | xargs cat| grep -v ^$$ | wc -l
 
@@ -48,9 +45,6 @@ ss=TODO\(\)
 
 search:
 	find $(sp) -name "*.[ch]" | xargs grep "$(ss)"
-
-runtest:
-	cd $(NAVY_TEST_PATH) && make && cd ../../../nanos-lite && make update && make run
 
 runapp:
 	cd $(NAVY_APP_PATH) && make && cd ../../../nanos-lite && make update && make run
