@@ -6,8 +6,13 @@ include $(AM_HOME)/Makefile.app
 FSIMG_PATH = $(NAVY_HOME)/fsimg
 RAMDISK_FILE = build/ramdisk.img
 
+NAVY_TEST=hello
+NAVY_TEST_PATH=../navy-apps/tests/$(NAVY_TEST)
+NAVY_APP=hello
+NAVY_APP_PATH=../navy-apps/apps/$(NAVY_APP)
+
 OBJCOPY_FLAG = -S --set-section-flags .bss=alloc,contents -O binary
-OBJCOPY_FILE = $(NAVY_HOME)/tests/dummy/build/dummy-x86
+OBJCOPY_FILE = $(NAVY_HOME)/tests/$(NAVY_TEST)/build/$(NAVY_TEST)-x86
 
 .PHONY: update update-ramdisk-objcopy update-ramdisk-fsimg update-fsimg
 
@@ -43,11 +48,6 @@ ss=TODO\(\)
 
 search:
 	find $(sp) -name "*.[ch]" | xargs grep "$(ss)"
-
-NAVY_TEST=dummy
-NAVY_TEST_PATH=../navy-apps/tests/$(NAVY_TEST)
-NAVY_APP=dummy
-NAVY_APP_PATH=../navy-apps/apps/$(NAVY_APP)
 
 runtest:
 	cd $(NAVY_TEST_PATH) && make && cd ../../../nanos-lite && make update && make run
