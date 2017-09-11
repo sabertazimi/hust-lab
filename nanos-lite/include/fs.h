@@ -10,5 +10,6 @@ ssize_t fs_read(int fd, void *buf, size_t len);
 ssize_t fs_write(int fd, const void *buf, size_t len);
 off_t fs_lseek(int fd, off_t offset, int whence);
 int fs_close(int fd);
+size_t fs_filesz(int fd);
 
 #endif

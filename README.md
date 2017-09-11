@@ -961,3 +961,12 @@ iret, rtl_pop
 EX(iret)
 ```
 
+
+#### syscalls in navy-apps
+
+```c
+navy-apps/libs/libc/src/syscalls/syswrite.c:
+printf -> vprintf -> out_string -> putc/puts ->
+_putc/_puts -> __sputc/__svwrite
+-> write -> _write -> do_syscall -> do_syscall_write -> fs_write -> ramdisk_write
+```

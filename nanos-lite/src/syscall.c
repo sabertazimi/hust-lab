@@ -13,7 +13,9 @@ _RegSet* do_syscall_none(uintptr_t *args, _RegSet *r) {
 
 _RegSet* do_syscall_open(uintptr_t *args, _RegSet *r) {
   const char *pathname = (const char *)args[1];
-  SYSCALL_RET = fs_open(pathname, 0, 0);
+  int flags = args[2];
+  int mode = args[3];
+  SYSCALL_RET = fs_open(pathname, flags, mode);
   return r;
 }
 
