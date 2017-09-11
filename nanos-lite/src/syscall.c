@@ -36,6 +36,10 @@ _RegSet* do_syscall_exit(uintptr_t *args, _RegSet *r) {
   return r;
 }
 
+_RegSet* do_syscall_brk(uintptr_t *args, _RegSet *r) {
+  return r;
+}
+
 _RegSet* do_syscall(_RegSet *r) {
   uintptr_t a[4];
   a[0] = SYSCALL_ARG1(r);
@@ -46,10 +50,60 @@ _RegSet* do_syscall(_RegSet *r) {
   switch (a[0]) {
     case SYS_none:
       return do_syscall_none(a, r);
+    case SYS_open:
+      TODO();
+      break;
+    case SYS_read:
+      TODO();
+      break;
     case SYS_write:
       return do_syscall_write(a, r);
     case SYS_exit:
       return do_syscall_exit(a, r);
+    case SYS_kill:
+      TODO();
+      break;
+    case SYS_getpid:
+      TODO();
+      break;
+    case SYS_close:
+      TODO();
+      break;
+    case SYS_lseek:
+      TODO();
+      break;
+    case SYS_brk:
+      return do_syscall_brk(a, r);
+    case SYS_fstat:
+      TODO();
+      break;
+    case SYS_time:
+      TODO();
+      break;
+    case SYS_signal:
+      TODO();
+      break;
+    case SYS_execve:
+      TODO();
+      break;
+    case SYS_fork:
+      TODO();
+      break;
+    case SYS_link:
+      TODO();
+      break;
+    case SYS_unlink:
+      TODO();
+      break;
+    case SYS_wait:
+      TODO();
+      break;
+    case SYS_times:
+      TODO();
+      break;
+    case SYS_gettimeofda:
+      TODO();
+      break;
     default: panic("Unhandled syscall ID = %d", a[0]);
   }
 
