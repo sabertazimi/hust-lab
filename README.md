@@ -941,7 +941,10 @@ nemu/src/cpu/instr.c
 nexus-am/am/arch/x86-nemu/src/trap.S
 nexus-am/am/arch/x86-nemu/include/arch.h -> _Reg_Set (Trap Frame)
 
-int 0x80 -> nexus-am.asm_trap -> nexus-am.irq_handle -> nanos.do_event (next = H(ev, tf))
+int 0x80 -> raise_intr -> search idt table ->
+nexus-am.vecsys -> nexus-am.asm_trap -> nexus-am.irq_handle ->
+nanos.do_event (next = H(ev, tf)) -> nanos.do_syscall -> nanos.do_syscall_xx
+nanos._putc/_halt/_draw_rect/_uptime/_read_key/fs_xx/fb_write/dispinfo_read/events_read
 
 eflags -> cs -> eip
 error_code -> irq
@@ -960,7 +963,6 @@ nanos.main -> nanos.init_irq -> nexus-am._asyte_init(do_event)
 iret, rtl_pop
 EX(iret)
 ```
-
 
 #### syscalls in navy-apps
 
