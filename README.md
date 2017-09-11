@@ -976,3 +976,10 @@ _putc/_puts -> __sputc/__svwrite
 ```c
 navy-apps/libs/libndl/src/ndl.c -> get_display_info()
 ```
+
+#### pal
+
+```c
+navy-apps/fsimg/share/games/nes
+navy-apps/fsimg/share/games/pal
+```
