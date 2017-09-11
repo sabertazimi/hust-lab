@@ -12,6 +12,9 @@ enum {FD_STDIN, FD_STDOUT, FD_STDERR, FD_FB, FD_EVENTS, FD_DISPINFO, FD_NORMAL};
 
 extern void ramdisk_read(void *buf, off_t offset, size_t len);
 extern void ramdisk_write(const void *buf, off_t offset, size_t len);
+extern void dispinfo_read(void *buf, off_t offset, size_t len);
+extern fb_write(const void *buf, off_t offset, size_t len);
+extern size_t strlen_dispinfo(void);
 
 /* This is the information about all files in disk. */
 static Finfo file_table[] __attribute__((used)) = {
@@ -28,9 +31,13 @@ static Finfo file_table[] __attribute__((used)) = {
 
 void init_fs() {
   // TODO: initialize the size of /dev/fb
+
   Finfo *fb_info = &file_table[FD_FB];
   size_t fb_sz = _screen.width * _screen.height * sizeof(uint32_t);
   fb_info->size = fb_sz;
+
+  Finfo *disp_info = &file_table[FD_DISPINFO];
+  disp_info->size = strlen_dispinfo();
 }
 
 int fs_open(const char *pathname, int flags, int mode) {
@@ -67,9 +74,17 @@ ssize_t fs_read(int fd, void *buf, size_t len) {
     case FD_STDERR:
     case FD_FB:
     case FD_EVENTS:
-    case FD_DISPINFO:
     {
       nr_read = 0;
+      break;
+    }
+    case FD_DISPINFO:
+    {
+      Finfo *finfo = &file_table[fd];
+      nr_read = finfo->size - finfo->open_offset;
+      nr_read = (nr_read < len) ? nr_read : len;
+      dispinfo_read(buf, finfo->open_offset, nr_read);
+      finfo->open_offset += nr_read;
       break;
     }
     default:
@@ -110,11 +125,22 @@ ssize_t fs_write(int fd, const void *buf, size_t len) {
 
       break;
     }
-    case FD_STDIN:
     case FD_FB:
+    {
+      Finfo *finfo = &file_table[fd];
+      nr_write = finfo->size - finfo->open_offset;
+      nr_write = (nr_write < len) ? nr_write : len;
+      fb_write(buf, finfo->open_offset, nr_write);
+      finfo->open_offset += nr_write;
+      break;
+    }
+    case FD_STDIN:
     case FD_EVENTS:
     case FD_DISPINFO:
+    {
       nr_write = 0;
+      break;
+    }
     default:
     {
       assert(buf);

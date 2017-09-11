@@ -14,7 +14,18 @@ size_t events_read(void *buf, size_t len) {
 
 static char dispinfo[128] __attribute__((used));
 
+size_t strlen_dispinfo(void) {
+  return strlen(dispinfo);
+}
+
 void dispinfo_read(void *buf, off_t offset, size_t len) {
+  if (buf == NULL) {
+    return;
+  }
+
+  char *_buf = buf;
+  strncpy(_buf, dispinfo + offset, len);
+  _buf[len] = '\0';
 }
 
 typedef struct _point {
@@ -22,7 +33,7 @@ typedef struct _point {
   int y;
 } _point;
 
-_point get_pixel_pos(off_t offset) {
+static _point get_pixel_pos(off_t offset) {
   int x = 0;
   int y = 0;
   int is_valid_pixel = false;
