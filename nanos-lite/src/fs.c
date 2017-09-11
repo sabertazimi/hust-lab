@@ -28,10 +28,7 @@ static Finfo file_table[] __attribute__((used)) = {
 
 void init_fs() {
   // TODO: initialize the size of /dev/fb
-
-  // for (int i = 0; i < NR_FILES; ++i) {
-    // file_table[i].open_offset = 0;
-  // }
+  Log("screen: width = %d, height = %d", _screen.width, _screen.height);
 }
 
 int fs_open(const char *pathname, int flags, int mode) {
@@ -181,4 +178,3 @@ size_t fs_filesz(int fd) {
     return file_table[fd].size;
   }
 }
-
