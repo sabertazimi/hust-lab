@@ -12,10 +12,16 @@ _RegSet* do_syscall_none(uintptr_t *args, _RegSet *r) {
 }
 
 _RegSet* do_syscall_open(uintptr_t *args, _RegSet *r) {
+  const char *pathname = (const char *)args[1];
+  SYSCALL_RET = fs_open(pathname, 0, 0);
   return r;
 }
 
 _RegSet* do_syscall_read(uintptr_t *args, _RegSet *r) {
+  int fd = args[1];
+  char* buf = (char *)args[2];
+  int len = args[3];
+  SYSCALL_RET = fs_read(fd, buf, len);
   return r;
 
 }
@@ -34,10 +40,16 @@ _RegSet* do_syscall_exit(uintptr_t *args, _RegSet *r) {
 }
 
 _RegSet* do_syscall_close(uintptr_t *args, _RegSet *r) {
+  int fd = args[1];
+  SYSCALL_RET = fs_close(fd);
   return r;
 }
 
 _RegSet* do_syscall_lseek(uintptr_t *args, _RegSet *r) {
+  int fd = args[1];
+  off_t offset = args[2];
+  int whence = args[3];
+  SYSCALL_RET = fs_lseek(fd, offset, whence);
   return r;
 }
 
