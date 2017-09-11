@@ -37,6 +37,7 @@ _RegSet* do_syscall_exit(uintptr_t *args, _RegSet *r) {
 }
 
 _RegSet* do_syscall_brk(uintptr_t *args, _RegSet *r) {
+  SYSCALL_RET = 0;
   return r;
 }
 
@@ -101,7 +102,7 @@ _RegSet* do_syscall(_RegSet *r) {
     case SYS_times:
       TODO();
       break;
-    case SYS_gettimeofda:
+    case SYS_gettimeofday:
       TODO();
       break;
     default: panic("Unhandled syscall ID = %d", a[0]);
