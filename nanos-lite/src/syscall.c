@@ -1,25 +1,55 @@
 #include "common.h"
 #include "syscall.h"
 
-_RegSet* do_syscall_none(_RegSet *r) {
-  SYSCALL_ARG1(r) = 1;
+#define _STDOUT 1
+#define _STDERR 2
+#define SYSCALL_RET SYSCALL_ARG1(r)
+
+_RegSet* do_syscall_none(uintptr_t *args, _RegSet *r) {
+  SYSCALL_RET = 1;
   return r;
 }
 
-_RegSet* do_syscall_exit(_RegSet *r) {
-  _halt(SYSCALL_ARG2(r));
+_RegSet* do_syscall_write(uintptr_t *args, _RegSet *r) {
+  int fd = args[1];
+  char* buf = (char *)args[2];
+  int nr_buf = args[3];
+  int nr_out = -1;
+
+  if (fd == _STDOUT || fd == _STDERR) {
+    nr_out = 0;
+
+    while (nr_buf > 0) {
+      _putc(buf[nr_out]);
+      --nr_buf;
+      ++nr_out;
+    }
+  }
+
+  SYSCALL_RET = nr_out;
+
+  return r;
+}
+
+_RegSet* do_syscall_exit(uintptr_t *args, _RegSet *r) {
+  _halt(args[1]);
   return r;
 }
 
 _RegSet* do_syscall(_RegSet *r) {
   uintptr_t a[4];
   a[0] = SYSCALL_ARG1(r);
+  a[1] = SYSCALL_ARG2(r);
+  a[2] = SYSCALL_ARG3(r);
+  a[3] = SYSCALL_ARG4(r);
 
   switch (a[0]) {
     case SYS_none:
-      return do_syscall_none(r);
+      return do_syscall_none(a, r);
+    case SYS_write:
+      return do_syscall_write(a, r);
     case SYS_exit:
-      return do_syscall_exit(r);
+      return do_syscall_exit(a, r);
     default: panic("Unhandled syscall ID = %d", a[0]);
   }
 
