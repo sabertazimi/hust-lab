@@ -8,8 +8,37 @@ static const char *keyname[256] __attribute__((used)) = {
   _KEYS(NAME)
 };
 
+static char event_buf[80];
+
 size_t events_read(void *buf, size_t len) {
-  return 0;
+  size_t nr_read = 0;
+
+  while (nr_read <= len) {
+    int key = _read_key();
+    bool down = false;
+
+    if (key & 0x8000) {
+      key ^= 0x8000;
+      down = true;
+    }
+
+    if (key != _KEY_NONE) {
+      sprintf(event_buf, "k%c %s\n", down ? 'd' : 'u', keyname[key]);
+    } else {
+      sprintf(event_buf, "t %ld", _uptime());
+    }
+
+    int event_len = strlen(event_buf);
+
+    if (nr_read + event_len > len) {
+      break;
+    } else {
+      strncpy(((char *)buf) + nr_read, event_buf, event_len);
+      nr_read += event_len;
+    }
+  }
+
+  return nr_read;
 }
 
 static char dispinfo[128] __attribute__((used));
