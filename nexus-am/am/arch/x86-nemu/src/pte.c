@@ -68,6 +68,7 @@ void _switch(_Protect *p) {
 void _map(_Protect *p, void *va, void *pa) {
   uint32_t *vaddr = (uint32_t *)va;
   uint32_t *paddr = (uint32_t *)pa;
+
   PDE *pde_base = p->ptr;
   uint32_t pdx = PDX(vaddr);
 
