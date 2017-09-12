@@ -124,6 +124,8 @@ typedef struct {
     uint32_t val;
   } cr3;
 
+  bool INTR;
+
 } CPU_state;
 
 extern CPU_state cpu;
