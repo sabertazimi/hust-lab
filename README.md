@@ -964,6 +964,8 @@ iret, rtl_pop
 EX(iret)
 ```
 
+### pa3.2
+
 #### syscalls in navy-apps
 
 ```c
@@ -972,6 +974,8 @@ printf -> vprintf -> out_string -> putc/puts ->
 _putc/_puts -> __sputc/__svwrite
 -> write -> _write -> do_syscall -> do_syscall_write -> fs_write -> ramdisk_write
 ```
+
+### pa3.3
 
 #### dispinfo and fb
 
@@ -985,3 +989,22 @@ navy-apps/libs/libndl/src/ndl.c -> get_display_info()
 navy-apps/fsimg/share/games/nes
 navy-apps/fsimg/share/games/pal
 ```
+
+## PA 4
+
+### PA 4.1 (PTE)
+
+#### control register (cr0/cr3) (Page 87)
+
+```c
+nemu/include/memory/mmu.h
+```
+
+#### mov cr0/cr3
+
+```c
+0x0f 20 /r
+
+```
+
+#### mmu (Page 100)
