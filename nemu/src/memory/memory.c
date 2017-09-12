@@ -68,7 +68,7 @@ uint32_t vaddr_read(vaddr_t addr, int len) {
   if (PTX(addr) != PTX(addr + len - 1)) {
     // cross the page boundary
     vaddr_t page_bound = PGROUNDUP(addr);
-    int nr_inpage = addr - page_bound;
+    int nr_inpage = page_bound - addr;
     int nr_outpage = len - nr_inpage;
 
     Log("nr_inpage = %d, nr_outpage = %d, start ptx = %d, end ptx = %d",
@@ -83,7 +83,7 @@ void vaddr_write(vaddr_t addr, int len, uint32_t data) {
   if (PTX(addr) != PTX(addr + len - 1)) {
     // cross the page boundary
     vaddr_t page_bound = PGROUNDUP(addr);
-    int nr_inpage = addr - page_bound;
+    int nr_inpage = page_bound - addr;
     int nr_outpage = len - nr_inpage;
 
     Log("nr_inpage = %d, nr_outpage = %d, start ptx = %d, end ptx = %d",
