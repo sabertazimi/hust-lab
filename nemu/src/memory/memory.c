@@ -64,8 +64,7 @@ void paddr_write(paddr_t addr, int len, uint32_t data) {
 uint32_t vaddr_read(vaddr_t addr, int len) {
   if (PDX(addr) != PDX(addr + len) || PTX(addr) != PTX(addr + len)) {
     // cross the page boundary
-    // Assert(0, "cross the page boundary when read memory");
-    return paddr_read(addr, len);
+    Assert(0, "cross the page boundary when read 0x%08x memory", addr);
   } else {
     return paddr_read(addr, len);
   }
@@ -74,8 +73,7 @@ uint32_t vaddr_read(vaddr_t addr, int len) {
 void vaddr_write(vaddr_t addr, int len, uint32_t data) {
   if (PDX(addr) != PDX(addr + len) || PTX(addr) != PTX(addr + len)) {
     // cross the page boundary
-    // Assert(0, "cross the page boundary when write memory");
-    paddr_write(addr, len, data);
+    Assert(0, "cross the page boundary when write 0x%08x memory", addr);
   } else {
     paddr_write(addr, len, data);
   }
