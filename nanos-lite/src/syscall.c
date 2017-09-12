@@ -5,6 +5,7 @@
 #define SYSCALL_RET SYSCALL_ARG1(r)
 
 enum {FD_STDIN, FD_STDOUT, FD_STDERR, FD_FB, FD_EVENTS, FD_DISPINFO, FD_NORMAL};
+extern int mm_brk(uint32_t new_brk);
 
 _RegSet* do_syscall_none(uintptr_t *args, _RegSet *r) {
   SYSCALL_RET = 1;
@@ -56,7 +57,8 @@ _RegSet* do_syscall_lseek(uintptr_t *args, _RegSet *r) {
 }
 
 _RegSet* do_syscall_brk(uintptr_t *args, _RegSet *r) {
-  SYSCALL_RET = 0;
+  uint32_t new_brk = args[1];
+  SYSCALL_RET = mm_brk(new_brk);
   return r;
 }
 

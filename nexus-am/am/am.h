@@ -104,7 +104,7 @@ int _istatus(int enable);
 void _pte_init(void*(*palloc)(), void (*pfree)(void*));
 void _protect(_Protect *p);
 void _release(_Protect *p);
-void _map(_Protect *p, void *va, void *pa);
+int _map(_Protect *p, void *va, void *pa);
 void _unmap(_Protect *p, void *va);
 void _switch(_Protect *p);
 _RegSet *_umake(_Protect *p, _Area ustack, _Area kstack, void *entry, char *const argv[], char *const envp[]);

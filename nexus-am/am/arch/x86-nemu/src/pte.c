@@ -65,9 +65,10 @@ void _switch(_Protect *p) {
   set_cr3(p->ptr);
 }
 
-void _map(_Protect *p, void *va, void *pa) {
+int _map(_Protect *p, void *va, void *pa) {
   uint32_t *vaddr = (uint32_t *)va;
   uint32_t *paddr = (uint32_t *)pa;
+  int success = 0;
 
   PDE *pde_base = p->ptr;
   uint32_t pdx = PDX(vaddr);
@@ -84,7 +85,10 @@ void _map(_Protect *p, void *va, void *pa) {
 
   if (!(pte_base[ptx] & PTE_P)) {
     pte_base[ptx] = (uintptr_t)PTE_ADDR(paddr) | PTE_P;
+    success = 1;
   }
+
+  return success;
 }
 
 void _unmap(_Protect *p, void *va) {

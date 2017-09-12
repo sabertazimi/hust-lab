@@ -11,7 +11,7 @@ uintptr_t loader(_Protect *as, const char *filename) {
   assert(fd != -1);
   size_t file_size = fs_filesz(fd);
 
-  for (size_t i = 0; i < file_size; i += PGSIZE) {
+  for (uint32_t i = 0; i < file_size; i += PGSIZE) {
     uint32_t *pa = (uint32_t *)new_page();
     uint32_t *va = (uint32_t *)(DEFAULT_ENTRY + i);
     _map(as, va, pa);
