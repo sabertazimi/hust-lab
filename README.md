@@ -1000,11 +1000,28 @@ navy-apps/fsimg/share/games/pal
 nemu/include/memory/mmu.h
 ```
 
-#### mov cr0/cr3
+#### mov cr0/cr3 (Page 347)
+
+```c
+opcode level:
+mod: 11B
+reg: control register x
+r/m: general purpose register
+```
+
+```c
+fix control registers X in 'reg' parameter when call read_Mod_R_M
+fix general purpose registers in 'rm' parameter when call read_Mod_R_M
+```
 
 ```c
 0x0f 20 /r
+mov_G2E, mov_cr2r, rtl_sr
+IDEX(mov_G2E, mov_cr2r)
 
+0x0f 22 /r
+mov_E2G, mov_r2cr, rtl_sr
+IDEX(mov_E2G, mov_r2cr)
 ```
 
 #### mmu (Page 100)
