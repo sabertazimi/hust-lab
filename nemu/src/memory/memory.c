@@ -72,18 +72,21 @@ uint32_t vaddr_read(vaddr_t addr, int len) {
   if (PTX(addr) != PTX(addr + len - 1)) {
     // cross the page boundary
     vaddr_t page_bound = PGROUNDUP(addr);
+
     int nr_inpage = page_bound - addr;
     int nr_outpage = len - nr_inpage;
+
     paddr_t paddr_inpage = page_translate(addr);
     paddr_t paddr_outpage = page_translate(page_bound);
+
     uint32_t data_inpage = paddr_read(paddr_inpage, nr_inpage);
     uint32_t data_outpage = paddr_read(paddr_outpage, nr_outpage);
     uint32_t data = (data_outpage << (nr_inpage << 3)) | data_inpage;
-    Log("nr_inpage = %d, nr_outpage = %d, start ptx = %d, end ptx = %d",
-        nr_inpage, nr_outpage, PTX(addr), PTX(addr + len-1));
+
     return data;
   } else {
-    return paddr_read(addr, len);
+    paddr_t paddr = page_translate(addr);
+    return paddr_read(paddr, len);
   }
 }
 
@@ -91,19 +94,21 @@ void vaddr_write(vaddr_t addr, int len, uint32_t data) {
   if (PTX(addr) != PTX(addr + len - 1)) {
     // cross the page boundary
     vaddr_t page_bound = PGROUNDUP(addr);
+
     int nr_inpage = page_bound - addr;
     int nr_outpage = len - nr_inpage;
+
     paddr_t paddr_inpage = page_translate(addr);
     paddr_t paddr_outpage = page_translate(page_bound);
+
     uint32_t data_inpage = data & (~0u >> ((4 - nr_inpage) << 3));
     uint32_t data_outpage = (data >> (nr_inpage << 3)) & (~0u >> ((4 - nr_outpage) << 3));
+
     paddr_write(paddr_inpage, nr_inpage, data_inpage);
     paddr_write(paddr_outpage, nr_outpage, data_outpage);
-
-    Log("nr_inpage = %d, nr_outpage = %d, start ptx = %d, end ptx = %d",
-        nr_inpage, nr_outpage, PTX(addr), PTX(addr + len-1));
   } else {
-    paddr_write(addr, len, data);
+    paddr_t paddr = page_translate(addr);
+    paddr_write(paddr, len, data);
   }
 }
 
