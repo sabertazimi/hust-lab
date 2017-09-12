@@ -1032,3 +1032,10 @@ Page Table Start = *(cr3 + PDX(va) * sizeof(uint32)) & ~0xfff (set low-order 12 
 Physical Page Start = *(Page Table Start + PTX(va) * sizeof(uint32) & ~0xfff
 Physical Address = Physical Page Start + OFF(va)
 ```
+
+#### multi-task
+
+```c
+trap -> schedule (change as(pde/pte), return new tf) -> asm_trap (to new tf)
+```
+
