@@ -8,6 +8,7 @@ static const char *keyname[256] __attribute__((used)) = {
   _KEYS(NAME)
 };
 
+extern void change_current_game(void);
 static char event_buf[80];
 
 size_t events_read(void *buf, size_t len) {
@@ -24,6 +25,10 @@ size_t events_read(void *buf, size_t len) {
     sprintf(event_buf, "k%c %s\n", down ? 'd' : 'u', keyname[key]);
   } else {
     sprintf(event_buf, "t %d\n", _uptime());
+  }
+
+  if (key == _KEY_F12 && down) {
+    change_current_game();
   }
 
   int event_len = strlen(event_buf);
