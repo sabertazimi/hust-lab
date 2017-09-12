@@ -11,8 +11,6 @@ make_EHelper(lidt) {
 }
 
 make_EHelper(mov_r2cr) {
-  TODO();
-
   switch (id_dest->reg) {
     case 0:
       cpu.cr0.val = id_src->val;
