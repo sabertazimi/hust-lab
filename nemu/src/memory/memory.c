@@ -50,14 +50,12 @@ static paddr_t page_translate(vaddr_t va) {
   if (cpu.cr0.val & CR0_PG) {
     uint32_t pde_base = cpu.cr3.val;
     uint32_t pdx = PDX(va);
-    Log("va = 0x%08x, pde_base = 0x%08x, pdx = %d", va, pde_base, pdx);
-    PDE pde = *((uint32_t *)(pde_base + pdx * sizeof(char)));
-    Log("va = 0x%08x, pde_base = 0x%08x, pdx = %d", va, pde_base, pdx);
+    PDE pde = paddr_read(pde_base + pdx * sizeof(uint32_t), sizeof(uint32_t));
     Assert(pde & PTE_P, "Can't find %d th page directory entry", pdx);
 
     uint32_t pte_base = PTE_ADDR(pde);
     uint32_t ptx = PTX(va);
-    PTE pte = *((uint32_t *)(pte_base + ptx * sizeof(char)));
+    PTE pte = paddr_read(pte_base + ptx * sizeof(uint32_t), sizeof(uint32_t));
     Assert(pte & PTE_P, "Can't find %d th page directory entry", ptx);
 
     uint32_t pa_base = PTE_ADDR(pte);
