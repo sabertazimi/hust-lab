@@ -79,11 +79,9 @@ uint32_t vaddr_read(vaddr_t addr, int len) {
     uint32_t data_inpage = paddr_read(paddr_inpage, nr_inpage);
     uint32_t data_outpage = paddr_read(paddr_outpage, nr_outpage);
     uint32_t data = (data_outpage << (nr_inpage << 3)) | data_inpage;
-    Assert(0, "cross the page boundary when read %d bytes in 0x%08x", len, addr);
-    return data;
-
     Log("nr_inpage = %d, nr_outpage = %d, start ptx = %d, end ptx = %d",
         nr_inpage, nr_outpage, PTX(addr), PTX(addr + len-1));
+    return data;
   } else {
     return paddr_read(addr, len);
   }
@@ -104,7 +102,6 @@ void vaddr_write(vaddr_t addr, int len, uint32_t data) {
 
     Log("nr_inpage = %d, nr_outpage = %d, start ptx = %d, end ptx = %d",
         nr_inpage, nr_outpage, PTX(addr), PTX(addr + len-1));
-    Assert(0, "cross the page boundary when read %d bytes in 0x%08x", len, addr);
   } else {
     paddr_write(addr, len, data);
   }
