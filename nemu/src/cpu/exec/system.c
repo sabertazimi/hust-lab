@@ -30,8 +30,6 @@ make_EHelper(mov_r2cr) {
 }
 
 make_EHelper(mov_cr2r) {
-  TODO();
-
   switch (id_src->reg) {
     case 0:
       operand_write(id_dest, &cpu.cr0.val);
