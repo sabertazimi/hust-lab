@@ -81,7 +81,10 @@ void _map(_Protect *p, void *va, void *pa) {
   PDE pde = pde_base[pdx];
   PTE *pte_base = (PTE *)PTE_ADDR(pde);
   uint32_t ptx = PTX(vaddr);
-  pte_base[ptx] = (uintptr_t)PTE_ADDR(paddr) | PTE_P;
+
+  if (!(pte_base[ptx] & PTE_P)) {
+    pte_base[ptx] = (uintptr_t)PTE_ADDR(paddr) | PTE_P;
+  }
 }
 
 void _unmap(_Protect *p, void *va) {

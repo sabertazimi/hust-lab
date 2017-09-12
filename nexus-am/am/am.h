@@ -19,7 +19,7 @@
 
 typedef struct _Area {
   void *start, *end;
-} _Area; 
+} _Area;
 
 #define _KEYS(_) \
   _(ESCAPE) _(F1) _(F2) _(F3) _(F4) _(F5) _(F6) _(F7) _(F8) _(F9) _(F10) _(F11) _(F12) \
@@ -61,7 +61,7 @@ typedef struct _Screen {
 } _Screen;
 
 typedef struct _Protect {
-  _Area area; 
+  _Area area;
   void *ptr;
 } _Protect;
 
