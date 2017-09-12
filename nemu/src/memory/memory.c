@@ -66,7 +66,7 @@ uint32_t vaddr_read(vaddr_t addr, int len) {
     // cross the page boundary
     Log("start pdx = %d, end pdx = %d, start ptx = %d, end ptx = %d",
         PDX(addr), PDX(addr + len-1), PTX(addr), PTX(addr + len-1));
-    Assert(0, "cross the page boundary when read 0x%08x memory", addr);
+    Assert(0, "cross the page boundary when read %d bytes in 0x%08x", len, addr);
   } else {
     return paddr_read(addr, len);
   }
@@ -77,7 +77,7 @@ void vaddr_write(vaddr_t addr, int len, uint32_t data) {
     // cross the page boundary
     Log("start pdx = %d, end pdx = %d, start ptx = %d, end ptx = %d",
         PDX(addr), PDX(addr + len-1), PTX(addr), PTX(addr + len-1));
-    Assert(0, "cross the page boundary when write 0x%08x memory", addr);
+    Assert(0, "cross the page boundary when write %d bytes in 0x%08x", len, addr);
   } else {
     paddr_write(addr, len, data);
   }
