@@ -7,6 +7,10 @@
 #define PGROUNDUP(sz)   (((sz)+PGSIZE-1) & ~PGMASK)
 #define PGROUNDDOWN(a)  (((a)) & ~PGMASK)
 
+// Control Register flags
+#define CR0_PE    0x00000001  // Protection Enable
+#define CR0_PG    0x80000000  // Paging
+
 // Page directory and page table constants
 #define NR_PDE    1024    // # directory entries per page directory
 #define NR_PTE    1024    // # PTEs per page table
@@ -43,20 +47,23 @@ typedef uint32_t PDE;
 uint8_t pmem[PMEM_SIZE];
 
 static paddr_t page_translate(vaddr_t va) {
-  uint32_t pde_base = cpu.cr3.val;
-  uint32_t pdx = PDX(va);
-  Log("pde_base = 0x%08x", pde_base);
-  PDE pde = *((uint32_t *)(pde_base + pdx * sizeof(uint32_t)));
-  Assert(pde & PTE_P, "Can't find %d th page directory entry", pdx);
+  if (cpu.cr0.val & CR0_PG) {
+    uint32_t pde_base = cpu.cr3.val;
+    uint32_t pdx = PDX(va);
+    PDE pde = *((uint32_t *)(pde_base + pdx * sizeof(uint32_t)));
+    Assert(pde & PTE_P, "Can't find %d th page directory entry", pdx);
 
-  uint32_t pte_base = PTE_ADDR(pde);
-  uint32_t ptx = PTX(va);
-  PTE pte = *((uint32_t *)(pte_base + ptx * sizeof(uint32_t)));
-  Assert(pte & PTE_P, "Can't find %d th page directory entry", ptx);
+    uint32_t pte_base = PTE_ADDR(pde);
+    uint32_t ptx = PTX(va);
+    PTE pte = *((uint32_t *)(pte_base + ptx * sizeof(uint32_t)));
+    Assert(pte & PTE_P, "Can't find %d th page directory entry", ptx);
 
-  uint32_t pa_base = PTE_ADDR(pte);
-  uint32_t pa_offset = PTE_ADDR(va);
-  return pa_base + pa_offset;
+    uint32_t pa_base = PTE_ADDR(pte);
+    uint32_t pa_offset = PTE_ADDR(va);
+    return pa_base + pa_offset;
+  } else {
+    return va;
+  }
 }
 
 /* Memory accessing interfaces */
