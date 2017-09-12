@@ -57,6 +57,7 @@ static paddr_t page_translate(vaddr_t va) {
     uint32_t pte_base = PTE_ADDR(pde);
     uint32_t ptx = PTX(va);
     PTE pte = paddr_read(pte_base + ptx * sizeof(uint32_t), sizeof(uint32_t));
+    Log("va = 0x%08x, pte = 0x%08x, ptx = %d", va, pte, ptx);
     Assert(pte & PTE_P, "Can't find %d th page directory entry", ptx);
 
     uint32_t pa_base = PTE_ADDR(pte);
