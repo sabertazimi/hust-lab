@@ -42,6 +42,10 @@ typedef uint32_t PDE;
 
 uint8_t pmem[PMEM_SIZE];
 
+static paddr_t page_translate(vaddr_t va) {
+  return va;
+}
+
 /* Memory accessing interfaces */
 
 uint32_t paddr_read(paddr_t addr, int len) {
@@ -70,10 +74,16 @@ uint32_t vaddr_read(vaddr_t addr, int len) {
     vaddr_t page_bound = PGROUNDUP(addr);
     int nr_inpage = page_bound - addr;
     int nr_outpage = len - nr_inpage;
+    paddr_t paddr_inpage = page_translate(addr);
+    paddr_t paddr_outpage = page_translate(page_bound);
+    uint32_t data_inpage = paddr_read(paddr_inpage, nr_inpage);
+    uint32_t data_outpage = paddr_read(paddr_outpage, nr_outpage);
+    uint32_t data = (data_outpage << (nr_inpage << 3)) | data_inpage;
+    return data;
 
     Log("nr_inpage = %d, nr_outpage = %d, start ptx = %d, end ptx = %d",
         nr_inpage, nr_outpage, PTX(addr), PTX(addr + len-1));
-    Assert(0, "cross the page boundary when read %d bytes in 0x%08x", len, addr);
+    // Assert(0, "cross the page boundary when read %d bytes in 0x%08x", len, addr);
   } else {
     return paddr_read(addr, len);
   }
@@ -85,11 +95,18 @@ void vaddr_write(vaddr_t addr, int len, uint32_t data) {
     vaddr_t page_bound = PGROUNDUP(addr);
     int nr_inpage = page_bound - addr;
     int nr_outpage = len - nr_inpage;
+    paddr_t paddr_inpage = page_translate(addr);
+    paddr_t paddr_outpage = page_translate(page_bound);
+    uint32_t data_inpage = data & (~0u >> ((4 - nr_inpage) << 3));
+    uint32_t data_outpage = (data >> (nr_inpage << 3)) & (~0u >> ((4 - nr_outpage) << 3));
+    paddr_write(paddr_inpage, nr_inpage, data_inpage);
+    paddr_write(paddr_outpage, nr_outpage, data_outpage);
 
     Log("nr_inpage = %d, nr_outpage = %d, start ptx = %d, end ptx = %d",
         nr_inpage, nr_outpage, PTX(addr), PTX(addr + len-1));
-    Assert(0, "cross the page boundary when write %d bytes in 0x%08x", len, addr);
+    // Assert(0, "cross the page boundary when read %d bytes in 0x%08x", len, addr);
   } else {
     paddr_write(addr, len, data);
   }
 }
+
