@@ -61,7 +61,7 @@ static paddr_t page_translate(vaddr_t va) {
     Assert(pte & PTE_P, "Can't find %d th page directory entry", ptx);
 
     uint32_t pa_base = PTE_ADDR(pte);
-    uint32_t pa_offset = PTE_ADDR(va);
+    uint32_t pa_offset = OFF(va);
     Assert((pa_base + pa_offset) == va, "page translation failure: (0x%08x + 0x%08x) != 0x%08x", pa_base, pa_offset, va);
     return pa_base + pa_offset;
   } else {
