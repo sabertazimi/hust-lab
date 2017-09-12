@@ -66,8 +66,10 @@ void _switch(_Protect *p) {
 }
 
 void _map(_Protect *p, void *va, void *pa) {
+  uint32_t *vaddr = (uint32_t *)va;
+  uint32_t *paddr = (uint32_t *)pa;
   PDE *pde_base = p->ptr;
-  uint32_t pdx = PDX(va);
+  uint32_t pdx = PDX(vaddr);
 
   if (!(pde_base[pdx] & PTE_P)) {
     // alloc a new page table
@@ -77,8 +79,8 @@ void _map(_Protect *p, void *va, void *pa) {
 
   PDE pde = pde_base[pdx];
   PTE *pte_base = (PTE *)PTE_ADDR(pde);
-  uint32_t ptx = PTX(va);
-  pte_base[ptx] = (uintptr_t)PTE_ADDR(pa) | PTE_P;
+  uint32_t ptx = PTX(vaddr);
+  pte_base[ptx] = (uintptr_t)PTE_ADDR(paddr) | PTE_P;
 }
 
 void _unmap(_Protect *p, void *va) {
