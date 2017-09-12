@@ -40,12 +40,12 @@ static paddr_t page_translate(vaddr_t va) {
     uint32_t pde_base = cpu.cr3.val;
     uint32_t pdx = PDX(va);
     PDE pde = paddr_read(pde_base + pdx * sizeof(uint32_t), sizeof(uint32_t));
-    Assert(pde & PTE_P, "Can't find %d th entry in page directory", pdx);
+    Assert(pde & PTE_P, "Can't find %d th entry in page directory when access 0x%08x", pdx, va);
 
     uint32_t pte_base = PTE_ADDR(pde); // align to 4KB
     uint32_t ptx = PTX(va);
     PTE pte = paddr_read(pte_base + ptx * sizeof(uint32_t), sizeof(uint32_t));
-    Assert(pte & PTE_P, "Can't find %d th entry in page table", ptx);
+    Assert(pte & PTE_P, "Can't find %d th entry in page table when access 0x%08x", ptx, va);
 
     uint32_t pa_base = PTE_ADDR(pte); // align to 4KB
     uint32_t pa_offset = OFF(va);
