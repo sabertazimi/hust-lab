@@ -83,6 +83,7 @@ static inline void restart() {
   /* Set the initial instruction pointer. */
   cpu.eip = ENTRY_START;
   cpu.eflags.val = 0x2;
+  cpu.cr0.val = 0x60000011;
   cpu.cs = 0x8;
 
 #ifdef DIFF_TEST
