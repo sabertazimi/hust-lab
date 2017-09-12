@@ -51,7 +51,8 @@ static paddr_t page_translate(vaddr_t va) {
     uint32_t pde_base = cpu.cr3.val;
     uint32_t pdx = PDX(va);
     Log("test");
-    // Log("%d", *)
+    uint32_t *test = (uint32_t *)(0x1d77000);
+    Log("%d", *test);
     Log("va = 0x%08x, pde_base = 0x%08x, pdx = %d", va, pde_base, pdx);
     PDE pde = *((uint32_t *)(pde_base + pdx * sizeof(char)));
     Log("va = 0x%08x, pde_base = 0x%08x, pdx = %d", va, pde_base, pdx);
