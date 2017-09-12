@@ -95,33 +95,31 @@ void _unmap(_Protect *p, void *va) {
 }
 
 _RegSet *_umake(_Protect *p, _Area ustack, _Area kstack, void *entry, char *const argv[], char *const envp[]) {
-  _RegSet *start_tf = (_RegSet *)(((char *)ustack.end) - (sizeof(_RegSet)));
-  start_tf->edi = 0;
-  start_tf->esi = 0;
-  start_tf->ebp = 0;
-  start_tf->esp = 0;
-  start_tf->ebx = 0;
-  start_tf->edx = 0;
-  start_tf->ecx = 0;
-  start_tf->eax = 0;
-  start_tf->irq = 0;
-  start_tf->error_code = 0;
-  start_tf->eip = 0;
-  start_tf->cs = 0;
-  start_tf->eflags = 0;
+  uintptr_t start_ebp = (uintptr_t)(((char *)ustack.end) - (4 * sizeof(int)));
 
-  _RegSet *utf = (start_tf - 1);
+  uint32_t *vaddr = (uint32_t *)entry;
+  PDE *pde_base = p->ptr;
+  uint32_t pdx = PDX(vaddr);
+  PDE pde = pde_base[pdx];
+  PTE *pte_base = (PTE *)PTE_ADDR(pde);
+  uint32_t ptx = PTX(vaddr);
+  PTE pte = pte_base[ptx];
+  uint32_t pa_base = PTE_ADDR(pte);
+  uint32_t pa_offset = OFF(vaddr);
+  uint32_t paddr = pa_base + pa_offset;
+
+  _RegSet *utf = (_RegSet *)(start_ebp - sizeof(_RegSet));
   utf->edi = 0;
   utf->esi = 0;
-  utf->ebp = (uintptr_t)start_tf;
-  utf->esp = (uintptr_t)start_tf;
+  utf->ebp = start_ebp;
+  utf->esp = start_ebp;
   utf->ebx = 0;
   utf->edx = 0;
   utf->ecx = 0;
   utf->eax = 0;
-  utf->irq = 0x81;
+  utf->irq = 0;
   utf->error_code = 0;
-  utf->eip = (uintptr_t)entry;
+  utf->eip = (uintptr_t)(paddr);
   utf->cs = 0x8;
   utf->eflags = 0x2;
   return utf;
