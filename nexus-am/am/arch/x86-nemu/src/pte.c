@@ -119,7 +119,7 @@ _RegSet *_umake(_Protect *p, _Area ustack, _Area kstack, void *entry, char *cons
   utf->edx = 0;
   utf->ecx = 0;
   utf->eax = 0;
-  utf->irq = 0;
+  utf->irq = 0x81;
   utf->error_code = 0;
   utf->eip = (uintptr_t)entry;
   utf->cs = 0x8;
