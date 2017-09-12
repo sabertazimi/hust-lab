@@ -38,7 +38,7 @@ typedef uint32_t PDE;
 #define PGADDR(d, t, o) ((uint32_t)((d) << PDXSHFT | (t) << PTXSHFT | (o)))
 
 // Address in page table or page directory entry
-#define PTE_ADDR(pte)   ((uint32_t)(pte >> PTESHFT) & ~0xfffff)
+#define PTE_ADDR(pte)   ((uint32_t)(pte) & ~0xfff)
 
 #define pmem_rw(addr, type) *(type *)({\
     Assert(addr < PMEM_SIZE, "physical address(0x%08x) is out of bound, EIP = 0x%08x", addr, cpu.eip); \
