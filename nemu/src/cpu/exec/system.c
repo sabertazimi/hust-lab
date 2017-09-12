@@ -13,14 +13,12 @@ make_EHelper(lidt) {
 make_EHelper(mov_r2cr) {
   switch (id_dest->reg) {
     case 0:
-  Log("r2cr cr0 id_src->val = 0x%08x", id_src->val);
       cpu.cr0.val = id_src->val;
       break;
     case 2:
       TODO();
       break;
     case 3:
-  Log("r2cr cr3 id_src->val = 0x%08x", id_src->val);
       cpu.cr3.val = id_src->val;
       break;
     default:
