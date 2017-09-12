@@ -45,6 +45,7 @@ uint8_t pmem[PMEM_SIZE];
 static paddr_t page_translate(vaddr_t va) {
   uint32_t pde_base = cpu.cr3.val;
   uint32_t pdx = PDX(va);
+  Log("pde_base = 0x%08x", pde_base);
   PDE pde = *((uint32_t *)(pde_base + pdx * sizeof(uint32_t)));
   Assert(pde & PTE_P, "Can't find %d th page directory entry", pdx);
 
