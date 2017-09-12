@@ -53,14 +53,13 @@ static paddr_t page_translate(vaddr_t va) {
     PDE pde = paddr_read(pde_base + pdx * sizeof(uint32_t), sizeof(uint32_t));
     Assert(pde & PTE_P, "Can't find %d th page directory entry", pdx);
 
-    uint32_t pte_base = PTE_ADDR(pde);
+    uint32_t pte_base = PTE_ADDR(pde); // align to 4KB
     uint32_t ptx = PTX(va);
     PTE pte = paddr_read(pte_base + ptx * sizeof(uint32_t), sizeof(uint32_t));
     Assert(pte & PTE_P, "Can't find %d th page directory entry", ptx);
 
-    uint32_t pa_base = PTE_ADDR(pte);
+    uint32_t pa_base = PTE_ADDR(pte); // align to 4KB
     uint32_t pa_offset = OFF(va);
-    Assert((pa_base + pa_offset) == va, "page translation failure: (0x%08x + 0x%08x) != 0x%08x", pa_base, pa_offset, va);
     return pa_base + pa_offset;
   } else {
     return va;

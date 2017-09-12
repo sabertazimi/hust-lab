@@ -1025,3 +1025,10 @@ IDEX(mov_E2G, mov_r2cr)
 ```
 
 #### mmu (Page 100)
+
+```c
+Page Directory Start = cr3
+Page Table Start = *(cr3 + PDX(va) * sizeof(uint32)) & ~0xfff (set low-order 12 bits to 0)
+Physical Page Start = *(Page Table Start + PTX(va) * sizeof(uint32) & ~0xfff
+Physical Address = Physical Page Start + OFF(va)
+```
