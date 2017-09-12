@@ -51,13 +51,13 @@ static paddr_t page_translate(vaddr_t va) {
     uint32_t pde_base = cpu.cr3.val;
     uint32_t pdx = PDX(va);
     Log("pde_base = 0x%08x", pde_base);
-    PDE pde = *((uint32_t *)(pde_base + pdx * sizeof(uint32_t)));
+    PDE pde = *((uint32_t *)(pde_base + pdx * sizeof(char)));
     Log("pde_base = 0x%08x", pde_base);
     Assert(pde & PTE_P, "Can't find %d th page directory entry", pdx);
 
     uint32_t pte_base = PTE_ADDR(pde);
     uint32_t ptx = PTX(va);
-    PTE pte = *((uint32_t *)(pte_base + ptx * sizeof(uint32_t)));
+    PTE pte = *((uint32_t *)(pte_base + ptx * sizeof(char)));
     Assert(pte & PTE_P, "Can't find %d th page directory entry", ptx);
 
     uint32_t pa_base = PTE_ADDR(pte);
