@@ -43,7 +43,19 @@ typedef uint32_t PDE;
 uint8_t pmem[PMEM_SIZE];
 
 static paddr_t page_translate(vaddr_t va) {
-  return va;
+  uint32_t pde_base = cpu.cr3.val;
+  uint32_t pdx = PDX(va);
+  PDE pde = *((uint32_t *)(pde_base + pdx * sizeof(uint32_t)));
+  Assert(pde & PTE_P, "Can't find %d th page directory entry", pdx);
+
+  uint32_t pte_base = PTE_ADDR(pde);
+  uint32_t ptx = PTX(va);
+  PTE pte = *((uint32_t *)(pte_base + ptx * sizeof(uint32_t)));
+  Assert(pte & PTE_P, "Can't find %d th page directory entry", ptx);
+
+  uint32_t pa_base = PTE_ADDR(pte);
+  uint32_t pa_offset = PTE_ADDR(va);
+  return pa_base + pa_offset;
 }
 
 /* Memory accessing interfaces */
