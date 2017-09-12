@@ -11,6 +11,7 @@ make_EHelper(lidt) {
 }
 
 make_EHelper(mov_r2cr) {
+  Log("%%eax = 0x%08x", reg_l(R_EAX));
   switch (id_dest->reg) {
     case 0:
       cpu.cr0.val = id_src->val;
