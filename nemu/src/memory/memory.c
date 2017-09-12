@@ -3,6 +3,9 @@
 
 #define PMEM_SIZE (128 * 1024 * 1024)
 #define PGSIZE    4096    // Bytes mapped by a page
+#define PGMASK          (PGSIZE - 1)    // Mask for bit ops
+#define PGROUNDUP(sz)   (((sz)+PGSIZE-1) & ~PGMASK)
+#define PGROUNDDOWN(a)  (((a)) & ~PGMASK)
 
 // Page directory and page table constants
 #define NR_PDE    1024    // # directory entries per page directory
@@ -62,10 +65,14 @@ void paddr_write(paddr_t addr, int len, uint32_t data) {
 }
 
 uint32_t vaddr_read(vaddr_t addr, int len) {
-  if (PDX(addr) != PDX(addr + len - 1) || PTX(addr) != PTX(addr + len - 1)) {
+  if (PTX(addr) != PTX(addr + len - 1)) {
     // cross the page boundary
-    Log("start pdx = %d, end pdx = %d, start ptx = %d, end ptx = %d",
-        PDX(addr), PDX(addr + len-1), PTX(addr), PTX(addr + len-1));
+    vaddr_t page_bound = PGROUNDUP(addr);
+    int nr_inpage = addr - page_bound;
+    int nr_outpage = len - nr_inpage;
+
+    Log("nr_inpage = %d, nr_outpage = %d, start ptx = %d, end ptx = %d",
+        nr_inpage, nr_outpage, PTX(addr), PTX(addr + len-1));
     Assert(0, "cross the page boundary when read %d bytes in 0x%08x", len, addr);
   } else {
     return paddr_read(addr, len);
@@ -73,10 +80,14 @@ uint32_t vaddr_read(vaddr_t addr, int len) {
 }
 
 void vaddr_write(vaddr_t addr, int len, uint32_t data) {
-  if (PDX(addr) != PDX(addr + len - 1) || PTX(addr) != PTX(addr + len - 1)) {
+  if (PTX(addr) != PTX(addr + len - 1)) {
     // cross the page boundary
-    Log("start pdx = %d, end pdx = %d, start ptx = %d, end ptx = %d",
-        PDX(addr), PDX(addr + len-1), PTX(addr), PTX(addr + len-1));
+    vaddr_t page_bound = PGROUNDUP(addr);
+    int nr_inpage = addr - page_bound;
+    int nr_outpage = len - nr_inpage;
+
+    Log("nr_inpage = %d, nr_outpage = %d, start ptx = %d, end ptx = %d",
+        nr_inpage, nr_outpage, PTX(addr), PTX(addr + len-1));
     Assert(0, "cross the page boundary when write %d bytes in 0x%08x", len, addr);
   } else {
     paddr_write(addr, len, data);
