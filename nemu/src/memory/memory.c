@@ -17,7 +17,6 @@
 #define PGSHFT    12      // log2(PGSIZE)
 #define PTXSHFT   12      // Offset of PTX in a linear address
 #define PDXSHFT   22      // Offset of PDX in a linear address
-#define PTESHFT   12      // Offset of page frame address in a PDE/PTE
 
 // Page table/directory entry flags
 #define PTE_P     0x001     // Present
@@ -38,7 +37,7 @@ typedef uint32_t PDE;
 #define PGADDR(d, t, o) ((uint32_t)((d) << PDXSHFT | (t) << PTXSHFT | (o)))
 
 // Address in page table or page directory entry
-#define PTE_ADDR(pte)   ((uint32_t)(pte >> PTESHFT) & 0xfffff)
+#define PTE_ADDR(pte)   ((uint32_t)(pte) & ~0xfff)
 
 #define pmem_rw(addr, type) *(type *)({\
     Assert(addr < PMEM_SIZE, "physical address(0x%08x) is out of bound, EIP = 0x%08x", addr, cpu.eip); \
