@@ -1,0 +1,53 @@
+/*
+ * Process.css
+ * Copyright (C) 2017 sabertazimi
+ *
+ * Distributed under terms of the MIT license.
+ */
+
+div.process-table {
+	display: flex;
+	flex-direction: column;
+}
+
+ul.process-list {
+	list-style-type: none;
+	display: flex;
+	justify-content: space-between;
+}
+
+ul.process-list li {
+	min-height: 5vh;
+    /*min-width: 30%;*/
+    /*max-width: 35%;*/
+    flex: 1;
+}
+
+ul.process-list li:last-child {
+    text-align: right;
+}
+
+ul.process-list:nth-child(2n) {
+	background-color: #f2f2f2;
+}
+
+.kill-pid {
+    position: fixed;
+    bottom: 2vh;
+    right: 10vw;
+    height: 25px;
+}
+
+.kill-button {
+    position: fixed;
+    bottom: 2vh;
+    right: 10vw;
+
+    backgroud-color: inherit;
+    border: 1px solid #f44336;
+    color: #f44336;
+    padding: 5px 12px;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+}

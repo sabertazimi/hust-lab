@@ -1,0 +1,1 @@
+{"foo.js":{"":false,"content":"\"const foo = (bar) => { console.log(bar); }"},"a":{"":true,"b":{"":true,"c":{"":true}}},"b":{"":true,"c":{"":true,"d":{"":true},"a.js":{"":false,"content":"\"hello world\""}}}}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Task Manager</title>
+        <link rel="stylesheet" type="text/css" href="./css/Tab.css">
+        <link rel="stylesheet" type="text/css" href="./css/Flex.css">
+        <link rel="stylesheet" type="text/css" href="./css/Process.css">
+    </head>
+
+    <body>
+        <ul class="tab">
+            <li><a href="javascript:void(0)" onclick="openTab(event, 'About')">About</a></li>
+            <li><a href="javascript:void(0)" onclick="openTab(event, 'Process')">Process</a></li>
+            <li><a href="javascript:void(0)" onclick="openTab(event, 'System')">System</a></li>
+        </ul>
+
+        <div id="About" class="tabcontent active">
+            <section class="flex-container">
+                <h3>About</h3>
+                <p>author: sabertazimi</p>
+                <p>email: sabertazimi@gmail.com</p>
+            </section>
+        </div>
+
+        <div id="Process" class="tabcontent">
+            <section>
+                <input type="text" name="pid" class="kill-pid" id="kill-pid" placehold="input pid to kill">
+                <input type="button" name="kill" class="kill-button" value="kill" onclick="killProcess()">
+            </section>
+            <div class="process-table">
+                <ul class="process-list">
+                </ul>
+            </div>
+        </div>
+
+        <div id="System" class="tabcontent">
+            <section class="flex-container">
+                <h3>System</h3>
+                <p id="cpu-usage">CPU Usage</p>
+                <p id="mem-usage">Memory Usage</p>
+                <p id="model-name">Model Name</p>
+                <p id="cpu-mhz">CPU MHz</p>
+                <p id="cache-size">Cache Size</p>
+                <p id="addr-size">Addr Size</p>
+            </section>
+        </div>
+
+        <script src="./js/view.js"></script>
+    </body>
+</html>
