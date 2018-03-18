@@ -1,0 +1,89 @@
+QPushButton {
+    border: 2px solid #00695c;
+    border-radius: 3px;
+    padding: 10px 20px;
+    color: black;
+}
+
+QPushButton:hover {
+    background-color: #00695c;
+    color: white;
+}
+
+QPushButton:disabled {
+    border: 2px solid #bbbbbb;
+    background-color: #bbbbbb;
+    color: #dddddd;
+}
+
+QLineEdit,
+QDateTimeEdit,
+QComboBox {
+    border: none;
+    padding: 8px 20px;
+    border-bottom: 1px solid #dddddd;
+    background-color: transparent;
+    color: #111111;
+}
+
+QLineEdit:editable,
+QDateTimeEdit:editable,
+QComboBox:editable {
+    border-bottom: 2px solid #b2dfdb;
+    font-size: 20px;
+}
+
+QLineEdit:disabled,
+QDateTimeEdit:disabled,
+QComboBox:disabled {
+    border-bottom: 2px solid #bbbbbb;
+    background-color: #bbbbbb;
+    color: #dddddd;
+}
+
+QLineEdit:focus,
+QDateTimeEdit:focus,
+QComboBox:focus {
+    border: 0px solid white;
+    border-bottom: 2px solid #00695c;
+}
+
+QLineEdit:pressed,
+QDateTimeEdit:pressed,
+QComboBox:pressed {
+    border-bottom: 2px solid #00695c;
+}
+
+QLabel {
+    background-color: #00695c;
+    border: none;
+    padding: 8px 20px;
+    color: white;
+}
+
+QLabel:disabled {
+    background-color: #bbbbbb;
+    color: #dddddd;
+}
+
+QTabWidget::pane {
+    border: 0;
+}
+
+QTabBar::tab {
+    padding: 7px 16px;
+    border: 2px solid transparent;
+}
+
+QTabBar::tab:hover {
+    border-bottom: 2px solid #00695c;
+}
+
+QTabBar::tab:disabled {
+    background-color: #bbbbbb;
+    color: #dddddd;
+}
+
+QTabBar::tab:selected {
+    border: 2px solid #00695c;
+}
