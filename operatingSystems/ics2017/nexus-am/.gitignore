@@ -1,0 +1,14 @@
+!*
+!*.*
+.*
+!.gitignore
+*~
+*.a
+*.o
+*.d
+*.pyc
+*.ini
+tags
+cscope.*
+build/
+!klib-x86-nemu.a
