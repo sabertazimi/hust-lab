@@ -1,0 +1,35 @@
+{
+    "name": "electron-email-client",
+    "version": "1.0.0",
+    "description": "A simple email client based on electron",
+    "main": "main.js",
+    "scripts": {
+        "start": "./node_modules/.bin/electron ./main.js",
+        "test": "mocha"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/sabertazimi/hust-network-lab.git"
+    },
+    "keywords": [
+        "email",
+        "hust",
+        "lab",
+        "electron"
+    ],
+    "author": "sabertazimi",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/sabertazimi/hust-network-lab/issues"
+    },
+    "homepage": "https://github.com/sabertazimi/hust-network-lab#readme",
+    "devDependencies": {
+        "electron": "^1.6.2",
+        "mocha": "^3.2.0",
+        "should": "^11.2.1"
+    },
+    "dependencies": {
+        "mdui": "^0.1.2",
+        "socket.io": "^1.7.3"
+    }
+}
