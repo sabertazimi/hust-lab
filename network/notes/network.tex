@@ -1,0 +1,1384 @@
+% !TEX program = xelatex
+% !BIB program = bibtex
+
+\documentclass[UTF8,cs4size]{ctexart}
+
+% layout
+\usepackage[left=3cm,right=3cm]{geometry}
+\usepackage{paralist}     % for compactitem environment
+\usepackage{indentfirst}  % ident the first paragraph
+\linespread{1.25}
+\ctexset{
+  section = {
+    name = \S
+  },
+  subsection/name = \S,
+  subsubsection/name = \S
+}
+
+% page headings
+\usepackage{fancyhdr}
+\setlength{\headheight}{15.2pt}
+\pagestyle{fancy}
+\lhead{\leftmark}
+\rhead{M201873026 刘一龙}
+\cfoot{\thepage}
+% \makeatletter
+% \let\headauthor\@author
+% \makeatother
+
+% footnote
+\renewcommand\thefootnote{\fnsymbol{footnote}}
+
+% url/ref
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks,
+  citecolor=black,
+  filecolor=black,
+  linkcolor=black,
+  urlcolor=black,
+  pdfauthor={刘一龙},
+  pdftitle={现代计算机网络复习笔记}
+}
+
+% vertical centering title page
+\usepackage{titling}
+\renewcommand\maketitlehooka{\null\mbox{}\vfill}
+\renewcommand\maketitlehookd{\vfill\null}
+
+% table of contents
+\usepackage{tocloft}
+\renewcommand\cftsecfont{\normalfont}
+\renewcommand\cftsecpagefont{\normalfont}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftsecdotsep}}
+\renewcommand\cftsecdotsep{\cftdot}
+\renewcommand\cftsubsecdotsep{\cftdot}
+\renewcommand\cftsubsubsecdotsep{\cftdot}
+\renewcommand{\contentsname}{\hfill\bfseries\Large 目录\hfill}   
+\setlength{\cftbeforesecskip}{10pt}
+
+% figures
+\usepackage{graphicx}
+\graphicspath{figures/}
+% \newcommand\figureht{\dimexpr
+%   \textheight-3\baselineskip-\parskip-.2em-
+%   \abovecaptionskip-\belowcaptionskip\relax}
+
+% tables
+\usepackage[skip=10pt]{caption} 
+
+% math, algorithms, code
+\usepackage{amsmath,amssymb,url}
+\usepackage{algorithm,algorithmicx,algpseudocode}
+\usepackage{listings}
+
+\lstset{
+   extendedchars=true,
+   basicstyle=\footnotesize\ttfamily,
+   showstringspaces=false,
+   showspaces=false,
+   numbers=left,
+   numberstyle=\footnotesize,
+   numbersep=9pt,
+   tabsize=2,
+   breaklines=true,
+   showtabs=false,
+   captionpos=b
+}
+
+% bibliography
+\usepackage[super,square,comma,sort]{natbib} % for \citet and \citep
+\renewcommand{\refname}{\S 参考文献}
+
+% appendix
+\usepackage{appendix}
+
+\providecommand{\keywords}[1]{
+  \begin{flushleft}
+    \small	
+    \textbf{\textit{Keywords---}} #1
+  \end{flushleft}
+}
+
+\title{复习笔记 \\ \bigskip \textbf{现代计算机网络}}
+\author{计算机科学与技术学院\\ 硕1801\\ M201873026\\ 刘一龙}
+\date{\today}
+
+\begin{document}
+
+\pagenumbering{gobble} % no page number
+\maketitle
+\clearpage
+
+\tableofcontents
+\clearpage
+
+\pagenumbering{arabic}
+
+\section{网络基础}
+\subsection{体系结构}
+\subsubsection{性能参数}
+带宽 (Bandwidth):
+\begin{compactitem}
+  \item 频率宽度: Hz/KHz/MHz/GHz
+  \item 时间宽度: bps (数据率/比特率) 发送/接受带宽即吞吐率 (一般小于链路理论带宽)
+\end{compactitem}
+
+时延 (Delay): 一端到另一端所需时间 (s)
+\begin{compactitem}
+  \item 对于传输大数据对象, 带宽支配延迟性能, 即带宽支配时延
+  \item 对于传输小数据对象, RTT 支配延迟性能, 即时延支配带宽
+\end{compactitem}
+
+\begin{equation}
+  \text{延迟} = \text{处理时延} + \text{排队时延} + \textbf{传输时延} + \textbf{传播时延}
+\end{equation}
+\begin{equation}
+  \text{端到端有效吞吐率} = \text{实际传输大小}/\text{传输时间}
+\end{equation}
+\begin{equation}
+  \text{实际传输时间} = RTT + \text{传输大小}/\text{信道带宽}
+\end{equation}
+
+信道带宽1Gbps，端到端时延 $\tau = 10ms$，TCP发送窗口65535字节。
+问可能达到的最大吞吐率T？信道利用率$\rho$？
+
+解析：
+\begin{align*}
+T & = size/(2\tau+size/BW) \\
+& = size*BW/(2\tau*BW+size) bps \\
+& = 65535*8*10^9/(20*10^9*10^{-3}s+65535*8)bps \\
+& = 524280*10^3/(20 *10^6 +524280)Mbps \\
+& = 25.5 Mbps, BW = Bandwidth \\
+\rho & = 25.5M/1000M \\
+& = 2.55
+\end{align*}
+
+\paragraph{延迟带宽积}
+
+一对进程通道间的延迟(总体延迟)带宽积 (信道管道的体积=链路上所容纳的比特数)
+
+一个信道延迟=50ms ,带宽45Mbps, 则能容纳
+\begin{align*}
+T & = 50ms* 45Mbps \\
+& = 50*10^{-3} sec*45Mbits/sec \\
+& = 2.25Mbits=280KByte 
+\end{align*}
+
+\paragraph{网络性能参数分类}
+
+\textbf{加}性参数:
+\begin{compactitem}
+  \item 时延
+  \item 抖动
+  \item 路径长度
+  \item 路由代价
+\end{compactitem}
+
+\textbf{乘}性参数:
+\begin{compactitem}
+  \item 可靠性
+  \item 丢包率
+\end{compactitem}
+
+\textbf{极}性参数 (模板原理):
+\begin{compactitem}
+  \item 带宽
+  \item 吞吐量
+  \item 剩余能量
+  \item 生存时间 (TTL)
+\end{compactitem}
+
+\subsubsection{CIDR}
+\begin{compactitem}
+  \item 划分前网络掩码为m位数，可划分地址位数： a+b=32-m；
+  \item a是划分后的掩码增加位数；b是划分后的主机位数；
+  \item 划分前的主机地址数 = $2^{a+b}-2$;(减去全0全1网络号)
+  \item 划分后的主机地址数 = 新子网× 新子网中的主机数 = $(2^a)*(2^b-2)$
+  \item 对B类地址，a+b=16;
+  \item 对C类地址， a+b=8.
+  \item 路由表: 最长前缀匹配法
+\end{compactitem}
+
+\subsection{直连网络技术}
+\subsubsection{模拟信号传输数字信号}
+每幅图由25个象素构成，并设象素是黑白交替每个象素用1比特发送，若每秒10幅图，需要的带宽？
+
+解: 则要发送250bit/s 的相应带宽=250/2=125Hz
+
+电视每屏由525行×700列=367500象素，30屏/s，需要的带宽？
+
+解: 30屏*367500象素/屏=11025000象素,
+带宽=11025000/2=5512500Hz,
+商用电视TV是每个信道Channel为6MHz
+\subsubsection{数字到模拟调制}
+\begin{compactitem}
+  \item 比特率 Bit Rate: bps = bit/s 每秒内传输的比特数
+  \item 波特率/波德率 Baud Rate: 每秒内为表示某些比特而需要的信号单元数（或码元数）
+\end{compactitem}
+波特率与比特率的关系为：比特率=波特率$\times$单个调制状态对应的二进制位数 $Bit Rate = \log_2{Bit Units} \times Baud Rate$
+\subsubsection{逻辑层编码}
+防止在基带数据中过多的0码流或1码流，任何一方过多的码流均造成直流特性: FDDI = 4B/5B + NRZ-I
+\subsubsection{面向比特的帧协议}
+头尾标志是01111110, 零比特插入技术，5个连续‘1’插‘0’:
+\begin{compactitem}
+  \item 发送时插入 01111111 = 011111011
+  \item 接收时删除 011111011 = 01111111
+\end{compactitem}
+\subsubsection{基于时钟的帧（SONET）}
+有效载荷 = 87列×9行×8b×8000帧/s = 50.112Mbps, 帧头的开销＝3.3\%
+
+\subsection{报文交换}
+\subsubsection{以太网发展}
+以太网（Ethernet）是一种计算机局域网技术。
+IEEE组织的IEEE 802.3标准制定了以太网的技术标准，
+它规定了包括物理层的连线、电子信号和介质访问层协议的内容。
+以太网是目前应用最普遍的局域网技术，取代了其他局域网标准如令牌环、FDDI和ARCNET。
+\subsubsection{以太网交换机}
+集线器、交换机与路由器：
+\begin{compactitem}
+  \item 集线器一般工作在物理层（第一层）
+  \item 交换机一般工作在数据链路层（第二层）
+  \item 路由器工作在网络层（第三层）
+  \item 交换机是利用物理地址或者说MAC地址来确定转发数据的目的地址
+  \item 路由器则是利用不同网络的IP地址来确定数据转发的地址
+  \item 集线器既不能分割冲突域也不能分割广播域
+  \item 交换机切割了冲突域，没有切割广播域
+  \item 路由器既分割了冲突域又分割了广播域
+  \item 交换机可以构成 \textit{VLAN 来隔离广播}
+  \item 100Mbps: CSMA/CD, 1000Mbps: PAUSE, 10Gbps: 只全双工, 不使用 CSMA/CD
+\end{compactitem}
+\subsubsection{生成树协议}
+当交换机之间存在多条活动链路时，容易形成环路:
+\begin{compactitem}
+  \item 导致转发表的不正确与不稳定
+  \item 导致重复的数据包在网络中传递，引起广播风暴，使网络不稳定
+\end{compactitem}
+
+生成树协议:
+\begin{compactitem}
+  \item 形成具有一个根节点的辐射型网络 (Hub-Spoke)
+  \item 一个广播域内独立选举 STP
+  \item 根交换机: 优先级/Bridge ID 数字最小 或 Mac 地址最小者 (根交换机上所有端口都是指定端口)
+  \item 非跟交换机选举根端口
+  \item 非根交换机选择指定端口 (Designated Port): 每条连接交换机的物理线路的两个端口（属于不同交换机）中，有一个要被选举为指定端口。
+  \item 端口: Path Cost to Root 最小端口 或 上一跳 Bridge ID 最小者 或者 对端端口优先级高者 (数字小)
+  \item BID（优先级+基MAC）: 两个都是越小越好
+  \item PortID（优先级+端口号）: 两个都是越小越好
+\end{compactitem}
+
+\subsection{TCP/IP 技术}
+\subsubsection{互联网三地址}
+域名, IP 地址, 物理地址
+\subsubsection{ICMP}
+Ping, Traceroute
+\subsubsection{RIP}
+小规模网络, 定时只向邻居说（30s），说知道的所有（自路由表）
+
+距离向量算法 (动态收敛 convergence)
+\subsubsection{OSPF}
+大规模网络,（链路）变时向所有人说（区内路由器组播），只说邻居的事（链路状态）
+
+链路状态算法 (Dijkstra 算法)
+\subsubsection{TCP}
+建立连接时三次握手, 断开连接时四次握手
+
+窗口大小 (Advertised Window): $Bandwidth * Delay(RTT)$
+
+序列回绕问题 (Wrapped Sequences): $Bandwidth * MaximumSegmentLifetime$
+\subsubsection{PIM}
+组播的三个组成部分: 组播地址、组成员机制（加入/退出）、组播路由协议
+
+组播协议总体结构：
+\begin{compactitem}
+  \item 路由器、主机之间：IGMP (组成员机制)
+  \item 路由器、路由器之间：PIM (组播路由协议)
+  \item 路由器、交换机之间：CGMP
+\end{compactitem}
+
+\paragraph{组成员机制}
+IGMP (查询+报告) 在组播路由器里建立起一张表，
+其中包含路由器的各个接口以及在接口所对应的子网上都有哪些组的成员。
+当路由器接收到某个组的数据报文后，只向那些有该组成员的接口上转发数据报文。
+至于数据报文在路由器之间如何转发则由组播路由协议决定，IGMP协议并不负责。
+网络中拥有最低IP地址的路由器将被选举为 IGMP 查询器 (IGMP Querier)。
+
+\paragraph{PIM-DM}
+PIM-DM 使用查询。
+PIM-DM 模式中记录组播路由为 (S,G)，
+其中 S 就是组播源地址，G 就是组地址，而出口则会被标为 forwarding。
+(S,G) 的路由记录方式，会因为组源地址的增加而增加记录条目。
+对于不需要接收组播的PIM接口，PIM-DM 模式照样会将其记录在路由表中，但被标为 pruning。
+同一子网中 DR: 最高 IP 地址者。
+
+e.g (100.1.1.1, 224.1.1.1), (100.1.1.2, 224.1.1.1), (100.1.1.3, 224.1.1.1)
+\paragraph{PIM-SM}
+PIM-SM 使用报告 (靠组成员自己主动向路由器发送报告)。
+PIM-SM 模式中记录组播路由为(*，G) ，
+其中 * 就是组播源地址，G 就是组地址。
+可以大大缩减组播路由表的空间，从而大大节省系统资源。
+PIM-SM 模式只记录连接着接收者的接口，其它不需要接收组播的接口是不会被记录 (没有 pruning 接口)。
+\clearpage
+
+\section{拥塞控制}
+\subsection{基本概念}
+拥控为了解决某些点上存在资源瓶颈, 防止发送者把太多的数据发送到网路中，保护网络，是一个全局问题（多个端到端、主机、路由器）；
+流控为了解决接收方可能存在缓存不足、进程等待，防止发送方的发送速度比接收方的接收速度快，保护端点，是一个局部问题（一对端到端）。
+
+衡量网络是否拥塞的参数:
+\begin{compactitem}
+  \item 缓冲区缺乏造成的丢包率
+  \item 平均队列长度
+  \item 超时重传包数目
+  \item 平均包延迟
+  \item 包延迟变化（Jitter）
+\end{compactitem}
+\subsubsection{有效性}
+2个主要测量指标: 网络吞吐率(实际传输bps) 与 延迟
+
+网络能力 Power = 吞吐率 / 延迟, $bit/s^2$
+\subsubsection{公平性}
+公平性是指带宽相等且所有通道长度相等
+
+$$f(x_1, x_2, \dots, x_n) = \frac{(\sum_{i=1}^n x_i)^2}{n \sum_{i=1}^n x_i^2}$$
+\subsection{排队算法}
+\subsubsection{FIFO}
+\begin{compactitem}
+  \item First In First Out + Tail Drop
+  \item 优先排队策略: TOS (头 3 bits) 决定优先权，优先发送优先权高的包
+\end{compactitem}
+\subsubsection{FQ}
+Fair Queuing: 为每个正在被路由器处理的流分别维护一个队列，
+路由器以轮循方式服务每个队列
+(Simulated Bit-by-bit Round-robin Service)。
+
+对于不同的流，单独计算流中各个包的传输结束时间,
+$$F_i= max(F_{i-1}, A_i)+ P_i$$,
+$P_i$为包长度, $A_i$为包达到时间,
+然后发送 $F_i$ 最小的包。
+\subsubsection{WFQ}
+Weighted Fair Queueing: 加权公平排队
+\subsection{流量整形}
+令牌桶算法允许积累发送权（桶里累计令牌），以便大的突然数据，
+同时其丢弃令牌不丢弃数据包:
+\begin{compactitem}
+  \item F Bits 文件长度，X bps 计算机输出链路速率，Y bps 令牌桶填充速率，P Bits 令牌桶大小
+  \item t 时间内计算机输出数据 = 网关输入数据, $tX=tY+P, t=P/(X-Y)$
+  \item $T = t+(F-Xt)/Y$ （即计算机先以X发送t秒，再用Y速率发送T-t秒）
+\end{compactitem}
+\subsection{TCP 拥塞控制机制}
+TCP需要创造丢失来发现该连接的可用带宽
+\subsubsection{慢启动阶段}
+\begin{compactitem}
+  \item Congestion Window: 每收到一个 ACK，将 CW*2
+  \item ssthresh: slow start threshold
+\end{compactitem}
+$$MaxWindow = MIN(CongestionWindow, AdvertisedWindow)$$
+$$EffectiveWindow = MaxWindow - (LastByte - LastByteAcked)$$
+\subsubsection{拥塞避免阶段}
+TCP把收到\textit{duplicated ACK}与\textit{超时}两种现象解释为拥塞的信号
+
+拥塞避免：当 cwnd >= ssthresh 后，开始线性加 (锯齿形上升), CW += MSS * (MSS / CW)
+
+Tahoe TCP 不区分这两种情况:
+\begin{compactitem}
+  \item ssthresh = cwnd / 2
+  \item cwnd 重置为 1
+  \item 进入慢启动过程
+\end{compactitem}
+\subsubsection{快速重传阶段}
+TCP等到3个失序包后就重发丢失的包
+e.g receive 3 duplictaed ACK 2, then re-transmit Packet 3
+\subsubsection{快速恢复阶段}
+Reno TCP 超时的策略不变，但是面对\textit{duplicated ACK}的实现是:
+\begin{compactitem}
+  \item 进入快速恢复算法 (Fast Recovery) 如下：
+  \item ssthresh = cwnd / 2
+  \item cwnd = ssthresh
+  \item 重新进入拥塞避免
+\end{compactitem}
+
+\subsection{拥塞避免算法}
+拥塞将要发生时进行预测，在包将被丢弃之前减少主机发送数据的速率
+\subsubsection{ECN}
+每个Router上监视自己队列长度, ECT -> CE -> ECE -> CWR
+\subsubsection{RED}
+每个Router上监视自己队列长度, 其缓冲被完全填满前就按概率丢少量包,
+不明确发送拥塞通知到源, 通过丢弃一个包来隐含已发生拥塞。
+比例控制器＋低通滤波器:
+$$Avglen=(1-Weight)\times Avglen+Weight\times SampleLen$$
+\begin{compactitem}
+  \item $Avglen <= MinThreshold$: 入队
+  \item $MinThreshold < Avglen < MaxThreshlod$: 按概率 p 丢弃
+  \item $TempP = MaxP\times (Avglen-MinThreshold)/(MaxThresholdMinThreshold)$
+  \item $P = TempP/(1-count\times TempP)$, count 记录从上一次丢包开始到现在有多少刚到的包已加入队列
+  \item $MaxThreshlod < Avglen$: 丢弃
+  \item 保证丢弃概率大致随时间均匀分布
+  \item 丢弃某特定流包的概率和该流在 R 上获得的带宽分额成比例: 保证基本平均分配
+\end{compactitem}
+\subsubsection{TCP Vegas}
+采用带宽估计, 缩短了慢启动阶段的时间。
+将测量的吞吐量变化率与理想吞吐量变化率比较。
+拥塞窗口的增加,希望吞吐率也随之增加，
+但吞吐率却保持平缓, 说明存在拥塞:
+\begin{compactitem}
+  \item $ExpectedRate=CongestionWindow/BaseRTT$, BaseRTT 为给定流无拥塞时包的RTT值
+  \item 计算 $ActualRate = SendBytes/CurrentRTT$
+  \item $Diff = ExpectedRate - ActualRate$, Diff 越大表示越大的无用拥塞窗口, 即拥塞越大
+\end{compactitem}
+\clearpage
+
+\section{无线与移动网络技术}
+\subsection{基本概念}
+每个信道占用带宽\textit{22MHZ}左右，共 14 个部分重叠信道;
+当仅当两个信号由\textit{4或更多信道}隔开时它们才无重叠;
+同一频率（AP）下多个用户分时共享该AP的带宽。
+
+有线和无线网络的区别主要在链路层, 比特错更多: 
+信号衰减，其他源的干扰，多路径传播（反射），无线信道交叉难。
+
+对于给定的物理链路，信噪比与误码率成反比。
+\subsubsection{站点的隐蔽与暴露问题}
+隐藏站问题：
+\begin{compactitem}
+  \item 信号阻隔或信号衰减
+  \item B, A 能相互听到
+  \item B, C 能相互听到
+  \item A, C 不能相互听到：即 A,C 不能察觉跟 B 通信的干涉
+\end{compactitem}
+
+隐蔽站: 竞争者距离过远, 接受冲突;
+暴露站: 非竞争者距离过近, 发送冲突 (非竞争者无法正常发送数据)
+\subsubsection{CDMA}
+每个Bit 时间再划分为m个更短的间隔 (码片Chip)，m通常是64或128;
+若要发b比特, 则数据率提高到m*b bps。
+$$\text{编码} = \text{原数据} \times \text{码片序列}$$
+$$\text{解码} = \text{编码} \bullet \text{码片}$$
+$$S \bullet T = \frac{1}{m} \sum_{i=1}^m S_i T_i$$
+若发送(编码)1，则发送自己的m比特码片序列，若发送0，则发送码片的反码。
+惯例把1写成+1，0写成-1，反码 = -S,即+1的反码是-1，-1的反码是+1:
+\begin{compactitem}
+  \item 若X站要接收S站的数据，X就必须知道S的码片序列
+  \item X用S的码片向量与接收到的未知信号求内积
+  \item X接收到的未知信号是各个站发送的码片序列叠加之和 ($S_x + T_x$)
+  \item 内积结果是：和所有其他各站信号内积＝0，即被过滤， ($S*S_x+S*T_x = \frac{1}{m}\sum_{i=1}^m SS_{xi} + 0 = S_{source}$)
+  只剩下与S站发送的信号的内积，比特1时 ＝ +1，比特0时 ＝ -1
+\end{compactitem}
+\subsubsection{Wi-Fi 协议}
+802.11 b/a/g/n/ac:
+\begin{compactitem}
+  \item b: 11 Mbps, 305 m, 成本低 (方便与有线以太网整合)
+  \item a: 54 Mbps, 不兼容 b, 利用 OFDM (正交频分复用)
+  \item g: 54 Mbps, 向下兼容
+  \item n: 300 Mbps, 多天线
+  \item 上述协议都使用 CSMA/CA 多路接入，都可用于基站或 Ad-Hoc 网
+  \item 上述协议具有相同的 MAC 子层
+\end{compactitem}
+\subsection{802.11 DCF MAC 接入方式}
+现有的 802.11 设备基本上都采用 DCF 方式
+\subsubsection{CSMA/CA}
+采用二进制指数回退策略来避免冲撞:
+\begin{compactitem}
+  \item 发送者:监听，若在DIFS时间内通道空闲，则发送帧（no CD）
+  \item 发送者: 如感知到通道忙，则启动随机退避定时器计数，当计数器到点且通道空闲时，则发送
+  \item 发送者: 若无应答，则增加随机退避间隔，重复上一步
+  \item 接收者: 若收到帧，发送 ACK，发送方依赖 ACK 判断是否发送成功
+\end{compactitem}
+\subsubsection{RTS/CTS}
+RTS/CTS 一个原则就是``采用小的数据包碰撞，来避免大的数据包碰撞'',
+如果数据包太小，那么则不需要采用 RTS/CTS 机制。
+
+设置 RTS\_threshold 的范围一般为 2347 Bytes，
+如果数据大于 2347 Bytes，那么才会采用 RTS/CTS 模式
+
+在发送长数据帧之前，允许发送者“预约”通道，
+而不是数据帧的随机接入：避免长数据帧的冲突
+\begin{compactitem}
+  \item 发送者首先用 CSMA 发送小的 RTS 包到 BS
+  \item 接收者广播 CTS 回应 RTS
+  \item 所有节点收听 CTS
+  \item 发送者发送数据帧
+  \item 其它站推迟发送
+  \item 间隔 SIFS 都是为了检测其他 STA 发送的 RTS 报文导致的冲突 (而不是立刻发送应答报文)
+\end{compactitem}
+\subsection{802.11 帧}
+802.11标准将所有的数据包分为3种:
+\begin{compactitem}
+  \item 数据: 数据数据包的作用是用来携带更高层次的数据 (如 IP 数据包)
+  \item 管理: 管理数据包与控制网络的管理功能 (Beacon, Deauthentication, Probe, Authenticate, Associate, Reassociate, Disassociate)
+  \item 控制: 用来控制对共享媒体 (即物理媒介，如光缆)的访问 (RTS, CTS, ACK, PS-Poll)
+  \item ToDS=0,FromDS=0: IBSS/Ad-Hoc/控制侦/管理侦 (DA, SA, BSSID, N/A) SA -> BSSID -> DA
+  \item ToDS=0,FromDS=1: Station 接收的帧 (DA, BSSID, SA) SA -> BSSID(TA) -> DA
+  \item ToDS=1,FromDS=0: Station 发送的帧 (BSSID, SA, DA) SA(TA) -> BSSID -> DA
+  \item ToDS=1,FromDS=1: 无线桥接器上的数据帧 (WDS) (RA, TA, DA, SA) SA -> TA -> RA -> DA
+\end{compactitem}
+\subsection{802.11 节能模式}
+在 AP 上有一个 Association ID Table，
+其中每一个AID 对应 一个STA 的 MAC 地址。
+PS-POLL帧中的 duration 为 AID（STA不知道下载多少数据，所以无法预约时间）。
+AP 发送 Beacon 广播, Host 收到后查看 AP 缓冲区是否有自己的数据，
+若存在则发送 PS-POLL 帧开始请求下行数据。否则进入 Sleep 状态。
+\subsection{Wi-Fi 管理}
+胖 AP 为自主 AP，痩 AP 为非自主 AP (只有基本接入功能)
+\subsubsection{用户接入}
+\begin{compactitem}
+  \item 主机被动侦听 Beacon 帧/主机主动发送 Probe 帧
+  \item 认证
+  \item 建立关系
+\end{compactitem}
+\subsubsection{AP 的发现}
+Scanning:
+\begin{compactitem}
+  \item Passive Scanning: 被动侦听 AP 定期发送 Beacon 帧，
+  当未发现包含期望的 SSID 的 BSS 时，STA 可以工作于 IBSS(Independent BSS, Ad-Hoc)状态
+  \item Active Scanning: 主动发送Probe request报文，从Probe Response中获取 BSS 的基本信息
+\end{compactitem}
+\subsubsection{用户认证}
+Open-system Authentication
+\begin{compactitem}
+  \item 不需要任何认证
+  \item 通过其他手段保证安全 (Address Filter/SSID)
+\end{compactitem}
+
+Shared－Key Authentication
+\begin{compactitem}
+  \item 采用加密算法 (WEP/WPA/WPA2)
+\end{compactitem}
+\subsubsection{习题}
+\paragraph{为什么802.11不采用冲突检测}
+\begin{compactitem}
+  \item 802.11 网卡无线接收信号强度远远小于发送信号强度，碰撞检测硬件代价很大
+  \item 无法检测到隐藏终端和衰减信号 (隐蔽站问题)
+\end{compactitem}
+\paragraph{为什么RTS/CTS不能解决暴露站问题}
+\paragraph{为什么在无线网上发送数据帧后要对方必须回确认帧，而以太网则不需要对方发回确认帧}
+\paragraph{求证 CDMA 码片序列的正交特性}
+即若$ST=0$, 证明$S(-T）=0$
+\paragraph{CDMA 码片序列正交性}
+考虑另一种检测CDMA码片序列正交性的方法。
+两个序列中的每个元素可以匹配、也可以不匹配。
+借助于匹配和不匹配来表示码片序列的正交性？
+\paragraph{CDMA 码片序列计算}
+假定A、B、C 三站都使用CDMA系统同时发送比特“0”，
+它们的码片序列分别依次如下：
+A(-1-1-1+1+1-1+1+1);
+B(-1-1+1-1+1+1+1-1);
+C:(-1+1-1+1+1+1-1-1)。
+求发送结果产生的码片序列是什么？
+\clearpage
+
+\section{P2P}
+C/S 通常是简单的端到端通信，P2P 通常要构成自己的应用层网络。
+
+P2P是一类发挥互联网边缘资源（存储、处理能力、内容、带宽、用户现场）可用性的应用。
+具有信息可扩展性、系统可扩展性、低成本的所有权和共享。
+\subsection{第一代 P2P 网络}
+\subsubsection{定义}
+混合式 P2P 网络:
+\begin{compactitem}
+  \item C/S 集中目录查询, P2P 下载
+  \item 典型应用: Napster, BitTorrent (随机选择/整分片优先/最少分片优先/最新分片优先/尽快取消)
+\end{compactitem}
+\subsubsection{BitTorrent}
+\begin{compactitem}
+  \item 种子文件上传下载、Peers 和 Tracker 间通信都是使用 HTTP 协议
+  \item 各 Peers 间通信使用 BitTorrent Peer 协议 (TCP)
+  \item BitTorrent 阻塞算法（Choking Algorithm）: 防止邻居仅仅下载不上传
+\end{compactitem}
+\subsubsection{优缺点}
+\begin{compactitem}
+  \item 拓扑结构: 以服务器为核心
+  \item 底层协议: TCP/限制连接数量
+  \item 查询与路由简单高效
+  \item 容错: 服务器单点失效率高
+  \item 自适应: 依赖服务器
+  \item 匿名: 无法实现
+  \item 用户接入无安全认证机制
+\end{compactitem}
+\subsection{第二代 P2P 网络}
+\subsubsection{定义}
+无结构 P2P 网络:
+\begin{compactitem}
+  \item 洪泛请求模式 (洪泛搜索最大步数 5-9 步)
+  \item 完全分布式 (没有服务器)
+  \item 典型应用: Gnutella/KaZaA/eDonkey/Freenet
+\end{compactitem}
+\subsubsection{Gnutella}
+连接数L的节点数占网络总节点数的\%比，正比于$L^{-a}$, Gnutella的a=2.3＜3
+\begin{compactitem}
+  \item L 越大，占比越低
+  \item a 越小, 长尾效应越明显
+\end{compactitem}
+\subsubsection{KaZaA}
+存在超级节点的无结构 P2P 网络:
+\begin{compactitem}
+  \item 基于 FastTrack 协议
+  \item 对消息加密
+  \item 存在超级和普通两类节点
+  \item 超级节点：高带宽、高处理能力、大存储容量、不受NAT限制
+  \item 普通节点：低带宽、低处理能力、小存储容量、受NAT限制
+\end{compactitem}
+
+普通节点与超级节点连接:
+\begin{compactitem}
+  \item UDP Probe and Response
+  \item TCP SYN + SYN/ACK + ACK
+  \item Key Exchange
+  \item Peer Information
+  \item SN Refresh List Fragment
+\end{compactitem}
+
+超级节点与超级节点连接:
+\begin{compactitem}
+  \item TCP SYN + SYN/ACK + ACK
+  \item Key Exchange
+  \item SN Refresh List Fragment
+\end{compactitem}
+\subsubsection{eDonKey/eMule/Overnet}
+分块下载的双层无结构 P2P 网络:
+\begin{compactitem}
+  \item 文件分块下载
+  \item 内容 Hash 作完整性验证
+  \item 服务器 (超级节点) 为核心
+  \item 用超级节点取代 BitTorrent 中的服务器
+\end{compactitem}
+
+连接方式:
+\begin{compactitem}
+  \item C <-> S: TCP/4661;深层查询UDP/4665
+  \item C <-> C: TCP/4662
+  \item 动态自适应: 下载者每 40s 向上传者重发下载请求, 否则关闭连接
+  \item S <-> S: 周期性交换服务器、文件列表
+\end{compactitem}
+\subsubsection{优缺点}
+\begin{compactitem}
+  \item 拓扑特性: 无结构普通拓扑 (小世界模型/幂率模型)
+  \item 路由与定位: 洪泛法/TTL/随机漫步/超节点路由
+  \item 改造洪泛提高可扩展性
+  \item 冗余: 查询分布, 复制多份
+  \item 容错性好，支持复杂查询
+  \item 良好自适应: 检测邻居是否在线, 超级节点列表定期更新
+  \item 较高安全性与匿名性: 无结构不易追踪
+  \item 路由效率低/可扩展差/准确定位差
+\end{compactitem}
+\subsection{第三代 P2P 网络}
+\subsubsection{定义}
+结构化 P2P 网络
+\subsubsection{分布式哈希表结构}
+\begin{compactitem}
+  \item 自适应结点加入/退出
+  \item 完全地均匀分布式与自组织能力
+  \item 良好可扩展性与健壮性
+  \item 可精确发现
+  \item get(key)/set(key, data)
+\end{compactitem}
+\subsubsection{优缺点}
+共同目标:
+\begin{compactitem}
+  \item 减少路由查找跳数
+  \item 减少路由保持所需信息数
+\end{compactitem}
+
+DHT 研究重点:
+\begin{compactitem}
+  \item 增大邻接表
+  \item 增加发布
+  \item 搜索冗余
+  \item 相对于 2 代 P2P 网络更易受到攻击: 伪装节点，拒绝转发攻击信息
+\end{compactitem}
+\subsection{Chord 协议}
+\subsubsection{Chord 基本原理}
+\begin{compactitem}
+  \item 查找对数级 $\log N$
+  \item 节点加入或离开 $(\log N)^2$
+  \item NodeID=H(node属性)=H(IP地址/端口号/公钥/随机数/或其组合)
+  \item ObjectID=H(object属性)=H(数据名称/内容/大小/发布者/或其组合)
+  \item SHA-1的长度值≥160 Bits = m
+  \item $NodeID \text{或者} ObjectID \in [0, \dots, 2^m)$
+  \item $Successor(Object_k) = Node_k \text{或者} Node_x \mod 2^m$, m 为哈希长度 (160 bits)
+\end{compactitem}
+\subsubsection{Figer Table}
+\begin{compactitem}
+  \item 节点 n 的路由表中, 第 i 项指向节点: $successor(Object_{n+2^{i-1}}) = Node_s,1 <= i <= m$
+  \item $Successor(Object_k) = Node_k \text{或者} Node_x \mod 2^m$, m 为哈希长度 (160 bits)
+\end{compactitem}
+\subsubsection{Chord 优缺点}
+\begin{compactitem}
+  \item 简单、精确
+  \item 不支持非精确查找
+  \item Finger Table 有冗余
+  \item 维护（加入/退出）代价比较高，即路由维护开销大
+\end{compactitem}
+\subsection{Kademlia 协议}
+\subsubsection{Kademlia 基本原理}
+\begin{compactitem}
+  \item 路由方法类似 Chord, 但采用基于 XOR 的距离度量
+  \item 将结构配置信息融合到每条消息，从而构建高容错和自适应的 P2P 系统
+  \item 加入、离开节点更加简单
+  \item $Distance(x, y) = x \oplus y$
+\end{compactitem}
+\subsubsection{K 桶}
+K-Bucket, 实质是一个链表集 (一个桶为一个链表):
+\begin{compactitem}
+  \item 每个节点有 i ($\in [0, 160)$)个桶
+  \item 每桶内装 Max 个（10或20）邻居记录 =（桶序号i，到自己的异或距离$[2^i, 2^(i+1))$，节点信息）
+  \item 桶内各记录按照 LRU 排序
+\end{compactitem}
+\subsubsection{节点交互}
+\begin{compactitem}
+  \item PING：探测一节点，判断其是否仍然在线。并在回应中携带网络地址
+  \item STORE：指示一节点存储一个<key, value>对，以便查找
+  \item FIND\_NODE：以 160 bit ID 作为参数。本操作的接受者返回它所知离目标 ID 最近的 a 个节点的 (IP address, UDP port, NodeID) 三元组信息
+  \item FIND\_VALUE：以 key 为参数寻找 key 对应的 value (cache 加速)
+\end{compactitem}
+\subsubsection{更新 K-Bucket}
+\begin{compactitem}
+  \item 离自己越近的节点越容易放在K桶中，越远越欠了解
+  \item 在线时间长的节点(最老，即队尾）具有较高的可性继续保留在K桶中
+  \item 可以保持系统稳定和减少节点进出的路由维护代价
+  \item 若某节点长时间在线，则网络中有很多节点连接到该节点，其负载会随着在线时间的增大而增大，导致负载极不平衡（限制节点并发数）
+\end{compactitem}
+\subsubsection{节点查找}
+递归式地 FIND\_NODE，以查找最近节点
+\subsubsection{节点数据的有效性保障}
+节点有效性:
+\begin{compactitem}
+  \item 利用流经自己的节点查询操作，持续更新对应的 K 桶信息
+  \item 对过去一个小时内还没收到任何节点查询操作的某个桶（buket）执行刷新操作 (Flush)
+\end{compactitem}
+
+数据有效性:
+\begin{compactitem}
+  \item 特点：节点离开网络不发布任何信息（弹性网络特点或目标）
+  \item 要求：每个Kad 节点必须周期性的发布（一个小时）本节点存放的全部<key , value>数据对，并把这些数据缓存在自己的k 个最近邻居处
+  \item 使失效节点上数据会被很快更新到其他新节点上
+\end{compactitem}
+\subsection{比特币与区块链}
+\subsubsection{比特币基本定义}
+\begin{compactitem}
+  \item 总数量将被永久限制在 2100万 个之内
+  \item 交易的时候向Bitcoin地址发送比特币，只有拥有私钥的人可以领取。
+  \item 比特币的钱包中没有币，只有私钥和私钥对应的 UTXO (vin)
+  \item BitCoin 的所有节点构成一个第二代无结构的 P2P 网络：Gossip protocol
+  \item 向邻居节点采用洪泛方式广播交易
+  \item 没有中心或者超级节点，所有节点地位平等
+  \item 51\% 攻击: 如果坏节点想要破坏区块链，需要掌握超过全网 51\% 的计算能力
+  \item RSA: $e*d = 1 \mod (p-1)(q-1)$
+\end{compactitem}
+\subsubsection{比特币交易}
+\begin{compactitem}
+  \item 解锁脚本(ScriptSig)和上个交易加锁脚本(ScriptPubkey)合并在一起，如果能够通过验证，就可以使用上一个交易的vout
+  \item 加锁脚本中<EQUALVERIFY>验证>经过Hash和<PubKHash>相等；CHECKSIG检查私钥签名的<sig>解锁脚本的可以用<PubK>验证
+  \item Segwit 技术: 把签名转移到区块的其他数据结构中 (从 vin 中移出，分离签名与交易数据)
+\end{compactitem}
+\subsubsection{比特币区块}
+\begin{compactitem}
+  \item 每个区块大小为 1 MB
+  \item 区块中每个交易会有唯一 ID
+  \item 每个交易 vin - vout 为交易费
+\end{compactitem}
+\subsubsection{比特币区块链}
+\begin{compactitem}
+  \item 单链表 (存有 Prevchunk Hash)
+  \item 验证比特币地址的有效额度和防止双重支付
+  \item 区块高度：从区块零开始计数，区块深度：从最新区块开始计数，困难度：总区块数
+  \item 10 分钟一块
+  \item 矿工负责打包区块 ，关键是看谁先计算出来一个合法的nonce，让当前区块hash值前面有规定个数的0（比如5个0）
+  \item 比特币挖矿就是搜集 10 分钟内产生的交易，找到 Hash 到特定模式对应的随机数
+  \item 矿工收益：区块奖励 (Coinbase Transaction) + 交易费用
+  \item 矿工通过创造一个新区块得到的比特币数量大约每四年（或准确说是每210,000个块）减少一半
+  \item 2140年之后，不会再有新的比特币产生
+\end{compactitem}
+\clearpage
+
+\section{IPv6}
+\subsection{IPv6 地址分类与特点}
+\subsubsection{IPv6 基本特性}
+\begin{compactitem}
+  \item 扩大地址空间: 32 -> 128 bits, 网络前缀取代掩码
+  \item 路由更结构层次化: 固定基本报头 40 bytes + 结构化扩展报头 (NextHeader 8 bits)
+  \item 扩展报头放在基本报头和高层报头之间
+  \item 报头 64 bits 对齐
+  \item 自动发现与自动配置功能 (无需 ARP 协议)
+  \item IPSec 支持
+  \item QoS 能力
+  \item Scope 地址
+  \item 永久性/临时性地址
+\end{compactitem}
+\subsubsection{IPv6 地址分类}
+\begin{compactitem}
+  \item Anycast 集群通信地址
+  \item 广播地址由组播地址代替
+  \item 所有IPv6地址都是分配给 interface 而不是 node
+  \item 所有接口都必须有至少一个 Link Local Unicast 地址
+  \item 可聚类 Global Unicast 地址: 2000::/3 (001)
+  \item Link Local Unicast 地址: FE80::/10 (1111 1110 10)
+  \item Site Local Unicast 地址: FEC0::/10 (1111 1110 11)
+  \item Multicast 地址: FF00::/8 (1111 1111)
+  \item Anycast 地址从 Unicast 中分出，格式上同 Unicast 没有区分
+  \item 每个接口配置地址后会自动加入到多播组中，2001:db2::1F5C:7A92 自动加入 FF02::1:FF5C:7A92
+\end{compactitem}
+\subsubsection{IPv6 单播地址}
+\begin{compactitem}
+  \item 所有 Unicast 地址必须有 64 比特的 EUI-64 的接口 ID 
+  \item MAC: 24 + 24 bits (company ID + extension ID)
+  \item EUI-64: 24 + 40 bits (company ID + extension ID)
+  \item MAC to EUI-64: 24 + 0xff + 0xfe + 24 bits
+  \item EUI-64 to IPv6 ID: U/L bit 取补
+  \item 地址中的前 64 bits 才能作为网络地址
+  \item Link-local Unicast: 用于单条链路上的地址分配, 如 Auto-address Configuration/Neighbor Discovery
+  \item 路由器不能转发任何以 Link-local/Site-local 为源/目的包到其它链路
+  \item 全局可聚类 Unicast 地址格式: 3 (001) + 13 (TLA) + 8 (RES) + 24 (NLA) + 16 (SLA)
+\end{compactitem}
+\subsection{IPv4 与 IPv6}
+\begin{compactitem}
+  \item 变长报头 vs 结构化定长报头 (便于硬件转发)
+  \item 广播地址 vs 组播地址
+  \item 无任播地址 vs 任播地址 (从 Unicast 分离出来)
+  \item ARP 协议 vs Auto Configuration
+  \item 选择实现 IPSec vs 强制实现 IPSec
+  \item Best Effort Delivery vs QoS
+  \item IPv6 兼容 IPv4 地址 - ::192.168.1.1
+  \item IPv6 支持 IPv4 地址 - ::FFFF:192.168.1.1
+\end{compactitem}
+\subsection{IPv6 邻居发现协议}
+\begin{compactitem}
+  \item 基于 ICMPv6
+  \item Router Discovery
+  \item Address Prefix Discovery
+  \item Parameter discovery (e.g MTU)
+  \item Address Auto-configuration
+  \item Address resolution (without ARP)
+  \item Next-hop Determination
+  \item Neighbor Unreachability Detection
+  \item Duplicate Address Detection
+\end{compactitem}
+\subsubsection{路由器请求报文}
+Router Solicitation:
+\begin{compactitem}
+  \item IP Source: Host Link-local Address/all 0
+  \item IP Dest: FF02::02
+\end{compactitem}
+\subsubsection{路由器通告报文}
+Router Advertisement:
+\begin{compactitem}
+  \item IP Source: Router Link-local Address
+  \item IP Dest: FF02::1 (发往全部主机) / Host Unicast Address
+  \item ICMP M = 0: Stateless
+  \item ICMP M = 1: Stateful (DHCPv6)
+\end{compactitem}
+\subsubsection{邻居请求报文}
+Neighbor Solicitation:
+\begin{compactitem}
+  \item 链路层地址解析 (AR)
+  \item 地址重复检测（DAD）
+  \item IP Source: 发送者 IPv6 地址 (AR) / all 0 (DAD)
+  \item IP Dest: 请求节点组播地址
+\end{compactitem}
+\subsubsection{邻居通告报文}
+Neighbor Advertisement:
+\begin{compactitem}
+  \item IP Source: 发送者 IPv6 地址
+  \item IP Dest: NS 主机单播地址 (AR) / FF02::1 (DAD)
+\end{compactitem}
+\subsubsection{IPv6 地址自动配置方式}
+Stateful 方式:
+\begin{compactitem}
+  \item DHCPv6 (Link-scoped multicast address FF02::1:2)
+  \item Router Solicitation (FF02::2)
+  \item Router Advertisement
+  \item DHCPv6 Solicitation (FF02::1:2)
+  \item DHCPv6 Advertisement
+  \item DHCPv6 Request
+  \item DHCPv6 Reply
+\end{compactitem}
+
+Stateless 方式
+\begin{compactitem}
+  \item 邻居发现协议
+\end{compactitem}
+\subsection{IPSec 基本概念}
+ESP (Encapsulated Security Payload Header):
+\begin{compactitem}
+  \item Security parameter index: 安全连接上所有报文拥有的 VC ID
+  \item Sequence number: 防止重放攻击 (playback)
+\end{compactitem}
+\clearpage
+
+\section{习题实例}
+\subsection{网络基础}
+\subsubsection{体系结构}
+$$Bytes = 8 * Bits$$
+$$Delay = setupRTT + Size/BW + 0.5*RTT + otherRTT$$
+$$Throughput = Size / (setupRTT + Size/BW)$$
+\subsubsection{直连网络}
+$$RZ/NRZ/NRZ-I/Manchester$$
+$$BitRate = n * BaudRate$$
+$$BISYNC:DLE + DLE + \dots + ETX + CRC$$
+$$HDLC:01111110(soh)/111110(normal)/1111111(err)/01111110(eot)$$
+% \subsubsection{报文交换}
+% \subsubsection{TCP/IP 网络技术}
+% \subsection{拥塞控制}
+% \subsubsection{基本概念}
+% \subsubsection{排队算法}
+% \subsubsection{流量整形}
+% \subsubsection{TCP 拥塞控制机制}
+% \subsubsection{拥塞避免算法}
+% \subsection{无线与移动网络技术}
+% \subsubsection{基本概念}
+% \subsubsection{802.11 DCF MAC 接入方式}
+% \subsubsection{802.11 帧}
+% \subsubsection{802.11 节能模式}
+% \subsubsection{Wi-Fi 管理}
+% \subsection{P2P}
+% \subsubsection{第一代 P2P 网络}
+% \subsubsection{第二代 P2P 网络}
+% \subsubsection{第三代 P2P 网络}
+% \subsubsection{P2P 网络差异}
+% \subsubsection{Chord 协议}
+% \subsubsection{Kademlia 协议}
+% \subsubsection{比特币与区块链}
+% \subsection{IPv6}
+% \subsubsection{IPv6 地址分类与特点}
+% \subsubsection{IPv6 邻居发现协议}
+% \subsubsection{IPSec 基本概念}
+\clearpage
+
+\section{术语解释}
+\subsection{网络基础}
+\subsubsection{体系结构}
+\begin{compactitem}
+  \item LLC: Logical Link Control 逻辑链路控制
+  \item QoS: Quality of Service 服务质量
+  \item EoS: Experience of Service 服务体验
+  \item ISP:  Internet Service Provider 互联网服务提供商
+\end{compactitem}
+\begin{compactitem}
+  \item POP: Point of Presence 呈现点
+  \item NAP: Network Access Point 网络交换中心
+  \item IXP: Internet eXchange Point 互联网交换中心
+  \item AS: Autonomous System 自治系统
+  \item CE: Custmer Equipment 边缘路由器
+  \item PE: Provider Equipment 运营商路由器
+  \item LAN: Local Area Network 局域网
+  \item WAN: Wide Area Network 广域网
+\end{compactitem}
+\begin{compactitem}
+  \item ISOC: Internet Society 互联网协会
+  \item IETF: Internet Engineering Task Force 互联网工程任务组
+  \item IRTF: Internet Research Task Force 互联网研究任务组
+  \item IAB: Internet Architecture Board 互联网结构委员会
+  \item IESG: Internet Engineering Steering Group 互联网工程指导小组
+  \item IANA: Internet Assigned Number Authority 互联网编号分配机构
+  \item RIR: Regional Internet Registry 地区性互联网注册机构
+  \item ICANN: Internet Corporation for Assigned Names and Numbers 互联网名称与数字地址分配机构
+  \item RFC: Request for Comments 互联网标准的基础
+\end{compactitem}
+\subsubsection{直连网络}
+\begin{compactitem}
+  \item EIRP: Equivalent/Effective Isotropic Radiated Power 等/有效全向辐射功率
+  \item OC: Optical Carrier 光载波
+  \item SONET: Synchronous Optical Network 同步光纤网络
+  \item SDH: Synchronous Digital Hierarchy 同步数字系列
+  \item STS: Synchronous Transport Signal 同步传送信号
+  \item EOS: Ethernet over SDH
+\end{compactitem}
+
+\textbf{数字到数字编码}:
+\begin{compactitem}
+  \item AMI: Alternate Mark Inversion 双极性交替反转编码
+  \item B8ZS: Bipolar 8-Zero Substitution 双极性零点替代编码
+  \item HDB3: High Density Bipolar 3 三阶高密度双极性编码
+\end{compactitem}
+
+\textbf{模拟到数字编码}:
+\begin{compactitem}
+  \item PAM: Pulse Amplitude Modulation 脉冲幅度调制
+  \item PCM: Pulse Code Modulation 脉冲码调制
+\end{compactitem}
+
+\textbf{数字到模拟调制}:
+\begin{compactitem}
+  \item ASK: Amplitude Shift Keying 幅移键控
+  \item FSK: Frequency Shift Keying 频移键控
+  \item PSK: Phase Shift Keying 相移键控
+  \item QAM: Quadrature Amplitude  Modulation 正交幅度编码（有线电视）
+\end{compactitem}
+
+\textbf{模拟到模拟调制}:
+\begin{compactitem}
+  \item AM: Amplitude Modulation 调幅
+  \item FM: Frequency Modulation 调频
+  \item PM: Phase Modulation 调相
+\end{compactitem}
+
+\textbf{逻辑层编码}:
+\begin{compactitem}
+  \item ATM: ATM Asynchronous Transfer Mode 异步传输模式
+  \item FDDI: Fiber Distributed Data Interface 光纤分布式数据接口 
+\end{compactitem}
+
+\textbf{数据链路成帧}:
+\begin{compactitem}
+  \item SOT: Start of Header 报头开始
+  \item EOT: End of Transmission 传输结束
+  \item BISYNC: Binary Synchronous Communication Message Protocol 二进制同步通信消息协议
+  \item DDCMP: Digital Data Communication Message Protocol 数字数据通信消息协议
+  \item PPP/SLIP: Point to Point Protocol/Serial Line Internet Protocol  点对点协议/串行线路网际协议
+  \item PPPoE: Point-to-Point Protocol Over Ethernet 以太网上的点对点协议
+  \item DECNET 是由数字设备公司（Digital Equipment Corporation）推出并支持的一组协议集合
+  \item SDLC: Synchronous Data Link Control Protocol 同步数据链路控制协议
+  \item HDLC: High-Level Data Link Control Protocol 高级数据链路控制协议
+  \item ASCII: American Standard Code for Information Interchange 美国信息交换标准代码
+  \item EBCDIC: Extended Binary Coded Decimal Interchange Code 扩展二进制十进制编码
+\end{compactitem}
+
+\textbf{信道共享技术}:
+\begin{compactitem}
+  \item CDM: Code Division Multiplexing 码分多路复用
+  \item CDMA: Code Division Multiple Access 码分多址
+  \item TDM: Time Division Multiplexing 时分多路复用
+  \item STDM: Statistical Time Division Multiplexing 统计时分复用
+  \item FDM: Frequency Division Multiplexing 频分多路复用
+  \item FDMA: Frequency Division Multiple Access 频分多址 (把总带宽被分隔成多个正交的频道，每个用户占用一个频道)
+  \item WDM: Wavelength Division Multiplexing 波分多路复用
+  \item DWDM: Dense Wavelength Division Multiplexing 密集型波分多路复用
+  \item CWDM: Coarse Wavelength Division Multiplexing 稀疏性波分多路复用
+\end{compactitem}
+
+\textbf{差错控制技术}:
+\begin{compactitem}
+  \item ARQ：Automatic Repeat Request 自动请求重传 
+  \item PC: Parity Check 奇偶校验
+  \item CRC: Cyclic Redundancy Check 循环冗余校验
+  \item CS: Check Sum 检验和
+\end{compactitem}
+
+\subsubsection{报文交换}
+\textbf{以太网发展}:
+\begin{compactitem}
+  \item ALOHA: 纯 ALHOA 协议，最早最基本的无线通信协议 (无连接，先说后听，想发就发，错了重发)
+  \item Time sloted ALHOA: 时隙 ALHOA 协议
+  \item CSMA: Carrier Sense Multiple Access 载波侦听多路访问 (先听后说 + 指数退避)
+  \item CSMA/CD: Carrier Sense Multiple Access with Collision Detection 带冲突检测的载波监听多路访问 (多点接入、载波监听、碰撞检测)
+  \item Fast Ethernet: 100Mbps
+\end{compactitem}
+
+\textbf{以太网交换机}:
+\begin{compactitem}
+  \item MAC 地址 (Media Access Control Address): 24 + 24 bits 媒体访问控制地址，也称为局域网地址（LAN Address），以太网地址（Ethernet Address）或物理地址（Physical Address）
+  \item NIC: Network Interface Card 网卡
+  \item Unicast: 单播帧地址,仅对某个网卡
+  \item Broadcast: 广播帧地址,仅对某个子网
+  \item Multicast: 多播帧地址,组地址
+  \item Promiscuous Mode: 杂收模式, 接收总线上所有的可能接收的帧
+\end{compactitem}
+
+\textbf{生成树协议}:
+\begin{compactitem}
+  \item STP: Spanning Tree Protocol 生成树协议
+  \item CST: Common Spanning Tree (Protocol)
+  \item RSTP: Rapid Spanning Tree Protocol
+  \item PVST+: Per-VLAN Spanning-Tree plus
+  \item Rapid PVST+
+  \item MSTP: Multiple Spanning Tree Protocol
+  \item Hub-spoke Network: 辐射型网络
+  \item BPDU: Bridge Protocol Data Unit 网桥协议数据单元
+  \item TCN: Topology Change Notification 拓扑更改通知
+\end{compactitem}
+
+\subsubsection{TCP/IP 网络技术}
+数据链路层:
+\begin{compactitem}
+  \item ARP: Address Resolution Protocol 地址解析协议 (MAC <-> IP)
+  \item DHCP: Dynamic Host Configuration Protocol 动态主机设置协议 (基于 UDP)
+  \item MTU: Maximum Transmission Unit 最大传输单元 (最大有效荷载)
+\end{compactitem}
+
+网络层:
+\begin{compactitem}
+  \item IP: Internet Protocol 互联网协议 (无连接服务)
+  \item ICMP: Internet Control Message Protocol 互联网控制报文协议/差错和控制报文协议
+  \item OSPF: Open Shortest Path First 开放路径最短优先路由协议 (基于 IP)
+  \item Hello 报文 (类型1，用于发现邻居)
+  \item DBD: Database Description Packets 数据库描述报文 (类型2，LSA 的目录信息)
+  \item LSP: Link-state Packet 链路状态数据报
+  \item LSA: Link-state Advertisement (Cisco 路由器中的 LSP 实现)
+  \item LSR: Link-state Request 链路状态请求
+  \item LSU: Link-state Update 链路状态更新
+  \item LSDB: Link-state Databse 链路状态数据库
+  \item IR: Internal Router 内部路由器 (只属于一个 OSPF Domain)
+  \item ABR: Area Border Router 区域边界路由器 (位于一个或多个 OSPF 区域边界上)
+  \item DR: Designated Router (同一个多路访问网段中的 OSPF 路由器都和 DR/BDR 互换 LSA)
+  \item BDR: Backup Designated Router (DR 的备份，其余路由器为 Drother 非指定路由器)
+  \item SA: Stub Area (OSPF 末节区域)
+  \item NAT: Network Address Translation 网络地址转换
+\end{compactitem}
+
+传输层:
+\begin{compactitem}
+  \item UDP: User Datagram Protocol 用户数据报协议
+  \item TCP: Transmission Control Protocol 传输控制协议
+  \item SCTP：Stream Control Transmission Protocol 流控制传输协议
+  \item PDU: Protocol Data Unit 协议数据单元
+  \item RTTM: Round Trip Time Measurement 往返时间测量
+  \item PAWS: Protect Against Wrapped Sequences 防止序列号回绕
+  \item MSL: Maximum Segment Lifetime 最大报文生存时间 
+  \item BBR: Bottleneck Bandwidth and RTT Congestion Control
+\end{compactitem}
+
+应用层:
+\begin{compactitem}
+  \item URL: Uniform Resource Locator 统一资源定位符
+  \item URI: Uniform Resource Identifier 统一资源标识符
+  \item WWW: World Wide Web 万维网
+  \item FTP: File Transfer Protocol 文件传输协议
+  \item SMTP: Simple Mail Transfer Protocol 简单邮件传输协议
+  \item POP: Post Office Protocol 互联网电子邮件协议
+  \item MIME: Multipurpose Internet Mail Extensions 多用途互联网邮件扩展类型
+  \item RTP: Real-time Transport Protocol 实时传输协议
+  \item RTCP: Real-time Transport Control Protocol 实时传输控制协议
+  \item RTSP: Real-time Streaming Protocol 实时流传输协议
+  \item SCTP: Stream Control Transmission Protocol 流控制传输协议
+  \item SNMP: Simple Network Management Protocol 简单网络管理协议
+  \item TFTP: Trivial File Transfer Protocol 简单文件传输协议
+  \item RPC: Remote Procedure Call 远程过程调用
+  \item DNS: Domain Name System (基于 UDP)
+  \item RIP: Routing Information Protocol 路由信息协议 (基于 UDP)
+  \item BGP: Border Gateway Protocol 边界网管协议 (基于 TCP)
+  \item IGP: Interior Gateway Protocol 内部网关协议 (如 RIP OSPF)
+  \item EGP: Exterior Gateway Protocol 外部网关协议 (如 BGP)
+\end{compactitem}
+
+多播/组播 (Multicast, 基于 UDP):
+\begin{compactitem}
+  \item IGMP: Internet Group Management Protocol 互联网组管理协议 (Router <-> Host)
+  \item IGMP Querier: IP\textit{最小者}
+  \item CGMP: Cisco Group Management Protocol (Router <-> Switch)
+  \item PIM: Protocol Independent Multicast 协议无关组播 (Router <-> Router)
+  \item PIM-DM: Protocol Independent Multicast-Dense Mode 密集模式
+  \item PIM-SM: Protocol Independent Multicast-Sparse Mode 稀疏模式
+  \item RPF: Reverse Path Forwarding 向组播发送者转发数据/环路 (通过记住发送者的接口避免此问题)
+  \item PIM-SM RP: PIM-SM Rendezvous Point 组播汇聚点
+  \item SPT: Shortest-path Tree 最短路径树/源树 (DM 模式组播树)
+  \item RPT: Rendezvous Point Tree 共享树 (SM 模式组播树)
+  \item DR: Designated Router 避免重复查询 (IP 地址高者)
+  \item BSR: Bootstrap Router 选举 (RP) 裁判
+  \item MBGP: Multiprotocol Border Gateway Protocol 多协议边界网关协议 (用于在自治域之间交换组播路由信息)
+  \item MSDP: Multicast Source Discovery Protocol 组播源发现协议 (用于在 ISP 之间交换组播信源信息)
+\end{compactitem}
+
+其他概念:
+\begin{compactitem}
+  \item RTT: Round Trip Time 发收来回时间 (二次时延)
+  \item TTL: Time to Live 指定IP包被路由器丢弃之前允许通过的最大网段数量
+  \item CIDR: Classless Inter-Domain Routing 无类别域间路由
+  \item VLAN: Virtual Local Area Network 虚拟局域网
+  \item Anycast: 任播
+\end{compactitem}
+
+\subsection{拥塞控制}
+\subsubsection{基本概念}
+\begin{compactitem}
+  \item AQM: Active Queue Management 主动队列管理
+\end{compactitem}
+\subsubsection{排队算法}
+\begin{compactitem}
+  \item TOS: Type of Service 服务类型
+  \item DiffServ: 区分服务
+\end{compactitem}
+\subsubsection{流量整形}
+\begin{compactitem}
+  \item Traffic Shaping: 流量整形
+  \item Rate Limiting: 速率限制
+  \item Leaky Bucket: 漏桶
+  \item Token Bucket: 令牌桶
+\end{compactitem}
+\subsubsection{TCP 拥塞控制机制}
+\begin{compactitem}
+  \item Slow Start: 慢启动
+  \item Congestion Avoidance: 拥塞避免
+  \item Fast Retransmit: 快速重传
+  \item AIMD: Additive Increase Multiplicative Decrease 加性增，乘性减
+  \item MSS: Maximum Segment Size 最大报文段长度 (TCP MSS = 1500 - 20 (IP) - 20 (TCP) = 1460)
+\end{compactitem}
+\subsubsection{拥塞避免算法}
+\begin{compactitem}
+  \item ECN: Explicit Congestion Notification 显式拥塞通知
+  \item ECT: ECN Capable Transport 由源对所有包设定，以指明 ECN 能力 (开启 ECN)
+  \item CE: Congestion Experienced 由路由器设置作为拥塞的标记（代替丢弃）
+  \item ECE：Echo Congestion Experienced 一旦接收方收到 CE, 在所有包上设置 ECE, 直到收到源的 CWR
+  \item CWR:Congestion Window Reduced 由源设置，以指明它收到了 ECE 并减少了窗口大小
+  \item AQM: Active Queue Management 主动队列管理
+  \item RED: Random Early Detection 随机早期检测 (丢包概率与平均队长（缓冲区占用率）成比例)
+  \item SRED: Stabilized RED (丢包概率与瞬时缓冲区占用率和活动流的估计数成比例)
+  \item FRED: Flow RED (使每个流的丢包率与其平均队长和瞬时缓冲区占用率成比例)
+  \item REM: Random Exponential Marking 随机指数标记
+  \item AVQ: Adaptive Virtual Queue 适应性虚拟队列
+  \item PI: Proportional Integral 比例积分
+  \item TCP Vegas: 一种基于源的拥塞避免算法
+\end{compactitem}
+
+\subsection{无线与移动网络技术}
+\subsubsection{基本概念}
+\begin{compactitem}
+  \item WLAN: Wireless Local Area Network 无线局域网
+  \item Wi-Fi: Wireless-Fidelity (无线保真) 一个创建于IEEE 802.11标准的无线局域网技术
+  \item SSID: Service Set Identifier 服务集标识 (区分不同的无线网络, 可用于代指 AP 名字)
+  \item BS: Base Station 基站
+  \item STA: Stations 任何无线设备
+  \item AP: Wireless Access Point 无线访问接入点
+  \item BSS: Basic Service Set 基本服务集 (一个 AP 所控制区域)
+  \item BSSID: AP 的 MAC 地址
+  \item ESS: Extended Service Set 扩展服务集 (相同 SSID 多 BSS 形成规模虚拟 BSS)
+  \item DS: Distribution Service 分布式服务集 (连接多个 BSS 网络以及有线网络)
+  \item Ad-Hoc: 点对点接入模式 (无基站)
+  \item IBSS: Independent Basic Service Set 独立基本服务集
+  \item SNR: Signal to Noise Rate 信噪比
+  \item BER: Bit Error Rate 误码率
+  \item QPSK: Quadrature Phase Shift Keying 正交相移键控
+  \item BPSK: Binary Phase Shift Keying 二进制相移键控
+  \item DQPSK: Differential Quadrature Reference Phase Shift Keying 四相相对相移键控
+  \item DBPSK: Differential Binary Phase Shift Keying 差分相干二进制相移键控
+  \item CCK: Complementary Code Keying 补码键控
+  \item Barker码: 01 比特序列 (如10110111000) (每一个比特编码通过 DQPSK/DBPSK/CCK 为一个11位 Barker 码)
+  \item OFDM: Orthogonal Frequency Division Multiplexing 正交频分复用
+  \item dBm: 分贝毫瓦
+\end{compactitem}
+\subsubsection{802.11 DCF MAC 接入方式}
+\begin{compactitem}
+  \item DCF: Distributed Coordination Function 分布协调功能 (竞争模式)
+  \item PCF: Point Coordination Function 点协调功能 (非竞争模式: AP 轮询连接其他节点)
+  \item HSP: Hidden Station Problem 隐蔽站问题
+  \item ESP: Exposed Station Problem 暴露站点问题
+  \item FHSS: Frequency-Hopping Spread Spectrum 跳频技术
+  \item DSSS: Direct Sequence Spread Spectrum 直接序列展频技术
+  \item WDS: Wireless Distribution System 无线分布式系统
+  \item GSM: Group Special Mobile 泛欧数字移动通信网
+  \item GPS: Global Positioning System 全球定位系统
+  \item CSMA/CA: Carrier Sense Multiple Access with Collision Avoidance 载波侦听多路访问/冲突避免
+  \item IFS: Inter Frame Spacing 帧间隔
+  \item SIFS: Short Inter Frame Spacing 短帧间隔 (28us)
+  \item DIFS: Distributed Inter Frame Spacing 分布协调帧间隔 (128us)
+  \item RTS/CTS: Request To Send/Clear To Send 请求发送/清除发送协议
+  \item MIMO: Multiple-Input Multiple-Output 多重输入多重输出
+  \item SU-MIMO: Single User-MIMO 单用户多重输入多重输出
+  \item MU-MIMO: Multiple User-MIMO 多用户多重输入多重输出
+\end{compactitem}
+\subsubsection{802.11 帧}
+\begin{compactitem}
+  \item MPDU: MAC Protocol Data Unit MAC 协议数据单元
+  \item MSDU: MAC Service Data Unit MAC 服务数据单元 
+  \item Beacon: 信标帧 (定位与同步)
+  \item SA, TA, RA, DA: 源/传输/接收/目的地址
+  \item FCS: Frame Check Sequence 帧校验序列
+\end{compactitem}
+\subsubsection{802.11 节能模式}
+\begin{compactitem}
+  \item PS-Poll: Power Save Poll 省电轮询
+  \item AID: Association Identifier 关联ID
+\end{compactitem}
+\subsubsection{Wi-Fi 管理}
+\begin{compactitem}
+  \item IAPP: Inter Access Point Protocol 内部访问点协议 (用于AP之间信息交互(例如认证状态信息)，以加快切换过程)
+  \item WiMAX: Worldwide Interoperability for Microwave Access 微波接入全球互通 (基站模式)
+  \item PAN: Personal Area Network 个域网 (Ad-Hoc 模式)
+  \item MAN: Metropolitan Area Network 城域网
+  \item ADSL: Asymmetric Digital Subscriber Line 非对称数字用户线路
+  \item AC: Wireless Access Point Controller 无线接入控制器
+  \item TBTT: Target Beacon Transmission Time Beacon帧发送间隔
+  \item TIM: Traffic Indication Map 数据待传信息
+  \item ERP: The Extended-Rate PHY
+  \item WEP: Wired Equivalent Privacy 有线等效保密
+  \item WPA: Wi-Fi Protected Access Wi-Fi 保护访问
+  \item EDCA: 增强的分布信道接入调度模式
+  \item AIF: Arbitration Inter-Frame Space
+  \item HCCA: 混合协调控制信道接入调度模式
+  \item RSNA: Robust Security Network Association 强健安全网络关联
+  \item AES: Advanced Encryption Standard 高级加密标准
+  \item DES: Data Encryption Standard 数据加密标准
+  \item RSA: 一种非对称加密算法
+  \item RC4: Rivest Cipher 4 一种流加密算法
+  \item CCMP: Counter CBC-MAC Protocol 计数器模式密码块链消息完整码协议
+\end{compactitem}
+
+\subsection{P2P}
+\subsubsection{第一代 P2P 网络}
+\begin{compactitem}
+  \item P2P: Peer to Peer 点到点对等网络 (经系统间直接交换来共享计算资源和服务的应用模式)
+  \item UUCP: Unix-to-Unix Copy UNIX 至 UNIX 的拷贝
+  \item CDN: Content Delivery Network 内容分发网络 (e.g Akami)
+  \item PDA: Personal Digital Assistant 掌上电脑
+  \item Choking Algorithm: 阻塞算法
+  \item Optimistic Unchoking: 优化疏通
+\end{compactitem}
+\subsubsection{第二代 P2P 网络}
+\begin{compactitem}
+  \item GUID: Globally Unique Identifier 全局唯一标识符
+\end{compactitem}
+\subsubsection{第三代 P2P 网络}
+\begin{compactitem}
+  \item DHT: Distributed Hash Table 分布式哈希表
+  \item SDDS: Scalable Distribute Data Structures 可扩展分布式数据结构
+  \item CFS: Cooperative File System 协同文件系统
+  \item Chord: 弦/带环弦
+\end{compactitem}
+\subsubsection{P2P 网络差异}
+\subsubsection{Chord 协议}
+\begin{compactitem}
+  \item Finger Table: 指向表
+\end{compactitem}
+\subsubsection{比特币与区块链}
+\begin{compactitem}
+  \item Bitcoin (BTC): 比特币 P2P 形式的虚拟货币
+  \item Blockchain: 区块链
+  \item Nonce: Number Once 一个只被使用一次的任意或非重复的随机数值
+\end{compactitem}
+
+\subsection{IPv6}
+\subsubsection{IPv6 地址分类与特点}
+\begin{compactitem}
+  \item ASIC: Application Specific Integrated Circuit 特定应用集成电路
+  \item MTU Discovery: 最大单元发现
+  \item Neighbor Discovery: 邻接节点发现
+  \item Router Advertisement: 路由器通告
+  \item Router Solicitation: 路由器请求
+  \item Auto Configuration: 节点自动配置
+  \item IPSec: IP security IP层安全
+  \item Authentication Header: 实现认证头
+  \item Encapsulated Security Payload: 安全载荷封装
+  \item Flow Label: 流标号 (QoS 能力)
+  \item FP: Format Prefix 格式前缀
+  \item NSAP: Network Service Access Point
+  \item IPX: Internet Packet eXchange
+  \item EUI: Extended Unique Identifier 扩展唯一标识符
+  \item TLA ID（Top Level Aggregator）: 顶级聚合标识符，分配给大型ISP，从IANA直接获取 (13 + 8)
+  \item NLA ID（Next Level Aggregator）: 次级聚合标识符，中型ISP从TLA获取 (24)
+  \item SLA ID（Site Level Aggregator）: 站点级聚合标识符，小型ISP从NLA获取 (16)
+  \item Interface Identifier: 接口标识符
+\end{compactitem}
+\subsubsection{IPv6 邻居发现协议}
+\begin{compactitem}
+  \item NUD: Neighbor Unreachability Detection
+  \item DAD: Duplicate Address Detection
+\end{compactitem}
+\clearpage
+
+\section{复习提纲}
+主要参考书为《系统方法》~\cite{peterson2007computer}, 考试题型如下:
+\begin{compactitem}
+  \item 术语解释 $2' \times 10$
+  \item 单项选择 $1' \times 10$
+  \item 分析计算 $6' \times 5$
+  \item 综合求解 $10' \times 4$
+\end{compactitem}
+
+\clearpage
+
+\bibliographystyle{unsrt}
+\bibliography{bibs/network}
+\addcontentsline{toc}{section}{\S 参考文献}
+\clearpage
+
+\end{document}
