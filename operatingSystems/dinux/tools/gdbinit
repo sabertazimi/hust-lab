@@ -1,0 +1,6 @@
+file bin/dinux
+target remote :1234
+set architecture i8086
+break kern_entry
+continue
+x /2i $pc
