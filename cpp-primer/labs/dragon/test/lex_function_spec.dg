@@ -1,0 +1,8 @@
+class Function {
+    int addr;
+
+    int funcTest = (int addr) => {
+        addr = 1;
+        return addr;
+    };
+}

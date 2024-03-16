@@ -1,0 +1,26 @@
+class Function {
+    int addr;
+
+    int funcTest = (int addr) => {
+        addr = 1;
+        return addr;
+    };
+
+    bool errorRetType = (int num) => {
+        return num;
+    };
+}
+
+class Main {
+    void main = (void) => {
+        class Function func;
+        func = new Function();
+
+        // incompatiable between formals and actuals
+        func.funcTest(true);
+
+        int a;
+        a = func.nonExistFunction;
+        return a;
+    };
+}

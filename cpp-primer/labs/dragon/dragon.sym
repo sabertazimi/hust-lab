@@ -1,0 +1,11 @@
+global scope: 
+    class Main
+    class Main
+    class scope of 'Main': 
+        function:	main: class: Main->void
+        formal scope of 'main': 
+            variable:	@this: class: Main
+            local scope: 
+                variable:	 b: bool
+                variable:	 i: int
+                variable:	 s: string

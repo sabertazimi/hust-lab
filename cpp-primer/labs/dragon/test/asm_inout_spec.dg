@@ -1,0 +1,23 @@
+class Main {
+    void main = (void) => {
+        int i;
+        bool b;
+        string s;
+
+        i = 233;
+        b = false;
+        s = "Hello, DragonLang!";
+
+        Print(i, b, s);
+
+        Print("Please input a number:");
+        i = ReadInt();
+
+        b = true;
+
+        Print("Please input a string:");
+        s = ReadLine();
+
+        Print(i, b, s);
+    };
+}

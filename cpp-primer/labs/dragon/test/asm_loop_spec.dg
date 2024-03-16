@@ -1,0 +1,22 @@
+class Main {
+    void main = (void) => {
+        int i;
+        int j;
+        int sum;
+        bool temp;
+
+        sum = 0;
+        temp = true;
+
+        for (i = 0; i < 5; i = i + 1) {
+            for (j = 0; j < 5; j = j + 1) {
+                sum = sum + j;
+                Print(sum);
+            }
+        }
+
+        Print(temp);
+        temp = false;
+        Print(temp);
+    };
+}

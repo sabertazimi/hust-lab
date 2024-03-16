@@ -1,0 +1,13 @@
+class Function {
+    int addr;
+
+    boole func1 = (void) => { return; };
+    void "func2" = (void) => { return; };
+    void func4 = (void) =< { return; };
+    void func5 = (void) =>  return; };
+}
+
+class Func6 {
+    void func6 = (void) => { return; }
+}
+

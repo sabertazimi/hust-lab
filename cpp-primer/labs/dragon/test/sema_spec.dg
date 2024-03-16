@@ -1,0 +1,121 @@
+class Computer {
+    // cpu for pc
+    int cpu;
+
+    int crash = (int numTimes) => {
+        Print(numTimes);
+        return numTimes;
+    };
+
+    void superMethod = (void) => {
+        return;
+    };
+}
+
+class Mac extends Computer {
+    // mouse for mac
+    int mouse;
+
+    int crash = (int numTimes) => {
+        mouse = cpu;
+        // inherits from super
+        this.cpu = numTimes;
+        Print("ack!");
+        return numTimes + 1;
+    };
+}
+
+class OSX extends Mac {
+    int superSuperField = (void) => {
+        // from class Computer
+        return cpu;
+    };
+}
+
+class Expression{
+    bool[] bool_arr;
+    int[] int_arr;
+
+    void main = (void) => {
+        bool_arr[1] = true;
+        bool_arr[2] = bool_arr[0] || bool_arr[1];
+
+        int_arr[1] = 233;
+        int_arr[2] = int_arr[1] + int_arr[0];
+
+        int c;
+        c = -int_arr[0];
+        bool d;
+        d = !bool_arr[2];
+
+        int const1;
+        int const2;
+        int folding;
+        int folding2;
+        const1 = 3;
+        const2 = 4;
+        folding = 3 + 4;
+        folding = const1 * const2;
+        folding2 = folding / 5;
+    };
+}
+class Function {
+    int addr;
+
+    int funcTest = (int addr) => {
+        addr = 1;
+        return addr;
+    };
+
+    bool errorRetType = (int num) => {
+        return true;
+    };
+}
+
+class Statement {
+    void stmt2 = (void) => {
+        int x;
+
+        while (x > 0) {
+            int y;
+            x = x - 1;
+            y = x - 1;
+        }
+
+        while (x < 0) {
+            int z;
+            z = z - 1;
+            x = x + 1;
+        }
+
+        for (x = 0; x < 10; x = x + 1) {
+            Print(x);
+        }
+    };
+}
+
+class Variable {
+    int[][] arr;
+
+    int varTest = (void) => {
+        arr = new int[][5];
+        return arr[1][1];
+    };
+}
+
+class Main {
+    void main = (void) => {
+        int a;
+
+        a = 1 + 2;
+
+        class Mac powerbook;
+        powerbook = new Mac();
+        powerbook.crash(2);
+        powerbook.superMethod();
+
+        class Function f;
+        f = new Function();
+        f.funcTest(a * 3);
+    };
+}

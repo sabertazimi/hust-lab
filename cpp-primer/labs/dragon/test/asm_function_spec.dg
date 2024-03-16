@@ -1,0 +1,5 @@
+class Main {
+    void main = (void) => {
+        Print("Hello Dragon!");
+    };
+}

@@ -1,0 +1,60 @@
+class Statement {
+    void stmt1 = (void) => {
+        int x;
+
+        // syntax error: unmatched '(' or ')'
+        if x > 0) {
+            return;
+        }
+
+        // syntax error: unmatched '(' or ')'
+        if (x > 0 {
+            return;
+        }
+    };
+
+    void stmt2 = (void) => {
+        int x;
+
+        // syntax error: unmatched '(' or ')'
+        while x > 0) {
+            x = x - 1;
+        }
+
+        // syntax error: unmatched '(' or ')'
+        while (x > 0 {
+            x = x - 1;
+        }
+    };
+
+    void stmt3 = (void) => {
+        int x;
+
+        // syntax error: unmatched '(' or ')'
+        for x = 0; x < 10; x = x + 1) {
+            Print(x);
+        }
+
+        // syntax error: expected ';' as separator between initializer and boolean expression
+        for (x = 0 x < 10; x = x + 1) {
+            Print(x);
+        }
+
+        // syntax error: expected ';' as separator between boolean expression and assignment
+        for (x = 0; x < 10 x = x + 1) {
+            Print(x);
+        }
+    };
+
+
+    void stmt5 = (void) => {
+        // syntax error: unmatched '(' or ')'
+        Print "233\n");
+
+        // syntax error: unmatched '(' or ')'
+        Print("233\n";
+
+        // syntax error: expected ';'
+        Print("233\n")
+    };
+}

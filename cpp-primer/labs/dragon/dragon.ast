@@ -1,0 +1,46 @@
+program
+    class-><Main, >
+        func->main
+        voidtype
+        
+            formals->
+            stmtblock->
+                vardef->i
+                inttype
+                
+                vardef->b
+                booltype
+                
+                vardef->s
+                stringtype
+                
+                assign->
+                    lvalue_ident->i
+                    intconst->233
+                assign->
+                    lvalue_ident->b
+                    boolconst->0
+                assign->
+                    lvalue_ident->s
+                    stringconst->Hello, DragonLang!
+                print->
+                    lvalue_ident->i
+                    lvalue_ident->b
+                    lvalue_ident->s
+                print->
+                    stringconst->Please input a number:
+                assign->
+                    lvalue_ident->i
+                    readint
+                assign->
+                    lvalue_ident->b
+                    boolconst->1
+                print->
+                    stringconst->Please input a string:
+                assign->
+                    lvalue_ident->s
+                    readline
+                print->
+                    lvalue_ident->i
+                    lvalue_ident->b
+                    lvalue_ident->s

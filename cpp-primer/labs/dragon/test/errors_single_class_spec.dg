@@ -1,0 +1,30 @@
+// syntax error: expected keyword class
+int ArchLinux {
+    int cpu;
+}
+
+class Arch {
+    int cpu;
+}
+
+// syntax error: expected identifier as class name
+class "KaliLinux" {
+    int cpu;
+}
+
+// syntax error: unmatched {}
+class GentooLinux 
+    int cpu;
+
+    int getCPU = (void) => {
+        return cpu;
+    };
+}
+
+// syntax error: unmatched {}
+class LinuxMint {
+    int cpu;
+
+    int getCPU = (void) => {
+        return cpu;
+    };

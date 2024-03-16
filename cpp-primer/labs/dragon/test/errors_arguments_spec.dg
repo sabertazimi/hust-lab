@@ -1,0 +1,22 @@
+class Function {
+    int addr;
+
+    // syntax error: expected　',' as separator
+    int func1 = (int addr int addr2) => { return 1; };
+
+    // syntax error: unexpected　','
+    int func2 = (int addr, int addr2,) => { return 1; };
+
+    // syntax error: expected　keyword 'void' or at least 1 parameter
+    int func3 = () => { return 1; };
+}
+
+class Main {
+    int main = (void) => {
+        // syntax error: expected　',' as separator
+        func1(addr addr2);
+
+        // syntax error: unexpected　','
+        func1(addr, addr2,);
+    };
+}
