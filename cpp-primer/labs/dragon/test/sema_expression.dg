@@ -1,0 +1,36 @@
+class Main {
+
+    bool[] bool_arr;
+    int[] int_arr;
+     
+    void main = (void) => {
+        // incompatible assignent to 'bool' from 'int'
+        bool_arr[1] = 1;
+
+        // incompatible arthimetic types
+        bool_arr[2] = bool_arr[0] + bool_arr[1];
+
+        // incompatible logic types
+        int_arr[1] = true;
+        int_arr[2] = int_arr[1] && int_arr[0];
+        
+        // use vector in where scalar expected
+        int a;
+        a = int_arr || int_arr;
+        bool b;
+        b = bool_arr && bool_arr;
+
+        // wrong types to unary operator
+        int c;
+        c = -bool_arr[0];
+        bool d;
+        d = !bool_arr;
+
+        // c is not array
+        int e;
+        e = c[0];
+        // index is not int type
+        int f;
+        f = bool_arr[d];
+    };
+}

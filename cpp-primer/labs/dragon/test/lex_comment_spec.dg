@@ -1,0 +1,49 @@
+/*
+ * @class: computer
+ * @brief: computer class
+ */
+class Computer {
+    // cpu for pc
+    int cpu;
+
+    /*
+     * Here are some comments
+     * ...
+     */
+
+    // useless code
+    // int cpu;
+}
+
+/*
+ * @class: mac
+ * @brief: mac os pc
+ */
+class Mac extends Computer {
+    // mouse for mac
+    int mouse;
+
+    /*
+     * @comment
+     * @notes
+     */
+    void crash = (int numTimes) => {
+        Print("ack!");
+        return;
+    };
+}
+
+/*
+ * @class: main
+ * @brief: program entry
+ */
+class Main {
+    int main = (void) => {
+        class Mac powerbook;
+        powerbook = new Mac();      // instruct a new instance
+        powerbook.crash(2);         // method invoking
+
+        // normal return
+        return 0;
+    };
+}

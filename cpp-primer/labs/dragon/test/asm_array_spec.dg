@@ -1,0 +1,17 @@
+class Main {
+    void main = (void) => {
+        int i;
+        int j;
+        int[] arr;
+
+        arr = new int[5];
+
+        for (i = 0; i < 5; i = i + 1) {
+            arr[i] = i;
+        }
+
+        for (j = 0; j < 5; j = j + 1) {
+            Print(arr[j]);
+        }
+    };
+}

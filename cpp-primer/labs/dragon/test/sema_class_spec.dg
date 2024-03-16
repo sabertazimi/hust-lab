@@ -1,0 +1,103 @@
+class Computer {
+    // cpu for pc
+    int cpu;
+    int override;
+
+    void crash = (int numTimes) => {
+        Print(numTimes);
+        return;
+    };
+
+    void superMethod = (void) => {
+        return;
+    };
+
+    void errOverride = (void) => {
+        return;
+    };
+
+    void func = (void) => {
+        return;
+    };
+}
+
+class Mac extends Computer {
+    // mouse for mac
+    int mouse;
+    
+    // error override func to var
+    int func;
+
+    // error override var to func
+    int override = (void) => {
+        return 1;
+    };
+
+    int crash = (int numTimes) => {
+        mouse = cpu;
+
+        // non-exist field both in this and super
+        this.Cpu = numTimes;
+
+        // inherits from super
+        this.cpu = numTimes;
+
+        Print("ack!");
+
+        return numTimes + 1;
+    };
+
+    // incomptible override type
+    bool errOverride = (void) => {
+        return true;
+    };
+}
+
+class OSX extends Mac {
+    int superSuperField = (void) => {
+        // from class Computer
+        return cpu;
+    };
+}
+
+class Error extends Main {
+    int main = (void) => {
+        return 0;
+    };
+}
+
+class Main {
+    // ban on member defination in field
+    int field;
+
+    // error type for 'main'
+    int main = (void) => {
+        // undefined class
+        class UnkownType unkown;
+
+        // invalid access to non-exist field
+        int a;
+        a = this.fields;
+
+        class Mac powerbook;
+        powerbook = new Mac();
+
+        // invalid access to variable field, only can access to method field
+        int b;
+        b = powerbook.mouse;
+
+        // non-exist function
+        powerbook.Crash(2);
+
+        // incomptible arguments
+        powerbook.crash();
+
+        // invalid access on Class Name
+        Mac.crash(2);
+
+        // method in super class
+        powerbook.superMethod();
+
+        return 0;
+    };
+}

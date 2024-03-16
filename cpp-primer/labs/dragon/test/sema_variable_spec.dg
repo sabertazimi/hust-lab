@@ -1,0 +1,30 @@
+class Variable {
+    int[][] arr;
+    int field;
+
+    int varTest = (void) => {
+        // redefined variable
+        int saber;
+        bool saber;
+
+        // error initialization(wrong dimension)
+        arr = new int[10];
+
+        return saber;
+    };
+
+    int scope = (int field) => {
+        // local variable can't own same name with parameters
+        int field;
+
+        field = 0;
+        
+        return field;
+    };
+}
+
+class Main {
+    void main = (void) => {
+        return;
+    };
+}

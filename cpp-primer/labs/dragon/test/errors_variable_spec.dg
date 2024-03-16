@@ -1,0 +1,19 @@
+class Main {
+    int main = (void) => {
+        // syntax error: expected ';'
+        int a
+    };
+
+    void main2 = (void) => {
+        // syntax error: expected ';'
+        int c;
+        c = 1
+    };
+
+    void main3 = (void) => {
+        // syntax error: expected identifier as variable name
+        int[] "123";
+    };
+
+    x = 1;
+}

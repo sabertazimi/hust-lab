@@ -1,0 +1,33 @@
+class Computer {
+    // cpu for pc
+    int cpu;
+
+    void crash = (int numTimes) => {
+        Print(numTimes);
+        return ;
+    };
+}
+
+class Mac extends Computer {
+    // mouse for mac
+    int mouse;
+
+    /*
+     * @override
+     */
+    int crash = (int numTimes) => {
+        Print("ack!");
+        Print(this.mouse);
+        return numTimes + 1;
+    };
+
+}
+
+class Main {
+    int main = (void) => {
+        class Mac powerbook;
+        powerbook = new Mac();
+        powerbook.Crash(2);
+        return 0;
+    };
+}
