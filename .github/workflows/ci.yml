@@ -36,7 +36,8 @@ jobs:
       - name: Setup Node environment
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: lts/*
+          check-latest: true
           architecture: x64
           registry-url: https://registry.npmjs.org/
       - name: Release to GitHub
