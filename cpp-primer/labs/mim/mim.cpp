@@ -11,6 +11,7 @@
 #include <fstream>
 #include <stdexcept>
 #include <regex>
+#include <cstring>
 
 using namespace std;
 
