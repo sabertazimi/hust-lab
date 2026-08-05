@@ -1,15 +1,15 @@
 
 * [Notes for ucore os lab](#notes-for-ucore-os-lab)
-	* [Set up](#set-up)
-	* [Contact](#contact)
+ 	* [Set up](#set-up)
+ 	* [Contact](#contact)
 
 # Notes for ucore os lab
 
 ## Set up
 
 ```shell
-$ sudo apt-get install meld qemu
-$ sudo apt-get doxygen doxygen-gui graphviz
+sudo apt-get install meld qemu
+sudo apt-get doxygen doxygen-gui graphviz
 ```
 
 ### doxygen
@@ -17,8 +17,8 @@ $ sudo apt-get doxygen doxygen-gui graphviz
 在代码根目录:
 
 ```shell
-$ doxygen -g
-$ cim Doxyfile
+doxygen -g
+cim Doxyfile
 ```
 
 ```config
@@ -42,15 +42,14 @@ DOT_NUM_THREADS 4
 doxygen
 ```
 
-
--   MIPS emulator
+* MIPS emulator
 
 ```shell
-$ sudo apt-get install spim
+sudo apt-get install spim
 ```
 
 ## Contact
 
--   [![Email](https://img.shields.io/badge/mailto-sabertazimi-brightgreen.svg?style=flat-square)](mailto:sabertazimi@gmail.com)
--   [![GitHub](https://img.shields.io/badge/contact-github-000000.svg?style=flat-square)](https://github.com/sabertazimi)
--   [![Twitter](https://img.shields.io/badge/contact-twitter-blue.svg?style=flat-square)](https://twitter.com/sabertazimi)    
+* [![Email](https://img.shields.io/badge/mailto-sabertazimi-brightgreen.svg?style=flat-square)](mailto:sabertazimi@gmail.com)
+* [![GitHub](https://img.shields.io/badge/contact-github-000000.svg?style=flat-square)](https://github.com/sabertaz)
+* [![Twitter](https://img.shields.io/badge/contact-twitter-blue.svg?style=flat-square)](https://twitter.com/sabertazimi)

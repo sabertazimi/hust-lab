@@ -11,7 +11,7 @@ Hust cpp lab
                                             
 ```
 
-[![Author](https://img.shields.io/badge/author-sabertazimi-lightgrey.svg)](https://github.com/sabertazimi)
+[![Author](https://img.shields.io/badge/author-sabertazimi-lightgrey.svg)](https://github.com/sabertaz)
 
 ## Pre-Installation
 
@@ -26,15 +26,15 @@ $ sudo apt install doxygen graphviz
 ## Run
 
 ```sh
-$ make clean
-$ make
-$ make run
+make clean
+make
+make run
 ```
 
 ## Debug
 
 ```sh
-$ make debug
+make debug
 ```
 
 ## Documentation
@@ -42,7 +42,7 @@ $ make debug
 ### Generation
 
 ```sh
-$ doxygen
+doxygen
 ```
 
 ### Online Documentation
@@ -108,10 +108,10 @@ $ doxygen
 
 ## License
 
-MIT License Copyright (c) 2016 [sabertazimi](https://github.com/sabertazimi)
+MIT License Copyright (c) 2016 [sabertazimi](https://github.com/sabertaz)
 
 ## Contact
 
--   [![Email](https://img.shields.io/badge/mailto-sabertazimi-brightgreen.svg?style=flat-square)](mailto:sabertazimi@gmail.com)
--   [![GitHub](https://img.shields.io/badge/contact-github-000000.svg?style=flat-square)](https://github.com/sabertazimi)
--   [![Twitter](https://img.shields.io/badge/contact-twitter-blue.svg?style=flat-square)](https://twitter.com/sabertazimi)
+- [![Email](https://img.shields.io/badge/mailto-sabertazimi-brightgreen.svg?style=flat-square)](mailto:sabertazimi@gmail.com)
+- [![GitHub](https://img.shields.io/badge/contact-github-000000.svg?style=flat-square)](https://github.com/sabertaz)
+- [![Twitter](https://img.shields.io/badge/contact-twitter-blue.svg?style=flat-square)](https://twitter.com/sabertazimi)

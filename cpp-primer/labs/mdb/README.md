@@ -1,6 +1,6 @@
 # mdb
 
-[![Author](https://img.shields.io/badge/author-sabertaz-lightgrey?style=for-the-badge)](https://github.com/sabertazimi)
+[![Author](https://img.shields.io/badge/author-sabertaz-lightgrey?style=for-the-badge)](https://github.com/sabertaz)
 [![LICENSE](https://img.shields.io/github/license/sabertazimi/mdb?style=for-the-badge)](https://raw.githubusercontent.com/sabertazimi/mdb/master/LICENSE)
 
 Minimal debugger
@@ -120,7 +120,6 @@ then keep reading until you get to the entry marked as the prologue end.
 
 ## Contact
 
-[![GitHub](https://img.shields.io/badge/-GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/sabertazimi)
+[![GitHub](https://img.shields.io/badge/-GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/sabertaz)
 [![Email](https://img.shields.io/badge/-Gmail-ea4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:sabertazimi@gmail.com)
 [![X](https://img.shields.io/badge/-X.com-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/sabertazimi)
-

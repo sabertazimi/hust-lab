@@ -2,18 +2,18 @@
 
 A simple web server based on Qt
 
-[![Author](https://img.shields.io/badge/author-sabertazimi-lightgrey.svg)](https://github.com/sabertazimi)
-[![Stable](https://img.shields.io/badge/stability-stable-brightgreen.svg)](https://github.com/sabertazimi/Awesome-Notes)
+[![Author](https://img.shields.io/badge/author-sabertazimi-lightgrey.svg)](https://github.com/sabertaz)
+[![Stable](https://img.shields.io/badge/stability-stable-brightgreen.svg)](https://github.com/sabertaz/Awesome-Notes)
 [![MIT](https://img.shields.io/badge/license-mit-brightgreen.svg)](https://raw.githubusercontent.com/sabertazimi/Awesome-Notes/master/LICENSE)
 
 ## Installation
 
-*   MinGW / Visual Studio (Provide C/C++ Compiler)
-*   CMake
-*   Qt 5.8 Tool Chain
+* MinGW / Visual Studio (Provide C/C++ Compiler)
+* CMake
+* Qt 5.8 Tool Chain
 
-*   .pro: `LIBS += -lws2_32`
-*   对于服务器和客户端工程，都必须打开工程设置（Project->Settings…），然后选中Link选项卡，在Object/library modules栏目中添加ws2_32.lib
+* .pro: `LIBS += -lws2_32`
+* 对于服务器和客户端工程，都必须打开工程设置（Project->Settings…），然后选中Link选项卡，在Object/library modules栏目中添加ws2_32.lib
 
 ## Window Socket API
 
@@ -42,21 +42,20 @@ struct in_addr {
 
 ### accept
 
-*   如果函数执行成功，会建立并返回一个新的SOCKET来与对方通信，新建的SOCKET与原来的SOCKET（函数的第一个参数s）有相同的特性，包括端口号
-*   原来的SOCKET继续等待其他的连接请求。而新生成的SOCKET才是与客户端通信的实际SOCKET
-*   一般将参数中的SOCKET称作“监听”SOCKET，它只负责接受连接，不负责通话；而对于函数返回的SOCKET，把它称作“会话”SOCKET，它负责与客户端通话
+* 如果函数执行成功，会建立并返回一个新的SOCKET来与对方通信，新建的SOCKET与原来的SOCKET（函数的第一个参数s）有相同的特性，包括端口号
+* 原来的SOCKET继续等待其他的连接请求。而新生成的SOCKET才是与客户端通信的实际SOCKET
+* 一般将参数中的SOCKET称作“监听”SOCKET，它只负责接受连接，不负责通话；而对于函数返回的SOCKET，把它称作“会话”SOCKET，它负责与客户端通话
 
 ## Reference
 
-*   [Thread](https://john.nachtimwald.com/2015/05/02/effective-threading-using-qt/)
+* [Thread](https://john.nachtimwald.com/2015/05/02/effective-threading-using-qt/)
 
 ## License
 
-MIT License Copyright (c) 2017 [sabertazimi](https://github.com/sabertazimi)
+MIT License Copyright (c) 2017 [sabertazimi](https://github.com/sabertaz)
 
 ## Contact
 
--   [![Email](https://img.shields.io/badge/mailto-sabertazimi-brightgreen.svg?style=flat-square)](mailto:sabertazimi@gmail.com)
--   [![GitHub](https://img.shields.io/badge/contact-github-000000.svg?style=flat-square)](https://github.com/sabertazimi)
--   [![Twitter](https://img.shields.io/badge/contact-twitter-blue.svg?style=flat-square)](https://twitter.com/sabertazimi)
-
+* [![Email](https://img.shields.io/badge/mailto-sabertazimi-brightgreen.svg?style=flat-square)](mailto:sabertazimi@gmail.com)
+* [![GitHub](https://img.shields.io/badge/contact-github-000000.svg?style=flat-square)](https://github.com/sabertaz)
+* [![Twitter](https://img.shields.io/badge/contact-twitter-blue.svg?style=flat-square)](https://twitter.com/sabertazimi)

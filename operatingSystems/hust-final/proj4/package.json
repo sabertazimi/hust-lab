@@ -6,7 +6,7 @@
   "scripts": {
     "start": "./node_modules/.bin/electron ."
   },
-  "repository": "https://github.com/sabertazimi/hust-os-2017",
+  "repository": "https://github.com/sabertaz/hust-os-2017",
   "keywords": [
     "Electron",
     "Task Manager"

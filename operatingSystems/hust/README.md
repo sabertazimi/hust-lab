@@ -4,4 +4,4 @@ for process lab in os course
 
 ## License
 
-MIT License [@sabertazimi](https://github.com/sabertazimi)
+MIT License [@sabertazimi](https://github.com/sabertaz)

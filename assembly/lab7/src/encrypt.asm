@@ -142,7 +142,7 @@ search_inner:
 		inc   eax
 		inc   ebx
 		jmp   search_inner
-        db   '@website: https://github.com/sabertazimi'
+        db   '@website: https://github.com/sabertaz'
 search_next:
 		inc   ecx
 		imul  ebx, ecx, 14

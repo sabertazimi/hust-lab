@@ -5,14 +5,15 @@ A task manager baed on Electron
 ## Installation
 
 ```sh
-$ sudo apt install nodejs npm
-$ sudo npm install -g cnpm
+sudo apt install nodejs npm
+sudo npm install -g cnpm
 ```
+
 ## Development
 
 ```sh
-$ cnpm install
-$ cnpm start
+cnpm install
+cnpm start
 ```
 
 ## /proc notes
@@ -44,7 +45,7 @@ $ cat /proc/17465/cmdline
 * `/proc/[0-9]*/stat` 进程状态信息, 被命令 ps(1) 使用
 
 ```sh
-$ cat / proc/17465/stat
+cat / proc/17465/stat
 ```
 
 * `/proc/[0-9]*/statm`
@@ -64,11 +65,10 @@ $ getconf PAGE_SIZE
 
 ## License
 
-MIT License Copyright (c) 2017 [sabertazimi](https://github.com/sabertazimi)
+MIT License Copyright (c) 2017 [sabertazimi](https://github.com/sabertaz)
 
 ## Contact
 
 * [![Email](https://img.shields.io/badge/mailto-sabertazimi-brightgreen.svg?style=flat-square)](mailto:sabertazimi@gmail.com)
-* [![GitHub](https://img.shields.io/badge/contact-github-000000.svg?style=flat-square)](https://github.com/sabertazimi)
+* [![GitHub](https://img.shields.io/badge/contact-github-000000.svg?style=flat-square)](https://github.com/sabertaz)
 * [![Twitter](https://img.shields.io/badge/contact-twitter-blue.svg?style=flat-square)](https://twitter.com/sabertazimi)
-

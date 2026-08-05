@@ -1,6 +1,6 @@
 # dinux
 
-[![Author](https://img.shields.io/badge/author-sabertaz-lightgrey?style=for-the-badge)](https://github.com/sabertazimi)
+[![Author](https://img.shields.io/badge/author-sabertaz-lightgrey?style=for-the-badge)](https://github.com/sabertaz)
 [![LICENSE](https://img.shields.io/github/license/sabertazimi/dinux?style=for-the-badge)](https://raw.githubusercontent.com/sabertazimi/dinux/master/LICENSE)
 
 ```sh
@@ -16,33 +16,33 @@ A toy operating system
 ## Installation
 
 ```sh
-$ sudo apt install libc6-dev-i386 build-essential
-$ sudo apt install nasm qemu bochs
+sudo apt install libc6-dev-i386 build-essential
+sudo apt install nasm qemu bochs
 ```
 
 ```sh
-$ wget http://alpha.gnu.org/gnu/grub/grub-0.97-i386-pc.tar.gz
-$ tar xzvf grub-0.97-i386-pc.tar.gz
-$ dd if=/dev/zero of=floppy.img bs=512 count=2880
-$ mkfs.vfat floppy.img
-$ sudo mount floppy.img /mnt/dinux
-$ sudo mkdir -p /mnt/dinux/boot/grub
-$ sudo cp -fr grub-0.97-i386-pc/boot/grub/stage1 grub-0.97-i386-pc/boot/grub/stage2 /mnt/dinux/boot/grub
-$ sudo vim /mnt/dinux/boot/grub/grub.conf
+wget http://alpha.gnu.org/gnu/grub/grub-0.97-i386-pc.tar.gz
+tar xzvf grub-0.97-i386-pc.tar.gz
+dd if=/dev/zero of=floppy.img bs=512 count=2880
+mkfs.vfat floppy.img
+sudo mount floppy.img /mnt/dinux
+sudo mkdir -p /mnt/dinux/boot/grub
+sudo cp -fr grub-0.97-i386-pc/boot/grub/stage1 grub-0.97-i386-pc/boot/grub/stage2 /mnt/dinux/boot/grub
+sudo vim /mnt/dinux/boot/grub/grub.conf
 ```
 
 ## Bootloader/Grub
 
 利用现成的 bootloader - grub 可以不用编写 **A20开启** 与 **内核装载** 的代码, grub 将 kernel 加载进内核后, 整个计算机处于:
 
-*   A20 开启
-*   段/页机制关闭
+* A20 开启
+* 段/页机制关闭
 
 ## CGA/VGA Text Memory
 
 通过向物理地址(最低 1MB) 0x8b000 写数据, 可实现简单的打印字符功能. 从 0x8b000 开始将其视为一个 元素为 2 字节数据, 大小为 25*80 的二维数组. 数组元素所包含信息如下所示:
 
-*   (hi -> lo) 4 - 4 - 8: background_color - foreground_color - character_ascii
+* (hi -> lo) 4 - 4 - 8: background_color - foreground_color - character_ascii
 
 ## TODO
 
@@ -51,15 +51,15 @@ $ sudo vim /mnt/dinux/boot/grub/grub.conf
 
 ## Thanks
 
-*   hurlex
-*   jamesmolloy
+* hurlex
+* jamesmolloy
 
 ## License
 
-MIT License Copyright (c) 2017 [sabertazimi](https://github.com/sabertazimi)
+MIT License Copyright (c) 2017 [sabertazimi](https://github.com/sabertaz)
 
 ## Contact
 
-[![GitHub](https://img.shields.io/badge/-GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/sabertazimi)
+[![GitHub](https://img.shields.io/badge/-GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/sabertaz)
 [![Email](https://img.shields.io/badge/-Gmail-ea4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:sabertazimi@gmail.com)
 [![X](https://img.shields.io/badge/-X.com-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/sabertazimi)
